@@ -16,7 +16,7 @@ public class Splicer {
 	public static final int SLOT_TARGET = 9;
 	public static final int[] SLOT_FINISHED = new int[]{10, 11, 12, 13};
 	public static final int RF_COST = 12000000;
-	public static final int TIME_PERIOD = 1200;
+	public static final int TIME_PERIOD = 120;
 	public static final int POWER_CAPACITY = 20000;
 
 	public static void setGene(IGene gene, ItemStack target, int chromoN) {

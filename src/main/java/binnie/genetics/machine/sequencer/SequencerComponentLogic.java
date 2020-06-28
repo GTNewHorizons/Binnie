@@ -28,7 +28,7 @@ public class SequencerComponentLogic extends ComponentProcess implements IProces
 
 	@Override
 	public int getProcessLength() {
-		return (int) (19200.0f * getSequenceStrength());
+		return (int) (192.0f * getSequenceStrength());
 	}
 
 	@Override
