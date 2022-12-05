@@ -1689,6 +1689,7 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
                                     "minecraft7771",
                                     "_Timbo",
                                     "kuba6000",
+                                    "Alrightsc",
                                     "YeetYeetDatBoi",
                                     "DreamMasterXXL",
                                     "mitchej123",
