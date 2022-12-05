@@ -1686,13 +1686,13 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
                                     "BlueWeabo",
                                     "Lewis_Saber",
                                     "True_Aurastorm",
+                                    "mitchej123",
                                     "minecraft7771",
                                     "_Timbo",
                                     "kuba6000",
                                     "Alrightsc",
                                     "YeetYeetDatBoi",
                                     "DreamMasterXXL",
-                                    "mitchej123",
                                     "Colen"));
         }
     },
