@@ -51,7 +51,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
         name = "Binnie Core",
         version = BinnieCore.VERSION,
         useMetadata = true,
-        dependencies = "after:Forestry@[4.2,)")
+        dependencies = "after:Forestry@[4.2,),required-after:gtnhlib@[0.0.10,)")
 public class BinnieCore extends AbstractMod {
     @Mod.Instance("BinnieCore")
     public static BinnieCore instance;

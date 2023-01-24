@@ -3,7 +3,7 @@ package binnie.extratrees;
 import binnie.core.block.TileEntityMetadata;
 import forestry.api.arboriculture.EnumWoodType;
 import forestry.arboriculture.tiles.TileWood;
-import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -14,9 +14,21 @@ import net.minecraft.world.WorldSettings;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
-import sun.reflect.ReflectionFactory;
+import sun.misc.Unsafe;
 
 public class FakeWorld extends World {
+    private static Unsafe unsafe;
+
+    static {
+        try {
+            Field theUnsafe = Unsafe.class.getDeclaredField("theUnsafe");
+            theUnsafe.setAccessible(true);
+            unsafe = (Unsafe) theUnsafe.get(null);
+        } catch (ReflectiveOperationException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static FakeWorld instance = SilentObjectCreator.create(FakeWorld.class);
 
     protected Block block;
@@ -106,22 +118,10 @@ public class FakeWorld extends World {
          * Creating objects without calling constructors.
          */
         public static <T> T create(Class<T> clazz) {
-            return create(clazz, Object.class);
-        }
-
-        /**
-         * Creating objects without calling constructors.
-         */
-        public static <T> T create(Class<T> clazz, Class<? super T> parent) {
             try {
-                ReflectionFactory rf = ReflectionFactory.getReflectionFactory();
-                Constructor objDef = parent.getDeclaredConstructor();
-                Constructor intConstr = rf.newConstructorForSerialization(clazz, objDef);
-                return clazz.cast(intConstr.newInstance());
-            } catch (RuntimeException e) {
-                throw e;
-            } catch (Exception e) {
-                throw new IllegalStateException("Cannot create object", e);
+                return clazz.cast(unsafe.allocateInstance(clazz));
+            } catch (InstantiationException e) {
+                throw new IllegalStateException(e);
             }
         }
     }
