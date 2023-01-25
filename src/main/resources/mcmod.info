@@ -11,8 +11,8 @@
     "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
     "logoFile": "/assets/binniecore/logo.png",
     "parent": "",
-    "requiredMods": [ "Forestry" ],
-    "dependencies": [ "Forestry" ],
+    "requiredMods": [ "Forestry", "gtnhlib@[0.0.10,)" ],
+    "dependencies": [ "Forestry", "gtnhlib@[0.0.10,)" ],
     "dependants" : [ ],
     "useDependencyInformation" : true
   },
@@ -27,7 +27,7 @@
     "authorList": [ "Binnie" ],
     "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
     "logoFile": "/assets/extrabees/logo.png",
-    "parent": "",
+    "parent": "${modId}",
     "dependencies": [ "BinnieCore" ]
   },
   {
@@ -41,7 +41,7 @@
     "authorList": [ "Binnie" ],
     "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
     "logoFile": "/assets/extratrees/logo.png",
-    "parent": "",
+    "parent": "${modId}",
     "dependencies": [ "BinnieCore" ]
   },
   {
@@ -55,7 +55,7 @@
     "authorList": [ "Binnie" ],
     "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
     "logoFile": "/assets/botany/logo.png",
-    "parent": "",
+    "parent": "${modId}",
     "dependencies": [ "BinnieCore" ]
   },
   {
@@ -69,7 +69,7 @@
     "authorList": [ "Binnie" ],
     "credits": "Thanks to Sengir, MysteriousAges, Xizzzy and many others",
     "logoFile": "/assets/genetics/logo.png",
-    "parent": "",
+    "parent": "${modId}",
     "dependencies": [ "BinnieCore" ]
   }
 ]

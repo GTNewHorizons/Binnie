@@ -6,6 +6,7 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.item.Food;
+import com.gtnewhorizon.gtnhlib.reflect.Fields;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.arboriculture.EnumTreeChromosome;
@@ -18,7 +19,6 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderNone;
 import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -254,12 +254,9 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
             try {
                 IAlleleFruit lemon = (IAlleleFruit) AlleleManager.alleleRegistry.getAllele("forestry.fruitLemon");
                 FruitProviderNone prov = (FruitProviderNone) lemon.getProvider();
-                Field f = FruitProviderNone.class.getDeclaredField("family");
-                Field modifiersField = Field.class.getDeclaredField("modifiers");
-                f.setAccessible(true);
-                modifiersField.setAccessible(true);
-                modifiersField.setInt(f, f.getModifiers() & 0xFFFFFFEF);
-                f.set(prov, familyCitrus);
+                Fields.ofClass(FruitProviderNone.class)
+                        .getField(Fields.LookupType.DECLARED, "family", IFruitFamily.class)
+                        .setValue(prov, familyCitrus);
             } catch (Exception e) {
                 e.printStackTrace();
             }

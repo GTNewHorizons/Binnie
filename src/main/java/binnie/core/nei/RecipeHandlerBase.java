@@ -80,7 +80,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
     public void loadUsageRecipes(FluidStack ingredient) {}
 
     @Override
-    public List<String> handleTooltip(GuiRecipe guiRecipe, List<String> currenttip, int recipe) {
+    public List<String> handleTooltip(GuiRecipe<?> guiRecipe, List<String> currenttip, int recipe) {
         super.handleTooltip(guiRecipe, currenttip, recipe);
         CachedBaseRecipe crecipe = (CachedBaseRecipe) this.arecipes.get(recipe);
         if (GuiContainerManager.shouldShowTooltip(guiRecipe)) {
@@ -98,7 +98,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
     }
 
     public List<String> provideTooltip(
-            GuiRecipe guiRecipe, List<String> currenttip, CachedBaseRecipe crecipe, Point relMouse) {
+            GuiRecipe<?> guiRecipe, List<String> currenttip, CachedBaseRecipe crecipe, Point relMouse) {
         if (crecipe.getFluidTanks() != null) {
             for (PositionedFluidTank tank : crecipe.getFluidTanks()) {
                 if (tank.position.contains(relMouse)) {
@@ -111,7 +111,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
 
     @Override
     public List<String> handleItemTooltip(
-            GuiRecipe guiRecipe, ItemStack itemStack, List<String> currenttip, int recipe) {
+            GuiRecipe<?> guiRecipe, ItemStack itemStack, List<String> currenttip, int recipe) {
         super.handleItemTooltip(guiRecipe, itemStack, currenttip, recipe);
         CachedBaseRecipe crecipe = (CachedBaseRecipe) this.arecipes.get(recipe);
         Point mouse = GuiDraw.getMousePosition();
@@ -125,7 +125,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
     }
 
     public List<String> provideItemTooltip(
-            GuiRecipe guiRecipe,
+            GuiRecipe<?> guiRecipe,
             ItemStack itemStack,
             List<String> currenttip,
             CachedBaseRecipe crecipe,
@@ -151,7 +151,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
     }
 
     @Override
-    public boolean keyTyped(GuiRecipe gui, char keyChar, int keyCode, int recipe) {
+    public boolean keyTyped(GuiRecipe<?> gui, char keyChar, int keyCode, int recipe) {
         if (keyCode == NEIClientConfig.getKeyBinding("gui.recipe")) {
             if (this.transferFluidTank(gui, recipe, false)) {
                 return true;
@@ -165,7 +165,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
     }
 
     @Override
-    public boolean mouseClicked(GuiRecipe gui, int button, int recipe) {
+    public boolean mouseClicked(GuiRecipe<?> gui, int button, int recipe) {
         if (button == 0) {
             if (this.transferFluidTank(gui, recipe, false)) {
                 return true;
@@ -178,7 +178,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
         return super.mouseClicked(gui, button, recipe);
     }
 
-    protected boolean transferFluidTank(GuiRecipe guiRecipe, int recipe, boolean usage) {
+    protected boolean transferFluidTank(GuiRecipe<?> guiRecipe, int recipe, boolean usage) {
         CachedBaseRecipe crecipe = (CachedBaseRecipe) this.arecipes.get(recipe);
 
         if (crecipe.getFluidTanks() != null) {
