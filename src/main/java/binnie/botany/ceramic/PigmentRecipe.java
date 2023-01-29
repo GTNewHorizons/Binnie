@@ -1,14 +1,16 @@
 package binnie.botany.ceramic;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.IFlower;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.IFlower;
+
 public class PigmentRecipe implements IRecipe {
+
     protected ItemStack cached;
 
     private ItemStack unknown;
@@ -45,10 +47,7 @@ public class PigmentRecipe implements IRecipe {
 
                 IFlower flower = Binnie.Genetics.getFlowerRoot().getMember(crafting.getStackInSlot(i));
                 if (flower.getAge() >= 1) {
-                    stack = new ItemStack(
-                            Botany.pigment,
-                            1,
-                            flower.getGenome().getPrimaryColor().getID());
+                    stack = new ItemStack(Botany.pigment, 1, flower.getGenome().getPrimaryColor().getID());
                 }
             }
         }

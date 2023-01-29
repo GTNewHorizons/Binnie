@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MachinePayload {
+
     private List<Integer> intPayload;
     private List<Float> floatPayload;
     private List<String> stringPayload;

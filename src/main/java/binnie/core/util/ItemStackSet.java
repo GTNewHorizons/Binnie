@@ -5,9 +5,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
 import net.minecraft.item.ItemStack;
 
 public class ItemStackSet implements Set<ItemStack> {
+
     protected List<ItemStack> itemStacks;
 
     public ItemStackSet() {

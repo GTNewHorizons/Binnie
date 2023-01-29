@@ -1,5 +1,13 @@
 package binnie.extratrees.craftgui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -20,24 +28,14 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.machines.designer.WoodworkerRecipeComponent;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
+
     protected IDesign value;
     protected float shownHeight;
 
     protected ControlTileSelect(IWidget parent, float x, float y) {
-        super(
-                parent,
-                x,
-                y,
-                102.0f,
-                20 * (CarpentryManager.carpentryInterface.getSortedDesigns().size() / 4) + 22);
+        super(parent, x, y, 102.0f, 20 * (CarpentryManager.carpentryInterface.getSortedDesigns().size() / 4) + 22);
         value = EnumDesign.Blank;
         shownHeight = 92.0f;
         refresh("");
@@ -124,6 +122,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
     }
 
     public static class ControlTile extends Control implements IControlValue<IDesign>, ITooltip {
+
         IDesign value;
 
         protected ControlTile(IWidget parent, float x, float y, IDesign value) {
@@ -135,8 +134,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
         @Override
         public void getTooltip(Tooltip tooltip) {
-            tooltip.add(
-                    I18N.localise("binniecore.gui.designer.pattern", getValue().getName()));
+            tooltip.add(I18N.localise("binniecore.gui.designer.pattern", getValue().getName()));
         }
 
         @Override
@@ -156,8 +154,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
 
         @Override
         public void onRenderForeground() {
-            ItemStack image =
-                    ((WindowWoodworker) getSuperParent()).getDesignerType().getDisplayStack(getValue());
+            ItemStack image = ((WindowWoodworker) getSuperParent()).getDesignerType().getDisplayStack(getValue());
             CraftGUI.render.item(new IPoint(1.0f, 1.0f), image);
             if (((IControlValue) getParent()).getValue() == getValue()) {
                 return;
@@ -171,10 +168,10 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
         }
 
         private class MouseDownHandler extends EventMouse.Down.Handler {
+
             @Override
             public void onEvent(EventMouse.Down event) {
-                TileEntityMachine tile =
-                        (TileEntityMachine) Window.get(getWidget()).getInventory();
+                TileEntityMachine tile = (TileEntityMachine) Window.get(getWidget()).getInventory();
                 if (tile == null) {
                     return;
                 }

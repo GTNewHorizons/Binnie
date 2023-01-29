@@ -1,16 +1,20 @@
 package binnie.core.craftgui.database;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.listbox.ControlListBox;
-import binnie.core.craftgui.minecraft.Window;
-import com.mojang.authlib.GameProfile;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IClassification;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.listbox.ControlListBox;
+import binnie.core.craftgui.minecraft.Window;
+
+import com.mojang.authlib.GameProfile;
+
+import forestry.api.genetics.IAlleleSpecies;
+import forestry.api.genetics.IClassification;
+
 public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
+
     private IClassification branch;
 
     @Override
@@ -35,8 +39,7 @@ public class ControlSpeciesBox extends ControlListBox<IAlleleSpecies> {
 
         GameProfile playerName = Window.get(this).getUsername();
         WindowAbstractDatabase db = Window.get(this);
-        Collection<IAlleleSpecies> speciesList3 = db.isNEI
-                ? db.getBreedingSystem().getAllSpecies()
+        Collection<IAlleleSpecies> speciesList3 = db.isNEI ? db.getBreedingSystem().getAllSpecies()
                 : db.getBreedingSystem().getDiscoveredSpecies(db.getWorld(), playerName);
         if (branch != null) {
             for (IAlleleSpecies species : branch.getMemberSpecies()) {

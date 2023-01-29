@@ -1,18 +1,20 @@
 package binnie.core.item;
 
-import binnie.core.BinnieCore;
-import binnie.core.gui.BinnieCoreGUI;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import binnie.core.BinnieCore;
+import binnie.core.gui.BinnieCoreGUI;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+
 public class ItemGenesis extends Item {
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
@@ -27,8 +29,8 @@ public class ItemGenesis extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
-        BinnieCore.proxy.openGui(
-                BinnieCoreGUI.Genesis, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+        BinnieCore.proxy
+                .openGui(BinnieCoreGUI.Genesis, player, (int) player.posX, (int) player.posY, (int) player.posZ);
         return itemStack;
     }
 

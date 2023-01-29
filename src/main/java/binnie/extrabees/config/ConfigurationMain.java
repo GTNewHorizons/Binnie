@@ -7,6 +7,7 @@ import binnie.core.mod.config.PropInteger;
 
 @ConfigFile(filename = "/config/forestry/extrabees/main.conf")
 public class ConfigurationMain {
+
     @ConfigProperty(key = "canQuarryMineHives")
     @PropBoolean
     public static boolean canQuarryMineHives = true;

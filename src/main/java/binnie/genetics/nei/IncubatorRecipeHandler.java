@@ -1,5 +1,13 @@
 package binnie.genetics.nei;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
 import binnie.core.nei.RecipeHandlerBase;
@@ -8,12 +16,6 @@ import binnie.genetics.machine.incubator.Incubator;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
 
 public class IncubatorRecipeHandler extends RecipeHandlerBase {
 
@@ -94,6 +96,7 @@ public class IncubatorRecipeHandler extends RecipeHandlerBase {
     }
 
     public class CachedIncubatorRecipe extends CachedBaseRecipe {
+
         public List<PositionedFluidTank> tanks = new ArrayList<>();
         public PositionedStack input;
         public PositionedStack output;
@@ -107,7 +110,10 @@ public class IncubatorRecipeHandler extends RecipeHandlerBase {
                 if (fluidStack.amount == 0) {
                     this.tanks.add(
                             new PositionedFluidTank(
-                                    new FluidStack(fluidStack.getFluid(), 1), 100, new Rectangle(28, 6, 16, 58)) {
+                                    new FluidStack(fluidStack.getFluid(), 1),
+                                    100,
+                                    new Rectangle(28, 6, 16, 58)) {
+
                                 @Override
                                 public List<String> handleTooltip(List<String> currenttip) {
                                     List<String> tip = super.handleTooltip(currenttip);

@@ -1,5 +1,10 @@
 package binnie.extratrees.carpentry;
 
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.block.ItemMetadata;
@@ -11,18 +16,15 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class ModuleCarpentry implements IInitializable {
+
     static {
         CarpentryManager.carpentryInterface = new CarpentryInterface();
     }
 
-    public static ItemStack getItemStack(
-            BlockDesign block, IDesignMaterial type1, IDesignMaterial type2, IDesign design) {
+    public static ItemStack getItemStack(BlockDesign block, IDesignMaterial type1, IDesignMaterial type2,
+            IDesign design) {
         return getItemStack(
                 block,
                 block.getDesignSystem().getMaterialIndex(type1),
@@ -31,8 +33,8 @@ public class ModuleCarpentry implements IInitializable {
     }
 
     public static ItemStack getItemStack(BlockDesign block, int type1, int type2, int design) {
-        return TileEntityMetadata.getItemStack(
-                block, getMetadata(type1, type2, design, 0, ForgeDirection.UP.ordinal()));
+        return TileEntityMetadata
+                .getItemStack(block, getMetadata(type1, type2, design, 0, ForgeDirection.UP.ordinal()));
     }
 
     public static ItemStack getItemStack(BlockDesign blockC, DesignBlock block) {
@@ -86,12 +88,14 @@ public class ModuleCarpentry implements IInitializable {
         GameRegistry.registerBlock(ExtraTrees.blockPanel, ItemMetadata.class, "panel");
         GameRegistry.registerBlock(ExtraTrees.blockStained, ItemMetadata.class, "stainedglass");
         BinnieCore.proxy.registerCustomItemRenderer(
-                Item.getItemFromBlock(ExtraTrees.blockCarpentry), new MultipassItemRenderer());
+                Item.getItemFromBlock(ExtraTrees.blockCarpentry),
+                new MultipassItemRenderer());
         BinnieCore.proxy.registerCustomItemRenderer(
-                Item.getItemFromBlock(ExtraTrees.blockStained), new MultipassItemRenderer());
+                Item.getItemFromBlock(ExtraTrees.blockStained),
+                new MultipassItemRenderer());
         MinecraftForge.EVENT_BUS.register(ExtraTrees.blockCarpentry);
-        BinnieCore.proxy.registerCustomItemRenderer(
-                Item.getItemFromBlock(ExtraTrees.blockPanel), new MultipassItemRenderer());
+        BinnieCore.proxy
+                .registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockPanel), new MultipassItemRenderer());
     }
 
     @Override

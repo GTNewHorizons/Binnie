@@ -1,5 +1,11 @@
 package binnie.extratrees.machines;
 
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachineType;
@@ -17,13 +23,9 @@ import binnie.extratrees.machines.designer.PanelworkerPackage;
 import binnie.extratrees.machines.designer.TileworkerPackage;
 import binnie.extratrees.machines.designer.WoodworkerPackage;
 import binnie.extratrees.machines.lumbermill.LumbermillPackage;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public enum ExtraTreeMachine implements IMachineType {
+
     Lumbermill(LumbermillPackage.class),
     Woodworker(WoodworkerPackage.class),
     Panelworker(PanelworkerPackage.class),
@@ -54,6 +56,7 @@ public enum ExtraTreeMachine implements IMachineType {
     }
 
     public static class ComponentExtraTreeGUI extends MachineComponent implements IInteraction.RightClick {
+
         protected ExtraTreesGUID id;
 
         public ComponentExtraTreeGUI(Machine machine, ExtraTreesGUID id) {
@@ -68,6 +71,7 @@ public enum ExtraTreeMachine implements IMachineType {
     }
 
     public abstract static class PackageExtraTreeMachine extends MachinePackage {
+
         protected BinnieResource textureName;
 
         protected PackageExtraTreeMachine(String uid, String textureName, boolean powered) {
@@ -86,8 +90,8 @@ public enum ExtraTreeMachine implements IMachineType {
         }
 
         @Override
-        public void renderMachine(
-                Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
+        public void renderMachine(Machine machine, double x, double y, double z, float partialTick,
+                RenderBlocks renderer) {
             MachineRendererForestry.renderMachine(textureName.getShortPath(), x, y, z, partialTick);
         }
     }

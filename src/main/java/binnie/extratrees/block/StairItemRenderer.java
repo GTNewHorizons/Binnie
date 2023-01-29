@@ -7,9 +7,11 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.client.IItemRenderer;
+
 import org.lwjgl.opengl.GL11;
 
 public class StairItemRenderer implements IItemRenderer {
+
     private void renderStairBlock(RenderBlocks renderBlocks, ItemStack item, float f, float g, float h) {
         Tessellator tessellator = Tessellator.instance;
         Block block = ((ItemBlock) item.getItem()).field_150939_a;
@@ -64,8 +66,8 @@ public class StairItemRenderer implements IItemRenderer {
     }
 
     @Override
-    public boolean shouldUseRenderHelper(
-            IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
+    public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item,
+            IItemRenderer.ItemRendererHelper helper) {
         return true;
     }
 

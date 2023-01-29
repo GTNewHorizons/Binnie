@@ -1,14 +1,16 @@
 package binnie.extratrees.carpentry;
 
-import binnie.core.util.I18N;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.block.PlankType;
-import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.util.I18N;
+import binnie.extratrees.api.IDesign;
+import binnie.extratrees.block.PlankType;
+import forestry.api.core.Tabs;
+
 public class BlockCarpentry extends BlockDesign {
+
     public BlockCarpentry() {
         super(DesignSystem.Wood, Material.wood);
         setCreativeTab(Tabs.tabArboriculture);
@@ -20,13 +22,12 @@ public class BlockCarpentry extends BlockDesign {
 
     @Override
     public ItemStack getCreativeStack(IDesign design) {
-        return ModuleCarpentry.getItemStack(
-                this, PlankType.ExtraTreePlanks.Apple, PlankType.VanillaPlanks.BIRCH, design);
+        return ModuleCarpentry
+                .getItemStack(this, PlankType.ExtraTreePlanks.Apple, PlankType.VanillaPlanks.BIRCH, design);
     }
 
     @Override
     public String getBlockName(DesignBlock design) {
-        return I18N.localise(
-                "extratrees.block.woodentile.name", design.getDesign().getName());
+        return I18N.localise("extratrees.block.woodentile.name", design.getDesign().getName());
     }
 }

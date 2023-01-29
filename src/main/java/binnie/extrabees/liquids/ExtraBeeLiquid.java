@@ -1,5 +1,11 @@
 package binnie.extrabees.liquids;
 
+import java.awt.Color;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ILiquidType;
@@ -7,12 +13,9 @@ import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.awt.Color;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.FluidStack;
 
 public enum ExtraBeeLiquid implements ILiquidType {
+
     ACID("acid", new Color(0xafeb19)),
     POISON("poison", new Color(0xeb14eb)),
     GLACIAL("liquidnitrogen", new Color(0x96c8c8));
@@ -69,8 +72,7 @@ public enum ExtraBeeLiquid implements ILiquidType {
 
     @Override
     public boolean showInCreative(FluidContainer container) {
-        return container == FluidContainer.Bucket
-                || container == FluidContainer.Can
+        return container == FluidContainer.Bucket || container == FluidContainer.Can
                 || container == FluidContainer.Capsule
                 || container == FluidContainer.Refractory;
     }

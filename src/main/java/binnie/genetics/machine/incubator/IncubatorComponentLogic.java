@@ -1,5 +1,11 @@
 package binnie.genetics.machine.incubator;
 
+import java.util.Random;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
@@ -7,12 +13,9 @@ import binnie.core.machines.power.IProcess;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.util.I18N;
 import binnie.genetics.api.IIncubatorRecipe;
-import java.util.Random;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class IncubatorComponentLogic extends ComponentProcessIndefinate implements IProcess {
+
     IIncubatorRecipe recipe;
     private final Random rand;
     private boolean roomForOutput;
@@ -43,11 +46,13 @@ public class IncubatorComponentLogic extends ComponentProcessIndefinate implemen
         if (recipe != null) {
             if (!recipe.isInputLiquidSufficient(getUtil().getFluid(Incubator.TANK_INPUT))) {
                 return new ErrorState.InsufficientLiquid(
-                        I18N.localise("genetics.machine.incubator.error.noLiquid"), Incubator.TANK_INPUT);
+                        I18N.localise("genetics.machine.incubator.error.noLiquid"),
+                        Incubator.TANK_INPUT);
             }
             if (!roomForOutput) {
                 return new ErrorState.TankSpace(
-                        I18N.localise("genetics.machine.incubator.error.noRoom"), Incubator.TANK_OUTPUT);
+                        I18N.localise("genetics.machine.incubator.error.noRoom"),
+                        Incubator.TANK_OUTPUT);
             }
         }
         return super.canProgress();
@@ -85,16 +90,12 @@ public class IncubatorComponentLogic extends ComponentProcessIndefinate implemen
 
         FluidStack liquid = getUtil().getFluid(Incubator.TANK_INPUT);
         ItemStack incubator = getUtil().getStack(Incubator.SLOT_INCUBATOR);
-        if (recipe != null
-                && (incubator == null
-                        || liquid == null
-                        || !recipe.isInputLiquid(liquid)
-                        || !isStackValid(incubator, recipe))) {
+        if (recipe != null && (incubator == null || liquid == null
+                || !recipe.isInputLiquid(liquid)
+                || !isStackValid(incubator, recipe))) {
             recipe = null;
-            ItemStack leftover = new TransferRequest(incubator, getInventory())
-                    .setTargetSlots(Incubator.SLOT_OUTPUT)
-                    .ignoreValidation()
-                    .transfer(true);
+            ItemStack leftover = new TransferRequest(incubator, getInventory()).setTargetSlots(Incubator.SLOT_OUTPUT)
+                    .ignoreValidation().transfer(true);
             getUtil().setStack(Incubator.SLOT_INCUBATOR, leftover);
         }
 
@@ -132,8 +133,7 @@ public class IncubatorComponentLogic extends ComponentProcessIndefinate implemen
 
             if (potential != null) {
                 TransferRequest removal = new TransferRequest(incubator, getInventory())
-                        .setTargetSlots(Incubator.SLOT_OUTPUT)
-                        .ignoreValidation();
+                        .setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
 
                 if (removal.transfer(false) == null) {
                     recipe = potential;

@@ -1,16 +1,19 @@
 package binnie.extratrees.block.decor;
 
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.ModuleBlocks;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
 import org.lwjgl.opengl.GL11;
 
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.ModuleBlocks;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 public class HedgeRenderer implements ISimpleBlockRenderingHandler {
+
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
         int color = BlockHedge.getColor(metadata);
@@ -49,8 +52,8 @@ public class HedgeRenderer implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         IIcon icon = block.getIcon(0, world.getBlockMetadata(x, y, z));
         BlockHedge hedge = ExtraTrees.blockHedge;
         boolean connectNegX = hedge.canConnectFenceTo(world, x - 1, y, z);

@@ -1,5 +1,19 @@
 package binnie.botany.flower;
 
+import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
@@ -18,20 +32,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 import forestry.core.config.Config;
-import java.util.List;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 
 public abstract class ItemBotany extends Item {
+
     public ItemBotany(String name) {
         setCreativeTab(CreativeTabBotany.instance);
         setUnlocalizedName(name);
@@ -86,11 +89,12 @@ public abstract class ItemBotany extends Item {
         IFlowerColor stemColor = genome.getStemColor();
 
         if (primaryColor == secondColor) {
-            tooltip.add(EnumChatFormatting.YELLOW
-                    + I18N.localise("botany.item.tooltip.flowerColor1", primaryColor.getName(), stemColor.getName()));
+            tooltip.add(
+                    EnumChatFormatting.YELLOW + I18N
+                            .localise("botany.item.tooltip.flowerColor1", primaryColor.getName(), stemColor.getName()));
         } else {
-            tooltip.add(EnumChatFormatting.YELLOW
-                    + I18N.localise(
+            tooltip.add(
+                    EnumChatFormatting.YELLOW + I18N.localise(
                             "botany.item.tooltip.flowerColor2",
                             primaryColor.getName(),
                             secondColor.getName(),
@@ -143,8 +147,7 @@ public abstract class ItemBotany extends Item {
             if (hideSecrets && individual.isSecret() && !Config.isDebug) {
                 continue;
             }
-            itemList.add(BotanyCore.speciesRoot.getMemberStack(
-                    individual.copy(), getStage().ordinal()));
+            itemList.add(BotanyCore.speciesRoot.getMemberStack(individual.copy(), getStage().ordinal()));
         }
     }
 
@@ -158,8 +161,7 @@ public abstract class ItemBotany extends Item {
         if (renderPass == 0) {
             return flower.getGenome().getStemColor().getColor(flower.isWilted());
         }
-        return (renderPass == 1)
-                ? flower.getGenome().getPrimaryColor().getColor(flower.isWilted())
+        return (renderPass == 1) ? flower.getGenome().getPrimaryColor().getColor(flower.isWilted())
                 : flower.getGenome().getSecondaryColor().getColor(flower.isWilted());
     }
 
@@ -192,17 +194,8 @@ public abstract class ItemBotany extends Item {
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack itemstack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float px,
-            float py,
-            float pz) {
+    public boolean onItemUse(ItemStack itemstack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float px, float py, float pz) {
         if (getStage() == EnumFlowerStage.POLLEN) {
             IFlower flower = Binnie.Genetics.getFlowerRoot().getMember(itemstack);
             TileEntity target = world.getTileEntity(x, y, z);
@@ -224,24 +217,23 @@ public abstract class ItemBotany extends Item {
         Block blockAlreadyThere = world.getBlock(x, y, z);
         if (blockAlreadyThere == Blocks.snow_layer && (world.getBlockMetadata(x, y, z) & 0x7) < 1) {
             side = 1;
-        } else if (blockAlreadyThere != Blocks.vine
-                && blockAlreadyThere != Blocks.tallgrass
+        } else if (blockAlreadyThere != Blocks.vine && blockAlreadyThere != Blocks.tallgrass
                 && blockAlreadyThere != Blocks.deadbush
                 && !blockAlreadyThere.isReplaceable(world, x, y, z)) {
-            if (side == 0) {
-                y--;
-            } else if (side == 1) {
-                y++;
-            } else if (side == 2) {
-                z--;
-            } else if (side == 3) {
-                z++;
-            } else if (side == 4) {
-                x--;
-            } else if (side == 5) {
-                x++;
-            }
-        }
+                    if (side == 0) {
+                        y--;
+                    } else if (side == 1) {
+                        y++;
+                    } else if (side == 2) {
+                        z--;
+                    } else if (side == 3) {
+                        z++;
+                    } else if (side == 4) {
+                        x--;
+                    } else if (side == 5) {
+                        x++;
+                    }
+                }
 
         if (itemstack.stackSize == 0 || !player.canPlayerEdit(x, y, z, side, itemstack)) {
             return false;
@@ -274,39 +266,28 @@ public abstract class ItemBotany extends Item {
         Block block = world.getBlock(x, y, z);
         if (block == Blocks.snow_layer) {
             side = 1;
-        } else if (block != Blocks.vine
-                && block != Blocks.tallgrass
+        } else if (block != Blocks.vine && block != Blocks.tallgrass
                 && block != Blocks.deadbush
                 && !block.isReplaceable(world, x, y, z)) {
-            if (side == 0) {
-                y--;
-            } else if (side == 1) {
-                y++;
-            } else if (side == 2) {
-                z--;
-            } else if (side == 3) {
-                z++;
-            } else if (side == 4) {
-                x--;
-            } else if (side == 5) {
-                x++;
-            }
-        }
+                    if (side == 0) {
+                        y--;
+                    } else if (side == 1) {
+                        y++;
+                    } else if (side == 2) {
+                        z--;
+                    } else if (side == 3) {
+                        z++;
+                    } else if (side == 4) {
+                        x--;
+                    } else if (side == 5) {
+                        x++;
+                    }
+                }
         return world.canPlaceEntityOnSide(field_150939_a, x, y, z, false, side, null, stack);
     }
 
-    public boolean placeBlockAt(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ,
-            int metadata) {
+    public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ, int metadata) {
         Block block = Botany.flower;
         if (!world.setBlock(x, y, z, block, metadata, 3)) {
             return false;

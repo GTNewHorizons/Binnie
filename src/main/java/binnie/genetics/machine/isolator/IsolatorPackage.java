@@ -1,5 +1,7 @@
 package binnie.genetics.machine.isolator;
 
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -16,9 +18,9 @@ import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.PackageGeneticBase;
-import net.minecraft.tileentity.TileEntity;
 
 public class IsolatorPackage extends PackageGeneticBase implements IMachineInformation {
+
     public IsolatorPackage() {
         super("isolator", GeneticsTexture.Isolator, 0xff6f0f, true);
     }

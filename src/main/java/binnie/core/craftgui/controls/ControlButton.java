@@ -11,6 +11,7 @@ import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlButton extends Control {
+
     private ControlText textWidget;
     private String text;
 
@@ -28,6 +29,7 @@ public class ControlButton extends Control {
     }
 
     private EventMouse.Down.Handler mouseHandler = new EventMouse.Down.Handler() {
+
         @Override
         public void onEvent(EventMouse.Down event) {
             callEvent(new EventButtonClicked(getWidget()));

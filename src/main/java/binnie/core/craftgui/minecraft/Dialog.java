@@ -10,6 +10,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public abstract class Dialog extends Control {
+
     public Dialog(IWidget parent, float w, float h) {
         super(parent, (parent.w() - w) / 2.0f, (parent.h() - h) / 2.0f, w, h);
         addAttribute(WidgetAttribute.MOUSE_OVER);
@@ -37,6 +38,7 @@ public abstract class Dialog extends Control {
     }
 
     private class MouseDownHandler extends EventMouse.Down.Handler {
+
         @Override
         public void onEvent(EventMouse.Down event) {
             if (!getArea().contains(getRelativeMousePosition())) {

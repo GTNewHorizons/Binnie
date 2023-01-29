@@ -1,12 +1,14 @@
 package binnie.core.machines.inventory;
 
-import binnie.Binnie;
-import binnie.core.AbstractMod;
-import binnie.core.resource.BinnieIcon;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.Binnie;
+import binnie.core.AbstractMod;
+import binnie.core.resource.BinnieIcon;
+
 public class ValidatorIcon {
+
     private List<BinnieIcon> iconsInput;
     private List<BinnieIcon> iconsOutput;
 

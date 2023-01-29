@@ -1,5 +1,13 @@
 package binnie.core.machines.power;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import binnie.core.Mods;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
@@ -11,16 +19,11 @@ import cpw.mods.fml.common.Optional;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyTile;
-import java.util.LinkedList;
-import java.util.List;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
 
 @Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
 public class ComponentPowerReceptor extends MachineComponent
         implements IPoweredMachine, IBuildcraft.TriggerProvider, IInteraction.ChunkUnload, IInteraction.Invalidation {
+
     public float previousPower;
     public LinkedList<Float> inputs;
 
@@ -168,15 +171,13 @@ public class ComponentPowerReceptor extends MachineComponent
 
     @Optional.Method(modid = "IC2")
     private void do_addToEnergyNet() {
-        MinecraftForge.EVENT_BUS.post(
-                new EnergyTileLoadEvent((IEnergyTile) getMachine().getTileEntity()));
+        MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent((IEnergyTile) getMachine().getTileEntity()));
         registeredToIC2EnergyNet = true;
     }
 
     @Optional.Method(modid = "IC2")
     private void do_removeFromEnergyNet() {
-        MinecraftForge.EVENT_BUS.post(
-                new EnergyTileUnloadEvent((IEnergyTile) getMachine().getTileEntity()));
+        MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent((IEnergyTile) getMachine().getTileEntity()));
         registeredToIC2EnergyNet = false;
     }
 }

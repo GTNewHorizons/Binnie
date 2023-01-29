@@ -1,5 +1,8 @@
 package binnie.extrabees.gui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.Window;
@@ -12,10 +15,9 @@ import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.stimulator.AlvearyStimulator;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 
 public class WindowAlvearyStimulator extends Window {
+
     protected Machine machine;
     protected ControlPlayerInventory playerInventory;
 

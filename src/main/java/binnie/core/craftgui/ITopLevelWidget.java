@@ -3,6 +3,7 @@ package binnie.core.craftgui;
 import binnie.core.craftgui.geometry.IPoint;
 
 public interface ITopLevelWidget extends IWidget {
+
     void setMousePosition(int x, int y);
 
     IPoint getAbsoluteMousePosition();

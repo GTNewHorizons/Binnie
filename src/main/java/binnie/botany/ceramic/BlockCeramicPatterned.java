@@ -1,5 +1,11 @@
 package binnie.botany.ceramic;
 
+import java.util.List;
+
+import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.TileEntityMetadata;
@@ -8,12 +14,9 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.carpentry.BlockDesign;
 import binnie.extratrees.carpentry.DesignBlock;
 import binnie.extratrees.carpentry.ModuleCarpentry;
-import java.util.List;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 
 public class BlockCeramicPatterned extends BlockDesign {
+
     public BlockCeramicPatterned() {
         super(CeramicDesignSystem.instance, Material.rock);
         setHardness(1.0f);
@@ -25,7 +28,10 @@ public class BlockCeramicPatterned extends BlockDesign {
     @Override
     public ItemStack getCreativeStack(IDesign design) {
         return ModuleCarpentry.getItemStack(
-                this, CeramicColor.get(EnumFlowerColor.WHITE), CeramicColor.get(EnumFlowerColor.BLACK), design);
+                this,
+                CeramicColor.get(EnumFlowerColor.WHITE),
+                CeramicColor.get(EnumFlowerColor.BLACK),
+                design);
     }
 
     @Override

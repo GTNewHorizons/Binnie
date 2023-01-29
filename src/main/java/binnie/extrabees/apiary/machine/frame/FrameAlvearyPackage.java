@@ -9,6 +9,7 @@ import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ExtraBeeTexture;
 
 public class FrameAlvearyPackage extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
+
     public FrameAlvearyPackage() {
         super("frame", ExtraBeeTexture.AlvearyFrame.getTexture(), false);
     }

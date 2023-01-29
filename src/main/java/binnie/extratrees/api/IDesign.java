@@ -1,6 +1,7 @@
 package binnie.extratrees.api;
 
 public interface IDesign {
+
     String getName();
 
     ILayout getTopPattern();

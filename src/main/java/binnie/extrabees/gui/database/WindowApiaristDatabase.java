@@ -1,5 +1,7 @@
 package binnie.extrabees.gui.database;
 
+import net.minecraft.entity.player.EntityPlayer;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.database.DatabaseTab;
@@ -16,9 +18,9 @@ import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.gui.database.product.PageSpeciesProducts;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class WindowApiaristDatabase extends WindowAbstractDatabase {
+
     public WindowApiaristDatabase(EntityPlayer player, Side side, boolean nei) {
         super(player, side, nei, Binnie.Genetics.beeBreedingSystem, 110.0f);
     }
@@ -31,7 +33,8 @@ public class WindowApiaristDatabase extends WindowAbstractDatabase {
     protected void addTabs() {
         new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.overview"));
         new PageSpeciesClassification(
-                getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.classification"));
+                getInfoPages(Mode.Species),
+                new DatabaseTab(ExtraBees.instance, "species.classification"));
         new PageSpeciesGenome(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.genome"));
         new PageSpeciesProducts(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.products"));
         new PageSpeciesClimate(getInfoPages(Mode.Species), new DatabaseTab(ExtraBees.instance, "species.climate"));

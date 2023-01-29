@@ -6,6 +6,7 @@ import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 
 public class NEIGeneticsConfig implements IConfigureNEI {
+
     protected static void registerHandler(RecipeHandlerBase handler) {
         handler.prepare();
         API.registerRecipeHandler(handler);

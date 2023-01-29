@@ -1,5 +1,13 @@
 package binnie.genetics.gui;
 
+import java.lang.reflect.Field;
+import java.util.Collection;
+import java.util.Collections;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
@@ -14,14 +22,9 @@ import forestry.api.arboriculture.ITree;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderPod;
-import java.lang.reflect.Field;
-import java.util.Collection;
-import java.util.Collections;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 
 public class AnalystPageFruit extends AnalystPageProduce {
+
     public AnalystPageFruit(IWidget parent, IArea area, ITree ind) {
         super(parent, area);
         setColor(0xcc3300);
@@ -29,13 +32,13 @@ public class AnalystPageFruit extends AnalystPageProduce {
         new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + getTitle()).setColor(getColor());
 
         y += 12;
-        String alleleName = Binnie.Genetics.treeBreedingSystem.getAlleleName(
-                EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD));
+        String alleleName = Binnie.Genetics.treeBreedingSystem
+                .getAlleleName(EnumTreeChromosome.YIELD, ind.getGenome().getActiveAllele(EnumTreeChromosome.YIELD));
         new ControlTextCentered(
-                        this,
-                        y,
-                        EnumChatFormatting.ITALIC + I18N.localise("genetics.gui.analyst.fruit.yield", alleleName))
-                .setColor(getColor());
+                this,
+                y,
+                EnumChatFormatting.ITALIC + I18N.localise("genetics.gui.analyst.fruit.yield", alleleName))
+                        .setColor(getColor());
 
         y += 20;
         Collection<ItemStack> products = new UniqueItemStackSet();
@@ -102,8 +105,8 @@ public class AnalystPageFruit extends AnalystPageProduce {
         new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.fruit.possible")).setColor(getColor());
 
         y += 12;
-        Collection<IAllele> fruitAlleles =
-                Binnie.Genetics.getChromosomeMap(Binnie.Genetics.getTreeRoot()).get(EnumTreeChromosome.FRUITS);
+        Collection<IAllele> fruitAlleles = Binnie.Genetics.getChromosomeMap(Binnie.Genetics.getTreeRoot())
+                .get(EnumTreeChromosome.FRUITS);
         for (IFruitFamily fam : ind.getGenome().getPrimary().getSuitableFruit()) {
             Collection<ItemStack> stacks = new UniqueItemStackSet();
             for (IAllele a : fruitAlleles) {

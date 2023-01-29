@@ -1,5 +1,8 @@
 package binnie.extratrees.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextEdit;
@@ -22,22 +25,21 @@ import binnie.extratrees.machines.designer.Designer;
 import binnie.extratrees.machines.designer.DesignerType;
 import binnie.extratrees.machines.designer.WoodworkerRecipeComponent;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 
 public class WindowWoodworker extends Window {
+
     protected ControlTextEdit textEdit;
     protected ControlTileSelect tileSelect;
 
     public WindowWoodworker(EntityPlayer player, IInventory inventory, Side side) {
         super(320.0f, 216.0f, player, inventory, side);
-        addEventHandler(
-                new EventTextEdit.Handler() {
-                    @Override
-                    public void onEvent(EventTextEdit event) {
-                        tileSelect.refresh(event.getValue());
-                    }
-                }.setOrigin(EventHandler.Origin.DirectChild, this));
+        addEventHandler(new EventTextEdit.Handler() {
+
+            @Override
+            public void onEvent(EventTextEdit event) {
+                tileSelect.refresh(event.getValue());
+            }
+        }.setOrigin(EventHandler.Origin.DirectChild, this));
     }
 
     public static Window create(EntityPlayer player, IInventory inventory, Side side) {
@@ -48,11 +50,10 @@ public class WindowWoodworker extends Window {
     public void initialiseClient() {
         setTitle(Machine.getMachine(getInventory()).getPackage().getDisplayName());
         new ControlText(
-                        this,
-                        new IArea(190.0f, 36.0f, 114.0f, 10.0f),
-                        I18N.localise("binniecore.gui.design"),
-                        TextJustification.TOP_CENTER)
-                .setColor(4473924);
+                this,
+                new IArea(190.0f, 36.0f, 114.0f, 10.0f),
+                I18N.localise("binniecore.gui.design"),
+                TextJustification.TOP_CENTER).setColor(4473924);
         new Panel(this, 188.0f, 48.0f, 118.0f, 126.0f, MinecraftGUI.PanelType.Gray);
         textEdit = new ControlTextEdit(this, 188.0f, 178.0f, 118.0f, 12.0f);
         ControlScrollableContent scroll = new ControlScrollableContent(this, 190.0f, 50.0f, 114.0f, 122.0f, 12.0f);
@@ -82,7 +83,6 @@ public class WindowWoodworker extends Window {
     }
 
     public DesignerType getDesignerType() {
-        return Machine.getInterface(WoodworkerRecipeComponent.class, getInventory())
-                .getDesignerType();
+        return Machine.getInterface(WoodworkerRecipeComponent.class, getInventory()).getDesignerType();
     }
 }

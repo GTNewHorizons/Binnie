@@ -1,5 +1,9 @@
 package binnie.core.craftgui.minecraft.control;
 
+import net.minecraft.inventory.IInventory;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -17,10 +21,9 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import net.minecraft.inventory.IInventory;
-import org.lwjgl.opengl.GL11;
 
 public class ControlEnergyBar extends Control implements ITooltip {
+
     public static boolean isError;
 
     private Position direction;

@@ -1,14 +1,16 @@
 package binnie.genetics;
 
-import binnie.core.util.I18N;
-import binnie.genetics.item.GeneticsItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.util.I18N;
+import binnie.genetics.item.GeneticsItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class GeneticsCreativeTab extends CreativeTabs {
+
     public static CreativeTabs instance;
 
     static {

@@ -1,16 +1,18 @@
 package binnie.extratrees.block;
 
-import binnie.core.block.ItemMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import binnie.core.block.ItemMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemETSlab extends ItemMetadata {
+
     private boolean isFullBlock;
     private BlockETSlab theHalfSlab;
     private BlockETSlab doubleSlab;
@@ -26,17 +28,8 @@ public class ItemETSlab extends ItemMetadata {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int meta,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int meta,
+            float hitX, float hitY, float hitZ) {
         if (isFullBlock) {
             return super.onItemUse(stack, player, world, x, y, z, meta, hitX, hitY, hitZ);
         }

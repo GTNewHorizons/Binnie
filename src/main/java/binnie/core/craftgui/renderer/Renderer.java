@@ -1,5 +1,13 @@
 package binnie.core.craftgui.renderer;
 
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.geometry.IArea;
@@ -9,13 +17,9 @@ import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.GuiCraftGUI;
 import binnie.core.craftgui.resource.IStyleSheet;
 import binnie.core.craftgui.resource.Texture;
-import java.util.List;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import org.lwjgl.opengl.GL11;
 
 public class Renderer {
+
     protected GuiCraftGUI gui;
     protected int currentColor;
     protected Texture currentTexture;
@@ -90,8 +94,7 @@ public class Renderer {
         }
 
         setTexture(texture);
-        IPoint point = position.sub(
-                new IPoint(texture.getBorder().l(), texture.getBorder().t()));
+        IPoint point = position.sub(new IPoint(texture.getBorder().l(), texture.getBorder().t()));
         IArea textureArea = texture.getArea().outset(texture.getBorder());
         gui.renderTexture(point, textureArea);
     }
@@ -137,8 +140,7 @@ public class Renderer {
             return;
         }
 
-        List<String> wrappedStrings = gui.getFontRenderer()
-                .listFormattedStringToWidth(text, (int) area.size().x());
+        List<String> wrappedStrings = gui.getFontRenderer().listFormattedStringToWidth(text, (int) area.size().x());
         float totalHeight = wrappedStrings.size() * textHeight();
         float posY = area.pos().y();
         if (area.size().y() > totalHeight) {
@@ -206,15 +208,11 @@ public class Renderer {
     }
 
     public float textHeight(String text, float width) {
-        return gui.getFontRenderer()
-                        .listFormattedStringToWidth(text, (int) width)
-                        .size()
-                * textHeight();
+        return gui.getFontRenderer().listFormattedStringToWidth(text, (int) width).size() * textHeight();
     }
 
     public void texturePercentage(Texture texture, IArea area, Position direction, float percentage) {
-        float dist = (direction == Position.TOP || direction == Position.BOTTOM)
-                ? (percentage * texture.h())
+        float dist = (direction == Position.TOP || direction == Position.BOTTOM) ? (percentage * texture.h())
                 : (percentage * texture.w());
         float dim = (direction == Position.TOP || direction == Position.BOTTOM) ? texture.h() : texture.w();
         float x = area.pos().x();

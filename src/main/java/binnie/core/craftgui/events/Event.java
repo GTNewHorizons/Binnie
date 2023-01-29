@@ -3,6 +3,7 @@ package binnie.core.craftgui.events;
 import binnie.core.craftgui.IWidget;
 
 public class Event {
+
     IWidget origin;
 
     public Event(IWidget origin) {

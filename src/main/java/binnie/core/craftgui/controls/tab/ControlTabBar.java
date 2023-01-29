@@ -1,27 +1,29 @@
 package binnie.core.craftgui.controls.tab;
 
+import java.util.Collection;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.events.EventHandler;
 import binnie.core.craftgui.events.EventValueChanged;
 import binnie.core.craftgui.geometry.Position;
-import java.util.Collection;
 
 public class ControlTabBar<T> extends Control implements IControlValue<T> {
+
     protected T value;
     protected Position position;
 
     public ControlTabBar(IWidget parent, float x, float y, float width, float height, Position position) {
         super(parent, x, y, width, height);
         this.position = position;
-        addEventHandler(
-                new EventValueChanged.Handler() {
-                    @Override
-                    public void onEvent(EventValueChanged event) {
-                        setValue((T) event.getValue());
-                    }
-                }.setOrigin(EventHandler.Origin.DirectChild, this));
+        addEventHandler(new EventValueChanged.Handler() {
+
+            @Override
+            public void onEvent(EventValueChanged event) {
+                setValue((T) event.getValue());
+            }
+        }.setOrigin(EventHandler.Origin.DirectChild, this));
     }
 
     public ControlTab<T> createTab(float x, float y, float w, float h, T value) {

@@ -1,14 +1,16 @@
 package binnie.botany.network;
 
+import java.io.IOException;
+
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.genetics.EnumFlowerType;
 import binnie.core.network.packet.MessageBinnie;
 import binnie.core.network.packet.MessageCoordinates;
 import io.netty.buffer.ByteBuf;
-import java.io.IOException;
 
 public class MessageFlowerUpdate extends MessageCoordinates {
+
     public TileEntityFlower.RenderInfo render;
 
     public MessageFlowerUpdate(int posX, int posY, int posZ, TileEntityFlower.RenderInfo render) {

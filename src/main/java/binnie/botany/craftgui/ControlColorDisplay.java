@@ -11,6 +11,7 @@ import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.geometry.IArea;
 
 public class ControlColorDisplay extends Control implements IControlValue<IFlowerColor>, ITooltip {
+
     private IFlowerColor value;
 
     public ControlColorDisplay(IWidget parent, float x, float y) {

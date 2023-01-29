@@ -1,5 +1,8 @@
 package binnie.genetics.machine.inoculator;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
@@ -13,10 +16,9 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class InoculatorComponentLogic extends ComponentProcessSetCost implements IProcess {
+
     private float bacteriaDrain = 0.0f;
 
     public InoculatorComponentLogic(Machine machine) {
@@ -54,15 +56,18 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
     public ErrorState canWork() {
         if (getUtil().isSlotEmpty(Inoculator.SLOT_TARGET)) {
             return new ErrorState.NoItem(
-                    I18N.localise("genetics.machine.inoculator.error.noIndividual"), Inoculator.SLOT_TARGET);
+                    I18N.localise("genetics.machine.inoculator.error.noIndividual"),
+                    Inoculator.SLOT_TARGET);
         }
         if (getUtil().isSlotEmpty(Inoculator.SLOT_SERUM_VIAL)) {
             return new ErrorState.NoItem(
-                    I18N.localise("genetics.machine.inoculator.error.noSerum"), Inoculator.SLOT_SERUM_VIAL);
+                    I18N.localise("genetics.machine.inoculator.error.noSerum"),
+                    Inoculator.SLOT_SERUM_VIAL);
         }
         if (getUtil().isTankEmpty(Inoculator.TANK_VECTOR)) {
             return new ErrorState.InsufficientLiquid(
-                    I18N.localise("genetics.machine.inoculator.error.noLiquid"), Inoculator.TANK_VECTOR);
+                    I18N.localise("genetics.machine.inoculator.error.noLiquid"),
+                    Inoculator.TANK_VECTOR);
         }
 
         ErrorState state = isValidSerum();

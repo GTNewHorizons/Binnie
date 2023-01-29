@@ -1,15 +1,17 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.power.ITankMachine;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 
+import binnie.core.machines.Machine;
+import binnie.core.machines.power.ITankMachine;
+
 // TODO unused class?
 public class TransferHandler {
+
     public static ItemStack transfer(ItemStack item, IInventory origin, IInventory destination, boolean doAdd) {
         ItemStack ret = transferItemToInventory(item, destination, doAdd);
         if (destination instanceof ITankMachine) {
@@ -26,7 +28,7 @@ public class TransferHandler {
 
         ItemStack addition = item.copy();
         for (int i = 0; i < destination.getSizeInventory(); ++i) {
-            addition = transferToInventory(addition, destination, new int[] {i}, doAdd, false);
+            addition = transferToInventory(addition, destination, new int[] { i }, doAdd, false);
             if (addition == null) {
                 return null;
             }
@@ -34,8 +36,8 @@ public class TransferHandler {
         return addition;
     }
 
-    public static ItemStack transferToInventory(
-            ItemStack item, IInventory destination, int[] targetSlots, boolean doAdd, boolean ignoreValidation) {
+    public static ItemStack transferToInventory(ItemStack item, IInventory destination, int[] targetSlots,
+            boolean doAdd, boolean ignoreValidation) {
         for (int i : targetSlots) {
             if (destination.isItemValidForSlot(i, item) || ignoreValidation) {
                 if (destination.getStackInSlot(i) == null) {
@@ -74,11 +76,11 @@ public class TransferHandler {
                 }
             }
         }
-        return new ItemStack[] {itemstack, merged};
+        return new ItemStack[] { itemstack, merged };
     }
 
-    public static ItemStack transferContainerIntoTank(
-            ItemStack item, IInventory origin, ITankMachine destination, boolean doAdd) {
+    public static ItemStack transferContainerIntoTank(ItemStack item, IInventory origin, ITankMachine destination,
+            boolean doAdd) {
         if (item == null) {
             return null;
         }
@@ -91,8 +93,8 @@ public class TransferHandler {
         return stack;
     }
 
-    public static ItemStack transferTankIntoContainer(
-            ItemStack item, IInventory origin, ITankMachine destination, boolean doAdd) {
+    public static ItemStack transferTankIntoContainer(ItemStack item, IInventory origin, ITankMachine destination,
+            boolean doAdd) {
         if (item == null) {
             return null;
         }
@@ -105,16 +107,16 @@ public class TransferHandler {
         return stack;
     }
 
-    public static ItemStack transferToTank(
-            ItemStack item, IInventory origin, ITankMachine destination, int tankID, boolean doAdd) {
+    public static ItemStack transferToTank(ItemStack item, IInventory origin, ITankMachine destination, int tankID,
+            boolean doAdd) {
         if (item == null) {
             return item;
         }
 
         FluidStack containerLiquid = null;
         FluidContainerRegistry.FluidContainerData containerLiquidData = null;
-        for (FluidContainerRegistry.FluidContainerData data :
-                FluidContainerRegistry.getRegisteredFluidContainerData()) {
+        for (FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry
+                .getRegisteredFluidContainerData()) {
             if (data.filledContainer.isItemEqual(item)) {
                 containerLiquidData = data;
                 containerLiquid = data.fluid.copy();
@@ -170,8 +172,8 @@ public class TransferHandler {
         return leftOverContainers;
     }
 
-    public static ItemStack transferFromTank(
-            ItemStack item, IInventory origin, ITankMachine destination, int tankID, boolean doAdd) {
+    public static ItemStack transferFromTank(ItemStack item, IInventory origin, ITankMachine destination, int tankID,
+            boolean doAdd) {
         if (item == null) {
             return item;
         }
@@ -183,8 +185,8 @@ public class TransferHandler {
         }
 
         FluidContainerRegistry.FluidContainerData containerLiquidData = null;
-        for (FluidContainerRegistry.FluidContainerData data :
-                FluidContainerRegistry.getRegisteredFluidContainerData()) {
+        for (FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry
+                .getRegisteredFluidContainerData()) {
             if (data.emptyContainer.isItemEqual(item) && liquidInTank.isFluidEqual(data.fluid)) {
                 containerLiquidData = data;
                 break;

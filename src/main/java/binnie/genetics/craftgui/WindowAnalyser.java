@@ -1,5 +1,8 @@
 package binnie.genetics.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.GUIIcon;
@@ -22,12 +25,15 @@ import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.analyser.Analyser;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 
 public class WindowAnalyser extends WindowMachine {
-    protected static Texture progressBase =
-            new StandardTexture(0, 218, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
+
+    protected static Texture progressBase = new StandardTexture(
+            0,
+            218,
+            142,
+            17,
+            ExtraBeeTexture.GUIProgress.getTexture());
     protected static Texture progress = new StandardTexture(0, 201, 142, 17, ExtraBeeTexture.GUIProgress.getTexture());
 
     public WindowAnalyser(EntityPlayer player, IInventory inventory, Side side) {

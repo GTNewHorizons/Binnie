@@ -1,5 +1,10 @@
 package binnie.core.triggers;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -11,12 +16,9 @@ import buildcraft.api.statements.ITriggerExternal;
 import buildcraft.api.statements.StatementManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 
 class BinnieTrigger implements ITriggerExternal {
+
     private static int incrementalID = 800;
     protected static BinnieTrigger triggerNoBlankTemplate;
     protected static BinnieTrigger triggerNoTemplate;
@@ -104,8 +106,8 @@ class BinnieTrigger implements ITriggerExternal {
     }
 
     @Override
-    public boolean isTriggerActive(
-            TileEntity target, ForgeDirection side, IStatementContainer source, IStatementParameter[] parameters) {
+    public boolean isTriggerActive(TileEntity target, ForgeDirection side, IStatementContainer source,
+            IStatementParameter[] parameters) {
         return false;
     }
 }

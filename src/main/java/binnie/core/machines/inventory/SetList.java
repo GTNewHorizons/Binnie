@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Set;
 
 public class SetList<E> extends ArrayList<E> implements Set<E> {
+
     private static long serialVersionUID = 1277112003159980135L;
 
     @Override

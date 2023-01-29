@@ -1,5 +1,7 @@
 package binnie.genetics.machine.incubator;
 
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -11,9 +13,9 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.PackageGeneticBase;
-import net.minecraft.tileentity.TileEntity;
 
 public class IncubatorPackage extends PackageGeneticBase implements IMachineInformation {
+
     public IncubatorPackage() {
         super("incubator", GeneticsTexture.Incubator, 0xffd951, true);
     }
@@ -39,10 +41,8 @@ public class IncubatorPackage extends PackageGeneticBase implements IMachineInfo
 
         new ComponentPowerReceptor(machine, Incubator.POWER_CAPACITY);
         ComponentTankContainer tanks = new ComponentTankContainer(machine);
-        tanks.addTank(Incubator.TANK_INPUT, "input", Incubator.INPUT_TANK_CAPACITY)
-                .forbidExtraction();
-        tanks.addTank(Incubator.TANK_OUTPUT, "output", Incubator.OUTPU_TANK_CAPACITY)
-                .setReadOnly();
+        tanks.addTank(Incubator.TANK_INPUT, "input", Incubator.INPUT_TANK_CAPACITY).forbidExtraction();
+        tanks.addTank(Incubator.TANK_OUTPUT, "output", Incubator.OUTPU_TANK_CAPACITY).setReadOnly();
         new IncubatorComponentLogic(machine);
     }
 

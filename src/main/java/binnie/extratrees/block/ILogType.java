@@ -1,5 +1,12 @@
 package binnie.extratrees.block;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
@@ -8,14 +15,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.arboriculture.EnumWoodType;
 import forestry.api.arboriculture.TreeManager;
 import forestry.arboriculture.worldgen.BlockTypeLog;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public interface ILogType {
+
     void placeBlock(World p0, int p1, int p2, int p3);
 
     ItemStack getItemStack();
@@ -23,6 +25,7 @@ public interface ILogType {
     int getColour();
 
     enum ExtraTreeLog implements ILogType {
+
         Apple("apple", 0x7b7a7b, PlankType.ExtraTreePlanks.Apple),
         Fig("fig", 0x807357, PlankType.ExtraTreePlanks.Fig),
         Butternut("butternut", 0xb7ada0, PlankType.ExtraTreePlanks.Butternut),
@@ -84,10 +87,8 @@ public interface ILogType {
 
         public static void registerIcons(IIconRegister register) {
             for (ExtraTreeLog log : values()) {
-                log.trunk = ExtraTrees.proxy.getIcon(
-                        register, "logs/" + log.toString().toLowerCase() + "Trunk");
-                log.bark = ExtraTrees.proxy.getIcon(
-                        register, "logs/" + log.toString().toLowerCase() + "Bark");
+                log.trunk = ExtraTrees.proxy.getIcon(register, "logs/" + log.toString().toLowerCase() + "Trunk");
+                log.bark = ExtraTrees.proxy.getIcon(register, "logs/" + log.toString().toLowerCase() + "Bark");
             }
         }
 
@@ -124,8 +125,7 @@ public interface ILogType {
 
         @Override
         public ItemStack getItemStack() {
-            return TileEntityMetadata.getItemStack(ExtraTrees.blockLog, ordinal())
-                    .copy();
+            return TileEntityMetadata.getItemStack(ExtraTrees.blockLog, ordinal()).copy();
         }
 
         @Override
@@ -135,6 +135,7 @@ public interface ILogType {
     }
 
     enum ForestryLog implements ILogType {
+
         LARCH(1, 0, 6376529),
         TEAK(1, 1, 3486249),
         ACACIA(1, 2, 7565906),
@@ -190,6 +191,7 @@ public interface ILogType {
     }
 
     enum VanillaLog implements ILogType {
+
         Oak(6376752),
         Spruce(2759179),
         Birch(6376752),

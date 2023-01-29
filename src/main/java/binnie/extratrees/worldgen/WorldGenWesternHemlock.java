@@ -3,6 +3,7 @@ package binnie.extratrees.worldgen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenWesternHemlock extends WorldGenTree {
+
     public WorldGenWesternHemlock(ITreeGenData tree) {
         super(tree);
     }

@@ -1,17 +1,20 @@
 package binnie.extrabees.worldgen;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
 import binnie.Binnie;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeRoot;
 import forestry.api.apiculture.IHiveDrop;
 import forestry.api.genetics.IAllele;
-import java.util.ArrayList;
-import java.util.Collections;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class HiveDrop implements IHiveDrop {
+
     private IAllele[] template;
     private ArrayList<ItemStack> additional;
     private int chance;
@@ -34,7 +37,8 @@ public class HiveDrop implements IHiveDrop {
     public ItemStack getPrincess(World world, int x, int y, int z, int fortune) {
         IBeeRoot beeRoot = Binnie.Genetics.getBeeRoot();
         return beeRoot.getMemberStack(
-                beeRoot.getBee(world, beeRoot.templateAsGenome(template)), EnumBeeType.PRINCESS.ordinal());
+                beeRoot.getBee(world, beeRoot.templateAsGenome(template)),
+                EnumBeeType.PRINCESS.ordinal());
     }
 
     @Override

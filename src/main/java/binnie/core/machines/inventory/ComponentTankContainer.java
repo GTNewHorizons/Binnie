@@ -1,13 +1,10 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.machines.IMachine;
-import binnie.core.machines.MachineComponent;
-import binnie.core.machines.power.ITankMachine;
-import binnie.core.machines.power.TankInfo;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -16,7 +13,13 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
 
+import binnie.core.machines.IMachine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.power.ITankMachine;
+import binnie.core.machines.power.TankInfo;
+
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
+
     private Map<Integer, TankSlot> tanks = new LinkedHashMap<>();
 
     public ComponentTankContainer(IMachine machine) {
@@ -76,8 +79,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
     private int getTankIndexToFill(ForgeDirection from, FluidStack resource) {
         for (TankSlot tank : tanks.values()) {
-            if (tank.isValid(resource)
-                    && tank.canInsert(from)
+            if (tank.isValid(resource) && tank.canInsert(from)
                     && (tank.getContent() == null || tank.getContent().isFluidEqual(resource))) {
                 return tank.getIndex();
             }
@@ -87,8 +89,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
     private int getTankIndexToDrain(ForgeDirection from, FluidStack resource) {
         for (TankSlot tank : tanks.values()) {
-            if (tank.getContent() != null
-                    && tank.canExtract(from)
+            if (tank.getContent() != null && tank.canExtract(from)
                     && (resource == null || resource.isFluidEqual(tank.getContent()))) {
                 return tank.getIndex();
             }

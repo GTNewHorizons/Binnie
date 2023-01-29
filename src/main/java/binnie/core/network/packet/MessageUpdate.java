@@ -1,12 +1,15 @@
 package binnie.core.network.packet;
 
-import binnie.core.network.INetworkedEntity;
-import io.netty.buffer.ByteBuf;
 import java.io.IOException;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import binnie.core.network.INetworkedEntity;
+import io.netty.buffer.ByteBuf;
+
 public class MessageUpdate extends MessageCoordinates {
+
     public PacketPayload payload;
 
     public MessageUpdate(MessageBinnie message) {

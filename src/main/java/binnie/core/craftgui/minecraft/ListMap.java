@@ -8,6 +8,7 @@ import java.util.ListIterator;
 import java.util.Map;
 
 class ListMap<T> implements List<T> {
+
     private LinkedHashMap<Integer, T> map;
 
     ListMap() {

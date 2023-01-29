@@ -1,5 +1,15 @@
 package binnie.extratrees.item;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
@@ -13,17 +23,9 @@ import forestry.api.core.Tabs;
 import forestry.api.fuels.EngineBronzeFuel;
 import forestry.api.fuels.FuelManager;
 import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModuleItems implements IInitializable {
+
     @Override
     public void preInit() {
         ExtraTrees.itemMisc = Binnie.Item.registerMiscItems(ExtraTreeItems.values(), Tabs.tabArboriculture);
@@ -100,40 +102,47 @@ public class ModuleItems implements IInitializable {
 
     @Override
     public void postInit() {
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-                new ItemStack(ExtraTrees.itemDurableHammer, 1, 0),
-                "wiw",
-                " s ",
-                " s ",
-                'w',
-                Blocks.obsidian,
-                'i',
-                Items.gold_ingot,
-                's',
-                Items.stick));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(
+                        new ItemStack(ExtraTrees.itemDurableHammer, 1, 0),
+                        "wiw",
+                        " s ",
+                        " s ",
+                        'w',
+                        Blocks.obsidian,
+                        'i',
+                        Items.gold_ingot,
+                        's',
+                        Items.stick));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-                new ItemStack(ExtraTrees.itemHammer, 1, 0),
-                "wiw",
-                " s ",
-                " s ",
-                'w',
-                "plankWood",
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(
+                        new ItemStack(ExtraTrees.itemHammer, 1, 0),
+                        "wiw",
+                        " s ",
+                        " s ",
+                        'w',
+                        "plankWood",
+                        'i',
+                        Items.iron_ingot,
+                        's',
+                        Items.stick));
+
+        GameRegistry
+                .addRecipe(ExtraTreeItems.ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.forestry.stack("oakStick"));
+
+        GameRegistry.addRecipe(
+                ExtraTreeItems.GlassFitting.get(6),
+                "s s",
+                " i ",
+                "s s",
                 'i',
                 Items.iron_ingot,
                 's',
-                Items.stick));
-
-        GameRegistry.addRecipe(
-                ExtraTreeItems.ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.forestry.stack("oakStick"));
-
-        GameRegistry.addRecipe(
-                ExtraTreeItems.GlassFitting.get(6), "s s", " i ", "s s", 'i', Items.iron_ingot, 's', Items.stick);
+                Items.stick);
 
         try {
-            Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds")
-                    .getField("miniumShard")
-                    .get(null);
+            Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("miniumShard").get(null);
             GameRegistry.addRecipe(new ShapelessOreRecipe(Food.Papayimar.get(1), minium, "cropPapaya"));
         } catch (Exception ex) {
             // ignored
@@ -203,19 +212,18 @@ public class ModuleItems implements IInitializable {
                     Mods.forestry.stack("beeswax"));
         }
 
-        for (FluidContainerRegistry.FluidContainerData data :
-                FluidContainerRegistry.getRegisteredFluidContainerData()) {
+        for (FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry
+                .getRegisteredFluidContainerData()) {
             if (data.fluid.isFluidEqual(Binnie.Liquid.getLiquidStack("water", 0)) && data.fluid.amount == 1000) {
-                CraftingManager.getInstance()
-                        .addRecipe(
-                                Mods.forestry.stack("mulch"),
-                                " b ",
-                                "bwb",
-                                " b ",
-                                'b',
-                                ExtraTreeItems.Bark.get(1),
-                                'w',
-                                data.filledContainer.copy());
+                CraftingManager.getInstance().addRecipe(
+                        Mods.forestry.stack("mulch"),
+                        " b ",
+                        "bwb",
+                        " b ",
+                        'b',
+                        ExtraTreeItems.Bark.get(1),
+                        'w',
+                        data.filledContainer.copy());
             }
         }
 

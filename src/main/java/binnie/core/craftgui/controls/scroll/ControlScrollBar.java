@@ -9,6 +9,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlScrollBar extends Control {
+
     protected IControlScrollable scrollable;
 
     public ControlScrollBar(ControlScroll parent) {
@@ -20,6 +21,7 @@ public class ControlScrollBar extends Control {
         scrollable = scrollable2;
         addAttribute(WidgetAttribute.MOUSE_OVER);
         addSelfEventHandler(new EventMouse.Drag.Handler() {
+
             @Override
             public void onEvent(EventMouse.Drag event) {
                 scrollable.movePercentage(event.getDy() / (h() - getBarHeight()));
@@ -29,6 +31,7 @@ public class ControlScrollBar extends Control {
     }
 
     private EventMouse.Down.Handler mouseDownHandler = new EventMouse.Down.Handler() {
+
         @Override
         public void onEvent(EventMouse.Down event) {
             float shownPercentage = scrollable.getPercentageShown();

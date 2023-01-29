@@ -8,6 +8,7 @@ import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public class Panel extends Control {
+
     protected IPanelType type;
 
     public Panel(IWidget parent, float x, float y, float width, float height, IPanelType type) {
@@ -51,5 +52,6 @@ public class Panel extends Control {
         return type;
     }
 
-    public interface IPanelType {}
+    public interface IPanelType {
+    }
 }

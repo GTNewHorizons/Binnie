@@ -1,11 +1,5 @@
 package binnie.extratrees.block;
 
-import binnie.core.Mods;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.api.CarpentryManager;
-import com.google.common.base.Optional;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
@@ -14,7 +8,16 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import binnie.core.Mods;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.api.CarpentryManager;
+
+import com.google.common.base.Optional;
+
 public class PlankType {
+
     public static void setup() {
         for (VanillaPlanks plank : VanillaPlanks.values()) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank.ordinal(), plank);
@@ -31,6 +34,7 @@ public class PlankType {
     }
 
     public enum ExtraTreePlanks implements IPlankType, IFenceProvider {
+
         Fir(0xc38c54),
         Cedar(0xd86634),
         Hemlock(0xc7b56c),
@@ -110,6 +114,7 @@ public class PlankType {
     }
 
     public enum VanillaPlanks implements IPlankType, IFenceProvider {
+
         OAK(0xb4905a),
         SPRUCE(0x805e36),
         BIRCH(0xd7c185),
@@ -157,6 +162,7 @@ public class PlankType {
     }
 
     public enum ForestryPlanks implements IPlankType, IFenceProvider {
+
         LARCH(0xd79f8d),
         TEAK(0x7d7963),
         ACACIA(0x94b387),
@@ -195,14 +201,12 @@ public class PlankType {
 
         @Override
         public String getName() {
-            return I18N.localise(
-                    "extratrees.block.planks.forestry." + toString().toLowerCase());
+            return I18N.localise("extratrees.block.planks.forestry." + toString().toLowerCase());
         }
 
         @Override
         public String getDescription() {
-            return I18N.localise(
-                    "extratrees.block.planks.forestry." + toString().toLowerCase() + ".desc");
+            return I18N.localise("extratrees.block.planks.forestry." + toString().toLowerCase() + ".desc");
         }
 
         @Override
@@ -235,6 +239,7 @@ public class PlankType {
     }
 
     public enum ExtraBiomesPlank implements IPlankType {
+
         Redwood(0x9b6b42),
         Fir(0x7e774a),
         Acacia(0xbfaa7e);

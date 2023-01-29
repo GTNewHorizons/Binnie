@@ -1,5 +1,10 @@
 package binnie.extrabees.apiary.machine.hatchery;
 
+import java.util.Random;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.Binnie;
 import binnie.core.machines.Machine;
 import binnie.core.machines.transfer.TransferRequest;
@@ -11,11 +16,9 @@ import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IBeeRoot;
-import java.util.Random;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 public class HatcheryComponentModifier extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
+
     public HatcheryComponentModifier(Machine machine) {
         super(machine);
     }
@@ -44,7 +47,8 @@ public class HatcheryComponentModifier extends ComponentBeeModifier implements I
 
         IBeeRoot beeRoot = Binnie.Genetics.getBeeRoot();
         ItemStack larvae = beeRoot.getMemberStack(
-                beeRoot.getBee(getMachine().getWorld(), queen.getGenome()), EnumBeeType.LARVAE.ordinal());
+                beeRoot.getBee(getMachine().getWorld(), queen.getGenome()),
+                EnumBeeType.LARVAE.ordinal());
         new TransferRequest(larvae, getInventory()).transfer(true);
     }
 }

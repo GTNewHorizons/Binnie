@@ -1,6 +1,7 @@
 package binnie.botany.api;
 
 public enum EnumMoisture {
+
     DRY,
     NORMAL,
     DAMP;

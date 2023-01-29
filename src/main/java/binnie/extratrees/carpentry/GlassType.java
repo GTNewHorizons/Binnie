@@ -1,16 +1,19 @@
 package binnie.extratrees.carpentry;
 
+import java.awt.Color;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.api.IDesignMaterial;
-import java.awt.Color;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
 
 public class GlassType implements IDesignMaterial {
+
     protected static Map<Integer, GlassType> types = new LinkedHashMap<>();
 
     static {
@@ -18,8 +21,8 @@ public class GlassType implements IDesignMaterial {
             GlassType.types.put(c.ordinal(), new GlassType(c.ordinal(), c.name, c.color));
         }
         for (EnumFlowerColor c2 : EnumFlowerColor.values()) {
-            GlassType.types.put(
-                    128 + c2.ordinal(), new GlassType(128 + c2.ordinal(), c2.getName(), c2.getColor(false)));
+            GlassType.types
+                    .put(128 + c2.ordinal(), new GlassType(128 + c2.ordinal(), c2.getName(), c2.getColor(false)));
         }
     }
 
@@ -77,6 +80,7 @@ public class GlassType implements IDesignMaterial {
     }
 
     private enum StandardColor {
+
         White("White", new Color(0xffffff)),
         Orange("Orange", new Color(0xd87f33)),
         Magenta("Magenta", new Color(0xb24cd8)),

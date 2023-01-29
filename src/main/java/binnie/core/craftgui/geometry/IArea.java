@@ -1,6 +1,7 @@
 package binnie.core.craftgui.geometry;
 
 public class IArea {
+
     private IPoint pos;
     private IPoint size;
 
@@ -54,8 +55,7 @@ public class IArea {
     }
 
     public boolean contains(IPoint position) {
-        return position.x() >= pos().x()
-                && position.y() >= pos.y()
+        return position.x() >= pos().x() && position.y() >= pos.y()
                 && position.x() <= pos().x() + size().x()
                 && position.y() <= pos().y() + size().y();
     }
@@ -94,7 +94,10 @@ public class IArea {
 
     public IArea inset(IBorder border) {
         return new IArea(
-                x() + border.l(), y() + border.t(), w() - border.l() - border.r(), h() - border.t() - border.b());
+                x() + border.l(),
+                y() + border.t(),
+                w() - border.l() - border.r(),
+                h() - border.t() - border.b());
     }
 
     public IArea outset(int outset) {
@@ -103,7 +106,10 @@ public class IArea {
 
     public IArea outset(IBorder border) {
         return new IArea(
-                x() - border.l(), y() - border.t(), w() + border.l() + border.r(), h() + border.t() + border.b());
+                x() - border.l(),
+                y() - border.t(),
+                w() + border.l() + border.r(),
+                h() + border.t() + border.b());
     }
 
     public IArea inset(int inset) {

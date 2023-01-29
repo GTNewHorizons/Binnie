@@ -1,5 +1,11 @@
 package binnie.genetics.nei;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+
 import binnie.core.nei.RecipeHandlerBase;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
@@ -7,10 +13,6 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 
 public class SequencerRecipeHandler extends RecipeHandlerBase {
 

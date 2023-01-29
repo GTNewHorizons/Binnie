@@ -1,5 +1,7 @@
 package binnie.genetics.gui;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -8,9 +10,9 @@ import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
 
 public class ControlIndividualDisplay extends ControlItemDisplay implements ITooltip {
+
     public ControlIndividualDisplay(IWidget parent, float x, float y, IIndividual ind) {
         this(parent, x, y, 16.0f, ind);
     }

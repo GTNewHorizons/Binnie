@@ -1,5 +1,13 @@
 package binnie.botany.ceramic;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.items.BotanyItems;
@@ -10,14 +18,9 @@ import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
 import binnie.extratrees.carpentry.DesignerManager;
 import binnie.extratrees.carpentry.EnumPattern;
-import java.util.HashMap;
-import java.util.Map;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
 public class CeramicDesignSystem implements IDesignSystem {
+
     public static CeramicDesignSystem instance = new CeramicDesignSystem();
 
     protected Map<Integer, IIcon> primary;

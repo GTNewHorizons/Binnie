@@ -1,10 +1,12 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.util.I18N;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import binnie.core.util.I18N;
+
 public class InventorySlot extends BaseSlot<ItemStack> {
+
     private ItemStack itemStack;
     private Type type;
 

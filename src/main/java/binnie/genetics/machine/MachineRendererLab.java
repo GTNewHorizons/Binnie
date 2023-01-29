@@ -1,10 +1,5 @@
 package binnie.genetics.machine;
 
-import binnie.core.BinnieCore;
-import binnie.core.machines.Machine;
-import binnie.core.resource.BinnieResource;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -12,10 +7,18 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import org.lwjgl.opengl.GL11;
+
+import binnie.core.BinnieCore;
+import binnie.core.machines.Machine;
+import binnie.core.resource.BinnieResource;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererLab {
+
     public static MachineRendererLab instance = new MachineRendererLab();
 
     private EntityItem dummyEntityItem;
@@ -26,26 +29,25 @@ public class MachineRendererLab {
 
     public MachineRendererLab() {
         dummyEntityItem = new EntityItem(null);
-        itemSides =
-                new EntityItem[] {new EntityItem(null), new EntityItem(null), new EntityItem(null), new EntityItem(null)
-                };
+        itemSides = new EntityItem[] { new EntityItem(null), new EntityItem(null), new EntityItem(null),
+                new EntityItem(null) };
         model = new ModelMachine();
         (customRenderItem = new RenderItem() {
-                    @Override
-                    public boolean shouldBob() {
-                        return false;
-                    }
 
-                    @Override
-                    public boolean shouldSpreadItems() {
-                        return false;
-                    }
-                })
-                .setRenderManager(RenderManager.instance);
+            @Override
+            public boolean shouldBob() {
+                return false;
+            }
+
+            @Override
+            public boolean shouldSpreadItems() {
+                return false;
+            }
+        }).setRenderManager(RenderManager.instance);
     }
 
-    public void renderMachine(
-            Machine machine, int colour, BinnieResource texture, double x, double y, double z, float var8) {
+    public void renderMachine(Machine machine, int colour, BinnieResource texture, double x, double y, double z,
+            float var8) {
         GL11.glPushMatrix();
         int ix = machine.getTileEntity().xCoord;
         int iz = machine.getTileEntity().zCoord;
@@ -60,8 +62,7 @@ public class MachineRendererLab {
         ComponentGUIHolder holder = Machine.getInterface(ComponentGUIHolder.class, machine);
 
         // TODO remove label
-        Label_0591:
-        {
+        Label_0591: {
             if (world != null && holder != null && holder.getStack() != null) {
                 BinnieCore.proxy.getMinecraftInstance();
                 if (Minecraft.isFancyGraphicsEnabled()) {

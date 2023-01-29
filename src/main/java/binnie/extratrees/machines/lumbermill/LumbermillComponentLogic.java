@@ -1,5 +1,7 @@
 package binnie.extratrees.machines.lumbermill;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.item.ItemMisc;
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
@@ -8,9 +10,9 @@ import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.item.ExtraTreeItems;
-import net.minecraft.item.ItemStack;
 
 public class LumbermillComponentLogic extends ComponentProcessSetCost implements IProcess {
+
     public LumbermillComponentLogic(Machine machine) {
         super(machine, Lumbermill.RF_COST, Lumbermill.TIME_PERIOD);
     }
@@ -19,7 +21,8 @@ public class LumbermillComponentLogic extends ComponentProcessSetCost implements
     public ErrorState canWork() {
         if (getUtil().isSlotEmpty(Lumbermill.SLOT_WOOD)) {
             return new ErrorState.NoItem(
-                    I18N.localise("extratrees.machine.lumbermill.error.noWood"), Lumbermill.SLOT_WOOD);
+                    I18N.localise("extratrees.machine.lumbermill.error.noWood"),
+                    Lumbermill.SLOT_WOOD);
         }
 
         ItemStack result = Lumbermill.getPlankProduct(getUtil().getStack(Lumbermill.SLOT_WOOD));
@@ -28,7 +31,8 @@ public class LumbermillComponentLogic extends ComponentProcessSetCost implements
             if (!result.isItemEqual(currentPlank)
                     || result.stackSize + currentPlank.stackSize > currentPlank.getMaxStackSize()) {
                 return new ErrorState.NoSpace(
-                        I18N.localise("extratrees.machine.lumbermill.error.noRoom"), Lumbermill.SLOT_PLANKS);
+                        I18N.localise("extratrees.machine.lumbermill.error.noRoom"),
+                        Lumbermill.SLOT_PLANKS);
             }
         }
         return super.canWork();
@@ -38,7 +42,8 @@ public class LumbermillComponentLogic extends ComponentProcessSetCost implements
     public ErrorState canProgress() {
         if (!getUtil().liquidInTank(Lumbermill.TANK_WATER, 5)) {
             return new ErrorState.InsufficientLiquid(
-                    I18N.localise("extratrees.machine.lumbermill.error.noWater"), Lumbermill.TANK_WATER);
+                    I18N.localise("extratrees.machine.lumbermill.error.noWater"),
+                    Lumbermill.TANK_WATER);
         }
         return super.canProgress();
     }
@@ -51,9 +56,9 @@ public class LumbermillComponentLogic extends ComponentProcessSetCost implements
         }
 
         getUtil().addStack(Lumbermill.SLOT_PLANKS, result);
-        getUtil()
-                .addStack(
-                        Lumbermill.SLOT_SAWDUST, ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.Sawdust, 1));
+        getUtil().addStack(
+                Lumbermill.SLOT_SAWDUST,
+                ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.Sawdust, 1));
         getUtil().addStack(Lumbermill.SLOT_BARK, ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.Bark, 1));
         getUtil().decreaseStack(Lumbermill.SLOT_WOOD, 1);
     }

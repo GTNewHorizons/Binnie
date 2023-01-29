@@ -4,7 +4,9 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 
 public class ForestryAllele {
+
     public enum Lifespan {
+
         Shortest,
         Shorter,
         Short,
@@ -21,6 +23,7 @@ public class ForestryAllele {
     }
 
     public enum Speed {
+
         Slowest,
         Slower,
         Slow,
@@ -35,6 +38,7 @@ public class ForestryAllele {
     }
 
     public enum Fertility {
+
         Low,
         Normal,
         High,
@@ -46,6 +50,7 @@ public class ForestryAllele {
     }
 
     public enum Territory {
+
         Default,
         Large,
         Larger,
@@ -57,6 +62,7 @@ public class ForestryAllele {
     }
 
     public enum Size {
+
         Smallest,
         Smaller,
         Small,
@@ -71,6 +77,7 @@ public class ForestryAllele {
     }
 
     public enum Bool {
+
         True,
         False;
 
@@ -84,6 +91,7 @@ public class ForestryAllele {
     }
 
     public enum Int {
+
         Int1,
         Int2,
         Int3,

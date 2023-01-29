@@ -1,5 +1,12 @@
 package binnie.extratrees.craftgui;
 
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.geometry.IArea;
@@ -12,13 +19,9 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.craftgui.window.Panel;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.machines.lumbermill.Lumbermill;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import org.lwjgl.opengl.GL11;
 
 public class ControlLumbermillProgress extends ControlProgressBase {
+
     protected static Texture saw = new StandardTexture(0, 0, 6, 32, ExtraTreeTexture.Gui);
     protected static Texture saw2 = new StandardTexture(2, 0, 4, 32, ExtraTreeTexture.Gui);
 
@@ -45,8 +48,8 @@ public class ControlLumbermillProgress extends ControlProgressBase {
     public void onRenderForeground() {
         GL11.glDisable(2896);
         int sawX = (int) (63.0f * progress);
-        CraftGUI.render.texture(
-                ControlLumbermillProgress.saw, new IPoint(sawX, -8.0f + 6.0f * (float) Math.sin(animation)));
+        CraftGUI.render
+                .texture(ControlLumbermillProgress.saw, new IPoint(sawX, -8.0f + 6.0f * (float) Math.sin(animation)));
         ItemStack item = Window.get(this).getInventory().getStackInSlot(Lumbermill.SLOT_WOOD);
         if (item == null) {
             return;
@@ -80,14 +83,15 @@ public class ControlLumbermillProgress extends ControlProgressBase {
 
         IIcon icon2 = block2.getIcon(2, result.getItemDamage());
         IPoint pos = getAbsolutePosition();
-        CraftGUI.render.limitArea(
-                new IArea(pos.add(new IPoint(0.0f, 0.0f)), new IPoint(progress * 64.0f + 2.0f, 18.0f)));
+        CraftGUI.render
+                .limitArea(new IArea(pos.add(new IPoint(0.0f, 0.0f)), new IPoint(progress * 64.0f + 2.0f, 18.0f)));
         GL11.glEnable(3089);
         for (int j = 0; j < 4; ++j) {
             CraftGUI.render.iconBlock(new IPoint(1 + j * 16, 1.0f), icon2);
         }
         GL11.glDisable(3089);
         CraftGUI.render.texture(
-                ControlLumbermillProgress.saw2, new IPoint(sawX + 2, -8.0f + 6.0f * (float) Math.sin(animation)));
+                ControlLumbermillProgress.saw2,
+                new IPoint(sawX + 2, -8.0f + 6.0f * (float) Math.sin(animation)));
     }
 }

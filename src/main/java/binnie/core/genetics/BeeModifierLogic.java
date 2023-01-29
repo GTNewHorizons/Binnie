@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 public class BeeModifierLogic {
+
     private Map<EnumBeeModifier, Float[]> modifiers;
     private List<EnumBeeBooleanModifier> booleanModifiers;
 
@@ -44,6 +45,6 @@ public class BeeModifierLogic {
     }
 
     public void setModifier(EnumBeeModifier modifier, float mult, float max) {
-        modifiers.put(modifier, new Float[] {mult, max});
+        modifiers.put(modifier, new Float[] { mult, max });
     }
 }

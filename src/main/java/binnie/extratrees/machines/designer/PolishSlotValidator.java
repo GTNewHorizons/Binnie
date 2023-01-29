@@ -1,11 +1,13 @@
 package binnie.extratrees.machines.designer;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.ValidatorIcon;
 import binnie.extratrees.ExtraTrees;
-import net.minecraft.item.ItemStack;
 
 public class PolishSlotValidator extends SlotValidator {
+
     protected DesignerType type;
 
     public PolishSlotValidator(DesignerType type) {

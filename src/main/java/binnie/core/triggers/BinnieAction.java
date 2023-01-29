@@ -1,5 +1,10 @@
 package binnie.core.triggers;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -11,12 +16,9 @@ import buildcraft.api.statements.IStatementParameter;
 import buildcraft.api.statements.StatementManager;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 
 class BinnieAction implements IActionExternal {
+
     private static int incrementalID = 800;
     public static BinnieAction actionPauseProcess;
     public static BinnieAction actionCancelTask;
@@ -81,8 +83,8 @@ class BinnieAction implements IActionExternal {
     }
 
     @Override
-    public void actionActivate(
-            TileEntity target, ForgeDirection side, IStatementContainer source, IStatementParameter[] parameters) {
+    public void actionActivate(TileEntity target, ForgeDirection side, IStatementContainer source,
+            IStatementParameter[] parameters) {
         // ignored
     }
 }

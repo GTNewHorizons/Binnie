@@ -1,5 +1,9 @@
 package binnie.extrabees.genetics;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.IInitializable;
 import binnie.extrabees.ExtraBees;
@@ -10,11 +14,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.IGenome;
 import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 
 public class ModuleGenetics implements IInitializable {
+
     public static IGenome getGenome(IAlleleBeeSpecies allele0) {
         return Binnie.Genetics.getBeeRoot()
                 .templateAsGenome(Binnie.Genetics.getBeeRoot().getTemplate(allele0.getUID()));

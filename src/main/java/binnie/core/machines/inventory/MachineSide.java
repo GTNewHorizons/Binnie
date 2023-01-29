@@ -1,15 +1,18 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.util.I18N;
 import java.util.Collection;
 import java.util.EnumSet;
+
 import net.minecraftforge.common.util.ForgeDirection;
 
+import binnie.core.util.I18N;
+
 public class MachineSide {
+
     public static final EnumSet<ForgeDirection> TOP_AND_BOTTOM = EnumSet.of(ForgeDirection.UP, ForgeDirection.DOWN);
     public static final EnumSet<ForgeDirection> NONE = EnumSet.noneOf(ForgeDirection.class);
-    public static final EnumSet<ForgeDirection> SIDES =
-            EnumSet.of(ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST);
+    public static final EnumSet<ForgeDirection> SIDES = EnumSet
+            .of(ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST);
 
     private static final EnumSet<ForgeDirection> ALL = EnumSet.of(
             ForgeDirection.UP,

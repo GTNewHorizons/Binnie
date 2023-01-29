@@ -1,16 +1,19 @@
 package binnie.genetics.machine.polymeriser;
 
+import java.util.Random;
+
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.world.World;
+
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.Random;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.world.World;
 
 public class PolymeriserComponentFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
+
     public PolymeriserComponentFX(IMachine machine) {
         super(machine);
     }
@@ -26,10 +29,9 @@ public class PolymeriserComponentFX extends MachineComponent implements IRender.
     public void onDisplayTick(World world, int x, int y, int z, Random rand) {
         int tick = (int) (world.getTotalWorldTime() % 8L);
         if ((tick == 0 || tick == 3) && getUtil().getProcess().isInProgress()) {
-            BinnieCore.proxy
-                    .getMinecraftInstance()
-                    .effectRenderer
+            BinnieCore.proxy.getMinecraftInstance().effectRenderer
                     .addEffect(new EntityFX(world, x + 0.5, y + 1.8, z + 0.5, 0.0, 0.0, 0.0) {
+
                         double axisX = posX;
                         double axisZ = posZ;
                         double angle = 0.7 + (int) (worldObj.getTotalWorldTime() % 2L) * 3.1415;

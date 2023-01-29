@@ -1,9 +1,11 @@
 package binnie.extratrees.block;
 
-import binnie.core.util.I18N;
 import net.minecraft.util.IIcon;
 
+import binnie.core.util.I18N;
+
 public enum DoorType {
+
     STANDARD("standard"),
     SOLID("solid"),
     DOUBLE("double"),

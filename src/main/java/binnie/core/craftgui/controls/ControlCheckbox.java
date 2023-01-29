@@ -14,6 +14,7 @@ import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlCheckbox extends Control implements IControlValue<Boolean> {
+
     boolean value;
     String text;
 
@@ -31,13 +32,13 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
         }
 
         addAttribute(WidgetAttribute.MOUSE_OVER);
-        addEventHandler(
-                new EventMouse.Down.Handler() {
-                    @Override
-                    public void onEvent(EventMouse.Down event) {
-                        toggleValue();
-                    }
-                }.setOrigin(EventHandler.Origin.Self, this));
+        addEventHandler(new EventMouse.Down.Handler() {
+
+            @Override
+            public void onEvent(EventMouse.Down event) {
+                toggleValue();
+            }
+        }.setOrigin(EventHandler.Origin.Self, this));
     }
 
     @Override

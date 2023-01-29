@@ -1,12 +1,14 @@
 package binnie.core.craftgui;
 
+import java.util.List;
+
 import binnie.core.craftgui.events.Event;
 import binnie.core.craftgui.events.EventHandler;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
-import java.util.List;
 
 public interface IWidget {
+
     IWidget getParent();
 
     void deleteChild(IWidget child);

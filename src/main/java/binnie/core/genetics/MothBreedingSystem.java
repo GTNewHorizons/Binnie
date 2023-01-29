@@ -1,5 +1,10 @@
 package binnie.core.genetics;
 
+import java.util.TreeSet;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
@@ -13,11 +18,9 @@ import forestry.api.lepidopterology.EnumButterflyChromosome;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.IButterflyRoot;
 import forestry.api.lepidopterology.ILepidopteristTracker;
-import java.util.TreeSet;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 class MothBreedingSystem extends BreedingSystem {
+
     public MothBreedingSystem() {
         iconUndiscovered = Binnie.Resource.getItemIcon(ExtraTrees.instance, "icon/undiscoveredMoth");
         iconDiscovered = Binnie.Resource.getItemIcon(ExtraTrees.instance, "icon/discoveredMoth");
@@ -80,9 +83,8 @@ class MothBreedingSystem extends BreedingSystem {
 
     @Override
     public int[] getActiveTypes() {
-        return new int[] {
-            EnumFlutterType.BUTTERFLY.ordinal(), EnumFlutterType.CATERPILLAR.ordinal(), EnumFlutterType.SERUM.ordinal()
-        };
+        return new int[] { EnumFlutterType.BUTTERFLY.ordinal(), EnumFlutterType.CATERPILLAR.ordinal(),
+                EnumFlutterType.SERUM.ordinal() };
     }
 
     @Override

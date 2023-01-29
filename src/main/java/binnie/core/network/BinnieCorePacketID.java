@@ -1,5 +1,9 @@
 package binnie.core.network;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.NetHandlerPlayServer;
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.BinnieCore;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.craftgui.minecraft.ContainerCraftGUI;
@@ -13,11 +17,9 @@ import binnie.core.network.packet.MessageTileNBT;
 import binnie.core.network.packet.MessageUpdate;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.NetHandlerPlayServer;
-import net.minecraft.tileentity.TileEntity;
 
 public enum BinnieCorePacketID implements IPacketID {
+
     NetworkEntityUpdate,
     TileMetadata,
     CraftGUIAction,

@@ -2,9 +2,11 @@ package binnie.extratrees.api;
 
 import java.util.Collection;
 import java.util.List;
+
 import net.minecraft.item.ItemStack;
 
 public interface ICarpentryInterface {
+
     boolean registerCarpentryWood(int index, IDesignMaterial wood);
 
     int getCarpentryWoodIndex(IDesignMaterial wood);

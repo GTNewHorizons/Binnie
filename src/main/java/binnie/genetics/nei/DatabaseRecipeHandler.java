@@ -1,5 +1,12 @@
 package binnie.genetics.nei;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.core.nei.RecipeHandlerBase;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
@@ -8,11 +15,6 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class DatabaseRecipeHandler extends RecipeHandlerBase {
 
@@ -55,7 +57,8 @@ public class DatabaseRecipeHandler extends RecipeHandlerBase {
         this.drawProgressBar(75, 7, 176, 0, 24, 17, 40, 0);
 
         List<String> desc = GuiDraw.fontRenderer.listFormattedStringToWidth(
-                StatCollector.translateToLocalFormatted("genetics.nei.tip.databaseDesc"), 140);
+                StatCollector.translateToLocalFormatted("genetics.nei.tip.databaseDesc"),
+                140);
         for (int i = 0; i < desc.size(); i++) {
             GuiDraw.drawStringC(desc.get(i), 88, 44 + 12 * (i - 1), 0xFFFFFF);
         }
@@ -99,8 +102,7 @@ public class DatabaseRecipeHandler extends RecipeHandlerBase {
         }
 
         public ItemStack getEmptySerum() {
-            return this.serum.getItem() instanceof ItemSerumArray
-                    ? GeneticsItems.EmptyGenome.get(1)
+            return this.serum.getItem() instanceof ItemSerumArray ? GeneticsItems.EmptyGenome.get(1)
                     : GeneticsItems.EmptySerum.get(1);
         }
     }
@@ -114,8 +116,7 @@ public class DatabaseRecipeHandler extends RecipeHandlerBase {
             if (recipe.getSerum() != null) {
                 List<ItemStack> serums = new ArrayList<>();
 
-                for (ItemStack serumStack :
-                        ItemList.itemMap.get(recipe.getSerum().getItem())) {
+                for (ItemStack serumStack : ItemList.itemMap.get(recipe.getSerum().getItem())) {
                     if (serumStack.getTagCompound() != null) {
                         ItemStack temp = serumStack.copy();
                         temp.setItemDamage(temp.getMaxDamage());

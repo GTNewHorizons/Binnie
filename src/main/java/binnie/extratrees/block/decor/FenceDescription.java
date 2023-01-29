@@ -4,6 +4,7 @@ import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
 
 public class FenceDescription {
+
     protected FenceType fenceType;
     protected IPlankType plankType;
     protected IPlankType secondaryPlankType;

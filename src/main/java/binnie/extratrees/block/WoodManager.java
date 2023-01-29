@@ -1,19 +1,22 @@
 package binnie.extratrees.block;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.decor.FenceDescription;
 import binnie.extratrees.block.decor.FenceType;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class WoodManager {
+
     public static IPlankType getPlankType(int index) {
         IDesignMaterial wood = CarpentryManager.carpentryInterface.getWoodMaterial(index);
         if (wood instanceof IPlankType) {
@@ -83,8 +86,8 @@ public class WoodManager {
 
         int ord = type.ordinal();
         int i = getPlankTypeIndex(plank) + 256 * ord;
-        ItemStack stack =
-                TileEntityMetadata.getItemStack(ExtraTrees.blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
+        ItemStack stack = TileEntityMetadata
+                .getItemStack(ExtraTrees.blockMultiFence, i + 65536 * getPlankTypeIndex(plank2));
         stack.stackSize = amount;
         return stack;
     }

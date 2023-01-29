@@ -1,14 +1,16 @@
 package binnie.core.machines.storage;
 
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.BinnieCore;
 import binnie.core.machines.Machine;
 import binnie.core.resource.BinnieResource;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 class MachineRendererCompartment {
+
     public static MachineRendererCompartment instance = new MachineRendererCompartment();
     private ModelCompartment model;
 
@@ -16,8 +18,8 @@ class MachineRendererCompartment {
         model = new ModelCompartment();
     }
 
-    public void renderMachine(
-            Machine machine, int colour, BinnieResource texture, double x, double y, double z, float var8) {
+    public void renderMachine(Machine machine, int colour, BinnieResource texture, double x, double y, double z,
+            float var8) {
         GL11.glPushMatrix();
         int i1 = 0;
         int ix = machine.getTileEntity().xCoord;

@@ -4,6 +4,7 @@ import binnie.extratrees.genetics.ExtraTreeSpecies;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenDefault extends WorldGenTree {
+
     public WorldGenDefault(ITreeGenData tree) {
         super(tree);
     }

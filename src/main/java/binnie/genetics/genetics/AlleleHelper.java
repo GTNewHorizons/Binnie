@@ -1,5 +1,9 @@
 package binnie.genetics.genetics;
 
+import java.util.Locale;
+
+import org.apache.commons.lang3.text.WordUtils;
+
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
@@ -11,10 +15,9 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 import forestry.core.genetics.alleles.EnumAllele;
-import java.util.Locale;
-import org.apache.commons.lang3.text.WordUtils;
 
 public class AlleleHelper extends forestry.core.genetics.alleles.AlleleHelper {
+
     public static IAllele getAllele(EnumTemperature temperature) {
         return getAllele(getUid(temperature));
     }

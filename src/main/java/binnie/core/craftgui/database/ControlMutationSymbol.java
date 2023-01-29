@@ -16,6 +16,7 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IMutation;
 
 class ControlMutationSymbol extends Control implements ITooltip {
+
     private static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
     private static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
     private IMutation value;
@@ -44,8 +45,7 @@ class ControlMutationSymbol extends Control implements ITooltip {
         boolean isNEI = ((WindowAbstractDatabase) getSuperParent()).isNEI();
         BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
         discovered = (isNEI
-                || system.isMutationDiscovered(
-                        value, Window.get(this).getWorld(), Window.get(this).getUsername()));
+                || system.isMutationDiscovered(value, Window.get(this).getWorld(), Window.get(this).getUsername()));
         if (discovered) {
             setColor(0xffffff);
         } else {

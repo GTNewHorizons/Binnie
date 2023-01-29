@@ -1,5 +1,14 @@
 package binnie.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.client.event.TextureStitchEvent;
+
 import binnie.Binnie;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
@@ -38,13 +47,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.client.event.TextureStitchEvent;
 
 @Mod(
         modid = "BinnieCore",
@@ -53,6 +55,7 @@ import net.minecraftforge.client.event.TextureStitchEvent;
         useMetadata = true,
         dependencies = "after:Forestry@[4.2,),required-after:gtnhlib@[0.0.10,)")
 public class BinnieCore extends AbstractMod {
+
     @Mod.Instance("BinnieCore")
     public static BinnieCore instance;
 
@@ -171,8 +174,8 @@ public class BinnieCore extends AbstractMod {
     @SideOnly(Side.CLIENT)
     public void handleSpeciesDiscovered(ForestryEvent.SpeciesDiscovered event) {
         try {
-            EntityPlayerMP player =
-                    MinecraftServer.getServer().getConfigurationManager().func_152612_a(event.username.getName());
+            EntityPlayerMP player = MinecraftServer.getServer().getConfigurationManager()
+                    .func_152612_a(event.username.getName());
             if (player == null) {
                 return;
             }
@@ -215,7 +218,7 @@ public class BinnieCore extends AbstractMod {
 
     @Override
     public Class<?>[] getConfigs() {
-        return new Class[] {ConfigurationMain.class};
+        return new Class[] { ConfigurationMain.class };
     }
 
     @Override
@@ -229,6 +232,7 @@ public class BinnieCore extends AbstractMod {
     }
 
     public static class PacketHandler extends BinniePacketHandler {
+
         public PacketHandler() {
             super(instance);
         }

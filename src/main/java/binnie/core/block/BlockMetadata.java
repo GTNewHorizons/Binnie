@@ -1,8 +1,8 @@
 package binnie.core.block;
 
-import binnie.core.BinnieCore;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -15,7 +15,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import binnie.core.BinnieCore;
+
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
+
     public BlockMetadata(Material material) {
         super(material);
     }
@@ -73,8 +76,8 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
         return blockMeta;
     }
 
-    public static ArrayList<ItemStack> getBlockDropped(
-            IBlockMetadata block, World world, int x, int y, int z, int blockMeta) {
+    public static ArrayList<ItemStack> getBlockDropped(IBlockMetadata block, World world, int x, int y, int z,
+            int blockMeta) {
         ArrayList<ItemStack> array = new ArrayList<>();
         TileEntityMetadata tile = TileEntityMetadata.getTile(world, x, y, z);
         if (tile != null && !tile.hasDroppedBlock()) {
@@ -93,8 +96,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
         }
 
         boolean hasBeenBroken = world.setBlockToAir(i, j, k);
-        if (hasBeenBroken
-                && BinnieCore.proxy.isSimulating(world)
+        if (hasBeenBroken && BinnieCore.proxy.isSimulating(world)
                 && drops.size() > 0
                 && (player == null || !player.capabilities.isCreativeMode)) {
             for (ItemStack drop : drops) {

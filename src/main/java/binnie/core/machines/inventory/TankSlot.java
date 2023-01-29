@@ -1,12 +1,14 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.util.I18N;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 import net.minecraftforge.fluids.IFluidTank;
 
+import binnie.core.util.I18N;
+
 public class TankSlot extends BaseSlot<FluidStack> {
+
     public static final String NAME_JUICE = "Juice Tank";
     public static final String NAME_WATER = "Water Tank";
     public static final String NAME_CUPBOARD = "Cupboard Slot";

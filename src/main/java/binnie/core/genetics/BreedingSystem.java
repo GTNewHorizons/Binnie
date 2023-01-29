@@ -1,10 +1,27 @@
 package binnie.core.genetics;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+
 import binnie.Binnie;
 import binnie.core.resource.BinnieIcon;
 import binnie.core.util.I18N;
 import binnie.extrabees.genetics.ExtraBeeMutation;
+
 import com.mojang.authlib.GameProfile;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import forestry.api.core.ForestryEvent;
 import forestry.api.genetics.AlleleManager;
@@ -18,21 +35,9 @@ import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 
 public abstract class BreedingSystem implements IItemStackRepresentative {
+
     public float discoveredSpeciesPercentage;
     public int totalSpeciesCount;
     public int discoveredSpeciesCount;
@@ -99,8 +104,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
     }
 
     public void calculateArrays() {
-        Collection<IAllele> allAlleles =
-                AlleleManager.alleleRegistry.getRegisteredAlleles().values();
+        Collection<IAllele> allAlleles = AlleleManager.alleleRegistry.getRegisteredAlleles().values();
         resultantMutations = new HashMap<>();
         furtherMutations = new HashMap<>();
         allActiveSpecies = new ArrayList<>();
@@ -118,8 +122,8 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
         }
 
         allMutations = new ArrayList<>();
-        Collection<IClassification> allRegBranches =
-                AlleleManager.alleleRegistry.getRegisteredClassifications().values();
+        Collection<IClassification> allRegBranches = AlleleManager.alleleRegistry.getRegisteredClassifications()
+                .values();
         allBranches = new ArrayList<>();
         for (IClassification branch : allRegBranches) {
             if (branch.getMemberSpecies().length > 0
@@ -373,8 +377,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 
     public String getAlleleName(IChromosomeType chromosome, IAllele allele) {
         if (allele instanceof IAlleleBoolean) {
-            return ((IAlleleBoolean) allele).getValue()
-                    ? I18N.localise("binniecore.allele.true")
+            return ((IAlleleBoolean) allele).getValue() ? I18N.localise("binniecore.allele.true")
                     : I18N.localise("binniecore.allele.false");
         }
         if (allele.getName().equals("for.gui.maximum")) {

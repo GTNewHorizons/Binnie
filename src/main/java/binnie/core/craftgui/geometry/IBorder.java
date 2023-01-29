@@ -1,6 +1,7 @@
 package binnie.core.craftgui.geometry;
 
 public class IBorder {
+
     public static IBorder ZERO = new IBorder(0.0f);
 
     protected float t;

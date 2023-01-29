@@ -1,5 +1,16 @@
 package binnie.genetics.machine.inoculator;
 
+import java.util.Random;
+
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
@@ -7,17 +18,10 @@ import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.Random;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-import org.lwjgl.opengl.GL11;
 
 public class InoculatorComponentFX extends MachineComponent
         implements IRender.RandomDisplayTick, IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
+
     private EntityItem dummyEntityItem;
 
     public InoculatorComponentFX(IMachine machine) {
@@ -36,10 +40,9 @@ public class InoculatorComponentFX extends MachineComponent
     public void onDisplayTick(World world, int x, int y, int z, Random rand) {
         int tick = (int) (world.getTotalWorldTime() % 3L);
         if (tick == 0 && getUtil().getProcess().isInProgress()) {
-            BinnieCore.proxy
-                    .getMinecraftInstance()
-                    .effectRenderer
+            BinnieCore.proxy.getMinecraftInstance().effectRenderer
                     .addEffect(new EntityFX(world, x + 0.5, y + 0.92, z + 0.5, 0.0, 0.0, 0.0) {
+
                         double axisX = posX;
                         double axisZ = posZ;
                         double angle = (int) (worldObj.getTotalWorldTime() % 4L) * 0.5 * 3.1415;

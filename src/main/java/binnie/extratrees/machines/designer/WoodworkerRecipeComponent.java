@@ -1,5 +1,13 @@
 package binnie.extratrees.machines.designer;
 
+import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.component.ComponentRecipe;
 import binnie.core.machines.component.IComponentRecipe;
@@ -12,15 +20,10 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.carpentry.EnumDesign;
 import cpw.mods.fml.relauncher.Side;
-import java.util.Map;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class WoodworkerRecipeComponent extends ComponentRecipe
         implements IComponentRecipe, INetwork.GuiNBT, IErrorStateSource {
+
     public DesignerType type;
 
     private IDesign design;
@@ -103,14 +106,14 @@ public class WoodworkerRecipeComponent extends ComponentRecipe
                 playerInv.setItemStack(doRecipe(true));
             } else if (playerInv.getItemStack().isItemEqual(recipe)
                     && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), recipe)) {
-                int fit = recipe.getMaxStackSize() - (recipe.stackSize + playerInv.getItemStack().stackSize);
-                if (fit >= 0) {
-                    ItemStack doRecipe;
-                    ItemStack rec = doRecipe = doRecipe(true);
-                    doRecipe.stackSize += playerInv.getItemStack().stackSize;
-                    playerInv.setItemStack(rec);
-                }
-            }
+                        int fit = recipe.getMaxStackSize() - (recipe.stackSize + playerInv.getItemStack().stackSize);
+                        if (fit >= 0) {
+                            ItemStack doRecipe;
+                            ItemStack rec = doRecipe = doRecipe(true);
+                            doRecipe.stackSize += playerInv.getItemStack().stackSize;
+                            playerInv.setItemStack(rec);
+                        }
+                    }
 
             player.openContainer.detectAndSendChanges();
             if (player instanceof EntityPlayerMP) {
@@ -125,7 +128,8 @@ public class WoodworkerRecipeComponent extends ComponentRecipe
     public ErrorState canWork() {
         if (getUtil().isSlotEmpty(Designer.GLUE_SLOT)) {
             return new ErrorState.NoItem(
-                    I18N.localise("extratrees.machine.worker.error.glueRequired"), Designer.GLUE_SLOT);
+                    I18N.localise("extratrees.machine.worker.error.glueRequired"),
+                    Designer.GLUE_SLOT);
         }
         return null;
     }

@@ -7,6 +7,7 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 
 public class StandardTexture extends Texture {
+
     public StandardTexture(int u, int v, int w, int h, IBinnieTexture textureFile) {
         this(u, v, w, h, 0, textureFile.getTexture());
     }

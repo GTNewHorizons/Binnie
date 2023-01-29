@@ -1,17 +1,20 @@
 package binnie.core.nei;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
+import org.lwjgl.opengl.GL11;
+
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIClientConfig;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.guihook.GuiContainerManager;
 import codechicken.nei.recipe.GuiRecipe;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import org.lwjgl.opengl.GL11;
 
 public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
 
@@ -35,8 +38,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
 
     @Override
     public void loadCraftingRecipes(String outputId, Object... results) {
-        if (outputId.equals("liquid")
-                && results[0] instanceof FluidStack
+        if (outputId.equals("liquid") && results[0] instanceof FluidStack
                 && ((FluidStack) results[0]).getFluid() != null) {
             this.loadCraftingRecipes((FluidStack) results[0]);
         } else if (outputId.equals(this.getOverlayIdentifier())) {
@@ -60,8 +62,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
 
     @Override
     public void loadUsageRecipes(String inputId, Object... ingredients) {
-        if (inputId.equals("liquid")
-                && ingredients[0] instanceof FluidStack
+        if (inputId.equals("liquid") && ingredients[0] instanceof FluidStack
                 && ((FluidStack) ingredients[0]).getFluid() != null) {
             this.loadUsageRecipes((FluidStack) ingredients[0]);
         } else {
@@ -88,8 +89,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
             Point offset = guiRecipe.getRecipePosition(recipe);
             Point relMouse = new Point(
                     mouse.x - (guiRecipe.width - 176) / 2 - offset.x,
-                    mouse.y
-                            - (guiRecipe.height - Math.min(Math.max(guiRecipe.height - 68, 166), 370)) / 2
+                    mouse.y - (guiRecipe.height - Math.min(Math.max(guiRecipe.height - 68, 166), 370)) / 2
                             - 10
                             - offset.y);
             currenttip = this.provideTooltip(guiRecipe, currenttip, crecipe, relMouse);
@@ -97,8 +97,8 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
         return currenttip;
     }
 
-    public List<String> provideTooltip(
-            GuiRecipe<?> guiRecipe, List<String> currenttip, CachedBaseRecipe crecipe, Point relMouse) {
+    public List<String> provideTooltip(GuiRecipe<?> guiRecipe, List<String> currenttip, CachedBaseRecipe crecipe,
+            Point relMouse) {
         if (crecipe.getFluidTanks() != null) {
             for (PositionedFluidTank tank : crecipe.getFluidTanks()) {
                 if (tank.position.contains(relMouse)) {
@@ -110,8 +110,8 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
     }
 
     @Override
-    public List<String> handleItemTooltip(
-            GuiRecipe<?> guiRecipe, ItemStack itemStack, List<String> currenttip, int recipe) {
+    public List<String> handleItemTooltip(GuiRecipe<?> guiRecipe, ItemStack itemStack, List<String> currenttip,
+            int recipe) {
         super.handleItemTooltip(guiRecipe, itemStack, currenttip, recipe);
         CachedBaseRecipe crecipe = (CachedBaseRecipe) this.arecipes.get(recipe);
         Point mouse = GuiDraw.getMousePosition();
@@ -124,27 +124,20 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
         return currenttip;
     }
 
-    public List<String> provideItemTooltip(
-            GuiRecipe<?> guiRecipe,
-            ItemStack itemStack,
-            List<String> currenttip,
-            CachedBaseRecipe crecipe,
-            Point relMouse) {
+    public List<String> provideItemTooltip(GuiRecipe<?> guiRecipe, ItemStack itemStack, List<String> currenttip,
+            CachedBaseRecipe crecipe, Point relMouse) {
         for (PositionedStack stack : crecipe.getIngredients()) {
-            if (stack instanceof PositionedStackAdv
-                    && ((PositionedStackAdv) stack).getRect().contains(relMouse)) {
+            if (stack instanceof PositionedStackAdv && ((PositionedStackAdv) stack).getRect().contains(relMouse)) {
                 currenttip = ((PositionedStackAdv) stack).handleTooltip(guiRecipe, currenttip);
             }
         }
         for (PositionedStack stack : crecipe.getOtherStacks()) {
-            if (stack instanceof PositionedStackAdv
-                    && ((PositionedStackAdv) stack).getRect().contains(relMouse)) {
+            if (stack instanceof PositionedStackAdv && ((PositionedStackAdv) stack).getRect().contains(relMouse)) {
                 currenttip = ((PositionedStackAdv) stack).handleTooltip(guiRecipe, currenttip);
             }
         }
         PositionedStack stack = crecipe.getResult();
-        if (stack instanceof PositionedStackAdv
-                && ((PositionedStackAdv) stack).getRect().contains(relMouse)) {
+        if (stack instanceof PositionedStackAdv && ((PositionedStackAdv) stack).getRect().contains(relMouse)) {
             currenttip = ((PositionedStackAdv) stack).handleTooltip(guiRecipe, currenttip);
         }
         return currenttip;
@@ -187,8 +180,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
                 Point offset = guiRecipe.getRecipePosition(recipe);
                 Point relMouse = new Point(
                         mouse.x - (guiRecipe.width - 176) / 2 - offset.x,
-                        mouse.y
-                                - (guiRecipe.height - Math.min(Math.max(guiRecipe.height - 68, 166), 370)) / 2
+                        mouse.y - (guiRecipe.height - Math.min(Math.max(guiRecipe.height - 68, 166), 370)) / 2
                                 - 10
                                 - offset.y);
 

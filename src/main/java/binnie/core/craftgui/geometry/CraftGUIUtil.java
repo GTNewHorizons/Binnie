@@ -5,6 +5,7 @@ import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.events.EventValueChanged;
 
 public class CraftGUIUtil {
+
     public static void alignToWidget(IWidget target, IWidget relativeTo) {
         IPoint startPos = target.getAbsolutePosition();
         IPoint endPos = relativeTo.getAbsolutePosition();
@@ -49,6 +50,7 @@ public class CraftGUIUtil {
 
     public static <T> void linkWidgets(IControlValue<T> tab, IControlValue<T> target) {
         tab.addSelfEventHandler(new EventValueChanged.Handler() {
+
             @Override
             public void onEvent(EventValueChanged event) {
                 target.setValue((T) event.getValue());
@@ -56,6 +58,7 @@ public class CraftGUIUtil {
         });
 
         target.addSelfEventHandler(new EventValueChanged.Handler() {
+
             @Override
             public void onEvent(EventValueChanged event) {
                 tab.setValue((T) event.getValue());

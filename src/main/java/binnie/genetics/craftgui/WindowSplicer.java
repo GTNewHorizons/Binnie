@@ -1,5 +1,8 @@
 package binnie.genetics.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.Position;
@@ -20,12 +23,15 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.inoculator.Inoculator;
 import binnie.genetics.machine.splicer.Splicer;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 
 public class WindowSplicer extends WindowMachine {
-    protected static Texture progressBase =
-            new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
+
+    protected static Texture progressBase = new StandardTexture(
+            0,
+            72,
+            142,
+            72,
+            GeneticsTexture.GUIProcess2.getTexture());
     protected static Texture progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
 
     public WindowSplicer(EntityPlayer player, IInventory inventory, Side side) {

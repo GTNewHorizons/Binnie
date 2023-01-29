@@ -11,6 +11,7 @@ import binnie.core.machines.power.ProcessInfo;
 import binnie.core.util.I18N;
 
 public class ControlProgressBase extends Control {
+
     protected float progress;
 
     public ControlProgressBase(IWidget parent, float x, float y, float w, float h) {
@@ -73,8 +74,7 @@ public class ControlProgressBase extends Control {
     @Override
     public void getHelpTooltip(Tooltip tooltip) {
         ProcessInfo process = getProcess();
-        IProcess machineProcess =
-                Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
+        IProcess machineProcess = Machine.getMachine(Window.get(this).getInventory()).getInterface(IProcess.class);
         if (process == null) {
             return;
         }
@@ -90,8 +90,10 @@ public class ControlProgressBase extends Control {
         }
 
         if (process.getProcessTime() > 0) {
-            tooltip.add(I18N.localise("binniecore.gui.database.time.left", convertTime((int)
-                    ((1.0f - progress) * process.getProcessTime()))));
+            tooltip.add(
+                    I18N.localise(
+                            "binniecore.gui.database.time.left",
+                            convertTime((int) ((1.0f - progress) * process.getProcessTime()))));
             tooltip.add(I18N.localise("binniecore.gui.database.time.total", convertTime(process.getProcessTime())));
             tooltip.add(I18N.localise("binniecore.gui.database.energyCost.0", process.getProcessEnergy() * 10));
         } else {

@@ -1,11 +1,13 @@
 package binnie.genetics.craftgui;
 
-import binnie.core.craftgui.minecraft.Window;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
+import binnie.core.craftgui.minecraft.Window;
+import cpw.mods.fml.relauncher.Side;
+
 public class WindowGeneBankNEI {
+
     public static Window create(EntityPlayer player, IInventory inventory, Side side) {
         return new WindowGeneBank(player, inventory, side, true);
     }

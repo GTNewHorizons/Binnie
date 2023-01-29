@@ -1,5 +1,10 @@
 package binnie.core.genetics;
 
+import java.util.TreeSet;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
@@ -18,11 +23,9 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.core.genetics.alleles.EnumAllele;
-import java.util.TreeSet;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 class BeeBreedingSystem extends BreedingSystem {
+
     public BeeBreedingSystem() {
         iconUndiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/undiscoveredBee");
         iconDiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/discoveredBee");
@@ -30,15 +33,12 @@ class BeeBreedingSystem extends BreedingSystem {
 
     @Override
     public float getChance(IMutation mutation, EntityPlayer player, IAllele species1, IAllele species2) {
-        return ((IBeeMutation) mutation)
-                .getChance(
-                        new VirtualBeeHousing(player),
-                        (IAlleleBeeSpecies) species1,
-                        (IAlleleBeeSpecies) species2,
-                        (IBeeGenome) getSpeciesRoot()
-                                .templateAsGenome(getSpeciesRoot().getTemplate(species1.getUID())),
-                        (IBeeGenome) getSpeciesRoot()
-                                .templateAsGenome(getSpeciesRoot().getTemplate(species2.getUID())));
+        return ((IBeeMutation) mutation).getChance(
+                new VirtualBeeHousing(player),
+                (IAlleleBeeSpecies) species1,
+                (IAlleleBeeSpecies) species2,
+                (IBeeGenome) getSpeciesRoot().templateAsGenome(getSpeciesRoot().getTemplate(species1.getUID())),
+                (IBeeGenome) getSpeciesRoot().templateAsGenome(getSpeciesRoot().getTemplate(species2.getUID())));
     }
 
     @Override
@@ -82,12 +82,8 @@ class BeeBreedingSystem extends BreedingSystem {
 
     @Override
     public int[] getActiveTypes() {
-        return new int[] {
-            EnumBeeType.DRONE.ordinal(),
-            EnumBeeType.PRINCESS.ordinal(),
-            EnumBeeType.QUEEN.ordinal(),
-            EnumBeeType.LARVAE.ordinal()
-        };
+        return new int[] { EnumBeeType.DRONE.ordinal(), EnumBeeType.PRINCESS.ordinal(), EnumBeeType.QUEEN.ordinal(),
+                EnumBeeType.LARVAE.ordinal() };
     }
 
     @Override

@@ -1,6 +1,7 @@
 package binnie.extratrees.genetics;
 
 public enum LeafType {
+
     NORMAL((short) 10, (short) 11, (short) 12, "Deciduous"),
     CONIFER((short) 15, (short) 16, (short) 17, "Conifers"),
     JUNGLE((short) 20, (short) 21, (short) 22, "Jungle"),

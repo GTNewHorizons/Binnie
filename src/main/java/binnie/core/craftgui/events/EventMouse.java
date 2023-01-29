@@ -3,11 +3,13 @@ package binnie.core.craftgui.events;
 import binnie.core.craftgui.IWidget;
 
 public abstract class EventMouse extends Event {
+
     public EventMouse(IWidget origin) {
         super(origin);
     }
 
     public static class Button extends EventMouse {
+
         protected int x;
         protected int y;
         protected int button;
@@ -33,11 +35,13 @@ public abstract class EventMouse extends Event {
     }
 
     public static class Down extends Button {
+
         public Down(IWidget currentMousedOverWidget, int x, int y, int button) {
             super(currentMousedOverWidget, x, y, button);
         }
 
         public abstract static class Handler extends EventHandler<Down> {
+
             public Handler() {
                 super(Down.class);
             }
@@ -45,11 +49,13 @@ public abstract class EventMouse extends Event {
     }
 
     public static class Up extends Button {
+
         public Up(IWidget currentMousedOverWidget, int x, int y, int button) {
             super(currentMousedOverWidget, x, y, button);
         }
 
         public abstract static class Handler extends EventHandler<Up> {
+
             public Handler() {
                 super(Up.class);
             }
@@ -57,6 +63,7 @@ public abstract class EventMouse extends Event {
     }
 
     public static class Move extends EventMouse {
+
         protected float dx;
         protected float dy;
 
@@ -75,6 +82,7 @@ public abstract class EventMouse extends Event {
         }
 
         public abstract static class Handler extends EventHandler<Move> {
+
             public Handler() {
                 super(Move.class);
             }
@@ -82,11 +90,13 @@ public abstract class EventMouse extends Event {
     }
 
     public static class Drag extends Move {
+
         public Drag(IWidget draggedWidget, float dx, float dy) {
             super(draggedWidget, dx, dy);
         }
 
         public abstract static class Handler extends EventHandler<Drag> {
+
             public Handler() {
                 super(Drag.class);
             }
@@ -94,6 +104,7 @@ public abstract class EventMouse extends Event {
     }
 
     public static class Wheel extends EventMouse {
+
         protected int dWheel;
 
         public Wheel(IWidget origin, int dWheel) {
@@ -107,6 +118,7 @@ public abstract class EventMouse extends Event {
         }
 
         public abstract static class Handler extends EventHandler<Wheel> {
+
             public Handler() {
                 super(Wheel.class);
             }

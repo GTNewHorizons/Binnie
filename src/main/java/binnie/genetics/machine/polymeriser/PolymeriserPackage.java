@@ -1,5 +1,9 @@
 package binnie.genetics.machine.polymeriser;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -15,11 +19,9 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.PackageGeneticBase;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 public class PolymeriserPackage extends PackageGeneticBase implements IMachineInformation {
+
     public PolymeriserPackage() {
         super("polymeriser", GeneticsTexture.Polymeriser, 0x00e5c3, true);
     }
@@ -49,7 +51,10 @@ public class PolymeriserPackage extends PackageGeneticBase implements IMachineIn
         ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
         transfer.addRestock(Polymeriser.SLOT_SERUM_RESERVE, Polymeriser.SLOT_SERUM, 1);
         transfer.addStorage(
-                Polymeriser.SLOT_SERUM, Polymeriser.SLOT_SERUM_FINISHED, new ComponentInventoryTransfer.Condition() {
+                Polymeriser.SLOT_SERUM,
+                Polymeriser.SLOT_SERUM_FINISHED,
+                new ComponentInventoryTransfer.Condition() {
+
                     @Override
                     public boolean fufilled(ItemStack stack) {
                         return !stack.isItemDamaged();

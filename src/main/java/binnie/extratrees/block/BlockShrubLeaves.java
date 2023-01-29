@@ -1,9 +1,11 @@
 package binnie.extratrees.block;
 
-import forestry.arboriculture.blocks.BlockForestryLeaves;
 import net.minecraft.world.World;
 
+import forestry.arboriculture.blocks.BlockForestryLeaves;
+
 public class BlockShrubLeaves extends BlockForestryLeaves {
+
     public BlockShrubLeaves() {
         super();
     }

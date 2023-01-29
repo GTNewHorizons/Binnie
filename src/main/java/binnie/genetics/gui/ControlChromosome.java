@@ -17,6 +17,7 @@ import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
 
 public class ControlChromosome extends Control implements IControlValue<IChromosomeType> {
+
     Texture BeeTexture;
     Texture TreeTexture;
     Texture MothTexture;

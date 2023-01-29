@@ -1,10 +1,12 @@
 package binnie.core.machines;
 
-import binnie.core.util.I18N;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.tileentity.TileEntity;
 
+import binnie.core.util.I18N;
+
 public abstract class MachinePackage {
+
     private String uid;
     private boolean active;
     boolean powered;
@@ -46,8 +48,8 @@ public abstract class MachinePackage {
         this.group = group;
     }
 
-    public abstract void renderMachine(
-            Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer);
+    public abstract void renderMachine(Machine machine, double x, double y, double z, float partialTick,
+            RenderBlocks renderer);
 
     public boolean isActive() {
         return active;

@@ -1,11 +1,14 @@
 package binnie.genetics.genetics;
 
-import binnie.genetics.api.IGene;
-import forestry.api.genetics.ISpeciesRoot;
 import java.util.List;
+
 import net.minecraft.item.ItemStack;
 
+import binnie.genetics.api.IGene;
+import forestry.api.genetics.ISpeciesRoot;
+
 public interface IGeneItem {
+
     ISpeciesRoot getSpeciesRoot();
 
     void getInfo(List tooltip);

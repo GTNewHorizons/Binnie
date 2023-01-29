@@ -1,5 +1,12 @@
 package binnie.extratrees.genetics;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+
 import binnie.Binnie;
 import binnie.core.util.I18N;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
@@ -8,13 +15,9 @@ import forestry.api.arboriculture.ITreeMutation;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
 
 public class ExtraTreeMutation implements ITreeMutation {
+
     protected int chance;
     protected boolean isSecret;
     protected IAlleleTreeSpecies allele0;
@@ -67,7 +70,10 @@ public class ExtraTreeMutation implements ITreeMutation {
                 ExtraTreeSpecies.FloweringCrabapple,
                 10);
         new ExtraTreeMutation(
-                ExtraTreeSpecies.OrchardApple, getVanilla("Birch"), ExtraTreeSpecies.PrairieCrabapple, 10);
+                ExtraTreeSpecies.OrchardApple,
+                getVanilla("Birch"),
+                ExtraTreeSpecies.PrairieCrabapple,
+                10);
         new ExtraTreeMutation(getVanilla("Plum"), ExtraTreeSpecies.OrchardApple, ExtraTreeSpecies.Blackthorn, 10);
         new ExtraTreeMutation(getVanilla("Plum"), getVanilla("Cherry"), ExtraTreeSpecies.CherryPlum, 10);
         new ExtraTreeMutation(getVanilla("Plum"), getVanilla("Chestnut"), ExtraTreeSpecies.Peach, 10);
@@ -132,15 +138,24 @@ public class ExtraTreeMutation implements ITreeMutation {
         new ExtraTreeMutation(getVanilla("Cherry"), ExtraTreeSpecies.Elder, ExtraTreeSpecies.Raspberry, 10);
         new ExtraTreeMutation(getVanilla("Cherry"), ExtraTreeSpecies.Elder, ExtraTreeSpecies.Redcurrant, 10);
         new ExtraTreeMutation(
-                ExtraTreeSpecies.BlackCherry, ExtraTreeSpecies.Redcurrant, ExtraTreeSpecies.Blackcurrant, 10);
+                ExtraTreeSpecies.BlackCherry,
+                ExtraTreeSpecies.Redcurrant,
+                ExtraTreeSpecies.Blackcurrant,
+                10);
         new ExtraTreeMutation(
-                ExtraTreeSpecies.BlackCherry, ExtraTreeSpecies.Raspberry, ExtraTreeSpecies.Blackberry, 10);
+                ExtraTreeSpecies.BlackCherry,
+                ExtraTreeSpecies.Raspberry,
+                ExtraTreeSpecies.Blackberry,
+                10);
         new ExtraTreeMutation(ExtraTreeSpecies.Blackberry, ExtraTreeSpecies.Raspberry, ExtraTreeSpecies.Blueberry, 10);
         new ExtraTreeMutation(ExtraTreeSpecies.Blackberry, ExtraTreeSpecies.CherryPlum, ExtraTreeSpecies.Cranberry, 10);
         new ExtraTreeMutation(ExtraTreeSpecies.Raspberry, ExtraTreeSpecies.Fir, ExtraTreeSpecies.Juniper, 10);
         new ExtraTreeMutation(ExtraTreeSpecies.Raspberry, ExtraTreeSpecies.Lime, ExtraTreeSpecies.Gooseberry, 10);
         new ExtraTreeMutation(
-                ExtraTreeSpecies.Raspberry, ExtraTreeSpecies.Orange, ExtraTreeSpecies.GoldenRaspberry, 10);
+                ExtraTreeSpecies.Raspberry,
+                ExtraTreeSpecies.Orange,
+                ExtraTreeSpecies.GoldenRaspberry,
+                10);
         new ExtraTreeMutation(getVanilla("Teak"), ExtraTreeSpecies.Rosewood, ExtraTreeSpecies.Cinnamon, 10);
         new ExtraTreeMutation(getVanilla("Balsa"), ExtraTreeSpecies.Brazilnut, ExtraTreeSpecies.Coconut, 10);
         new ExtraTreeMutation(getVanilla("Teak"), getVanilla("Oak"), ExtraTreeSpecies.Cashew, 10);
@@ -207,15 +222,8 @@ public class ExtraTreeMutation implements ITreeMutation {
     }
 
     @Override
-    public float getChance(
-            World world,
-            int x,
-            int y,
-            int z,
-            IAlleleTreeSpecies allele0,
-            IAlleleTreeSpecies allele1,
-            ITreeGenome genome0,
-            ITreeGenome genome1) {
+    public float getChance(World world, int x, int y, int z, IAlleleTreeSpecies allele0, IAlleleTreeSpecies allele1,
+            ITreeGenome genome0, ITreeGenome genome1) {
         int processedChance = chance;
         BiomeGenBase biome = world.getWorldChunkManager().getBiomeGenAt(x, z);
         if (biome.temperature < minTemperature || biome.temperature > maxTemperature) {
@@ -227,12 +235,10 @@ public class ExtraTreeMutation implements ITreeMutation {
         if (height > 0.0f && y < height) {
             return 0.0f;
         }
-        if (this.allele0.getUID().equals(allele0.getUID())
-                && this.allele1.getUID().equals(allele1.getUID())) {
+        if (this.allele0.getUID().equals(allele0.getUID()) && this.allele1.getUID().equals(allele1.getUID())) {
             return processedChance;
         }
-        if (this.allele1.getUID().equals(allele0.getUID())
-                && this.allele0.getUID().equals(allele1.getUID())) {
+        if (this.allele1.getUID().equals(allele0.getUID()) && this.allele0.getUID().equals(allele1.getUID())) {
             return processedChance;
         }
         return 0.0f;

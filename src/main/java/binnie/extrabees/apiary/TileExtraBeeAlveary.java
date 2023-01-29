@@ -1,8 +1,17 @@
 package binnie.extrabees.apiary;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChunkCoordinates;
+
 import binnie.core.machines.TileEntityMachine;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
+
 import com.mojang.authlib.GameProfile;
+
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
@@ -12,18 +21,10 @@ import forestry.api.multiblock.IMultiblockComponent;
 import forestry.api.multiblock.IMultiblockController;
 import forestry.api.multiblock.IMultiblockLogicAlveary;
 import forestry.api.multiblock.MultiblockManager;
-import java.util.LinkedList;
-import java.util.List;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChunkCoordinates;
 
-public class TileExtraBeeAlveary extends TileEntityMachine
-        implements IAlvearyComponent.Active,
-                IAlvearyComponent.BeeModifier,
-                IAlvearyComponent.BeeListener,
-                IBeeListener,
-                IBeeModifier {
+public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyComponent.Active,
+        IAlvearyComponent.BeeModifier, IAlvearyComponent.BeeListener, IBeeListener, IBeeModifier {
+
     protected IMultiblockLogicAlveary structureLogic;
     protected ChunkCoordinates min;
     protected ChunkCoordinates max;

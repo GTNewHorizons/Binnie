@@ -1,11 +1,13 @@
 package binnie.extratrees.machines.lumbermill;
 
-import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.util.I18N;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
+
 public class LogSlotValidator extends SlotValidator {
+
     public LogSlotValidator() {
         super(SlotValidator.IconBlock);
     }

@@ -4,6 +4,7 @@ import binnie.botany.api.EnumFlowerStage;
 import binnie.core.util.I18N;
 
 public class ItemPollen extends ItemBotany {
+
     public ItemPollen() {
         super("pollen");
     }

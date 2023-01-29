@@ -1,13 +1,16 @@
 package binnie.core.resource;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+
 import binnie.core.AbstractMod;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.client.renderer.texture.IIconRegister;
 
 public class ManagerResource {
+
     private List<BinnieIcon> icons;
 
     public ManagerResource() {

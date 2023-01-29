@@ -1,6 +1,7 @@
 package binnie.core.machines.inventory;
 
 enum AccessDirection {
+
     Both,
     In,
     Out,

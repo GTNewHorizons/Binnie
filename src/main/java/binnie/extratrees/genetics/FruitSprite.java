@@ -1,15 +1,17 @@
 package binnie.extratrees.genetics;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
+
 import binnie.Binnie;
 import binnie.core.resource.BinnieIcon;
 import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.IIconProvider;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 
 public enum FruitSprite implements IIconProvider {
+
     Tiny,
     Small,
     Average,
@@ -36,7 +38,6 @@ public enum FruitSprite implements IIconProvider {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
-        icon = Binnie.Resource.getBlockIcon(
-                ExtraTrees.instance, "fruit/" + toString().toLowerCase());
+        icon = Binnie.Resource.getBlockIcon(ExtraTrees.instance, "fruit/" + toString().toLowerCase());
     }
 }

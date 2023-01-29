@@ -4,6 +4,7 @@ import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 
 public class ControlScroll extends Control {
+
     private IControlScrollable scrollWidget;
 
     public ControlScroll(IWidget parent, float x, float y, float width, float height, IControlScrollable scrollWidget) {

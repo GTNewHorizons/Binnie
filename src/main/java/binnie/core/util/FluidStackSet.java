@@ -5,9 +5,11 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+
 import net.minecraftforge.fluids.FluidStack;
 
 class FluidStackSet implements Set<FluidStack> {
+
     protected List<FluidStack> itemStacks;
 
     FluidStackSet() {

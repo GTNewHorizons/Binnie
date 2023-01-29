@@ -4,6 +4,7 @@ import binnie.botany.api.IColourMix;
 import binnie.botany.api.IFlowerColor;
 
 public class ColorMix implements IColourMix {
+
     protected IFlowerColor color1;
     protected IFlowerColor color2;
     protected IFlowerColor result;

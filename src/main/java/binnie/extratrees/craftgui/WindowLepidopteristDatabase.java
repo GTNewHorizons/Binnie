@@ -1,5 +1,7 @@
 package binnie.extratrees.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.database.DatabaseTab;
@@ -14,9 +16,9 @@ import binnie.core.craftgui.database.WindowAbstractDatabase;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
+
     public WindowLepidopteristDatabase(EntityPlayer player, Side side, boolean nei) {
         super(player, side, nei, Binnie.Genetics.mothBreedingSystem, 160.0f);
     }
@@ -28,21 +30,30 @@ public class WindowLepidopteristDatabase extends WindowAbstractDatabase {
     @Override
     protected void addTabs() {
         new PageSpeciesOverview(
-                getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.overview"));
+                getInfoPages(Mode.Species),
+                new DatabaseTab(ExtraTrees.instance, "butterfly.species.overview"));
         new PageSpeciesClassification(
-                getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.classification"));
+                getInfoPages(Mode.Species),
+                new DatabaseTab(ExtraTrees.instance, "butterfly.species.classification"));
         new PageSpeciesImage(
-                getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.specimen"));
+                getInfoPages(Mode.Species),
+                new DatabaseTab(ExtraTrees.instance, "butterfly.species.specimen"));
         new PageSpeciesResultant(
-                getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.resultant"));
+                getInfoPages(Mode.Species),
+                new DatabaseTab(ExtraTrees.instance, "butterfly.species.resultant"));
         new PageSpeciesMutations(
-                getInfoPages(Mode.Species), new DatabaseTab(ExtraTrees.instance, "butterfly.species.further"));
+                getInfoPages(Mode.Species),
+                new DatabaseTab(ExtraTrees.instance, "butterfly.species.further"));
         new PageBranchOverview(
-                getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "butterfly.branches.overview"));
+                getInfoPages(Mode.Branches),
+                new DatabaseTab(ExtraTrees.instance, "butterfly.branches.overview"));
         new PageBranchSpecies(
-                getInfoPages(Mode.Branches), new DatabaseTab(ExtraTrees.instance, "butterfly.branches.species"));
+                getInfoPages(Mode.Branches),
+                new DatabaseTab(ExtraTrees.instance, "butterfly.branches.species"));
         new PageBreeder(
-                getInfoPages(Mode.Breeder), getUsername(), new DatabaseTab(ExtraTrees.instance, "butterfly.breeder"));
+                getInfoPages(Mode.Breeder),
+                getUsername(),
+                new DatabaseTab(ExtraTrees.instance, "butterfly.breeder"));
     }
 
     @Override

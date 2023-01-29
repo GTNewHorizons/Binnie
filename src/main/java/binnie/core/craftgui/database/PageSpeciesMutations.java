@@ -6,6 +6,7 @@ import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesMutations extends PageSpecies {
+
     private ControlMutationBox list;
 
     public PageSpeciesMutations(IWidget parent, DatabaseTab tab) {

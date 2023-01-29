@@ -3,6 +3,7 @@ package binnie.core.craftgui.events;
 import binnie.core.craftgui.IWidget;
 
 public class EventValueChanged<T> extends Event {
+
     public T value;
 
     public EventValueChanged(IWidget origin, T value) {
@@ -15,6 +16,7 @@ public class EventValueChanged<T> extends Event {
     }
 
     public abstract static class Handler extends EventHandler<EventValueChanged> {
+
         public Handler() {
             super(EventValueChanged.class);
         }

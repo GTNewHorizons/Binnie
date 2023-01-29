@@ -1,14 +1,16 @@
 package binnie.genetics.machine;
 
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.tileentity.TileEntity;
 
 public abstract class PackageGeneticBase extends MachinePackage {
+
     protected BinnieResource renderTexture;
     protected int color;
 

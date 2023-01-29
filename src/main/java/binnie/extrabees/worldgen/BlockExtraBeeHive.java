@@ -1,13 +1,9 @@
 package binnie.extrabees.worldgen;
 
-import binnie.extrabees.ExtraBees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.apiculture.IHiveDrop;
-import forestry.api.core.Tabs;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,7 +12,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import binnie.extrabees.ExtraBees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.apiculture.IHiveDrop;
+import forestry.api.core.Tabs;
+
 public class BlockExtraBeeHive extends Block {
+
     protected IIcon[][] icons;
 
     public BlockExtraBeeHive() {
@@ -55,10 +58,10 @@ public class BlockExtraBeeHive extends Block {
     public void registerBlockIcons(IIconRegister register) {
         icons = new IIcon[EnumHiveType.values().length][2];
         for (EnumHiveType hive : EnumHiveType.values()) {
-            icons[hive.ordinal()][0] =
-                    ExtraBees.proxy.getIcon(register, "hive/" + hive.toString().toLowerCase() + ".0");
-            icons[hive.ordinal()][1] =
-                    ExtraBees.proxy.getIcon(register, "hive/" + hive.toString().toLowerCase() + ".1");
+            icons[hive.ordinal()][0] = ExtraBees.proxy
+                    .getIcon(register, "hive/" + hive.toString().toLowerCase() + ".0");
+            icons[hive.ordinal()][1] = ExtraBees.proxy
+                    .getIcon(register, "hive/" + hive.toString().toLowerCase() + ".1");
         }
     }
 

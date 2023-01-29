@@ -1,12 +1,14 @@
 package binnie.extratrees.craftgui;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.minecraft.Window;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class ControlTankSlot extends ControlSlotFluid {
+
     protected int tankID;
 
     public ControlTankSlot(IWidget parent, int x, int y, int i) {
@@ -14,6 +16,7 @@ public class ControlTankSlot extends ControlSlotFluid {
         tankID = 0;
         tankID = i;
         addSelfEventHandler(new EventMouse.Down.Handler() {
+
             @Override
             public void onEvent(EventMouse.Down event) {
                 if (event.getButton() == 0) {

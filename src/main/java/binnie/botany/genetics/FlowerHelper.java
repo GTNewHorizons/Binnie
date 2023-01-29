@@ -1,5 +1,17 @@
 package binnie.botany.genetics;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+
 import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
@@ -10,7 +22,9 @@ import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerMutation;
 import binnie.botany.api.IFlowerRoot;
+
 import com.mojang.authlib.GameProfile;
+
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
@@ -18,18 +32,9 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesType;
 import forestry.core.genetics.SpeciesRoot;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
 
 public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
+
     public static int flowerSpeciesCount = -1;
     public static ArrayList<IFlower> flowerTemplates = new ArrayList<>();
 
@@ -53,8 +58,7 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
     public int getSpeciesCount() {
         if (FlowerHelper.flowerSpeciesCount < 0) {
             FlowerHelper.flowerSpeciesCount = 0;
-            for (Map.Entry<String, IAllele> entry :
-                    AlleleManager.alleleRegistry.getRegisteredAlleles().entrySet()) {
+            for (Map.Entry<String, IAllele> entry : AlleleManager.alleleRegistry.getRegisteredAlleles().entrySet()) {
                 if (entry.getValue() instanceof IAlleleFlowerSpecies
                         && ((IAlleleFlowerSpecies) entry.getValue()).isCounted()) {
                     FlowerHelper.flowerSpeciesCount++;
@@ -185,9 +189,7 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
 
     @Override
     public IAllele[] getRandomTemplate(Random rand) {
-        return speciesTemplates.values()
-                .toArray(new IAllele[0][])[
-                rand.nextInt(speciesTemplates.values().size())];
+        return speciesTemplates.values().toArray(new IAllele[0][])[rand.nextInt(speciesTemplates.values().size())];
     }
 
     @Override
@@ -201,10 +203,8 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
     @Override
     public void registerMutation(IMutation mutation) {
         if (AlleleManager.alleleRegistry.isBlacklisted(mutation.getTemplate()[0].getUID())
-                || AlleleManager.alleleRegistry.isBlacklisted(
-                        mutation.getAllele0().getUID())
-                || AlleleManager.alleleRegistry.isBlacklisted(
-                        mutation.getAllele1().getUID())) {
+                || AlleleManager.alleleRegistry.isBlacklisted(mutation.getAllele0().getUID())
+                || AlleleManager.alleleRegistry.isBlacklisted(mutation.getAllele1().getUID())) {
             return;
         }
         FlowerHelper.flowerMutations.add((IFlowerMutation) mutation);

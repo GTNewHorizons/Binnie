@@ -1,15 +1,17 @@
 package binnie.core.machines.base;
 
-import binnie.core.machines.inventory.TankSlot;
-import binnie.core.machines.power.ITankMachine;
-import binnie.core.machines.power.TankInfo;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
 
+import binnie.core.machines.inventory.TankSlot;
+import binnie.core.machines.power.ITankMachine;
+import binnie.core.machines.power.TankInfo;
+
 class DefaultTankContainer implements ITankMachine {
+
     @Override
     public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
         return 0;

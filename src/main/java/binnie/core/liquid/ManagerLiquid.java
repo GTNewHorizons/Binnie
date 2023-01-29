@@ -1,16 +1,19 @@
 package binnie.core.liquid;
 
-import binnie.core.ManagerBase;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import binnie.core.ManagerBase;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ManagerLiquid extends ManagerBase {
+
     public Map<String, IFluidType> fluids;
 
     public ManagerLiquid() {

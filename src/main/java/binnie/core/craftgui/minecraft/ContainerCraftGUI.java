@@ -1,5 +1,19 @@
 package binnie.core.craftgui.minecraft;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.minecraft.control.EnumHighlighting;
@@ -16,22 +30,12 @@ import binnie.core.machines.power.ProcessInfo;
 import binnie.core.machines.power.TankInfo;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.network.packet.MessageContainerUpdate;
+
 import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class ContainerCraftGUI extends Container {
+
     private Window window;
     private Map<String, NBTTagCompound> syncedNBT;
     private Map<String, NBTTagCompound> sentNBT;
@@ -193,8 +197,7 @@ public class ContainerCraftGUI extends Container {
         if (shiftClickedSlot.inventory == playerInventory) {
             request = new TransferRequest(itemstack, fromPlayer).setOrigin(shiftClickedSlot.inventory);
         } else {
-            request = new TransferRequest(itemstack, playerInventory)
-                    .setOrigin(shiftClickedSlot.inventory)
+            request = new TransferRequest(itemstack, playerInventory).setOrigin(shiftClickedSlot.inventory)
                     .setTargetSlots(target);
         }
 
@@ -210,11 +213,8 @@ public class ContainerCraftGUI extends Container {
         }
 
         ItemStack heldItem = player.inventory.getItemStack().copy();
-        heldItem = new TransferRequest(heldItem, window.getInventory())
-                .setOrigin(player.inventory)
-                .setTargetSlots(new int[0])
-                .setTargetTanks(new int[] {slotID})
-                .transfer(true);
+        heldItem = new TransferRequest(heldItem, window.getInventory()).setOrigin(player.inventory)
+                .setTargetSlots(new int[0]).setTargetTanks(new int[] { slotID }).transfer(true);
         player.inventory.setItemStack(heldItem);
         if (player instanceof EntityPlayerMP) {
             ((EntityPlayerMP) player).updateHeldItem();

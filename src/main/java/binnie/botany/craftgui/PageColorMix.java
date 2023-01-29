@@ -1,5 +1,8 @@
 package binnie.botany.craftgui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import binnie.botany.api.IColourMix;
 import binnie.botany.api.IFlowerColor;
 import binnie.botany.core.BotanyCore;
@@ -9,10 +12,9 @@ import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.database.DatabaseTab;
 import binnie.core.craftgui.database.PageAbstract;
 import binnie.core.util.I18N;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PageColorMix extends PageAbstract<IFlowerColor> {
+
     ControlText title;
     ControlColorMixBox list;
 

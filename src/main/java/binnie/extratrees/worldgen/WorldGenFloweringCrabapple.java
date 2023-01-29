@@ -3,6 +3,7 @@ package binnie.extratrees.worldgen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenFloweringCrabapple extends WorldGenTree {
+
     public WorldGenFloweringCrabapple(ITreeGenData tree) {
         super(tree);
     }

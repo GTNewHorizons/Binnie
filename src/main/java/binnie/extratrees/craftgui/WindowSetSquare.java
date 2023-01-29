@@ -1,14 +1,16 @@
 package binnie.extratrees.craftgui;
 
-import binnie.core.AbstractMod;
-import binnie.core.craftgui.minecraft.Window;
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.relauncher.Side;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.world.World;
 
+import binnie.core.AbstractMod;
+import binnie.core.craftgui.minecraft.Window;
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.relauncher.Side;
+
 public class WindowSetSquare extends Window {
+
     public WindowSetSquare(EntityPlayer player, IInventory inventory, Side side) {
         super(150.0f, 150.0f, player, inventory, side);
     }

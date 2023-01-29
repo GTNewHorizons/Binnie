@@ -1,5 +1,7 @@
 package binnie.core.craftgui.minecraft.control;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -11,9 +13,9 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import net.minecraft.item.ItemStack;
 
 public abstract class ControlSlotBase extends Control implements ITooltip {
+
     private ControlItemDisplay itemDisplay;
 
     public ControlSlotBase(IWidget parent, float x, float y) {
@@ -25,6 +27,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
         addAttribute(WidgetAttribute.MOUSE_OVER);
         itemDisplay = new ControlItemDisplay(this, 1.0f, 1.0f, size - 2);
         addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
+
             @Override
             public void onEvent(EventWidget.ChangeSize event) {
                 if (itemDisplay != null) {

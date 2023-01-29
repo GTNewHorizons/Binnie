@@ -1,5 +1,7 @@
 package binnie.core.craftgui.controls;
 
+import net.minecraft.client.gui.GuiTextField;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.WidgetAttribute;
@@ -11,9 +13,9 @@ import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.events.EventTextEdit;
 import binnie.core.craftgui.events.EventWidget;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import net.minecraft.client.gui.GuiTextField;
 
 public class ControlTextEdit extends Control implements IControlValue<String> {
+
     GuiTextField field;
     private String cachedValue;
 
@@ -25,46 +27,46 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
         addAttribute(WidgetAttribute.MOUSE_OVER);
         field.setEnableBackgroundDrawing(false);
 
-        addEventHandler(
-                new EventKey.Down.Handler() {
-                    @Override
-                    public void onEvent(EventKey.Down event) {
-                        field.textboxKeyTyped(event.getCharacter(), event.getKey());
-                        String text = getValue();
-                        if (!text.equals(cachedValue)) {
-                            cachedValue = text;
-                            callEvent(new EventTextEdit(ControlTextEdit.this, cachedValue));
-                            onTextEdit(cachedValue);
-                        }
-                    }
-                }.setOrigin(EventHandler.Origin.Self, this));
+        addEventHandler(new EventKey.Down.Handler() {
 
-        addEventHandler(
-                new EventMouse.Down.Handler() {
-                    @Override
-                    public void onEvent(EventMouse.Down event) {
-                        field.mouseClicked(
-                                (int) getRelativeMousePosition().x(),
-                                (int) getRelativeMousePosition().y(),
-                                event.getButton());
-                    }
-                }.setOrigin(EventHandler.Origin.Self, this));
+            @Override
+            public void onEvent(EventKey.Down event) {
+                field.textboxKeyTyped(event.getCharacter(), event.getKey());
+                String text = getValue();
+                if (!text.equals(cachedValue)) {
+                    cachedValue = text;
+                    callEvent(new EventTextEdit(ControlTextEdit.this, cachedValue));
+                    onTextEdit(cachedValue);
+                }
+            }
+        }.setOrigin(EventHandler.Origin.Self, this));
 
-        addEventHandler(
-                new EventWidget.GainFocus.Handler() {
-                    @Override
-                    public void onEvent(EventWidget.GainFocus event) {
-                        field.setFocused(true);
-                    }
-                }.setOrigin(EventHandler.Origin.Self, this));
+        addEventHandler(new EventMouse.Down.Handler() {
 
-        addEventHandler(
-                new EventWidget.LoseFocus.Handler() {
-                    @Override
-                    public void onEvent(EventWidget.LoseFocus event) {
-                        field.setFocused(false);
-                    }
-                }.setOrigin(EventHandler.Origin.Self, this));
+            @Override
+            public void onEvent(EventMouse.Down event) {
+                field.mouseClicked(
+                        (int) getRelativeMousePosition().x(),
+                        (int) getRelativeMousePosition().y(),
+                        event.getButton());
+            }
+        }.setOrigin(EventHandler.Origin.Self, this));
+
+        addEventHandler(new EventWidget.GainFocus.Handler() {
+
+            @Override
+            public void onEvent(EventWidget.GainFocus event) {
+                field.setFocused(true);
+            }
+        }.setOrigin(EventHandler.Origin.Self, this));
+
+        addEventHandler(new EventWidget.LoseFocus.Handler() {
+
+            @Override
+            public void onEvent(EventWidget.LoseFocus event) {
+                field.setFocused(false);
+            }
+        }.setOrigin(EventHandler.Origin.Self, this));
     }
 
     @Override

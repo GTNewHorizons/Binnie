@@ -1,6 +1,7 @@
 package binnie.botany.api;
 
 public interface IColourMix {
+
     IFlowerColor getColor1();
 
     IFlowerColor getColor2();

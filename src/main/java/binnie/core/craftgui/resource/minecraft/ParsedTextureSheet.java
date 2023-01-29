@@ -5,6 +5,7 @@ import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 
 class ParsedTextureSheet implements IBinnieTexture {
+
     private String name;
     private String modid;
     private String path;

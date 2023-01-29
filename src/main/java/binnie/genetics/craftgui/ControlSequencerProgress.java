@@ -1,5 +1,10 @@
 package binnie.genetics.craftgui;
 
+import java.util.Random;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.IArea;
@@ -9,11 +14,9 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlProgressBase;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.Machine;
-import java.util.Random;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 
 public class ControlSequencerProgress extends ControlProgressBase {
+
     protected ControlText textControl;
 
     public ControlSequencerProgress(IWidget parent, int x, int y) {
@@ -25,9 +28,7 @@ public class ControlSequencerProgress extends ControlProgressBase {
     @Override
     public void onUpdateClient() {
         super.onUpdateClient();
-        ItemStack stack = Machine.getMachine(Window.get(this).getInventory())
-                .getMachineUtil()
-                .getStack(5);
+        ItemStack stack = Machine.getMachine(Window.get(this).getInventory()).getMachineUtil().getStack(5);
         if (stack == null) {
             textControl.setValue("");
             return;
@@ -35,26 +36,19 @@ public class ControlSequencerProgress extends ControlProgressBase {
 
         Random rand = new Random(stack.getDisplayName().length());
         StringBuilder text = new StringBuilder();
-        String[] codes = {"A", "T", "G", "C"};
-        EnumChatFormatting[] colors = {
-            EnumChatFormatting.GREEN, EnumChatFormatting.LIGHT_PURPLE, EnumChatFormatting.AQUA, EnumChatFormatting.RED
-        };
+        String[] codes = { "A", "T", "G", "C" };
+        EnumChatFormatting[] colors = { EnumChatFormatting.GREEN, EnumChatFormatting.LIGHT_PURPLE,
+                EnumChatFormatting.AQUA, EnumChatFormatting.RED };
 
         for (int i = 0; i < 65; ++i) {
             int k = rand.nextInt(4);
             String code = codes[k];
             if (rand.nextFloat() < progress) {
                 String col = colors[k].toString();
-                text.append(EnumChatFormatting.RESET)
-                        .append(col)
-                        .append(EnumChatFormatting.BOLD)
-                        .append(code);
+                text.append(EnumChatFormatting.RESET).append(col).append(EnumChatFormatting.BOLD).append(code);
             } else {
-                text.append(EnumChatFormatting.RESET)
-                        .append(EnumChatFormatting.GRAY)
-                        .append(EnumChatFormatting.OBFUSCATED)
-                        .append(EnumChatFormatting.BOLD)
-                        .append(code);
+                text.append(EnumChatFormatting.RESET).append(EnumChatFormatting.GRAY)
+                        .append(EnumChatFormatting.OBFUSCATED).append(EnumChatFormatting.BOLD).append(code);
             }
         }
         textControl.setValue(text.toString());

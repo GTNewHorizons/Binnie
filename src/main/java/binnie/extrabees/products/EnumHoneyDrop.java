@@ -1,29 +1,32 @@
 package binnie.extrabees.products;
 
+import java.awt.Color;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.item.IItemEnum;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
-import java.awt.Color;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 public enum EnumHoneyDrop implements IItemEnum {
+
     ENERGY(new Color(0x9c4972), new Color(0xe37171), ""),
     ACID(new Color(0x4bb541), new Color(0x49de3c), "acid"),
     POISON(new Color(0xd106b9), new Color(0xff03e2), "poison"),
     APPLE(new Color(0xc75252), new Color(0xc92a2a), "juice"),
-    //	CITRUS,
+    // CITRUS,
     ICE(new Color(0xaee8e2), new Color(0x96fff5), "liquidnitrogen"),
     MILK(new Color(0xe0e0e0), new Color(0xffffff), "milk"),
     SEED(new Color(0x7cc272), new Color(0xc2bea7), "seedoil"),
     ALCOHOL(new Color(0xdbe84d), new Color(0xa5e84d), "short.mead"),
-    //	FRUIT,
-    //	VEGETABLE,
-    //	PUMPKIN,
-    //	MELON,
+    // FRUIT,
+    // VEGETABLE,
+    // PUMPKIN,
+    // MELON,
     RED(new Color(0xcc4c4c), new Color(0xff0000), "for.honey"),
     YELLOW(new Color(0xe5e533), new Color(0xffdd00), "for.honey"),
     BLUE(new Color(0x99b2f2), new Color(0x0022ff), "for.honey"),
@@ -70,7 +73,7 @@ public enum EnumHoneyDrop implements IItemEnum {
         if (liquid == null) {
             return;
         }
-        RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[] {get(1)}, liquid, remenant, 100);
+        RecipeManagers.squeezerManager.addRecipe(10, new ItemStack[] { get(1) }, liquid, remenant, 100);
     }
 
     @Override

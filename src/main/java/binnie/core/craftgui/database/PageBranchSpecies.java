@@ -9,6 +9,7 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
 
 public class PageBranchSpecies extends PageBranch {
+
     private ControlSpeciesBox speciesList;
 
     @Mod.EventHandler
@@ -29,6 +30,7 @@ public class PageBranchSpecies extends PageBranch {
     }
 
     private class ValueHandler extends EventValueChanged.Handler {
+
         @Override
         public void onEvent(EventValueChanged event) {
             if (event.isOrigin(speciesList)) {

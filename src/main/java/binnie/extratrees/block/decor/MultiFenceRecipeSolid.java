@@ -1,13 +1,15 @@
 package binnie.extratrees.block.decor;
 
-import binnie.extratrees.block.WoodManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
+import binnie.extratrees.block.WoodManager;
+
 public class MultiFenceRecipeSolid implements IRecipe {
+
     ItemStack cached;
 
     @Override

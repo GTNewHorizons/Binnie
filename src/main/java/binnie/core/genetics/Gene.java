@@ -1,5 +1,7 @@
 package binnie.core.genetics;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.Binnie;
 import binnie.genetics.api.IGene;
 import forestry.api.core.INBTTagable;
@@ -7,9 +9,9 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class Gene implements INBTTagable, IGene {
+
     private IAllele allele;
     private IChromosomeType chromosome;
     private ISpeciesRoot root;

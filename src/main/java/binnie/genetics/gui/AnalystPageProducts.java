@@ -1,5 +1,17 @@
 package binnie.genetics.gui;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
@@ -17,38 +29,27 @@ import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.plugins.PluginApiculture;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 public class AnalystPageProducts extends AnalystPageProduce {
+
     public AnalystPageProducts(IWidget parent, IArea area, IBee ind) {
         super(parent, area);
         setColor(0xcc3300);
         IBeeGenome genome = ind.getGenome();
         float speed = genome.getSpeed();
-        float modeSpeed = Binnie.Genetics.getBeeRoot()
-                .getBeekeepingMode(BinnieCore.proxy.getWorld())
-                .getBeeModifier()
+        float modeSpeed = Binnie.Genetics.getBeeRoot().getBeekeepingMode(BinnieCore.proxy.getWorld()).getBeeModifier()
                 .getProductionModifier(genome, 1.0f);
         int y = 4;
         new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + getTitle()).setColor(getColor());
 
         y += 12;
-        String alleleName = Binnie.Genetics.beeBreedingSystem.getAlleleName(
-                EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED));
+        String alleleName = Binnie.Genetics.beeBreedingSystem
+                .getAlleleName(EnumBeeChromosome.SPEED, ind.getGenome().getActiveAllele(EnumBeeChromosome.SPEED));
         new ControlTextCentered(
-                        this,
-                        y,
-                        EnumChatFormatting.ITALIC + I18N.localise("genetics.gui.analyst.produce.rate", alleleName))
-                .setColor(getColor());
+                this,
+                y,
+                EnumChatFormatting.ITALIC + I18N.localise("genetics.gui.analyst.produce.rate", alleleName))
+                        .setColor(getColor());
 
         y += 20;
         Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
@@ -116,8 +117,8 @@ public class AnalystPageProducts extends AnalystPageProduce {
         }
 
         int maxBiomePerLine = (int) ((w() + 2.0f - 16.0f) / 18.0f);
-        float biomeListX =
-                (w() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2)) / 2.0f;
+        float biomeListX = (w() - (Math.min(maxBiomePerLine, allFluids.size() + refinedProducts.size()) * 18 - 2))
+                / 2.0f;
         int dx = 0;
         int dy = 0;
         for (ItemStack soilStack : refinedProducts) {
@@ -138,8 +139,8 @@ public class AnalystPageProducts extends AnalystPageProduce {
             }
 
             ItemStack container = null;
-            for (FluidContainerRegistry.FluidContainerData data :
-                    FluidContainerRegistry.getRegisteredFluidContainerData()) {
+            for (FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry
+                    .getRegisteredFluidContainerData()) {
                 if (data.emptyContainer.isItemEqual(new ItemStack(Items.glass_bottle))
                         && data.fluid.isFluidEqual(soilStack2)) {
                     container = data.filledContainer;
@@ -174,6 +175,7 @@ public class AnalystPageProducts extends AnalystPageProduce {
 
     private void createProductEntry(ItemStack key, Float value, int y, float speed) {
         ControlItemDisplay item = new ControlItemDisplay(this, 16.0f, y) {
+
             @Override
             public void getTooltip(Tooltip tooltip) {
                 super.getTooltip(tooltip);

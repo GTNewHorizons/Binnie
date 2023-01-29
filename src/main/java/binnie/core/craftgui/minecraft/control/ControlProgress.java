@@ -6,6 +6,7 @@ import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.resource.Texture;
 
 public class ControlProgress extends ControlProgressBase {
+
     private Texture progressBlank;
     private Texture progressBar;
     private Position direction;

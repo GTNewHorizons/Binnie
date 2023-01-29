@@ -1,5 +1,13 @@
 package binnie.extratrees.craftgui;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -21,14 +29,9 @@ import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.core.ForestryAPI;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class PageSpeciesTreeGenome extends PageSpecies {
+
     public PageSpeciesTreeGenome(IWidget parent, DatabaseTab tab) {
         super(parent, tab);
     }
@@ -49,16 +52,8 @@ public class PageSpeciesTreeGenome extends PageSpecies {
         ItemStack log = null;
         try {
             FakeWorld world = FakeWorld.instance;
-            tree.getGenome()
-                    .getPrimary()
-                    .getGenerator()
-                    .setLogBlock(
-                            tree.getGenome(),
-                            world,
-                            0,
-                            0,
-                            0,
-                            ForgeDirection.UP); // getGenome().getPrimary().getGenerator().getWorldGenerator(tree);
+            tree.getGenome().getPrimary().getGenerator()
+                    .setLogBlock(tree.getGenome(), world, 0, 0, 0, ForgeDirection.UP); // getGenome().getPrimary().getGenerator().getWorldGenerator(tree);
             log = world.getWooLog();
 
         } catch (Exception e) {
@@ -106,8 +101,8 @@ public class PageSpeciesTreeGenome extends PageSpecies {
         int fruitColour = 0xffffff;
 
         try {
-            fruit = ForestryAPI.textureManager.getIcon(
-                    genome.getFruitProvider().getIconIndex(genome, null, 0, 0, 0, 100, false));
+            fruit = ForestryAPI.textureManager
+                    .getIcon(genome.getFruitProvider().getIconIndex(genome, null, 0, 0, 0, 100, false));
             fruitColour = genome.getFruitProvider().getColour(genome, null, 0, 0, 0, 100);
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -202,7 +197,10 @@ public class PageSpeciesTreeGenome extends PageSpecies {
                 syst.getChromosomeShortName(EnumTreeChromosome.MATURATION) + " : ",
                 TextJustification.MIDDLE_RIGHT);
         new ControlText(
-                contents, new IArea(w2, y, w3, th), genome.getMaturationTime() + "x", TextJustification.MIDDLE_LEFT);
+                contents,
+                new IArea(w2, y, w3, th),
+                genome.getMaturationTime() + "x",
+                TextJustification.MIDDLE_LEFT);
         y += th;
         new ControlText(
                 contents,

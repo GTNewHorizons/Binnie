@@ -1,5 +1,12 @@
 package binnie.extrabees.gui.database.product;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
@@ -7,13 +14,9 @@ import binnie.core.craftgui.controls.listbox.ControlListBox;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.genetics.IAllele;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import net.minecraft.item.ItemStack;
 
 public class ControlProductsBox extends ControlListBox<Product> {
+
     protected IAlleleBeeSpecies species;
 
     private ProductType type;
@@ -38,10 +41,8 @@ public class ControlProductsBox extends ControlListBox<Product> {
 
             IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(template);
             float speed = genome.getSpeed();
-            float modeSpeed = Binnie.Genetics.getBeeRoot()
-                    .getBeekeepingMode(BinnieCore.proxy.getWorld())
-                    .getBeeModifier()
-                    .getProductionModifier(genome, 1.0f);
+            float modeSpeed = Binnie.Genetics.getBeeRoot().getBeekeepingMode(BinnieCore.proxy.getWorld())
+                    .getBeeModifier().getProductionModifier(genome, 1.0f);
 
             List<Product> strings = new ArrayList<>();
             Set<Map.Entry<ItemStack, Float>> chances;

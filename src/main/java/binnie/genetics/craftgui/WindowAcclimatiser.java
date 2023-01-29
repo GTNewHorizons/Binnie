@@ -1,5 +1,8 @@
 package binnie.genetics.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.Window;
@@ -15,12 +18,15 @@ import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.machine.acclimatiser.Acclimatiser;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 
 public class WindowAcclimatiser extends WindowMachine {
-    protected static Texture progressBase =
-            new StandardTexture(64, 0, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
+
+    protected static Texture progressBase = new StandardTexture(
+            64,
+            0,
+            130,
+            21,
+            ExtraBeeTexture.GUIProgress.getTexture());
     protected static Texture progress = new StandardTexture(64, 21, 130, 21, ExtraBeeTexture.GUIProgress.getTexture());
 
     public WindowAcclimatiser(EntityPlayer player, IInventory inventory, Side side) {

@@ -3,6 +3,7 @@ package binnie.core.util;
 import net.minecraft.util.StatCollector;
 
 public class I18N {
+
     public static String localise(String key) {
         return StatCollector.translateToLocal(key);
     }

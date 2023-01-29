@@ -2,6 +2,7 @@ package binnie.core.craftgui.minecraft;
 
 // TODO replace to EnumChatFormatting?
 public enum EnumColor {
+
     Black("Black", 0, '0'),
     DarkBlue("Dark Blue", 170, '1'),
     DarkGreen("Dark Green", 43520, '2'),

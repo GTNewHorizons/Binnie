@@ -1,5 +1,9 @@
 package binnie.extrabees.apiary.machine;
 
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachinePackage;
@@ -14,11 +18,9 @@ import binnie.extrabees.apiary.machine.mutator.MutatorAlvearyPackage;
 import binnie.extrabees.apiary.machine.rainShield.RainShieldAlvearyPackage;
 import binnie.extrabees.apiary.machine.stimulator.StimulatorAlvearyPackage;
 import binnie.extrabees.apiary.machine.transmission.TransmissionAlvearyPackage;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 public enum AlvearyMachine implements IMachineType {
+
     Mutator(MutatorAlvearyPackage.class),
     Frame(FrameAlvearyPackage.class),
     RainShield(RainShieldAlvearyPackage.class),
@@ -48,6 +50,7 @@ public enum AlvearyMachine implements IMachineType {
     }
 
     public abstract static class AlvearyPackage extends MachinePackage {
+
         protected BinnieResource machineTexture;
 
         public AlvearyPackage(String id, BinnieResource machineTexture, boolean powered) {
@@ -66,8 +69,8 @@ public enum AlvearyMachine implements IMachineType {
         }
 
         @Override
-        public void renderMachine(
-                Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
+        public void renderMachine(Machine machine, double x, double y, double z, float partialTick,
+                RenderBlocks renderer) {
             MachineRendererBlock.instance.renderMachine(machineTexture, x, y, z, partialTick);
         }
     }

@@ -1,12 +1,7 @@
 package binnie.extrabees.genetics.items;
 
-import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.core.ExtraBeeGUID;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import binnie.core.util.I18N;
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.core.ExtraBeeGUID;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+
 public class ItemDictionary extends Item {
+
     protected IIcon iconMaster;
 
     public ItemDictionary() {
@@ -56,19 +59,18 @@ public class ItemDictionary extends Item {
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (stack.getItemDamage() == 0) {
-            ExtraBees.proxy.openGui(
-                    ExtraBeeGUID.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+            ExtraBees.proxy
+                    .openGui(ExtraBeeGUID.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
         } else {
-            ExtraBees.proxy.openGui(
-                    ExtraBeeGUID.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+            ExtraBees.proxy
+                    .openGui(ExtraBeeGUID.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
         }
         return stack;
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return (stack.getItemDamage() == 0)
-                ? I18N.localise("extrabees.item.database")
+        return (stack.getItemDamage() == 0) ? I18N.localise("extrabees.item.database")
                 : I18N.localise("extrabees.item.masterDatabase");
     }
 }

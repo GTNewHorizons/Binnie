@@ -8,6 +8,7 @@ import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlOption<T> extends Control implements IControlValue<T> {
+
     protected T value;
 
     public ControlOption(ControlList<T> controlList, T option) {
@@ -37,6 +38,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
     }
 
     private EventMouse.Down.Handler mouseHandler = new EventMouse.Down.Handler() {
+
         @Override
         public void onEvent(EventMouse.Down event) {
             ((IControlValue) getParent()).setValue(getValue());

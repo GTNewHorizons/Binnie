@@ -1,13 +1,15 @@
 package binnie.genetics.machine.incubator;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.MachineUtil;
 import binnie.genetics.item.GeneticLiquid;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.EnumBeeType;
 import forestry.api.apiculture.IBee;
-import net.minecraft.item.ItemStack;
 
 public class IncubatorRecipeLarvae extends IncubatorRecipe {
+
     public IncubatorRecipeLarvae(ItemStack beeLarvaeWildcard) {
         super(beeLarvaeWildcard, GeneticLiquid.GrowthMedium.get(50), null, 1.0f, 0.05f);
     }
@@ -24,7 +26,7 @@ public class IncubatorRecipeLarvae extends IncubatorRecipe {
 
     @Override
     public ItemStack getExpectedOutput() {
-        return BeeManager.beeRoot.getMemberStack(
-                BeeManager.beeRoot.getMember(this.getInputStack()), EnumBeeType.DRONE.ordinal());
+        return BeeManager.beeRoot
+                .getMemberStack(BeeManager.beeRoot.getMember(this.getInputStack()), EnumBeeType.DRONE.ordinal());
     }
 }

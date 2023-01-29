@@ -1,5 +1,9 @@
 package binnie.genetics.craftgui;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import binnie.Binnie;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -12,11 +16,9 @@ import binnie.core.genetics.Gene;
 import binnie.genetics.genetics.GeneTracker;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 public class ControlGeneScroll extends Control implements IControlValue<BreedingSystem> {
+
     private String filter;
     private BreedingSystem system;
 
@@ -38,8 +40,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
 
     public void refresh() {
         deleteAllChildren();
-        GeneTracker tracker = GeneTracker.getTracker(
-                Window.get(this).getWorld(), Window.get(this).getUsername());
+        GeneTracker tracker = GeneTracker.getTracker(Window.get(this).getWorld(), Window.get(this).getUsername());
         Map<IChromosomeType, List<IAllele>> genes = Binnie.Genetics.getChromosomeMap(system.getSpeciesRoot());
         int x;
         int y = 0;

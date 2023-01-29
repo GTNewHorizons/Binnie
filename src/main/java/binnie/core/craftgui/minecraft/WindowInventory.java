@@ -1,15 +1,18 @@
 package binnie.core.craftgui.minecraft;
 
-import binnie.core.machines.inventory.SlotValidator;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.machines.inventory.SlotValidator;
+
 public class WindowInventory implements IInventory {
+
     private Window window;
     private Map<Integer, ItemStack> inventory;
     private Map<Integer, SlotValidator> validators;

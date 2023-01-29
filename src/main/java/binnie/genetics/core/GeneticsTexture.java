@@ -8,6 +8,7 @@ import binnie.core.resource.ResourceType;
 import binnie.genetics.Genetics;
 
 public enum GeneticsTexture implements IBinnieTexture {
+
     GeneticMachine(ResourceType.Tile, "GeneticMachine"),
     Genepool(ResourceType.Tile, "Genepool"),
     Incubator(ResourceType.Tile, "Incubator"),

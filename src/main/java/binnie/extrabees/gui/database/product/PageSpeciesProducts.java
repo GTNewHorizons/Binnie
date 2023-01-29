@@ -9,6 +9,7 @@ import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesProducts extends PageSpecies {
+
     protected ControlProductsBox products;
     protected ControlProductsBox specialties;
 

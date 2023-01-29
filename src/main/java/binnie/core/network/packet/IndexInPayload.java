@@ -2,6 +2,7 @@ package binnie.core.network.packet;
 
 // TODO unused class?
 public class IndexInPayload {
+
     public int intIndex;
     public int floatIndex;
     public int stringIndex;

@@ -1,11 +1,7 @@
 package binnie.extratrees.carpentry;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -15,7 +11,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class BlockCarpentryPanel extends BlockCarpentry {
+
     public BlockCarpentryPanel() {
         useNeighborBrightness = true;
         setBlockBounds(0.0f, 0.0f, 0.0f, 1.0f, 0.0625f, 1.0f);
@@ -83,15 +86,14 @@ public class BlockCarpentryPanel extends BlockCarpentry {
     @Override
     public String getBlockName(ItemStack stack) {
         DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
-        return I18N.localise(
-                "extratrees.block.woodenpanel.name", block.getDesign().getName());
+        return I18N.localise("extratrees.block.woodenpanel.name", block.getDesign().getName());
     }
 
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
         setBlockBoundsBasedOnState(par1World, par2, par3, par4);
-        return AxisAlignedBB.getBoundingBox(
-                par2 + minX, par3 + minY, par4 + minZ, par2 + maxX, par3 + maxY, par4 + maxZ);
+        return AxisAlignedBB
+                .getBoundingBox(par2 + minX, par3 + minY, par4 + minZ, par2 + maxX, par3 + maxY, par4 + maxZ);
     }
 
     @Override
@@ -117,8 +119,8 @@ public class BlockCarpentryPanel extends BlockCarpentry {
 
     @Override
     public int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection clickedBlock) {
-        DesignBlock block =
-                ModuleCarpentry.getCarpentryPanel(getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
+        DesignBlock block = ModuleCarpentry
+                .getCarpentryPanel(getDesignSystem(), TileEntityMetadata.getItemDamage(itemStack));
         ForgeDirection facing = clickedBlock;
         boolean valid = true;
         if (!isValidPanelPlacement(world, x, y, z, facing)) {

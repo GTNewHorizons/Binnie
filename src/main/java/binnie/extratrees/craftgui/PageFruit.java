@@ -1,5 +1,9 @@
 package binnie.extratrees.craftgui;
 
+import java.util.Collection;
+
+import net.minecraft.item.ItemStack;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.database.ControlSpeciesBox;
@@ -12,10 +16,9 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.TreeBreedingSystem;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleSpecies;
-import java.util.Collection;
-import net.minecraft.item.ItemStack;
 
 public class PageFruit extends PageAbstract<ItemStack> {
+
     boolean treesThatBearFruit;
 
     public PageFruit(IWidget parent, DatabaseTab tab, boolean treesThatBearFruit) {
@@ -35,9 +38,11 @@ public class PageFruit extends PageAbstract<ItemStack> {
         Collection<IAlleleSpecies> trees = treesThatBearFruit
                 ? ((TreeBreedingSystem) database.getBreedingSystem())
                         .getTreesThatBearFruit(species, database.isNEI(), database.getWorld(), database.getUsername())
-                : ((TreeBreedingSystem) database.getBreedingSystem())
-                        .getTreesThatCanBearFruit(
-                                species, database.isNEI(), database.getWorld(), database.getUsername());
+                : ((TreeBreedingSystem) database.getBreedingSystem()).getTreesThatCanBearFruit(
+                        species,
+                        database.isNEI(),
+                        database.getWorld(),
+                        database.getUsername());
         new ControlSpeciesBox(this, 4.0f, 24.0f, size().x() - 8.0f, size().y() - 4.0f - 24.0f).setOptions(trees);
     }
 }

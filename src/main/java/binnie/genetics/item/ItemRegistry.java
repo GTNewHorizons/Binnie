@@ -1,18 +1,20 @@
 package binnie.genetics.item;
 
-import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
-import binnie.genetics.GeneticsCreativeTab;
-import binnie.genetics.core.GeneticsGUI;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
+import binnie.genetics.GeneticsCreativeTab;
+import binnie.genetics.core.GeneticsGUI;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemRegistry extends Item {
+
     public ItemRegistry() {
         setCreativeTab(GeneticsCreativeTab.instance);
         setUnlocalizedName("registry");

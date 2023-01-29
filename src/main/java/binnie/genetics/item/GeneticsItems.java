@@ -1,14 +1,17 @@
 package binnie.genetics.item;
 
-import binnie.core.item.IItemMisc;
-import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
+
 public enum GeneticsItems implements IItemMisc {
+
     LaboratoryCasing("casingIron"),
     DNADye("dnaDye"),
     FluorescentDye("dyeFluor"),

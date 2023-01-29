@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class FenceType {
+
     public int size;
     public boolean solid;
     public boolean embossed;
@@ -24,8 +25,8 @@ public class FenceType {
     public static Collection<FenceType> values() {
         List<FenceType> list = new ArrayList<>();
         for (int size = 0; size < 3; ++size) {
-            for (boolean solid : new boolean[] {false, true}) {
-                for (boolean embedded : new boolean[] {false, true}) {
+            for (boolean solid : new boolean[] { false, true }) {
+                for (boolean embedded : new boolean[] { false, true }) {
                     list.add(new FenceType(size, solid, embedded));
                 }
             }
@@ -34,8 +35,7 @@ public class FenceType {
     }
 
     public String getPrefix() {
-        return ((size == 0) ? "" : ((size == 1) ? "Full " : "Low "))
-                + (solid ? "Solid " : "")
+        return ((size == 0) ? "" : ((size == 1) ? "Full " : "Low ")) + (solid ? "Solid " : "")
                 + (embossed ? "Embedded " : "");
     }
 

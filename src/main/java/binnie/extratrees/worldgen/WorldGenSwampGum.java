@@ -3,6 +3,7 @@ package binnie.extratrees.worldgen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenSwampGum extends WorldGenTree {
+
     public WorldGenSwampGum(ITreeGenData tree) {
         super(tree);
     }
@@ -34,7 +35,10 @@ public class WorldGenSwampGum extends WorldGenTree {
         generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), 0.5f * width, 1, leaf, false);
         for (int i = 0; i < 5; ++i) {
             generateSphere(
-                    new Vector(randBetween(-1, 1), leafSpawn--, randBetween(-1, 1)), randBetween(1, 2), leaf, false);
+                    new Vector(randBetween(-1, 1), leafSpawn--, randBetween(-1, 1)),
+                    randBetween(1, 2),
+                    leaf,
+                    false);
         }
     }
 

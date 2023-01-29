@@ -1,5 +1,7 @@
 package binnie.genetics.gui;
 
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -10,17 +12,16 @@ import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
-import net.minecraft.util.EnumChatFormatting;
 
 public class AnalystPageDescription extends ControlAnalystPage {
+
     public AnalystPageDescription(IWidget parent, IArea area, IIndividual ind) {
         super(parent, area);
         setColor(0x333333);
         int y = 4;
 
         IAlleleSpecies species = ind.getGenome().getPrimary();
-        String branchBinomial = (species.getBranch() != null)
-                ? species.getBranch().getScientific()
+        String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific()
                 : I18N.localise("genetics.gui.analyst.description.unknown");
         String desc = species.getDescription();
         StringBuilder descBody = new StringBuilder(EnumChatFormatting.ITALIC.toString());
@@ -56,30 +57,27 @@ public class AnalystPageDescription extends ControlAnalystPage {
 
         y += 10;
         new ControlTextCentered(
-                        this,
-                        y,
-                        EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial()
-                                + EnumChatFormatting.RESET)
-                .setColor(getColor());
+                this,
+                y,
+                EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + EnumChatFormatting.RESET)
+                        .setColor(getColor());
 
         y += 20;
         new ControlTextCentered(
-                        this,
-                        y,
-                        EnumChatFormatting.BOLD
-                                + I18N.localise("genetics.gui.analyst.description.discoveredBy", authority)
-                                + EnumChatFormatting.RESET)
-                .setColor(getColor());
+                this,
+                y,
+                EnumChatFormatting.BOLD + I18N.localise("genetics.gui.analyst.description.discoveredBy", authority)
+                        + EnumChatFormatting.RESET).setColor(getColor());
 
-        y += (int) (3.0f
-                + CraftGUI.render.textHeight(
-                        EnumChatFormatting.BOLD
-                                + I18N.localise("genetics.gui.analyst.description.discoveredBy", authority)
-                                + EnumChatFormatting.RESET,
-                        w()));
+        y += (int) (3.0f + CraftGUI.render.textHeight(
+                EnumChatFormatting.BOLD + I18N.localise("genetics.gui.analyst.description.discoveredBy", authority)
+                        + EnumChatFormatting.RESET,
+                w()));
         new ControlTextCentered(
-                        this, y, I18N.localise("genetics.gui.analyst.description.complexity", species.getComplexity()))
-                .setColor(getColor());
+                this,
+                y,
+                I18N.localise("genetics.gui.analyst.description.complexity", species.getComplexity()))
+                        .setColor(getColor());
 
         y += 26;
         ControlText descText = new ControlText(
@@ -94,10 +92,8 @@ public class AnalystPageDescription extends ControlAnalystPage {
                 TextJustification.BOTTOM_RIGHT);
         descText.setColor(getColor());
         signatureText.setColor(getColor());
-        float descHeight = CraftGUI.render.textHeight(
-                descText.getValue(), descText.getSize().x());
-        signatureText.setPosition(
-                new IPoint(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10.0f));
+        float descHeight = CraftGUI.render.textHeight(descText.getValue(), descText.getSize().x());
+        signatureText.setPosition(new IPoint(signatureText.pos().x(), descText.getPosition().y() + descHeight + 10.0f));
         setSize(new IPoint(w(), 20.0f + signatureText.y()));
     }
 

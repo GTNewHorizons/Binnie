@@ -7,6 +7,7 @@ import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 
 public class MutatorModifierComponent extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
+
     public MutatorModifierComponent(Machine machine) {
         super(machine);
     }

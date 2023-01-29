@@ -1,5 +1,7 @@
 package binnie.extrabees.gui.database.product;
 
+import java.text.DecimalFormat;
+
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.controls.listbox.ControlList;
@@ -8,9 +10,9 @@ import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.util.I18N;
-import java.text.DecimalFormat;
 
 public class ControlProductsItem extends ControlOption<Product> {
+
     protected ControlItemDisplay item;
 
     public ControlProductsItem(ControlList<Product> controlList, Product value, int y) {

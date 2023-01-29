@@ -1,5 +1,11 @@
 package binnie.botany.genetics;
 
+import java.util.List;
+
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
+
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IColourMix;
@@ -15,12 +21,9 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosome;
 import forestry.core.genetics.Chromosome;
 import forestry.core.genetics.Individual;
-import java.util.List;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.world.World;
 
 public class Flower extends Individual implements IFlower {
+
     public IFlowerGenome genome;
     public IFlowerGenome mate;
 
@@ -56,23 +59,24 @@ public class Flower extends Individual implements IFlower {
         IAlleleFlowerSpecies primary = genome.getPrimary();
         IAlleleFlowerSpecies secondary = genome.getSecondary();
         if (!isPureBred(EnumFlowerChromosome.SPECIES)) {
-            list.add(EnumChatFormatting.BLUE
-                    + I18N.localise("botany.item.tooltip.hybrid", primary.getName(), secondary.getName()));
+            list.add(
+                    EnumChatFormatting.BLUE
+                            + I18N.localise("botany.item.tooltip.hybrid", primary.getName(), secondary.getName()));
         }
 
         list.add(EnumChatFormatting.GRAY + I18N.localise("botany.item.tooltip.age", getAge()));
-        list.add(EnumChatFormatting.GREEN
-                + I18N.localise(
+        list.add(
+                EnumChatFormatting.GREEN + I18N.localise(
                         "botany.item.tooltip.temperature",
                         AlleleHelper.toDisplay(primary.getTemperature()),
                         AlleleHelper.toDisplay(genome.getToleranceTemperature())));
-        list.add(EnumChatFormatting.GREEN
-                + I18N.localise(
+        list.add(
+                EnumChatFormatting.GREEN + I18N.localise(
                         "botany.item.tooltip.moisture",
                         AlleleHelper.toDisplay(primary.getMoisture()),
                         AlleleHelper.toDisplay(genome.getToleranceMoisture())));
-        list.add(EnumChatFormatting.GREEN
-                + I18N.localise(
+        list.add(
+                EnumChatFormatting.GREEN + I18N.localise(
                         "botany.item.tooltip.pH",
                         AlleleHelper.toDisplay(primary.getHumidity()),
                         AlleleHelper.toDisplay(genome.getTolerancePH())));
@@ -88,8 +92,7 @@ public class Flower extends Individual implements IFlower {
     public void readFromNBT(NBTTagCompound nbttagcompound) {
         super.readFromNBT(nbttagcompound);
         if (nbttagcompound == null) {
-            genome = BotanyCore.getFlowerRoot()
-                    .templateAsGenome(BotanyCore.getFlowerRoot().getDefaultTemplate());
+            genome = BotanyCore.getFlowerRoot().templateAsGenome(BotanyCore.getFlowerRoot().getDefaultTemplate());
             return;
         }
 
@@ -235,8 +238,7 @@ public class Flower extends Individual implements IFlower {
         if (colour1 != colour2) {
             for (IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
                 if (mutation.isMutation(colour1, colour2) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
-                    parent1[EnumFlowerChromosome.PRIMARY.ordinal()] =
-                            new Chromosome(mutation.getResult().getAllele());
+                    parent1[EnumFlowerChromosome.PRIMARY.ordinal()] = new Chromosome(mutation.getResult().getAllele());
                 }
             }
         }
@@ -246,8 +248,8 @@ public class Flower extends Individual implements IFlower {
         if (colour1 != colour2) {
             for (IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
                 if (mutation.isMutation(colour1, colour2) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
-                    parent1[EnumFlowerChromosome.SECONDARY.ordinal()] =
-                            new Chromosome(mutation.getResult().getAllele());
+                    parent1[EnumFlowerChromosome.SECONDARY.ordinal()] = new Chromosome(
+                            mutation.getResult().getAllele());
                 }
             }
         }
@@ -257,8 +259,7 @@ public class Flower extends Individual implements IFlower {
         if (colour1 != colour2) {
             for (IColourMix mutation : BotanyCore.getFlowerRoot().getColourMixes(true)) {
                 if (mutation.isMutation(colour1, colour2) && world.rand.nextFloat() * 100.0f < mutation.getChance()) {
-                    parent1[EnumFlowerChromosome.STEM.ordinal()] =
-                            new Chromosome(mutation.getResult().getAllele());
+                    parent1[EnumFlowerChromosome.STEM.ordinal()] = new Chromosome(mutation.getResult().getAllele());
                 }
             }
         }

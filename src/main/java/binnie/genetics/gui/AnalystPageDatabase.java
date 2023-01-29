@@ -1,5 +1,10 @@
 package binnie.genetics.gui;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
@@ -20,11 +25,9 @@ import binnie.core.util.I18N;
 import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
-import java.util.ArrayList;
-import java.util.Collection;
-import net.minecraft.util.EnumChatFormatting;
 
 public class AnalystPageDatabase extends ControlAnalystPage {
+
     ControlScrollableContent scroll;
     boolean isMaster;
 
@@ -47,13 +50,13 @@ public class AnalystPageDatabase extends ControlAnalystPage {
         new ControlTextCentered(this, y, EnumChatFormatting.UNDERLINE + getTitle()).setColor(getColor());
         y += 16;
         new ControlTextEdit(this, 20.0f, y, w() - 40.0f, 16.0f) {
+
             @Override
             public void onTextEdit(String value) {
                 Collection<IAlleleSpecies> options = new ArrayList<>();
                 getSpecies(system);
                 for (IAlleleSpecies species : getSpecies(system)) {
-                    if (value != null
-                            && !value.isEmpty()
+                    if (value != null && !value.isEmpty()
                             && !species.getName().toLowerCase().contains(value.toLowerCase())) {
                         continue;
                     }
@@ -97,6 +100,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
         if (textView) {
             scroll = new ControlListBox<IAlleleSpecies>(this, 4.0f, y, w() - 8.0f, h() - y - 8.0f - 20.0f, 0.0f) {
+
                 @Override
                 public void initialise() {
                     super.initialise();
@@ -106,6 +110,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
                 @Override
                 public IWidget createOption(IAlleleSpecies v, int y) {
                     return new Control(getContent(), 0.0f, y, w(), 12.0f) {
+
                         IAlleleSpecies value = v;
 
                         @Override
@@ -120,6 +125,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
             scroll.setScrollableContent(getItemScrollList(system, options));
         }
         new ControlScrollBar(this, scroll.x() + scroll.w() - 6.0f, scroll.y() + 3.0f, 3.0f, scroll.h() - 6.0f, scroll) {
+
             @Override
             public void onRenderBackground() {
                 if (!isEnabled()) {
@@ -136,6 +142,7 @@ public class AnalystPageDatabase extends ControlAnalystPage {
 
     private IWidget getItemScrollList(BreedingSystem system, Collection<IAlleleSpecies> options) {
         return new Control(scroll, 0.0f, 0.0f, scroll.w(), scroll.h()) {
+
             @Override
             public void initialise() {
                 int maxBiomePerLine = (int) ((w() - 4.0f + 2.0f) / 18.0f);
@@ -146,9 +153,11 @@ public class AnalystPageDatabase extends ControlAnalystPage {
                     IIndividual ind = system.getSpeciesRoot()
                             .templateAsIndividual(system.getSpeciesRoot().getTemplate(species.getUID()));
                     new ControlIndividualDisplay(this, biomeListX + dx, 2 + dy, ind) {
+
                         @Override
                         public void initialise() {
                             addSelfEventHandler(new EventMouse.Down.Handler() {
+
                                 @Override
                                 public void onEvent(EventMouse.Down event) {
                                     WindowAnalyst window = (WindowAnalyst) AnalystPageDatabase.this.getSuperParent();
@@ -163,15 +172,12 @@ public class AnalystPageDatabase extends ControlAnalystPage {
                             if (window.getIndividual() != null
                                     && window.getIndividual().getGenome().getPrimary() == species) {
                                 CraftGUI.render.color(0xeeeeee);
-                                CraftGUI.render.texture(
-                                        CraftGUITexture.TabSolid, getArea().outset(1));
+                                CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
                                 CraftGUI.render.color(AnalystPageDatabase.this.getColor());
-                                CraftGUI.render.texture(
-                                        CraftGUITexture.TabOutline, getArea().outset(1));
+                                CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().outset(1));
                             } else if (calculateIsMouseOver()) {
                                 CraftGUI.render.color(0xeeeeee);
-                                CraftGUI.render.texture(
-                                        CraftGUITexture.TabSolid, getArea().outset(1));
+                                CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(1));
                             }
                             super.onRenderBackground();
                         }
@@ -195,10 +201,10 @@ public class AnalystPageDatabase extends ControlAnalystPage {
     private Collection<IAlleleSpecies> getSpecies(BreedingSystem system) {
         Collection<IAlleleSpecies> species = new ArrayList<>();
         species.addAll(
-                isMaster
-                        ? system.getAllSpecies()
+                isMaster ? system.getAllSpecies()
                         : system.getDiscoveredSpecies(
-                                getWindow().getWorld(), getWindow().getPlayer().getGameProfile()));
+                                getWindow().getWorld(),
+                                getWindow().getPlayer().getGameProfile()));
         return species;
     }
 }

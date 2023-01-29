@@ -1,5 +1,7 @@
 package binnie.core.craftgui.minecraft.control;
 
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.WidgetAttribute;
@@ -11,9 +13,9 @@ import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import org.lwjgl.opengl.GL11;
 
 public class ControlSlide extends Control {
+
     private IArea expanded;
     private IArea shrunk;
     private boolean slideActive;
@@ -42,10 +44,13 @@ public class ControlSlide extends Control {
             boolean hor = anchor.x() != 0;
             IArea ar = isSlideActive() ? expanded : shrunk;
             IArea tabArea = new IArea(
-                    hor ? (-lh / 2.0f) : (-lw / 2.0f), hor ? (-lw / 2.0f) : (-lh / 2.0f), hor ? lh : lw, hor ? lw : lh);
+                    hor ? (-lh / 2.0f) : (-lw / 2.0f),
+                    hor ? (-lw / 2.0f) : (-lh / 2.0f),
+                    hor ? lh : lw,
+                    hor ? lw : lh);
             IPoint shift = new IPoint(ar.w() * (1 - anchor.x()) / 2.0f, ar.h() * (1 - anchor.y()) / 2.0f);
-            tabArea = tabArea.shift(
-                    shift.x() - (-3.0f + lh / 2.0f) * anchor.x(), shift.y() - (-3.0f + lh / 2.0f) * anchor.y());
+            tabArea = tabArea
+                    .shift(shift.x() - (-3.0f + lh / 2.0f) * anchor.x(), shift.y() - (-3.0f + lh / 2.0f) * anchor.y());
             Texture texture = CraftGUI.render
                     .getTexture(isSlideActive() ? CraftGUITexture.Tab : CraftGUITexture.TabDisabled)
                     .crop(anchor.opposite(), 8.0f);
@@ -65,10 +70,8 @@ public class ControlSlide extends Control {
             GL11.glPopMatrix();
         }
         CraftGUI.render.texture(CraftGUITexture.Window, getArea());
-        Object slideTexture = (anchor == Position.BOTTOM)
-                ? CraftGUITexture.SlideDown
-                : ((anchor == Position.TOP)
-                        ? CraftGUITexture.SlideUp
+        Object slideTexture = (anchor == Position.BOTTOM) ? CraftGUITexture.SlideDown
+                : ((anchor == Position.TOP) ? CraftGUITexture.SlideUp
                         : ((anchor == Position.LEFT) ? CraftGUITexture.SlideLeft : CraftGUITexture.SlideRight));
         CraftGUI.render.texture(
                 slideTexture,
@@ -89,9 +92,7 @@ public class ControlSlide extends Control {
 
     @Override
     public boolean isMouseOverWidget(IPoint relativeMouse) {
-        return getArea()
-                .outset(isSlideActive() ? 16 : 8)
-                .outset(new IBorder(anchor.opposite(), 16.0f))
+        return getArea().outset(isSlideActive() ? 16 : 8).outset(new IBorder(anchor.opposite(), 16.0f))
                 .contains(relativeMouse);
     }
 

@@ -6,6 +6,7 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.util.I18N;
 
 public class DatabaseTab implements ITooltipHelp {
+
     private String mod;
     private String unloc;
 

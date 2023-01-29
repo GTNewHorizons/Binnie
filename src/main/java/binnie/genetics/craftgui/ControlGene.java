@@ -1,5 +1,9 @@
 package binnie.genetics.craftgui;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.Binnie;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -16,11 +20,9 @@ import binnie.genetics.api.IGene;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import forestry.api.genetics.IAlleleSpecies;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
 
 public class ControlGene extends Control implements IControlValue<IGene>, ITooltip {
+
     protected IGene gene;
 
     protected ControlGene(IWidget parent, float x, float y) {
@@ -34,14 +36,15 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
         String cName = Binnie.Genetics.getSystem(gene.getSpeciesRoot()).getChromosomeName(gene.getChromosome());
         tooltip.add(cName + ": " + gene.getName());
         if (gene.getAllele() instanceof IAlleleSpecies) {
-            tooltip.add(I18N.localise(
-                    "binniecore.gui.database.branch.discoveredBy",
-                    ((IAlleleSpecies) gene.getAllele()).getAuthority() + EnumChatFormatting.RESET));
+            tooltip.add(
+                    I18N.localise(
+                            "binniecore.gui.database.branch.discoveredBy",
+                            ((IAlleleSpecies) gene.getAllele()).getAuthority() + EnumChatFormatting.RESET));
         }
         if (isMouseOver() && canFill(Window.get(this).getHeldItemStack())) {
             tooltip.add("Left click to assign gene");
-            IGene existingGene = Engineering.getGene(
-                    Window.get(this).getHeldItemStack(), gene.getChromosome().ordinal());
+            IGene existingGene = Engineering
+                    .getGene(Window.get(this).getHeldItemStack(), gene.getChromosome().ordinal());
             if (existingGene == null) {
                 return;
             }
@@ -52,8 +55,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
     }
 
     private boolean canFill(ItemStack stack) {
-        return stack != null
-                && stack.stackSize == 1
+        return stack != null && stack.stackSize == 1
                 && Engineering.isGeneAcceptor(stack)
                 && Engineering.canAcceptGene(stack, getValue());
     }
@@ -85,6 +87,7 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
     }
 
     private class MouseDownHandler extends EventMouse.Down.Handler {
+
         @Override
         public void onEvent(EventMouse.Down event) {
             if (!canFill(Window.get(getWidget()).getHeldItemStack())) {

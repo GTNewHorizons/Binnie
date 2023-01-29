@@ -1,6 +1,7 @@
 package binnie.botany.api;
 
 public enum EnumFlowerStage {
+
     FLOWER("Flower"),
     SEED("Seed"),
     POLLEN("Pollen"),

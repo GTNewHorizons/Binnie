@@ -7,6 +7,7 @@ import binnie.core.resource.IBinnieTexture;
 import binnie.core.resource.ResourceType;
 
 public enum BinnieCoreTexture implements IBinnieTexture {
+
     Compartment(ResourceType.Tile, "Compartment"),
     CompartmentIron(ResourceType.Tile, "CompartmentIron"),
     CompartmentDiamond(ResourceType.Tile, "CompartmentDiamond"),

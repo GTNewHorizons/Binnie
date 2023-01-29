@@ -1,6 +1,7 @@
 package binnie.core.craftgui.geometry;
 
 public enum Position {
+
     TOP(0, -1),
     BOTTOM(0, 1),
     LEFT(-1, 0),

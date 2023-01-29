@@ -1,11 +1,13 @@
 package binnie.botany.api.gardening;
 
+import net.minecraft.world.World;
+
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.botany.api.EnumSoilType;
-import net.minecraft.world.World;
 
 public interface IBlockSoil {
+
     EnumAcidity getPH(World world, int x, int y, int z);
 
     EnumMoisture getMoisture(World world, int x, int y, int z);

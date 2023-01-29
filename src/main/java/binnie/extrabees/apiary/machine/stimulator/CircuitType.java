@@ -8,6 +8,7 @@ import forestry.api.apiculture.IBeeModifier;
 import forestry.api.circuits.ICircuitLayout;
 
 public enum CircuitType implements IBeeModifier {
+
     LowVoltage(3, 10),
     HighVoltage(5, 20),
     Plant(10, 10),

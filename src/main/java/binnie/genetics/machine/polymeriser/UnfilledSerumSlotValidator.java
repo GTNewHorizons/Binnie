@@ -1,12 +1,14 @@
 package binnie.genetics.machine.polymeriser;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.genetics.api.IItemChargable;
 import binnie.genetics.machine.ModuleMachine;
-import net.minecraft.item.ItemStack;
 
 public class UnfilledSerumSlotValidator extends SlotValidator {
+
     public UnfilledSerumSlotValidator() {
         super(ModuleMachine.IconSerum);
     }

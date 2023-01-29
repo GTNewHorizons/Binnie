@@ -1,5 +1,12 @@
 package binnie.genetics.nei;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
@@ -11,11 +18,6 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class AnalyserRecipeHandler extends RecipeHandlerBase {
 
@@ -102,6 +104,7 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
     }
 
     private static class AnalyserRecipe {
+
         private final ItemStack analysable;
 
         public AnalyserRecipe(ItemStack analysable) {
@@ -136,8 +139,7 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
                         }
                     }
                 } else {
-                    for (ItemStack analysable :
-                            ItemList.itemMap.get(recipe.getAnalysable().getItem())) {
+                    for (ItemStack analysable : ItemList.itemMap.get(recipe.getAnalysable().getItem())) {
                         if (analysable.getTagCompound() != null) {
                             analysableList.add(analysable.copy());
                         }

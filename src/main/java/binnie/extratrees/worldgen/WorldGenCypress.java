@@ -3,6 +3,7 @@ package binnie.extratrees.worldgen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenCypress extends WorldGenTree {
+
     public WorldGenCypress(ITreeGenData tree) {
         super(tree);
     }

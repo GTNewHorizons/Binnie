@@ -11,6 +11,7 @@ import binnie.core.craftgui.window.Panel;
 import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesImage extends PageSpecies {
+
     protected ControlDatabaseIndividualDisplay display;
 
     public PageSpeciesImage(IWidget parent, DatabaseTab tab) {

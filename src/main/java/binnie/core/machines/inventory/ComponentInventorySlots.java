@@ -1,11 +1,11 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.machines.IMachine;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,7 +15,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import binnie.core.machines.IMachine;
+
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
+
     private Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
 
     public ComponentInventorySlots(IMachine machine) {
@@ -56,8 +59,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public void setInventorySlotContents(int index, ItemStack itemStack) {
-        if (inventory.containsKey(index)
-                && (itemStack == null || inventory.get(index).isValid(itemStack))) {
+        if (inventory.containsKey(index) && (itemStack == null || inventory.get(index).isValid(itemStack))) {
             inventory.get(index).setContent(itemStack);
         }
         markDirty();

@@ -1,5 +1,10 @@
 package binnie.genetics.machine.sequencer;
 
+import java.util.Random;
+
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.world.World;
+
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
@@ -7,11 +12,9 @@ import binnie.core.machines.component.IRender;
 import binnie.core.resource.BinnieIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.Random;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.world.World;
 
 public class SequencerComponentFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
+
     public SequencerComponentFX(IMachine machine) {
         super(machine);
     }
@@ -23,10 +26,9 @@ public class SequencerComponentFX extends MachineComponent implements IRender.Ra
             return;
         }
 
-        BinnieCore.proxy
-                .getMinecraftInstance()
-                .effectRenderer
+        BinnieCore.proxy.getMinecraftInstance().effectRenderer
                 .addEffect(new EntityFX(world, x + 0.5, y + 1.2 + rand.nextDouble() * 0.2, z + 0.5, 0.0, 0.0, 0.0) {
+
                     double axisX = posX;
                     double axisZ = posZ;
                     double angle = rand.nextDouble() * 2.0 * 3.1415;
@@ -68,10 +70,9 @@ public class SequencerComponentFX extends MachineComponent implements IRender.Ra
             return;
         }
 
-        BinnieCore.proxy
-                .getMinecraftInstance()
-                .effectRenderer
+        BinnieCore.proxy.getMinecraftInstance().effectRenderer
                 .addEffect(new EntityFX(world, x + 0.5, y + 1, z + 0.5, 0.0, 0.0, 0.0) {
+
                     {
                         motionX = 0.0;
                         motionZ = 0.0;
@@ -81,10 +82,9 @@ public class SequencerComponentFX extends MachineComponent implements IRender.Ra
                         noClip = true;
                         particleScale = 2.0f;
 
-                        setParticleIcon((new BinnieIcon[] {
-                                    Sequencer.fxSeqA, Sequencer.fxSeqG, Sequencer.fxSeqC, Sequencer.fxSeqT
-                                })
-                                [rand.nextInt(4)].getIcon());
+                        setParticleIcon(
+                                (new BinnieIcon[] { Sequencer.fxSeqA, Sequencer.fxSeqG, Sequencer.fxSeqC,
+                                        Sequencer.fxSeqT })[rand.nextInt(4)].getIcon());
                     }
 
                     @Override

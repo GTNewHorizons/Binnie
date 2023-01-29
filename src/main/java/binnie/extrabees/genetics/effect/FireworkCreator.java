@@ -1,12 +1,14 @@
 package binnie.extrabees.genetics.effect;
 
 import java.util.ArrayList;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 
 public class FireworkCreator {
+
     public enum Shape {
         Ball,
         LargeBall,
@@ -16,6 +18,7 @@ public class FireworkCreator {
     }
 
     public static class Firework {
+
         protected boolean flicker;
         protected boolean trail;
         protected ArrayList<Integer> colors;

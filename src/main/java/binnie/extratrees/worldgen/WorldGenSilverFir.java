@@ -3,6 +3,7 @@ package binnie.extratrees.worldgen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenSilverFir extends WorldGenTree {
+
     public WorldGenSilverFir(ITreeGenData tree) {
         super(tree);
     }

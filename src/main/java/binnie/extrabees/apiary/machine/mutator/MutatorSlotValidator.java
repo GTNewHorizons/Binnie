@@ -1,12 +1,14 @@
 package binnie.extrabees.apiary.machine.mutator;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.ValidatorIcon;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
-import net.minecraft.item.ItemStack;
 
 public class MutatorSlotValidator extends SlotValidator {
+
     public MutatorSlotValidator() {
         super(new ValidatorIcon(ExtraBees.instance, "validator/mutator.0", "validator/mutator.1"));
     }

@@ -6,6 +6,7 @@ import binnie.extrabees.ExtraBees;
 import forestry.api.core.Tabs;
 
 public class ModuleCore implements IInitializable {
+
     @Override
     public void preInit() {
         ExtraBees.itemMisc = Binnie.Item.registerMiscItems(ExtraBeeItems.values(), Tabs.tabApiculture);

@@ -1,5 +1,7 @@
 package binnie.genetics;
 
+import net.minecraft.item.Item;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
@@ -21,7 +23,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.item.Item;
 
 @Mod(
         modid = "Genetics",
@@ -30,6 +31,7 @@ import net.minecraft.item.Item;
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class Genetics extends AbstractMod {
+
     @Mod.Instance("Genetics")
     public static Genetics instance;
 
@@ -107,6 +109,7 @@ public class Genetics extends AbstractMod {
     }
 
     public static class PacketHandler extends BinniePacketHandler {
+
         public PacketHandler() {
             super(Genetics.instance);
         }

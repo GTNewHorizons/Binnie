@@ -1,5 +1,10 @@
 package binnie.core.genetics;
 
+import java.util.TreeSet;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
@@ -19,11 +24,9 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IMutation;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.core.genetics.alleles.EnumAllele;
-import java.util.TreeSet;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 
 class FlowerBreedingSystem extends BreedingSystem {
+
     public FlowerBreedingSystem() {
         iconUndiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/undiscoveredBee");
         iconDiscovered = Binnie.Resource.getItemIcon(ExtraBees.instance, "icon/discoveredBee");
@@ -80,9 +83,8 @@ class FlowerBreedingSystem extends BreedingSystem {
 
     @Override
     public int[] getActiveTypes() {
-        return new int[] {
-            EnumFlowerStage.FLOWER.ordinal(), EnumFlowerStage.POLLEN.ordinal(), EnumFlowerStage.SEED.ordinal()
-        };
+        return new int[] { EnumFlowerStage.FLOWER.ordinal(), EnumFlowerStage.POLLEN.ordinal(),
+                EnumFlowerStage.SEED.ordinal() };
     }
 
     @Override

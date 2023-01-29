@@ -1,5 +1,17 @@
 package binnie.genetics.machine;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
@@ -10,18 +22,9 @@ import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;
 import binnie.genetics.Genetics;
 import buildcraft.api.tools.IToolWrench;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {
+
     private ItemStack stack;
 
     public ComponentGUIHolder(IMachine machine) {
@@ -80,7 +83,11 @@ public class ComponentGUIHolder extends MachineComponent implements INetwork.Til
         }
 
         EntityItem entityitem = new EntityItem(
-                world, tile.xCoord + xOffset, tile.yCoord + yOffset, tile.zCoord + zOffset, stack.copy());
+                world,
+                tile.xCoord + xOffset,
+                tile.yCoord + yOffset,
+                tile.zCoord + zOffset,
+                stack.copy());
         float accel = 0.05f;
         entityitem.motionX = (float) rand.nextGaussian() * accel;
         entityitem.motionY = (float) rand.nextGaussian() * accel + 0.2f;

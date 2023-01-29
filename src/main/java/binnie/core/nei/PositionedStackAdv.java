@@ -1,10 +1,11 @@
 package binnie.core.nei;
 
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.GuiRecipe;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.GuiRecipe;
 
 public class PositionedStackAdv extends PositionedStack {
 

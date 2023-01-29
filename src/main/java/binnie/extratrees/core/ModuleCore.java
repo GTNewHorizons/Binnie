@@ -1,5 +1,12 @@
 package binnie.extratrees.core;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
+
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.extratrees.api.CarpentryManager;
@@ -10,14 +17,9 @@ import binnie.extratrees.block.PlankType;
 import binnie.extratrees.genetics.ExtraTreeFruitGene;
 import binnie.extratrees.genetics.ExtraTreeSpecies;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
 
 public class ModuleCore implements IInitializable {
+
     @Override
     public void preInit() {
         // ignored
@@ -76,8 +78,10 @@ public class ModuleCore implements IInitializable {
                     if (wood5 == null) {
                         outputLogs.println("<td></td>");
                     } else {
-                        String img = "<img alt=\"" + wood5.getName() + "\" src=\"images/logs/"
-                                + wood5.toString().toLowerCase() + "Bark.png\">";
+                        String img = "<img alt=\"" + wood5.getName()
+                                + "\" src=\"images/logs/"
+                                + wood5.toString().toLowerCase()
+                                + "Bark.png\">";
                         outputLogs.println("<td>" + img + " " + wood5.getName() + "</td>");
                     }
                 }
@@ -94,7 +98,9 @@ public class ModuleCore implements IInitializable {
                     if (wood2 == null) {
                         outputPlanks.println("<td></td>");
                     } else {
-                        String img = "<img alt=\"" + wood2.getName() + "\" src=\"images/planks/" + wood2.getName()
+                        String img = "<img alt=\"" + wood2.getName()
+                                + "\" src=\"images/planks/"
+                                + wood2.getName()
                                 + ".png\">";
                         outputPlanks.println("<td>" + img + " " + wood2.getName() + "</td>");
                     }
@@ -130,8 +136,7 @@ public class ModuleCore implements IInitializable {
                     if (wood4 == null) {
                         outputDesigns.println("<td></td>");
                     } else {
-                        String texture =
-                                wood4.getTopPattern().getPattern().toString().toLowerCase();
+                        String texture = wood4.getTopPattern().getPattern().toString().toLowerCase();
                         String img2 = "<img alt=\"" + texture + "\" src=\"images/pattern/" + texture + ".png\">";
                         outputDesigns.println("<td>" + img2 + " " + wood4.getName() + "</td>");
                     }

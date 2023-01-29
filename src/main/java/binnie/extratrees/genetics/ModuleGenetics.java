@@ -1,26 +1,24 @@
 package binnie.extratrees.genetics;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IClassification;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class ModuleGenetics implements IInitializable {
+
     protected String[] branches;
     protected List<List<String>> classifications;
 
     public ModuleGenetics() {
-        branches = new String[] {
-            "Malus Maleae Amygdaloideae Rosaceae",
-            "Musa   Musaceae Zingiberales Commelinids Angiosperms",
-            "Sorbus Maleae",
-            "Tsuga   Pinaceae",
-            "Fraxinus Oleeae  Oleaceae Lamiales Asterids Angiospems"
-        };
+        branches = new String[] { "Malus Maleae Amygdaloideae Rosaceae",
+                "Musa   Musaceae Zingiberales Commelinids Angiosperms", "Sorbus Maleae", "Tsuga   Pinaceae",
+                "Fraxinus Oleeae  Oleaceae Lamiales Asterids Angiospems" };
         classifications = new ArrayList<>();
     }
 
@@ -60,8 +58,8 @@ public class ModuleGenetics implements IInitializable {
             String uid = "trees." + species2.branchName.toLowerCase();
             IClassification branch = AlleleManager.alleleRegistry.getClassification("genus." + uid);
             if (branch == null) {
-                branch = AlleleManager.alleleRegistry.createAndRegisterClassification(
-                        IClassification.EnumClassLevel.GENUS, uid, scientific);
+                branch = AlleleManager.alleleRegistry
+                        .createAndRegisterClassification(IClassification.EnumClassLevel.GENUS, uid, scientific);
             }
             (species2.branch = branch).addMemberSpecies(species2);
         }
@@ -77,8 +75,9 @@ public class ModuleGenetics implements IInitializable {
         }
 
         for (ExtraTreeSpecies species : ExtraTreeSpecies.values()) {
-            IClassification branch =
-                    getOrCreateClassification(IClassification.EnumClassLevel.GENUS, species.branchName);
+            IClassification branch = getOrCreateClassification(
+                    IClassification.EnumClassLevel.GENUS,
+                    species.branchName);
             branch.addMemberSpecies(species);
             species.branch = branch;
             IClassification clss = branch;
@@ -99,7 +98,8 @@ public class ModuleGenetics implements IInitializable {
                         }
 
                         IClassification parent = getOrCreateClassification(
-                                IClassification.EnumClassLevel.values()[currentLevel], nextLevel);
+                                IClassification.EnumClassLevel.values()[currentLevel],
+                                nextLevel);
                         parent.addMemberGroup(clss);
                         System.out.println("Went from " + clss.getScientific() + " to " + parent.getScientific());
                         clss = parent;

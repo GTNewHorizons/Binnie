@@ -1,19 +1,9 @@
 package binnie.botany.flower;
 
-import binnie.botany.Botany;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.gardening.Gardening;
-import binnie.botany.genetics.EnumFlowerType;
-import binnie.core.BinnieCore;
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -28,7 +18,22 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import binnie.botany.Botany;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerType;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.gardening.Gardening;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.core.BinnieCore;
+
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class BlockFlower extends BlockContainer {
+
     public BlockFlower() {
         super(Material.plants);
         float f = 0.2f;
@@ -117,8 +122,7 @@ public class BlockFlower extends BlockContainer {
             return flower.getStem(stage, flowered, section);
         }
 
-        return (RendererBotany.pass == 1)
-                ? flower.getPetalIcon(stage, flowered, section)
+        return (RendererBotany.pass == 1) ? flower.getPetalIcon(stage, flowered, section)
                 : flower.getVariantIcon(stage, flowered, section);
     }
 
@@ -155,8 +159,7 @@ public class BlockFlower extends BlockContainer {
         }
 
         TileEntityFlower flower = (TileEntityFlower) tile;
-        if (flower.getSection() == 0
-                && flower.getFlower() != null
+        if (flower.getSection() == 0 && flower.getFlower() != null
                 && flower.getFlower().getAge() > 0
                 && flower.getFlower().getGenome().getPrimary().getType().getSections() > 1
                 && world.getBlock(x, y + 1, z) != Botany.flower) {
@@ -209,8 +212,7 @@ public class BlockFlower extends BlockContainer {
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
         List<ItemStack> drops = getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
         boolean hasBeenBroken = world.setBlockToAir(x, y, z);
-        if (hasBeenBroken
-                && BinnieCore.proxy.isSimulating(world)
+        if (hasBeenBroken && BinnieCore.proxy.isSimulating(world)
                 && drops.size() > 0
                 && (player == null || !player.capabilities.isCreativeMode)) {
             for (ItemStack drop : drops) {

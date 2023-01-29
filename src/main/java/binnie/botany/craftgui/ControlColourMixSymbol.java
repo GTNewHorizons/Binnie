@@ -14,6 +14,7 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.util.I18N;
 
 public class ControlColourMixSymbol extends Control implements ITooltip {
+
     protected static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
     protected static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
 

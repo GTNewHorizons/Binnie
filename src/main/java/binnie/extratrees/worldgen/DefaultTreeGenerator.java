@@ -1,7 +1,14 @@
 package binnie.extratrees.worldgen;
 
+import net.minecraft.block.Block;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import binnie.extratrees.genetics.ExtraTreeSpecies;
+
 import com.mojang.authlib.GameProfile;
+
 import forestry.api.arboriculture.ITreeGenerator;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.world.ITreeGenData;
@@ -10,12 +17,9 @@ import forestry.arboriculture.genetics.Tree;
 import forestry.arboriculture.tiles.TileLeaves;
 import forestry.core.config.Constants;
 import forestry.plugins.PluginArboriculture;
-import net.minecraft.block.Block;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class DefaultTreeGenerator implements ITreeGenerator {
+
     private ExtraTreeSpecies extraTreeSpecies;
 
     public DefaultTreeGenerator(ExtraTreeSpecies extraTreeSpecies) {
@@ -31,8 +35,8 @@ public class DefaultTreeGenerator implements ITreeGenerator {
 
     @Override
     public void setLeaves(ITreeGenome genome, World world, GameProfile owner, int x, int y, int z, boolean decorative) {
-        boolean placed =
-                world.setBlock(x, y, z, PluginArboriculture.blocks.leaves, 0, Constants.FLAG_BLOCK_SYNCH_AND_UPDATE);
+        boolean placed = world
+                .setBlock(x, y, z, PluginArboriculture.blocks.leaves, 0, Constants.FLAG_BLOCK_SYNCH_AND_UPDATE);
         if (!placed) {
             return;
         }

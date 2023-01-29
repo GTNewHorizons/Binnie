@@ -3,6 +3,7 @@ package binnie.botany.genetics;
 import forestry.api.genetics.IAlleleInteger;
 
 public class AlleleColor implements IAlleleInteger {
+
     private String uid;
     private int value;
     private EnumFlowerColor color;

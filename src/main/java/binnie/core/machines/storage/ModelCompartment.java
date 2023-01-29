@@ -5,6 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
 class ModelCompartment extends ModelBase {
+
     private ModelRenderer column1;
     private ModelRenderer column4;
     private ModelRenderer column2;

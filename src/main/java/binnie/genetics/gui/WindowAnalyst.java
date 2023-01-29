@@ -1,5 +1,12 @@
 package binnie.genetics.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.botany.api.IFlower;
 import binnie.core.AbstractMod;
@@ -39,13 +46,9 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 
 public class WindowAnalyst extends Window {
+
     protected IWidget baseWidget;
     protected ControlScrollableContent leftPage;
     protected ControlScrollableContent rightPage;
@@ -91,11 +94,11 @@ public class WindowAnalyst extends Window {
     private void setupValidators() {
         if (!isDatabase) {
             getWindowInventory().setValidator(0, new SlotValidator.Individual() {
+
                 @Override
                 public boolean isValid(ItemStack itemStack) {
                     return Analyser.isAnalysed(itemStack)
-                            || (Analyser.isAnalysable(itemStack)
-                                    && getWindowInventory().getStackInSlot(1) != null);
+                            || (Analyser.isAnalysable(itemStack) && getWindowInventory().getStackInSlot(1) != null);
                 }
             });
             getWindowInventory()
@@ -134,10 +137,12 @@ public class WindowAnalyst extends Window {
         if (isDatabase) {
             for (BreedingSystem syst : Binnie.Genetics.getActiveSystems()) {
                 new Control(this, x, y, 20.0f, 20.0f) {
+
                     @Override
                     public void initialise() {
                         addAttribute(WidgetAttribute.MOUSE_OVER);
                         addSelfEventHandler(new EventMouse.Down.Handler() {
+
                             @Override
                             public void onEvent(EventMouse.Down event) {
                                 setSystem(syst);
@@ -154,12 +159,10 @@ public class WindowAnalyst extends Window {
                     public void onRenderBackground() {
                         CraftGUI.render.color(syst.getColor());
                         int outset = (getSystem() == syst) ? 1 : 0;
-                        CraftGUI.render.texture(
-                                CraftGUITexture.TabOutline, getArea().outset(outset));
+                        CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().outset(outset));
                         if (getSystem() == syst) {
                             CraftGUI.render.color(1140850688 + syst.getColor());
-                            CraftGUI.render.texture(
-                                    CraftGUITexture.TabSolid, getArea().outset(outset));
+                            CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().outset(outset));
                         }
                         CraftGUI.render.item(new IPoint(2.0f, 2.0f), syst.getItemStackRepresentative());
                     }
@@ -175,6 +178,7 @@ public class WindowAnalyst extends Window {
         }
         tabBar = new Control(this, x, 28.0f, w() - 16.0f - x, 20.0f);
         analystPanel = new Panel(this, 16.0f, 54.0f, 280.0f, 164.0f, MinecraftGUI.PanelType.Outline) {
+
             @Override
             public void onRenderBackground() {
                 CraftGUI.render.gradientRect(getArea(), 0x44ffffff, 0x66ffffff);
@@ -185,19 +189,25 @@ public class WindowAnalyst extends Window {
             public void initialise() {
                 setColor(0x444444);
                 float sectionWidth = (w() - 8.0f - 4.0f) / 2.0f;
-                leftPage =
-                        new ControlScrollableContent<IWidget>(
-                                this, 3.0f, 3.0f, sectionWidth + 2.0f, h() - 8.0f + 2.0f, 0.0f) {
-                            @Override
-                            public void onRenderBackground() {
-                                if (getContent() == null) {
-                                    return;
-                                }
-                                CraftGUI.render.color(getContent().getColor());
-                                CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
-                            }
-                        };
+                leftPage = new ControlScrollableContent<IWidget>(
+                        this,
+                        3.0f,
+                        3.0f,
+                        sectionWidth + 2.0f,
+                        h() - 8.0f + 2.0f,
+                        0.0f) {
+
+                    @Override
+                    public void onRenderBackground() {
+                        if (getContent() == null) {
+                            return;
+                        }
+                        CraftGUI.render.color(getContent().getColor());
+                        CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
+                    }
+                };
                 new ControlScrollBar(this, sectionWidth + 2.0f - 3.0f, 6.0f, 3.0f, h() - 8.0f + 2.0f - 6.0f, leftPage) {
+
                     @Override
                     public void onRenderBackground() {
                         if (!isEnabled()) {
@@ -210,22 +220,26 @@ public class WindowAnalyst extends Window {
                                 getArea(),
                                 1140850688 + leftPage.getContent().getColor(),
                                 0x44000000 + leftPage.getContent().getColor());
-                        CraftGUI.render.solid(
-                                getRenderArea(), leftPage.getContent().getColor());
+                        CraftGUI.render.solid(getRenderArea(), leftPage.getContent().getColor());
                     }
                 };
-                rightPage =
-                        new ControlScrollableContent<IWidget>(
-                                this, 3.0f + sectionWidth + 4.0f, 3.0f, sectionWidth + 2.0f, h() - 8.0f + 2.0f, 0.0f) {
-                            @Override
-                            public void onRenderBackground() {
-                                if (getContent() == null) {
-                                    return;
-                                }
-                                CraftGUI.render.color(getContent().getColor());
-                                CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
-                            }
-                        };
+                rightPage = new ControlScrollableContent<IWidget>(
+                        this,
+                        3.0f + sectionWidth + 4.0f,
+                        3.0f,
+                        sectionWidth + 2.0f,
+                        h() - 8.0f + 2.0f,
+                        0.0f) {
+
+                    @Override
+                    public void onRenderBackground() {
+                        if (getContent() == null) {
+                            return;
+                        }
+                        CraftGUI.render.color(getContent().getColor());
+                        CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea());
+                    }
+                };
                 new ControlScrollBar(
                         this,
                         sectionWidth + 2.0f - 3.0f + sectionWidth + 4.0f,
@@ -233,6 +247,7 @@ public class WindowAnalyst extends Window {
                         3.0f,
                         h() - 8.0f + 2.0f - 6.0f,
                         rightPage) {
+
                     @Override
                     public void onRenderBackground() {
                         if (!isEnabled()) {
@@ -245,8 +260,7 @@ public class WindowAnalyst extends Window {
                                 getArea(),
                                 1140850688 + rightPage.getContent().getColor(),
                                 0x44000000 + rightPage.getContent().getColor());
-                        CraftGUI.render.solid(
-                                getRenderArea(), rightPage.getContent().getColor());
+                        CraftGUI.render.solid(getRenderArea(), rightPage.getContent().getColor());
                     }
                 };
                 analystPageSize = new IArea(1.0f, 1.0f, sectionWidth, h() - 8.0f);
@@ -265,6 +279,7 @@ public class WindowAnalyst extends Window {
             slideUpInv.setSlide(false);
         }
         addEventHandler(new EventKey.Down.Handler() {
+
             @Override
             public void onEvent(EventKey.Down event) {
                 if (event.getKey() == 205) {
@@ -278,6 +293,7 @@ public class WindowAnalyst extends Window {
 
         if (!isDatabase) {
             analystNone = new Control(analystPanel, 0.0f, 0.0f, analystPanel.w(), analystPanel.h()) {
+
                 @Override
                 public void initialise() {
                     new ControlTextCentered(this, 20.0f, I18N.localise("genetics.gui.analyst.info")).setColor(0x444444);
@@ -307,8 +323,7 @@ public class WindowAnalyst extends Window {
         setPage(rightPage, null);
         if (isDatabase) {
             analystPages.add(
-                    (databasePage != null)
-                            ? databasePage
+                    (databasePage != null) ? databasePage
                             : new AnalystPageDatabase(analystPanel, analystPageSize, currentSystem, isMaster));
         }
 
@@ -352,6 +367,7 @@ public class WindowAnalyst extends Window {
 
         for (ControlAnalystPage page : analystPages) {
             new ControlTooltip(tabBar, x, 0.0f, width, tabBar.h()) {
+
                 ControlAnalystPage value;
 
                 @Override
@@ -365,6 +381,7 @@ public class WindowAnalyst extends Window {
                     addAttribute(WidgetAttribute.MOUSE_OVER);
                     value = page;
                     addSelfEventHandler(new EventMouse.Down.Handler() {
+
                         @Override
                         public void onEvent(EventMouse.Down event) {
                             int currentIndex = analystPages.indexOf(rightPage.getContent());
@@ -395,8 +412,7 @@ public class WindowAnalyst extends Window {
                     CraftGUI.render.color((active ? 0xff000000 : 0x44000000) + value.getColor());
                     CraftGUI.render.texture(CraftGUITexture.TabSolid, getArea().inset(1));
                     CraftGUI.render.color(value.getColor());
-                    CraftGUI.render.texture(
-                            CraftGUITexture.TabOutline, getArea().inset(1));
+                    CraftGUI.render.texture(CraftGUITexture.TabOutline, getArea().inset(1));
                     super.onRenderBackground();
                 }
             };
@@ -468,19 +484,13 @@ public class WindowAnalyst extends Window {
         super.onWindowInventoryChanged();
         if (getWindowInventory().getStackInSlot(0) != null
                 && !Analyser.isAnalysed(getWindowInventory().getStackInSlot(0))) {
-            getWindowInventory()
-                    .setInventorySlotContents(
-                            0, Analyser.analyse(getWindowInventory().getStackInSlot(0)));
+            getWindowInventory().setInventorySlotContents(0, Analyser.analyse(getWindowInventory().getStackInSlot(0)));
             getWindowInventory().decrStackSize(1, 1);
         }
 
-        IIndividual ind =
-                AlleleManager.alleleRegistry.getIndividual(getWindowInventory().getStackInSlot(0));
+        IIndividual ind = AlleleManager.alleleRegistry.getIndividual(getWindowInventory().getStackInSlot(0));
         if (ind != null) {
-            ind.getGenome()
-                    .getSpeciesRoot()
-                    .getBreedingTracker(getWorld(), getUsername())
-                    .registerBirth(ind);
+            ind.getGenome().getSpeciesRoot().getBreedingTracker(getWorld(), getUsername()).registerBirth(ind);
         }
 
         if (isClient()) {

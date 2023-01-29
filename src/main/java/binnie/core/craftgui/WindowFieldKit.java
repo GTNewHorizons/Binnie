@@ -1,5 +1,18 @@
 package binnie.core.craftgui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -31,19 +44,9 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class WindowFieldKit extends Window {
+
     private float glassOffsetX;
     private float glassOffsetY;
     private float glassVX;
@@ -80,6 +83,7 @@ public class WindowFieldKit extends Window {
 
     private void setupValidators() {
         getWindowInventory().setValidator(0, new SlotValidator(null) {
+
             @Override
             public boolean isValid(ItemStack object) {
                 return AlleleManager.alleleRegistry.isIndividual(object)
@@ -93,6 +97,7 @@ public class WindowFieldKit extends Window {
         });
 
         getWindowInventory().setValidator(1, new SlotValidator(null) {
+
             @Override
             public boolean isValid(ItemStack object) {
                 return object.getItem() == Items.paper;
@@ -116,7 +121,10 @@ public class WindowFieldKit extends Window {
         new ControlPlayerInventory(this);
         IPoint handGlass = new IPoint(16.0f, 32.0f);
         GlassControl = new ControlImage(
-                this, handGlass.x(), handGlass.y(), new StandardTexture(0, 160, 96, 96, ExtraBeeTexture.GUIPunnett));
+                this,
+                handGlass.x(),
+                handGlass.y(),
+                new StandardTexture(0, 160, 96, 96, ExtraBeeTexture.GUIPunnett));
         new ControlSlot(this, handGlass.x() + 54.0f, handGlass.y() + 26.0f).assign(InventoryType.Window, 0);
         new ControlSlot(this, 208.0f, 8.0f).assign(InventoryType.Window, 1);
         (text = new ControlText(this, new IPoint(232.0f, 13.0f), I18N.localise("binniecore.gui.tooltip.paper")))
@@ -125,19 +133,19 @@ public class WindowFieldKit extends Window {
                 .setColor(0x222222);
         chromo = new ControlChromosome(this, 150.0f, 24.0f);
 
-        addEventHandler(
-                new EventValueChanged.Handler() {
-                    @Override
-                    public void onEvent(EventValueChanged event) {
-                        IChromosomeType type = (IChromosomeType) event.getValue();
-                        if (type != null && info.containsKey(type)) {
-                            String t = info.get(type);
-                            text.setValue(t);
-                        } else {
-                            text.setValue("");
-                        }
-                    }
-                }.setOrigin(EventHandler.Origin.DirectChild, chromo));
+        addEventHandler(new EventValueChanged.Handler() {
+
+            @Override
+            public void onEvent(EventValueChanged event) {
+                IChromosomeType type = (IChromosomeType) event.getValue();
+                if (type != null && info.containsKey(type)) {
+                    String t = info.get(type);
+                    text.setValue(t);
+                } else {
+                    text.setValue("");
+                }
+            }
+        }.setOrigin(EventHandler.Origin.DirectChild, chromo));
     }
 
     @Override
@@ -196,9 +204,8 @@ public class WindowFieldKit extends Window {
                 List<String> infos = new ArrayList<>();
 
                 int i = 0;
-                for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + ".";
-                        I18N.canLocalise(pref + i);
-                        ++i) {
+                for (String pref = root.getUID() + ".fieldkit." + type.getName().toLowerCase() + "."; I18N
+                        .canLocalise(pref + i); ++i) {
                     infos.add(I18N.localise(pref + i));
                 }
 
@@ -223,8 +230,7 @@ public class WindowFieldKit extends Window {
             }
 
             int sheets = 64 - kit.getItemDamage();
-            int size = (getWindowInventory().getStackInSlot(1) == null)
-                    ? 0
+            int size = (getWindowInventory().getStackInSlot(1) == null) ? 0
                     : getWindowInventory().getStackInSlot(1).stackSize;
             if (sheets != size) {
                 kit.setItemDamage(64 - size);
@@ -295,20 +301,24 @@ public class WindowFieldKit extends Window {
     }
 
     static class StyleSheetPunnett extends StyleSheet {
+
         public StyleSheetPunnett() {
             textures.put(
                     CraftGUITexture.Window,
                     new PaddedTexture(0, 0, 160, 160, 0, ExtraBeeTexture.GUIPunnett, 32, 32, 32, 32));
             textures.put(CraftGUITexture.Slot, new StandardTexture(160, 0, 18, 18, 0, ExtraBeeTexture.GUIPunnett));
             textures.put(
-                    ExtraBeeGUITexture.Chromosome, new StandardTexture(160, 36, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
+                    ExtraBeeGUITexture.Chromosome,
+                    new StandardTexture(160, 36, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
             textures.put(
                     ExtraBeeGUITexture.Chromosome2,
                     new StandardTexture(160, 52, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
             textures.put(
-                    CraftGUITexture.HelpButton, new StandardTexture(178, 0, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
+                    CraftGUITexture.HelpButton,
+                    new StandardTexture(178, 0, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
             textures.put(
-                    CraftGUITexture.InfoButton, new StandardTexture(178, 16, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
+                    CraftGUITexture.InfoButton,
+                    new StandardTexture(178, 16, 16, 16, 0, ExtraBeeTexture.GUIPunnett));
         }
     }
 }

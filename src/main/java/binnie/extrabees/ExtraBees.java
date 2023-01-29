@@ -1,5 +1,9 @@
 package binnie.extrabees;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.gui.IBinnieGUID;
@@ -20,9 +24,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 
 @Mod(
         modid = "ExtraBees",
@@ -31,6 +32,7 @@ import net.minecraft.item.Item;
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class ExtraBees extends AbstractMod {
+
     @Mod.Instance("ExtraBees")
     public static ExtraBees instance;
 
@@ -80,7 +82,7 @@ public class ExtraBees extends AbstractMod {
 
     @Override
     public Class<?>[] getConfigs() {
-        return new Class[] {ConfigurationMain.class, ConfigurationMachines.class};
+        return new Class[] { ConfigurationMain.class, ConfigurationMachines.class };
     }
 
     @Override
@@ -109,6 +111,7 @@ public class ExtraBees extends AbstractMod {
     }
 
     public static class PacketHandler extends BinniePacketHandler {
+
         public PacketHandler() {
             super(ExtraBees.instance);
         }

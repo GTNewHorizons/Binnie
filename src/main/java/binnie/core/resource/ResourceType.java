@@ -1,6 +1,7 @@
 package binnie.core.resource;
 
 public enum ResourceType {
+
     Item("items"),
     Block("blocks"),
     Tile("tile"),

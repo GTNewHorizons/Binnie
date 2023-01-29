@@ -1,11 +1,13 @@
 package binnie.extrabees.apiary.machine.stimulator;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import forestry.api.circuits.ChipsetManager;
-import net.minecraft.item.ItemStack;
 
 public class CircuitSlotValidator extends SlotValidator {
+
     public CircuitSlotValidator() {
         super(SlotValidator.IconCircuit);
     }

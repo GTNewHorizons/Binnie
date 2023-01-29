@@ -1,15 +1,18 @@
 package binnie.extrabees.genetics.effect;
 
-import binnie.extrabees.ExtraBees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.Random;
+
 import net.minecraft.block.BlockWeb;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
+import binnie.extrabees.ExtraBees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class BlockEctoplasm extends BlockWeb {
+
     public BlockEctoplasm() {
         setLightOpacity(1);
         setHardness(0.5f);

@@ -1,5 +1,15 @@
 package binnie.botany;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.BonemealEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
+
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IFlower;
@@ -42,15 +52,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
 
 @Mod(
         modid = "Botany",
@@ -59,6 +60,7 @@ import net.minecraftforge.event.world.BlockEvent;
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class Botany extends AbstractMod {
+
     @Mod.Instance("Botany")
     public static Botany instance;
 
@@ -155,8 +157,7 @@ public class Botany extends AbstractMod {
             return;
         }
 
-        if (event.entityPlayer != null
-                && event.entityPlayer.getHeldItem() != null
+        if (event.entityPlayer != null && event.entityPlayer.getHeldItem() != null
                 && event.entityPlayer.getHeldItem().getItem() == Items.shears) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
             if (tile instanceof TileEntityFlower) {
@@ -166,8 +167,7 @@ public class Botany extends AbstractMod {
             }
         }
 
-        if (event.entityPlayer != null
-                && event.entityPlayer.getHeldItem() != null
+        if (event.entityPlayer != null && event.entityPlayer.getHeldItem() != null
                 && event.entityPlayer.getHeldItem().getItem() == Botany.pollen) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
             if (tile instanceof TileEntityFlower) {
@@ -291,8 +291,7 @@ public class Botany extends AbstractMod {
         }
 
         IFlower flower = BotanyCore.getFlowerRoot().getConversion(event.entityPlayer.getHeldItem());
-        if (flower != null
-                && Gardening.plant(world, x, y + py, z, flower, event.entityPlayer.getGameProfile())
+        if (flower != null && Gardening.plant(world, x, y + py, z, flower, event.entityPlayer.getGameProfile())
                 && !event.entityPlayer.capabilities.isCreativeMode) {
             ItemStack heldItem = event.entityPlayer.getHeldItem();
             heldItem.stackSize--;
@@ -345,6 +344,7 @@ public class Botany extends AbstractMod {
     }
 
     public static class PacketHandler extends BinniePacketHandler {
+
         public PacketHandler() {
             super(Botany.instance);
         }

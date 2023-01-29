@@ -1,13 +1,16 @@
 package binnie.extratrees.worldgen;
 
-import binnie.extratrees.genetics.ExtraTreeSpecies;
-import forestry.api.world.ITreeGenData;
 import java.util.Random;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
+import binnie.extratrees.genetics.ExtraTreeSpecies;
+import forestry.api.world.ITreeGenData;
+
 public abstract class WorldGenTree extends WorldGenerator {
+
     protected ITreeGenData treeGen;
     protected World world;
     protected Random rand;
@@ -201,6 +204,7 @@ public abstract class WorldGenTree extends WorldGenerator {
     }
 
     static class Vector {
+
         float x;
         float y;
         float z;

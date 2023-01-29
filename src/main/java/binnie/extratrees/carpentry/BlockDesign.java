@@ -1,5 +1,19 @@
 package binnie.extratrees.carpentry;
 
+import java.util.List;
+
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+
 import binnie.core.BinnieCore;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IMultipassBlock;
@@ -13,28 +27,11 @@ import binnie.extratrees.api.IToolHammer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import java.util.List;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock {
-    public static ForgeDirection[] RENDER_DIRECTIONS = new ForgeDirection[] {
-        ForgeDirection.DOWN,
-        ForgeDirection.UP,
-        ForgeDirection.EAST,
-        ForgeDirection.WEST,
-        ForgeDirection.NORTH,
-        ForgeDirection.SOUTH
-    };
+
+    public static ForgeDirection[] RENDER_DIRECTIONS = new ForgeDirection[] { ForgeDirection.DOWN, ForgeDirection.UP,
+            ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH };
 
     protected IDesignSystem designSystem;
 
@@ -64,8 +61,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
         BlockDesign blockC = (BlockDesign) world.getBlock(x, y, z);
         ItemStack item = player.getHeldItem();
-        if (item == null
-                || !(item.getItem() instanceof IToolHammer)
+        if (item == null || !(item.getItem() instanceof IToolHammer)
                 || !((IToolHammer) item.getItem()).isActive(item)) {
             return;
         }
@@ -133,10 +129,11 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
     public void addBlockTooltip(ItemStack stack, List tooltip) {
         DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
         if (block.getPrimaryMaterial() != block.getSecondaryMaterial()) {
-            tooltip.add(I18N.localise(
-                    "extratrees.block.tooltip.twoMaterials",
-                    block.getPrimaryMaterial().getName(),
-                    block.getSecondaryMaterial().getName()));
+            tooltip.add(
+                    I18N.localise(
+                            "extratrees.block.tooltip.twoMaterials",
+                            block.getPrimaryMaterial().getName(),
+                            block.getSecondaryMaterial().getName()));
         } else {
             tooltip.add(block.getPrimaryMaterial().getName());
         }

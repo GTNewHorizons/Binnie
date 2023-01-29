@@ -15,6 +15,7 @@ import binnie.extrabees.core.ExtraBeeTexture;
 import forestry.api.genetics.IChromosomeType;
 
 public class ControlChromoPicker extends Control implements ITooltip {
+
     Texture Selected;
     Texture Texture;
     IChromosomeType type;
@@ -28,12 +29,14 @@ public class ControlChromoPicker extends Control implements ITooltip {
         addAttribute(WidgetAttribute.MOUSE_OVER);
         this.parent = parent;
         addSelfEventHandler(new EventWidget.StartMouseOver.Handler() {
+
             @Override
             public void onEvent(EventWidget.StartMouseOver event) {
                 callEvent(new EventValueChanged<Object>(getWidget(), type));
             }
         });
         addSelfEventHandler(new EventWidget.EndMouseOver.Handler() {
+
             @Override
             public void onEvent(EventWidget.EndMouseOver event) {
                 callEvent(new EventValueChanged<>(getWidget(), null));

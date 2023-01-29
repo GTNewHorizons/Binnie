@@ -8,6 +8,7 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
 class ControlMutationItem extends ControlOption<IMutation> {
+
     public ControlMutationItem(ControlList<IMutation> controlList, IMutation option, IAlleleSpecies species, int y) {
         super(controlList, option, y);
         ControlDatabaseIndividualDisplay itemWidget1 = new ControlDatabaseIndividualDisplay(this, 4.0f, 4.0f);
@@ -42,10 +43,9 @@ class ControlMutationItem extends ControlOption<IMutation> {
         arrowSymbol.setValue(getValue());
     }
 
-    private EnumDiscoveryState getState(
-            boolean isNEI, boolean isMutationDiscovered, IAlleleSpecies species, IAlleleSpecies allele) {
-        return (isNEI || isMutationDiscovered || species == allele)
-                ? EnumDiscoveryState.SHOW
+    private EnumDiscoveryState getState(boolean isNEI, boolean isMutationDiscovered, IAlleleSpecies species,
+            IAlleleSpecies allele) {
+        return (isNEI || isMutationDiscovered || species == allele) ? EnumDiscoveryState.SHOW
                 : EnumDiscoveryState.UNDETERMINED;
     }
 }

@@ -1,5 +1,8 @@
 package binnie.botany.farm;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
 import binnie.core.circuits.BinnieCircuit;
@@ -7,29 +10,24 @@ import binnie.core.util.I18N;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.farming.FarmDirection;
 import forestry.api.farming.IFarmHousing;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 
 public class CircuitGarden extends BinnieCircuit {
+
     private boolean isManual;
     private boolean isFertilised;
     private ItemStack icon;
     private EnumMoisture moisture;
     private EnumAcidity acidity;
 
-    public CircuitGarden(
-            EnumMoisture moisture,
-            EnumAcidity ph,
-            boolean manual,
-            boolean fertilised,
-            ItemStack recipe,
+    public CircuitGarden(EnumMoisture moisture, EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe,
             ItemStack icon) {
         super(
-                "garden." + moisture.getID() + ((ph != null) ? ("." + ph.getID()) : "") + (manual ? ".manual" : "")
+                "garden." + moisture.getID()
+                        + ((ph != null) ? ("." + ph.getID()) : "")
+                        + (manual ? ".manual" : "")
                         + (fertilised ? ".fert" : ""),
                 4,
-                manual
-                        ? ChipsetManager.circuitRegistry.getLayout("forestry.farms.manual")
+                manual ? ChipsetManager.circuitRegistry.getLayout("forestry.farms.manual")
                         : ChipsetManager.circuitRegistry.getLayout("forestry.farms.managed"),
                 recipe);
         this.moisture = moisture;

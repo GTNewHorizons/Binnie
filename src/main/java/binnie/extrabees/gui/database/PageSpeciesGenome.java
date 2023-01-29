@@ -17,6 +17,7 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.core.genetics.alleles.EnumAllele;
 
 public class PageSpeciesGenome extends PageSpecies {
+
     protected ControlText title;
     protected ControlText speedText;
     protected ControlText lifespanText;
@@ -188,8 +189,8 @@ public class PageSpeciesGenome extends PageSpecies {
         IBeeGenome genome = Binnie.Genetics.getBeeRoot().templateAsGenome(template);
         speedText.setValue(rateSpeed(genome.getSpeed()));
         lifespanText.setValue(rateLifespan(genome.getLifespan()));
-        fertilityText.setValue(
-                I18N.localise("extrabees.gui.database.tab.species.genome.children", genome.getFertility()));
+        fertilityText
+                .setValue(I18N.localise("extrabees.gui.database.tab.species.genome.children", genome.getFertility()));
         floweringText.setValue(rateFlowering(genome.getFlowering()));
         int[] area = genome.getTerritory();
         territoryText.setValue(area[0] + "x" + area[1] + "x" + area[2]);

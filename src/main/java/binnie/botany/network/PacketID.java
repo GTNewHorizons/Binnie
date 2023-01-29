@@ -1,5 +1,11 @@
 package binnie.botany.network;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.IChatComponent;
+
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.genetics.EnumFlowerColor;
@@ -10,13 +16,9 @@ import binnie.core.network.packet.MessageNBT;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.genetics.AlleleManager;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.IChatComponent;
 
 public enum PacketID implements IPacketID {
+
     FieldKit,
     FlowerUpdate;
 
@@ -45,10 +47,10 @@ public enum PacketID implements IPacketID {
         if (data.hasNoTags()) {
             info += "Flower has not been discovered by you. Breed this flower yourself to discover.";
         } else {
-            IAlleleFlowerSpecies primary =
-                    (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species"));
-            IAlleleFlowerSpecies secondary =
-                    (IAlleleFlowerSpecies) AlleleManager.alleleRegistry.getAllele(data.getString("Species2"));
+            IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry
+                    .getAllele(data.getString("Species"));
+            IAlleleFlowerSpecies secondary = (IAlleleFlowerSpecies) AlleleManager.alleleRegistry
+                    .getAllele(data.getString("Species2"));
             float age = data.getFloat("Age");
             EnumFlowerColor color1 = EnumFlowerColor.get(data.getShort("Colour"));
             EnumFlowerColor color2 = EnumFlowerColor.get(data.getShort("Colour2"));

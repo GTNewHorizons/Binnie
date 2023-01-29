@@ -1,5 +1,14 @@
 package binnie.genetics.machine.acclimatiser;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.core.BinnieCore;
@@ -11,18 +20,12 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 
 public class Acclimatiser {
-    public static final int[] SLOT_RESERVE = new int[] {0, 1, 2, 3};
-    public static final int[] SLOT_ACCLIMATISER = new int[] {5, 6, 7};
-    public static final int[] SLOT_DONE = new int[] {8, 9, 10, 11};
+
+    public static final int[] SLOT_RESERVE = new int[] { 0, 1, 2, 3 };
+    public static final int[] SLOT_ACCLIMATISER = new int[] { 5, 6, 7 };
+    public static final int[] SLOT_DONE = new int[] { 8, 9, 10, 11 };
     public static final int SLOT_TARGET = 4;
     public static final float ENERGY_PER_TICK = 2.0f;
 
@@ -157,9 +160,9 @@ public class Acclimatiser {
         int[] is = tol.getBounds();
         int[] range;
         if (effect < 0.0f) {
-            range = new int[] {is[0] - 1, is[1]};
+            range = new int[] { is[0] - 1, is[1] };
         } else {
-            range = new int[] {is[0], is[1] + 1};
+            range = new int[] { is[0], is[1] + 1 };
         }
 
         if (range[0] < -5) {
@@ -169,30 +172,12 @@ public class Acclimatiser {
             range[1] = 5;
         }
 
-        EnumTolerance[] up = {
-            EnumTolerance.NONE,
-            EnumTolerance.UP_1,
-            EnumTolerance.UP_2,
-            EnumTolerance.UP_3,
-            EnumTolerance.UP_4,
-            EnumTolerance.UP_5
-        };
-        EnumTolerance[] down = {
-            EnumTolerance.NONE,
-            EnumTolerance.DOWN_1,
-            EnumTolerance.DOWN_2,
-            EnumTolerance.DOWN_3,
-            EnumTolerance.DOWN_4,
-            EnumTolerance.DOWN_5
-        };
-        EnumTolerance[] both = {
-            EnumTolerance.NONE,
-            EnumTolerance.BOTH_1,
-            EnumTolerance.BOTH_2,
-            EnumTolerance.BOTH_3,
-            EnumTolerance.BOTH_4,
-            EnumTolerance.BOTH_5
-        };
+        EnumTolerance[] up = { EnumTolerance.NONE, EnumTolerance.UP_1, EnumTolerance.UP_2, EnumTolerance.UP_3,
+                EnumTolerance.UP_4, EnumTolerance.UP_5 };
+        EnumTolerance[] down = { EnumTolerance.NONE, EnumTolerance.DOWN_1, EnumTolerance.DOWN_2, EnumTolerance.DOWN_3,
+                EnumTolerance.DOWN_4, EnumTolerance.DOWN_5 };
+        EnumTolerance[] both = { EnumTolerance.NONE, EnumTolerance.BOTH_1, EnumTolerance.BOTH_2, EnumTolerance.BOTH_3,
+                EnumTolerance.BOTH_4, EnumTolerance.BOTH_5 };
 
         if (range[0] == 0) {
             return Tolerance.get(up[range[1]]);

@@ -1,13 +1,16 @@
 package binnie.botany.genetics;
 
+import java.util.Locale;
+
+import org.apache.commons.lang3.StringUtils;
+
 import binnie.botany.api.IFlowerColor;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleInteger;
-import java.util.Locale;
-import org.apache.commons.lang3.StringUtils;
 
 public enum EnumFlowerColor implements IFlowerColor {
+
     AQUAMARINE("aquamarine", 0x7fffd4),
     BLACK("black", 0x282828),
     BLUE("blue", 0x0000ff),

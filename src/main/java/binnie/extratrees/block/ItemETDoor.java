@@ -1,10 +1,5 @@
 package binnie.extratrees.block;
 
-import binnie.core.block.ItemMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,15 +9,22 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
+import binnie.core.block.ItemMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemETDoor extends ItemMetadata {
+
     public ItemETDoor(Block block) {
         super(block);
         maxStackSize = 8;
         setCreativeTab(CreativeTabs.tabRedstone);
     }
 
-    public static void placeDoorBlock(
-            World world, int x, int y, int z, int meta, Block block, ItemStack item, EntityPlayer player) {
+    public static void placeDoorBlock(World world, int x, int y, int z, int meta, Block block, ItemStack item,
+            EntityPlayer player) {
         byte b0 = 0;
         byte b2 = 0;
         if (meta == 0) {
@@ -73,17 +75,8 @@ public class ItemETDoor extends ItemMetadata {
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int meta,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int meta,
+            float hitX, float hitY, float hitZ) {
         if (meta != 1) {
             return false;
         }
@@ -119,7 +112,6 @@ public class ItemETDoor extends ItemMetadata {
     @Override
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack stack, int meta) {
-        return WoodManager.getPlankType((stack == null) ? 0 : (stack.getItemDamage() & 0xFF))
-                .getColor();
+        return WoodManager.getPlankType((stack == null) ? 0 : (stack.getItemDamage() & 0xFF)).getColor();
     }
 }

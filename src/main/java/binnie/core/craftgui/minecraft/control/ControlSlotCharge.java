@@ -11,6 +11,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IChargedSlots;
 
 public class ControlSlotCharge extends Control {
+
     private int slot;
 
     public ControlSlotCharge(IWidget parent, int x, int y, int slot) {
@@ -19,8 +20,7 @@ public class ControlSlotCharge extends Control {
     }
 
     float getCharge() {
-        IChargedSlots slots =
-                Machine.getInterface(IChargedSlots.class, Window.get(this).getInventory());
+        IChargedSlots slots = Machine.getInterface(IChargedSlots.class, Window.get(this).getInventory());
         return (slots == null) ? 0.0f : slots.getCharge(slot);
     }
 

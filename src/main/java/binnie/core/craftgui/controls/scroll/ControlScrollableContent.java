@@ -8,6 +8,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 
 public class ControlScrollableContent<T extends IWidget> extends Control implements IControlScrollable {
+
     protected T controlChild;
     protected float scrollBarSize;
     protected float percentageIndex;
@@ -16,13 +17,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
         super(parent, x, y, w, h);
         this.scrollBarSize = scrollBarSize;
         if (scrollBarSize != 0.0f) {
-            new ControlScroll(
-                    this,
-                    getSize().x() - scrollBarSize,
-                    0.0f,
-                    scrollBarSize,
-                    getSize().y(),
-                    this);
+            new ControlScroll(this, getSize().x() - scrollBarSize, 0.0f, scrollBarSize, getSize().y(), this);
         }
 
         percentageIndex = 0.0f;
@@ -35,11 +30,11 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
     }
 
     private EventMouse.Wheel.Handler mouseWheelHandler = new EventMouse.Wheel.Handler() {
+
         @Override
         public void onEvent(EventMouse.Wheel event) {
             IPoint mousePos = getRelativeMousePosition();
-            if (mousePos.x() > 0.0f
-                    && mousePos.y() > 0.0f
+            if (mousePos.x() > 0.0f && mousePos.y() > 0.0f
                     && mousePos.x() < getSize().x()
                     && mousePos.y() < getSize().y()) {
                 if (getMovementRange() == 0.0f) {
@@ -57,14 +52,9 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
             return;
         }
 
-        child.setCroppedZone(
-                this,
-                new IArea(
-                        1.0F,
-                        1.0F,
-                        getSize().x() - 2.0F - scrollBarSize,
-                        getSize().y() - 2.0F));
+        child.setCroppedZone(this, new IArea(1.0F, 1.0F, getSize().x() - 2.0F - scrollBarSize, getSize().y() - 2.0F));
         child.addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
+
             @Override
             public void onEvent(EventWidget.ChangeSize event) {
                 controlChild.setOffset(new IPoint(0.0f, -percentageIndex * getMovementRange()));

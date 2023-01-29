@@ -5,20 +5,21 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
+
 import org.lwjgl.opengl.GL11;
 
 public class ItemMetadataRenderer implements IItemRenderer {
+
     @Override
     public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
-        return type == IItemRenderer.ItemRenderType.INVENTORY
-                || type == IItemRenderer.ItemRenderType.ENTITY
+        return type == IItemRenderer.ItemRenderType.INVENTORY || type == IItemRenderer.ItemRenderType.ENTITY
                 || type == IItemRenderer.ItemRenderType.EQUIPPED
                 || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON;
     }
 
     @Override
-    public boolean shouldUseRenderHelper(
-            IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
+    public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item,
+            IItemRenderer.ItemRendererHelper helper) {
         if (type == IItemRenderer.ItemRenderType.INVENTORY) {
             return helper == IItemRenderer.ItemRendererHelper.INVENTORY_BLOCK;
         }
@@ -27,7 +28,7 @@ public class ItemMetadataRenderer implements IItemRenderer {
                     || helper == IItemRenderer.ItemRendererHelper.ENTITY_ROTATION;
         }
         return (type == IItemRenderer.ItemRenderType.EQUIPPED
-                        || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON)
+                || type == IItemRenderer.ItemRenderType.EQUIPPED_FIRST_PERSON)
                 && helper == IItemRenderer.ItemRendererHelper.EQUIPPED_BLOCK;
     }
 

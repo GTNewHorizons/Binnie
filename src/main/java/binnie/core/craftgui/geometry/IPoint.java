@@ -1,6 +1,7 @@
 package binnie.core.craftgui.geometry;
 
 public class IPoint {
+
     public static IPoint ZERO = new IPoint(0.0f, 0.0f);
 
     protected float x;

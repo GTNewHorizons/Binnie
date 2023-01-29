@@ -1,5 +1,14 @@
 package binnie.genetics.nei;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
@@ -15,23 +24,20 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class InoculatorRecipeHandler extends RecipeHandlerBase {
 
     private static final List<InoculatorRecipe> recipes = new ArrayList<>();
 
     private void createInoculatorRecipeForNEI(ItemStack dnaManipulable) {
-        recipes.add(new InoculatorRecipe(
-                dnaManipulable, new ItemStack(Genetics.itemSerum, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new InoculatorRecipe(
-                dnaManipulable, new ItemStack(Genetics.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(
+                new InoculatorRecipe(
+                        dnaManipulable,
+                        new ItemStack(Genetics.itemSerum, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(
+                new InoculatorRecipe(
+                        dnaManipulable,
+                        new ItemStack(Genetics.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override
@@ -147,8 +153,7 @@ public class InoculatorRecipeHandler extends RecipeHandlerBase {
                 ISpeciesRoot root1 = AlleleManager.alleleRegistry.getSpeciesRoot(recipe.getDnaManipulable());
                 List<ItemStack> serums = new ArrayList<>();
 
-                for (ItemStack serumStack :
-                        ItemList.itemMap.get(recipe.getSerum().getItem())) {
+                for (ItemStack serumStack : ItemList.itemMap.get(recipe.getSerum().getItem())) {
                     if (serumStack.getTagCompound() != null) {
                         IItemSerum itemSerum = (IItemSerum) serumStack.getItem();
                         ISpeciesRoot root2 = itemSerum.getSpeciesRoot(serumStack);
@@ -156,8 +161,10 @@ public class InoculatorRecipeHandler extends RecipeHandlerBase {
                     }
                 }
 
-                this.bacteriaTank =
-                        new PositionedFluidTank(recipe.getBacteriaVector(), 100, new Rectangle(28, 6, 16, 58));
+                this.bacteriaTank = new PositionedFluidTank(
+                        recipe.getBacteriaVector(),
+                        100,
+                        new Rectangle(28, 6, 16, 58));
                 this.serum = new PositionedStack(serums, 53, 6);
                 this.input = new PositionedStack(recipe.getDnaManipulable(), 53, 27);
                 this.output = new PositionedStack(recipe.getDnaManipulable(), 105, 27);

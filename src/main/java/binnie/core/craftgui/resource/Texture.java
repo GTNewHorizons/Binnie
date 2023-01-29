@@ -6,6 +6,7 @@ import binnie.core.craftgui.geometry.Position;
 import binnie.core.resource.BinnieResource;
 
 public class Texture {
+
     public static Texture NULL = null;
     IArea area;
     IBorder padding;

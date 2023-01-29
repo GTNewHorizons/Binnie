@@ -1,14 +1,16 @@
 package binnie.extrabees.products;
 
-import binnie.core.BinnieCore;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import binnie.core.BinnieCore;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+
 public class ItemHoneyDrop extends ItemProduct {
+
     protected IIcon icon1;
     protected IIcon icon2;
 

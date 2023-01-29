@@ -6,9 +6,11 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
+
 import org.lwjgl.opengl.GL11;
 
 public class GateItemRenderer implements IItemRenderer {
+
     private void renderStairBlock(RenderBlocks renderBlocks, ItemStack item, float f, float g, float h) {
         Tessellator tessellator = Tessellator.instance;
         Block block = ((ItemBlock) item.getItem()).field_150939_a;
@@ -28,32 +30,56 @@ public class GateItemRenderer implements IItemRenderer {
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0f, -1.0f, 0.0f);
             renderBlocks.renderFaceYNeg(
-                    block, 0.0, 0.0, 0.0, renderBlocks.getBlockIconFromSideAndMetadata(block, 0, item.getItemDamage()));
+                    block,
+                    0.0,
+                    0.0,
+                    0.0,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 0, item.getItemDamage()));
             tessellator.draw();
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0f, 1.0f, 0.0f);
             renderBlocks.renderFaceYPos(
-                    block, 0.0, 0.0, 0.0, renderBlocks.getBlockIconFromSideAndMetadata(block, 1, item.getItemDamage()));
+                    block,
+                    0.0,
+                    0.0,
+                    0.0,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 1, item.getItemDamage()));
             tessellator.draw();
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0f, 0.0f, -1.0f);
             renderBlocks.renderFaceZNeg(
-                    block, 0.0, 0.0, 0.0, renderBlocks.getBlockIconFromSideAndMetadata(block, 2, item.getItemDamage()));
+                    block,
+                    0.0,
+                    0.0,
+                    0.0,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 2, item.getItemDamage()));
             tessellator.draw();
             tessellator.startDrawingQuads();
             tessellator.setNormal(0.0f, 0.0f, 1.0f);
             renderBlocks.renderFaceZPos(
-                    block, 0.0, 0.0, 0.0, renderBlocks.getBlockIconFromSideAndMetadata(block, 3, item.getItemDamage()));
+                    block,
+                    0.0,
+                    0.0,
+                    0.0,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 3, item.getItemDamage()));
             tessellator.draw();
             tessellator.startDrawingQuads();
             tessellator.setNormal(-1.0f, 0.0f, 0.0f);
             renderBlocks.renderFaceXNeg(
-                    block, 0.0, 0.0, 0.0, renderBlocks.getBlockIconFromSideAndMetadata(block, 4, item.getItemDamage()));
+                    block,
+                    0.0,
+                    0.0,
+                    0.0,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 4, item.getItemDamage()));
             tessellator.draw();
             tessellator.startDrawingQuads();
             tessellator.setNormal(1.0f, 0.0f, 0.0f);
             renderBlocks.renderFaceXPos(
-                    block, 0.0, 0.0, 0.0, renderBlocks.getBlockIconFromSideAndMetadata(block, 5, item.getItemDamage()));
+                    block,
+                    0.0,
+                    0.0,
+                    0.0,
+                    renderBlocks.getBlockIconFromSideAndMetadata(block, 5, item.getItemDamage()));
             tessellator.draw();
             GL11.glTranslatef(0.5f, 0.5f, 0.5f);
         }
@@ -71,8 +97,8 @@ public class GateItemRenderer implements IItemRenderer {
     }
 
     @Override
-    public boolean shouldUseRenderHelper(
-            IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
+    public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item,
+            IItemRenderer.ItemRendererHelper helper) {
         return true;
     }
 

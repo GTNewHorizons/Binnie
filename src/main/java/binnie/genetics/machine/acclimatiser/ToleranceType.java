@@ -1,9 +1,11 @@
 package binnie.genetics.machine.acclimatiser;
 
-import binnie.botany.gardening.Gardening;
 import net.minecraft.item.ItemStack;
 
+import binnie.botany.gardening.Gardening;
+
 public enum ToleranceType {
+
     Temperature,
     Humidity,
     PH;

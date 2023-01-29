@@ -3,6 +3,7 @@ package binnie.extratrees.worldgen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenRainbowGum extends WorldGenTree {
+
     public WorldGenRainbowGum(ITreeGenData tree) {
         super(tree);
     }

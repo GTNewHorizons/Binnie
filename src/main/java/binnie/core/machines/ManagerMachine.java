@@ -1,17 +1,19 @@
 package binnie.core.machines;
 
-import binnie.core.BinnieCore;
-import binnie.core.ManagerBase;
-import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.machines.inventory.ValidatorIcon;
-import forestry.api.core.INBTTagable;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import binnie.core.BinnieCore;
+import binnie.core.ManagerBase;
+import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.machines.inventory.ValidatorIcon;
+import forestry.api.core.INBTTagable;
+
 public class ManagerMachine extends ManagerBase {
+
     private Map<Class<?>, Class<?>[]> componentInterfaceMap;
     private Map<String, MachineGroup> machineGroups;
     private Map<Integer, Class<?>> networkIDToComponent;
@@ -74,8 +76,10 @@ public class ManagerMachine extends ManagerBase {
         machineRenderID = BinnieCore.proxy.getUniqueRenderID();
         SlotValidator.IconBee = new ValidatorIcon(BinnieCore.instance, "validator/bee.0", "validator/bee.1");
         SlotValidator.IconFrame = new ValidatorIcon(BinnieCore.instance, "validator/frame.0", "validator/frame.1");
-        SlotValidator.IconCircuit =
-                new ValidatorIcon(BinnieCore.instance, "validator/circuit.0", "validator/circuit.1");
+        SlotValidator.IconCircuit = new ValidatorIcon(
+                BinnieCore.instance,
+                "validator/circuit.0",
+                "validator/circuit.1");
         SlotValidator.IconBlock = new ValidatorIcon(BinnieCore.instance, "validator/block.0", "validator/block.1");
     }
 

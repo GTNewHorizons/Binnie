@@ -1,13 +1,15 @@
 package binnie.genetics.machine.analyser;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import net.minecraft.item.ItemStack;
 
 public class AnalyserComponentLogic extends ComponentProcessSetCost implements IProcess {
+
     public AnalyserComponentLogic(Machine machine) {
         super(machine, Analyser.RF_COST, Analyser.TIME_PERIOD);
     }
@@ -38,7 +40,7 @@ public class AnalyserComponentLogic extends ComponentProcessSetCost implements I
         return new ErrorState.Item(
                 I18N.localise("genetics.machine.analyser.error.insufficientDye.title"),
                 I18N.localise("genetics.machine.analyser.error.insufficientDye"),
-                new int[] {Analyser.SLOT_DYE});
+                new int[] { Analyser.SLOT_DYE });
     }
 
     @Override

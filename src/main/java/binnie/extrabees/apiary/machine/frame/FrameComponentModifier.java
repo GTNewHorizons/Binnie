@@ -1,5 +1,7 @@
 package binnie.extrabees.apiary.machine.frame;
 
+import net.minecraft.world.World;
+
 import binnie.Binnie;
 import binnie.core.machines.Machine;
 import binnie.extrabees.apiary.ComponentBeeModifier;
@@ -8,9 +10,9 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IHiveFrame;
-import net.minecraft.world.World;
 
 public class FrameComponentModifier extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
+
     public FrameComponentModifier(Machine machine) {
         super(machine);
     }
@@ -22,28 +24,21 @@ public class FrameComponentModifier extends ComponentBeeModifier implements IBee
         }
 
         World world = getMachine().getTileEntity().getWorldObj();
-        int wear = Math.round(amount
-                * 5
-                * Binnie.Genetics.getBeeRoot().getBeekeepingMode(world).getWearModifier());
-        getInventory()
-                .setInventorySlotContents(
-                        AlvearyFrame.SLOT_FRAME,
-                        getHiveFrame()
-                                .frameUsed(
-                                        ((TileExtraBeeAlveary) getMachine().getTileEntity())
-                                                .getMultiblockLogic()
-                                                .getController(),
-                                        getInventory().getStackInSlot(AlvearyFrame.SLOT_FRAME),
-                                        null,
-                                        wear));
+        int wear = Math.round(amount * 5 * Binnie.Genetics.getBeeRoot().getBeekeepingMode(world).getWearModifier());
+        getInventory().setInventorySlotContents(
+                AlvearyFrame.SLOT_FRAME,
+                getHiveFrame().frameUsed(
+                        ((TileExtraBeeAlveary) getMachine().getTileEntity()).getMultiblockLogic().getController(),
+                        getInventory().getStackInSlot(AlvearyFrame.SLOT_FRAME),
+                        null,
+                        wear));
     }
 
     public IHiveFrame getHiveFrame() {
         if (getInventory().getStackInSlot(AlvearyFrame.SLOT_FRAME) == null) {
             return null;
         }
-        return (IHiveFrame)
-                getInventory().getStackInSlot(AlvearyFrame.SLOT_FRAME).getItem();
+        return (IHiveFrame) getInventory().getStackInSlot(AlvearyFrame.SLOT_FRAME).getItem();
     }
 
     @Override

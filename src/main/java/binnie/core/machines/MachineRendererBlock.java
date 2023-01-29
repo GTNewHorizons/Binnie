@@ -1,13 +1,15 @@
 package binnie.core.machines;
 
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.BinnieCore;
 import binnie.core.resource.BinnieResource;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class MachineRendererBlock {
+
     public static MachineRendererBlock instance = new MachineRendererBlock();
     private BinnieResource texture;
     private ModelBlock model;

@@ -1,5 +1,7 @@
 package binnie.botany.genetics;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.Binnie;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumFlowerChromosome;
@@ -16,9 +18,9 @@ import forestry.api.genetics.IAlleleTolerance;
 import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.core.genetics.Genome;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class FlowerGenome extends Genome implements IFlowerGenome {
+
     public FlowerGenome(NBTTagCompound nbttagcompound) {
         super(nbttagcompound);
     }

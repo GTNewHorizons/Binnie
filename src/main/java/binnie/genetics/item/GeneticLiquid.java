@@ -1,15 +1,17 @@
 package binnie.genetics.item;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.IFluidType;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.FluidStack;
 
 public enum GeneticLiquid implements IFluidType {
+
     GrowthMedium("growthMedium", 0xebe8b5),
     Bacteria("bacteria", 0xd8ba81),
     BacteriaPoly("bacteriaPoly", 0xae9cc4),

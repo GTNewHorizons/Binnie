@@ -6,6 +6,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.minecraft.control.ControlProgressBase;
 
 public class ControlSplicerProgress extends ControlProgressBase {
+
     float strength;
 
     public ControlSplicerProgress(IWidget parent, float x, float y, float w, float h) {
@@ -27,7 +28,7 @@ public class ControlSplicerProgress extends ControlProgressBase {
 
         for (int i = 0; i < n; ++i) {
             int seed = 432523;
-            int[] colours = {0x990000, 0x007700, 0x0000ff, 0x997700};
+            int[] colours = { 0x990000, 0x007700, 0x0000ff, 0x997700 };
             int c1 = colours[(int) Math.abs(13.0 * Math.sin(i) + 48.0 * Math.cos(i) + 25.0 * Math.sin(7 * i)) % 4];
             int c2 = colours[(int) Math.abs(23.0 * Math.sin(i) + 28.0 * Math.cos(i) + 15.0 * Math.sin(7 * i)) % 4];
             int c3 = colours[(int) Math.abs(43.0 * Math.sin(i) + 38.0 * Math.cos(i) + 55.0 * Math.sin(7 * i)) % 4];
@@ -50,7 +51,8 @@ public class ControlSplicerProgress extends ControlProgressBase {
                         new IArea(w() / 2.0f + y, h() - offMovement * percentView - 8.0f, 4.0f, h / 2.0f),
                         (y < 0.0f) ? c3 : c2);
                 CraftGUI.render.solidAlpha(
-                        new IArea(w() / 2.0f + y, h() - offMovement * percentView - 4.0f, 4.0f, h / 2.0f), c4);
+                        new IArea(w() / 2.0f + y, h() - offMovement * percentView - 4.0f, 4.0f, h / 2.0f),
+                        c4);
             }
         }
     }

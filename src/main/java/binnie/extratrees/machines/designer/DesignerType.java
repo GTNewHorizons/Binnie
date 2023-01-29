@@ -1,5 +1,9 @@
 package binnie.extratrees.machines.designer;
 
+import java.util.Locale;
+
+import net.minecraft.item.ItemStack;
+
 import binnie.botany.Botany;
 import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.core.util.I18N;
@@ -12,10 +16,9 @@ import binnie.extratrees.carpentry.DesignSystem;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.carpentry.ModuleCarpentry;
 import binnie.extratrees.core.ExtraTreeTexture;
-import java.util.Locale;
-import net.minecraft.item.ItemStack;
 
 public enum DesignerType {
+
     WOODWORKER(ExtraTreeTexture.carpenterTexture),
     PANELWORKER(ExtraTreeTexture.panelerTexture),
     GLASSWORKER(ExtraTreeTexture.panelerTexture),

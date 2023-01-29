@@ -1,5 +1,15 @@
 package binnie.core.craftgui.minecraft.control;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.Fluid;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -19,15 +29,9 @@ import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
 import binnie.core.util.I18N;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.Fluid;
-import org.lwjgl.opengl.GL11;
 
 public class ControlLiquidTank extends Control implements ITooltip {
+
     public static List<Integer> tankError = new ArrayList<>();
     private int tankID;
     private boolean horizontal;
@@ -42,6 +46,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
         this.horizontal = horizontal;
         addAttribute(WidgetAttribute.MOUSE_OVER);
         addSelfEventHandler(new EventMouse.Down.Handler() {
+
             @Override
             public void onEvent(EventMouse.Down event) {
                 if (event.getButton() == 0) {
@@ -71,8 +76,8 @@ public class ControlLiquidTank extends Control implements ITooltip {
 
     @Override
     public void onRenderBackground() {
-        CraftGUI.render.texture(
-                horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, IPoint.ZERO);
+        CraftGUI.render
+                .texture(horizontal ? CraftGUITexture.HorizontalLiquidTank : CraftGUITexture.LiquidTank, IPoint.ZERO);
         if (isMouseOver() && Window.get(this).getGui().isHelpMode()) {
             int c = 0xaa000000 + MinecraftTooltip.getOutline(Tooltip.Type.HELP);
             CraftGUI.render.gradientRect(getArea().inset(1), c, c);
@@ -105,8 +110,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
                 limited.setSize(new IPoint(limited.w() - 1.0f, limited.h()));
             }
 
-            CraftGUI.render.limitArea(
-                    new IArea(limited.pos().add(pos).add(offset), limited.size().sub(offset)));
+            CraftGUI.render.limitArea(new IArea(limited.pos().add(pos).add(offset), limited.size().sub(offset)));
             GL11.glEnable(GL11.GL_SCISSOR_TEST);
             BinnieCore.proxy.bindTexture(TextureMap.locationItemsTexture);
             for (int y = 0; y < height; y += 16) {
@@ -161,8 +165,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
         if (slot.getValidator() == null) {
             tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.acceptsAny"));
         } else {
-            tooltip.add(I18N.localise(
-                    "binniecore.gui.tooltip.tank.accepts", slot.getValidator().getTooltip()));
+            tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.accepts", slot.getValidator().getTooltip()));
         }
     }
 
@@ -176,13 +179,11 @@ public class ControlLiquidTank extends Control implements ITooltip {
         int percentage = (int) (100.0 * getTank().getAmount() / getTankCapacity());
         tooltip.add(getTank().getName());
         tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.full", percentage));
-        tooltip.add(I18N.localise(
-                "binniecore.gui.tooltip.tank.amount", (int) getTank().getAmount()));
+        tooltip.add(I18N.localise("binniecore.gui.tooltip.tank.amount", (int) getTank().getAmount()));
     }
 
     private TankSlot getTankSlot() {
-        ITankMachine tank =
-                Machine.getInterface(ITankMachine.class, Window.get(this).getInventory());
+        ITankMachine tank = Machine.getInterface(ITankMachine.class, Window.get(this).getInventory());
         return (tank != null) ? tank.getTankSlot(tankID) : null;
     }
 }

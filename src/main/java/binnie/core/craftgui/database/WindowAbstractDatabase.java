@@ -1,5 +1,11 @@
 package binnie.core.craftgui.database;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextEdit;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
@@ -22,17 +28,16 @@ import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.util.I18N;
 import binnie.core.util.IValidator;
+
 import com.mojang.authlib.GameProfile;
+
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IClassification;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import net.minecraft.entity.player.EntityPlayer;
 
 public abstract class WindowAbstractDatabase extends Window {
+
     protected boolean isNEI;
 
     private float selectionBoxWidth;
@@ -81,6 +86,7 @@ public abstract class WindowAbstractDatabase extends Window {
     public void initialiseClient() {
         setSize(new IPoint(176.0f + selectionBoxWidth + 22.0f + 8.0f, 208.0f));
         addEventHandler(new EventValueChanged.Handler() {
+
             @Override
             public void onEvent(EventValueChanged event) {
                 if (!(event.getOrigin().getParent() instanceof ControlPage)) {
@@ -111,40 +117,37 @@ public abstract class WindowAbstractDatabase extends Window {
             }
         });
 
-        addEventHandler(
-                new EventTextEdit.Handler() {
-                    @Override
-                    public void onEvent(EventTextEdit event) {
-                        for (ModeWidgets widgets : modes.values()) {
-                            widgets.listBox.setValidator(new IValidator<IWidget>() {
-                                @Override
-                                public boolean isValid(IWidget object) {
-                                    return event.getValue().isEmpty()
-                                            || ((ControlTextOption) object)
-                                                    .getText()
-                                                    .toLowerCase()
-                                                    .contains(event.getValue().toLowerCase());
-                                }
-                            });
+        addEventHandler(new EventTextEdit.Handler() {
+
+            @Override
+            public void onEvent(EventTextEdit event) {
+                for (ModeWidgets widgets : modes.values()) {
+                    widgets.listBox.setValidator(new IValidator<IWidget>() {
+
+                        @Override
+                        public boolean isValid(IWidget object) {
+                            return event.getValue().isEmpty() || ((ControlTextOption) object).getText().toLowerCase()
+                                    .contains(event.getValue().toLowerCase());
                         }
-                    }
-                }.setOrigin(EventHandler.Origin.DirectChild, this));
+                    });
+                }
+            }
+        }.setOrigin(EventHandler.Origin.DirectChild, this));
 
         new ControlHelp(this, 4.0f, 4.0f);
         (panelInformation = new Panel(this, 24.0f, 24.0f, 144.0f, 176.0f, MinecraftGUI.PanelType.Black))
                 .setColor(860416);
         (panelSearch = new Panel(this, 176.0f, 24.0f, selectionBoxWidth, 160.0f, MinecraftGUI.PanelType.Black))
                 .setColor(860416);
-        modePages =
-                new ControlPages<>(this, 0.0f, 0.0f, getSize().x(), getSize().y());
+        modePages = new ControlPages<>(this, 0.0f, 0.0f, getSize().x(), getSize().y());
         new ControlTextEdit(this, 176.0f, 184.0f, selectionBoxWidth, 16.0f);
 
         createMode(Mode.Species, new ModeWidgets(Mode.Species, this) {
+
             @Override
             public void createListBox(IArea area) {
                 GameProfile playerName = getUsername();
-                Collection<IAlleleSpecies> speciesList = database.isNEI
-                        ? database.system.getAllSpecies()
+                Collection<IAlleleSpecies> speciesList = database.isNEI ? database.system.getAllSpecies()
                         : database.system.getDiscoveredSpecies(database.getWorld(), playerName);
                 (listBox = new ControlSpeciesBox(modePage, area.x(), area.y(), area.w(), area.h()))
                         .setOptions(speciesList);
@@ -152,11 +155,11 @@ public abstract class WindowAbstractDatabase extends Window {
         });
 
         createMode(Mode.Branches, new ModeWidgets(Mode.Branches, this) {
+
             @Override
             public void createListBox(IArea area) {
                 GameProfile playerName = getUsername();
-                Collection<IClassification> speciesList = database.isNEI
-                        ? database.system.getAllBranches()
+                Collection<IClassification> speciesList = database.isNEI ? database.system.getAllBranches()
                         : database.system.getDiscoveredBranches(database.getWorld(), playerName);
 
                 listBox = new ControlBranchBox(modePage, area.x(), area.y(), area.w(), area.h());
@@ -165,6 +168,7 @@ public abstract class WindowAbstractDatabase extends Window {
         });
 
         createMode(Mode.Breeder, new ModeWidgets(Mode.Breeder, this) {
+
             @Override
             public void createListBox(IArea area) {
                 listBox = new ControlListBox(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f);
@@ -172,27 +176,37 @@ public abstract class WindowAbstractDatabase extends Window {
         });
 
         addTabs();
-        ControlTabBar<IDatabaseMode> tab =
-                new ControlTabBar<IDatabaseMode>(
-                        this, 176.0f + selectionBoxWidth, 24.0f, 22.0f, 176.0f, Position.RIGHT) {
+        ControlTabBar<IDatabaseMode> tab = new ControlTabBar<IDatabaseMode>(
+                this,
+                176.0f + selectionBoxWidth,
+                24.0f,
+                22.0f,
+                176.0f,
+                Position.RIGHT) {
+
+            @Override
+            public ControlTab<IDatabaseMode> createTab(float x, float y, float w, float h, IDatabaseMode value) {
+                return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
+
                     @Override
-                    public ControlTab<IDatabaseMode> createTab(
-                            float x, float y, float w, float h, IDatabaseMode value) {
-                        return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
-                            @Override
-                            public String getName() {
-                                return value.getName();
-                            }
-                        };
+                    public String getName() {
+                        return value.getName();
                     }
                 };
+            }
+        };
 
         tab.setValues(modePages.getValues());
         CraftGUIUtil.linkWidgets(tab, modePages);
         changeMode(Mode.Species);
         for (IDatabaseMode mode : modes.keySet()) {
-            modes.get(mode).infoTabs =
-                    new ControlTabBar(modes.get(mode).modePage, 8.0f, 24.0f, 16.0f, 176.0f, Position.LEFT);
+            modes.get(mode).infoTabs = new ControlTabBar(
+                    modes.get(mode).modePage,
+                    8.0f,
+                    24.0f,
+                    16.0f,
+                    176.0f,
+                    Position.LEFT);
             modes.get(mode).infoTabs.setValues(modes.get(mode).infoPages.getValues());
             CraftGUIUtil.linkWidgets(modes.get(mode).infoTabs, modes.get(mode).infoPages);
         }
@@ -236,6 +250,7 @@ public abstract class WindowAbstractDatabase extends Window {
     }
 
     public enum Mode implements IDatabaseMode {
+
         Species,
         Branches,
         Breeder;
@@ -247,6 +262,7 @@ public abstract class WindowAbstractDatabase extends Window {
     }
 
     public abstract static class ModeWidgets {
+
         public WindowAbstractDatabase database;
         public ControlPage<IDatabaseMode> modePage;
         public ControlListBox listBox;
@@ -268,7 +284,8 @@ public abstract class WindowAbstractDatabase extends Window {
             CraftGUIUtil.alignToWidget(listBox, database.panelSearch);
             CraftGUIUtil.moveWidget(listBox, new IPoint(2.0f, 2.0f));
             CraftGUIUtil.alignToWidget(
-                    infoPages = new ControlPages<>(modePage, 0.0f, 0.0f, 144.0f, 176.0f), database.panelInformation);
+                    infoPages = new ControlPages<>(modePage, 0.0f, 0.0f, 144.0f, 176.0f),
+                    database.panelInformation);
         }
 
         public abstract void createListBox(IArea area);

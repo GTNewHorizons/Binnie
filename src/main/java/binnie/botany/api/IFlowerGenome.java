@@ -5,6 +5,7 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IGenome;
 
 public interface IFlowerGenome extends IGenome {
+
     @Override
     IAlleleFlowerSpecies getPrimary();
 

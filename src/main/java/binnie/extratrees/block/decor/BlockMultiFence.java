@@ -1,18 +1,21 @@
 package binnie.extratrees.block.decor;
 
+import java.util.List;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+
 import binnie.core.block.IBlockMetadata;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.PlankType;
 import binnie.extratrees.block.WoodManager;
-import java.util.List;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
 public class BlockMultiFence extends BlockFence implements IBlockMetadata {
+
     public BlockMultiFence() {
         setBlockName("multifence");
     }
@@ -26,8 +29,7 @@ public class BlockMultiFence extends BlockFence implements IBlockMetadata {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return (FenceRenderer.layer == 0)
-                ? getDescription(meta).getPlankType().getIcon()
+        return (FenceRenderer.layer == 0) ? getDescription(meta).getPlankType().getIcon()
                 : getDescription(meta).getSecondaryPlankType().getIcon();
     }
 

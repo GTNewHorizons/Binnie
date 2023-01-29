@@ -4,6 +4,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 class BinnieFluid extends Fluid {
+
     protected IFluidType fluidType;
 
     private String name;

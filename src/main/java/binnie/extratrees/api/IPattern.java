@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
 public interface IPattern {
+
     IIcon getPrimaryIcon(IDesignSystem system);
 
     IIcon getSecondaryIcon(IDesignSystem system);

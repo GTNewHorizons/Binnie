@@ -1,11 +1,13 @@
 package binnie.extratrees.carpentry;
 
+import net.minecraft.util.IIcon;
+
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.ILayout;
 import binnie.extratrees.api.IPattern;
-import net.minecraft.util.IIcon;
 
 public class Layout implements ILayout {
+
     protected IPattern pattern;
     protected boolean inverted;
 

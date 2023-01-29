@@ -6,9 +6,11 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.IItemRenderer;
+
 import org.lwjgl.opengl.GL11;
 
 public class MultipassItemRenderer implements IItemRenderer {
+
     private void render(RenderBlocks renderer, ItemStack item, float f, float g, float h) {
         GL11.glTranslatef(f, g, h);
         Block block = ((ItemBlock) item.getItem()).field_150939_a;
@@ -22,8 +24,8 @@ public class MultipassItemRenderer implements IItemRenderer {
             GL11.glDisable(GL11.GL_BLEND);
         }
 
-        MultipassBlockRenderer.instance.renderInventoryBlock(
-                block, TileEntityMetadata.getItemDamage(item), 0, renderer);
+        MultipassBlockRenderer.instance
+                .renderInventoryBlock(block, TileEntityMetadata.getItemDamage(item), 0, renderer);
         if (block.getRenderBlockPass() == 0) {
             GL11.glAlphaFunc(516, 0.1f);
         }
@@ -43,8 +45,8 @@ public class MultipassItemRenderer implements IItemRenderer {
     }
 
     @Override
-    public boolean shouldUseRenderHelper(
-            IItemRenderer.ItemRenderType type, ItemStack item, IItemRenderer.ItemRendererHelper helper) {
+    public boolean shouldUseRenderHelper(IItemRenderer.ItemRenderType type, ItemStack item,
+            IItemRenderer.ItemRendererHelper helper) {
         return true;
     }
 

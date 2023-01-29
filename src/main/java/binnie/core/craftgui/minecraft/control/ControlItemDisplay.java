@@ -1,5 +1,10 @@
 package binnie.core.craftgui.minecraft.control;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.item.ItemStack;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -9,11 +14,9 @@ import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.Window;
-import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
-import org.lwjgl.opengl.GL11;
 
 public class ControlItemDisplay extends Control implements ITooltip {
+
     public boolean hastooltip;
     private ItemStack itemStack;
     private boolean rotating;

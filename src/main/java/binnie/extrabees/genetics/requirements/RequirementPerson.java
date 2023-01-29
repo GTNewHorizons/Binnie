@@ -1,17 +1,20 @@
 package binnie.extrabees.genetics.requirements;
 
-import binnie.core.util.I18N;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IGenome;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
 import net.minecraft.util.EnumChatFormatting;
 
+import binnie.core.util.I18N;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IGenome;
+
 public class RequirementPerson implements IMutationRequirement {
+
     protected List<String> names;
     protected HashMap<String, Function<String, String>> nameFormatters = new HashMap<>();
     private static final Function<String, String> defaultApplier = name -> name;
@@ -44,8 +47,7 @@ public class RequirementPerson implements IMutationRequirement {
                 hasNewLines = true;
             }
             String name = names.get(i);
-            namesFormatted.append(
-                    nameFormatters.getOrDefault(name, defaultApplier).apply(name));
+            namesFormatted.append(nameFormatters.getOrDefault(name, defaultApplier).apply(name));
             namesFormatted.append(EnumChatFormatting.RESET);
         }
         namesFormatted.append("]");

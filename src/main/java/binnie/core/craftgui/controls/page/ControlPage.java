@@ -5,6 +5,7 @@ import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
 
 public class ControlPage<T> extends Control implements IControlValue<T> {
+
     protected T value;
 
     public ControlPage(IWidget parent, T value) {

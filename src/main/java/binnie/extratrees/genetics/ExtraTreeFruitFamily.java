@@ -3,6 +3,7 @@ package binnie.extratrees.genetics;
 import forestry.api.genetics.IFruitFamily;
 
 public enum ExtraTreeFruitFamily implements IFruitFamily {
+
     Berry("Berries", "berry", "berri"),
     Citrus("Citrus", "citrus", "citrus");
 

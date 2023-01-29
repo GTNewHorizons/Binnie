@@ -1,17 +1,19 @@
 package binnie.extratrees.item;
 
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.api.IToolHammer;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.api.IToolHammer;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemHammer extends Item implements IToolHammer {
+
     protected boolean isDurableHammer;
 
     public ItemHammer(boolean durable) {
@@ -31,8 +33,7 @@ public class ItemHammer extends Item implements IToolHammer {
 
     @Override
     public String getItemStackDisplayName(ItemStack i) {
-        return isDurableHammer
-                ? I18N.localise("extratrees.item.masterCarpentryHammer")
+        return isDurableHammer ? I18N.localise("extratrees.item.masterCarpentryHammer")
                 : I18N.localise("extratrees.item.carpentryHammer");
     }
 

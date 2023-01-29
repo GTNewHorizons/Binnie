@@ -1,22 +1,24 @@
 package binnie.extratrees.block;
 
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 public class DoorBlockRenderer implements ISimpleBlockRenderingHandler {
+
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
         // ignored
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         int c = block.colorMultiplier(renderer.blockAccess, x, y, z);
         float c2 = (c >> 16 & 0xFF) / 255.0f;
         float c3 = (c >> 8 & 0xFF) / 255.0f;

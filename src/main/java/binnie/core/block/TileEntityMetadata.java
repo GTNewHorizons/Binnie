@@ -1,7 +1,5 @@
 package binnie.core.block;
 
-import binnie.core.BinnieCore;
-import binnie.core.network.packet.MessageMetadata;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,7 +7,11 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 
+import binnie.core.BinnieCore;
+import binnie.core.network.packet.MessageMetadata;
+
 public class TileEntityMetadata extends TileEntity {
+
     private int meta;
     private boolean droppedBlock;
 

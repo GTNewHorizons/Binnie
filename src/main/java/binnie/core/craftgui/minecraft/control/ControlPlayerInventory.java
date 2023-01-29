@@ -1,12 +1,14 @@
 package binnie.core.craftgui.minecraft.control;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.core.Control;
-import binnie.core.craftgui.minecraft.InventoryType;
 import java.util.ArrayList;
 import java.util.List;
 
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.core.Control;
+import binnie.core.craftgui.minecraft.InventoryType;
+
 public class ControlPlayerInventory extends Control {
+
     private List<ControlSlot> slots;
 
     public ControlPlayerInventory(IWidget parent, boolean wide) {

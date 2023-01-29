@@ -1,5 +1,8 @@
 package binnie.genetics.machine.splicer;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -13,10 +16,9 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.ComponentGeneticGUI;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase implements IMachineInformation {
+
     public SplicerPackage() {
         super("splicer", GeneticsTexture.Splicer, 0xe22235, true);
     }
@@ -66,21 +68,21 @@ public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase impl
         transfer.addRestock(Splicer.SLOT_RESERVE, Splicer.SLOT_TARGET, 1);
         transfer.addRestock(Splicer.SLOT_SERUM_RESERVE, Splicer.SLOT_SERUM_VIAL);
         transfer.addStorage(
-                Splicer.SLOT_SERUM_VIAL, Splicer.SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
+                Splicer.SLOT_SERUM_VIAL,
+                Splicer.SLOT_SERUM_EXPENDED,
+                new ComponentInventoryTransfer.Condition() {
+
                     @Override
                     public boolean fufilled(ItemStack stack) {
                         return Engineering.getCharges(stack) == 0;
                     }
                 });
         transfer.addStorage(Splicer.SLOT_TARGET, Splicer.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
+
             @Override
             public boolean fufilled(ItemStack stack) {
-                return stack != null
-                        && transfer.getMachine().getMachineUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null
-                        && transfer.getMachine()
-                                        .getInterface(SplicerComponentLogic.class)
-                                        .isValidSerum()
-                                != null;
+                return stack != null && transfer.getMachine().getMachineUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null
+                        && transfer.getMachine().getInterface(SplicerComponentLogic.class).isValidSerum() != null;
             }
         });
 

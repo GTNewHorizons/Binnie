@@ -1,11 +1,8 @@
 package binnie.core.machines.transfer;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.IInventorySlots;
-import binnie.core.machines.inventory.IValidatedTankContainer;
-import binnie.core.machines.power.ITankMachine;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -13,7 +10,13 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.IFluidTank;
 
+import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.IInventorySlots;
+import binnie.core.machines.inventory.IValidatedTankContainer;
+import binnie.core.machines.power.ITankMachine;
+
 public class TransferRequest {
+
     private ItemStack itemToTransfer;
     private ItemStack returnItem;
     private IInventory origin;
@@ -120,8 +123,7 @@ public class TransferRequest {
                             || !((IInventorySlots) destination).getSlot(slot).isRecipe()) {
                         if (destination.getStackInSlot(slot) != null) {
                             if (item.isStackable()) {
-                                ItemStack merged =
-                                        destination.getStackInSlot(slot).copy();
+                                ItemStack merged = destination.getStackInSlot(slot).copy();
                                 ItemStack[] newStacks = mergeStacks(item.copy(), merged.copy());
                                 item = newStacks[0];
                                 if (!areItemsEqual(merged, newStacks[1])) {
@@ -178,18 +180,18 @@ public class TransferRequest {
                 }
             }
         }
-        return new ItemStack[] {itemstack, merged};
+        return new ItemStack[] { itemstack, merged };
     }
 
-    private ItemStack transferToTank(
-            ItemStack item, IInventory origin, ITankMachine destination, int tankID, boolean doAdd) {
+    private ItemStack transferToTank(ItemStack item, IInventory origin, ITankMachine destination, int tankID,
+            boolean doAdd) {
         item = transferToTankUsingContainerData(item, origin, destination, tankID, doAdd);
         item = transferToTankUsingFluidContainer(item, origin, destination, tankID, doAdd);
         return item;
     }
 
-    private ItemStack transferToTankUsingFluidContainer(
-            ItemStack item, IInventory origin, ITankMachine destination, int tankID, boolean doAdd) {
+    private ItemStack transferToTankUsingFluidContainer(ItemStack item, IInventory origin, ITankMachine destination,
+            int tankID, boolean doAdd) {
         if (item == null || !(item.getItem() instanceof IFluidContainerItem)) {
             return item;
         }
@@ -214,16 +216,16 @@ public class TransferRequest {
         return item;
     }
 
-    private ItemStack transferToTankUsingContainerData(
-            ItemStack item, IInventory origin, ITankMachine destination, int tankID, boolean doAdd) {
+    private ItemStack transferToTankUsingContainerData(ItemStack item, IInventory origin, ITankMachine destination,
+            int tankID, boolean doAdd) {
         if (item == null) {
             return item;
         }
 
         FluidStack containerLiquid = null;
         FluidContainerRegistry.FluidContainerData containerLiquidData = null;
-        for (FluidContainerRegistry.FluidContainerData data :
-                FluidContainerRegistry.getRegisteredFluidContainerData()) {
+        for (FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry
+                .getRegisteredFluidContainerData()) {
             if (data.filledContainer.isItemEqual(item)) {
                 containerLiquidData = data;
                 containerLiquid = data.fluid.copy();
@@ -282,15 +284,15 @@ public class TransferRequest {
         return leftOverContainers;
     }
 
-    private ItemStack transferFromTank(
-            ItemStack item, IInventory origin, ITankMachine destination, int tankID, boolean doAdd) {
+    private ItemStack transferFromTank(ItemStack item, IInventory origin, ITankMachine destination, int tankID,
+            boolean doAdd) {
         item = transferFromTankUsingContainerData(item, origin, destination, tankID, doAdd);
         item = transferFromTankUsingFluidContainer(item, origin, destination, tankID, doAdd);
         return item;
     }
 
-    private ItemStack transferFromTankUsingFluidContainer(
-            ItemStack item, IInventory origin, ITankMachine destination, int tankID, boolean doAdd) {
+    private ItemStack transferFromTankUsingFluidContainer(ItemStack item, IInventory origin, ITankMachine destination,
+            int tankID, boolean doAdd) {
         if (item == null || !(item.getItem() instanceof IFluidContainerItem)) {
             return item;
         }
@@ -312,8 +314,8 @@ public class TransferRequest {
         return item;
     }
 
-    private ItemStack transferFromTankUsingContainerData(
-            ItemStack item, IInventory origin, ITankMachine destination, int tankID, boolean doAdd) {
+    private ItemStack transferFromTankUsingContainerData(ItemStack item, IInventory origin, ITankMachine destination,
+            int tankID, boolean doAdd) {
         if (item == null) {
             return item;
         }
@@ -325,8 +327,8 @@ public class TransferRequest {
         }
 
         FluidContainerRegistry.FluidContainerData containerLiquidData = null;
-        for (FluidContainerRegistry.FluidContainerData data :
-                FluidContainerRegistry.getRegisteredFluidContainerData()) {
+        for (FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry
+                .getRegisteredFluidContainerData()) {
             if (data.emptyContainer.isItemEqual(item) && liquidInTank.isFluidEqual(data.fluid)) {
                 containerLiquidData = data;
                 break;
@@ -409,6 +411,7 @@ public class TransferRequest {
     }
 
     public static class TransferSlot {
+
         public int id;
         public IInventory inventory;
 

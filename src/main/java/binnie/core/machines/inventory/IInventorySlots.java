@@ -1,6 +1,7 @@
 package binnie.core.machines.inventory;
 
 public interface IInventorySlots {
+
     InventorySlot addSlot(int index, String unlocalizedName);
 
     InventorySlot[] addSlotArray(int[] indexes, String unlocalizedName);

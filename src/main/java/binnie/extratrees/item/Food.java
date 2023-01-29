@@ -1,20 +1,23 @@
 package binnie.extratrees.item;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.item.IItemMisc;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.recipes.RecipeManagers;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.oredict.OreDictionary;
 
 public enum Food implements IItemMisc {
+
     Crabapple(2),
     Orange(4),
     Kumquat(2),
@@ -192,7 +195,7 @@ public enum Food implements IItemMisc {
     public void addJuice(int time, int amount, int mulch) {
         RecipeManagers.squeezerManager.addRecipe(
                 time,
-                new ItemStack[] {get(1)},
+                new ItemStack[] { get(1) },
                 Binnie.Liquid.getLiquidStack("juice", amount),
                 Mods.forestry.stack("mulch"),
                 mulch);
@@ -201,7 +204,7 @@ public enum Food implements IItemMisc {
     public void addOil(int time, int amount, int mulch) {
         RecipeManagers.squeezerManager.addRecipe(
                 time,
-                new ItemStack[] {get(1)},
+                new ItemStack[] { get(1) },
                 Binnie.Liquid.getLiquidStack("seedoil", amount),
                 Mods.forestry.stack("mulch"),
                 mulch);

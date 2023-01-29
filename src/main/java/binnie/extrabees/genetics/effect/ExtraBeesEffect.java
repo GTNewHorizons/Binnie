@@ -1,21 +1,9 @@
 package binnie.extrabees.genetics.effect;
 
-import binnie.Binnie;
-import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.genetics.ExtraBeesFlowers;
-import cofh.api.energy.IEnergyReceiver;
-import forestry.api.apiculture.BeeManager;
-import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IArmorApiarist;
-import forestry.api.apiculture.IBeeGenome;
-import forestry.api.apiculture.IBeeHousing;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IEffectData;
-import forestry.core.proxy.Proxies;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -37,7 +25,22 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
 
+import binnie.Binnie;
+import binnie.core.util.I18N;
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.genetics.ExtraBeesFlowers;
+import cofh.api.energy.IEnergyReceiver;
+import forestry.api.apiculture.BeeManager;
+import forestry.api.apiculture.IAlleleBeeEffect;
+import forestry.api.apiculture.IArmorApiarist;
+import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IEffectData;
+import forestry.core.proxy.Proxies;
+
 public enum ExtraBeesEffect implements IAlleleBeeEffect {
+
     ECTOPLASM,
     ACID,
     SPAWN_ZOMBIE,
@@ -178,10 +181,8 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
         }
 
         int entityCount = world.getEntitiesWithinAABB(
-                        entity.getClass(),
-                        AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1)
-                                .expand(8.0, 4.0, 8.0))
-                .size();
+                entity.getClass(),
+                AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1).expand(8.0, 4.0, 8.0)).size();
         if (entityCount >= 6) {
             return;
         }
@@ -327,9 +328,8 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
             return;
         }
 
-        if (world.isAirBlock(x, y, z)
-                && (world.isBlockNormalCubeDefault(x, y - 1, z, false)
-                        || world.getBlock(x, y - 1, z) == ExtraBees.ectoplasm)) {
+        if (world.isAirBlock(x, y, z) && (world.isBlockNormalCubeDefault(x, y - 1, z, false)
+                || world.getBlock(x, y - 1, z) == ExtraBees.ectoplasm)) {
             world.setBlock(x, y, z, ExtraBees.ectoplasm, 0, 0);
         }
     }
@@ -566,18 +566,18 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
         int[] territory;
         int[] area = territory = genome.getTerritory();
         int n = 0;
-        territory[n] *=
-                (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f);
+        territory[n] *= (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f)
+                * 3.0f);
 
         int[] array = area;
         int n2 = 1;
-        array[n2] *=
-                (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f);
+        array[n2] *= (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f)
+                * 3.0f);
 
         int[] array2 = area;
         int n3 = 2;
-        array2[n3] *=
-                (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f) * 3.0f);
+        array2[n3] *= (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f)
+                * 3.0f);
 
         if (area[0] < 1) {
             area[0] = 1;
@@ -609,17 +609,12 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
     public <T extends Entity> List<T> getEntities(Class<T> eClass, IBeeGenome genome, IBeeHousing housing) {
         int[] area = genome.getTerritory();
-        int[] offset = {-Math.round(area[0] / 2), -Math.round(area[1] / 2), -Math.round(area[2] / 2)};
-        int[] min = {
-            housing.getCoordinates().posX + offset[0],
-            housing.getCoordinates().posY + offset[1],
-            housing.getCoordinates().posZ + offset[2]
-        };
-        int[] max = {
-            housing.getCoordinates().posX + offset[0] + area[0],
-            housing.getCoordinates().posY + offset[1] + area[1],
-            housing.getCoordinates().posZ + offset[2] + area[2]
-        };
+        int[] offset = { -Math.round(area[0] / 2), -Math.round(area[1] / 2), -Math.round(area[2] / 2) };
+        int[] min = { housing.getCoordinates().posX + offset[0], housing.getCoordinates().posY + offset[1],
+                housing.getCoordinates().posZ + offset[2] };
+        int[] max = { housing.getCoordinates().posX + offset[0] + area[0],
+                housing.getCoordinates().posY + offset[1] + area[1],
+                housing.getCoordinates().posZ + offset[2] + area[2] };
         AxisAlignedBB box = AxisAlignedBB.getBoundingBox(min[0], min[1], min[2], max[0], max[1], max[2]);
         return housing.getWorld().getEntitiesWithinAABB(eClass, box);
     }
@@ -630,6 +625,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
     }
 
     public static class Birthday {
+
         protected int day;
         protected int month;
         protected String name;
@@ -641,8 +637,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
         }
 
         public boolean isToday() {
-            return Calendar.getInstance().get(5) == month
-                    && Calendar.getInstance().get(2) == day;
+            return Calendar.getInstance().get(5) == month && Calendar.getInstance().get(2) == day;
         }
 
         public String getName() {

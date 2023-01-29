@@ -1,15 +1,8 @@
 package binnie.extratrees.block;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
@@ -26,7 +19,17 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+
 public class BlockETDoor extends BlockDoor implements IBlockMetadata {
+
     protected BlockETDoor() {
         super(Material.wood);
         setHardness(3.0f);
@@ -66,13 +69,11 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
             boolean flag2;
             boolean flag3 = (i1 & 0x8) != 0;
             if (flag) {
-                flag2 = (j1 == 0 && meta == 2)
-                        || (j1 == 1 && meta == 5)
+                flag2 = (j1 == 0 && meta == 2) || (j1 == 1 && meta == 5)
                         || (j1 == 2 && meta == 3)
                         || (j1 == 3 && meta == 4);
             } else {
-                flag2 = (j1 == 0 && meta == 5)
-                        || (j1 == 1 && meta == 3)
+                flag2 = (j1 == 0 && meta == 5) || (j1 == 1 && meta == 3)
                         || (j1 == 2 && meta == 4)
                         || (j1 == 3 && meta == 2);
 

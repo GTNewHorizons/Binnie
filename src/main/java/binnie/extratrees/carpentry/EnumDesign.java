@@ -5,6 +5,7 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.ILayout;
 
 public enum EnumDesign implements IDesign {
+
     Blank("blank"),
     Octagon("octagon"),
     Diamond("diamond"),
@@ -197,8 +198,8 @@ public enum EnumDesign implements IDesign {
         EnumDesign.VeryThinCorner.setCornered(EnumPattern.VeryThinCorner.layout(), EnumPattern.ThinEdged.layout());
         EnumDesign.ThinCorner.setCornered(EnumPattern.ThinCorner.layout(), EnumPattern.Edged.layout());
         EnumDesign.Corner.setCornered(EnumPattern.Corner.layout(), EnumPattern.Halved.layout());
-        EnumDesign.ThickCorner.setCornered(
-                EnumPattern.ThickCorner.layout(), EnumPattern.Edged.layout(true).flipHorizontal());
+        EnumDesign.ThickCorner
+                .setCornered(EnumPattern.ThickCorner.layout(), EnumPattern.Edged.layout(true).flipHorizontal());
         EnumDesign.ThinCurvedCorner.setCornered(EnumPattern.ThinCurvedCorner.layout(), EnumPattern.Edged.layout());
         EnumDesign.CurvedCorner.setCornered(EnumPattern.CurvedCorner.layout(), EnumPattern.Halved.layout());
         EnumDesign.Edged.setEdged(EnumPattern.Edged.layout());
@@ -218,23 +219,23 @@ public enum EnumDesign implements IDesign {
         EnumDesign.ThinTSection.setTSection(EnumPattern.ThinTSection.layout(), EnumPattern.ThinBarred.layout());
         EnumDesign.TSection.setTSection(EnumPattern.TSection.layout(), EnumPattern.Barred.layout());
         EnumDesign.ThickTSection.setTSection(EnumPattern.ThickTSection.layout(), EnumPattern.ThickBarred.layout());
-        EnumDesign.ThinCurvedTSection.setTSection(
-                EnumPattern.ThinCurvedTSection.layout(), EnumPattern.ThinBarred.layout());
+        EnumDesign.ThinCurvedTSection
+                .setTSection(EnumPattern.ThinCurvedTSection.layout(), EnumPattern.ThinBarred.layout());
         EnumDesign.CurvedTSection.setTSection(EnumPattern.CurvedTSection.layout(), EnumPattern.Barred.layout());
-        EnumDesign.ThinBarredCorner.setBarredCorner(
-                EnumPattern.ThinBarredCorner.layout(), EnumPattern.ThinBarred.layout());
+        EnumDesign.ThinBarredCorner
+                .setBarredCorner(EnumPattern.ThinBarredCorner.layout(), EnumPattern.ThinBarred.layout());
         EnumDesign.BarredCorner.setBarredCorner(EnumPattern.BarredCorner.layout(), EnumPattern.Barred.layout());
-        EnumDesign.ThickBarredCorner.setBarredCorner(
-                EnumPattern.ThickBarredCorner.layout(), EnumPattern.ThickBarred.layout());
-        EnumDesign.ThinCurvedBarredCorner.setBarredCorner(
-                EnumPattern.ThinCurvedBarredCorner.layout(), EnumPattern.ThinBarred.layout());
-        EnumDesign.CurvedBarredCorner.setBarredCorner(
-                EnumPattern.BarredCurvedCorner.layout(), EnumPattern.Barred.layout());
-        EnumDesign.ThinStripedCorner.setStripedCorner(
-                EnumPattern.ThinStripedCorner.layout(), EnumPattern.ThinStriped.layout());
+        EnumDesign.ThickBarredCorner
+                .setBarredCorner(EnumPattern.ThickBarredCorner.layout(), EnumPattern.ThickBarred.layout());
+        EnumDesign.ThinCurvedBarredCorner
+                .setBarredCorner(EnumPattern.ThinCurvedBarredCorner.layout(), EnumPattern.ThinBarred.layout());
+        EnumDesign.CurvedBarredCorner
+                .setBarredCorner(EnumPattern.BarredCurvedCorner.layout(), EnumPattern.Barred.layout());
+        EnumDesign.ThinStripedCorner
+                .setStripedCorner(EnumPattern.ThinStripedCorner.layout(), EnumPattern.ThinStriped.layout());
         EnumDesign.StripedCorner.setStripedCorner(EnumPattern.StripedCorner.layout(), EnumPattern.Striped.layout());
-        EnumDesign.OrnateStripedCorner.setStripedCorner(
-                EnumPattern.OrnateStripedCorner.layout(), EnumPattern.ThinStriped.layout());
+        EnumDesign.OrnateStripedCorner
+                .setStripedCorner(EnumPattern.OrnateStripedCorner.layout(), EnumPattern.ThinStriped.layout());
         EnumDesign.Emblem1.setAllPatterns(EnumPattern.Emblem1.layout());
         EnumDesign.Emblem2.setAllPatterns(EnumPattern.Emblem2.layout());
         EnumDesign.Emblem3.setAllPatterns(EnumPattern.Emblem3.layout());
@@ -247,23 +248,31 @@ public enum EnumDesign implements IDesign {
         EnumDesign.LetterT.setLetterPattern(EnumPattern.LetterT.layout());
         EnumDesign.BarredEnd.setBarredEndPattern(EnumPattern.BarredEnd.layout(), EnumPattern.Barred.layout());
         EnumDesign.DiagonalCorner.setDiagonalCorner(
-                EnumPattern.DiagonalCorner.layout(), EnumPattern.Barred.layout(), EnumPattern.Edged.layout());
+                EnumPattern.DiagonalCorner.layout(),
+                EnumPattern.Barred.layout(),
+                EnumPattern.Edged.layout());
         EnumDesign.DiagonalTSection.setDiagonalTSection(
-                EnumPattern.DiagonalTSection.layout(), EnumPattern.Barred.layout(), EnumPattern.Edged.layout());
+                EnumPattern.DiagonalTSection.layout(),
+                EnumPattern.Barred.layout(),
+                EnumPattern.Edged.layout());
         EnumDesign.DiagonalCurvedCorner.setDiagonalCorner(
-                EnumPattern.DiagonalCurvedCorner.layout(), EnumPattern.Barred.layout(), EnumPattern.Edged.layout());
+                EnumPattern.DiagonalCurvedCorner.layout(),
+                EnumPattern.Barred.layout(),
+                EnumPattern.Edged.layout());
         EnumDesign.DiagonalCurvedTSection.setDiagonalTSection(
-                EnumPattern.DiagonalCurvedTSection.layout(), EnumPattern.Barred.layout(), EnumPattern.Edged.layout());
+                EnumPattern.DiagonalCurvedTSection.layout(),
+                EnumPattern.Barred.layout(),
+                EnumPattern.Edged.layout());
         EnumDesign.OrnateBarred.setBarred(EnumPattern.OrnateBarred.layout());
         EnumDesign.OrnateThinBarred.setBarred(EnumPattern.OrnateThinBarred.layout());
         EnumDesign.SplitBarred.setBarred(EnumPattern.SplitBarred.layout());
-        EnumDesign.SplitBarredCorner.setBarredCorner(
-                EnumPattern.SplitBarredCorner.layout(), EnumPattern.SplitBarred.layout());
-        EnumDesign.SplitBarredTSection.setTSection(
-                EnumPattern.SplitBarredTSection.layout(), EnumPattern.SplitBarred.layout());
+        EnumDesign.SplitBarredCorner
+                .setBarredCorner(EnumPattern.SplitBarredCorner.layout(), EnumPattern.SplitBarred.layout());
+        EnumDesign.SplitBarredTSection
+                .setTSection(EnumPattern.SplitBarredTSection.layout(), EnumPattern.SplitBarred.layout());
         EnumDesign.SplitCrossed.setCross(EnumPattern.SplitCrossed.layout(), EnumPattern.SplitBarred.layout());
-        EnumDesign.SplitBarredEnd.setBarredEndPattern(
-                EnumPattern.SplitBarredEnd.layout(), EnumPattern.SplitBarred.layout());
+        EnumDesign.SplitBarredEnd
+                .setBarredEndPattern(EnumPattern.SplitBarredEnd.layout(), EnumPattern.SplitBarred.layout());
         EnumDesign.Circle.setAllPatterns(EnumPattern.Circle.layout());
         EnumDesign.Plus.setAllPatterns(EnumPattern.Plus.layout());
         EnumDesign.Creeper.setAllPatterns(EnumPattern.Blank.layout(true));
@@ -292,10 +301,10 @@ public enum EnumDesign implements IDesign {
                 EnumPattern.Blank.layout(true),
                 EnumPattern.Blank.layout(true),
                 EnumPattern.Halved.layout());
-        EnumDesign.ThickBarredEnd.setBarredEndPattern(
-                EnumPattern.ThickBarredEnd.layout(), EnumPattern.ThickBarred.layout());
-        EnumDesign.ThinBarredEnd.setBarredEndPattern(
-                EnumPattern.ThinBarredEnd.layout(), EnumPattern.ThinBarred.layout());
+        EnumDesign.ThickBarredEnd
+                .setBarredEndPattern(EnumPattern.ThickBarredEnd.layout(), EnumPattern.ThickBarred.layout());
+        EnumDesign.ThinBarredEnd
+                .setBarredEndPattern(EnumPattern.ThinBarredEnd.layout(), EnumPattern.ThinBarred.layout());
         EnumDesign.OverlappedSplitBarred.setAllPatterns(EnumPattern.SplitBarred.layout());
         EnumDesign.OverlappedSplitBarred.setTopPattern(EnumPattern.OverlappedSplitBarred.layout());
         EnumDesign.OverlappedBarred.setAllPatterns(EnumPattern.Barred.layout());

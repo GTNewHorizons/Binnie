@@ -5,9 +5,11 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.minecraftforge.common.util.ForgeDirection;
 
 class SidedAccess {
+
     private Map<ForgeDirection, AccessDirection> accesses = new HashMap<>();
     private AccessDirection base = AccessDirection.Both;
     private boolean insertLocked;

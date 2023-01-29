@@ -3,6 +3,7 @@ package binnie.extratrees.worldgen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenHornbeam extends WorldGenTree {
+
     public WorldGenHornbeam(ITreeGenData tree) {
         super(tree);
     }

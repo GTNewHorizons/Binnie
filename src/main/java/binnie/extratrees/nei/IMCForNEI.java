@@ -1,9 +1,11 @@
 package binnie.extratrees.nei;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.nbt.NBTTagCompound;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
+
 public class IMCForNEI {
+
     public static void IMCSender() {
         sendHandler("binnie.extratrees.nei.NEIHandlerLumbermill", "ExtraTrees:machine:0");
 

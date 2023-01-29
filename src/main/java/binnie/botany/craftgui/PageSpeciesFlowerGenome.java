@@ -1,5 +1,7 @@
 package binnie.botany.craftgui;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
@@ -22,9 +24,9 @@ import binnie.genetics.genetics.AlleleHelper;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
 
 public class PageSpeciesFlowerGenome extends PageSpecies {
+
     public PageSpeciesFlowerGenome(IWidget parent, DatabaseTab tab) {
         super(parent, tab);
     }
@@ -103,7 +105,10 @@ public class PageSpeciesFlowerGenome extends PageSpecies {
                 I18N.localise("botany.gui.database.tab.genome.fertility"),
                 TextJustification.MIDDLE_RIGHT);
         new ControlText(
-                contents, new IArea(valueX, y, w3, th), genome.getFertility() + "x", TextJustification.MIDDLE_LEFT);
+                contents,
+                new IArea(valueX, y, w3, th),
+                genome.getFertility() + "x",
+                TextJustification.MIDDLE_LEFT);
         y += th;
 
         float lifespan = genome.getLifespan() * 68.27f / genome.getAgeChance() / 24000.0f;

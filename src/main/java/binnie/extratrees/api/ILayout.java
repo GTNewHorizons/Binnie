@@ -3,6 +3,7 @@ package binnie.extratrees.api;
 import net.minecraft.util.IIcon;
 
 public interface ILayout {
+
     IPattern getPattern();
 
     boolean isInverted();

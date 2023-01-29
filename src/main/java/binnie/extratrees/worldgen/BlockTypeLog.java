@@ -1,10 +1,12 @@
 package binnie.extratrees.worldgen;
 
-import binnie.extratrees.block.ILogType;
-import forestry.api.world.ITreeGenData;
 import net.minecraft.world.World;
 
+import binnie.extratrees.block.ILogType;
+import forestry.api.world.ITreeGenData;
+
 public class BlockTypeLog extends BlockType {
+
     protected ILogType log;
 
     public BlockTypeLog(ILogType log) {

@@ -1,5 +1,8 @@
 package binnie.extrabees.apiary.machine.stimulator;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import binnie.core.machines.Machine;
 import binnie.extrabees.apiary.ComponentBeeModifier;
 import forestry.api.apiculture.IBeeGenome;
@@ -8,10 +11,9 @@ import forestry.api.apiculture.IBeeModifier;
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuit;
 import forestry.api.circuits.ICircuitBoard;
-import java.util.ArrayList;
-import java.util.List;
 
 public class StimulatorModifierComponent extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
+
     protected float powerUsage;
     protected boolean powered;
     protected StimulatorCircuit[] modifiers;

@@ -1,14 +1,16 @@
 package binnie.core.craftgui.minecraft;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.IInventorySlots;
-import binnie.core.machines.inventory.InventorySlot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.IInventorySlots;
+import binnie.core.machines.inventory.InventorySlot;
+
 public class CustomSlot extends Slot {
+
     public CustomSlot(IInventory inventory, int index) {
         super(inventory, index, 0, 0);
     }

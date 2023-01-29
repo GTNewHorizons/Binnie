@@ -1,5 +1,10 @@
 package binnie.genetics.gui;
 
+import java.text.DecimalFormat;
+
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.EnumPlantType;
+
 import binnie.Binnie;
 import binnie.botany.api.IFlower;
 import binnie.core.craftgui.IWidget;
@@ -15,11 +20,9 @@ import forestry.api.arboriculture.ITree;
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.plugins.PluginApiculture;
-import java.text.DecimalFormat;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.EnumPlantType;
 
 public class AnalystPageBiology extends ControlAnalystPage {
+
     private static final float SPAWN_KOEF = 1365.3999f;
 
     public AnalystPageBiology(IWidget parent, IArea area, IIndividual ind) {
@@ -89,13 +92,13 @@ public class AnalystPageBiology extends ControlAnalystPage {
             y += 30;
         } else if (ind instanceof ITree) {
             String alleleName = Binnie.Genetics.treeBreedingSystem.getAlleleName(
-                    EnumTreeChromosome.SAPPINESS, ind.getGenome().getActiveAllele(EnumTreeChromosome.SAPPINESS));
+                    EnumTreeChromosome.SAPPINESS,
+                    ind.getGenome().getActiveAllele(EnumTreeChromosome.SAPPINESS));
             new ControlTextCentered(
-                            this,
-                            y,
-                            EnumChatFormatting.ITALIC
-                                    + I18N.localise("genetics.gui.analyst.biology.sappiness", alleleName))
-                    .setColor(getColor());
+                    this,
+                    y,
+                    EnumChatFormatting.ITALIC + I18N.localise("genetics.gui.analyst.biology.sappiness", alleleName))
+                            .setColor(getColor());
             y += 20;
         } else {
             y += 10;
@@ -106,17 +109,17 @@ public class AnalystPageBiology extends ControlAnalystPage {
             int fertility = bee.getGenome().getFertility();
             if (fertility > 1) {
                 new ControlTextCentered(
-                                this,
-                                y,
-                                EnumChatFormatting.BOLD
-                                        + I18N.localise("genetics.gui.analyst.biology.fertility.drones", fertility))
-                        .setColor(getColor());
+                        this,
+                        y,
+                        EnumChatFormatting.BOLD
+                                + I18N.localise("genetics.gui.analyst.biology.fertility.drones", fertility))
+                                        .setColor(getColor());
             } else {
                 new ControlTextCentered(
-                                this,
-                                y,
-                                EnumChatFormatting.BOLD + I18N.localise("genetics.gui.analyst.biology.fertility.drone"))
-                        .setColor(getColor());
+                        this,
+                        y,
+                        EnumChatFormatting.BOLD + I18N.localise("genetics.gui.analyst.biology.fertility.drone"))
+                                .setColor(getColor());
             }
 
             y += 22;
@@ -126,11 +129,10 @@ public class AnalystPageBiology extends ControlAnalystPage {
             y += 12;
             int lifespan = bee.getGenome().getLifespan() * PluginApiculture.ticksPerBeeWorkCycle;
             new ControlTextCentered(
-                            this,
-                            y,
-                            EnumChatFormatting.BOLD
-                                    + getMCDayString(lifespan * (bee.getGenome().getNocturnal() ? 1.0f : 2.0f)))
-                    .setColor(getColor());
+                    this,
+                    y,
+                    EnumChatFormatting.BOLD + getMCDayString(lifespan * (bee.getGenome().getNocturnal() ? 1.0f : 2.0f)))
+                            .setColor(getColor());
             y += 22;
         }
 
@@ -139,8 +141,9 @@ public class AnalystPageBiology extends ControlAnalystPage {
             int fertility = bee2.getGenome().getFertility();
             if (fertility > 1) {
                 new ControlTextCentered(
-                                this, y, I18N.localise("genetics.gui.analyst.biology.fertility.moths", fertility))
-                        .setColor(getColor());
+                        this,
+                        y,
+                        I18N.localise("genetics.gui.analyst.biology.fertility.moths", fertility)).setColor(getColor());
             } else {
                 new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.biology.fertility.moth"))
                         .setColor(getColor());
@@ -148,8 +151,7 @@ public class AnalystPageBiology extends ControlAnalystPage {
 
             y += 32;
             float caterpillarMatureTime = SPAWN_KOEF
-                    * Math.round(
-                            bee2.getGenome().getLifespan() / (bee2.getGenome().getFertility() * 2));
+                    * Math.round(bee2.getGenome().getLifespan() / (bee2.getGenome().getFertility() * 2));
             new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.biology.caterpillarGestation"))
                     .setColor(getColor());
 
@@ -164,10 +166,10 @@ public class AnalystPageBiology extends ControlAnalystPage {
 
             y += 12;
             new ControlTextCentered(
-                            this,
-                            y,
-                            EnumChatFormatting.BOLD + I18N.localise("genetics.gui.analyst.biology.blocksPerSec", speed))
-                    .setColor(getColor());
+                    this,
+                    y,
+                    EnumChatFormatting.BOLD + I18N.localise("genetics.gui.analyst.biology.blocksPerSec", speed))
+                            .setColor(getColor());
             y += 22;
         }
 
@@ -176,22 +178,21 @@ public class AnalystPageBiology extends ControlAnalystPage {
             int fertility = (int) (1.0f / tree.getGenome().getFertility());
             if (fertility > 1) {
                 new ControlTextCentered(
-                                this, y, I18N.localise("genetics.gui.analyst.biology.fertility.leaves", fertility))
-                        .setColor(getColor());
+                        this,
+                        y,
+                        I18N.localise("genetics.gui.analyst.biology.fertility.leaves", fertility)).setColor(getColor());
             } else {
                 new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.biology.fertility.leaf"))
                         .setColor(getColor());
             }
 
             y += 22;
-            float butterflySpawn = SPAWN_KOEF
-                    / (tree.getGenome().getSappiness() * tree.getGenome().getYield() * 0.5f);
+            float butterflySpawn = SPAWN_KOEF / (tree.getGenome().getSappiness() * tree.getGenome().getYield() * 0.5f);
             new ControlTextCentered(
-                            this,
-                            y,
-                            I18N.localise(
-                                    "genetics.gui.analyst.biology.mothSpawn.perLeaf", getTimeString(butterflySpawn)))
-                    .setColor(getColor());
+                    this,
+                    y,
+                    I18N.localise("genetics.gui.analyst.biology.mothSpawn.perLeaf", getTimeString(butterflySpawn)))
+                            .setColor(getColor());
 
             y += 34;
             new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.biology.planTypes"))
@@ -207,10 +208,10 @@ public class AnalystPageBiology extends ControlAnalystPage {
             IFlower flower = (IFlower) ind;
             float butterflySpawn2 = SPAWN_KOEF / (flower.getGenome().getSappiness() * 0.2f);
             new ControlTextCentered(
-                            this,
-                            y,
-                            I18N.localise("genetics.gui.analyst.biology.mothSpawn", getTimeString(butterflySpawn2)))
-                    .setColor(getColor());
+                    this,
+                    y,
+                    I18N.localise("genetics.gui.analyst.biology.mothSpawn", getTimeString(butterflySpawn2)))
+                            .setColor(getColor());
             y += 30;
 
             int fertility = flower.getGenome().getFertility();
@@ -245,12 +246,11 @@ public class AnalystPageBiology extends ControlAnalystPage {
             y += 12;
 
             new ControlTextCentered(
-                            this,
-                            y,
-                            EnumChatFormatting.ITALIC
-                                    + I18N.localise("genetics.gui.analyst.biology.perLifetime", (int)
-                                            (floweringLifespan / dispersalTime)))
-                    .setColor(getColor());
+                    this,
+                    y,
+                    EnumChatFormatting.ITALIC + I18N.localise(
+                            "genetics.gui.analyst.biology.perLifetime",
+                            (int) (floweringLifespan / dispersalTime))).setColor(getColor());
             y += 22;
 
             new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.biology.pollination"))
@@ -258,12 +258,11 @@ public class AnalystPageBiology extends ControlAnalystPage {
             y += 12;
 
             new ControlTextCentered(
-                            this,
-                            y,
-                            EnumChatFormatting.ITALIC
-                                    + I18N.localise("genetics.gui.analyst.biology.perLifetime", (int)
-                                            (floweringLifespan / pollinateTime)))
-                    .setColor(getColor());
+                    this,
+                    y,
+                    EnumChatFormatting.ITALIC + I18N.localise(
+                            "genetics.gui.analyst.biology.perLifetime",
+                            (int) (floweringLifespan / pollinateTime))).setColor(getColor());
             y += 22;
         }
         setSize(new IPoint(w(), y));

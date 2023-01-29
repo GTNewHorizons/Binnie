@@ -6,8 +6,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD})
+@Target({ ElementType.FIELD })
 public @interface ConfigProperty {
+
     String key();
 
     String category() default "";
@@ -15,8 +16,9 @@ public @interface ConfigProperty {
     String[] comment() default {};
 
     @Retention(RetentionPolicy.RUNTIME)
-    @Target({ElementType.ANNOTATION_TYPE})
+    @Target({ ElementType.ANNOTATION_TYPE })
     @interface Type {
+
         Class<? extends PropertyBase> propertyClass();
 
         String category() default "general";

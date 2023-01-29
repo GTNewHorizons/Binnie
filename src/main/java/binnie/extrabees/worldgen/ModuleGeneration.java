@@ -1,5 +1,10 @@
 package binnie.extrabees.worldgen;
 
+import java.util.Random;
+
+import net.minecraft.world.World;
+import net.minecraft.world.chunk.IChunkProvider;
+
 import binnie.core.IInitializable;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.config.ConfigurationMain;
@@ -8,11 +13,9 @@ import buildcraft.api.core.BuildCraftAPI;
 import cpw.mods.fml.common.IWorldGenerator;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.apiculture.genetics.BeeDefinition;
-import java.util.Random;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
 
 public class ModuleGeneration implements IWorldGenerator, IInitializable {
+
     protected static int waterRate = 2;
     protected static int rockRate = 2;
     protected static int netherRate = 2;
@@ -38,20 +41,14 @@ public class ModuleGeneration implements IWorldGenerator, IInitializable {
 
     @Override
     public void postInit() {
-        EnumHiveType.WATER.drops.add(
-                new HiveDrop(ExtraBeeDefinition.WATER.getGenome().getPrimary(), 80));
-        EnumHiveType.WATER.drops.add(
-                new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
+        EnumHiveType.WATER.drops.add(new HiveDrop(ExtraBeeDefinition.WATER.getGenome().getPrimary(), 80));
+        EnumHiveType.WATER.drops.add(new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
 
-        EnumHiveType.ROCK.drops.add(
-                new HiveDrop(ExtraBeeDefinition.ROCK.getGenome().getPrimary(), 80));
-        EnumHiveType.ROCK.drops.add(
-                new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
+        EnumHiveType.ROCK.drops.add(new HiveDrop(ExtraBeeDefinition.ROCK.getGenome().getPrimary(), 80));
+        EnumHiveType.ROCK.drops.add(new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
 
-        EnumHiveType.NETHER.drops.add(
-                new HiveDrop(ExtraBeeDefinition.BASALT.getGenome().getPrimary(), 80));
-        EnumHiveType.NETHER.drops.add(
-                new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
+        EnumHiveType.NETHER.drops.add(new HiveDrop(ExtraBeeDefinition.BASALT.getGenome().getPrimary(), 80));
+        EnumHiveType.NETHER.drops.add(new HiveDrop(BeeDefinition.VALIANT.getGenome().getPrimary(), 3));
 
         ExtraBees.hive.setHarvestLevel("scoop", 0, 0);
         ExtraBees.hive.setHarvestLevel("scoop", 0, 1);
@@ -60,12 +57,7 @@ public class ModuleGeneration implements IWorldGenerator, IInitializable {
     }
 
     @Override
-    public void generate(
-            Random rand,
-            int chunkX,
-            int chunkZ,
-            World world,
-            IChunkProvider chunkGenerator,
+    public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator,
             IChunkProvider chunkProvider) {
         chunkX <<= 4;
         chunkZ <<= 4;

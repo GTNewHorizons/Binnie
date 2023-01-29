@@ -1,12 +1,14 @@
 package binnie.extratrees.carpentry;
 
-import binnie.extratrees.api.IDesignSystem;
-import binnie.extratrees.api.ILayout;
-import binnie.extratrees.api.IPattern;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
+import binnie.extratrees.api.IDesignSystem;
+import binnie.extratrees.api.ILayout;
+import binnie.extratrees.api.IPattern;
+
 public enum EnumPattern implements IPattern {
+
     Blank,
     Octagon,
     Diamond,
@@ -233,10 +235,16 @@ public enum EnumPattern implements IPattern {
                 EnumPattern.VeryThinCorner3,
                 EnumPattern.VeryThinCorner4);
         setupCornerPattern(
-                EnumPattern.ThinCorner, EnumPattern.ThinCorner2, EnumPattern.ThinCorner3, EnumPattern.ThinCorner4);
+                EnumPattern.ThinCorner,
+                EnumPattern.ThinCorner2,
+                EnumPattern.ThinCorner3,
+                EnumPattern.ThinCorner4);
         setupCornerPattern(EnumPattern.Corner, EnumPattern.Corner2, EnumPattern.Corner3, EnumPattern.Corner4);
         setupCornerPattern(
-                EnumPattern.ThickCorner, EnumPattern.ThickCorner2, EnumPattern.ThickCorner3, EnumPattern.ThickCorner4);
+                EnumPattern.ThickCorner,
+                EnumPattern.ThickCorner2,
+                EnumPattern.ThickCorner3,
+                EnumPattern.ThickCorner4);
         setupCornerPattern(
                 EnumPattern.ThinCurvedCorner,
                 EnumPattern.ThinCurvedCorner2,
@@ -248,9 +256,15 @@ public enum EnumPattern implements IPattern {
                 EnumPattern.CurvedCorner3,
                 EnumPattern.CurvedCorner4);
         setupBarredPattern(
-                EnumPattern.BarredEnd, EnumPattern.BarredEnd2, EnumPattern.BarredEnd3, EnumPattern.BarredEnd4);
+                EnumPattern.BarredEnd,
+                EnumPattern.BarredEnd2,
+                EnumPattern.BarredEnd3,
+                EnumPattern.BarredEnd4);
         setupEdgedPattern(
-                EnumPattern.ThinEdged, EnumPattern.ThinEdged2, EnumPattern.ThinEdged3, EnumPattern.ThinEdged4);
+                EnumPattern.ThinEdged,
+                EnumPattern.ThinEdged2,
+                EnumPattern.ThinEdged3,
+                EnumPattern.ThinEdged4);
         setupEdgedPattern(EnumPattern.Edged, EnumPattern.Edged2, EnumPattern.Edged3, EnumPattern.Edged4);
         setupBarredPattern(EnumPattern.ThinBarred, EnumPattern.ThinBarred2);
         setupBarredPattern(EnumPattern.Barred, EnumPattern.Barred2);

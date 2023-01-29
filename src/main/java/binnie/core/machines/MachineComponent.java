@@ -1,12 +1,14 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
-import binnie.core.network.packet.MachinePayload;
-import forestry.api.core.INBTTagable;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
 
+import binnie.Binnie;
+import binnie.core.network.packet.MachinePayload;
+import forestry.api.core.INBTTagable;
+
 public class MachineComponent implements INBTTagable {
+
     private IMachine machine;
 
     public MachineComponent(IMachine machine) {

@@ -1,19 +1,9 @@
 package binnie.botany.gardening;
 
-import binnie.botany.Botany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.gardening.IBlockSoil;
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.items.BotanyItems;
-import binnie.core.BinnieCore;
-import com.mojang.authlib.GameProfile;
-import forestry.api.core.EnumTemperature;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -23,7 +13,21 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
+import binnie.botany.Botany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.items.BotanyItems;
+import binnie.core.BinnieCore;
+
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.EnumTemperature;
+
 public class Gardening {
+
     public static Map<ItemStack, Integer> fertiliserAcid = new LinkedHashMap<>();
     public static Map<ItemStack, Integer> fertiliserAlkaline = new LinkedHashMap<>();
     public static Map<ItemStack, Integer> fertiliserNutrient = new LinkedHashMap<>();
@@ -81,8 +85,10 @@ public class Gardening {
     public static float getBiomeMoisture(BiomeGenBase biome, int H) {
         double R = biome.rainfall;
         double T = biome.temperature;
-        double m =
-                3.2 * (R - 0.5) - 0.4 * (1.0 + T + 0.5 * T * T) + 1.1 - 1.6 * (T - 0.9) * (T - 0.9) - 0.002 * (H - 64);
+        double m = 3.2 * (R - 0.5) - 0.4 * (1.0 + T + 0.5 * T * T)
+                + 1.1
+                - 1.6 * (T - 0.9) * (T - 0.9)
+                - 0.002 * (H - 64);
         if (m == 0.0) {
             return (float) m;
         }
@@ -95,14 +101,13 @@ public class Gardening {
     public static float getBiomePH(BiomeGenBase biome, int H) {
         double R = biome.rainfall;
         double T = biome.temperature;
-        return (float) (-3.0 * (R - 0.5)
-                + 0.5 * (T - 0.699999988079071) * (T - 0.699999988079071)
+        return (float) (-3.0 * (R - 0.5) + 0.5 * (T - 0.699999988079071) * (T - 0.699999988079071)
                 + 0.02f * (H - 64)
                 - 0.15000000596046448);
     }
 
-    public static void createSoil(
-            World world, int x, int y, int z, EnumSoilType soil, EnumMoisture moisture, EnumAcidity acidity) {
+    public static void createSoil(World world, int x, int y, int z, EnumSoilType soil, EnumMoisture moisture,
+            EnumAcidity acidity) {
         int meta = moisture.ordinal() + acidity.ordinal() * 3;
         world.setBlock(x, y, z, getSoilBlock(soil), meta, 2);
     }
@@ -139,8 +144,7 @@ public class Gardening {
 
         IFlower iflower = ((TileEntityFlower) flower).getFlower();
         int section = ((TileEntityFlower) flower).getSection();
-        if (iflower == null
-                || section >= iflower.getGenome().getPrimary().getType().getSections() - 1
+        if (iflower == null || section >= iflower.getGenome().getPrimary().getType().getSections() - 1
                 || iflower.getAge() <= 0) {
             return;
         }
@@ -257,8 +261,7 @@ public class Gardening {
     }
 
     public static boolean canTolerate(IFlower flower, EnumAcidity ePH, EnumMoisture eMoisture, EnumTemperature eTemp) {
-        return flower.getGenome().canTolerate(ePH)
-                && flower.getGenome().canTolerate(eMoisture)
+        return flower.getGenome().canTolerate(ePH) && flower.getGenome().canTolerate(eMoisture)
                 && flower.getGenome().canTolerate(eTemp);
     }
 

@@ -6,6 +6,7 @@ import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 
 public class RainShieldModifierComponent extends ComponentBeeModifier implements IBeeModifier, IBeeListener {
+
     public RainShieldModifierComponent(Machine machine) {
         super(machine);
     }

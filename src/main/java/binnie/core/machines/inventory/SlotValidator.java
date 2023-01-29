@@ -1,11 +1,13 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.util.I18N;
-import forestry.api.genetics.AlleleManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import binnie.core.util.I18N;
+import forestry.api.genetics.AlleleManager;
+
 public abstract class SlotValidator extends Validator<ItemStack> {
+
     public static ValidatorIcon IconBee;
     public static ValidatorIcon IconFrame;
     public static ValidatorIcon IconCircuit;
@@ -24,6 +26,7 @@ public abstract class SlotValidator extends Validator<ItemStack> {
     }
 
     public static class Item extends SlotValidator {
+
         private ItemStack target;
 
         public Item(ItemStack target, ValidatorIcon icon) {
@@ -43,6 +46,7 @@ public abstract class SlotValidator extends Validator<ItemStack> {
     }
 
     public static class Individual extends SlotValidator {
+
         public Individual() {
             super(null);
         }

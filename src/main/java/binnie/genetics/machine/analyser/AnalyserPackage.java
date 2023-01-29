@@ -1,5 +1,8 @@
 package binnie.genetics.machine.analyser;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -12,10 +15,9 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.PackageGeneticBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 public class AnalyserPackage extends PackageGeneticBase implements IMachineInformation {
+
     public AnalyserPackage() {
         super("analyser", GeneticsTexture.Analyser, 0x9800ff, true);
     }
@@ -48,6 +50,7 @@ public class AnalyserPackage extends PackageGeneticBase implements IMachineInfor
         ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
         transfer.addRestock(Analyser.SLOT_RESERVE, Analyser.SLOT_TARGET, 1);
         transfer.addStorage(Analyser.SLOT_TARGET, Analyser.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
+
             @Override
             public boolean fufilled(ItemStack stack) {
                 return Analyser.isAnalysed(stack);

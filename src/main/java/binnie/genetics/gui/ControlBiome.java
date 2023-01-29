@@ -1,5 +1,9 @@
 package binnie.genetics.gui;
 
+import net.minecraft.util.IIcon;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.BiomeDictionary;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -7,11 +11,9 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IPoint;
 import forestry.core.render.TextureManager;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.BiomeDictionary;
 
 public class ControlBiome extends Control implements ITooltip {
+
     BiomeGenBase biome;
     String iconCategory;
 

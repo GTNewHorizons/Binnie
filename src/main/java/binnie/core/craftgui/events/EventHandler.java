@@ -3,6 +3,7 @@ package binnie.core.craftgui.events;
 import binnie.core.craftgui.IWidget;
 
 public abstract class EventHandler<E extends Event> {
+
     Class<E> eventClass;
     Origin origin;
     IWidget relative;
@@ -25,6 +26,7 @@ public abstract class EventHandler<E extends Event> {
     }
 
     public enum Origin {
+
         Any,
         Self,
         Parent,

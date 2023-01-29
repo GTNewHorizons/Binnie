@@ -7,6 +7,7 @@ import forestry.api.genetics.IAllele;
 import forestry.core.genetics.alleles.EnumAllele;
 
 public class FlowerTemplates {
+
     public static IAllele[] getDefaultTemplate() {
         IAllele[] alleles = new IAllele[EnumFlowerChromosome.values().length];
         alleles[EnumFlowerChromosome.SPECIES.ordinal()] = FlowerSpecies.POPPY;

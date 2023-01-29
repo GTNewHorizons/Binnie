@@ -7,6 +7,7 @@ import binnie.core.resource.ResourceType;
 import binnie.extratrees.ExtraTrees;
 
 public enum ExtraTreeTexture implements IBinnieTexture {
+
     Gui(ResourceType.GUI, "gui"),
     Nursery(ResourceType.Tile, "Nursery");
 

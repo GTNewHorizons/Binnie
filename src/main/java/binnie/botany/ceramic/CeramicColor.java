@@ -1,14 +1,17 @@
 package binnie.botany.ceramic;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import net.minecraft.item.ItemStack;
+
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.api.IDesignMaterial;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import net.minecraft.item.ItemStack;
 
 public class CeramicColor implements IDesignMaterial {
+
     private static Map<EnumFlowerColor, CeramicColor> map;
 
     static {

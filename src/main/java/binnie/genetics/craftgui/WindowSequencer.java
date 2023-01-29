@@ -1,5 +1,10 @@
 package binnie.genetics.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
@@ -22,14 +27,15 @@ import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.machine.sequencer.Sequencer;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
 
 public class WindowSequencer extends WindowMachine {
-    protected static Texture progressBase =
-            new StandardTexture(64, 114, 98, 9, ExtraBeeTexture.GUIProgress.getTexture());
+
+    protected static Texture progressBase = new StandardTexture(
+            64,
+            114,
+            98,
+            9,
+            ExtraBeeTexture.GUIProgress.getTexture());
     protected static Texture progress = new StandardTexture(64, 123, 98, 9, ExtraBeeTexture.GUIProgress.getTexture());
 
     protected ControlText slotText;
@@ -45,8 +51,9 @@ public class WindowSequencer extends WindowMachine {
     @Override
     public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
         if (side == Side.CLIENT && name.equals("username")) {
-            slotText.setValue(EnumChatFormatting.DARK_GRAY
-                    + I18N.localise("genetics.machine.sequencer.gui.sequensedBy", nbt.getString("username")));
+            slotText.setValue(
+                    EnumChatFormatting.DARK_GRAY
+                            + I18N.localise("genetics.machine.sequencer.gui.sequensedBy", nbt.getString("username")));
         }
         super.recieveGuiNBT(side, player, name, nbt);
     }

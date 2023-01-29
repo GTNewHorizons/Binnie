@@ -1,16 +1,19 @@
 package binnie.extrabees.products;
 
-import binnie.core.item.IItemEnum;
-import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
-import forestry.api.recipes.RecipeManagers;
 import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+
 import net.minecraft.item.ItemStack;
 
+import binnie.core.item.IItemEnum;
+import binnie.core.util.I18N;
+import binnie.extrabees.ExtraBees;
+import forestry.api.recipes.RecipeManagers;
+
 public enum EnumHoneyComb implements IItemEnum {
+
     BARREN(new Color(0x736c44), new Color(0xc2bea7)),
     ROTTEN(new Color(0x3e5221), new Color(0xb1cc89)),
     BONE(new Color(0xc4c4af), new Color(0xdedec1)),
@@ -31,7 +34,7 @@ public enum EnumHoneyComb implements IItemEnum {
     COPPER(new Color(0x363534), new Color(0xd16308)),
     TIN(new Color(0x363534), new Color(0xbdb1bd)),
     SILVER(new Color(0x363534), new Color(0xdbdbdb)),
-    //	BRONZE,
+    // BRONZE,
     URANIUM(new Color(0x1eff00), new Color(0x41ab33)),
     CLAY(new Color(0x6b563a), new Color(0xb0c0d6)),
     OLD(new Color(0x453314), new Color(0xb39664)),
@@ -44,29 +47,29 @@ public enum EnumHoneyComb implements IItemEnum {
     BLAZE(new Color(0xff6a00), new Color(0xffcc00)),
     COFFEE(new Color(0x54381d), new Color(0xb37f4b)),
     GLACIAL(new Color(0x4e8787), new Color(0xcbf2f2)),
-    //	MINT,
-    //	CITRUS,
-    //	PEAT,
+    // MINT,
+    // CITRUS,
+    // PEAT,
     SHADOW(new Color(0x000000), new Color(0x361835)),
     LEAD(new Color(0x363534), new Color(0x9a809c)),
-    //	BRASS,
-    //	ELECTRUM,
+    // BRASS,
+    // ELECTRUM,
     ZINC(new Color(0x363534), new Color(0xedebff)),
     TITANIUM(new Color(0x363534), new Color(0xb0aae3)),
     TUNGSTEN(new Color(0x363534), new Color(0x131214)),
-    //	STEEL,
-    //	IRIDIUM,
+    // STEEL,
+    // IRIDIUM,
     PLATINUM(new Color(0x363534), new Color(0x9a809c)),
     LAPIS(new Color(0x363534), new Color(0x3d2cdb)),
-    //	SODALITE,
-    //	PYRITE,
-    //	BAUXITE,
-    //	CINNABAR,
-    //	SPHALERITE,
+    // SODALITE,
+    // PYRITE,
+    // BAUXITE,
+    // CINNABAR,
+    // SPHALERITE,
     EMERALD(new Color(0x363534), new Color(0x1cff03)),
     RUBY(new Color(0x363534), new Color(0xd60000)),
     SAPPHIRE(new Color(0x363534), new Color(0xa47ff)),
-    //	OLIVINE,
+    // OLIVINE,
     DIAMOND(new Color(0x363534), new Color(0x7fbdfa)),
     RED(new Color(0xcc4c4c), new Color(0xff0000)),
     YELLOW(new Color(0xe5e533), new Color(0xffdd00)),
@@ -85,7 +88,7 @@ public enum EnumHoneyComb implements IItemEnum {
     MAGENTA(new Color(0xe57fd8), new Color(0xff00cc)),
     LIGHTGRAY(new Color(0x999999), new Color(0xc9c9c9)),
     NICKEL(new Color(0x363534), new Color(0xffdefc)),
-    //	INVAR,
+    // INVAR,
     GLOWSTONE(new Color(0xa69c5e), new Color(0xe0c409)),
     SALTPETER(new Color(0xa69c5e), new Color(0xe0c409)),
     // PULP,

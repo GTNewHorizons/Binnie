@@ -6,6 +6,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
 
 public class ControlTextCentered extends ControlText {
+
     public ControlTextCentered(IWidget parent, float y, String text) {
         super(
                 parent,

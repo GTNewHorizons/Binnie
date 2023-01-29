@@ -1,5 +1,8 @@
 package binnie.genetics.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.GUIIcon;
@@ -20,12 +23,15 @@ import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.polymeriser.Polymeriser;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 
 public class WindowPolymeriser extends WindowMachine {
-    protected static Texture progressBase =
-            new StandardTexture(76, 170, 160, 79, GeneticsTexture.GUIProcess.getTexture());
+
+    protected static Texture progressBase = new StandardTexture(
+            76,
+            170,
+            160,
+            79,
+            GeneticsTexture.GUIProcess.getTexture());
     protected static Texture progress = new StandardTexture(76, 91, 160, 79, GeneticsTexture.GUIProcess.getTexture());
 
     public WindowPolymeriser(EntityPlayer player, IInventory inventory, Side side) {

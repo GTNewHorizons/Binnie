@@ -1,5 +1,15 @@
 package binnie.genetics.nei;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
 import binnie.core.nei.PositionedStackAdv;
@@ -13,14 +23,6 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class PolymeriserRecipeHandler extends RecipeHandlerBase {
 
@@ -136,8 +138,7 @@ public class PolymeriserRecipeHandler extends RecipeHandlerBase {
                 List<FluidStack> bacteriaPolyTanks = new ArrayList<>();
                 List<FluidStack> rawDNATanks = new ArrayList<>();
 
-                for (ItemStack itemStack :
-                        ItemList.itemMap.get(recipe.getSerum().getItem())) {
+                for (ItemStack itemStack : ItemList.itemMap.get(recipe.getSerum().getItem())) {
                     if (itemStack.getTagCompound() != null) {
                         ItemStack temp = itemStack.copy();
                         if (itemStack.getItem() instanceof IItemSerum) {
@@ -145,8 +146,7 @@ public class PolymeriserRecipeHandler extends RecipeHandlerBase {
                         }
 
                         inputs.add(temp);
-                        int bacteriaPolyAmount = 10
-                                * temp.getItemDamage()
+                        int bacteriaPolyAmount = 10 * temp.getItemDamage()
                                 * (temp.getTagCompound() == null ? 1 : Engineering.getGenes(temp).length);
                         bacteriaPolyTanks.add(GeneticLiquid.BacteriaPoly.get(bacteriaPolyAmount));
                         rawDNATanks.add(GeneticLiquid.RawDNA.get(bacteriaPolyAmount * 5));
@@ -159,14 +159,17 @@ public class PolymeriserRecipeHandler extends RecipeHandlerBase {
                 this.ingredients.add(this.input);
                 this.ingredients.add(this.goldNugget);
 
-                this.bacteriaPoly =
-                        new PositionedFluidTank(bacteriaPolyTanks, 10000, new Rectangle(27, 6, 16, 58), null, null);
+                this.bacteriaPoly = new PositionedFluidTank(
+                        bacteriaPolyTanks,
+                        10000,
+                        new Rectangle(27, 6, 16, 58),
+                        null,
+                        null);
                 this.rawDNA = new PositionedFluidTank(rawDNATanks, 20000, new Rectangle(48, 6, 16, 58), null, null);
                 this.tanks.add(this.bacteriaPoly);
                 this.tanks.add(this.rawDNA);
 
-                for (ItemStack itemStack :
-                        ItemList.itemMap.get(recipe.getOutput().getItem())) {
+                for (ItemStack itemStack : ItemList.itemMap.get(recipe.getOutput().getItem())) {
                     if (itemStack.getTagCompound() != null) {
                         ItemStack temp = itemStack.copy();
                         if (recipe.getOutput().getItem() instanceof ItemSequence) {

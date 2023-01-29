@@ -1,9 +1,11 @@
 package binnie.botany.api;
 
-import forestry.api.genetics.IIndividual;
 import net.minecraft.world.World;
 
+import forestry.api.genetics.IIndividual;
+
 public interface IFlower extends IIndividual {
+
     @Override
     IFlowerGenome getGenome();
 

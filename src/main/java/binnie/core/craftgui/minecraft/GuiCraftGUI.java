@@ -1,17 +1,8 @@
 package binnie.core.craftgui.minecraft;
 
-import binnie.core.BinnieCore;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.events.EventKey;
-import binnie.core.craftgui.events.EventMouse;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.geometry.IBorder;
-import binnie.core.craftgui.geometry.IPoint;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
@@ -26,12 +17,25 @@ import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
+import binnie.core.BinnieCore;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.events.EventKey;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IBorder;
+import binnie.core.craftgui.geometry.IPoint;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 @SideOnly(Side.CLIENT)
 public class GuiCraftGUI extends GuiContainer {
+
     private Window window;
     private ItemStack draggedItem;
 
@@ -72,9 +76,7 @@ public class GuiCraftGUI extends GuiContainer {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float par3) {
-        window.setMousePosition(
-                mouseX - (int) window.getPosition().x(),
-                mouseY - (int) window.getPosition().y());
+        window.setMousePosition(mouseX - (int) window.getPosition().x(), mouseY - (int) window.getPosition().y());
         drawDefaultBackground();
 
         GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
@@ -292,7 +294,12 @@ public class GuiCraftGUI extends GuiContainer {
         drawTexturedModalRect(posX, posY, u, v, borderLeft, borderTop);
         drawTexturedModalRect(posX + width - borderRight, posY, u + textWidth - borderRight, v, borderRight, borderTop);
         drawTexturedModalRect(
-                posX, posY + height - borderBottom, u, v + textHeight - borderBottom, borderLeft, borderBottom);
+                posX,
+                posY + height - borderBottom,
+                u,
+                v + textHeight - borderBottom,
+                borderLeft,
+                borderBottom);
         drawTexturedModalRect(
                 posX + width - borderRight,
                 posY + height - borderBottom,

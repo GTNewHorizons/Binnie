@@ -1,5 +1,13 @@
 package binnie.genetics.item;
 
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
@@ -15,14 +23,9 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
-import java.util.List;
-import java.util.Map;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public class ItemSerum extends ItemGene implements IItemSerum {
+
     public ItemSerum() {
         super("serum");
         setMaxDamage(16);
@@ -70,7 +73,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 
     @Override
     public IGene[] getGenes(ItemStack stack) {
-        return new IGene[] {getGeneItem(stack).getGene()};
+        return new IGene[] { getGeneItem(stack).getGene() };
     }
 
     @Override

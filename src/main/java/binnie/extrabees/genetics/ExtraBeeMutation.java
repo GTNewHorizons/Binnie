@@ -1,5 +1,9 @@
 package binnie.extrabees.genetics;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import binnie.extrabees.genetics.requirements.*;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
@@ -10,11 +14,9 @@ import forestry.api.apiculture.IBeeRoot;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IMutation;
 import forestry.apiculture.genetics.BeeMutation;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class ExtraBeeMutation extends BeeMutation implements IBeeMutationCustom {
+
     public static List<IMutation> mutations = new ArrayList<>();
 
     private List<IMutationRequirement> requirements;
@@ -31,12 +33,8 @@ public class ExtraBeeMutation extends BeeMutation implements IBeeMutationCustom 
     }
 
     @Override
-    public float getChance(
-            IBeeHousing housing,
-            IAlleleBeeSpecies allele0,
-            IAlleleBeeSpecies allele1,
-            IBeeGenome genome0,
-            IBeeGenome genome1) {
+    public float getChance(IBeeHousing housing, IAlleleBeeSpecies allele0, IAlleleBeeSpecies allele1,
+            IBeeGenome genome0, IBeeGenome genome1) {
         for (IMutationRequirement requirement : requirements) {
             if (!requirement.fufilled(housing, allele0, allele1, genome0, genome1)) {
                 return 0.0f;

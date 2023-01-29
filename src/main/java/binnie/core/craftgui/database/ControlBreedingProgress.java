@@ -12,12 +12,13 @@ import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.genetics.BreedingSystem;
 
 class ControlBreedingProgress extends Control {
+
     private static Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.Controls2);
     private float percentage;
     private int colour;
 
-    public ControlBreedingProgress(
-            IWidget parent, int x, int y, int width, int height, BreedingSystem system, float percentage) {
+    public ControlBreedingProgress(IWidget parent, int x, int y, int width, int height, BreedingSystem system,
+            float percentage) {
         super(parent, x, y, width, height);
         this.percentage = percentage;
         colour = system.getColor();

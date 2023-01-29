@@ -1,5 +1,9 @@
 package binnie.extrabees.gui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.IArea;
@@ -14,11 +18,9 @@ import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.mutator.AlvearyMutator;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 
 public class WindowAlvearyMutator extends Window {
+
     protected Machine machine;
     protected ControlPlayerInventory playerInventory;
 
@@ -41,11 +43,10 @@ public class WindowAlvearyMutator extends Window {
         ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
         slot.assign(AlvearyMutator.SLOT_MUTATOR);
         new ControlText(
-                        this,
-                        new IArea(0.0f, 52.0f, w(), 16.0f),
-                        I18N.localise("extrabees.machine.alveay.mutator.mutagens"),
-                        TextJustification.MIDDLE_CENTER)
-                .setColor(0x555555);
+                this,
+                new IArea(0.0f, 52.0f, w(), 16.0f),
+                I18N.localise("extrabees.machine.alveay.mutator.mutagens"),
+                TextJustification.MIDDLE_CENTER).setColor(0x555555);
         int size = AlvearyMutator.getMutagens().size();
         int w = size * 18;
 

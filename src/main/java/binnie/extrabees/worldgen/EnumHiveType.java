@@ -1,10 +1,12 @@
 package binnie.extrabees.worldgen;
 
-import forestry.api.apiculture.IHiveDrop;
 import java.util.ArrayList;
 import java.util.List;
 
+import forestry.api.apiculture.IHiveDrop;
+
 public enum EnumHiveType {
+
     WATER,
     ROCK,
     NETHER,

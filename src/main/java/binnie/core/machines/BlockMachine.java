@@ -1,13 +1,9 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.core.machines.component.IRender;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -23,7 +19,14 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.core.machines.component.IRender;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 class BlockMachine extends BlockContainer implements IBlockMachine {
+
     private MachineGroup group;
 
     public BlockMachine(MachineGroup group, String blockName) {
@@ -88,16 +91,8 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world,
-            int x,
-            int y,
-            int z,
-            EntityPlayer player,
-            int side,
-            float xOffset,
-            float yOffset,
-            float zOffset) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float xOffset,
+            float yOffset, float zOffset) {
         if (!BinnieCore.proxy.isSimulating(world) || player.isSneaking()) {
             return true;
         }
@@ -131,10 +126,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
         TileEntity entity = world.getTileEntity(x, y, z);
         if (entity instanceof TileEntityMachine
                 && ((TileEntityMachine) entity).getMachine().hasInterface(IMachineTexturedFaces.class)) {
-            return ((TileEntityMachine) entity)
-                    .getMachine()
-                    .getInterface(IMachineTexturedFaces.class)
-                    .getIcon(side);
+            return ((TileEntityMachine) entity).getMachine().getInterface(IMachineTexturedFaces.class).getIcon(side);
         }
         return Blocks.dirt.getIcon(0, 0);
     }
@@ -175,8 +167,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
 
     @Override
     public boolean removedByPlayer(World world, EntityPlayer player, int x, int y, int z, boolean willHarvest) {
-        if (BinnieCore.proxy.isSimulating(world)
-                && canHarvestBlock(player, world.getBlockMetadata(x, y, z))
+        if (BinnieCore.proxy.isSimulating(world) && canHarvestBlock(player, world.getBlockMetadata(x, y, z))
                 && !player.capabilities.isCreativeMode) {
             int metadata = world.getBlockMetadata(x, y, z);
             ItemStack stack = new ItemStack(Item.getItemFromBlock(this), 1, damageDropped(metadata));
@@ -186,6 +177,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
     }
 
     public interface IMachineTexturedFaces {
+
         IIcon getIcon(int p0);
     }
 }

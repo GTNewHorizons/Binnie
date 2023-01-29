@@ -1,5 +1,11 @@
 package binnie.botany.craftgui;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.IFlowerColor;
@@ -21,12 +27,9 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
 
 public class WindowBotanistDatabase extends WindowAbstractDatabase {
+
     public WindowBotanistDatabase(EntityPlayer player, Side side, boolean nei) {
         super(player, side, nei, Binnie.Genetics.flowerBreedingSystem, 130.0f);
     }
@@ -40,7 +43,8 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
         new PageSpeciesOverview(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.overview"));
         new PageSpeciesFlowerGenome(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "genome"));
         new PageSpeciesClassification(
-                getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.classification"));
+                getInfoPages(Mode.Species),
+                new DatabaseTab(Botany.instance, "species.classification"));
         new PageSpeciesResultant(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.resultant"));
         new PageSpeciesMutations(getInfoPages(Mode.Species), new DatabaseTab(Botany.instance, "species.further"));
         new PageBranchOverview(getInfoPages(Mode.Branches), new DatabaseTab(Botany.instance, "branches.overview"));
@@ -62,6 +66,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
     }
 
     enum FlowerMode implements IDatabaseMode {
+
         COLOR;
 
         @Override
@@ -71,6 +76,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
     }
 
     private class ColorModeWidget extends ModeWidgets {
+
         public ColorModeWidget() {
             super(FlowerMode.COLOR, WindowBotanistDatabase.this);
         }
@@ -78,6 +84,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
         @Override
         public void createListBox(IArea area) {
             listBox = new ControlListBox<IFlowerColor>(modePage, area.x(), area.y(), area.w(), area.h(), 12.0f) {
+
                 @Override
                 public IWidget createOption(IFlowerColor value, int y) {
                     return new ControlColorOption(getContent(), value, y);

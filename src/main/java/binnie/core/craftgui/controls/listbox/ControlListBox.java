@@ -1,13 +1,15 @@
 package binnie.core.craftgui.controls.listbox;
 
+import java.util.Collection;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.controls.scroll.ControlScrollableContent;
 import binnie.core.craftgui.events.EventKey;
 import binnie.core.util.IValidator;
-import java.util.Collection;
 
 public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> implements IControlValue<T> {
+
     public ControlListBox(IWidget parent, float x, float y, float w, float h, float scrollBarSize) {
         super(parent, x, y, w, h, scrollBarSize);
     }
@@ -16,6 +18,7 @@ public class ControlListBox<T> extends ControlScrollableContent<ControlList<T>> 
     public void initialise() {
         setScrollableContent(new ControlList<>(this, 1.0f, 1.0f, w() - 2.0f - scrollBarSize, h() - 2.0f));
         addEventHandler(new EventKey.Down.Handler() {
+
             @Override
             public void onEvent(EventKey.Down event) {
                 if (calculateIsMouseOver()) {

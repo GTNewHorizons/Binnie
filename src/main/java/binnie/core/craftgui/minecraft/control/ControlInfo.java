@@ -10,6 +10,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.util.I18N;
 
 public class ControlInfo extends Control implements ITooltip {
+
     private String info;
 
     public ControlInfo(IWidget parent, float x, float y, String info) {

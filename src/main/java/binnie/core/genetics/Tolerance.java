@@ -5,6 +5,7 @@ import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
 
 public enum Tolerance {
+
     None(0, 0),
     Both1(-1, 1),
     Both2(-2, 2),
@@ -25,7 +26,7 @@ public enum Tolerance {
     private int[] bounds;
 
     Tolerance(int a, int b) {
-        bounds = new int[] {a, b};
+        bounds = new int[] { a, b };
     }
 
     public String getUID() {

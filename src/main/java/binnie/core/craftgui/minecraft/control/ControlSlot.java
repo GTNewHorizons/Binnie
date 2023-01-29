@@ -1,5 +1,17 @@
 package binnie.core.craftgui.minecraft.control;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.multiplayer.PlayerControllerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
@@ -15,18 +27,9 @@ import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
 public class ControlSlot extends ControlSlotBase {
+
     public static Map<EnumHighlighting, List<Integer>> highlighting = new HashMap<>();
     public static boolean shiftClickActive = false;
 
@@ -42,14 +45,15 @@ public class ControlSlot extends ControlSlotBase {
         super(parent, x, y);
         slot = null;
         addSelfEventHandler(new EventMouse.Down.Handler() {
+
             @Override
             public void onEvent(EventMouse.Down event) {
                 if (slot == null) {
                     return;
                 }
 
-                PlayerControllerMP playerController =
-                        ((Window) getSuperParent()).getGui().getMinecraft().playerController;
+                PlayerControllerMP playerController = ((Window) getSuperParent()).getGui()
+                        .getMinecraft().playerController;
                 int windowId = ((Window) getSuperParent()).getContainer().windowId;
                 int slotNumber = slot.slotNumber;
                 int button = event.getButton();
@@ -205,8 +209,7 @@ public class ControlSlot extends ControlSlotBase {
             if (slot.getValidator() == null) {
                 tooltip.add(I18N.localise("binniecore.gui.slot.accepts", I18N.localise("binniecore.gui.slot.anyItem")));
             } else {
-                tooltip.add(I18N.localise(
-                        "binniecore.gui.slot.accepts", slot.getValidator().getTooltip()));
+                tooltip.add(I18N.localise("binniecore.gui.slot.accepts", slot.getValidator().getTooltip()));
             }
         } else if (this.slot.inventory instanceof WindowInventory) {
             SlotValidator s = ((WindowInventory) this.slot.inventory).getValidator(this.slot.getSlotIndex());

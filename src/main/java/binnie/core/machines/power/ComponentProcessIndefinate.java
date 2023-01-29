@@ -1,12 +1,14 @@
 package binnie.core.machines.power;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.network.INetwork;
 import binnie.core.util.I18N;
-import net.minecraft.nbt.NBTTagCompound;
 
 public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync {
+
     private float energyPerTick;
     private boolean inProgress;
     private float actionPauseProcess;

@@ -1,5 +1,9 @@
 package binnie.genetics.gui;
 
+import net.minecraft.util.EnumChatFormatting;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.Binnie;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
@@ -16,10 +20,9 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.util.EnumChatFormatting;
-import org.lwjgl.opengl.GL11;
 
 public class AnalystPageGenome extends ControlAnalystPage {
+
     boolean active;
 
     public AnalystPageGenome(IWidget parent, IArea area, boolean active, IIndividual ind) {
@@ -32,6 +35,7 @@ public class AnalystPageGenome extends ControlAnalystPage {
         ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(ind.getClass());
         BreedingSystem system = Binnie.Genetics.getSystem(root);
         Control scaled = new Control(this, 0.0f, y, 0.0f, 0.0f) {
+
             @Override
             public void onRenderBackground() {
                 GL11.glPushMatrix();
@@ -46,23 +50,20 @@ public class AnalystPageGenome extends ControlAnalystPage {
         };
 
         for (IChromosomeType chromo : system.getActiveKaryotype()) {
-            IAllele allele = active
-                    ? ind.getGenome().getActiveAllele(chromo)
+            IAllele allele = active ? ind.getGenome().getActiveAllele(chromo)
                     : ind.getGenome().getInactiveAllele(chromo);
             String alleleName = system.getAlleleName(chromo, allele);
             float height = CraftGUI.render.textHeight(alleleName, w() / 2.0f - 2.0f);
             new ControlText(
-                            scaled,
-                            new IArea(0.0f, y + (height - 9.0f) / 2.0f, w() / 2.0f - 2.0f, 0.0f),
-                            system.getChromosomeShortName(chromo) + " :",
-                            TextJustification.TOP_RIGHT)
-                    .setColor(getColor());
+                    scaled,
+                    new IArea(0.0f, y + (height - 9.0f) / 2.0f, w() / 2.0f - 2.0f, 0.0f),
+                    system.getChromosomeShortName(chromo) + " :",
+                    TextJustification.TOP_RIGHT).setColor(getColor());
             new ControlText(
-                            scaled,
-                            new IArea(w() / 2.0f + 2.0f, y, w() / 2.0f - 2.0f, 0.0f),
-                            alleleName,
-                            TextJustification.TOP_LEFT)
-                    .setColor(getColor());
+                    scaled,
+                    new IArea(w() / 2.0f + 2.0f, y, w() / 2.0f - 2.0f, 0.0f),
+                    alleleName,
+                    TextJustification.TOP_LEFT).setColor(getColor());
             y += (int) (3.0f + height);
         }
         setSize(new IPoint(w(), y + 8));

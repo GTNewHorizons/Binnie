@@ -1,5 +1,9 @@
 package binnie.genetics.gui;
 
+import net.minecraft.util.EnumChatFormatting;
+
+import org.lwjgl.opengl.GL11;
+
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlower;
 import binnie.botany.craftgui.ControlColorDisplay;
@@ -10,10 +14,9 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.control.ControlIconDisplay;
 import binnie.core.util.I18N;
-import net.minecraft.util.EnumChatFormatting;
-import org.lwjgl.opengl.GL11;
 
 public class AnalystPageAppearance extends ControlAnalystPage {
+
     public AnalystPageAppearance(IWidget parent, IArea area, IFlower ind) {
         super(parent, area);
         setColor(0x333333);
@@ -38,6 +41,7 @@ public class AnalystPageAppearance extends ControlAnalystPage {
         int w = (sections > 1) ? 50 : 100;
 
         new ControlIconDisplay(this, (w() - w) / 2.0f, y - ((sections == 1) ? 0 : 0), null) {
+
             @Override
             public void onRenderForeground() {
                 GL11.glPushMatrix();
@@ -47,11 +51,13 @@ public class AnalystPageAppearance extends ControlAnalystPage {
                 CraftGUI.render.color(ind.getGenome().getStemColor().getColor(false));
                 if (sections > 1) {
                     CraftGUI.render.iconBlock(
-                            new IPoint(0.0f, 0.0f), ind.getGenome().getType().getStem(EnumFlowerStage.FLOWER, true, 1));
+                            new IPoint(0.0f, 0.0f),
+                            ind.getGenome().getType().getStem(EnumFlowerStage.FLOWER, true, 1));
                 }
 
                 CraftGUI.render.iconBlock(
-                        new IPoint(0.0f, dy), ind.getGenome().getType().getStem(EnumFlowerStage.FLOWER, true, 0));
+                        new IPoint(0.0f, dy),
+                        ind.getGenome().getType().getStem(EnumFlowerStage.FLOWER, true, 0));
                 CraftGUI.render.color(ind.getGenome().getPrimaryColor().getColor(false));
                 if (sections > 1) {
                     CraftGUI.render.iconBlock(
@@ -60,7 +66,8 @@ public class AnalystPageAppearance extends ControlAnalystPage {
                 }
 
                 CraftGUI.render.iconBlock(
-                        new IPoint(0.0f, dy), ind.getGenome().getType().getPetalIcon(EnumFlowerStage.FLOWER, true, 0));
+                        new IPoint(0.0f, dy),
+                        ind.getGenome().getType().getPetalIcon(EnumFlowerStage.FLOWER, true, 0));
                 CraftGUI.render.color(ind.getGenome().getSecondaryColor().getColor(false));
                 if (sections > 1) {
                     CraftGUI.render.iconBlock(

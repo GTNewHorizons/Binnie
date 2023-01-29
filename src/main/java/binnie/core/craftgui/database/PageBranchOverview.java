@@ -1,16 +1,19 @@
 package binnie.core.craftgui.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IClassification;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.util.EnumChatFormatting;
 
 public class PageBranchOverview extends PageBranch {
+
     private ControlText branchName;
     private ControlText branchScientific;
     private ControlText branchAuthority;
@@ -27,16 +30,17 @@ public class PageBranchOverview extends PageBranch {
     @Override
     public void onValueChanged(IClassification branch) {
         String name = I18N.localise(branch.getName());
-        branchName.setValue(EnumChatFormatting.BOLD
-                + I18N.localise("binniecore.gui.database.branch.name", name)
-                + EnumChatFormatting.RESET);
-        branchScientific.setValue(EnumChatFormatting.ITALIC
-                + I18N.localise("binniecore.gui.database.branch.apidae", branch.getScientific())
-                + EnumChatFormatting.RESET);
-        branchAuthority.setValue(EnumChatFormatting.BOLD
-                + I18N.localise(
-                        "binniecore.gui.database.branch.discoveredBy", branch.getMemberSpecies()[0].getAuthority())
-                + EnumChatFormatting.RESET);
+        branchName.setValue(
+                EnumChatFormatting.BOLD + I18N.localise("binniecore.gui.database.branch.name", name)
+                        + EnumChatFormatting.RESET);
+        branchScientific.setValue(
+                EnumChatFormatting.ITALIC
+                        + I18N.localise("binniecore.gui.database.branch.apidae", branch.getScientific())
+                        + EnumChatFormatting.RESET);
+        branchAuthority.setValue(
+                EnumChatFormatting.BOLD + I18N.localise(
+                        "binniecore.gui.database.branch.discoveredBy",
+                        branch.getMemberSpecies()[0].getAuthority()) + EnumChatFormatting.RESET);
 
         for (IWidget widget : branchDescription) {
             deleteChild(widget);

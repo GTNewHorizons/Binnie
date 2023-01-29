@@ -1,14 +1,16 @@
 package binnie.core.craftgui.database;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class PageSpeciesClassification extends PageSpecies {
+
     private Map<IClassification.EnumClassLevel, ControlText> levels;
     private ControlText genus;
 
@@ -38,9 +40,8 @@ public class PageSpeciesClassification extends PageSpecies {
         }
 
         genus.setValue(species.getBinomial());
-        for (IClassification classification = species.getBranch();
-                classification != null;
-                classification = classification.getParent()) {
+        for (IClassification classification = species.getBranch(); classification
+                != null; classification = classification.getParent()) {
             IClassification.EnumClassLevel level = classification.getLevel();
             String text2 = "";
             text2 += classification.getScientific();

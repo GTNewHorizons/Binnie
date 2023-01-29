@@ -1,12 +1,14 @@
 package binnie.botany.genetics;
 
-import binnie.botany.Botany;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IFlowerType;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
 
+import binnie.botany.Botany;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IFlowerType;
+
 public enum EnumFlowerType implements IFlowerType {
+
     DANDELION,
     POPPY,
     ORCHID,

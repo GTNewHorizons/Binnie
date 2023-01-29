@@ -1,12 +1,14 @@
 package binnie.core.craftgui.minecraft.control;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.craftgui.controls.tab.ControlTab;
 import binnie.core.craftgui.controls.tab.ControlTabBar;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.genetics.IItemStackRepresentative;
-import net.minecraft.item.ItemStack;
 
 public class ControlTabIcon<T> extends ControlTab<T> {
+
     private ControlItemDisplay item;
 
     public ControlTabIcon(ControlTabBar<T> parent, float x, float y, float w, float h, T value) {

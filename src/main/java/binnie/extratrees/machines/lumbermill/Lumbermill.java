@@ -1,19 +1,22 @@
 package binnie.extratrees.machines.lumbermill;
 
-import binnie.extratrees.block.IPlankType;
-import binnie.extratrees.block.WoodManager;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import binnie.extratrees.block.IPlankType;
+import binnie.extratrees.block.WoodManager;
+
 public class Lumbermill {
+
     public static final int SLOT_WOOD = 0;
     public static final int SLOT_PLANKS = 1;
     public static final int SLOT_BARK = 2;
@@ -71,8 +74,7 @@ public class Lumbermill {
                 }
 
                 ItemStack input = recipe2.recipeItems[0];
-                if (recipe2.getRecipeOutput() != null
-                        && recipe2.getRecipeOutput().isItemEqual(output)) {
+                if (recipe2.getRecipeOutput() != null && recipe2.getRecipeOutput().isItemEqual(output)) {
                     list.add(input);
                 }
             }
@@ -84,8 +86,7 @@ public class Lumbermill {
                 }
 
                 ItemStack input = (ItemStack) recipe3.getInput().get(0);
-                if (recipe3.getRecipeOutput() == null
-                        || !recipe3.getRecipeOutput().isItemEqual(output)) {
+                if (recipe3.getRecipeOutput() == null || !recipe3.getRecipeOutput().isItemEqual(output)) {
                     continue;
                 }
                 list.add(input);

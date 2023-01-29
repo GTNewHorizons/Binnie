@@ -1,16 +1,10 @@
 package binnie.genetics.gui;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.core.util.UniqueFluidStackSet;
-import binnie.core.util.UniqueItemStackSet;
-import forestry.api.recipes.RecipeManagers;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -21,7 +15,16 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.util.UniqueFluidStackSet;
+import binnie.core.util.UniqueItemStackSet;
+import forestry.api.recipes.RecipeManagers;
+
 public abstract class AnalystPageProduce extends ControlAnalystPage {
+
     public AnalystPageProduce(IWidget parent, IArea area) {
         super(parent, area);
     }
@@ -37,8 +40,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 
     public Collection<ItemStack> getCentrifuge(ItemStack stack) {
         List<ItemStack> products = new ArrayList<>();
-        for (Map.Entry<Object[], Object[]> recipe :
-                RecipeManagers.centrifugeManager.getRecipes().entrySet()) {
+        for (Map.Entry<Object[], Object[]> recipe : RecipeManagers.centrifugeManager.getRecipes().entrySet()) {
             boolean isRecipe = false;
             for (Object obj : recipe.getKey()) {
                 if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
@@ -59,8 +61,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 
     public Collection<ItemStack> getSqueezer(ItemStack stack) {
         List<ItemStack> products = new ArrayList<>();
-        for (Map.Entry<Object[], Object[]> recipe :
-                RecipeManagers.squeezerManager.getRecipes().entrySet()) {
+        for (Map.Entry<Object[], Object[]> recipe : RecipeManagers.squeezerManager.getRecipes().entrySet()) {
             boolean isRecipe = false;
             for (Object obj : recipe.getKey()) {
                 if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
@@ -136,8 +137,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 
     public Collection<FluidStack> getSqueezerFluid(ItemStack stack) {
         List<FluidStack> products = new ArrayList<>();
-        for (Map.Entry<Object[], Object[]> recipe :
-                RecipeManagers.squeezerManager.getRecipes().entrySet()) {
+        for (Map.Entry<Object[], Object[]> recipe : RecipeManagers.squeezerManager.getRecipes().entrySet()) {
             boolean isRecipe = false;
             for (Object obj : recipe.getKey()) {
                 if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
@@ -197,8 +197,8 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
         allFluids.addAll(fluids3);
         for (FluidStack fluid : allFluids) {
             ItemStack container = null;
-            for (FluidContainerRegistry.FluidContainerData data :
-                    FluidContainerRegistry.getRegisteredFluidContainerData()) {
+            for (FluidContainerRegistry.FluidContainerData data : FluidContainerRegistry
+                    .getRegisteredFluidContainerData()) {
                 if (data.emptyContainer.isItemEqual(new ItemStack(Items.glass_bottle))
                         && data.fluid.isFluidEqual(fluid)) {
                     container = data.filledContainer;
@@ -237,8 +237,12 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 
             FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(soilStack);
             soilStack.stackSize = 1;
-            ControlItemDisplay display =
-                    new ControlItemDisplay(this, biomeListX + dx, y + dy, soilStack, fluid == null);
+            ControlItemDisplay display = new ControlItemDisplay(
+                    this,
+                    biomeListX + dx,
+                    y + dy,
+                    soilStack,
+                    fluid == null);
             if (fluid != null) {
                 display.addTooltip(fluid.getLocalizedName());
             }

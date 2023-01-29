@@ -4,6 +4,7 @@ import binnie.extratrees.block.ILogType;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenRoseGum extends WorldGenTree {
+
     public WorldGenRoseGum(ITreeGenData tree) {
         super(tree);
     }

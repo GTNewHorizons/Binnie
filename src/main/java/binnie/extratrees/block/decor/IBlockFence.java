@@ -1,12 +1,13 @@
 package binnie.extratrees.block.decor;
 
-import binnie.core.Mods;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.world.IBlockAccess;
+
+import binnie.core.Mods;
 
 public interface IBlockFence {
 

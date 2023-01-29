@@ -1,13 +1,15 @@
 package binnie.genetics.machine;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.core.resource.IBinnieTexture;
 import binnie.genetics.Genetics;
 import binnie.genetics.machine.splicer.SplicerPackage;
-import net.minecraft.item.ItemStack;
 
 public enum AdvGeneticMachine implements IMachineType {
+
     Splicer(SplicerPackage.class);
 
     protected Class<? extends MachinePackage> cls;
@@ -31,6 +33,7 @@ public enum AdvGeneticMachine implements IMachineType {
     }
 
     public abstract static class PackageAdvGeneticBase extends PackageGeneticBase {
+
         protected PackageAdvGeneticBase(String uid, IBinnieTexture renderTexture, int flashColor, boolean powered) {
             super(uid, renderTexture, flashColor, powered);
         }

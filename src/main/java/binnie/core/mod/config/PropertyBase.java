@@ -4,10 +4,12 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
 abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
+
     protected Configuration file;
     protected Property property;
     protected ValueType defaultValue;
@@ -17,9 +19,8 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
     private List<String> comments;
     private Field field;
 
-    protected PropertyBase(
-            Field field, BinnieConfiguration file, ConfigProperty configProperty, AnnotationType annotedProperty)
-            throws IllegalArgumentException, IllegalAccessException {
+    protected PropertyBase(Field field, BinnieConfiguration file, ConfigProperty configProperty,
+            AnnotationType annotedProperty) throws IllegalArgumentException, IllegalAccessException {
         comments = new ArrayList<>();
         this.field = field;
         this.file = file;
@@ -44,10 +45,7 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 
     protected String getCategory() {
         return configProperty.category().equals("")
-                ? annotatedProperty
-                        .annotationType()
-                        .getAnnotation(ConfigProperty.Type.class)
-                        .category()
+                ? annotatedProperty.annotationType().getAnnotation(ConfigProperty.Type.class).category()
                 : configProperty.category();
     }
 

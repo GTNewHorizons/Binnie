@@ -2,11 +2,13 @@ package binnie.core.craftgui;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 
 public class Tooltip {
+
     public int maxWidth;
 
     protected List<String> tooltip;
@@ -70,5 +72,6 @@ public class Tooltip {
         POWER
     }
 
-    public interface ITooltipType {}
+    public interface ITooltipType {
+    }
 }

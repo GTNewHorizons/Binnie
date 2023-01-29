@@ -1,12 +1,5 @@
 package binnie.extrabees.products;
 
-import binnie.core.BinnieCore;
-import binnie.core.Mods;
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.core.ExtraBeeItems;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -14,7 +7,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraftforge.oredict.OreDictionary;
 
+import binnie.core.BinnieCore;
+import binnie.core.Mods;
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.core.ExtraBeeItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+
 public class ItemHoneyComb extends ItemProduct {
+
     protected IIcon icon1;
     protected IIcon icon2;
 
@@ -78,8 +80,7 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.LATEX.addProduct(honeyDrop, 0.50f);
         EnumHoneyComb.LATEX.addProduct(beeswax, 0.85f);
         if (!OreDictionary.getOres("itemRubber").isEmpty()) {
-            EnumHoneyComb.LATEX.tryAddProduct(
-                    OreDictionary.getOres("itemRubber").get(0), 1.00f);
+            EnumHoneyComb.LATEX.tryAddProduct(OreDictionary.getOres("itemRubber").get(0), 1.00f);
         } else {
             EnumHoneyComb.LATEX.active = false;
         }
@@ -116,8 +117,7 @@ public class ItemHoneyComb extends ItemProduct {
 
         EnumHoneyComb.URANIUM.copyProducts(EnumHoneyComb.STONE);
         if (!OreDictionary.getOres("crushedUranium").isEmpty()) {
-            EnumHoneyComb.URANIUM.tryAddProduct(
-                    OreDictionary.getOres("crushedUranium").get(0), 0.50f);
+            EnumHoneyComb.URANIUM.tryAddProduct(OreDictionary.getOres("crushedUranium").get(0), 0.50f);
         }
 
         EnumHoneyComb.CLAY.addProduct(beeswax, 0.25f);
@@ -156,8 +156,7 @@ public class ItemHoneyComb extends ItemProduct {
 
         EnumHoneyComb.SHADOW.addProduct(honeyDrop, 0.50f);
         if (!OreDictionary.getOres("dustObsidian").isEmpty()) {
-            EnumHoneyComb.SHADOW.tryAddProduct(
-                    OreDictionary.getOres("dustObsidian").get(0), 0.75f);
+            EnumHoneyComb.SHADOW.tryAddProduct(OreDictionary.getOres("dustObsidian").get(0), 0.75f);
         } else {
             EnumHoneyComb.SHADOW.active = false;
         }
@@ -206,8 +205,7 @@ public class ItemHoneyComb extends ItemProduct {
 
         EnumHoneyComb.SAWDUST.addProduct(honeyDrop, 0.25f);
         if (!OreDictionary.getOres("dustSawdust").isEmpty()) {
-            EnumHoneyComb.SAWDUST.tryAddProduct(
-                    OreDictionary.getOres("dustSawdust").get(0), 1.00f);
+            EnumHoneyComb.SAWDUST.tryAddProduct(OreDictionary.getOres("dustSawdust").get(0), 1.00f);
         } else if (!OreDictionary.getOres("sawdust").isEmpty()) {
             EnumHoneyComb.SAWDUST.tryAddProduct(OreDictionary.getOres("sawdust").get(0), 1.00f);
         }
@@ -215,14 +213,12 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.CERTUS.addProduct(honeyDrop, 0.25f);
         EnumHoneyComb.CERTUS.addProduct(new ItemStack(Items.quartz), 0.25f);
         if (!OreDictionary.getOres("dustCertusQuartz").isEmpty()) {
-            EnumHoneyComb.CERTUS.tryAddProduct(
-                    OreDictionary.getOres("dustCertusQuartz").get(0), 0.20f);
+            EnumHoneyComb.CERTUS.tryAddProduct(OreDictionary.getOres("dustCertusQuartz").get(0), 0.20f);
         }
 
         EnumHoneyComb.ENDERPEARL.addProduct(honeyDrop, 0.25f);
         if (!OreDictionary.getOres("dustEnderPearl").isEmpty()) {
-            EnumHoneyComb.ENDERPEARL.tryAddProduct(
-                    OreDictionary.getOres("dustEnderPearl").get(0), 0.25f);
+            EnumHoneyComb.ENDERPEARL.tryAddProduct(OreDictionary.getOres("dustEnderPearl").get(0), 0.25f);
         }
 
         EnumHoneyComb.YELLORIUM.copyProducts(EnumHoneyComb.STONE);
@@ -245,7 +241,7 @@ public class ItemHoneyComb extends ItemProduct {
         for (int i = 0; i < 16; ++i) {
             EnumHoneyComb type = EnumHoneyComb.values()[EnumHoneyComb.RED.ordinal() + i];
             EnumHoneyDrop drop = EnumHoneyDrop.values()[EnumHoneyDrop.RED.ordinal() + i];
-            int[] dyeC = {1, 11, 4, 2, 0, 15, 3, 14, 6, 5, 8, 12, 9, 10, 13, 7};
+            int[] dyeC = { 1, 11, 4, 2, 0, 15, 3, 14, 6, 5, 8, 12, 9, 10, 13, 7 };
             int k = dyeC[i];
             ItemStack dye = new ItemStack(Items.dye, 1, k);
             switch (k) {
@@ -324,6 +320,7 @@ public class ItemHoneyComb extends ItemProduct {
     }
 
     public enum VanillaComb {
+
         HONEY,
         COCOA,
         SIMMERING,

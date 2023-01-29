@@ -6,6 +6,7 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.IBinnieTexture;
 
 public enum CraftGUITextureSheet implements IBinnieTexture {
+
     Controls2("controls"),
     Panel2("panels"),
     Slots("slots");

@@ -1,12 +1,7 @@
 package binnie.extratrees.block.decor;
 
-import binnie.extratrees.block.ModuleBlocks;
-import binnie.extratrees.genetics.LeafType;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.ForestryAPI;
-import forestry.api.core.Tabs;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,7 +15,15 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import binnie.extratrees.block.ModuleBlocks;
+import binnie.extratrees.genetics.LeafType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.ForestryAPI;
+import forestry.api.core.Tabs;
+
 public class BlockHedge extends Block implements IBlockFence {
+
     public BlockHedge() {
         super(Material.leaves);
         setCreativeTab(Tabs.tabArboriculture);
@@ -38,8 +41,8 @@ public class BlockHedge extends Block implements IBlockFence {
     }
 
     @Override
-    public void addCollisionBoxesToList(
-            World world, int x, int y, int z, AxisAlignedBB aabb, List list, Entity entity) {
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list,
+            Entity entity) {
         boolean connectNegZ = canConnectFenceTo(world, x, y, z - 1);
         boolean connectPosZ = canConnectFenceTo(world, x, y, z + 1);
         boolean connectNegX = canConnectFenceTo(world, x - 1, y, z);
@@ -128,11 +131,9 @@ public class BlockHedge extends Block implements IBlockFence {
     @Override
     public boolean canConnectFenceTo(IBlockAccess world, int x, int y, int z) {
         Block block = world.getBlock(x, y, z);
-        return block == this
-                || IBlockFence.isFence(block)
+        return block == this || IBlockFence.isFence(block)
                 || block.isLeaves(world, x, y, z)
-                || (block.getMaterial().isOpaque()
-                        && block.renderAsNormalBlock()
+                || (block.getMaterial().isOpaque() && block.renderAsNormalBlock()
                         && block.getMaterial() != Material.gourd);
     }
 

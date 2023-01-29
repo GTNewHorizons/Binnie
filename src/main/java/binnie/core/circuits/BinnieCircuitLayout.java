@@ -8,6 +8,7 @@ import forestry.api.circuits.ICircuitLayout;
 import forestry.api.circuits.ICircuitSocketType;
 
 public class BinnieCircuitLayout implements ICircuitLayout {
+
     private String uid;
     private AbstractMod mod;
 

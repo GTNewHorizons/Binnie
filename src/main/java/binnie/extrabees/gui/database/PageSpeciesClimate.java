@@ -9,6 +9,7 @@ import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesClimate extends PageSpecies {
+
     protected ControlClimateBar tempBar;
     protected ControlClimateBar humidBar;
 

@@ -1,13 +1,15 @@
 package binnie.botany.core;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+
 import binnie.botany.craftgui.WindowBotanistDatabase;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.world.World;
 
 public enum BotanyGUI implements IBinnieGUID {
+
     Database,
     DatabaseNEI;
 

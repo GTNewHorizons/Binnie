@@ -1,16 +1,18 @@
 package binnie.core.craftgui;
 
-import binnie.core.craftgui.events.Event;
-import binnie.core.craftgui.events.EventHandler;
-import binnie.core.craftgui.events.EventWidget;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.geometry.IPoint;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 
+import binnie.core.craftgui.events.Event;
+import binnie.core.craftgui.events.EventHandler;
+import binnie.core.craftgui.events.EventWidget;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IPoint;
+
 public class Widget implements IWidget {
+
     protected IArea cropArea;
     protected IWidget cropWidget;
     protected boolean cropped;
@@ -162,9 +164,7 @@ public class Widget implements IWidget {
 
     @Override
     public IPoint getOriginalAbsolutePosition() {
-        return isTopLevel()
-                ? getOriginalPosition()
-                : getParent().getOriginalPosition().sub(getOriginalPosition());
+        return isTopLevel() ? getOriginalPosition() : getParent().getOriginalPosition().sub(getOriginalPosition());
     }
 
     @Override
@@ -263,9 +263,7 @@ public class Widget implements IWidget {
 
     @Override
     public IPoint getRelativeMousePosition() {
-        return isTopLevel()
-                ? getMousePosition()
-                : getParent().getRelativeMousePosition().sub(getPosition());
+        return isTopLevel() ? getMousePosition() : getParent().getRelativeMousePosition().sub(getPosition());
     }
 
     @Override
@@ -333,8 +331,7 @@ public class Widget implements IWidget {
         IWidget cropRelative = (cropWidget != null) ? cropWidget : this;
         IPoint pos = IPoint.sub(cropRelative.getAbsolutePosition(), getAbsolutePosition());
         IPoint size = new IPoint(cropArea.size().x(), cropArea.size().y());
-        return mouse.x() > pos.x()
-                && mouse.y() > pos.y()
+        return mouse.x() > pos.x() && mouse.y() > pos.y()
                 && mouse.x() < pos.x() + size.x()
                 && mouse.y() < pos.y() + size.y()
                 && isMouseOverWidget(mouse);

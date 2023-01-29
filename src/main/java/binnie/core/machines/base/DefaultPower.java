@@ -1,13 +1,15 @@
 package binnie.core.machines.base;
 
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.PowerInfo;
 import binnie.core.machines.power.PowerInterface;
 import cpw.mods.fml.common.Optional;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 
 class DefaultPower implements IPoweredMachine {
+
     @Override
     public PowerInfo getPowerInfo() {
         return new PowerInfo(this, 0.0f);

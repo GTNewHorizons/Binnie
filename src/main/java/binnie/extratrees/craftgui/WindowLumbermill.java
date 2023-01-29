@@ -1,5 +1,8 @@
 package binnie.extratrees.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.Window;
@@ -12,10 +15,9 @@ import binnie.core.machines.Machine;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.lumbermill.Lumbermill;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 
 public class WindowLumbermill extends Window {
+
     public WindowLumbermill(EntityPlayer player, IInventory inventory, Side side) {
         super(220.0f, 192.0f, player, inventory, side);
     }

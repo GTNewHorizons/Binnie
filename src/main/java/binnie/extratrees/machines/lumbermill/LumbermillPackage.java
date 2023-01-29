@@ -1,5 +1,7 @@
 package binnie.extratrees.machines.lumbermill;
 
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -12,9 +14,9 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.extratrees.core.ExtraTreeTexture;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.machines.ExtraTreeMachine;
-import net.minecraft.tileentity.TileEntity;
 
 public class LumbermillPackage extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
+
     public LumbermillPackage() {
         super("lumbermill", ExtraTreeTexture.lumbermillTexture, true);
     }

@@ -1,9 +1,11 @@
 package binnie.core.craftgui.minecraft;
 
-import binnie.core.craftgui.Tooltip;
 import net.minecraft.util.EnumChatFormatting;
 
+import binnie.core.craftgui.Tooltip;
+
 public class MinecraftTooltip extends Tooltip {
+
     public static int getOutline(ITooltipType type) {
         return TypeColor.valueOf(type.toString()).getOutline();
     }
@@ -22,6 +24,7 @@ public class MinecraftTooltip extends Tooltip {
     }
 
     private enum TypeColor {
+
         STANDARD(0x5000ff, EnumChatFormatting.WHITE, EnumChatFormatting.GRAY),
         HELP(0x4cff00, EnumChatFormatting.GREEN, EnumChatFormatting.DARK_GREEN),
         INFORMATION(0x00bfff, EnumChatFormatting.AQUA, EnumChatFormatting.DARK_AQUA),

@@ -1,12 +1,15 @@
 package binnie.genetics.machine.incubator;
 
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.core.machines.MachineUtil;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.genetics.api.IIncubatorRecipe;
-import java.util.Random;
-import javax.annotation.Nullable;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 
 public class IncubatorRecipe implements IIncubatorRecipe {
 
@@ -22,17 +25,13 @@ public class IncubatorRecipe implements IIncubatorRecipe {
     @Nullable
     private ItemStack outputStack;
 
-    public IncubatorRecipe(
-            ItemStack inputStack, final FluidStack input, @Nullable final FluidStack output, final float lossChance) {
+    public IncubatorRecipe(ItemStack inputStack, final FluidStack input, @Nullable final FluidStack output,
+            final float lossChance) {
         this(inputStack, input, output, lossChance, 1.0f);
     }
 
-    public IncubatorRecipe(
-            ItemStack inputStack,
-            final FluidStack input,
-            @Nullable final FluidStack output,
-            final float lossChance,
-            final float chance) {
+    public IncubatorRecipe(ItemStack inputStack, final FluidStack input, @Nullable final FluidStack output,
+            final float lossChance, final float chance) {
         this.inputStack = inputStack;
         this.outputStack = null;
         this.input = input;
@@ -97,8 +96,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
         if (this.outputStack != null) {
             final ItemStack output = this.outputStack.copy();
             final TransferRequest product = new TransferRequest(output, machine.getInventory())
-                    .setTargetSlots(Incubator.SLOT_OUTPUT)
-                    .ignoreValidation();
+                    .setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
             product.transfer(true);
         }
         final Random rand = machine.getRandom();
@@ -134,8 +132,7 @@ public class IncubatorRecipe implements IIncubatorRecipe {
 
         ItemStack output = outputStack.copy();
         TransferRequest product = new TransferRequest(output, machine.getInventory())
-                .setTargetSlots(Incubator.SLOT_OUTPUT)
-                .ignoreValidation();
+                .setTargetSlots(Incubator.SLOT_OUTPUT).ignoreValidation();
         return product.transfer(false) == null;
     }
 }

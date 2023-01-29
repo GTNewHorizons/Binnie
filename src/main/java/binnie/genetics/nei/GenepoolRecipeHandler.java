@@ -1,5 +1,14 @@
 package binnie.genetics.nei;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
@@ -13,13 +22,6 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import forestry.api.apiculture.EnumBeeType;
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class GenepoolRecipeHandler extends RecipeHandlerBase {
 
@@ -115,6 +117,7 @@ public class GenepoolRecipeHandler extends RecipeHandlerBase {
     }
 
     private static class GenepoolRecipe {
+
         private final ItemStack inputStack;
 
         public GenepoolRecipe(ItemStack inputStack) {
@@ -154,6 +157,7 @@ public class GenepoolRecipeHandler extends RecipeHandlerBase {
     }
 
     public class CachedGenepoolRecipe extends CachedBaseRecipe {
+
         public List<PositionedFluidTank> tanks = new ArrayList<>();
         public List<PositionedStack> ingredients = new ArrayList<>();
         public PositionedStack input;

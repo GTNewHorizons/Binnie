@@ -1,5 +1,11 @@
 package binnie.extrabees.apiary;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
@@ -11,13 +17,9 @@ import binnie.extrabees.apiary.machine.mutator.AlvearyMutator;
 import binnie.extrabees.apiary.machine.stimulator.CircuitType;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.Tabs;
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleApiary implements IInitializable {
+
     public static Block blockComponent;
 
     protected BinnieCircuitLayout stimulatorLayout;
@@ -43,9 +45,7 @@ public class ModuleApiary implements IInitializable {
         AlvearyMutator.addMutationItem(new ItemStack(Items.ender_eye), 4.0f);
 
         for (EnumHiveFrame frame : EnumHiveFrame.values()) {
-            GameRegistry.registerItem(
-                    frame.item = new ItemHiveFrame(frame),
-                    "hiveFrame." + frame.name().toLowerCase());
+            GameRegistry.registerItem(frame.item = new ItemHiveFrame(frame), "hiveFrame." + frame.name().toLowerCase());
         }
     }
 
@@ -126,9 +126,10 @@ public class ModuleApiary implements IInitializable {
                 't',
                 new ItemStack(Mods.forestry.item("thermionicTubes"), 1, 5));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(
-                AlvearyMachine.Transmission.get(1),
-                new Object[] {" t ", "tat", " t ", 'a', Mods.forestry.block("alveary"), 't', "gearTin"}));
+        GameRegistry.addRecipe(
+                new ShapedOreRecipe(
+                        AlvearyMachine.Transmission.get(1),
+                        new Object[] { " t ", "tat", " t ", 'a', Mods.forestry.block("alveary"), 't', "gearTin" }));
 
         for (CircuitType type : CircuitType.values()) {
             type.createCircuit(stimulatorLayout);

@@ -1,14 +1,16 @@
 package binnie.core.craftgui.database;
 
+import java.util.List;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.BreedingSystem;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
-import java.util.List;
 
 class ControlMutationBox extends ControlListBox<IMutation> {
+
     private Type type;
     private IAlleleSpecies species;
 
@@ -31,8 +33,8 @@ class ControlMutationBox extends ControlListBox<IMutation> {
         this.species = species;
         movePercentage(-100.0f);
         BreedingSystem system = ((WindowAbstractDatabase) getSuperParent()).getBreedingSystem();
-        List<IMutation> discovered = system.getDiscoveredMutations(
-                Window.get(this).getWorld(), Window.get(this).getUsername());
+        List<IMutation> discovered = system
+                .getDiscoveredMutations(Window.get(this).getWorld(), Window.get(this).getUsername());
 
         if (species == null) {
             return;

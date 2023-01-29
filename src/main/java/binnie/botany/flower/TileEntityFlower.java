@@ -1,5 +1,21 @@
 package binnie.botany.flower;
 
+import java.util.EnumSet;
+import java.util.Random;
+
+import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
+import net.minecraft.network.Packet;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+import net.minecraftforge.common.EnumPlantType;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerStage;
@@ -17,7 +33,9 @@ import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.Flower;
 import binnie.botany.network.MessageFlowerUpdate;
 import binnie.core.BinnieCore;
+
 import com.mojang.authlib.GameProfile;
+
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IIndividual;
@@ -25,22 +43,9 @@ import forestry.api.genetics.IPollinatable;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.IButterflyNursery;
 import forestry.lepidopterology.entities.EntityButterfly;
-import java.util.EnumSet;
-import java.util.Random;
-import net.minecraft.block.Block;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.network.Packet;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.common.EnumPlantType;
 
 public class TileEntityFlower extends TileEntity implements IPollinatable, IButterflyNursery {
+
     protected IFlower flower;
     protected GameProfile owner;
     protected int section;
@@ -119,8 +124,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
     @Override
     public boolean canMateWith(IIndividual individual) {
-        return isBreeding()
-                && individual instanceof IFlower
+        return isBreeding() && individual instanceof IFlower
                 && getFlower() != null
                 && getFlower().getMate() == null
                 && getFlower().hasFlowered()
@@ -133,8 +137,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
             return;
         }
 
-        IAlleleFlowerSpecies primary =
-                (IAlleleFlowerSpecies) individual.getGenome().getPrimary();
+        IAlleleFlowerSpecies primary = (IAlleleFlowerSpecies) individual.getGenome().getPrimary();
         IAlleleFlowerSpecies primary2 = getFlower().getGenome().getPrimary();
         if (primary == primary2 || worldObj.rand.nextInt(4) == 0) {
             getFlower().mate((IFlower) individual);
@@ -283,9 +286,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
         Gardening.onGrowFromSeed(worldObj, xCoord, yCoord, zCoord);
         if (getOwner() != null && getFlower() != null) {
-            BotanyCore.getFlowerRoot()
-                    .getBreedingTracker(getWorldObj(), getOwner())
-                    .registerBirth(getFlower());
+            BotanyCore.getFlowerRoot().getBreedingTracker(getWorldObj(), getOwner()).registerBirth(getFlower());
         }
     }
 
@@ -294,11 +295,8 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
         if (renderInfo == null && getFlower() != null && getFlower().getGenome() != null) {
             renderInfo = new RenderInfo(getFlower(), this);
         }
-        return (renderInfo != null)
-                ? Botany.instance
-                        .getNetworkWrapper()
-                        .getPacketFrom(new MessageFlowerUpdate(xCoord, yCoord, zCoord, renderInfo).getMessage())
-                : null;
+        return (renderInfo != null) ? Botany.instance.getNetworkWrapper()
+                .getPacketFrom(new MessageFlowerUpdate(xCoord, yCoord, zCoord, renderInfo).getMessage()) : null;
     }
 
     public void updateRender(boolean update) {
@@ -454,11 +452,8 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
             return;
         }
 
-        IButterfly spawn = Binnie.Genetics.getButterflyRoot()
-                .getIndividualTemplates()
-                .get(worldObj.rand.nextInt(Binnie.Genetics.getButterflyRoot()
-                        .getIndividualTemplates()
-                        .size()));
+        IButterfly spawn = Binnie.Genetics.getButterflyRoot().getIndividualTemplates()
+                .get(worldObj.rand.nextInt(Binnie.Genetics.getButterflyRoot().getIndividualTemplates().size()));
         if (worldObj.rand.nextFloat() >= spawn.getGenome().getPrimary().getRarity() * 0.5f) {
             return;
         }
@@ -528,9 +523,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
         }
 
         matureTime++;
-        if (matureTime
-                        >= caterpillar.getGenome().getLifespan()
-                                / (caterpillar.getGenome().getFertility() * 2)
+        if (matureTime >= caterpillar.getGenome().getLifespan() / (caterpillar.getGenome().getFertility() * 2)
                 && caterpillar.canTakeFlight(worldObj, xCoord, yCoord, zCoord)) {
             if (worldObj.isAirBlock(xCoord, yCoord + 1, zCoord)) {
                 attemptButterflySpawn(worldObj, caterpillar, xCoord, yCoord + 1, zCoord);
@@ -601,6 +594,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
     }
 
     public static class RenderInfo {
+
         public IFlowerColor primary;
         public IFlowerColor secondary;
         public IFlowerColor stem;
@@ -627,8 +621,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
         public boolean equals(Object obj) {
             if (obj instanceof RenderInfo) {
                 RenderInfo o = (RenderInfo) obj;
-                return o.age == age
-                        && o.wilted == wilted
+                return o.age == age && o.wilted == wilted
                         && o.flowered == flowered
                         && o.primary == primary
                         && o.secondary == secondary

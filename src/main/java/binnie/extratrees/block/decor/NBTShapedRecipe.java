@@ -1,6 +1,7 @@
 package binnie.extratrees.block.decor;
 
 import java.util.HashMap;
+
 import net.minecraft.block.Block;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
@@ -10,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class NBTShapedRecipe implements IRecipe {
+
     public int recipeWidth;
     public int recipeHeight;
     public ItemStack[] recipeItems;
@@ -116,8 +118,7 @@ public class NBTShapedRecipe implements IRecipe {
                     if (itemstack.getItemDamage() != 32767 && itemstack.getItemDamage() != itemstack2.getItemDamage()) {
                         return false;
                     }
-                    if (itemstack.hasTagCompound()
-                            && itemstack2.hasTagCompound()
+                    if (itemstack.hasTagCompound() && itemstack2.hasTagCompound()
                             && !ItemStack.areItemStackTagsEqual(itemstack, itemstack2)) {
                         return false;
                     }

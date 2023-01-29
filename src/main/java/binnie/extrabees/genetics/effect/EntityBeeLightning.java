@@ -1,6 +1,7 @@
 package binnie.extrabees.genetics.effect;
 
 import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.init.Blocks;
@@ -9,6 +10,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class EntityBeeLightning extends EntityLightningBolt {
+
     int lightningState;
     int boltLivingTime;
 
@@ -31,12 +33,11 @@ public class EntityBeeLightning extends EntityLightningBolt {
                 lightningState = 1;
                 boltVertex = rand.nextLong();
 
-                if (!worldObj.isRemote
-                        && worldObj.doChunksNearChunkExist(
-                                MathHelper.floor_double(posX),
-                                MathHelper.floor_double(posY),
-                                MathHelper.floor_double(posZ),
-                                10)) {
+                if (!worldObj.isRemote && worldObj.doChunksNearChunkExist(
+                        MathHelper.floor_double(posX),
+                        MathHelper.floor_double(posY),
+                        MathHelper.floor_double(posZ),
+                        10)) {
                     int i = MathHelper.floor_double(posX);
                     int j = MathHelper.floor_double(posY);
                     int k = MathHelper.floor_double(posZ);

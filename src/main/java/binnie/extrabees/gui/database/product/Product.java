@@ -3,6 +3,7 @@ package binnie.extrabees.gui.database.product;
 import net.minecraft.item.ItemStack;
 
 public class Product {
+
     protected ItemStack item;
     protected float chance;
 

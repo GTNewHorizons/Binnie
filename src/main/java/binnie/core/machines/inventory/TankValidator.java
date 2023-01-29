@@ -1,14 +1,17 @@
 package binnie.core.machines.inventory;
 
-import binnie.Binnie;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
+import binnie.Binnie;
+
 public abstract class TankValidator extends Validator<FluidStack> {
+
     @Override
     public abstract boolean isValid(FluidStack liquid);
 
     public static class Basic extends TankValidator {
+
         private Fluid fluid;
 
         public Basic(String name) {

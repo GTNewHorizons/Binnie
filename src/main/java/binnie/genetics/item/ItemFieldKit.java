@@ -1,13 +1,7 @@
 package binnie.genetics.item;
 
-import binnie.botany.Botany;
-import binnie.core.BinnieCore;
-import binnie.core.gui.BinnieCoreGUI;
-import binnie.core.util.I18N;
-import binnie.genetics.GeneticsCreativeTab;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -15,7 +9,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import binnie.botany.Botany;
+import binnie.core.BinnieCore;
+import binnie.core.gui.BinnieCoreGUI;
+import binnie.core.util.I18N;
+import binnie.genetics.GeneticsCreativeTab;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemFieldKit extends Item {
+
     private IIcon fieldKit0;
     private IIcon fieldKit1;
     private IIcon fieldKit2;
@@ -56,8 +59,8 @@ public class ItemFieldKit extends Item {
     @Override
     public ItemStack onItemRightClick(ItemStack itemStack, World world, EntityPlayer player) {
         if (!player.isSneaking()) {
-            BinnieCore.proxy.openGui(
-                    BinnieCoreGUI.FieldKit, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+            BinnieCore.proxy
+                    .openGui(BinnieCoreGUI.FieldKit, player, (int) player.posX, (int) player.posY, (int) player.posZ);
         }
         return itemStack;
     }

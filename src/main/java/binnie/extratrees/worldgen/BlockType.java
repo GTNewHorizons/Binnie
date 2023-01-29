@@ -1,10 +1,12 @@
 package binnie.extratrees.worldgen;
 
-import forestry.api.world.ITreeGenData;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
+import forestry.api.world.ITreeGenData;
+
 public class BlockType {
+
     protected int meta;
     protected Block block;
 

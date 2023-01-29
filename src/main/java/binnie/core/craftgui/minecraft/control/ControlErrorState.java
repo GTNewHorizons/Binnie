@@ -1,5 +1,7 @@
 package binnie.core.craftgui.minecraft.control;
 
+import net.minecraft.entity.player.InventoryPlayer;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -12,9 +14,9 @@ import binnie.core.craftgui.minecraft.MinecraftTooltip;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.power.ErrorState;
-import net.minecraft.entity.player.InventoryPlayer;
 
 public class ControlErrorState extends Control implements ITooltip {
+
     private ErrorState errorState;
     private int type;
 

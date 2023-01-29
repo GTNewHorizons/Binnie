@@ -1,13 +1,15 @@
 package binnie.extratrees.carpentry;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import binnie.core.util.I18N;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
-import java.util.ArrayList;
-import java.util.List;
 
 public enum EnumDesignCategory implements IDesignCategory {
+
     Design("designsEmblems"),
     Stripes("squaresStripes"),
     Edges("edges"),

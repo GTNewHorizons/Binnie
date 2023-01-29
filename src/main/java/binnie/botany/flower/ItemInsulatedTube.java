@@ -1,11 +1,7 @@
 package binnie.botany.flower;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +10,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemInsulatedTube extends Item {
+
     IIcon[] icons;
 
     public ItemInsulatedTube() {
@@ -52,8 +55,7 @@ public class ItemInsulatedTube extends Item {
         if (pass == 0) {
             return 0xffffff;
         }
-        return (pass == 1)
-                ? Material.get(stack.getItemDamage()).getColor()
+        return (pass == 1) ? Material.get(stack.getItemDamage()).getColor()
                 : Insulate.get(stack.getItemDamage()).getColor();
     }
 
@@ -85,6 +87,7 @@ public class ItemInsulatedTube extends Item {
     }
 
     enum Material {
+
         Copper(0xe3b78e, "cooper"),
         Tin(0xe1eef4, "tin"),
         Bronze(0xddc276, "bronze"),
@@ -112,6 +115,7 @@ public class ItemInsulatedTube extends Item {
     }
 
     enum Insulate {
+
         Clay(0xa1aacc, "clay"),
         Cobble(0x7b7b7b, "cobblestone"),
         Sand(0xefeab5, "sand"),

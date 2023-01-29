@@ -1,15 +1,17 @@
 package binnie.extratrees.item;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ILiquidType;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.FluidStack;
 
 public enum ExtraTreeLiquid implements ILiquidType {
+
     Sap("sap", 0xbe7542),
     Resin("resin", 0xc96800),
     Latex("latex", 0xd8dbc9),
@@ -69,8 +71,7 @@ public enum ExtraTreeLiquid implements ILiquidType {
 
     @Override
     public boolean showInCreative(FluidContainer container) {
-        return container == FluidContainer.Bucket
-                || container == FluidContainer.Can
+        return container == FluidContainer.Bucket || container == FluidContainer.Can
                 || container == FluidContainer.Capsule;
     }
 

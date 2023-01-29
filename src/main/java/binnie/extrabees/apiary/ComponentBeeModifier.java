@@ -1,5 +1,7 @@
 package binnie.extrabees.apiary;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
 import forestry.api.apiculture.IBee;
@@ -7,9 +9,9 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
 
 public class ComponentBeeModifier extends MachineComponent implements IBeeModifier, IBeeListener {
+
     public ComponentBeeModifier(Machine machine) {
         super(machine);
     }

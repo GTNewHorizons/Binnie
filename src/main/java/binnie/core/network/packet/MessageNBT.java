@@ -1,10 +1,13 @@
 package binnie.core.network.packet;
 
-import io.netty.buffer.ByteBuf;
 import java.io.IOException;
+
 import net.minecraft.nbt.NBTTagCompound;
 
+import io.netty.buffer.ByteBuf;
+
 public class MessageNBT extends MessageBase {
+
     protected NBTTagCompound nbt;
 
     public NBTTagCompound getTagCompound() {

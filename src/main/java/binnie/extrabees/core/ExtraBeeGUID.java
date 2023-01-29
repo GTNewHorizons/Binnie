@@ -1,5 +1,10 @@
 package binnie.extrabees.core;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
 import binnie.extrabees.gui.WindowAlvearyFrame;
@@ -8,12 +13,9 @@ import binnie.extrabees.gui.WindowAlvearyMutator;
 import binnie.extrabees.gui.WindowAlvearyStimulator;
 import binnie.extrabees.gui.database.WindowApiaristDatabase;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public enum ExtraBeeGUID implements IBinnieGUID {
+
     Database,
     DatabaseNEI,
     AlvearyMutator,

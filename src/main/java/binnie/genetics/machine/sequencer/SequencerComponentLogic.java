@@ -1,5 +1,7 @@
 package binnie.genetics.machine.sequencer;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.power.ComponentProcess;
@@ -9,10 +11,10 @@ import binnie.core.util.I18N;
 import binnie.genetics.genetics.GeneTracker;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.item.GeneticsItems;
-import net.minecraft.item.ItemStack;
 
 public class SequencerComponentLogic extends ComponentProcess
         implements IProcess, ComponentInventoryTransfer.ITransferRestockListener {
+
     public SequencerComponentLogic(Machine machine) {
         super(machine);
     }
@@ -41,7 +43,8 @@ public class SequencerComponentLogic extends ComponentProcess
     public ErrorState canWork() {
         if (getUtil().isSlotEmpty(Sequencer.SLOT_TARGET_INDEX)) {
             return new ErrorState.NoItem(
-                    I18N.localise("genetics.machine.sequencer.error.noSequence"), Sequencer.SLOT_TARGET_INDEX);
+                    I18N.localise("genetics.machine.sequencer.error.noSequence"),
+                    Sequencer.SLOT_TARGET_INDEX);
         }
         return super.canWork();
     }
@@ -55,13 +58,15 @@ public class SequencerComponentLogic extends ComponentProcess
         }
         if (getUtil().getSlotCharge(Sequencer.SLOT_DYE_INDEX) == 0.0f) {
             return new ErrorState.NoItem(
-                    I18N.localise("genetics.machine.sequencer.error.noDye"), Sequencer.SLOT_DYE_INDEX);
+                    I18N.localise("genetics.machine.sequencer.error.noDye"),
+                    Sequencer.SLOT_DYE_INDEX);
         }
 
         ItemStack stack = getUtil().getStack(Sequencer.SLOT_DONE_INDEX);
         if (stack != null && stack.stackSize >= 64) {
             return new ErrorState.NoSpace(
-                    I18N.localise("genetics.machine.sequencer.error.noSpace"), Sequencer.SLOT_DONE_INDEX);
+                    I18N.localise("genetics.machine.sequencer.error.noSpace"),
+                    Sequencer.SLOT_DONE_INDEX);
         }
         return super.canProgress();
     }

@@ -3,6 +3,7 @@ package binnie.core.genetics;
 import binnie.core.util.I18N;
 
 public enum EnumBeeModifier {
+
     TERRITORY,
     MUTATION,
     LIFESPAN,

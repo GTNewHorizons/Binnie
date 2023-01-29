@@ -1,5 +1,12 @@
 package binnie.genetics.core;
 
+import java.lang.reflect.Constructor;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
 import binnie.genetics.craftgui.WindowAcclimatiser;
@@ -15,13 +22,9 @@ import binnie.genetics.craftgui.WindowSequencer;
 import binnie.genetics.craftgui.WindowSplicer;
 import binnie.genetics.gui.WindowAnalyst;
 import cpw.mods.fml.relauncher.Side;
-import java.lang.reflect.Constructor;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public enum GeneticsGUI implements IBinnieGUID {
+
     Genepool(WindowGenepool.class),
     Isolator(WindowIsolator.class),
     Sequencer(WindowSequencer.class),

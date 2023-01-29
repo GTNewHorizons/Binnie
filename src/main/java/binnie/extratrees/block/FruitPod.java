@@ -1,14 +1,16 @@
 package binnie.extratrees.block;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
+
 import binnie.core.BinnieCore;
 import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.IIconProvider;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.util.IIcon;
 
 public enum FruitPod implements IIconProvider {
+
     Cocoa,
     Banana,
     Coconut,
@@ -20,11 +22,8 @@ public enum FruitPod implements IIconProvider {
     protected IIcon[] icons;
 
     FruitPod() {
-        textures = new short[] {
-            BinnieCore.proxy.getUniqueTextureUID(),
-            BinnieCore.proxy.getUniqueTextureUID(),
-            BinnieCore.proxy.getUniqueTextureUID(),
-        };
+        textures = new short[] { BinnieCore.proxy.getUniqueTextureUID(), BinnieCore.proxy.getUniqueTextureUID(),
+                BinnieCore.proxy.getUniqueTextureUID(), };
         icons = new IIcon[3];
     }
 

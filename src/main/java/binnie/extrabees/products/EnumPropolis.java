@@ -1,25 +1,28 @@
 package binnie.extrabees.products;
 
+import java.awt.Color;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.item.IItemEnum;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
-import java.awt.Color;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 
 public enum EnumPropolis implements IItemEnum {
+
     WATER(new Color(0x24b3c9), new Color(0xc2bea7), "Water"),
     OIL(new Color(0x172f33), new Color(0xc2bea7), "oil"),
     FUEL(new Color(0xa38d12), new Color(0xc2bea7), "fuel"),
-    //	MILK,
-    //	FRUIT,
-    //	SEED,
-    //	ALCOHOL,
+    // MILK,
+    // FRUIT,
+    // SEED,
+    // ALCOHOL,
     CREOSOTE(new Color(0x877501), new Color(0xbda613), "creosote");
-    //	GLACIAL,
-    //	PEAT
+    // GLACIAL,
+    // PEAT
 
     public final int secondaryColor;
     public final int primaryColor;
@@ -44,7 +47,7 @@ public enum EnumPropolis implements IItemEnum {
         if (liquid == null) {
             return;
         }
-        RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] {get(1)}, liquid, null, 0);
+        RecipeManagers.squeezerManager.addRecipe(20, new ItemStack[] { get(1) }, liquid, null, 0);
     }
 
     @Override

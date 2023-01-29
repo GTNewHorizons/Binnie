@@ -1,5 +1,10 @@
 package binnie.extrabees.apiary;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import binnie.core.Mods;
 import binnie.core.genetics.BeeModifierLogic;
 import binnie.core.genetics.EnumBeeBooleanModifier;
@@ -11,12 +16,9 @@ import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeModifier;
 import forestry.api.apiculture.IHiveFrame;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
+
     Cocoa,
     Cage,
     Soul,
@@ -57,9 +59,13 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
                 'c',
                 new ItemStack(Items.dye, 1, 3));
         GameRegistry.addShapelessRecipe(
-                new ItemStack(EnumHiveFrame.Cage.item), Mods.forestry.stack("frameImpregnated"), Blocks.iron_bars);
+                new ItemStack(EnumHiveFrame.Cage.item),
+                Mods.forestry.stack("frameImpregnated"),
+                Blocks.iron_bars);
         GameRegistry.addShapelessRecipe(
-                new ItemStack(EnumHiveFrame.Soul.item), Mods.forestry.stack("frameImpregnated"), Blocks.soul_sand);
+                new ItemStack(EnumHiveFrame.Soul.item),
+                Mods.forestry.stack("frameImpregnated"),
+                Blocks.soul_sand);
         GameRegistry.addRecipe(
                 new ItemStack(EnumHiveFrame.Clay.item),
                 " c ",

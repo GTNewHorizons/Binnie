@@ -1,5 +1,8 @@
 package binnie.genetics.craftgui;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.Position;
@@ -21,10 +24,9 @@ import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.inoculator.Inoculator;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 
 public class WindowInoculator extends WindowMachine {
+
     static Texture ProgressBase = new StandardTexture(0, 72, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
     static Texture Progress = new StandardTexture(0, 0, 142, 72, GeneticsTexture.GUIProcess2.getTexture());
 
@@ -52,7 +54,12 @@ public class WindowInoculator extends WindowMachine {
                 new ControlSlotArray(this, 0, 0, 2, 1).create(Inoculator.SLOT_SERUM_EXPENDED));
         x += 18;
         new ControlMachineProgress(
-                this, x, y + 24, WindowInoculator.ProgressBase, WindowInoculator.Progress, Position.LEFT);
+                this,
+                x,
+                y + 24,
+                WindowInoculator.ProgressBase,
+                WindowInoculator.Progress,
+                Position.LEFT);
         new ControlEnergyBar(this, 91, 118, 60, 16, Position.LEFT);
         new ControlErrorState(this, 161.0f, 118.0f);
         x += 142;

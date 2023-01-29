@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
 public interface IDesignSystem {
+
     IIcon getPrimaryIcon(IPattern pattern);
 
     IIcon getSecondaryIcon(IPattern pattern);

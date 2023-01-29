@@ -1,25 +1,9 @@
 package binnie.botany.farm;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.gardening.IBlockSoil;
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.gardening.Gardening;
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.farming.FarmDirection;
-import forestry.api.farming.ICrop;
-import forestry.api.farming.IFarmHousing;
-import forestry.api.farming.IFarmable;
-import forestry.core.access.IOwnable;
-import forestry.core.utils.vect.Vect;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
@@ -31,7 +15,28 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.gardening.Gardening;
+
+import com.mojang.authlib.GameProfile;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.farming.FarmDirection;
+import forestry.api.farming.ICrop;
+import forestry.api.farming.IFarmHousing;
+import forestry.api.farming.IFarmable;
+import forestry.core.access.IOwnable;
+import forestry.core.utils.vect.Vect;
+
 public class GardenLogic extends FarmLogic {
+
     protected EnumMoisture moisture;
     protected EnumAcidity acidity;
     protected boolean fertilised;
@@ -62,8 +67,7 @@ public class GardenLogic extends FarmLogic {
     @Override
     public boolean isAcceptedResource(ItemStack stack) {
         Item item = stack.getItem();
-        return Gardening.isSoil(item)
-                || item == Item.getItemFromBlock(Blocks.sand)
+        return Gardening.isSoil(item) || item == Item.getItemFromBlock(Blocks.sand)
                 || item == Item.getItemFromBlock(Blocks.dirt)
                 || Gardening.isAcidFertiliser(stack)
                 || Gardening.isAlkalineFertiliser(stack);
@@ -79,8 +83,7 @@ public class GardenLogic extends FarmLogic {
     @Override
     public boolean cultivate(int x, int y, int z, FarmDirection direction, int extent) {
         world = housing.getWorld();
-        return maintainSoil(x, y, z, direction, extent)
-                || !isManual && maintainWater(x, y, z, direction, extent)
+        return maintainSoil(x, y, z, direction, extent) || !isManual && maintainWater(x, y, z, direction, extent)
                 || maintainCrops(x, y + 1, z, direction, extent);
     }
 
@@ -126,36 +129,25 @@ public class GardenLogic extends FarmLogic {
                 EnumAcidity pH = soil.getPH(world, position.x, position.y, position.z);
                 if (pH.ordinal() < acidity.ordinal()) {
                     ItemStack stack = getAvailableAlkaline();
-                    if (stack != null
-                            && soil.setPH(
-                                    world,
-                                    position.x,
-                                    position.y,
-                                    position.z,
-                                    EnumAcidity.values()[pH.ordinal() + 1])) {
-                        housing.getFarmInventory().removeResources(new ItemStack[] {stack});
+                    if (stack != null && soil
+                            .setPH(world, position.x, position.y, position.z, EnumAcidity.values()[pH.ordinal() + 1])) {
+                        housing.getFarmInventory().removeResources(new ItemStack[] { stack });
                         continue;
                     }
                 }
 
                 if (pH.ordinal() > acidity.ordinal()) {
                     ItemStack stack = getAvailableAcid();
-                    if (stack != null
-                            && soil.setPH(
-                                    world,
-                                    position.x,
-                                    position.y,
-                                    position.z,
-                                    EnumAcidity.values()[pH.ordinal() - 1])) {
-                        housing.getFarmInventory().removeResources(new ItemStack[] {stack});
+                    if (stack != null && soil
+                            .setPH(world, position.x, position.y, position.z, EnumAcidity.values()[pH.ordinal() - 1])) {
+                        housing.getFarmInventory().removeResources(new ItemStack[] { stack });
                         continue;
                     }
                 }
             }
 
-            if (!isAirBlock(position)
-                    && !world.getBlock(position.x, position.y, position.z)
-                            .isReplaceable(world, position.x, position.y, position.z)) {
+            if (!isAirBlock(position) && !world.getBlock(position.x, position.y, position.z)
+                    .isReplaceable(world, position.x, position.y, position.z)) {
                 ItemStack block = getAsItemStack(position);
                 ItemStack loam = getAvailableLoam();
                 if (isWaste(block) && loam != null) {
@@ -224,20 +216,20 @@ public class GardenLogic extends FarmLogic {
     private ItemStack getAvailableLoam() {
         EnumMoisture[] moistures;
         if (moisture == EnumMoisture.DAMP) {
-            moistures = new EnumMoisture[] {EnumMoisture.DAMP, EnumMoisture.NORMAL, EnumMoisture.DRY};
+            moistures = new EnumMoisture[] { EnumMoisture.DAMP, EnumMoisture.NORMAL, EnumMoisture.DRY };
         } else if (moisture == EnumMoisture.DRY) {
-            moistures = new EnumMoisture[] {EnumMoisture.DRY, EnumMoisture.DAMP, EnumMoisture.DRY};
+            moistures = new EnumMoisture[] { EnumMoisture.DRY, EnumMoisture.DAMP, EnumMoisture.DRY };
         } else {
-            moistures = new EnumMoisture[] {EnumMoisture.DRY, EnumMoisture.NORMAL, EnumMoisture.DAMP};
+            moistures = new EnumMoisture[] { EnumMoisture.DRY, EnumMoisture.NORMAL, EnumMoisture.DAMP };
         }
 
-        EnumAcidity[] acidities = {EnumAcidity.NEUTRAL, EnumAcidity.ACID, EnumAcidity.ALKALINE};
+        EnumAcidity[] acidities = { EnumAcidity.NEUTRAL, EnumAcidity.ACID, EnumAcidity.ALKALINE };
 
         for (EnumMoisture moist : moistures) {
             for (EnumAcidity acid : acidities) {
-                for (Block type : new Block[] {Botany.flowerbed, Botany.loam, Botany.soil}) {
+                for (Block type : new Block[] { Botany.flowerbed, Botany.loam, Botany.soil }) {
                     int meta = acid.ordinal() * 3 + moist.ordinal();
-                    ItemStack[] resource = {new ItemStack(type, 1, meta)};
+                    ItemStack[] resource = { new ItemStack(type, 1, meta) };
                     if (housing.getFarmInventory().hasResources(resource)) {
                         return resource[0];
                     }
@@ -245,7 +237,7 @@ public class GardenLogic extends FarmLogic {
             }
         }
 
-        if (housing.getFarmInventory().hasResources(new ItemStack[] {new ItemStack(Blocks.dirt)})) {
+        if (housing.getFarmInventory().hasResources(new ItemStack[] { new ItemStack(Blocks.dirt) })) {
             return new ItemStack(Blocks.dirt);
         }
         return null;
@@ -266,7 +258,7 @@ public class GardenLogic extends FarmLogic {
         }
 
         setBlock(position, ((ItemBlock) loam.getItem()).field_150939_a, loam.getItemDamage());
-        housing.getFarmInventory().removeResources(new ItemStack[] {copy});
+        housing.getFarmInventory().removeResources(new ItemStack[] { copy });
         return true;
     }
 
@@ -286,7 +278,7 @@ public class GardenLogic extends FarmLogic {
             return trySetSoil(position);
         }
 
-        ItemStack[] sand = {new ItemStack(Blocks.sand, 1)};
+        ItemStack[] sand = { new ItemStack(Blocks.sand, 1) };
         if (!housing.getFarmInventory().hasResources(sand)) {
             return false;
         }
@@ -368,8 +360,7 @@ public class GardenLogic extends FarmLogic {
 
             try {
                 IOwnable housing2 = (IOwnable) housing;
-                GameProfile prof = (GameProfile) IOwnable.class
-                        .getMethod("getOwnerProfile", new Class[0])
+                GameProfile prof = (GameProfile) IOwnable.class.getMethod("getOwnerProfile", new Class[0])
                         .invoke(housing2);
                 ((TileEntityFlower) tile).setOwner(prof);
             } catch (Exception ex) {
@@ -382,9 +373,8 @@ public class GardenLogic extends FarmLogic {
 
     public ItemStack getAvailableAcid() {
         for (ItemStack stack : Gardening.getAcidFertilisers()) {
-            if (stack != null
-                    && stack.getItem() != null
-                    && housing.getFarmInventory().hasResources(new ItemStack[] {stack})) {
+            if (stack != null && stack.getItem() != null
+                    && housing.getFarmInventory().hasResources(new ItemStack[] { stack })) {
                 return stack;
             }
         }
@@ -393,22 +383,16 @@ public class GardenLogic extends FarmLogic {
 
     public ItemStack getAvailableAlkaline() {
         for (ItemStack stack : Gardening.getAlkalineFertilisers()) {
-            if (stack != null
-                    && stack.getItem() != null
-                    && housing.getFarmInventory().hasResources(new ItemStack[] {stack})) {
+            if (stack != null && stack.getItem() != null
+                    && housing.getFarmInventory().hasResources(new ItemStack[] { stack })) {
                 return stack;
             }
         }
         return null;
     }
 
-    public void setData(
-            EnumMoisture moisture,
-            EnumAcidity acidity,
-            boolean isManual,
-            boolean fertilised,
-            ItemStack icon,
-            String name) {
+    public void setData(EnumMoisture moisture, EnumAcidity acidity, boolean isManual, boolean fertilised,
+            ItemStack icon, String name) {
         this.moisture = moisture;
         this.acidity = acidity;
         this.isManual = isManual;

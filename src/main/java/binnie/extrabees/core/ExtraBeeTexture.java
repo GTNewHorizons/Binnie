@@ -7,6 +7,7 @@ import binnie.core.resource.ResourceType;
 import binnie.extrabees.ExtraBees;
 
 public enum ExtraBeeTexture implements IBinnieTexture {
+
     AlvearyMutator(ResourceType.Tile, "alveary/AlvearyMutator"),
     AlvearyNovaBlock(ResourceType.Tile, "alveary/AlvearyNovaBlock"),
     AlvearyFrame(ResourceType.Tile, "alveary/AlvearyFrame"),

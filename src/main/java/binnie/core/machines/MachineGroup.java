@@ -1,14 +1,17 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
-import binnie.core.AbstractMod;
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 import net.minecraft.creativetab.CreativeTabs;
 
+import binnie.Binnie;
+import binnie.core.AbstractMod;
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class MachineGroup {
+
     private AbstractMod mod;
     private String blockName;
     private String uid;

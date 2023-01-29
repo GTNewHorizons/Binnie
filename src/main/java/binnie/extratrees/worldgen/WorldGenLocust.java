@@ -3,6 +3,7 @@ package binnie.extratrees.worldgen;
 import forestry.api.world.ITreeGenData;
 
 public class WorldGenLocust extends WorldGenTree {
+
     public WorldGenLocust(ITreeGenData tree) {
         super(tree);
     }

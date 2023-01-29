@@ -1,18 +1,20 @@
 package binnie.extratrees.carpentry;
 
-import binnie.core.util.I18N;
-import binnie.extratrees.api.IDesign;
-import binnie.extratrees.api.IDesignMaterial;
-import binnie.extratrees.api.IDesignSystem;
-import binnie.extratrees.api.ILayout;
-import binnie.extratrees.api.IToolHammer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import binnie.core.util.I18N;
+import binnie.extratrees.api.IDesign;
+import binnie.extratrees.api.IDesignMaterial;
+import binnie.extratrees.api.IDesignSystem;
+import binnie.extratrees.api.ILayout;
+import binnie.extratrees.api.IToolHammer;
+
 public class DesignBlock {
+
     protected IDesign design;
     protected IDesignMaterial primaryMaterial;
     protected IDesignMaterial secondaryMaterial;
@@ -20,13 +22,8 @@ public class DesignBlock {
     protected ForgeDirection facing;
     protected boolean panel;
 
-    DesignBlock(
-            IDesignSystem system,
-            IDesignMaterial primaryWood,
-            IDesignMaterial secondaryWood,
-            IDesign design,
-            int rotation,
-            ForgeDirection dir) {
+    DesignBlock(IDesignSystem system, IDesignMaterial primaryWood, IDesignMaterial secondaryWood, IDesign design,
+            int rotation, ForgeDirection dir) {
         this.rotation = 0;
         this.design = design;
         this.rotation = rotation;
@@ -55,8 +52,17 @@ public class DesignBlock {
 
     @Override
     public String toString() {
-        return super.toString() + " { design:" + design + " }, { primary:" + primaryMaterial + " }, { secondary:"
-                + secondaryMaterial + " }, { rotation:" + rotation + " }, { facing:" + facing + " }";
+        return super.toString() + " { design:"
+                + design
+                + " }, { primary:"
+                + primaryMaterial
+                + " }, { secondary:"
+                + secondaryMaterial
+                + " }, { rotation:"
+                + rotation
+                + " }, { facing:"
+                + facing
+                + " }";
     }
 
     public IDesign getDesign() {
@@ -140,8 +146,7 @@ public class DesignBlock {
         }
 
         // TODO remove label
-        Label_1107:
-        {
+        Label_1107: {
             switch (getFacing()) {
                 case UP:
                     if (dir == ForgeDirection.DOWN || dir == ForgeDirection.UP) {
@@ -392,7 +397,17 @@ public class DesignBlock {
         } else {
             type = getPrimaryMaterial().getName();
         }
-        return super.toString() + " " + "{" + type + " " + getDesign().getName() + " " + (panel ? "Panel" : "Tile")
-                + ", Facing:" + getFacing().toString() + ", Rotation:" + getRotation() + "}";
+        return super.toString() + " "
+                + "{"
+                + type
+                + " "
+                + getDesign().getName()
+                + " "
+                + (panel ? "Panel" : "Tile")
+                + ", Facing:"
+                + getFacing().toString()
+                + ", Rotation:"
+                + getRotation()
+                + "}";
     }
 }

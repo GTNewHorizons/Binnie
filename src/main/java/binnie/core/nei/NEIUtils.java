@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.*;
 
 public class NEIUtils {
+
     public static FluidStack getFluidStack(ItemStack stack) {
         if (stack != null) {
             FluidStack fluidStack = null;

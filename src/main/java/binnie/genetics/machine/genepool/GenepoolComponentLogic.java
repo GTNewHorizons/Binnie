@@ -1,5 +1,7 @@
 package binnie.genetics.machine.genepool;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IChargedSlots;
@@ -11,9 +13,9 @@ import binnie.core.util.I18N;
 import binnie.genetics.item.GeneticLiquid;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.item.ItemStack;
 
 public class GenepoolComponentLogic extends ComponentProcessSetCost implements IProcess, INetwork.TilePacketSync {
+
     private float ethanolDrain;
 
     public GenepoolComponentLogic(Machine machine) {
@@ -25,7 +27,8 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
     public ErrorState canWork() {
         if (getUtil().isSlotEmpty(Genepool.SLOT_BEE)) {
             return new ErrorState.NoItem(
-                    I18N.localise("genetics.machine.genepool.error.noIndividual"), Genepool.SLOT_BEE);
+                    I18N.localise("genetics.machine.genepool.error.noIndividual"),
+                    Genepool.SLOT_BEE);
         }
         return super.canWork();
     }
@@ -37,11 +40,13 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
         }
         if (!getUtil().liquidInTank(Genepool.TANK_ETHANOL, 1)) {
             return new ErrorState.InsufficientLiquid(
-                    I18N.localise("genetics.machine.genepool.error.noEthanol"), Genepool.TANK_ETHANOL);
+                    I18N.localise("genetics.machine.genepool.error.noEthanol"),
+                    Genepool.TANK_ETHANOL);
         }
         if (getUtil().getSlotCharge(Genepool.SLOT_ENZYME) == 0.0f) {
             return new ErrorState.NoItem(
-                    I18N.localise("genetics.machine.genepool.error.insufficientEnzyme"), Genepool.SLOT_ENZYME);
+                    I18N.localise("genetics.machine.genepool.error.insufficientEnzyme"),
+                    Genepool.SLOT_ENZYME);
         }
         return super.canProgress();
     }
@@ -56,9 +61,7 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
 
     private int getDNAAmount(ItemStack stack) {
         ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
-        if (root == null
-                || root != Binnie.Genetics.getBeeRoot()
-                || Binnie.Genetics.getBeeRoot().isDrone(stack)) {
+        if (root == null || root != Binnie.Genetics.getBeeRoot() || Binnie.Genetics.getBeeRoot().isDrone(stack)) {
             return 10;
         }
 
@@ -76,8 +79,7 @@ public class GenepoolComponentLogic extends ComponentProcessSetCost implements I
             ethanolDrain--;
         }
 
-        getMachine()
-                .getInterface(IChargedSlots.class)
+        getMachine().getInterface(IChargedSlots.class)
                 .alterCharge(Genepool.SLOT_ENZYME, -Genepool.ENZYME_PER_PROCESS * getProgressPerTick() / 100.0f);
     }
 }

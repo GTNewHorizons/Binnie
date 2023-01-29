@@ -1,5 +1,7 @@
 package binnie.core.craftgui.database;
 
+import net.minecraft.util.IIcon;
+
 import binnie.Binnie;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -12,13 +14,15 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.util.I18N;
+
 import com.mojang.authlib.GameProfile;
+
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
-import net.minecraft.util.IIcon;
 
 public class ControlDatabaseIndividualDisplay extends ControlItemDisplay implements ITooltip {
+
     protected EnumDiscoveryState discovered;
 
     private IAlleleSpecies species;
@@ -40,8 +44,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
         if (window instanceof WindowAbstractDatabase && ((WindowAbstractDatabase) window).isNEI) {
             state = EnumDiscoveryState.SHOW;
         } else if (state == EnumDiscoveryState.UNDETERMINED) {
-            state = system.isSpeciesDiscovered(species, window.getWorld(), username)
-                    ? EnumDiscoveryState.DISCOVERED
+            state = system.isSpeciesDiscovered(species, window.getWorld(), username) ? EnumDiscoveryState.DISCOVERED
                     : EnumDiscoveryState.UNDISCOVERED;
         }
 
@@ -105,6 +108,7 @@ public class ControlDatabaseIndividualDisplay extends ControlItemDisplay impleme
     }
 
     private class MouseDownHandler extends EventMouse.Down.Handler {
+
         @Override
         public void onEvent(EventMouse.Down event) {
             if (event.getButton() == 0 && species != null && EnumDiscoveryState.SHOW == discovered) {

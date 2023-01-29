@@ -1,6 +1,7 @@
 package binnie.core.craftgui.resource.minecraft;
 
 public enum CraftGUITexture {
+
     Window("window"),
     PanelGray("panel.gray"),
     PanelBlack("panel.black"),

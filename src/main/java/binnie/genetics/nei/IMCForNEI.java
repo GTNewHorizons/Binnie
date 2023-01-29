@@ -1,9 +1,11 @@
 package binnie.genetics.nei;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.nbt.NBTTagCompound;
 
+import cpw.mods.fml.common.event.FMLInterModComms;
+
 public class IMCForNEI {
+
     public static void IMCSender() {
         sendHandler("binnie.genetics.nei.IsolatorRecipeHandler", "Genetics:machine:0");
         sendHandler("binnie.genetics.nei.SequencerRecipeHandler", "Genetics:machine:1");

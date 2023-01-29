@@ -1,5 +1,21 @@
 package binnie.extrabees.genetics;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+
 import binnie.core.Mods;
 import binnie.core.util.I18N;
 import forestry.api.apiculture.FlowerManager;
@@ -13,22 +29,9 @@ import forestry.api.genetics.IFruitBearer;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 import forestry.api.genetics.ISpeciesRoot;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
 
 public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromosomeType {
+
     WATER,
     SUGAR,
     ROCK,
@@ -86,37 +89,37 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
     public ItemStack[] getItemStacks() {
         switch (this) {
             case WATER:
-                return new ItemStack[] {new ItemStack(Blocks.waterlily)};
+                return new ItemStack[] { new ItemStack(Blocks.waterlily) };
 
             case SUGAR:
-                return new ItemStack[] {new ItemStack(Blocks.reeds)};
+                return new ItemStack[] { new ItemStack(Blocks.reeds) };
 
             case ROCK:
-                return new ItemStack[] {new ItemStack(Blocks.cobblestone)};
+                return new ItemStack[] { new ItemStack(Blocks.cobblestone) };
 
             case BOOK:
-                return new ItemStack[] {new ItemStack(Blocks.bookshelf)};
+                return new ItemStack[] { new ItemStack(Blocks.bookshelf) };
 
             case REDSTONE:
-                return new ItemStack[] {new ItemStack(Blocks.redstone_torch)};
+                return new ItemStack[] { new ItemStack(Blocks.redstone_torch) };
 
             case DEAD:
-                return new ItemStack[] {new ItemStack(Blocks.deadbush)};
+                return new ItemStack[] { new ItemStack(Blocks.deadbush) };
 
             case FRUIT:
-                return new ItemStack[] {new ItemStack(Items.apple)};
+                return new ItemStack[] { new ItemStack(Items.apple) };
 
             case LEAVES:
-                return new ItemStack[] {new ItemStack(Blocks.leaves)};
+                return new ItemStack[] { new ItemStack(Blocks.leaves) };
 
             case SAPLING:
-                return new ItemStack[] {new ItemStack(Blocks.sapling)};
+                return new ItemStack[] { new ItemStack(Blocks.sapling) };
 
             case WOOD:
-                return new ItemStack[] {new ItemStack(Blocks.log)};
+                return new ItemStack[] { new ItemStack(Blocks.log) };
 
             case BEDROCK:
-                return new ItemStack[] {new ItemStack(Blocks.bedrock)};
+                return new ItemStack[] { new ItemStack(Blocks.bedrock) };
         }
         return new ItemStack[0];
     }
@@ -176,13 +179,11 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
     public boolean growFlower(World world, IIndividual individual, int x, int y, int z) {
         switch (this) {
             case WATER:
-                return world.isAirBlock(x, y, z)
-                        && world.getBlock(x, y - 1, z) == Blocks.water
+                return world.isAirBlock(x, y, z) && world.getBlock(x, y - 1, z) == Blocks.water
                         && world.setBlock(x, y, z, Blocks.waterlily, 0, 2);
 
             case SUGAR:
-                return world.getBlock(x, y - 1, z) == Blocks.reeds
-                        && world.isAirBlock(x, y, z)
+                return world.getBlock(x, y - 1, z) == Blocks.reeds && world.isAirBlock(x, y, z)
                         && world.setBlock(x, y, z, Blocks.reeds, 0, 0);
         }
         return false;

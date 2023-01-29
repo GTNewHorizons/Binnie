@@ -6,6 +6,7 @@ import binnie.extrabees.apiary.machine.AlvearyMachine;
 import binnie.extrabees.core.ExtraBeeTexture;
 
 public class RainShieldAlvearyPackage extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
+
     public RainShieldAlvearyPackage() {
         super("rainShield", ExtraBeeTexture.AlvearyRainShield.getTexture(), false);
     }

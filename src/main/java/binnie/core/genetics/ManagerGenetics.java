@@ -1,5 +1,16 @@
 package binnie.core.genetics;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeSet;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.world.WorldEvent;
+
 import binnie.Binnie;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.genetics.AlleleColor;
@@ -19,17 +30,9 @@ import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.IButterflyRoot;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.world.WorldEvent;
 
 public class ManagerGenetics extends ManagerBase {
+
     public BreedingSystem beeBreedingSystem;
     public BreedingSystem treeBreedingSystem;
     public BreedingSystem mothBreedingSystem;
@@ -200,6 +203,7 @@ public class ManagerGenetics extends ManagerBase {
     }
 
     static class ComparatorAllele implements Comparator<IAllele> {
+
         @Override
         public int compare(IAllele o1, IAllele o2) {
             if (o1 == null || o2 == null) {
@@ -211,9 +215,9 @@ public class ManagerGenetics extends ManagerBase {
             if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger && !(o1 instanceof AlleleColor)) {
                 return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(((IAlleleInteger) o2).getValue());
             }
-            //            if (o1.getName() != null && o2.getName() != null) {
-            //                return o1.getName().compareTo(o2.getName());
-            //            }
+            // if (o1.getName() != null && o2.getName() != null) {
+            // return o1.getName().compareTo(o2.getName());
+            // }
             return o1.getUID().compareTo(o2.getUID());
         }
     }

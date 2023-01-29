@@ -1,15 +1,7 @@
 package binnie.core.proxy;
 
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
-import binnie.core.network.BinnieCorePacketID;
-import binnie.core.network.INetworkedEntity;
-import binnie.core.network.packet.MessageUpdate;
-import binnie.core.resource.BinnieResource;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.io.File;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,7 +13,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
+import binnie.core.network.BinnieCorePacketID;
+import binnie.core.network.INetworkedEntity;
+import binnie.core.network.packet.MessageUpdate;
+import binnie.core.resource.BinnieResource;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
+
     private short uniqueTextureUID;
 
     public BinnieProxy() {

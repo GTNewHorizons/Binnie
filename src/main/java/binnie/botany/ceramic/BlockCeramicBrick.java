@@ -1,20 +1,8 @@
 package binnie.botany.ceramic;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.items.BotanyItems;
-import binnie.core.BinnieCore;
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.IMultipassBlock;
-import binnie.core.block.MultipassBlockRenderer;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -30,7 +18,22 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.items.BotanyItems;
+import binnie.core.BinnieCore;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.IMultipassBlock;
+import binnie.core.block.MultipassBlockRenderer;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipassBlock {
+
     public BlockCeramicBrick() {
         super(Material.rock);
         setHardness(1.0f);
@@ -190,6 +193,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
     }
 
     public enum TileType {
+
         Tile("tile", "ceramicTile"),
         Brick("brick", "ceramicBricks"),
         StripeBrick("brickstripe", "strippedCeramicBricks"),
@@ -284,7 +288,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
                 return null;
             }
 
-            int[] colors = {-1, -1};
+            int[] colors = { -1, -1 };
             int altCounter = 0;
             for (ItemStack stack : stacks) {
                 int alt = (altCounter != 0 && altCounter != 3) ? 1 : 0;
@@ -314,7 +318,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
                 return null;
             }
 
-            int[] colors = {-1, -1};
+            int[] colors = { -1, -1 };
             for (ItemStack stack : stacks) {
                 if (stack.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
                     return null;
@@ -343,7 +347,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
                 return null;
             }
 
-            int[] colors = {-1, -1};
+            int[] colors = { -1, -1 };
             for (ItemStack stack : stacks) {
                 if (stack.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
                     return null;
@@ -395,7 +399,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
                 return null;
             }
 
-            int[] colors = {-1, -1};
+            int[] colors = { -1, -1 };
             for (ItemStack stack4 : stacks) {
                 if (stack4.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
                     return null;
@@ -443,7 +447,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
                 return null;
             }
 
-            int[] colors = {-1, -1};
+            int[] colors = { -1, -1 };
             for (int index2 = 0; index2 < stacks.size(); ++index2) {
                 ItemStack stack = stacks.get(index2);
                 if (stack.getItem() != Item.getItemFromBlock(Botany.ceramicBrick)) {
@@ -502,6 +506,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
     }
 
     public static class BlockType {
+
         protected EnumFlowerColor color1;
         protected EnumFlowerColor color2;
         protected TileType type;

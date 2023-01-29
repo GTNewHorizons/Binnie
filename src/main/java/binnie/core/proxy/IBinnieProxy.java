@@ -1,8 +1,7 @@
 package binnie.core.proxy;
 
-import binnie.core.AbstractMod;
-import binnie.core.resource.BinnieResource;
 import java.io.File;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +12,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
 
+import binnie.core.AbstractMod;
+import binnie.core.resource.BinnieResource;
+
 public interface IBinnieProxy extends IProxyCore {
+
     boolean isClient();
 
     boolean isServer();

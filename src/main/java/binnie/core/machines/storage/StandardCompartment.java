@@ -1,13 +1,16 @@
 package binnie.core.machines.storage;
 
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.texture.BinnieCoreTexture;
-import net.minecraft.tileentity.TileEntity;
 
 class StandardCompartment {
+
     public static class PackageCompartment extends Compartment.PackageCompartment {
+
         public PackageCompartment() {
             super("compartment", BinnieCoreTexture.Compartment);
         }
@@ -25,6 +28,7 @@ class StandardCompartment {
     }
 
     public static class PackageCompartmentCopper extends Compartment.PackageCompartment {
+
         public PackageCompartmentCopper() {
             super("compartmentCopper", BinnieCoreTexture.CompartmentCopper);
         }
@@ -42,6 +46,7 @@ class StandardCompartment {
     }
 
     public static class PackageCompartmentBronze extends Compartment.PackageCompartment {
+
         public PackageCompartmentBronze() {
             super("compartmentBronze", BinnieCoreTexture.CompartmentBronze);
         }
@@ -59,6 +64,7 @@ class StandardCompartment {
     }
 
     public static class PackageCompartmentIron extends Compartment.PackageCompartment {
+
         public PackageCompartmentIron() {
             super("compartmentIron", BinnieCoreTexture.CompartmentIron);
         }
@@ -76,6 +82,7 @@ class StandardCompartment {
     }
 
     public static class PackageCompartmentGold extends Compartment.PackageCompartment {
+
         public PackageCompartmentGold() {
             super("compartmentGold", BinnieCoreTexture.CompartmentGold);
         }
@@ -93,6 +100,7 @@ class StandardCompartment {
     }
 
     public static class PackageCompartmentDiamond extends Compartment.PackageCompartment {
+
         public PackageCompartmentDiamond() {
             super("compartmentDiamond", BinnieCoreTexture.CompartmentDiamond);
         }

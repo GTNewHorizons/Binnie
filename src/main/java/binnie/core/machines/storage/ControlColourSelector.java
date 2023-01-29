@@ -10,6 +10,7 @@ import binnie.core.craftgui.controls.core.IControlValue;
 import binnie.core.craftgui.minecraft.EnumColor;
 
 class ControlColourSelector extends Control implements ITooltip, IControlValue<EnumColor> {
+
     private EnumColor value;
 
     public ControlColourSelector(IWidget parent, float x, float y, float w, float h, EnumColor value) {

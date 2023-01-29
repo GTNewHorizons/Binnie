@@ -1,5 +1,7 @@
 package binnie.core.craftgui.database;
 
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -9,9 +11,9 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleSpecies;
-import net.minecraft.util.EnumChatFormatting;
 
 public class PageSpeciesOverview extends PageSpecies {
+
     private ControlText controlName;
     private ControlText controlScientific;
     private ControlText controlAuthority;
@@ -30,25 +32,30 @@ public class PageSpeciesOverview extends PageSpecies {
         controlAuthority = new ControlTextCentered(this, 44.0f, "");
         controlComplexity = new ControlTextCentered(this, 56.0f, "");
         controlDescription = new ControlText(
-                this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.MIDDLE_CENTER);
+                this,
+                new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f),
+                "",
+                TextJustification.MIDDLE_CENTER);
         controlSignature = new ControlText(
-                this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.BOTTOM_RIGHT);
+                this,
+                new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f),
+                "",
+                TextJustification.BOTTOM_RIGHT);
     }
 
     @Override
     public void onValueChanged(IAlleleSpecies species) {
         controlInd1.setSpecies(species, EnumDiscoveryState.SHOW);
         controlInd2.setSpecies(species, EnumDiscoveryState.SHOW);
-        String branchBinomial = (species.getBranch() != null)
-                ? species.getBranch().getScientific()
+        String branchBinomial = (species.getBranch() != null) ? species.getBranch().getScientific()
                 : I18N.localise("extratrees.genetics.unknown");
 
         controlName.setValue(EnumChatFormatting.BOLD + species.getName() + EnumChatFormatting.RESET);
         controlScientific.setValue(
                 EnumChatFormatting.ITALIC + branchBinomial + " " + species.getBinomial() + EnumChatFormatting.RESET);
-        controlAuthority.setValue(EnumChatFormatting.BOLD
-                + I18N.localise("extratrees.genetics.discoveredBy", species.getAuthority())
-                + EnumChatFormatting.RESET);
+        controlAuthority.setValue(
+                EnumChatFormatting.BOLD + I18N.localise("extratrees.genetics.discoveredBy", species.getAuthority())
+                        + EnumChatFormatting.RESET);
         controlComplexity.setValue(I18N.localise("extratrees.genetics.complexity", species.getComplexity()));
         String desc = species.getDescription();
         String descBody = EnumChatFormatting.ITALIC.toString();
@@ -69,9 +76,8 @@ public class PageSpeciesOverview extends PageSpecies {
 
         controlDescription.setValue(descBody + EnumChatFormatting.RESET);
         controlSignature.setValue(descSig + EnumChatFormatting.RESET);
-        float descHeight = CraftGUI.render.textHeight(
-                controlDescription.getValue(), controlDescription.getSize().x());
-        controlSignature.setPosition(new IPoint(
-                controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10.0f));
+        float descHeight = CraftGUI.render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
+        controlSignature.setPosition(
+                new IPoint(controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10.0f));
     }
 }

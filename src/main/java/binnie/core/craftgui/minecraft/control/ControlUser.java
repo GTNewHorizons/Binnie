@@ -10,6 +10,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.util.I18N;
 
 public class ControlUser extends Control implements ITooltip {
+
     protected String team;
 
     private String username;

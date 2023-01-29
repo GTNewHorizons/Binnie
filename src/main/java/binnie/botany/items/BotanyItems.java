@@ -1,14 +1,17 @@
 package binnie.botany.items;
 
-import binnie.botany.Botany;
-import binnie.core.item.IItemMisc;
-import binnie.core.util.I18N;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import binnie.botany.Botany;
+import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
+
 public enum BotanyItems implements IItemMisc {
+
     AshPowder("powderAsh"),
     PulpPowder("powderPulp"),
     MulchPowder("powderMulch"),

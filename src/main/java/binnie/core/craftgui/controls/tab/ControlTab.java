@@ -17,6 +17,7 @@ import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlTab<T> extends Control implements ITooltip, IControlValue<T> {
+
     protected T value;
 
     private ControlTabBar<T> tabBar;
@@ -27,6 +28,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
         tabBar = parent;
         addAttribute(WidgetAttribute.MOUSE_OVER);
         addSelfEventHandler(new EventMouse.Down.Handler() {
+
             @Override
             public void onEvent(EventMouse.Down event) {
                 callEvent(new EventValueChanged<Object>(getWidget(), getValue()));

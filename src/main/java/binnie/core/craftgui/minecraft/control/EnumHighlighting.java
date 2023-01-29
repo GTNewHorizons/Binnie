@@ -4,6 +4,7 @@ import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.minecraft.MinecraftTooltip;
 
 public enum EnumHighlighting {
+
     ERROR,
     WARNING,
     HELP,

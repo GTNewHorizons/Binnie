@@ -1,5 +1,7 @@
 package binnie.extratrees.craftgui;
 
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.IWidget;
@@ -10,9 +12,9 @@ import binnie.core.craftgui.events.EventWidget;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
-import net.minecraftforge.fluids.FluidStack;
 
 public class ControlSlotFluid extends Control implements ITooltip {
+
     protected ControlFluidDisplay itemDisplay;
     protected FluidStack fluidStack;
 
@@ -26,6 +28,7 @@ public class ControlSlotFluid extends Control implements ITooltip {
         itemDisplay = new ControlFluidDisplay(this, 1.0f, 1.0f, size - 2);
         fluidStack = fluid;
         addSelfEventHandler(new EventWidget.ChangeSize.Handler() {
+
             @Override
             public void onEvent(EventWidget.ChangeSize event) {
                 if (itemDisplay != null) {

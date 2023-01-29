@@ -3,6 +3,7 @@ package binnie.core.util;
 import net.minecraftforge.fluids.FluidStack;
 
 public class UniqueFluidStackSet extends FluidStackSet {
+
     @Override
     public boolean add(FluidStack fluidStack) {
         return fluidStack != null && getExisting(fluidStack) == null && itemStacks.add(fluidStack.copy());

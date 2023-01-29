@@ -1,12 +1,7 @@
 package binnie.genetics.item;
 
-import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
-import binnie.genetics.GeneticsCreativeTab;
-import binnie.genetics.core.GeneticsGUI;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
+import binnie.genetics.GeneticsCreativeTab;
+import binnie.genetics.core.GeneticsGUI;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemDatabase extends Item {
+
     protected IIcon iconMaster;
 
     public ItemDatabase() {
@@ -53,19 +56,18 @@ public class ItemDatabase extends Item {
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (stack.getItemDamage() == 0) {
-            Genetics.proxy.openGui(
-                    GeneticsGUI.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+            Genetics.proxy
+                    .openGui(GeneticsGUI.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
         } else {
-            Genetics.proxy.openGui(
-                    GeneticsGUI.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+            Genetics.proxy
+                    .openGui(GeneticsGUI.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
         }
         return stack;
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return (stack.getItemDamage() == 0)
-                ? I18N.localise("genetics.item.database.0.name")
+        return (stack.getItemDamage() == 0) ? I18N.localise("genetics.item.database.0.name")
                 : I18N.localise("genetics.item.database.1.name");
     }
 }

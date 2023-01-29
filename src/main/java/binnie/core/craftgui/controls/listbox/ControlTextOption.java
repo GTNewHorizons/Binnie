@@ -6,6 +6,7 @@ import binnie.core.craftgui.events.EventWidget;
 import binnie.core.craftgui.geometry.TextJustification;
 
 public class ControlTextOption<T> extends ControlOption<T> {
+
     protected ControlText textWidget;
 
     public ControlTextOption(ControlList<T> controlList, T option, String optionName, int y) {
@@ -22,6 +23,7 @@ public class ControlTextOption<T> extends ControlOption<T> {
     }
 
     private EventWidget.ChangeColour.Handler mouseHandler = new EventWidget.ChangeColour.Handler() {
+
         @Override
         public void onEvent(EventWidget.ChangeColour event) {
             textWidget.setColor(getColor());

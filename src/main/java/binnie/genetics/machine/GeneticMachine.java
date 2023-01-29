@@ -1,5 +1,7 @@
 package binnie.genetics.machine;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.MachinePackage;
 import binnie.genetics.Genetics;
@@ -7,9 +9,9 @@ import binnie.genetics.machine.inoculator.InoculatorPackage;
 import binnie.genetics.machine.isolator.IsolatorPackage;
 import binnie.genetics.machine.polymeriser.PolymeriserPackage;
 import binnie.genetics.machine.sequencer.SequencerPackage;
-import net.minecraft.item.ItemStack;
 
 public enum GeneticMachine implements IMachineType {
+
     Isolator(IsolatorPackage.class),
     Sequencer(SequencerPackage.class),
     Polymeriser(PolymeriserPackage.class),

@@ -1,10 +1,12 @@
 package binnie.extratrees.machines.designer;
 
-import binnie.core.machines.inventory.SlotValidator;
-import binnie.extratrees.api.IDesignMaterial;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.machines.inventory.SlotValidator;
+import binnie.extratrees.api.IDesignMaterial;
+
 public class PlanksSlotValidator extends SlotValidator {
+
     protected DesignerType type;
 
     public PlanksSlotValidator(DesignerType type) {

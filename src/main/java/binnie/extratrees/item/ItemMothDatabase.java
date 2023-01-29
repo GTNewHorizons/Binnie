@@ -1,12 +1,7 @@
 package binnie.extratrees.item;
 
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.core.ExtraTreesGUID;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.core.ExtraTreesGUID;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+
 public class ItemMothDatabase extends Item {
+
     protected IIcon iconMaster;
 
     public ItemMothDatabase() {
@@ -57,18 +60,25 @@ public class ItemMothDatabase extends Item {
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (stack.getItemDamage() == 0) {
             ExtraTrees.proxy.openGui(
-                    ExtraTreesGUID.MothDatabase, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+                    ExtraTreesGUID.MothDatabase,
+                    player,
+                    (int) player.posX,
+                    (int) player.posY,
+                    (int) player.posZ);
         } else {
             ExtraTrees.proxy.openGui(
-                    ExtraTreesGUID.MothDatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+                    ExtraTreesGUID.MothDatabaseNEI,
+                    player,
+                    (int) player.posX,
+                    (int) player.posY,
+                    (int) player.posZ);
         }
         return stack;
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return (stack.getItemDamage() == 0)
-                ? I18N.localise("extratrees.item.mothDatabase")
+        return (stack.getItemDamage() == 0) ? I18N.localise("extratrees.item.mothDatabase")
                 : I18N.localise("extratrees.item.mothMasterDatabase");
     }
 }

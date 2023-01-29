@@ -5,6 +5,7 @@ import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
 
 public interface IFluidType {
+
     IIcon getIcon();
 
     void registerIcon(IIconRegister register);

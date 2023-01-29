@@ -7,6 +7,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 public abstract class BinniePacketHandler implements IMessageHandler<MessageBinnie, IMessage> {
+
     private IPacketProvider provider;
 
     public BinniePacketHandler(AbstractMod mod) {

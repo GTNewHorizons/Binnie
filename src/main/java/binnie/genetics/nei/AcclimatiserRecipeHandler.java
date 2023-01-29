@@ -1,5 +1,12 @@
 package binnie.genetics.nei;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
@@ -10,11 +17,6 @@ import binnie.genetics.machine.acclimatiser.ToleranceType;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class AcclimatiserRecipeHandler extends RecipeHandlerBase {
 
@@ -114,6 +116,7 @@ public class AcclimatiserRecipeHandler extends RecipeHandlerBase {
     }
 
     private static class AcclimatiserRecipe {
+
         private final ItemStack[] target;
         private final ItemStack resource;
         private final float effect;
@@ -154,12 +157,17 @@ public class AcclimatiserRecipeHandler extends RecipeHandlerBase {
         public CachedAcclimatiserRecipe(AcclimatiserRecipe recipe) {
             if (recipe.getTarget() != null) {
                 for (int i = 0; i < recipe.getTarget().length; i++) {
-                    target.add(new PositionedStack(
-                            recipe.getTarget()[i], 31 + 18 * (i > 5 ? i % 6 : i), 29 + 18 * (i / 6)));
+                    target.add(
+                            new PositionedStack(
+                                    recipe.getTarget()[i],
+                                    31 + 18 * (i > 5 ? i % 6 : i),
+                                    29 + 18 * (i / 6)));
                 }
-                this.resource = new PositionedStackAdv(recipe.getResource(), 76, 2)
-                        .addToTooltip(StatCollector.translateToLocal("genetics.nei.tip."
-                                + (recipe.getType().equals(ToleranceType.Temperature) ? "temperature" : "humidity")))
+                this.resource = new PositionedStackAdv(recipe.getResource(), 76, 2).addToTooltip(
+                        StatCollector.translateToLocal(
+                                "genetics.nei.tip."
+                                        + (recipe.getType().equals(ToleranceType.Temperature) ? "temperature"
+                                                : "humidity")))
                         .addToTooltip(
                                 StatCollector.translateToLocalFormatted("genetics.nei.tip.effect", recipe.getEffect()));
                 this.effect = recipe.getEffect();

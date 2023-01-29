@@ -1,18 +1,8 @@
 package binnie.extratrees.block.decor;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.IFenceProvider;
-import binnie.extratrees.block.PlankType;
-import binnie.extratrees.block.WoodManager;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -27,7 +17,20 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.IFenceProvider;
+import binnie.extratrees.block.PlankType;
+import binnie.extratrees.block.WoodManager;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+
 public class BlockFence extends net.minecraft.block.BlockFence implements IBlockMetadata, IBlockFence {
+
     public BlockFence() {
         super("", Material.wood);
         setCreativeTab(Tabs.tabArboriculture);
@@ -119,9 +122,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
     @Override
     public String getBlockName(ItemStack itemStack) {
         int meta = TileEntityMetadata.getItemDamage(itemStack);
-        return I18N.localise(
-                "extratrees.block.woodfence.name",
-                getDescription(meta).getPlankType().getName());
+        return I18N.localise("extratrees.block.woodfence.name", getDescription(meta).getPlankType().getName());
     }
 
     @Override

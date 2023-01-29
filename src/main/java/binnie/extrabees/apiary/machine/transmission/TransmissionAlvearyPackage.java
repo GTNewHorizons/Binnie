@@ -7,6 +7,7 @@ import binnie.extrabees.apiary.machine.AlvearyMachine;
 import binnie.extrabees.core.ExtraBeeTexture;
 
 public class TransmissionAlvearyPackage extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
+
     public TransmissionAlvearyPackage() {
         super("transmission", ExtraBeeTexture.AlvearyTransmission.getTexture(), false);
     }

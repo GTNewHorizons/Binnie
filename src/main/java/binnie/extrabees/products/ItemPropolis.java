@@ -1,13 +1,15 @@
 package binnie.extrabees.products;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+
 import binnie.core.BinnieCore;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
 
 public class ItemPropolis extends ItemProduct {
+
     public ItemPropolis() {
         super(EnumPropolis.values());
         setCreativeTab(Tabs.tabApiculture);

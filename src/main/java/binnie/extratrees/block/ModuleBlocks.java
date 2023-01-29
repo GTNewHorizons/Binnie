@@ -1,5 +1,14 @@
 package binnie.extratrees.block;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
@@ -22,16 +31,9 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.RecipeSorter;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleBlocks implements IInitializable {
+
     public static int hedgeRenderID;
 
     @Override
@@ -52,7 +54,8 @@ public class ModuleBlocks implements IInitializable {
         GameRegistry.registerBlock(ExtraTrees.blockFence, ItemMetadata.class, "fence");
         GameRegistry.registerBlock(ExtraTrees.blockMultiFence, ItemMetadata.class, "multifence");
         BinnieCore.proxy.registerCustomItemRenderer(
-                Item.getItemFromBlock(ExtraTrees.blockMultiFence), new ItemMetadataRenderer());
+                Item.getItemFromBlock(ExtraTrees.blockMultiFence),
+                new ItemMetadataRenderer());
         GameRegistry.registerBlock(ExtraTrees.blockLog, ItemMetadata.class, "log");
         GameRegistry.registerBlock(ExtraTrees.blockGate, ItemMetadata.class, "gate");
         GameRegistry.registerBlock(ExtraTrees.blockSlab, ItemETSlab.class, "slab");
@@ -60,10 +63,10 @@ public class ModuleBlocks implements IInitializable {
         GameRegistry.registerBlock(ExtraTrees.blockDoor, ItemETDoor.class, "door");
         GameRegistry.registerBlock(ExtraTrees.blockStairs, ItemETStairs.class, "stairs");
 
-        BinnieCore.proxy.registerCustomItemRenderer(
-                Item.getItemFromBlock(ExtraTrees.blockStairs), new StairItemRenderer());
-        BinnieCore.proxy.registerCustomItemRenderer(
-                Item.getItemFromBlock(ExtraTrees.blockGate), new GateItemRenderer());
+        BinnieCore.proxy
+                .registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStairs), new StairItemRenderer());
+        BinnieCore.proxy
+                .registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockGate), new GateItemRenderer());
         for (ILogType plank : ILogType.ExtraTreeLog.values()) {
             OreDictionary.registerOre("logWood", plank.getItemStack());
         }
@@ -92,8 +95,8 @@ public class ModuleBlocks implements IInitializable {
         RenderingRegistry.registerBlockHandler(new BranchBlockRenderer());
         RenderingRegistry.registerBlockHandler(new HedgeRenderer());
         RecipeSorter.register("extratrees:multifence", MultiFenceRecipeSize.class, RecipeSorter.Category.SHAPED, "");
-        RecipeSorter.register(
-                "extratrees:multifence2", MultiFenceRecipeEmbedded.class, RecipeSorter.Category.SHAPED, "");
+        RecipeSorter
+                .register("extratrees:multifence2", MultiFenceRecipeEmbedded.class, RecipeSorter.Category.SHAPED, "");
         RecipeSorter.register("extratrees:multifence3", MultiFenceRecipeSolid.class, RecipeSorter.Category.SHAPED, "");
     }
 
@@ -106,8 +109,7 @@ public class ModuleBlocks implements IInitializable {
             stairs.stackSize = 4;
             GameRegistry.addRecipe(stairs.copy(), "#  ", "## ", "###", '#', planks.copy());
             slabs.stackSize = 6;
-            CraftingManager.getInstance()
-                    .getRecipeList()
+            CraftingManager.getInstance().getRecipeList()
                     .add(0, new ShapedOreRecipe(slabs.copy(), "###", '#', planks.copy()));
         }
 
@@ -142,8 +144,11 @@ public class ModuleBlocks implements IInitializable {
     public void addSqueezer(ILogType log, ILiquidType liquid, int amount, float pulpChance) {
         FluidStack liquidStack = liquid.get(amount);
         RecipeManagers.squeezerManager.addRecipe(
-                10, new ItemStack[] {log.getItemStack()}, liquidStack, Mods.forestry.stack("woodPulp"), (int)
-                        (100.0f * pulpChance));
+                10,
+                new ItemStack[] { log.getItemStack() },
+                liquidStack,
+                Mods.forestry.stack("woodPulp"),
+                (int) (100.0f * pulpChance));
     }
 
     public void addSqueezer(ILogType log, ILiquidType liquid, int amount) {

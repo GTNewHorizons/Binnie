@@ -1,5 +1,13 @@
 package binnie.genetics.genetics;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.BreedingSystem;
@@ -8,14 +16,9 @@ import binnie.core.util.I18N;
 import binnie.genetics.api.IGene;
 import forestry.api.core.INBTTagable;
 import forestry.api.genetics.ISpeciesRoot;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.EnumChatFormatting;
 
 public class GeneArrayItem implements INBTTagable, IGeneItem {
+
     protected List<IGene> genes;
 
     public GeneArrayItem(ItemStack stack) {
@@ -64,8 +67,7 @@ public class GeneArrayItem implements INBTTagable, IGeneItem {
         if (genes.size() == 0) {
             return null;
         }
-        BreedingSystem system =
-                Binnie.Genetics.getSystem(genes.get(0).getSpeciesRoot().getUID());
+        BreedingSystem system = Binnie.Genetics.getSystem(genes.get(0).getSpeciesRoot().getUID());
         return (system == null) ? Binnie.Genetics.getActiveSystems().iterator().next() : system;
     }
 

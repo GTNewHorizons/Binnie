@@ -1,10 +1,12 @@
 package binnie.core.machines;
 
 import java.util.Collection;
+
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 public interface IMachine extends IOwnable {
+
     void addComponent(MachineComponent component);
 
     MachineUtil getMachineUtil();

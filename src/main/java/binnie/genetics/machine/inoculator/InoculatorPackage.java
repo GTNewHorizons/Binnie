@@ -1,5 +1,8 @@
 package binnie.genetics.machine.inoculator;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
@@ -14,10 +17,9 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.PackageGeneticBase;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 public class InoculatorPackage extends PackageGeneticBase implements IMachineInformation {
+
     public InoculatorPackage() {
         super("inoculator", GeneticsTexture.Inoculator, 0xe22235, true);
     }
@@ -66,7 +68,10 @@ public class InoculatorPackage extends PackageGeneticBase implements IMachineInf
         transfer.addRestock(Inoculator.SLOT_RESERVE, Inoculator.SLOT_TARGET, 1);
         transfer.addRestock(Inoculator.SLOT_SERUM_RESERVE, Inoculator.SLOT_SERUM_VIAL);
         transfer.addStorage(
-                Inoculator.SLOT_SERUM_VIAL, Inoculator.SLOT_SERUM_EXPENDED, new ComponentInventoryTransfer.Condition() {
+                Inoculator.SLOT_SERUM_VIAL,
+                Inoculator.SLOT_SERUM_EXPENDED,
+                new ComponentInventoryTransfer.Condition() {
+
                     @Override
                     public boolean fufilled(ItemStack stack) {
                         return Engineering.getCharges(stack) == 0;
@@ -74,22 +79,19 @@ public class InoculatorPackage extends PackageGeneticBase implements IMachineInf
                 });
 
         transfer.addStorage(9, Inoculator.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
+
             @Override
             public boolean fufilled(ItemStack stack) {
                 return stack != null
                         && transfer.getMachine().getMachineUtil().getStack(Inoculator.SLOT_SERUM_VIAL) != null
-                        && transfer.getMachine()
-                                        .getInterface(InoculatorComponentLogic.class)
-                                        .isValidSerum()
-                                != null;
+                        && transfer.getMachine().getInterface(InoculatorComponentLogic.class).isValidSerum() != null;
             }
         });
 
         new ComponentPowerReceptor(machine, Inoculator.POWER_STORAGE);
         new InoculatorComponentLogic(machine);
         new InoculatorComponentFX(machine);
-        new ComponentTankContainer(machine)
-                .addTank(Inoculator.TANK_VECTOR, "input", Inoculator.TANK_CAPACITY)
+        new ComponentTankContainer(machine).addTank(Inoculator.TANK_VECTOR, "input", Inoculator.TANK_CAPACITY)
                 .setValidator(new BacteriaVectorValidator());
     }
 

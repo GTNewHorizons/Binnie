@@ -1,5 +1,7 @@
 package binnie.genetics.genetics;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemChargable;
@@ -7,9 +9,9 @@ import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
-import net.minecraft.item.ItemStack;
 
 public class Engineering {
+
     public static boolean isGeneAcceptor(ItemStack stack) {
         if (stack == null) {
             return false;
@@ -17,9 +19,8 @@ public class Engineering {
         if (stack.getItem() instanceof IItemSerum) {
             return ((IItemSerum) stack.getItem()).getCharges(stack) == 0;
         }
-        return stack.getItem() == Genetics.itemGenetics
-                && (stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal()
-                        || stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal());
+        return stack.getItem() == Genetics.itemGenetics && (stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal()
+                || stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal());
     }
 
     public static boolean canAcceptGene(ItemStack stack, IGene gene) {
@@ -57,7 +58,7 @@ public class Engineering {
             return ((IItemSerum) serum.getItem()).getGenes(serum);
         }
         if (serum.getItem() == Genetics.itemSequencer) {
-            return new IGene[] {new SequencerItem(serum).gene};
+            return new IGene[] { new SequencerItem(serum).gene };
         }
         return new IGene[0];
     }

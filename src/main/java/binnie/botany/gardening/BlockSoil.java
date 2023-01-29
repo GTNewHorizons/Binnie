@@ -1,15 +1,8 @@
 package binnie.botany.gardening;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.gardening.IBlockSoil;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,7 +17,17 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.gardening.IBlockSoil;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class BlockSoil extends Block implements IBlockSoil {
+
     protected boolean weedKilled;
     protected IIcon[] iconsTop;
     protected IIcon[] iconsSide;
@@ -115,8 +118,7 @@ public class BlockSoil extends Block implements IBlockSoil {
         if (meta != meta2) {
             world.setBlockMetadataWithNotify(x, y, z, meta2, 2);
         }
-        if (!weedKilled
-                && random.nextInt(5 - getType(world, x, y, z).ordinal()) == 0
+        if (!weedKilled && random.nextInt(5 - getType(world, x, y, z).ordinal()) == 0
                 && world.getBlock(x, y + 1, z) == Blocks.air) {
             world.setBlock(x, y + 1, z, Botany.plant, BlockPlant.Type.Weeds.ordinal(), 2);
         }
@@ -195,8 +197,8 @@ public class BlockSoil extends Block implements IBlockSoil {
     }
 
     @Override
-    public boolean canSustainPlant(
-            IBlockAccess world, int x, int y, int z, ForgeDirection direction, IPlantable plantable) {
+    public boolean canSustainPlant(IBlockAccess world, int x, int y, int z, ForgeDirection direction,
+            IPlantable plantable) {
         Block plant = plantable.getPlant(world, x, y + 1, z);
         if (plant == Botany.flower) {
             return true;

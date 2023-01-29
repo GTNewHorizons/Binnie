@@ -1,9 +1,11 @@
 package binnie.core.machines.power;
 
-import forestry.api.core.INBTTagable;
 import net.minecraft.nbt.NBTTagCompound;
 
+import forestry.api.core.INBTTagable;
+
 public class ProcessInfo implements INBTTagable {
+
     private float currentProgress;
     private int processEnergy;
     private int processTime;

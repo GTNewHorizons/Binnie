@@ -1,14 +1,17 @@
 package binnie.extratrees.block;
 
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+
 import org.lwjgl.opengl.GL11;
 
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 public class StairsRenderer implements ISimpleBlockRenderingHandler {
+
     @Override
     public void renderInventoryBlock(Block par1Block, int metadata, int modelID, RenderBlocks renderer) {
         Tessellator var4 = Tessellator.instance;
@@ -50,8 +53,8 @@ public class StairsRenderer implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         BlockETStairs blockStairs = (BlockETStairs) block;
         blockStairs.func_150147_e(renderer.blockAccess, x, y, z);
         renderer.setRenderBoundsFromBlock(blockStairs);

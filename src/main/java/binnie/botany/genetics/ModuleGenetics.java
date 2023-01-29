@@ -1,5 +1,9 @@
 package binnie.botany.genetics;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.core.BotanyCore;
@@ -17,11 +21,9 @@ import forestry.api.apiculture.FlowerManager;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 
 public class ModuleGenetics implements IInitializable {
+
     static AlleleEffectNone alleleEffectNone = new AlleleEffectNone();
 
     @Override

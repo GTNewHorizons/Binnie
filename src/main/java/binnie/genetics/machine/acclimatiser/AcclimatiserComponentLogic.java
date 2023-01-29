@@ -1,14 +1,17 @@
 package binnie.genetics.machine.acclimatiser;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.IMachine;
 import binnie.core.machines.power.ComponentProcessIndefinate;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.util.I18N;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
 
 public class AcclimatiserComponentLogic extends ComponentProcessIndefinate {
+
     public AcclimatiserComponentLogic(IMachine machine) {
         super(machine, Acclimatiser.ENERGY_PER_TICK);
     }
@@ -17,7 +20,8 @@ public class AcclimatiserComponentLogic extends ComponentProcessIndefinate {
     public ErrorState canWork() {
         if (getUtil().getStack(Acclimatiser.SLOT_TARGET) == null) {
             return new ErrorState.NoItem(
-                    I18N.localise("genetics.machine.acclimatiser.error.noIndividual"), Acclimatiser.SLOT_TARGET);
+                    I18N.localise("genetics.machine.acclimatiser.error.noIndividual"),
+                    Acclimatiser.SLOT_TARGET);
         }
         if (getUtil().getNonNullStacks(Acclimatiser.SLOT_ACCLIMATISER).isEmpty()) {
             return new ErrorState.NoItem(
@@ -69,9 +73,7 @@ public class AcclimatiserComponentLogic extends ComponentProcessIndefinate {
         getUtil().setStack(Acclimatiser.SLOT_TARGET, acclimed);
         boolean removed = false;
         for (int i : Acclimatiser.SLOT_ACCLIMATISER) {
-            if (!removed
-                    && getUtil().getStack(i) != null
-                    && getUtil().getStack(i).isItemEqual(acc)) {
+            if (!removed && getUtil().getStack(i) != null && getUtil().getStack(i).isItemEqual(acc)) {
                 getUtil().decreaseStack(i, 1);
                 removed = true;
             }

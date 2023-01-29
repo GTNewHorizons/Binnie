@@ -1,5 +1,7 @@
 package binnie.genetics.machine.sequencer;
 
+import net.minecraft.tileentity.TileEntity;
+
 import binnie.Binnie;
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
@@ -17,9 +19,9 @@ import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.PackageGeneticBase;
-import net.minecraft.tileentity.TileEntity;
 
 public class SequencerPackage extends PackageGeneticBase implements IMachineInformation {
+
     public SequencerPackage() {
         super("sequencer", GeneticsTexture.Sequencer, 0xb7ff32, true);
         Sequencer.fxSeqA = Binnie.Resource.getBlockIcon(Genetics.instance, "fx/sequencer.a");

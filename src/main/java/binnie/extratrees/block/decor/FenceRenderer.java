@@ -1,17 +1,20 @@
 package binnie.extratrees.block.decor;
 
-import binnie.core.block.TileEntityMetadata;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.WoodManager;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
+
 import org.lwjgl.opengl.GL11;
 
+import binnie.core.block.TileEntityMetadata;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.WoodManager;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 public class FenceRenderer implements ISimpleBlockRenderingHandler {
+
     public static int layer;
 
     @Override
@@ -28,8 +31,8 @@ public class FenceRenderer implements ISimpleBlockRenderingHandler {
             }
 
             float s = 0.0625f;
-            FenceType fenceType =
-                    (block == ExtraTrees.blockMultiFence) ? WoodManager.getFenceType(metadata) : new FenceType(0);
+            FenceType fenceType = (block == ExtraTrees.blockMultiFence) ? WoodManager.getFenceType(metadata)
+                    : new FenceType(0);
             boolean bottomBar = !fenceType.solid;
             float topBarMaxY = 1.0f - s;
             float topBarMinY = 1.0f - s * 3.0f;
@@ -135,8 +138,8 @@ public class FenceRenderer implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         FenceRenderer.layer = 0;
         BlockFence blockFence = (BlockFence) block;
         float i = 0.0625f;

@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 public enum PowerSystem {
+
     MJ(100.0),
     RF(10.0),
     EU(40.0);

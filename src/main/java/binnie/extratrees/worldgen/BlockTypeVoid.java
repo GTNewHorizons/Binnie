@@ -1,9 +1,11 @@
 package binnie.extratrees.worldgen;
 
-import forestry.api.world.ITreeGenData;
 import net.minecraft.world.World;
 
+import forestry.api.world.ITreeGenData;
+
 public class BlockTypeVoid extends BlockType {
+
     public BlockTypeVoid() {
         super(null, 0);
     }

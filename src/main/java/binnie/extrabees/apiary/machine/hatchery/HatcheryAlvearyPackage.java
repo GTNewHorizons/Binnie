@@ -10,6 +10,7 @@ import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ExtraBeeTexture;
 
 public class HatcheryAlvearyPackage extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
+
     public HatcheryAlvearyPackage() {
         super("hatchery", ExtraBeeTexture.AlvearyHatchery.getTexture(), false);
     }

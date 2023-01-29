@@ -1,14 +1,17 @@
 package binnie.core.block;
 
-import binnie.core.BinnieCore;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+
 import org.lwjgl.opengl.GL11;
 
+import binnie.core.BinnieCore;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
+
     public static MultipassBlockRenderer instance;
     private static int layer = 0;
 
@@ -35,8 +38,8 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         boolean r = true;
         MultipassBlockRenderer.layer = 0;
         while (MultipassBlockRenderer.layer < ((IMultipassBlock) block).getNumberOfPasses()) {

@@ -1,12 +1,24 @@
 package binnie.extratrees.genetics;
 
+import java.awt.Color;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
+
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
+
 import com.mojang.authlib.GameProfile;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.EnumHumidity;
@@ -19,16 +31,9 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;
 import forestry.api.lepidopterology.IButterflyRoot;
-import java.awt.Color;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.BiomeDictionary;
 
 public enum ButterflySpecies implements IAlleleButterflySpecies {
+
     WhiteAdmiral("whiteAdmiral", "Limenitis camilla", new Color(0xfafafa)),
     PurpleEmperor("purpleEmperor", "Apatura iris", new Color(0x4232c6)),
     RedAdmiral("redAdmiral", "Vanessa atalanta", new Color(0xe66f44)),
@@ -219,8 +224,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
             return 1.0f;
         }
 
-        for (Map.Entry<ItemStack, Float> entry :
-                getRoot().getResearchCatalysts().entrySet()) {
+        for (Map.Entry<ItemStack, Float> entry : getRoot().getResearchCatalysts().entrySet()) {
             if (entry.getKey().isItemEqual(itemstack)) {
                 return entry.getValue();
             }
@@ -230,7 +234,7 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
     @Override
     public ItemStack[] getResearchBounty(World world, GameProfile researcher, IIndividual individual, int bountyLevel) {
-        return new ItemStack[] {getRoot().getMemberStack(individual.copy(), EnumFlutterType.SERUM.ordinal())};
+        return new ItemStack[] { getRoot().getMemberStack(individual.copy(), EnumFlutterType.SERUM.ordinal()) };
     }
 
     @Override

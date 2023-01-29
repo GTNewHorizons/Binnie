@@ -7,6 +7,7 @@ import forestry.api.apiculture.IBeeModifier;
 import forestry.api.circuits.ICircuitLayout;
 
 public class StimulatorCircuit extends BinnieCircuit implements IBeeModifier {
+
     protected CircuitType type;
 
     public StimulatorCircuit(CircuitType type, ICircuitLayout layout) {

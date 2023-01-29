@@ -1,13 +1,17 @@
 package binnie.botany.api;
 
-import com.mojang.authlib.GameProfile;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.ISpeciesRoot;
 import java.util.Collection;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import com.mojang.authlib.GameProfile;
+
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.ISpeciesRoot;
+
 public interface IFlowerRoot extends ISpeciesRoot {
+
     @Override
     IFlower getMember(ItemStack stack);
 

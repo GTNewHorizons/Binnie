@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelMachine extends ModelBase {
+
     private ModelRenderer base;
     private ModelRenderer body;
     private ModelRenderer arm1;

@@ -1,10 +1,12 @@
 package binnie.genetics.machine.analyser;
 
-import binnie.core.machines.inventory.SlotValidator;
-import binnie.core.util.I18N;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.util.I18N;
+
 public class UnanalysedSlotValidator extends SlotValidator {
+
     public UnanalysedSlotValidator() {
         super(null);
     }

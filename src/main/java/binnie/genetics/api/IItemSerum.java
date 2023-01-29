@@ -1,9 +1,11 @@
 package binnie.genetics.api;
 
-import forestry.api.genetics.ISpeciesRoot;
 import net.minecraft.item.ItemStack;
 
+import forestry.api.genetics.ISpeciesRoot;
+
 public interface IItemSerum extends IItemChargable {
+
     IGene[] getGenes(ItemStack stack);
 
     ISpeciesRoot getSpeciesRoot(ItemStack stack);

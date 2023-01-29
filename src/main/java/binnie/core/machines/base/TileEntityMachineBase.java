@@ -1,14 +1,5 @@
 package binnie.core.machines.base;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.IInventoryMachine;
-import binnie.core.machines.inventory.TankSlot;
-import binnie.core.machines.power.IPoweredMachine;
-import binnie.core.machines.power.ITankMachine;
-import binnie.core.machines.power.PowerInfo;
-import binnie.core.machines.power.PowerInterface;
-import binnie.core.machines.power.TankInfo;
-import cpw.mods.fml.common.Optional;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -18,7 +9,18 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
 
+import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.IInventoryMachine;
+import binnie.core.machines.inventory.TankSlot;
+import binnie.core.machines.power.IPoweredMachine;
+import binnie.core.machines.power.ITankMachine;
+import binnie.core.machines.power.PowerInfo;
+import binnie.core.machines.power.PowerInterface;
+import binnie.core.machines.power.TankInfo;
+import cpw.mods.fml.common.Optional;
+
 public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine {
+
     public IInventoryMachine getInventory() {
         IInventoryMachine inv = Machine.getInterface(IInventoryMachine.class, this);
         return (inv == null || inv == this) ? new DefaultInventory() : inv;
@@ -71,8 +73,7 @@ public class TileEntityMachineBase extends TileEntity implements IInventoryMachi
 
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
-        return !isInvalid()
-                && getWorldObj().getTileEntity(xCoord, yCoord, zCoord) == this
+        return !isInvalid() && getWorldObj().getTileEntity(xCoord, yCoord, zCoord) == this
                 && player.getDistanceSq(xCoord + 0.5, yCoord + 0.5, zCoord + 0.5) <= 64.0
                 && getInventory().isUseableByPlayer(player);
     }

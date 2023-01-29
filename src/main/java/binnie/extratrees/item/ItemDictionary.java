@@ -1,12 +1,7 @@
 package binnie.extratrees.item;
 
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.core.ExtraTreesGUID;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.core.ExtraTreesGUID;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
+
 public class ItemDictionary extends Item {
+
     protected IIcon iconMaster;
 
     public ItemDictionary() {
@@ -56,19 +59,22 @@ public class ItemDictionary extends Item {
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (stack.getItemDamage() == 0) {
-            ExtraTrees.proxy.openGui(
-                    ExtraTreesGUID.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+            ExtraTrees.proxy
+                    .openGui(ExtraTreesGUID.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
         } else {
             ExtraTrees.proxy.openGui(
-                    ExtraTreesGUID.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+                    ExtraTreesGUID.DatabaseNEI,
+                    player,
+                    (int) player.posX,
+                    (int) player.posY,
+                    (int) player.posZ);
         }
         return stack;
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack i) {
-        return (i.getItemDamage() == 0)
-                ? I18N.localise("extratrees.item.database")
+        return (i.getItemDamage() == 0) ? I18N.localise("extratrees.item.database")
                 : I18N.localise("extratrees.item.masterDatabase");
     }
 }

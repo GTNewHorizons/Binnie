@@ -1,12 +1,14 @@
 package binnie.botany.genetics;
 
+import net.minecraft.world.World;
+
 import binnie.botany.api.IAlleleFlowerEffect;
 import binnie.botany.api.IFlowerGenome;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IEffectData;
-import net.minecraft.world.World;
 
 public class AlleleEffectNone implements IAlleleFlowerEffect {
+
     @Override
     public boolean isCombinable() {
         return true;

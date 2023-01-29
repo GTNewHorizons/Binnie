@@ -3,6 +3,7 @@ package binnie.extratrees.genetics;
 import net.minecraft.util.IIcon;
 
 public enum SaplingType {
+
     DEFAULT,
     JUNGLE,
     CONIFER,

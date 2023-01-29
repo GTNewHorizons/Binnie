@@ -18,6 +18,7 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 
 public class ControlAnalystChromosome extends Control implements ITooltip {
+
     IAllele allele0;
     IAllele allele1;
     IChromosomeType chromosomeType;
@@ -25,14 +26,8 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
     Texture Homozygous;
     Texture Heterozygous;
 
-    public ControlAnalystChromosome(
-            IWidget parent,
-            float x,
-            float y,
-            ISpeciesRoot root,
-            IChromosomeType type,
-            IAllele allele0,
-            IAllele allele1) {
+    public ControlAnalystChromosome(IWidget parent, float x, float y, ISpeciesRoot root, IChromosomeType type,
+            IAllele allele0, IAllele allele1) {
         super(parent, x, y, 16.0f, 22.0f);
         Homozygous = new StandardTexture(0, 0, 16, 22, BinnieCoreTexture.GUIAnalyst);
         Heterozygous = new StandardTexture(16, 0, 16, 22, BinnieCoreTexture.GUIAnalyst);
@@ -60,10 +55,14 @@ public class ControlAnalystChromosome extends Control implements ITooltip {
         if (isHomozygous()) {
             tooltip.add(system.getAlleleName(chromosomeType, allele0));
         } else {
-            tooltip.add(I18N.localise(
-                    "genetics.gui.analyst.chromosome.active", system.getAlleleName(chromosomeType, allele0)));
-            tooltip.add(I18N.localise(
-                    "genetics.gui.analyst.chromosome.inactive", system.getAlleleName(chromosomeType, allele1)));
+            tooltip.add(
+                    I18N.localise(
+                            "genetics.gui.analyst.chromosome.active",
+                            system.getAlleleName(chromosomeType, allele0)));
+            tooltip.add(
+                    I18N.localise(
+                            "genetics.gui.analyst.chromosome.inactive",
+                            system.getAlleleName(chromosomeType, allele1)));
         }
     }
 }

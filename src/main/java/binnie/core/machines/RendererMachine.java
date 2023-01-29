@@ -1,7 +1,5 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -9,8 +7,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import binnie.Binnie;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 // Hmm. It's used class
 public class RendererMachine extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
+
     RenderBlocks blockRenderer;
 
     @Override
@@ -18,8 +20,8 @@ public class RendererMachine extends TileEntitySpecialRenderer implements ISimpl
         renderTileEntity((TileEntityMachine) entity, x, y, z, partialTick, blockRenderer);
     }
 
-    public void renderTileEntity(
-            TileEntityMachine entity, double x, double y, double z, float partialTick, RenderBlocks renderer) {
+    public void renderTileEntity(TileEntityMachine entity, double x, double y, double z, float partialTick,
+            RenderBlocks renderer) {
         if (entity != null && entity.getMachine() != null) {
             MachinePackage machinePackage = entity.getMachine().getPackage();
             machinePackage.renderMachine(entity.getMachine(), x, y, z, partialTick, renderer);
@@ -39,11 +41,10 @@ public class RendererMachine extends TileEntitySpecialRenderer implements ISimpl
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         TileEntityMachine tile = (TileEntityMachine) world.getTileEntity(x, y, z);
-        if (tile != null
-                && tile.getMachine() != null
+        if (tile != null && tile.getMachine() != null
                 && tile.getMachine().getPackage() != null
                 && tile.getMachine().getPackage().getGroup() != null
                 && !tile.getMachine().getPackage().getGroup().customRenderer) {

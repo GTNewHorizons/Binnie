@@ -9,6 +9,7 @@ import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
 
 public class ControlText extends Control implements IControlValue<String> {
+
     private String text;
     private TextJustification align;
 
@@ -21,12 +22,7 @@ public class ControlText extends Control implements IControlValue<String> {
     }
 
     public ControlText(IWidget parent, IArea area, String text, TextJustification align) {
-        super(
-                parent,
-                area.pos().x(),
-                area.pos().y(),
-                area.size().x(),
-                area.size().y());
+        super(parent, area.pos().x(), area.pos().y(), area.size().x(), area.size().y());
         setValue(text);
         this.align = align;
     }

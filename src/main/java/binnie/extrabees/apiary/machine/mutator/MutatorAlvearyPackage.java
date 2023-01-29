@@ -9,6 +9,7 @@ import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ExtraBeeTexture;
 
 public class MutatorAlvearyPackage extends AlvearyMachine.AlvearyPackage implements IMachineInformation {
+
     public MutatorAlvearyPackage() {
         super("mutator", ExtraBeeTexture.AlvearyMutator.getTexture(), false);
     }

@@ -1,5 +1,9 @@
 package binnie.extrabees.gui.database;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
+
 import binnie.Binnie;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -15,24 +19,16 @@ import forestry.api.apiculture.IBeeRoot;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ControlClimateBar extends Control implements ITooltip {
+
     protected boolean isHumidity;
     protected List<Integer> tolerated;
 
-    private static final Color[] TEMP_COLORS = new Color[] {
-        new Color(0x00fffb),
-        new Color(0x78bbff),
-        new Color(0x4fff30),
-        new Color(0xffff00),
-        new Color(0xffa200),
-        new Color(0xff0000)
-    };
-    private static final Color[] HUMID_COLORS =
-            new Color[] {new Color(0xffe7a3), new Color(0x1aff00), new Color(0x307cff)};
+    private static final Color[] TEMP_COLORS = new Color[] { new Color(0x00fffb), new Color(0x78bbff),
+            new Color(0x4fff30), new Color(0xffff00), new Color(0xffa200), new Color(0xff0000) };
+    private static final Color[] HUMID_COLORS = new Color[] { new Color(0xffe7a3), new Color(0x1aff00),
+            new Color(0x307cff) };
 
     public ControlClimateBar(IWidget parent, int x, int y, int width, int height) {
         this(parent, x, y, width, height, false);
@@ -52,8 +48,7 @@ public class ControlClimateBar extends Control implements ITooltip {
         }
 
         int types = isHumidity ? 3 : 6;
-        int type = (int)
-                ((int) (getRelativeMousePosition().x() - 1.0f) / ((getSize().x() - 2.0f) / types));
+        int type = (int) ((int) (getRelativeMousePosition().x() - 1.0f) / ((getSize().x() - 2.0f) / types));
         if (!tolerated.contains(type) || type >= types) {
             return;
         }

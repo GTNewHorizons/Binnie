@@ -1,5 +1,15 @@
 package binnie.extrabees.core;
 
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.item.IItemMisc;
@@ -9,16 +19,9 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.recipes.RecipeManagers;
-import java.util.List;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.oredict.OreDictionary;
 
 public enum ExtraBeeItems implements IItemMisc {
+
     ScentedGear("scentedGear"),
     DiamondShard("diamondShard"),
     EmeraldShard("emeraldShard"),
@@ -103,22 +106,18 @@ public enum ExtraBeeItems implements IItemMisc {
                 ItemStack dust = null;
                 ItemStack ingot = null;
                 if (!OreDictionary.getOres("ingot" + item.metalString).isEmpty()) {
-                    ingot = OreDictionary.getOres("ingot" + item.metalString)
-                            .get(0)
-                            .copy();
+                    ingot = OreDictionary.getOres("ingot" + item.metalString).get(0).copy();
                 }
                 if (!OreDictionary.getOres("dust" + item.metalString).isEmpty()) {
-                    dust = OreDictionary.getOres("dust" + item.metalString)
-                            .get(0)
-                            .copy();
+                    dust = OreDictionary.getOres("dust" + item.metalString).get(0).copy();
                 }
 
                 ItemStack input = item.get(1);
                 if (dust != null) {
                     GameRegistry.addShapelessRecipe(dust, input, input, input, input);
                 } else if (ingot != null) {
-                    GameRegistry.addShapelessRecipe(
-                            ingot, input, input, input, input, input, input, input, input, input);
+                    GameRegistry
+                            .addShapelessRecipe(ingot, input, input, input, input, input, input, input, input, input);
                 } else if (item == ExtraBeeItems.CoalDust) {
                     GameRegistry.addShapelessRecipe(new ItemStack(Items.coal), input, input, input, input);
                 }
@@ -131,16 +130,23 @@ public enum ExtraBeeItems implements IItemMisc {
                 ItemStack input2 = item.get(1);
                 if (gem != null) {
                     GameRegistry.addShapelessRecipe(
-                            gem.copy(), input2, input2, input2, input2, input2, input2, input2, input2, input2);
+                            gem.copy(),
+                            input2,
+                            input2,
+                            input2,
+                            input2,
+                            input2,
+                            input2,
+                            input2,
+                            input2,
+                            input2);
                 }
             }
         }
 
         Item woodGear = null;
         try {
-            woodGear = (Item) Class.forName("buildcraft.BuildCraftCore")
-                    .getField("woodenGearItem")
-                    .get(null);
+            woodGear = (Item) Class.forName("buildcraft.BuildCraftCore").getField("woodenGearItem").get(null);
         } catch (Exception ex) {
             // ignored
         }

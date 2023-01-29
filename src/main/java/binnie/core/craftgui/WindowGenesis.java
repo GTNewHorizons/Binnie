@@ -1,5 +1,16 @@
 package binnie.core.craftgui;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -27,17 +38,9 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class WindowGenesis extends Window {
+
     private ISpeciesRoot root;
     private IAllele[] template;
     private ControlListBox<Gene> geneList;
@@ -73,6 +76,7 @@ public class WindowGenesis extends Window {
         new Panel(this, two.outset(1), MinecraftGUI.PanelType.Black);
 
         geneList = new ControlListBox<Gene>(this, one.x(), one.y(), one.w(), one.h(), 10.0f) {
+
             @Override
             public IWidget createOption(Gene value, int y) {
                 return new ControlGenesisOption(getContent(), value, y);
@@ -80,65 +84,63 @@ public class WindowGenesis extends Window {
         };
 
         geneOptions = new ControlListBox<Gene>(this, two.x(), two.y(), two.w(), two.h(), 10.0f) {
+
             @Override
             public IWidget createOption(Gene value, int y) {
                 return new ControlTextOption<>(getContent(), value, y);
             }
         };
 
-        tabSystems.addEventHandler(
-                new EventValueChanged.Handler() {
-                    @Override
-                    public void onEvent(EventValueChanged event) {
-                        root = ((BreedingSystem) event.getValue()).getSpeciesRoot();
-                        template = root.getDefaultTemplate();
-                        refreshTemplate(null);
-                    }
-                }.setOrigin(EventHandler.Origin.Self, tabSystems));
+        tabSystems.addEventHandler(new EventValueChanged.Handler() {
 
-        geneList.addEventHandler(
-                new EventValueChanged.Handler() {
-                    @Override
-                    public void onEvent(EventValueChanged event) {
-                        Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(root);
-                        List<Gene> opts = new ArrayList<>();
-                        IChromosomeType chromo = event.value != null ? ((Gene) event.value).getChromosome() : null;
-                        if (chromo != null) { // fix NPE
-                            for (IAllele allele : map.get(chromo)) {
-                                opts.add(new Gene(allele, chromo, root));
-                            }
-                        }
-                        geneOptions.setOptions(opts);
-                    }
-                }.setOrigin(EventHandler.Origin.Self, geneList));
+            @Override
+            public void onEvent(EventValueChanged event) {
+                root = ((BreedingSystem) event.getValue()).getSpeciesRoot();
+                template = root.getDefaultTemplate();
+                refreshTemplate(null);
+            }
+        }.setOrigin(EventHandler.Origin.Self, tabSystems));
 
-        geneOptions.addEventHandler(
-                new EventValueChanged.Handler() {
-                    @Override
-                    public void onEvent(EventValueChanged event) {
-                        if (event.value == null) {
-                            return;
-                        }
+        geneList.addEventHandler(new EventValueChanged.Handler() {
 
-                        IChromosomeType chromo = ((Gene) event.value).getChromosome();
-                        template[chromo.ordinal()] = ((Gene) event.value).getAllele();
-                        if (chromo == ((Gene) event.value).getSpeciesRoot().getKaryotypeKey()) {
-                            template = ((Gene) event.value)
-                                    .getSpeciesRoot()
-                                    .getTemplate(
-                                            ((Gene) event.value).getAllele().getUID());
-                        }
-                        refreshTemplate(chromo);
+            @Override
+            public void onEvent(EventValueChanged event) {
+                Map<IChromosomeType, List<IAllele>> map = Binnie.Genetics.getChromosomeMap(root);
+                List<Gene> opts = new ArrayList<>();
+                IChromosomeType chromo = event.value != null ? ((Gene) event.value).getChromosome() : null;
+                if (chromo != null) { // fix NPE
+                    for (IAllele allele : map.get(chromo)) {
+                        opts.add(new Gene(allele, chromo, root));
                     }
-                }.setOrigin(EventHandler.Origin.Self, geneOptions));
+                }
+                geneOptions.setOptions(opts);
+            }
+        }.setOrigin(EventHandler.Origin.Self, geneList));
+
+        geneOptions.addEventHandler(new EventValueChanged.Handler() {
+
+            @Override
+            public void onEvent(EventValueChanged event) {
+                if (event.value == null) {
+                    return;
+                }
+
+                IChromosomeType chromo = ((Gene) event.value).getChromosome();
+                template[chromo.ordinal()] = ((Gene) event.value).getAllele();
+                if (chromo == ((Gene) event.value).getSpeciesRoot().getKaryotypeKey()) {
+                    template = ((Gene) event.value).getSpeciesRoot()
+                            .getTemplate(((Gene) event.value).getAllele().getUID());
+                }
+                refreshTemplate(chromo);
+            }
+        }.setOrigin(EventHandler.Origin.Self, geneOptions));
         panelPickup = new Panel(this, 16.0f, 140.0f, 60.0f, 42.0f, MinecraftGUI.PanelType.Black);
         refreshTemplate(null);
     }
 
     private void refreshTemplate(IChromosomeType selection) {
         List<Gene> genes = new ArrayList<>();
-        IChromosomeType[] chromos =
-                Binnie.Genetics.getChromosomeMap(root).keySet().toArray(new IChromosomeType[0]);
+        IChromosomeType[] chromos = Binnie.Genetics.getChromosomeMap(root).keySet().toArray(new IChromosomeType[0]);
 
         for (IChromosomeType type : chromos) {
             IAllele allele = template[type.ordinal()];
@@ -186,14 +188,14 @@ public class WindowGenesis extends Window {
                 playerInv.setItemStack(stack);
             } else if (playerInv.getItemStack().isItemEqual(stack)
                     && ItemStack.areItemStackTagsEqual(playerInv.getItemStack(), stack)) {
-                int fit = stack.getMaxStackSize() - (stack.stackSize + playerInv.getItemStack().stackSize);
-                if (fit >= 0) {
-                    ItemStack itemStack;
-                    ItemStack rec = itemStack = stack;
-                    itemStack.stackSize += playerInv.getItemStack().stackSize;
-                    playerInv.setItemStack(rec);
-                }
-            }
+                        int fit = stack.getMaxStackSize() - (stack.stackSize + playerInv.getItemStack().stackSize);
+                        if (fit >= 0) {
+                            ItemStack itemStack;
+                            ItemStack rec = itemStack = stack;
+                            itemStack.stackSize += playerInv.getItemStack().stackSize;
+                            playerInv.setItemStack(rec);
+                        }
+                    }
 
             player.openContainer.detectAndSendChanges();
             if (player instanceof EntityPlayerMP) {
@@ -203,6 +205,7 @@ public class WindowGenesis extends Window {
     }
 
     private static class MouseDownHandler extends EventMouse.Down.Handler {
+
         private final ItemStack stack;
 
         public MouseDownHandler(ItemStack stack) {
@@ -218,6 +221,7 @@ public class WindowGenesis extends Window {
     }
 
     private class BreedingSystemControlTabBar extends ControlTabBar<BreedingSystem> {
+
         public BreedingSystemControlTabBar() {
             super(WindowGenesis.this, 8.0f, 28.0f, 23.0f, 100.0f, Position.LEFT);
         }
@@ -225,6 +229,7 @@ public class WindowGenesis extends Window {
         @Override
         public ControlTab<BreedingSystem> createTab(float x, float y, float w, float h, BreedingSystem value) {
             return new ControlTabIcon<BreedingSystem>(this, x, y, w, h, value) {
+
                 @Override
                 public ItemStack getItemStack() {
                     int type = value.getDefaultType();

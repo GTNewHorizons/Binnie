@@ -1,14 +1,17 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.machines.IMachine;
-import binnie.core.machines.MachineComponent;
-import binnie.core.machines.transfer.TransferRequest;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.machines.IMachine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.transfer.TransferRequest;
+
 public class ComponentInventoryTransfer extends MachineComponent {
+
     private List<Transfer> transfers = new ArrayList<>();
     private ITransferRestockListener transferListener;
 
@@ -44,6 +47,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
     }
 
     public abstract class Transfer {
+
         protected Condition condition;
         protected IMachine machine;
 
@@ -74,6 +78,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
     }
 
     private class Restock extends Transfer {
+
         private int[] buffer;
         private int destination;
         private int limit;
@@ -113,6 +118,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
     }
 
     private class Storage extends Transfer {
+
         private int source;
         private int[] destination;
 
@@ -126,8 +132,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
         protected void doTransfer(IInventory inv) {
             if (inv.getStackInSlot(source) != null) {
                 TransferRequest request = new TransferRequest(inv.getStackInSlot(source), inv);
-                ItemStack itemStack =
-                        request.setTargetSlots(destination).ignoreValidation().transfer(true);
+                ItemStack itemStack = request.setTargetSlots(destination).ignoreValidation().transfer(true);
                 inv.setInventorySlotContents(source, itemStack);
             }
         }
@@ -140,12 +145,14 @@ public class ComponentInventoryTransfer extends MachineComponent {
     }
 
     public abstract static class Condition {
+
         public Transfer transfer;
 
         public abstract boolean fufilled(ItemStack p0);
     }
 
     public interface ITransferRestockListener {
+
         void onRestock(int target);
     }
 }

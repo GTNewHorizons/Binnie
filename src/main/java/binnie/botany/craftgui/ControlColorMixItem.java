@@ -5,6 +5,7 @@ import binnie.core.craftgui.controls.listbox.ControlList;
 import binnie.core.craftgui.controls.listbox.ControlOption;
 
 public class ControlColorMixItem extends ControlOption<IColourMix> {
+
     protected ControlColorDisplay itemWidget1;
     protected ControlColorDisplay itemWidget2;
     protected ControlColorDisplay itemWidget3;

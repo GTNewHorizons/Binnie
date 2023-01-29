@@ -1,5 +1,8 @@
 package binnie.extratrees.craftgui;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
@@ -14,10 +17,9 @@ import binnie.extratrees.block.DoorType;
 import binnie.extratrees.block.IPlankType;
 import binnie.extratrees.block.WoodManager;
 import binnie.extratrees.block.decor.FenceType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 
 public class PagePlanksOverview extends PageAbstract<ItemStack> {
+
     public PagePlanksOverview(IWidget parent, DatabaseTab tab) {
         super(parent, tab);
     }
@@ -55,9 +57,15 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
         }
 
         ControlText controlDescription = new ControlText(
-                this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.MIDDLE_CENTER);
+                this,
+                new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f),
+                "",
+                TextJustification.MIDDLE_CENTER);
         ControlText controlSignature = new ControlText(
-                this, new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f), "", TextJustification.BOTTOM_RIGHT);
+                this,
+                new IArea(8.0f, 84.0f, getSize().x() - 16.0f, 0.0f),
+                "",
+                TextJustification.BOTTOM_RIGHT);
         String desc = "";
         if (type != null) {
             desc = type.getDescription();
@@ -80,9 +88,8 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
 
         controlDescription.setValue(descBody + EnumChatFormatting.RESET);
         controlSignature.setValue(descSig + EnumChatFormatting.RESET);
-        float descHeight = CraftGUI.render.textHeight(
-                controlDescription.getValue(), controlDescription.getSize().x());
-        controlSignature.setPosition(new IPoint(
-                controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10.0f));
+        float descHeight = CraftGUI.render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
+        controlSignature.setPosition(
+                new IPoint(controlSignature.pos().x(), controlDescription.getPosition().y() + descHeight + 10.0f));
     }
 }

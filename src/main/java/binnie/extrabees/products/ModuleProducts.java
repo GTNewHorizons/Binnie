@@ -1,11 +1,13 @@
 package binnie.extrabees.products;
 
-import binnie.core.IInitializable;
-import binnie.extrabees.ExtraBees;
 import net.minecraft.init.Items;
 import net.minecraftforge.oredict.OreDictionary;
 
+import binnie.core.IInitializable;
+import binnie.extrabees.ExtraBees;
+
 public class ModuleProducts implements IInitializable {
+
     @Override
     public void preInit() {
         ExtraBees.honeyDrop = new ItemHoneyDrop();

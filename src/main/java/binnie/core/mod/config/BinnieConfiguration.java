@@ -1,11 +1,14 @@
 package binnie.core.mod.config;
 
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
 import java.io.File;
+
 import net.minecraftforge.common.config.Configuration;
 
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
+
 class BinnieConfiguration extends Configuration {
+
     public AbstractMod mod;
     private String filename;
 

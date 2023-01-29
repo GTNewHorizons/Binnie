@@ -1,15 +1,17 @@
 package binnie.botany.genetics;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IFlowerMutation;
 import binnie.botany.core.BotanyCore;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.ISpeciesRoot;
-import java.util.ArrayList;
-import java.util.Collection;
 
 public class FlowerMutation implements IFlowerMutation {
+
     protected IAlleleFlowerSpecies allele0;
     protected IAlleleFlowerSpecies allele1;
     protected IAllele[] template;
@@ -62,12 +64,10 @@ public class FlowerMutation implements IFlowerMutation {
         if (allele0 == null || allele1 == null) {
             return 0.0f;
         }
-        if (this.allele0.getUID().equals(allele0.getUID())
-                && this.allele1.getUID().equals(allele1.getUID())) {
+        if (this.allele0.getUID().equals(allele0.getUID()) && this.allele1.getUID().equals(allele1.getUID())) {
             return getBaseChance();
         }
-        if (this.allele1.getUID().equals(allele0.getUID())
-                && this.allele0.getUID().equals(allele1.getUID())) {
+        if (this.allele1.getUID().equals(allele0.getUID()) && this.allele0.getUID().equals(allele1.getUID())) {
             return getBaseChance();
         }
         return 0.0f;

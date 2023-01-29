@@ -3,9 +3,11 @@ package binnie.extrabees.apiary.machine.mutator;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+
 import net.minecraft.item.ItemStack;
 
 public class AlvearyMutator {
+
     public static final int SLOT_MUTATOR = 0;
 
     protected static Map<ItemStack, Float> mutations = new HashMap<>();

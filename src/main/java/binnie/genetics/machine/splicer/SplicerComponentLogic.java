@@ -1,5 +1,8 @@
 package binnie.genetics.machine.splicer;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
@@ -13,10 +16,9 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
 public class SplicerComponentLogic extends ComponentProcessSetCost implements IProcess {
+
     public int nOfGenes;
 
     public SplicerComponentLogic(Machine machine) {
@@ -106,11 +108,13 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
     public ErrorState canWork() {
         if (getUtil().isSlotEmpty(Splicer.SLOT_TARGET)) {
             return new ErrorState.NoItem(
-                    I18N.localise("genetics.machine.splicer.error.noIndividual"), Splicer.SLOT_TARGET);
+                    I18N.localise("genetics.machine.splicer.error.noIndividual"),
+                    Splicer.SLOT_TARGET);
         }
         if (getUtil().isSlotEmpty(Splicer.SLOT_SERUM_VIAL)) {
             return new ErrorState.NoItem(
-                    I18N.localise("genetics.machine.splicer.error.noSerum"), Splicer.SLOT_SERUM_VIAL);
+                    I18N.localise("genetics.machine.splicer.error.noSerum"),
+                    Splicer.SLOT_SERUM_VIAL);
         }
 
         ErrorState state = isValidSerum();

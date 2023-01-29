@@ -10,6 +10,7 @@ import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 
 public enum EnumFlowerChromosome implements IChromosomeType {
+
     SPECIES(IAlleleFlowerSpecies.class),
     PRIMARY(IAlleleInteger.class),
     SECONDARY(IAlleleInteger.class),

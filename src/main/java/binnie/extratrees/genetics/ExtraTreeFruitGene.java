@@ -1,12 +1,25 @@
 package binnie.extratrees.genetics;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
 import binnie.Binnie;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.item.Food;
+
 import com.gtnewhorizon.gtnhlib.reflect.Fields;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.arboriculture.EnumTreeChromosome;
@@ -19,17 +32,9 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderNone;
 import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 
 public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
+
     Blackthorn(10, 0x6d8f1e, 0xde2f69, FruitSprite.Small),
     CherryPlum(10, 0x6d8f1e, 0xe81c4b, FruitSprite.Small),
     Peach(10, 0x6d8f1e, 0xfaa023, FruitSprite.Average),
@@ -393,22 +398,20 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 
     @Override
     public boolean trySpawnFruitBlock(ITreeGenome genome, World world, int x, int y, int z) {
-        return pod != null
-                && world.rand.nextFloat() <= genome.getSappiness()
-                && Binnie.Genetics.getTreeRoot()
-                        .setFruitBlock(
-                                world,
-                                (IAlleleFruit) genome.getActiveAllele(EnumTreeChromosome.FRUITS),
-                                genome.getSappiness(),
-                                pod.getTextures(),
-                                x,
-                                y,
-                                z);
+        return pod != null && world.rand.nextFloat() <= genome.getSappiness()
+                && Binnie.Genetics.getTreeRoot().setFruitBlock(
+                        world,
+                        (IAlleleFruit) genome.getActiveAllele(EnumTreeChromosome.FRUITS),
+                        genome.getSappiness(),
+                        pod.getTextures(),
+                        x,
+                        y,
+                        z);
     }
 
     @Override
-    public short getIconIndex(
-            ITreeGenome genome, IBlockAccess world, int x, int y, int z, int ripeningTime, boolean fancy) {
+    public short getIconIndex(ITreeGenome genome, IBlockAccess world, int x, int y, int z, int ripeningTime,
+            boolean fancy) {
         return index.getIndex();
     }
 

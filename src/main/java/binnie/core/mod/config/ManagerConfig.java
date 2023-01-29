@@ -1,7 +1,5 @@
 package binnie.core.mod.config;
 
-import binnie.core.AbstractMod;
-import binnie.core.ManagerBase;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -9,9 +7,14 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import net.minecraftforge.common.config.Configuration;
 
+import binnie.core.AbstractMod;
+import binnie.core.ManagerBase;
+
 public class ManagerConfig extends ManagerBase {
+
     private Map<Class<?>, Configuration> configurations;
     private Map<AbstractMod, List<BinnieItemData>> itemIDs;
 
@@ -36,18 +39,14 @@ public class ManagerConfig extends ManagerBase {
                     ConfigProperty propertyAnnot = field.getAnnotation(ConfigProperty.class);
                     for (Annotation annotation : field.getAnnotations()) {
                         if (annotation.annotationType().isAnnotationPresent(ConfigProperty.Type.class)) {
-                            Class<?> propertyClass = annotation
-                                    .annotationType()
-                                    .getAnnotation(ConfigProperty.Type.class)
-                                    .propertyClass();
+                            Class<?> propertyClass = annotation.annotationType()
+                                    .getAnnotation(ConfigProperty.Type.class).propertyClass();
                             // TODO what for?
-                            PropertyBase property = (PropertyBase) propertyClass
-                                    .getConstructor(
-                                            Field.class,
-                                            BinnieConfiguration.class,
-                                            ConfigProperty.class,
-                                            annotation.annotationType())
-                                    .newInstance(
+                            PropertyBase property = (PropertyBase) propertyClass.getConstructor(
+                                    Field.class,
+                                    BinnieConfiguration.class,
+                                    ConfigProperty.class,
+                                    annotation.annotationType()).newInstance(
                                             field,
                                             config,
                                             propertyAnnot,

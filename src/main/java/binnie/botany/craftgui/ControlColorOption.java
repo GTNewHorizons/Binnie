@@ -9,6 +9,7 @@ import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.IPoint;
 
 public class ControlColorOption extends ControlTextOption<IFlowerColor> {
+
     protected ControlColorDisplay controlBee;
     protected IPoint boxPosition;
 
@@ -19,8 +20,7 @@ public class ControlColorOption extends ControlTextOption<IFlowerColor> {
         addAttribute(WidgetAttribute.MOUSE_OVER);
         CraftGUIUtil.moveWidget(textWidget, new IPoint(22.0f, 0.0f));
         textWidget.setSize(textWidget.getSize().sub(new IPoint(24.0f, 0.0f)));
-        int th = (int) CraftGUI.render.textHeight(
-                textWidget.getValue(), textWidget.getSize().x());
+        int th = (int) CraftGUI.render.textHeight(textWidget.getValue(), textWidget.getSize().x());
         int height = Math.max(20, th + 6);
         setSize(new IPoint(size().x(), height));
         textWidget.setSize(new IPoint(textWidget.getSize().x(), height));

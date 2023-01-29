@@ -5,6 +5,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
 public class ItemMachine extends ItemBlock {
+
     private IBlockMachine associatedBlock;
 
     public ItemMachine(Block block) {
