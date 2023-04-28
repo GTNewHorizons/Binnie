@@ -27,6 +27,11 @@ public class ItemHiveFrame extends Item implements IHiveFrame, IBeeModifier {
     }
 
     @Override
+    public int getMaxDamage() {
+        return frame.maxDamage;
+    }
+
+    @Override
     public String getItemStackDisplayName(ItemStack stack) {
         return frame.getName();
     }
