@@ -15,13 +15,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.Binnie;
 import binnie.core.resource.BinnieIcon;
 import binnie.core.util.I18N;
 import binnie.extrabees.genetics.ExtraBeeMutation;
-
-import com.mojang.authlib.GameProfile;
-
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import forestry.api.core.ForestryEvent;
 import forestry.api.genetics.AlleleManager;

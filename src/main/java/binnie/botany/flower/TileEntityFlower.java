@@ -16,6 +16,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.EnumPlantType;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerStage;
@@ -33,9 +35,6 @@ import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.Flower;
 import binnie.botany.network.MessageFlowerUpdate;
 import binnie.core.BinnieCore;
-
-import com.mojang.authlib.GameProfile;
-
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.IIndividual;

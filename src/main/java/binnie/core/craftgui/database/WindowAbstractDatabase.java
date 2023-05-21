@@ -6,6 +6,8 @@ import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextEdit;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
@@ -28,9 +30,6 @@ import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.util.I18N;
 import binnie.core.util.IValidator;
-
-import com.mojang.authlib.GameProfile;
-
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;

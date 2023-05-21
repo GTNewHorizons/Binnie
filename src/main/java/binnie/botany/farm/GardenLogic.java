@@ -15,6 +15,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
@@ -23,9 +25,6 @@ import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.gardening.Gardening;
-
-import com.mojang.authlib.GameProfile;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.farming.FarmDirection;

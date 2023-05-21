@@ -13,6 +13,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
@@ -22,8 +24,6 @@ import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
-
-import com.mojang.authlib.GameProfile;
 import forestry.api.core.EnumTemperature;
 
 public class Gardening {

@@ -5,10 +5,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.extratrees.genetics.ExtraTreeSpecies;
-
 import com.mojang.authlib.GameProfile;
 
+import binnie.extratrees.genetics.ExtraTreeSpecies;
 import forestry.api.arboriculture.ITreeGenerator;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.world.ITreeGenData;

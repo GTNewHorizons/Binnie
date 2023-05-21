@@ -2,14 +2,14 @@ package binnie.core.craftgui.database;
 
 import net.minecraft.util.EnumChatFormatting;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.controls.page.ControlPage;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.util.I18N;
-
-import com.mojang.authlib.GameProfile;
 
 public class PageBreeder extends ControlPage<DatabaseTab> {
 
