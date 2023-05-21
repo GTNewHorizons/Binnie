@@ -12,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
@@ -22,9 +24,6 @@ import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerMutation;
 import binnie.botany.api.IFlowerRoot;
-
-import com.mojang.authlib.GameProfile;
-
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;

@@ -13,10 +13,10 @@ import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
 
-import sun.misc.Unsafe;
 import binnie.core.block.TileEntityMetadata;
 import forestry.api.arboriculture.EnumWoodType;
 import forestry.arboriculture.tiles.TileWood;
+import sun.misc.Unsafe;
 
 public class FakeWorld extends World {
 

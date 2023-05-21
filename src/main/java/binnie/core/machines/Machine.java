@@ -14,6 +14,8 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.core.BinnieCore;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.component.IRender;
@@ -22,9 +24,6 @@ import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageTileNBT;
 import binnie.core.network.packet.PacketPayload;
-
-import com.mojang.authlib.GameProfile;
-
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.core.INBTTagable;
 

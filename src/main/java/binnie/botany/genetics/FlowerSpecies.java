@@ -7,6 +7,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumMoisture;
@@ -16,9 +18,6 @@ import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
 import binnie.genetics.genetics.AlleleHelper;
-
-import com.mojang.authlib.GameProfile;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.EnumHumidity;

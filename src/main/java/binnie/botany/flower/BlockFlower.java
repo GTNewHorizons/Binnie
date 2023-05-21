@@ -18,6 +18,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IFlower;
@@ -26,9 +28,6 @@ import binnie.botany.core.BotanyCore;
 import binnie.botany.gardening.Gardening;
 import binnie.botany.genetics.EnumFlowerType;
 import binnie.core.BinnieCore;
-
-import com.mojang.authlib.GameProfile;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

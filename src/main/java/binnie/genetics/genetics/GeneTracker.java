@@ -9,14 +9,13 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.core.genetics.Gene;
 import binnie.core.network.packet.MessageNBT;
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.core.GeneticsPacket;
-
-import com.mojang.authlib.GameProfile;
-
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;

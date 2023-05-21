@@ -15,18 +15,17 @@ import net.minecraft.util.ResourceLocation;
 
 import org.apache.commons.io.IOUtils;
 
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.geometry.IBorder;
-import binnie.core.craftgui.resource.Texture;
-import binnie.core.resource.IBinnieTexture;
-
 import com.google.common.base.Charsets;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonParser;
 
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IBorder;
+import binnie.core.craftgui.resource.Texture;
+import binnie.core.resource.IBinnieTexture;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

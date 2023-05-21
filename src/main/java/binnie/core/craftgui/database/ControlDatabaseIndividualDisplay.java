@@ -2,6 +2,8 @@ package binnie.core.craftgui.database;
 
 import net.minecraft.util.IIcon;
 
+import com.mojang.authlib.GameProfile;
+
 import binnie.Binnie;
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
@@ -14,9 +16,6 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.util.I18N;
-
-import com.mojang.authlib.GameProfile;
-
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;

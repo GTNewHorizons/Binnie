@@ -7,11 +7,10 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 
-import binnie.core.machines.TileEntityMachine;
-import binnie.extrabees.apiary.machine.AlvearyMachine;
-
 import com.mojang.authlib.GameProfile;
 
+import binnie.core.machines.TileEntityMachine;
+import binnie.extrabees.apiary.machine.AlvearyMachine;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
