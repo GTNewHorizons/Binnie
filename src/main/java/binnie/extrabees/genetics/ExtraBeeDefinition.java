@@ -1709,7 +1709,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
                                     "Alrightsc",
                                     "YeetYeetDatBoi",
                                     "DreamMasterXXL",
-                                    "Colen"));
+                                    "Colen",
+                                    "OrderedSet"));
         }
     },
 
