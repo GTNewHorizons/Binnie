@@ -564,7 +564,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
                 .setMaturation(EnumAllele.Maturation.SLOWEST);
 
         ExtraTreeSpecies.SwampGum.addFamily(familyJungle).setLeafType(LeafType.JUNGLE)
-                .setHeight(EnumAllele.Height.SMALLEST).setFertility(EnumAllele.Saplings.LOWEST)
+                .setHeight(EnumAllele.Height.LARGEST).setFertility(EnumAllele.Saplings.LOWEST)
                 .setMaturation(EnumAllele.Maturation.SLOWER).setGirth(2);
 
         ExtraTreeSpecies.Box.addFamily(familyPome).addFamily(familyPrune).addFamily(familyNuts).addFamily(familyCitrus)
