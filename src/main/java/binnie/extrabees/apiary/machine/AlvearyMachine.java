@@ -18,6 +18,7 @@ import binnie.extrabees.apiary.machine.mutator.MutatorAlvearyPackage;
 import binnie.extrabees.apiary.machine.rainShield.RainShieldAlvearyPackage;
 import binnie.extrabees.apiary.machine.stimulator.StimulatorAlvearyPackage;
 import binnie.extrabees.apiary.machine.transmission.TransmissionAlvearyPackage;
+import binnie.extrabees.apiary.machine.unlighting.UnlightingAlvearyPackage;
 
 public enum AlvearyMachine implements IMachineType {
 
@@ -27,7 +28,8 @@ public enum AlvearyMachine implements IMachineType {
     Lighting(LightingAlvearyPackage.class),
     Stimulator(StimulatorAlvearyPackage.class),
     Hatchery(HatcheryAlvearyPackage.class),
-    Transmission(TransmissionAlvearyPackage.class);
+    Transmission(TransmissionAlvearyPackage.class),
+    Unlighting(UnlightingAlvearyPackage.class);
 
     protected Class<? extends MachinePackage> cls;
 

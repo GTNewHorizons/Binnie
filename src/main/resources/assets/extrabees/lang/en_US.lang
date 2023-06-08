@@ -191,6 +191,9 @@ extrabees.machine.alveay.frame.tooltip=Hive Frames
 extrabees.machine.alveay.lighting=Alveary Lighting
 extrabees.machine.alveay.lighting.info=The Alveary Lighting tricks bees into thinking it is daylight at night time.
 
+extrabees.machine.alveay.unlighting=Alveary Unlighting
+extrabees.machine.alveay.unlighting.info=The Alveary Unlighting tricks bees into thinking it is night time during the day.
+
 extrabees.machine.alveay.mutator=Mutator
 extrabees.machine.alveay.mutator.info=The Mutator uses certain items in order to encourage bee mutation.
 extrabees.machine.alveay.mutator.tooltip=Mutagenic Agents
