@@ -12,6 +12,7 @@ public enum ExtraBeeTexture implements IBinnieTexture {
     AlvearyNovaBlock(ResourceType.Tile, "alveary/AlvearyNovaBlock"),
     AlvearyFrame(ResourceType.Tile, "alveary/AlvearyFrame"),
     AlvearyLighting(ResourceType.Tile, "alveary/AlvearyLighting"),
+    AlvearyUnlighting(ResourceType.Tile, "alveary/AlvearyUnlighting"),
     AlvearyRainShield(ResourceType.Tile, "alveary/AlvearyRainShield"),
     AlvearyStimulator(ResourceType.Tile, "alveary/AlvearyStimulator"),
     AlvearyHatchery(ResourceType.Tile, "alveary/AlvearyHatchery"),
