@@ -54,7 +54,7 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
                     this,
                     155.0f,
                     I18N.localise(
-                            "binniecore.gui.database.species.secretCount",
+                            "binniecore.gui.database.species.secretsCount",
                             system.discoveredSecretCount,
                             system.totalSecretCount));
         }
