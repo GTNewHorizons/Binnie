@@ -149,9 +149,17 @@ public class TransferRequest {
                         if (destination.getStackInSlot(slot) == null) {
                             insertedSlots.add(new TransferSlot(slot, destination));
                             if (doAdd) {
-                                destination.setInventorySlotContents(slot, item.copy());
+                                ItemStack movedStack = item.copy();
+                                if (movedStack.stackSize > destination.getInventoryStackLimit()) {
+                                    movedStack.stackSize = destination.getInventoryStackLimit();
+                                }
+                                item.stackSize -= movedStack.stackSize;
+                                destination.setInventorySlotContents(slot, movedStack);
+                                if (item.stackSize <= 0) {
+                                    item = null;
+                                }
                             }
-                            return null;
+                            return item;
                         }
                     }
                 }
