@@ -18,7 +18,13 @@ public class StimulatorAlvearyPackage extends AlvearyMachine.AlvearyPackage impl
     @Override
     public void createMachine(Machine machine) {
         new ComponentExtraBeeGUI(machine, ExtraBeeGUID.AlvearyStimulator);
-        ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
+        ComponentInventorySlots inventory = new ComponentInventorySlots(machine) {
+
+            @Override
+            public int getInventoryStackLimit() {
+                return 1;
+            }
+        };
         inventory.addSlot(AlvearyStimulator.SLOT_CIRCUIT, "circuit");
         inventory.getSlot(AlvearyStimulator.SLOT_CIRCUIT).setValidator(new CircuitSlotValidator());
         new ComponentPowerReceptor(machine);
