@@ -182,7 +182,7 @@ binniecore.beemodifier.mutation=Мутация
 binniecore.beemodifier.lifespan=Время жизни
 binniecore.beemodifier.production=Продукция
 binniecore.beemodifier.flowering=Цветы
-binniecore.beemodifier.geneticdecay=Склонность к вырождению
+binniecore.beemodifier.genetic_decay=Склонность к вырождению
 
 binniecore.gui.breedingmessage.species=Видов обнаружено
 binniecore.gui.breedingmessage.branch=Семейств обнаружено

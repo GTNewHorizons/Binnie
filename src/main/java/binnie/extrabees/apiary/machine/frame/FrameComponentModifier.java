@@ -72,7 +72,7 @@ public class FrameComponentModifier extends ComponentBeeModifier implements IBee
     public float getProductionModifier(IBeeGenome genome, float currentModifier) {
         IHiveFrame frame = getHiveFrame();
         if (frame == null) {
-            return 1.0f;
+            return 0.0f;
         }
         return frame.getBeeModifier().getProductionModifier(genome, currentModifier);
     }

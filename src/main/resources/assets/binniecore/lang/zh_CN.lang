@@ -182,7 +182,7 @@ binniecore.beemodifier.mutation=变异
 binniecore.beemodifier.lifespan=寿命
 binniecore.beemodifier.production=产物
 binniecore.beemodifier.flowering=授粉速度
-binniecore.beemodifier.geneticdecay=基因衰变
+binniecore.beemodifier.genetic_decay=基因衰变
 
 binniecore.gui.breedingmessage.species=已发现品种
 binniecore.gui.breedingmessage.branch=已发现分支
