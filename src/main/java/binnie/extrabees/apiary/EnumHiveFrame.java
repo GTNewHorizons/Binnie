@@ -36,7 +36,7 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 
     public static void init() {
         EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.25f);
-        EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
+        EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.5f, 2.0f);// was 1.5x lim 5.0x
         EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.TERRITORY, 0.5f, 0.1f);
         EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.5f);
         EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.PRODUCTION, -0.25f, 0.0f);// was 0.75x lim 0.5x
