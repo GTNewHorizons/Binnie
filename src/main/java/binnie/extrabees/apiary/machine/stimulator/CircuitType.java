@@ -20,8 +20,8 @@ public enum CircuitType implements IBeeModifier {
     Territory(2, 10);
 
     static {
-        CircuitType.LowVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
-        CircuitType.HighVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 2.5f, 10.0f);
+        CircuitType.LowVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.5f, 5.0f);
+        CircuitType.HighVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 10.0f);
         CircuitType.Plant.logic.setModifier(EnumBeeModifier.FLOWERING, 1.5f, 5.0f);
         CircuitType.Death.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.8f, 0.2f);
         CircuitType.Life.logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
