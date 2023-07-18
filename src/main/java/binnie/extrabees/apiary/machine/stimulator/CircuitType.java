@@ -20,15 +20,17 @@ public enum CircuitType implements IBeeModifier {
     Territory(2, 10);
 
     static {
-        CircuitType.LowVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
-        CircuitType.HighVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 2.5f, 10.0f);
+        CircuitType.LowVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.5f, 5.0f);
+        CircuitType.HighVoltage.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 10.0f);
         CircuitType.Plant.logic.setModifier(EnumBeeModifier.FLOWERING, 1.5f, 5.0f);
         CircuitType.Death.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.8f, 0.2f);
         CircuitType.Life.logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
         CircuitType.Nether.logic.setModifier(EnumBeeBooleanModifier.HELLISH);
         CircuitType.Mutation.logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
         CircuitType.Inhibitor.logic.setModifier(EnumBeeModifier.TERRITORY, 0.4f, 0.1f);
-        CircuitType.Inhibitor.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.9f, 0.5f);
+        CircuitType.Inhibitor.logic.setModifier(EnumBeeModifier.PRODUCTION, -0.1f, 0.0f);// was 0.9x, now -0.1. limit
+                                                                                         // was 0.5x, now it's 0, but
+                                                                                         // currently ignored
         CircuitType.Territory.logic.setModifier(EnumBeeModifier.TERRITORY, 1.5f, 5.0f);
         for (CircuitType type : values()) {
             type.logic.setModifier(EnumBeeModifier.GENETIC_DECAY, 1.5f, 10.0f);
@@ -48,18 +50,34 @@ public enum CircuitType implements IBeeModifier {
 
     public void createCircuit(ICircuitLayout layout) {
         StimulatorCircuit circuit = new StimulatorCircuit(this, layout);
-        for (EnumBeeModifier modifier : EnumBeeModifier.values()) {
-            float mod = logic.getModifier(modifier, 1.0f);
-            if (mod == 1.0f) {
-                continue;
+        for (EnumBeeBooleanModifier modifier : EnumBeeBooleanModifier.values()) {
+            if (logic.getModifier(modifier)) {
+                circuit.addTooltipString("Enables " + modifier.getName());
             }
-
-            if (mod > 1.0f) {
-                int increase = (int) ((mod - 1.0f) * 100.0f);
-                circuit.addTooltipString("Increases " + modifier.getName() + " by " + increase + "%");
+        }
+        for (EnumBeeModifier modifier : EnumBeeModifier.values()) {
+            if (modifier == EnumBeeModifier.PRODUCTION) {
+                float mod = logic.getModifier(modifier, 0.0f);
+                if (mod == 0.0f) {
+                    continue;
+                }
+                if (mod > 0.0f) {
+                    circuit.addTooltipString("Increases " + modifier.getName() + " by +" + mod);
+                } else {
+                    circuit.addTooltipString("Increases " + modifier.getName() + " by " + mod);
+                }
             } else {
-                int decrease = (int) ((1.0f - mod) * 100.0f);
-                circuit.addTooltipString("Decreases " + modifier.getName() + " by " + decrease + "%");
+                float mod = logic.getModifier(modifier, 1.0f);
+                if (mod == 1.0f) {
+                    continue;
+                }
+                if (mod > 1.0f) {
+                    int increase = (int) ((mod - 1.0f) * 100.0f);
+                    circuit.addTooltipString("Increases " + modifier.getName() + " by " + increase + "%");
+                } else {
+                    int decrease = (int) ((1.0f - mod) * 100.0f);
+                    circuit.addTooltipString("Decreases " + modifier.getName() + " by " + decrease + "%");
+                }
             }
         }
     }

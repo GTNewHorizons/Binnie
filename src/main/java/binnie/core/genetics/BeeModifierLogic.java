@@ -16,24 +16,40 @@ public class BeeModifierLogic {
     }
 
     public float getModifier(EnumBeeModifier modifier, float currentModifier) {
-        if (!modifiers.containsKey(modifier)) {
-            return 1.0f;
-        }
-
-        Float[] values = modifiers.get(modifier);
-        float mult = values[0];
-        float max = values[1];
-        if (max >= 1.0f) {
-            if (max <= currentModifier) {
+        if (modifier == EnumBeeModifier.PRODUCTION) {
+            if (!modifiers.containsKey(modifier)) {
+                return 0.0f;
+            }
+            Float[] values = modifiers.get(modifier);
+            float offset = values[0], max = values[1];
+            if (offset < 0) {// negative modifiers should always apply
+                return offset;
+            }
+            if (currentModifier >= max) {// don't decrease modifiers already over the max, just skip increasing it
+                return 0.0f;
+            }
+            return Math.min(offset, max - currentModifier);
+        } else {
+            if (!modifiers.containsKey(modifier)) {
                 return 1.0f;
             }
-            return Math.min(max / currentModifier, mult);
+
+            Float[] values = modifiers.get(modifier);
+            float mult = values[0];
+            float max = values[1];
+            if (max >= 1.0f) {
+                if (max <= currentModifier) {
+                    return 1.0f;
+                }
+                return Math.min(max / currentModifier, mult);
+            }
+
+            if (max >= currentModifier) {
+                return 1.0f;
+            }
+            return Math.max(max / currentModifier, mult);
         }
 
-        if (max >= currentModifier) {
-            return 1.0f;
-        }
-        return Math.max(max / currentModifier, mult);
     }
 
     public boolean getModifier(EnumBeeBooleanModifier modifier) {

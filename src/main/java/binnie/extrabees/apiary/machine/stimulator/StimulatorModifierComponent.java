@@ -100,13 +100,14 @@ public class StimulatorModifierComponent extends ComponentBeeModifier implements
 
     @Override
     public float getProductionModifier(IBeeGenome genome, float currentModifier) {
-        float mod = 1.0f;
+        float mod = 0.0f;// production modifiers are now additive, and the "base" value of 1 comes in forestry's
+                         // Bee.java and BeeKeepingMode.java
         if (!powered) {
             return mod;
         }
 
         for (IBeeModifier beeMod : modifiers) {
-            mod *= beeMod.getProductionModifier(genome, mod);
+            mod += beeMod.getProductionModifier(genome, mod);
         }
         return mod;
     }

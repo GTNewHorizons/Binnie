@@ -152,7 +152,7 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
     @Override
     public float getProductionModifier(IBeeGenome genome, float currentModifier) {
         if (getBeeModifier() == null) {
-            return 1.0f;
+            return 0.0f;
         }
         return getBeeModifier().getProductionModifier(genome, currentModifier);
     }

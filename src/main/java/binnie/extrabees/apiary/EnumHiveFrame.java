@@ -36,17 +36,17 @@ public enum EnumHiveFrame implements IHiveFrame, IBeeModifier {
 
     public static void init() {
         EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.25f);
-        EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.PRODUCTION, 1.5f, 5.0f);
+        EnumHiveFrame.Cocoa.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.5f, 2.0f);// was 1.5x lim 5.0x
         EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.TERRITORY, 0.5f, 0.1f);
         EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.5f);
-        EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.75f, 0.5f);
+        EnumHiveFrame.Cage.logic.setModifier(EnumBeeModifier.PRODUCTION, -0.25f, 0.0f);// was 0.75x lim 0.5x
         EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.MUTATION, 1.5f, 5.0f);
         EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.LIFESPAN, 0.75f, 0.5f);
-        EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.25f, 0.1f);
+        EnumHiveFrame.Soul.logic.setModifier(EnumBeeModifier.PRODUCTION, -0.75f, 0.0f);// was 0.25x lim 0.1x
         EnumHiveFrame.Soul.setMaxDamage(80);
         EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.LIFESPAN, 1.5f, 5.0f);
         EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.MUTATION, 0.5f, 0.2f);
-        EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.PRODUCTION, 0.75f, 0.2f);
+        EnumHiveFrame.Clay.logic.setModifier(EnumBeeModifier.PRODUCTION, -0.25f, 0.0f);// was 0.75x lim 0.2x
         EnumHiveFrame.Debug.logic.setModifier(EnumBeeModifier.LIFESPAN, 1.0E-4f, 1.0E-4f);
 
         GameRegistry.addRecipe(

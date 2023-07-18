@@ -33,7 +33,7 @@ public class ComponentBeeModifier extends MachineComponent implements IBeeModifi
 
     @Override
     public float getProductionModifier(IBeeGenome genome, float currentModifier) {
-        return 1.0f;
+        return 0.0f;
     }
 
     @Override
