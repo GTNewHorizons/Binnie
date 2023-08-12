@@ -29,19 +29,18 @@ public class Lumbermill {
     public static Map<ItemStack, ItemStack> recipes = new HashMap<>();
 
     public static ItemStack getPlankProduct(ItemStack item) {
-        ItemStack stack = null;
         if (Lumbermill.recipes.isEmpty()) {
             calculateLumbermillProducts();
         }
 
         for (Map.Entry<ItemStack, ItemStack> entry : Lumbermill.recipes.entrySet()) {
             if (entry.getKey().isItemEqual(item)) {
-                stack = entry.getValue().copy();
-                break;
+                ItemStack stack = entry.getValue().copy();
+                stack.stackSize = 6;
+                return stack;
             }
         }
-        stack.stackSize = 6;
-        return stack;
+        return null;
     }
 
     public static void calculateLumbermillProducts() {
