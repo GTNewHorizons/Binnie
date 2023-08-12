@@ -88,7 +88,7 @@ public class ItemInsulatedTube extends Item {
 
     enum Material {
 
-        Copper(0xe3b78e, "cooper"),
+        Copper(0xe3b78e, "copper"),
         Tin(0xe1eef4, "tin"),
         Bronze(0xddc276, "bronze"),
         Iron(0xd8d8d8, "iron");
