@@ -122,7 +122,7 @@ public class TransferRequest {
                             || ((IInventorySlots) destination).getSlot(slot) == null
                             || !((IInventorySlots) destination).getSlot(slot).isRecipe()) {
                         if (destination.getStackInSlot(slot) != null) {
-                            if (item.isStackable()) {
+                            if (item.isStackable() && destination.getInventoryStackLimit() > 1) {
                                 ItemStack merged = destination.getStackInSlot(slot).copy();
                                 ItemStack[] newStacks = mergeStacks(item.copy(), merged.copy());
                                 item = newStacks[0];
@@ -158,8 +158,9 @@ public class TransferRequest {
                                 if (item.stackSize <= 0) {
                                     item = null;
                                 }
+                                return item;
                             }
-                            return item;
+                            return null;
                         }
                     }
                 }
