@@ -155,11 +155,8 @@ public class TransferRequest {
                                 }
                                 item.stackSize -= movedStack.stackSize;
                                 destination.setInventorySlotContents(slot, movedStack);
-                                if (item.stackSize <= 0) {
-                                    item = null;
-                                }
                             }
-                            return item;
+                            return null;
                         }
                     }
                 }
