@@ -525,11 +525,9 @@ public class GuiCraftGUI extends GuiContainer {
     }
 
     public ItemStack getStackUnderMouse(int x, int y) {
-        Slot slot = window.calculateMousedOverWidgets().stream().filter(widget -> widget instanceof ControlSlot).findFirst()
-                .map(w -> ((ControlSlot) w).slot).orElse(null);
-        if (slot == null)
-            return null;
-        else
-            return slot.getStack();
+        Slot slot = window.calculateMousedOverWidgets().stream().filter(widget -> widget instanceof ControlSlot)
+                .findFirst().map(w -> ((ControlSlot) w).slot).orElse(null);
+        if (slot == null) return null;
+        else return slot.getStack();
     }
 }
