@@ -1,6 +1,6 @@
 package binnie.extratrees.nei;
 
-import java.awt.*;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
