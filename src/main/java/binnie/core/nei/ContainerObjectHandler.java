@@ -5,7 +5,12 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.craftgui.minecraft.GuiCraftGUI;
 import codechicken.nei.guihook.IContainerObjectHandler;
+import cpw.mods.fml.common.Optional;
 
+@Optional.Interface(
+        iface = "codechicken.nei.guihook.IContainerObjectHandler",
+        modid = "NotEnoughItems",
+        striprefs = true)
 public final class ContainerObjectHandler implements IContainerObjectHandler {
 
     @Override

@@ -4,55 +4,97 @@ import org.lwjgl.opengl.GL11;
 
 import binnie.core.craftgui.minecraft.Window;
 import codechicken.nei.guihook.GuiContainerManager;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Optional;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public final class NEIHook {
 
-    private static boolean enabled = false;
+    public static boolean enabled = false;
 
     static {
-        try {
-            GuiContainerManager.addObjectHandler(new ContainerObjectHandler());
+        if (Loader.isModLoaded("NotEnoughItems")) {
             enabled = true;
-        } catch (NoClassDefFoundError ignored) {
-
+            addHandler();
         }
     }
 
+    @Optional.Method(modid = "NotEnoughItems")
+    private static void addHandler() {
+        GuiContainerManager.addObjectHandler(new ContainerObjectHandler());
+    }
+
+    @Optional.Method(modid = "NotEnoughItems")
     private static GuiContainerManager getManager() {
         return GuiContainerManager.getManager();
     }
 
+    @Optional.Method(modid = "NotEnoughItems")
+    private static void preDrawImpl() {
+        getManager().preDraw();
+    }
+
     public static void preDraw() {
-        if (enabled) getManager().preDraw();
+        if (enabled) preDrawImpl();
+    }
+
+    @Optional.Method(modid = "NotEnoughItems")
+    private static void renderObjectsImpl(Window window, int mouseX, int mouseY) {
+        GL11.glPushMatrix();
+        GL11.glTranslatef(window.x(), window.y(), 0.0f);
+        GuiContainerManager.getManager().renderObjects(mouseX, mouseY);
+        GL11.glTranslatef(-window.x(), -window.y(), 0.0f);
+        GL11.glPopMatrix();
     }
 
     public static void renderObjects(Window window, int mouseX, int mouseY) {
-        if (enabled) {
-            GL11.glPushMatrix();
-            GL11.glTranslatef(window.x(), window.y(), 0.0f);
-            GuiContainerManager.getManager().renderObjects(mouseX, mouseY);
-            GL11.glTranslatef(-window.x(), -window.y(), 0.0f);
-            GL11.glPopMatrix();
-        }
+        if (enabled) renderObjectsImpl(window, mouseX, mouseY);
+    }
+
+    @Optional.Method(modid = "NotEnoughItems")
+    private static void renderToolTipsImpl(int mouseX, int mouseY) {
+        getManager().renderToolTips(mouseX, mouseY);
     }
 
     public static void renderToolTips(int mouseX, int mouseY) {
-        if (enabled) getManager().renderToolTips(mouseX, mouseY);
+        if (enabled) renderToolTipsImpl(mouseX, mouseY);
+    }
+
+    @Optional.Method(modid = "NotEnoughItems")
+    private static void mouseClickedImpl(int x, int y, int button) {
+        getManager().mouseClicked(x, y, button);
     }
 
     public static void mouseClicked(int x, int y, int button) {
-        if (enabled) getManager().mouseClicked(x, y, button);
+        if (enabled) mouseClickedImpl(x, y, button);
+    }
+
+    @Optional.Method(modid = "NotEnoughItems")
+    private static void lastKeyTypedImpl(int k, char c) {
+        getManager().lastKeyTyped(k, c);
     }
 
     public static void lastKeyTyped(int k, char c) {
-        if (enabled) getManager().lastKeyTyped(k, c);
+        if (enabled) lastKeyTypedImpl(k, c);
+    }
+
+    @Optional.Method(modid = "NotEnoughItems")
+    private static void handleMouseWheelImpl() {
+        getManager().handleMouseWheel();
     }
 
     public static void handleMouseWheel() {
-        if (enabled) getManager().handleMouseWheel();
+        if (enabled) handleMouseWheelImpl();
+    }
+
+    @Optional.Method(modid = "NotEnoughItems")
+    private static void mouseUpImpl(int mouseX, int mouseY, int button) {
+        getManager().mouseUp(mouseX, mouseY, button);
     }
 
     public static void mouseUp(int mouseX, int mouseY, int button) {
-        if (enabled) getManager().mouseUp(mouseX, mouseY, button);
+        if (enabled) mouseUpImpl(mouseX, mouseY, button);
     }
 }
