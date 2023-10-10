@@ -236,7 +236,6 @@ public class GuiCraftGUI extends GuiContainer {
             origin = window.getMousedOverWidget();
         }
         window.callEvent(new EventMouse.Down(origin, x, y, button));
-        NEIHook.mouseUp(x, y, button);
     }
 
     @Override
