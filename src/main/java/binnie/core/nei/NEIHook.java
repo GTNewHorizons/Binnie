@@ -33,7 +33,8 @@ public final class NEIHook {
 
     @Optional.Method(modid = "NotEnoughItems")
     private static void preDrawImpl() {
-        getManager().preDraw();
+        GuiContainerManager manager = getManager();
+        if (manager != null) manager.preDraw();
     }
 
     public static void preDraw() {
@@ -44,7 +45,8 @@ public final class NEIHook {
     private static void renderObjectsImpl(Window window, int mouseX, int mouseY) {
         GL11.glPushMatrix();
         GL11.glTranslatef(window.x(), window.y(), 0.0f);
-        GuiContainerManager.getManager().renderObjects(mouseX, mouseY);
+        GuiContainerManager manager = getManager();
+        if (manager != null) manager.renderObjects(mouseX, mouseY);
         GL11.glTranslatef(-window.x(), -window.y(), 0.0f);
         GL11.glPopMatrix();
     }
@@ -55,7 +57,8 @@ public final class NEIHook {
 
     @Optional.Method(modid = "NotEnoughItems")
     private static void renderToolTipsImpl(int mouseX, int mouseY) {
-        getManager().renderToolTips(mouseX, mouseY);
+        GuiContainerManager manager = getManager();
+        if (manager != null) manager.renderToolTips(mouseX, mouseY);
     }
 
     public static void renderToolTips(int mouseX, int mouseY) {
@@ -64,7 +67,8 @@ public final class NEIHook {
 
     @Optional.Method(modid = "NotEnoughItems")
     private static void mouseClickedImpl(int x, int y, int button) {
-        getManager().mouseClicked(x, y, button);
+        GuiContainerManager manager = getManager();
+        if (manager != null) manager.mouseClicked(x, y, button);
     }
 
     public static void mouseClicked(int x, int y, int button) {
@@ -73,7 +77,8 @@ public final class NEIHook {
 
     @Optional.Method(modid = "NotEnoughItems")
     private static void lastKeyTypedImpl(int k, char c) {
-        getManager().lastKeyTyped(k, c);
+        GuiContainerManager manager = getManager();
+        if (manager != null) manager.lastKeyTyped(k, c);
     }
 
     public static void lastKeyTyped(int k, char c) {
@@ -82,7 +87,8 @@ public final class NEIHook {
 
     @Optional.Method(modid = "NotEnoughItems")
     private static void handleMouseWheelImpl() {
-        getManager().handleMouseWheel();
+        GuiContainerManager manager = getManager();
+        if (manager != null) manager.handleMouseWheel();
     }
 
     public static void handleMouseWheel() {
@@ -91,7 +97,8 @@ public final class NEIHook {
 
     @Optional.Method(modid = "NotEnoughItems")
     private static void mouseUpImpl(int mouseX, int mouseY, int button) {
-        getManager().mouseUp(mouseX, mouseY, button);
+        GuiContainerManager manager = getManager();
+        if (manager != null) manager.mouseUp(mouseX, mouseY, button);
     }
 
     public static void mouseUp(int mouseX, int mouseY, int button) {
