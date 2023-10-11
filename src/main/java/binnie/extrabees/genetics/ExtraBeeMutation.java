@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import binnie.extrabees.genetics.requirements.*;
+import binnie.extrabees.genetics.requirements.DummyMutationCondition;
+import binnie.extrabees.genetics.requirements.IMutationRequirement;
+import binnie.extrabees.genetics.requirements.RequirementPerson;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;

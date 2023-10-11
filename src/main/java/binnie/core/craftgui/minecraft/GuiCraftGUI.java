@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
@@ -30,6 +31,8 @@ import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IBorder;
 import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.nei.NEIHook;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -76,6 +79,8 @@ public class GuiCraftGUI extends GuiContainer {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float par3) {
+        NEIHook.preDraw();
+
         window.setMousePosition(mouseX - (int) window.getPosition().x(), mouseY - (int) window.getPosition().y());
         drawDefaultBackground();
 
@@ -89,6 +94,9 @@ public class GuiCraftGUI extends GuiContainer {
         window.render();
 
         RenderHelper.enableGUIStandardItemLighting();
+
+        NEIHook.renderObjects(window, mouseX, mouseY);
+
         GL11.glPushMatrix();
         GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
@@ -110,6 +118,8 @@ public class GuiCraftGUI extends GuiContainer {
             tooltip.setType(Tooltip.Type.STANDARD);
             window.getTooltip(tooltip);
         }
+
+        NEIHook.renderToolTips(mouseX, mouseY);
 
         if (tooltip.exists()) {
             renderTooltip(new IPoint(mouseX, mouseY), tooltip);
@@ -219,6 +229,8 @@ public class GuiCraftGUI extends GuiContainer {
 
     @Override
     protected void mouseClicked(int x, int y, int button) {
+        NEIHook.mouseClicked(x, y, button);
+
         IWidget origin = window;
         if (window.getMousedOverWidget() != null) {
             origin = window.getMousedOverWidget();
@@ -228,6 +240,8 @@ public class GuiCraftGUI extends GuiContainer {
 
     @Override
     protected void keyTyped(char c, int key) {
+        NEIHook.lastKeyTyped(key, c);
+
         if (key == 1 || (key == mc.gameSettings.keyBindInventory.getKeyCode() && window.getFocusedWidget() == null)) {
             mc.thePlayer.closeScreen();
         }
@@ -241,6 +255,7 @@ public class GuiCraftGUI extends GuiContainer {
         if (button != -1) {
             window.callEvent(new EventMouse.Up(origin, x, y, button));
         }
+        NEIHook.mouseUp(x, y, button);
     }
 
     @Override
@@ -250,6 +265,8 @@ public class GuiCraftGUI extends GuiContainer {
         if (dWheel != 0) {
             window.callEvent(new EventMouse.Wheel(window, dWheel));
         }
+
+        NEIHook.handleMouseWheel();
     }
 
     @Override
@@ -505,5 +522,10 @@ public class GuiCraftGUI extends GuiContainer {
         GL11.glColor4f(1, 1, 1, 255);
         GL11.glDisable(GL11.GL_BLEND);
         GL11.glEnable(GL11.GL_TEXTURE_2D);
+    }
+
+    public ItemStack getStackUnderMouse(int x, int y) {
+        return window.calculateMousedOverWidgets().stream().filter(widget -> widget instanceof ControlSlot).findFirst()
+                .map(w -> ((ControlSlot) w).slot).map(Slot::getStack).orElse(null);
     }
 }
