@@ -8,4 +8,5 @@ dependencies {
 
 	compileOnly('com.github.GTNewHorizons:BuildCraft:7.1.36:api')
 	compileOnly('net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev')
+	compileOnly("curse.maven:extrabiomesxl-60041:2273301")
 }

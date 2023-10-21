@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import binnie.core.Mods;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
@@ -16,6 +17,8 @@ import binnie.extratrees.block.decor.FenceDescription;
 import binnie.extratrees.block.decor.FenceType;
 
 public class WoodManager {
+
+    private static List<IPlankType> allPlankTypes;
 
     public static IPlankType getPlankType(int index) {
         IDesignMaterial wood = CarpentryManager.carpentryInterface.getWoodMaterial(index);
@@ -97,16 +100,18 @@ public class WoodManager {
     }
 
     public static List<IPlankType> getAllPlankTypes() {
+        if (allPlankTypes != null) {
+            return allPlankTypes;
+        }
+
         List<IPlankType> list = new ArrayList<>();
         Collections.addAll(list, PlankType.ExtraTreePlanks.values());
         Collections.addAll(list, PlankType.ForestryPlanks.values());
-        for (IPlankType type : PlankType.ExtraBiomesPlank.values()) {
-            if (type.getStack() != null) {
-                list.add(type);
-            }
+        if (Mods.extraBiomes.active()) {
+            Collections.addAll(list, PlankType.ExtraBiomesPlank.values());
         }
-
         Collections.addAll(list, PlankType.VanillaPlanks.values());
+        allPlankTypes = list;
         return list;
     }
 

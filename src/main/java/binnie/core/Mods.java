@@ -12,6 +12,7 @@ public class Mods {
     public static Mod forestry;
     public static Mod ic2;
     public static Mod botania;
+    public static Mod extraBiomes;
 
     private static Item findItem(String modId, String name) {
         Item stack = GameRegistry.findItem(modId, name);
@@ -41,6 +42,7 @@ public class Mods {
         Mods.forestry = new Mod("Forestry");
         Mods.ic2 = new Mod("IC2");
         Mods.botania = new Mod("Botania");
+        Mods.extraBiomes = new Mod("ExtrabiomesXL");
     }
 
     public static class Mod {
