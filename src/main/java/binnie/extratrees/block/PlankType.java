@@ -8,13 +8,12 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import com.google.common.base.Optional;
-
 import binnie.core.Mods;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.api.CarpentryManager;
+import extrabiomes.api.Stuff;
 
 public class PlankType {
 
@@ -267,13 +266,10 @@ public class PlankType {
 
         @Override
         public ItemStack getStack() {
-            try {
-                Class clss = Class.forName("extrabiomes.api.Stuff");
-                Block block = (Block) ((Optional) clss.getField("planks").get(null)).get();
-                return new ItemStack(block, 1, ordinal());
-            } catch (Exception e) {
+            if (!Mods.extraBiomes.active()) {
                 return null;
             }
+            return Stuff.planks.transform(block -> new ItemStack(block, 1, ordinal())).orNull();
         }
 
         @Override
