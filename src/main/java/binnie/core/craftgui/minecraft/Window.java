@@ -29,6 +29,7 @@ import binnie.core.craftgui.minecraft.control.ControlHelp;
 import binnie.core.craftgui.minecraft.control.ControlInfo;
 import binnie.core.craftgui.minecraft.control.ControlPowerSystem;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.control.ControlSlotBase;
 import binnie.core.craftgui.minecraft.control.ControlUser;
 import binnie.core.craftgui.minecraft.control.EnumHighlighting;
 import binnie.core.craftgui.renderer.Renderer;
@@ -40,6 +41,7 @@ import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IInventoryMachine;
 import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.PowerSystem;
+import binnie.core.nei.NEIHook;
 import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
@@ -117,6 +119,9 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
             if (widget.isEnabled() && widget.isVisible()) {
                 if (!widget.calculateIsMouseOver()) {
                     continue;
+                }
+                if (NEIHook.enabled && widget instanceof ControlSlotBase) {
+                    return;
                 }
                 if (widget instanceof ITooltip) {
                     ((ITooltip) widget).getTooltip(tooltip);

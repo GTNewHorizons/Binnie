@@ -119,10 +119,10 @@ public class GuiCraftGUI extends GuiContainer {
             window.getTooltip(tooltip);
         }
 
-        NEIHook.renderToolTips(mouseX, mouseY);
-
         if (tooltip.exists()) {
             renderTooltip(new IPoint(mouseX, mouseY), tooltip);
+        } else {
+            NEIHook.renderToolTips(mouseX, mouseY);
         }
         zLevel = 0.0f;
         GL11.glEnable(GL11.GL_LIGHTING);
