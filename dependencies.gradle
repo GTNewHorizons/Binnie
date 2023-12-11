@@ -4,9 +4,9 @@ dependencies {
 	api('com.github.GTNewHorizons:ForestryMC:4.7.0:dev')
 	implementation('com.github.GTNewHorizons:GTNHLib:0.0.13:dev')
 
-	devOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.4.12-GTNH:dev')
+	devOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.4.13-GTNH:dev')
 
-	compileOnly('com.github.GTNewHorizons:BuildCraft:7.1.36:api')
+	compileOnly('com.github.GTNewHorizons:BuildCraft:7.1.37:api')
 	compileOnly('net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev')
 	compileOnly("curse.maven:extrabiomesxl-60041:2273301")
 }
