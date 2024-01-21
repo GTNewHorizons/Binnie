@@ -13,6 +13,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
+import binnie.core.nei.NEIHook;
 
 public abstract class ControlSlotBase extends Control implements ITooltip {
 
@@ -60,6 +61,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 
     @Override
     public void getTooltip(Tooltip tooltip) {
+        if (NEIHook.enabled) return;
         ItemStack item = getItemStack();
         if (item == null) {
             return;
