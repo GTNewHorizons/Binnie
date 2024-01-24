@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.JsonToNBT;
 import net.minecraft.nbt.NBTException;
@@ -31,7 +30,7 @@ import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IBorder;
 import binnie.core.craftgui.geometry.IPoint;
-import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.control.ControlSlotBase;
 import binnie.core.nei.NEIHook;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -117,6 +116,7 @@ public class GuiCraftGUI extends GuiContainer {
         } else {
             tooltip.setType(Tooltip.Type.STANDARD);
             window.getTooltip(tooltip);
+            NEIHook.renderToolTips(mouseX, mouseY);
         }
 
         if (tooltip.exists()) {
@@ -525,7 +525,11 @@ public class GuiCraftGUI extends GuiContainer {
     }
 
     public ItemStack getStackUnderMouse(int x, int y) {
-        return window.calculateMousedOverWidgets().stream().filter(widget -> widget instanceof ControlSlot).findFirst()
-                .map(w -> ((ControlSlot) w).slot).map(Slot::getStack).orElse(null);
+        for (IWidget widget : window.calculateMousedOverWidgets()) {
+            if (widget instanceof ControlSlotBase && widget.isVisible()) {
+                return ((ControlSlotBase) widget).getItemStack();
+            }
+        }
+        return null;
     }
 }
