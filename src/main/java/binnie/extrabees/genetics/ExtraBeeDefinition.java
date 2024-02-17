@@ -1715,12 +1715,11 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
     },
 
     DIDDY(ExtraBeeBranchDefinition.FTB, "diddica", true, new Color(85, 37, 130), new Color(253, 185, 39)) {
+
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(EnumHoneyComb.SEED.get(1), 0.15f)
-                    .addProduct(Mods.forestry.stack("royalJelly"), 0.15f)
-                    .addProduct(Mods.forestry.stack("pollen"), 0.15f)
-                    .setIsNotCounted().setHasEffect();
+            beeSpecies.addProduct(EnumHoneyComb.SEED.get(1), 0.15f).addProduct(Mods.forestry.stack("royalJelly"), 0.15f)
+                    .addProduct(Mods.forestry.stack("pollen"), 0.15f).setIsNotCounted().setHasEffect();
         }
 
         protected void setAlleles(IAllele[] template) {
