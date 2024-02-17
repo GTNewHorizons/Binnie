@@ -1714,6 +1714,29 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
         }
     },
 
+    DIDDY(ExtraBeeBranchDefinition.FTB, "diddica", true, new Color(85, 37, 130), new Color(253, 185, 39)) {
+        @Override
+        protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
+            beeSpecies.addProduct(EnumHoneyComb.SEED.get(1), 0.15f)
+                    .addProduct(Mods.forestry.stack("royalJelly"), 0.15f)
+                    .addProduct(Mods.forestry.stack("pollen"), 0.15f)
+                    .setIsNotCounted().setHasEffect();
+        }
+
+        protected void setAlleles(IAllele[] template) {
+            AlleleHelper.instance.set(template, EnumBeeChromosome.NOCTURNAL, true);
+            AlleleHelper.instance.set(template, EnumBeeChromosome.TEMPERATURE_TOLERANCE, EnumAllele.Tolerance.BOTH_5);
+            AlleleHelper.instance.set(template, EnumBeeChromosome.HUMIDITY_TOLERANCE, EnumAllele.Tolerance.BOTH_5);
+            AlleleHelper.instance.set(template, EnumBeeChromosome.LIFESPAN, EnumAllele.Lifespan.LONGEST);
+            AlleleHelper.instance.set(template, EnumBeeChromosome.SPEED, EnumAllele.Speed.FASTEST);
+        }
+
+        @Override
+        protected void registerMutations() {
+            registerMutation(BeeDefinition.IMPERIAL, BeeDefinition.INDUSTRIOUS, 5).restrictPerson("DaddyDiddy");
+        }
+    },
+
     /* AUSTERE BRANCH */
     HAZARDOUS(BeeBranchDefinition.AUSTERE, "infensus", true, new Color(0xb06c28), new Color(0xffdc16)) {
 
