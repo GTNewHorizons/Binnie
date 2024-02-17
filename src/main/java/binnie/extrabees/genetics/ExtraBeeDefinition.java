@@ -1718,8 +1718,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(EnumHoneyComb.SEED.get(1), 0.15f).addProduct(Mods.forestry.stack("royalJelly"), 0.15f)
-                    .addProduct(Mods.forestry.stack("pollen"), 0.15f).setIsNotCounted().setHasEffect();
+            beeSpecies.addProduct(EnumHoneyComb.SEED.get(1), 0.2f).addProduct(Mods.forestry.stack("royalJelly"), 0.2f)
+                    .addProduct(Mods.forestry.stack("pollen"), 0.2f).setIsNotCounted().setHasEffect();
         }
 
         protected void setAlleles(IAllele[] template) {
