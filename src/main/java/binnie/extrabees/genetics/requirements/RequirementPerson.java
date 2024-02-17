@@ -57,7 +57,6 @@ public class RequirementPerson implements IMutationRequirement {
 
     @Override
     public boolean fufilled(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1) {
-        String ownerName = housing.getOwner().getName();
-        return ownerName != null && names.contains(ownerName);
+        return true;
     }
 }

@@ -253,7 +253,7 @@ extrabees.genetics.allele.caveDwelling=пещерности
 extrabees.genetics.allele.tolerantFlyer=дождливости
 
 extrabees.genetics.corrupted=повреждено
-extrabees.genetics.requirements.user=Может быть выведено только игроком %s
+extrabees.genetics.requirements.user=Inspired by %s
 
 
 # КЛАССЫ ПЧЁЛ

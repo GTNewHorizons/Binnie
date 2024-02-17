@@ -256,7 +256,7 @@ extrabees.genetics.allele.caveDwelling=Cave Dwelling
 extrabees.genetics.allele.tolerantFlyer=Rainfall
 
 extrabees.genetics.corrupted=Corrupted
-extrabees.genetics.requirements.user=Can only be bred by %s
+extrabees.genetics.requirements.user=Inspired by %s
 
 for.genus.bees.barren=Barren
 for.genus.bees.barren.description=Although initially these bees are considerably useless due to their meagre combs, they can lead onto greater things.
