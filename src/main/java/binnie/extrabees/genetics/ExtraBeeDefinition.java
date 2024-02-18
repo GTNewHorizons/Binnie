@@ -1673,7 +1673,10 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void registerMutations() {
-            registerMutation(BeeDefinition.CULTIVATED, CELEBRATORY, 5).restrictPerson(
+            final ExtraBeeMutation mutation = registerMutation(BeeDefinition.CULTIVATED, CELEBRATORY, 5);
+            mutation.restrictDateRange(2, 29, 2, 29);
+            mutation.requireDay();
+            mutation.restrictPerson(
                     new RequirementPerson().add(
                             name -> "" + EnumChatFormatting.DARK_RED
                                     + EnumChatFormatting.BOLD
