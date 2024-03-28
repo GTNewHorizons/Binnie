@@ -42,6 +42,7 @@ import forestry.api.genetics.IPollinatable;
 import forestry.api.lepidopterology.IButterfly;
 import forestry.api.lepidopterology.IButterflyNursery;
 import forestry.lepidopterology.entities.EntityButterfly;
+import forestry.plugins.PluginLepidopterology;
 
 public class TileEntityFlower extends TileEntity implements IPollinatable, IButterflyNursery {
 
@@ -456,7 +457,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
         if (worldObj.rand.nextFloat() >= spawn.getGenome().getPrimary().getRarity() * 0.5f) {
             return;
         }
-        if (worldObj.countEntities(EntityButterfly.class) > 100) {
+        if (worldObj.countEntities(EntityButterfly.class) > PluginLepidopterology.spawnConstraint) {
             return;
         }
         if (!spawn.canSpawn(worldObj, x, y, z)) {
