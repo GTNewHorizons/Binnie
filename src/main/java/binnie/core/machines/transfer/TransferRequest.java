@@ -256,7 +256,12 @@ public class TransferRequest {
         FluidStack largeAmountOfLiquid = containerLiquid.copy();
         largeAmountOfLiquid.amount = tank.getCapacity();
         int amountAdded = tank.fill(largeAmountOfLiquid, false);
-        int numberOfContainersToAdd = amountAdded / containerLiquid.amount;
+        int numberOfContainersToAdd;
+        if (containerLiquid.amount > 0) {
+            numberOfContainersToAdd = amountAdded / containerLiquid.amount;
+        } else {
+            numberOfContainersToAdd = item.stackSize;
+        }
         if (numberOfContainersToAdd > item.stackSize) {
             numberOfContainersToAdd = item.stackSize;
         }
@@ -358,7 +363,12 @@ public class TransferRequest {
         int maximumExtractedLiquid = item.stackSize * fluid.amount;
         FluidStack drainedLiquid = tank.drain(maximumExtractedLiquid, false);
         int amountInTank = (drainedLiquid == null) ? 0 : drainedLiquid.amount;
-        int numberOfContainersToFill = amountInTank / fluid.amount;
+        int numberOfContainersToFill;
+        if (fluid.amount > 0) {
+            numberOfContainersToFill = amountInTank / fluid.amount;
+        } else {
+            numberOfContainersToFill = item.stackSize;
+        }
         if (numberOfContainersToFill > item.stackSize) {
             numberOfContainersToFill = item.stackSize;
         }
