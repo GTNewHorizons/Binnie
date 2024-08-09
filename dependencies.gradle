@@ -1,10 +1,10 @@
 // Add your dependencies here
 
 dependencies {
-	api('com.github.GTNewHorizons:ForestryMC:4.9.3:dev')
-	implementation('com.github.GTNewHorizons:GTNHLib:0.2.11:dev')
+	api('com.github.GTNewHorizons:ForestryMC:4.9.7:dev')
+	implementation('com.github.GTNewHorizons:GTNHLib:0.4.2:dev')
 
-	devOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.6.1-GTNH:dev')
+	devOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.6.22-GTNH:dev')
 
 	compileOnly('com.github.GTNewHorizons:BuildCraft:7.1.39:api')
 	compileOnly('net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev')
