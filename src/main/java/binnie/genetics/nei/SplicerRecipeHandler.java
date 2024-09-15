@@ -18,7 +18,6 @@ import binnie.genetics.Genetics;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticLiquid;
 import codechicken.lib.gui.GuiDraw;
-import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import forestry.api.genetics.AlleleManager;
@@ -143,9 +142,10 @@ public class SplicerRecipeHandler extends RecipeHandlerBase {
         public CachedSplicer(SplicerRecipe recipe) {
             if (recipe.getSerum() != null && recipe.getDnaManipulable() != null) {
                 ISpeciesRoot root1 = AlleleManager.alleleRegistry.getSpeciesRoot(recipe.getDnaManipulable());
-                List<ItemStack> serums = new ArrayList<>();
-
-                for (ItemStack serumStack : ItemList.itemMap.get(recipe.getSerum().getItem())) {
+                List<ItemStack> serums = new ArrayList<>(200);
+                List<ItemStack> allSerumList = new ArrayList<>(1000);
+                recipe.serum.getItem().getSubItems(recipe.serum.getItem(), null, allSerumList);
+                for (ItemStack serumStack : allSerumList) {
                     if (serumStack.getTagCompound() != null) {
                         IItemSerum itemSerum = (IItemSerum) serumStack.getItem();
                         ISpeciesRoot root2 = itemSerum.getSpeciesRoot(serumStack);
