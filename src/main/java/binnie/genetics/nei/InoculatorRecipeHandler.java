@@ -1,5 +1,8 @@
 package binnie.genetics.nei;
 
+import static binnie.genetics.Genetics.itemSerum;
+import static binnie.genetics.Genetics.itemSerumArray;
+
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +18,9 @@ import binnie.core.Mods;
 import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.genetics.Genetics;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticLiquid;
 import codechicken.lib.gui.GuiDraw;
-import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import forestry.api.genetics.AlleleManager;
@@ -30,14 +31,9 @@ public class InoculatorRecipeHandler extends RecipeHandlerBase {
     private static final List<InoculatorRecipe> recipes = new ArrayList<>();
 
     private void createInoculatorRecipeForNEI(ItemStack dnaManipulable) {
+        recipes.add(new InoculatorRecipe(dnaManipulable, new ItemStack(itemSerum, 1, OreDictionary.WILDCARD_VALUE)));
         recipes.add(
-                new InoculatorRecipe(
-                        dnaManipulable,
-                        new ItemStack(Genetics.itemSerum, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(
-                new InoculatorRecipe(
-                        dnaManipulable,
-                        new ItemStack(Genetics.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)));
+                new InoculatorRecipe(dnaManipulable, new ItemStack(itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override
@@ -151,9 +147,10 @@ public class InoculatorRecipeHandler extends RecipeHandlerBase {
 
             if (recipe.getSerum() != null && recipe.getDnaManipulable() != null) {
                 ISpeciesRoot root1 = AlleleManager.alleleRegistry.getSpeciesRoot(recipe.getDnaManipulable());
-                List<ItemStack> serums = new ArrayList<>();
-
-                for (ItemStack serumStack : ItemList.itemMap.get(recipe.getSerum().getItem())) {
+                List<ItemStack> serums = new ArrayList<>(200);
+                List<ItemStack> allSerumList = new ArrayList<>(1000);
+                recipe.serum.getItem().getSubItems(recipe.serum.getItem(), null, allSerumList);
+                for (ItemStack serumStack : allSerumList) {
                     if (serumStack.getTagCompound() != null) {
                         IItemSerum itemSerum = (IItemSerum) serumStack.getItem();
                         ISpeciesRoot root2 = itemSerum.getSpeciesRoot(serumStack);
