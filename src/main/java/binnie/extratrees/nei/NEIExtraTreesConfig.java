@@ -1,6 +1,6 @@
 package binnie.extratrees.nei;
 
-import binnie.core.BinnieCore;
+import binnie.core.Tags;
 import binnie.core.nei.RecipeHandlerBase;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
@@ -25,6 +25,6 @@ public class NEIExtraTreesConfig implements IConfigureNEI {
 
     @Override
     public String getVersion() {
-        return BinnieCore.VERSION;
+        return Tags.VERSION;
     }
 }

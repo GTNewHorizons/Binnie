@@ -51,7 +51,7 @@ import forestry.plugins.PluginManager;
 @Mod(
         modid = "BinnieCore",
         name = "Binnie Core",
-        version = BinnieCore.VERSION,
+        version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:Forestry@[4.2,),required-after:gtnhlib@[0.0.10,)")
 public class BinnieCore extends AbstractMod {
@@ -63,11 +63,10 @@ public class BinnieCore extends AbstractMod {
     public static BinnieProxy proxy;
 
     public static int multipassRenderID;
-    private static List<AbstractMod> modList = new ArrayList<>();
+    private static final List<AbstractMod> modList = new ArrayList<>();
     public static MachineGroup packageCompartment;
     public static ItemGenesis genesis;
     public static ItemFieldKit fieldKit;
-    public static final String VERSION = "GRADLETOKEN_VERSION";
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent evt) {

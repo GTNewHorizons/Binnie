@@ -1,5 +1,6 @@
 package binnie.extrabees;
 
+import binnie.core.Tags;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -28,7 +29,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(
         modid = "ExtraBees",
         name = "Extra Bees",
-        version = BinnieCore.VERSION,
+        version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class ExtraBees extends AbstractMod {

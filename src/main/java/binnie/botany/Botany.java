@@ -1,5 +1,6 @@
 package binnie.botany;
 
+import binnie.core.Tags;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -56,7 +57,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 @Mod(
         modid = "Botany",
         name = "Botany",
-        version = BinnieCore.VERSION,
+        version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class Botany extends AbstractMod {
