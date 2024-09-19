@@ -77,9 +77,21 @@ public class ModuleMachine implements IInitializable {
             GameRegistry.addRecipe(
                     new ShapedOreRecipe(
                             LaboratoryMachine.Incubator.get(1),
-                            new Object[] { "gFg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'F',
-                                    Blocks.furnace, 'c', circuit, 'g', Blocks.glass_pane, 'P', "gearBronze", 'a',
-                                    ironGear }));
+                            "gFg",
+                            "cCc",
+                            "aPa",
+                            'C',
+                            GeneticsItems.LaboratoryCasing.get(1),
+                            'F',
+                            Blocks.furnace,
+                            'c',
+                            circuit,
+                            'g',
+                            Blocks.glass_pane,
+                            'P',
+                            "gearBronze",
+                            'a',
+                            ironGear));
 
             Item alyzer = null;
             if (BinnieCore.isApicultureActive()) {

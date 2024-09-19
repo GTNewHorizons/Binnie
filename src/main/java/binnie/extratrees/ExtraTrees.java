@@ -1,11 +1,11 @@
 package binnie.extratrees;
 
-import binnie.core.Tags;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;

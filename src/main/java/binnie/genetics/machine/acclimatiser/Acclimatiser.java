@@ -16,7 +16,6 @@ import binnie.core.Mods;
 import binnie.core.genetics.Tolerance;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.EnumButterflyChromosome;

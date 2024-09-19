@@ -27,7 +27,7 @@ public class SplicerRecipeHandler extends RecipeHandlerBase {
 
     private static final List<SplicerRecipe> recipes = new ArrayList<>();
 
-    private void createInoculatorRecipeForNEI(ItemStack dnaManipulable) {
+    private void createSplicerRecipeForNEI(ItemStack dnaManipulable) {
         recipes.add(
                 new SplicerRecipe(dnaManipulable, new ItemStack(Genetics.itemSerum, 1, OreDictionary.WILDCARD_VALUE)));
         recipes.add(
@@ -39,13 +39,13 @@ public class SplicerRecipeHandler extends RecipeHandlerBase {
     @Override
     public void prepare() {
         if (BinnieCore.isApicultureActive())
-            createInoculatorRecipeForNEI(Mods.forestry.stack("beeLarvaeGE", 1, OreDictionary.WILDCARD_VALUE));
+            createSplicerRecipeForNEI(Mods.forestry.stack("beeLarvaeGE", 1, OreDictionary.WILDCARD_VALUE));
         if (BinnieCore.isArboricultureActive())
-            createInoculatorRecipeForNEI(Mods.forestry.stack("pollenFertile", 1, OreDictionary.WILDCARD_VALUE));
+            createSplicerRecipeForNEI(Mods.forestry.stack("pollenFertile", 1, OreDictionary.WILDCARD_VALUE));
         if (BinnieCore.isLepidopteryActive())
-            createInoculatorRecipeForNEI(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE));
+            createSplicerRecipeForNEI(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE));
         if (BinnieCore.isBotanyActive())
-            createInoculatorRecipeForNEI(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
+            createSplicerRecipeForNEI(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     @Override
@@ -112,7 +112,7 @@ public class SplicerRecipeHandler extends RecipeHandlerBase {
         }
     }
 
-    private static class SplicerRecipe {
+    public static class SplicerRecipe {
 
         private final ItemStack dnaManipulable;
         private final ItemStack serum;

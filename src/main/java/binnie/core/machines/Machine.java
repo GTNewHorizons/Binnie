@@ -1,16 +1,11 @@
 package binnie.core.machines;
 
-import binnie.core.BinnieCore;
-import binnie.core.machines.component.IInteraction;
-import binnie.core.machines.component.IRender;
-import binnie.core.machines.network.INetwork;
-import binnie.core.network.BinnieCorePacketID;
-import binnie.core.network.INetworkedEntity;
-import binnie.core.network.packet.MessageTileNBT;
-import binnie.core.network.packet.PacketPayload;
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
-import forestry.api.core.INBTTagable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,11 +14,18 @@ import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.mojang.authlib.GameProfile;
+
+import binnie.core.BinnieCore;
+import binnie.core.machines.component.IInteraction;
+import binnie.core.machines.component.IRender;
+import binnie.core.machines.network.INetwork;
+import binnie.core.network.BinnieCorePacketID;
+import binnie.core.network.INetworkedEntity;
+import binnie.core.network.packet.MessageTileNBT;
+import binnie.core.network.packet.PacketPayload;
+import cpw.mods.fml.relauncher.Side;
+import forestry.api.core.INBTTagable;
 
 public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePacketSync, IMachine, INetwork.GuiNBT {
 

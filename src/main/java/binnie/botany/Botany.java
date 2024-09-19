@@ -1,6 +1,5 @@
 package binnie.botany;
 
-import binnie.core.Tags;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -40,6 +39,7 @@ import binnie.botany.network.PacketID;
 import binnie.botany.proxy.Proxy;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.item.ItemMisc;
 import binnie.core.network.BinniePacketHandler;
@@ -54,12 +54,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
-@Mod(
-        modid = "Botany",
-        name = "Botany",
-        version = Tags.VERSION,
-        useMetadata = true,
-        dependencies = "after:BinnieCore")
+@Mod(modid = "Botany", name = "Botany", version = Tags.VERSION, useMetadata = true, dependencies = "after:BinnieCore")
 public class Botany extends AbstractMod {
 
     @Mod.Instance("Botany")

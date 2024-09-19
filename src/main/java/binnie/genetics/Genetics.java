@@ -1,10 +1,10 @@
 package binnie.genetics;
 
-import binnie.core.Tags;
 import net.minecraft.item.Item;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.machines.MachineGroup;
 import binnie.core.network.BinniePacketHandler;
@@ -57,7 +57,7 @@ public class Genetics extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent ignored) {
         addModule(new ModuleItem());
         addModule(new ModuleMachine());
         IMCForNEI.IMCSender();
@@ -65,12 +65,12 @@ public class Genetics extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent ignored) {
         init();
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent ignored) {
         postInit();
     }
 
