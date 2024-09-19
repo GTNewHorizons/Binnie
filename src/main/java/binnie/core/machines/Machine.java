@@ -1,21 +1,5 @@
 package binnie.core.machines;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.network.Packet;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.core.BinnieCore;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.component.IRender;
@@ -24,25 +8,34 @@ import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.INetworkedEntity;
 import binnie.core.network.packet.MessageTileNBT;
 import binnie.core.network.packet.PacketPayload;
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.core.INBTTagable;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
+import net.minecraft.network.Packet;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePacketSync, IMachine, INetwork.GuiNBT {
 
-    private MachinePackage machinePackage;
-    private Map<Class, List<MachineComponent>> componentInterfaceMap;
-    private Map<Class<? extends MachineComponent>, MachineComponent> componentMap;
-    private TileEntity tile;
-    private boolean queuedInventoryUpdate;
-    private int nextProgressBarID;
+    private final MachinePackage machinePackage;
+    private final Map<Class<?>, List<MachineComponent>> componentInterfaceMap = new HashMap<>();
+    private final Map<Class<? extends MachineComponent>, MachineComponent> componentMap = new HashMap<>();
+    private final TileEntity tile;
+    private boolean queuedInventoryUpdate = false;
     private GameProfile owner;
+    private final MachineUtil mu = new MachineUtil(this);
 
     public Machine(MachinePackage pack, TileEntity tile) {
-        componentInterfaceMap = new LinkedHashMap<>();
-        componentMap = new LinkedHashMap<>();
-        queuedInventoryUpdate = false;
-        nextProgressBarID = 0;
-        owner = null;
         this.tile = tile;
         pack.createMachine(this);
         machinePackage = pack;
@@ -55,7 +48,7 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
         }
         component.setMachine(this);
         componentMap.put(component.getClass(), component);
-        for (Class inter : component.getComponentInterfaces()) {
+        for (Class<?> inter : component.getComponentInterfaces()) {
             if (!componentInterfaceMap.containsKey(inter)) {
                 componentInterfaceMap.put(inter, new ArrayList<>());
             }
@@ -123,8 +116,8 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
     @Override
     public void writeToPacket(PacketPayload payload) {
         for (MachineComponent component : getComponents()) {
-            if (component instanceof INetworkedEntity) {
-                ((INetworkedEntity) component).writeToPacket(payload);
+            if (component instanceof INetworkedEntity ne) {
+                ne.writeToPacket(payload);
             }
         }
     }
@@ -132,8 +125,8 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
     @Override
     public void readFromPacket(PacketPayload payload) {
         for (MachineComponent component : getComponents()) {
-            if (component instanceof INetworkedEntity) {
-                ((INetworkedEntity) component).readFromPacket(payload);
+            if (component instanceof INetworkedEntity ne) {
+                ne.readFromPacket(payload);
             }
         }
     }
@@ -205,14 +198,14 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
     }
 
     public static IMachine getMachine(Object inventory) {
-        if (inventory != null && inventory instanceof IMachine) {
-            return (IMachine) inventory;
+        if (inventory instanceof IMachine m) {
+            return m;
         }
-        if (inventory != null && inventory instanceof TileEntityMachine) {
-            return ((TileEntityMachine) inventory).getMachine();
+        if (inventory instanceof TileEntityMachine tem) {
+            return tem.getMachine();
         }
-        if (inventory != null && inventory instanceof MachineComponent) {
-            return ((MachineComponent) inventory).getMachine();
+        if (inventory instanceof MachineComponent mc) {
+            return mc.getMachine();
         }
         return null;
     }
@@ -230,7 +223,7 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 
     @Override
     public MachineUtil getMachineUtil() {
-        return new MachineUtil(this);
+        return mu;
     }
 
     @Override
@@ -242,10 +235,6 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
         for (MachineComponent component : getComponents()) {
             component.onDestruction();
         }
-    }
-
-    public int getUniqueProgressBarID() {
-        return nextProgressBarID++;
     }
 
     @Override
