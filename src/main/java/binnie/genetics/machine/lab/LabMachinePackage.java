@@ -21,6 +21,6 @@ public class LabMachinePackage extends PackageGeneticBase {
 
     @Override
     public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
-        MachineRendererLab.instance.renderMachine(machine, color, renderTexture, x, y, z, partialTick);
+        MachineRendererLab.instance.renderMachine(machine, renderTexture, x, y, z);
     }
 }

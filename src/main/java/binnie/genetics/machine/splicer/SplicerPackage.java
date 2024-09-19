@@ -1,11 +1,7 @@
 package binnie.genetics.machine.splicer;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.InventorySlot;
@@ -16,6 +12,7 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.ComponentGeneticGUI;
+import net.minecraft.item.ItemStack;
 
 public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase implements IMachineInformation {
 
@@ -89,10 +86,5 @@ public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase impl
         new ComponentPowerReceptor(machine, Splicer.POWER_CAPACITY);
         new SplicerComponentLogic(machine);
         new SplicerComponentFX(machine);
-    }
-
-    @Override
-    public TileEntity createTileEntity() {
-        return new TileEntityMachine(this);
     }
 }

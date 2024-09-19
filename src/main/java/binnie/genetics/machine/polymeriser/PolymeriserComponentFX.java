@@ -1,16 +1,15 @@
 package binnie.genetics.machine.polymeriser;
 
-import java.util.Random;
-
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.world.World;
-
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class PolymeriserComponentFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
 
@@ -73,11 +72,6 @@ public class PolymeriserComponentFX extends MachineComponent implements IRender.
                                         particleGreen + (1.0f - particleGreen) / 10.0f,
                                         particleBlue + (1.0f - particleBlue) / 10.0f);
                             }
-                        }
-
-                        @Override
-                        public int getFXLayer() {
-                            return 0;
                         }
                     });
         }

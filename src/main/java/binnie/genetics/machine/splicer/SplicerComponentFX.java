@@ -1,16 +1,5 @@
 package binnie.genetics.machine.splicer;
 
-import java.util.Random;
-
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.client.renderer.entity.RenderItem;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-
-import org.lwjgl.opengl.GL11;
-
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
@@ -18,11 +7,20 @@ import binnie.core.machines.component.IRender;
 import binnie.core.machines.network.INetwork;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.client.renderer.entity.RenderItem;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
+
+import java.util.Random;
 
 public class SplicerComponentFX extends MachineComponent
         implements IRender.RandomDisplayTick, IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 
-    private EntityItem dummyEntityItem;
+    private final EntityItem dummyEntityItem;
 
     public SplicerComponentFX(IMachine machine) {
         super(machine);
@@ -69,11 +67,6 @@ public class SplicerComponentFX extends MachineComponent
                         double dist = 0.25 + 0.2 * Math.sin(particleAge / 50.0f);
                         setPosition(axisX + dist * Math.sin(angle), posY, axisZ + dist * Math.cos(angle));
                         setAlphaF((float) Math.cos(1.57 * particleAge / particleMaxAge));
-                    }
-
-                    @Override
-                    public int getFXLayer() {
-                        return 0;
                     }
                 });
     }

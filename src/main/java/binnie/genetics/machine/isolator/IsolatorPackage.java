@@ -1,16 +1,8 @@
 package binnie.genetics.machine.isolator;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
-import binnie.core.machines.inventory.ComponentChargedSlots;
-import binnie.core.machines.inventory.ComponentInventorySlots;
-import binnie.core.machines.inventory.ComponentInventoryTransfer;
-import binnie.core.machines.inventory.ComponentTankContainer;
-import binnie.core.machines.inventory.InventorySlot;
-import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.machines.inventory.*;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
@@ -71,10 +63,5 @@ public class IsolatorPackage extends PackageGeneticBase implements IMachineInfor
         new ComponentPowerReceptor(machine, Isolator.POWER_CAPACITY);
         new IsolatorComponentLogic(machine);
         new IsolatorComponentFX(machine);
-    }
-
-    @Override
-    public TileEntity createTileEntity() {
-        return new TileEntityMachine(this);
     }
 }

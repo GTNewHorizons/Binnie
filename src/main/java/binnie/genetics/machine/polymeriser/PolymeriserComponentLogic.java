@@ -11,7 +11,7 @@ import binnie.genetics.genetics.Engineering;
 
 public class PolymeriserComponentLogic extends ComponentProcessSetCost implements IProcess {
 
-    private static float chargePerProcess = 0.4f;
+    private static final float chargePerProcess = 0.4f;
 
     private float dnaDrain = 0.0f;
     private float bacteriaDrain = 0.0f;

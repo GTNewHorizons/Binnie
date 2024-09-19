@@ -1,16 +1,9 @@
 package binnie.genetics.machine.sequencer;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.Binnie;
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
-import binnie.core.machines.inventory.ComponentChargedSlots;
-import binnie.core.machines.inventory.ComponentInventorySlots;
-import binnie.core.machines.inventory.ComponentInventoryTransfer;
-import binnie.core.machines.inventory.InventorySlot;
-import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.machines.inventory.*;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
@@ -62,10 +55,5 @@ public class SequencerPackage extends PackageGeneticBase implements IMachineInfo
 
         SequencerComponentLogic logic = new SequencerComponentLogic(machine);
         transfer.setTransferListener(logic);
-    }
-
-    @Override
-    public TileEntity createTileEntity() {
-        return new TileEntityMachine(this);
     }
 }

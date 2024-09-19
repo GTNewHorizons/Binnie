@@ -17,7 +17,7 @@ public enum GeneticMachine implements IMachineType {
     Polymeriser(PolymeriserPackage.class),
     Inoculator(InoculatorPackage.class);
 
-    protected Class<? extends MachinePackage> clss;
+    private final Class<? extends MachinePackage> clss;
 
     GeneticMachine(Class<? extends MachinePackage> clss) {
         this.clss = clss;

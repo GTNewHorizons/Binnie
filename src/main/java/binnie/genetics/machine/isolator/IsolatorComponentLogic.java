@@ -1,9 +1,5 @@
 package binnie.genetics.machine.isolator;
 
-import java.util.Random;
-
-import net.minecraft.item.ItemStack;
-
 import binnie.core.genetics.Gene;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IChargedSlots;
@@ -12,11 +8,10 @@ import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import binnie.genetics.item.ItemSequence;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.*;
+import net.minecraft.item.ItemStack;
+
+import java.util.Random;
 
 public class IsolatorComponentLogic extends ComponentProcessSetCost implements IProcess {
 
