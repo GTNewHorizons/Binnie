@@ -1,12 +1,10 @@
 package binnie.genetics.gui;
 
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.controls.ControlTextCentered;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.core.util.UniqueFluidStackSet;
-import binnie.core.util.UniqueItemStackSet;
-import forestry.api.recipes.RecipeManagers;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.*;
@@ -14,10 +12,13 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.controls.ControlTextCentered;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
+import binnie.core.util.UniqueFluidStackSet;
+import binnie.core.util.UniqueItemStackSet;
+import forestry.api.recipes.RecipeManagers;
 
 public abstract class AnalystPageProduce extends ControlAnalystPage {
 

@@ -1,12 +1,23 @@
 package binnie.extratrees.genetics;
 
+import java.awt.*;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
+
+import com.mojang.authlib.GameProfile;
+
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
-import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.EnumHumidity;
@@ -19,15 +30,6 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;
 import forestry.api.lepidopterology.IButterflyRoot;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.BiomeDictionary;
-
-import java.awt.*;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
 
 public enum ButterflySpecies implements IAlleleButterflySpecies {
 

@@ -1,5 +1,12 @@
 package binnie.genetics.gui;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.botany.api.IFlower;
 import binnie.core.AbstractMod;
@@ -35,12 +42,6 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class WindowAnalyst extends Window {
 

@@ -1,5 +1,10 @@
 package binnie.core.genetics;
 
+import java.util.*;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.world.WorldEvent;
+
 import binnie.Binnie;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.genetics.AlleleColor;
@@ -10,10 +15,6 @@ import forestry.api.apiculture.IBeeRoot;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.*;
 import forestry.api.lepidopterology.IButterflyRoot;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.world.WorldEvent;
-
-import java.util.*;
 
 public class ManagerGenetics extends ManagerBase {
 

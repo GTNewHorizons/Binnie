@@ -1,8 +1,7 @@
 package binnie.extratrees;
 
-import binnie.core.block.TileEntityMetadata;
-import forestry.api.arboriculture.EnumWoodType;
-import forestry.arboriculture.tiles.TileWood;
+import java.lang.reflect.Field;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -13,9 +12,11 @@ import net.minecraft.world.WorldSettings;
 import net.minecraft.world.WorldSettings.GameType;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.IChunkProvider;
-import sun.misc.Unsafe;
 
-import java.lang.reflect.Field;
+import binnie.core.block.TileEntityMetadata;
+import forestry.api.arboriculture.EnumWoodType;
+import forestry.arboriculture.tiles.TileWood;
+import sun.misc.Unsafe;
 
 public class FakeWorld extends World {
 

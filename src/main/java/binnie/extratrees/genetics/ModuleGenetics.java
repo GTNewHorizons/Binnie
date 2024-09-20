@@ -1,14 +1,14 @@
 package binnie.extratrees.genetics;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IClassification;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class ModuleGenetics implements IInitializable {
 

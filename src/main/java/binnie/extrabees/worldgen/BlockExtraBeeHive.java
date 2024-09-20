@@ -1,10 +1,9 @@
 package binnie.extrabees.worldgen;
 
-import binnie.extrabees.ExtraBees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.apiculture.IHiveDrop;
-import forestry.api.core.Tabs;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,9 +12,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import binnie.extrabees.ExtraBees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.apiculture.IHiveDrop;
+import forestry.api.core.Tabs;
 
 public class BlockExtraBeeHive extends Block {
 

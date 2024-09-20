@@ -38,8 +38,8 @@ public enum ExtraTreesGUID implements IBinnieGUID {
             case Database, DatabaseNEI -> WindowArboristDatabase.create(player, side, this != ExtraTreesGUID.Database);
             case Woodworker -> WindowWoodworker.create(player, object, side);
             case Lumbermill -> WindowLumbermill.create(player, object, side);
-            case MothDatabase, MothDatabaseNEI ->
-                    WindowLepidopteristDatabase.create(player, side, this != ExtraTreesGUID.MothDatabase);
+            case MothDatabase, MothDatabaseNEI -> WindowLepidopteristDatabase
+                    .create(player, side, this != ExtraTreesGUID.MothDatabase);
             case SetSquare -> WindowSetSquare.create(player, world, x, y, z, side);
             default -> window;
         };

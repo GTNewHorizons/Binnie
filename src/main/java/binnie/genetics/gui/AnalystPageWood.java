@@ -1,5 +1,11 @@
 package binnie.genetics.gui;
 
+import java.util.Collection;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.geometry.IArea;
@@ -14,11 +20,6 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenome;
 import forestry.api.genetics.IAlleleBoolean;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.Collection;
 
 public class AnalystPageWood extends AnalystPageProduce {
 

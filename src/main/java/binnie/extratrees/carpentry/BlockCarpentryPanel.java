@@ -1,10 +1,7 @@
 package binnie.extratrees.carpentry;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -14,7 +11,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.List;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockCarpentryPanel extends BlockCarpentry {
 

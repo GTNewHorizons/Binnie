@@ -1,7 +1,7 @@
 package binnie.extratrees.machines.lumbermill;
 
-import binnie.extratrees.block.IPlankType;
-import binnie.extratrees.block.WoodManager;
+import java.util.*;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
@@ -9,7 +9,8 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import java.util.*;
+import binnie.extratrees.block.IPlankType;
+import binnie.extratrees.block.WoodManager;
 
 public class Lumbermill {
 

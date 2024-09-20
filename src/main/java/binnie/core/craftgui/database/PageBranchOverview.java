@@ -1,15 +1,16 @@
 package binnie.core.craftgui.database;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.util.EnumChatFormatting;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IClassification;
-import net.minecraft.util.EnumChatFormatting;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class PageBranchOverview extends PageBranch {
 

@@ -1,10 +1,18 @@
 package binnie.botany.genetics;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
+
 import binnie.botany.api.*;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
 import binnie.genetics.genetics.AlleleHelper;
-import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.EnumHumidity;
@@ -12,12 +20,6 @@ import forestry.api.core.EnumTemperature;
 import forestry.api.core.IIconProvider;
 import forestry.api.genetics.*;
 import forestry.core.genetics.alleles.EnumAllele;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public enum FlowerSpecies implements IAlleleFlowerSpecies {
 
@@ -44,8 +46,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
     FOXGLOVE("foxglove", "digitalis", "purpurea", EnumFlowerType.FOXGLOVE, EnumFlowerColor.HOT_PINK),
     ZINNIA("zinnia", "zinnia", "elegans", EnumFlowerType.ZINNIA, EnumFlowerColor.MEDIUM_VIOLET_RED,
             EnumFlowerColor.YELLOW),
-    CHRYSANTHEMUM("chrysanthemum", "chrysanthemum", "ï?? grandiflorum", EnumFlowerType.MUMS,
-            EnumFlowerColor.VIOLET),
+    CHRYSANTHEMUM("chrysanthemum", "chrysanthemum", "ï?? grandiflorum", EnumFlowerType.MUMS, EnumFlowerColor.VIOLET),
     MARIGOLD("marigold", "calendula", "officinalis", EnumFlowerType.MARIGOLD, EnumFlowerColor.GOLD,
             EnumFlowerColor.DARK_ORANGE),
     GERANIUM("geranium", "geranium", "maderense", EnumFlowerType.GERANIUM, EnumFlowerColor.DEEP_PINK),

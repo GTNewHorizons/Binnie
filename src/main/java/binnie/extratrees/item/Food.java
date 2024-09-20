@@ -1,19 +1,20 @@
 package binnie.extratrees.item;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.item.IItemMisc;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.recipes.RecipeManagers;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.oredict.OreDictionary;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public enum Food implements IItemMisc {
 

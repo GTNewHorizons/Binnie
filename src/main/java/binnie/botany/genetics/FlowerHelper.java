@@ -1,17 +1,19 @@
 package binnie.botany.genetics;
 
-import binnie.botany.Botany;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.*;
-import com.mojang.authlib.GameProfile;
-import forestry.api.genetics.*;
-import forestry.core.genetics.SpeciesRoot;
+import java.util.*;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-import java.util.*;
+import com.mojang.authlib.GameProfile;
+
+import binnie.botany.Botany;
+import binnie.botany.api.*;
+import binnie.botany.api.IFlower;
+import forestry.api.genetics.*;
+import forestry.core.genetics.SpeciesRoot;
 
 public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
 

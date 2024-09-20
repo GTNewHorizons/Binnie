@@ -1,9 +1,7 @@
 package binnie.extrabees.genetics;
 
-import binnie.core.Mods;
-import binnie.core.util.I18N;
-import forestry.api.apiculture.FlowerManager;
-import forestry.api.genetics.*;
+import java.util.*;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -13,7 +11,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 
-import java.util.*;
+import binnie.core.Mods;
+import binnie.core.util.I18N;
+import forestry.api.apiculture.FlowerManager;
+import forestry.api.genetics.*;
 
 public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromosomeType {
 
@@ -73,17 +74,17 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
 
     public ItemStack[] getItemStacks() {
         return switch (this) {
-            case WATER -> new ItemStack[]{new ItemStack(Blocks.waterlily)};
-            case SUGAR -> new ItemStack[]{new ItemStack(Blocks.reeds)};
-            case ROCK -> new ItemStack[]{new ItemStack(Blocks.cobblestone)};
-            case BOOK -> new ItemStack[]{new ItemStack(Blocks.bookshelf)};
-            case REDSTONE -> new ItemStack[]{new ItemStack(Blocks.redstone_torch)};
-            case DEAD -> new ItemStack[]{new ItemStack(Blocks.deadbush)};
-            case FRUIT -> new ItemStack[]{new ItemStack(Items.apple)};
-            case LEAVES -> new ItemStack[]{new ItemStack(Blocks.leaves)};
-            case SAPLING -> new ItemStack[]{new ItemStack(Blocks.sapling)};
-            case WOOD -> new ItemStack[]{new ItemStack(Blocks.log)};
-            case BEDROCK -> new ItemStack[]{new ItemStack(Blocks.bedrock)};
+            case WATER -> new ItemStack[] { new ItemStack(Blocks.waterlily) };
+            case SUGAR -> new ItemStack[] { new ItemStack(Blocks.reeds) };
+            case ROCK -> new ItemStack[] { new ItemStack(Blocks.cobblestone) };
+            case BOOK -> new ItemStack[] { new ItemStack(Blocks.bookshelf) };
+            case REDSTONE -> new ItemStack[] { new ItemStack(Blocks.redstone_torch) };
+            case DEAD -> new ItemStack[] { new ItemStack(Blocks.deadbush) };
+            case FRUIT -> new ItemStack[] { new ItemStack(Items.apple) };
+            case LEAVES -> new ItemStack[] { new ItemStack(Blocks.leaves) };
+            case SAPLING -> new ItemStack[] { new ItemStack(Blocks.sapling) };
+            case WOOD -> new ItemStack[] { new ItemStack(Blocks.log) };
+            case BEDROCK -> new ItemStack[] { new ItemStack(Blocks.bedrock) };
             default -> new ItemStack[0];
         };
     }

@@ -1,8 +1,8 @@
 package binnie.core.machines.inventory;
 
-import net.minecraftforge.common.util.ForgeDirection;
-
 import java.util.*;
+
+import net.minecraftforge.common.util.ForgeDirection;
 
 class SidedAccess {
 

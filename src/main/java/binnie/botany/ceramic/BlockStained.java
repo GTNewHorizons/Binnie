@@ -1,15 +1,9 @@
 package binnie.botany.ceramic;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,9 +19,16 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockStained extends Block implements IBlockMetadata {
 

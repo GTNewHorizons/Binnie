@@ -1,5 +1,13 @@
 package binnie.extratrees.craftgui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.craftgui.*;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
@@ -16,13 +24,6 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.machines.designer.WoodworkerRecipeComponent;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
 

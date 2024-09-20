@@ -1,18 +1,20 @@
 package binnie.core.nei;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+
+import org.lwjgl.opengl.GL11;
+
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIClientConfig;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.guihook.GuiContainerManager;
 import codechicken.nei.recipe.GuiRecipe;
 import codechicken.nei.recipe.TemplateRecipeHandler;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-import org.lwjgl.opengl.GL11;
-
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
 

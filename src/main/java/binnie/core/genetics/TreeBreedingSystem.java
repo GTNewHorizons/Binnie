@@ -1,5 +1,15 @@
 package binnie.core.genetics;
 
+import java.util.*;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import com.mojang.authlib.GameProfile;
+
 import binnie.Binnie;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
@@ -7,17 +17,9 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.FakeWorld;
 import binnie.extratrees.machines.lumbermill.Lumbermill;
 import binnie.genetics.genetics.AlleleHelper;
-import com.mojang.authlib.GameProfile;
 import forestry.api.arboriculture.*;
 import forestry.api.genetics.*;
 import forestry.core.genetics.alleles.EnumAllele;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.*;
 
 public class TreeBreedingSystem extends BreedingSystem {
 

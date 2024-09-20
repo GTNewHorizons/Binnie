@@ -1,11 +1,7 @@
 package binnie.extratrees.block.decor;
 
-import binnie.extratrees.block.ModuleBlocks;
-import binnie.extratrees.genetics.LeafType;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.ForestryAPI;
-import forestry.api.core.Tabs;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,7 +15,12 @@ import net.minecraft.world.ColorizerFoliage;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.List;
+import binnie.extratrees.block.ModuleBlocks;
+import binnie.extratrees.genetics.LeafType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.ForestryAPI;
+import forestry.api.core.Tabs;
 
 public class BlockHedge extends Block implements IBlockFence {
 

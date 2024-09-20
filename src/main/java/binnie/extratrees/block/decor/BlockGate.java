@@ -1,14 +1,8 @@
 package binnie.extratrees.block.decor;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.block.IPlankType;
-import binnie.extratrees.block.WoodManager;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.creativetab.CreativeTabs;
@@ -22,8 +16,15 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.ArrayList;
-import java.util.List;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.block.IPlankType;
+import binnie.extratrees.block.WoodManager;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 
 public class BlockGate extends BlockFenceGate implements IBlockMetadata {
 

@@ -1,10 +1,9 @@
 package binnie.core.machines;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.core.machines.component.IRender;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -20,9 +19,11 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.core.machines.component.IRender;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockMachine extends BlockContainer implements IBlockMachine {
 

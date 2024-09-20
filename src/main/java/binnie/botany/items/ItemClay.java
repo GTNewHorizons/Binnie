@@ -1,11 +1,7 @@
 package binnie.botany.items;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,7 +9,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-import java.util.List;
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemClay extends Item {
 

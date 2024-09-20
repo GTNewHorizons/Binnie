@@ -1,9 +1,10 @@
 package binnie.extratrees.carpentry;
 
-import binnie.extratrees.api.*;
+import java.util.*;
+
 import net.minecraft.item.ItemStack;
 
-import java.util.*;
+import binnie.extratrees.api.*;
 
 public class CarpentryInterface implements ICarpentryInterface {
 

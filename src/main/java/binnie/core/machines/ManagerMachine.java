@@ -1,12 +1,12 @@
 package binnie.core.machines;
 
+import java.util.*;
+
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.ValidatorIcon;
 import forestry.api.core.INBTTagable;
-
-import java.util.*;
 
 public class ManagerMachine extends ManagerBase {
 

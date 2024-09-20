@@ -1,5 +1,8 @@
 package binnie.genetics.machine.polymeriser;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.*;
@@ -9,8 +12,6 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.PackageGeneticBase;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 
 public class PolymeriserPackage extends PackageGeneticBase implements IMachineInformation {
 

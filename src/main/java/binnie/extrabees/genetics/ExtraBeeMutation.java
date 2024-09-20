@@ -1,5 +1,9 @@
 package binnie.extrabees.genetics;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import binnie.extrabees.genetics.requirements.DummyMutationCondition;
 import binnie.extrabees.genetics.requirements.IMutationRequirement;
 import binnie.extrabees.genetics.requirements.RequirementPerson;
@@ -7,10 +11,6 @@ import forestry.api.apiculture.*;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IMutation;
 import forestry.apiculture.genetics.BeeMutation;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class ExtraBeeMutation extends BeeMutation implements IBeeMutationCustom {
 

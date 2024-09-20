@@ -1,11 +1,7 @@
 package binnie.extratrees.item;
 
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.core.ExtraTreesGUID;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import java.util.List;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.core.ExtraTreesGUID;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 
 public class ItemMothDatabase extends Item {
 

@@ -1,5 +1,16 @@
 package binnie.core.craftgui.minecraft;
 
+import java.util.ArrayList;
+import java.util.Deque;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -22,17 +33,8 @@ import binnie.core.nei.NEIHook;
 import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
-import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.Deque;
 
 public abstract class Window extends TopLevelWidget implements INetwork.RecieveGuiNBT {
 

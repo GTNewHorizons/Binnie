@@ -1,11 +1,12 @@
 package binnie.extratrees.machines;
 
-import forestry.core.render.TankRenderInfo;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
+
+import net.minecraftforge.common.util.ForgeDirection;
+
+import forestry.core.render.TankRenderInfo;
 
 public class MachineRendererForestry {
 

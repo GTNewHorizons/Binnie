@@ -1,11 +1,11 @@
 package binnie.core.craftgui;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class Tooltip {
 

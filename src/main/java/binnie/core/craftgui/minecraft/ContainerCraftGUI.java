@@ -1,16 +1,10 @@
 package binnie.core.craftgui.minecraft;
 
-import binnie.core.BinnieCore;
-import binnie.core.craftgui.minecraft.control.ControlSlot;
-import binnie.core.craftgui.minecraft.control.EnumHighlighting;
-import binnie.core.machines.IMachine;
-import binnie.core.machines.Machine;
-import binnie.core.machines.network.INetwork;
-import binnie.core.machines.power.*;
-import binnie.core.machines.transfer.TransferRequest;
-import binnie.core.network.packet.MessageContainerUpdate;
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.inventory.Container;
@@ -20,10 +14,18 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.mojang.authlib.GameProfile;
+
+import binnie.core.BinnieCore;
+import binnie.core.craftgui.minecraft.control.ControlSlot;
+import binnie.core.craftgui.minecraft.control.EnumHighlighting;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.Machine;
+import binnie.core.machines.network.INetwork;
+import binnie.core.machines.power.*;
+import binnie.core.machines.transfer.TransferRequest;
+import binnie.core.network.packet.MessageContainerUpdate;
+import cpw.mods.fml.relauncher.Side;
 
 public class ContainerCraftGUI extends Container {
 

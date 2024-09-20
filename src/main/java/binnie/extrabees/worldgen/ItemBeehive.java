@@ -1,13 +1,14 @@
 package binnie.extrabees.worldgen;
 
-import binnie.core.util.I18N;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import java.util.List;
+import binnie.core.util.I18N;
 
 public class ItemBeehive extends ItemBlock {
 

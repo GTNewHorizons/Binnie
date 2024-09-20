@@ -1,20 +1,22 @@
 package binnie.core.genetics;
 
-import binnie.Binnie;
-import binnie.core.resource.BinnieIcon;
-import binnie.core.util.I18N;
-import binnie.extrabees.genetics.ExtraBeeMutation;
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import forestry.api.core.ForestryEvent;
-import forestry.api.genetics.*;
+import java.util.*;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-import java.util.*;
+import com.mojang.authlib.GameProfile;
+
+import binnie.Binnie;
+import binnie.core.resource.BinnieIcon;
+import binnie.core.util.I18N;
+import binnie.extrabees.genetics.ExtraBeeMutation;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import forestry.api.core.ForestryEvent;
+import forestry.api.genetics.*;
 
 public abstract class BreedingSystem implements IItemStackRepresentative {
 

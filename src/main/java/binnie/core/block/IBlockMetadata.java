@@ -1,11 +1,11 @@
 package binnie.core.block;
 
+import java.util.List;
+
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.List;
 
 public interface IBlockMetadata extends ITileEntityProvider {
 

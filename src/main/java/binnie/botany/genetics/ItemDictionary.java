@@ -1,11 +1,7 @@
 package binnie.botany.genetics;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.core.BotanyGUI;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +10,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import java.util.List;
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.core.BotanyGUI;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemDictionary extends Item {
 

@@ -1,5 +1,7 @@
 package binnie.genetics.machine.splicer;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
@@ -12,7 +14,6 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.ComponentGeneticGUI;
-import net.minecraft.item.ItemStack;
 
 public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase implements IMachineInformation {
 

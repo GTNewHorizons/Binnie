@@ -1,19 +1,20 @@
 package binnie.botany.gardening;
 
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+import java.util.Locale;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-import java.util.List;
-import java.util.Locale;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemSoil extends ItemBlock {
 

@@ -1,5 +1,7 @@
 package binnie.genetics.machine.analyser;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentChargedSlots;
@@ -11,7 +13,6 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.PackageGeneticBase;
-import net.minecraft.item.ItemStack;
 
 public class AnalyserPackage extends PackageGeneticBase implements IMachineInformation {
 

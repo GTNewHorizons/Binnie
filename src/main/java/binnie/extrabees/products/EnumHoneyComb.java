@@ -1,15 +1,16 @@
 package binnie.extrabees.products;
 
-import binnie.core.item.IItemEnum;
-import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
-import forestry.api.recipes.RecipeManagers;
-import net.minecraft.item.ItemStack;
-
 import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import net.minecraft.item.ItemStack;
+
+import binnie.core.item.IItemEnum;
+import binnie.core.util.I18N;
+import binnie.extrabees.ExtraBees;
+import forestry.api.recipes.RecipeManagers;
 
 public enum EnumHoneyComb implements IItemEnum {
 

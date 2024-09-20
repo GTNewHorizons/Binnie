@@ -1,12 +1,7 @@
 package binnie.genetics.machine.analyser;
 
-import binnie.core.BinnieCore;
-import binnie.core.machines.IMachine;
-import binnie.core.machines.MachineComponent;
-import binnie.core.machines.component.IRender;
-import binnie.core.machines.network.INetwork;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.Random;
+
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.item.EntityItem;
@@ -14,9 +9,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
 import org.lwjgl.opengl.GL11;
 
-import java.util.Random;
+import binnie.core.BinnieCore;
+import binnie.core.machines.IMachine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.component.IRender;
+import binnie.core.machines.network.INetwork;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class AnalyserComponentFX extends MachineComponent
         implements IRender.RandomDisplayTick, IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {

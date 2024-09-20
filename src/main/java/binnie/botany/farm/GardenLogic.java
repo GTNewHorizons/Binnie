@@ -1,22 +1,9 @@
 package binnie.botany.farm;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.gardening.IBlockSoil;
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.gardening.Gardening;
-import com.mojang.authlib.GameProfile;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.farming.FarmDirection;
-import forestry.api.farming.ICrop;
-import forestry.api.farming.IFarmHousing;
-import forestry.api.farming.IFarmable;
-import forestry.core.access.IOwnable;
-import forestry.core.utils.vect.Vect;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.init.Blocks;
@@ -28,9 +15,24 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import com.mojang.authlib.GameProfile;
+
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.gardening.Gardening;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.farming.FarmDirection;
+import forestry.api.farming.ICrop;
+import forestry.api.farming.IFarmHousing;
+import forestry.api.farming.IFarmable;
+import forestry.core.access.IOwnable;
+import forestry.core.utils.vect.Vect;
 
 public class GardenLogic extends FarmLogic {
 
@@ -357,8 +359,7 @@ public class GardenLogic extends FarmLogic {
 
             try {
                 IOwnable housing2 = (IOwnable) housing;
-                GameProfile prof = (GameProfile) IOwnable.class.getMethod("getOwnerProfile")
-                        .invoke(housing2);
+                GameProfile prof = (GameProfile) IOwnable.class.getMethod("getOwnerProfile").invoke(housing2);
                 ((TileEntityFlower) tile).setOwner(prof);
             } catch (Exception ex) {
                 // ignored

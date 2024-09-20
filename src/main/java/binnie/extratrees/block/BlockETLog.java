@@ -1,12 +1,8 @@
 package binnie.extratrees.block;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -21,8 +17,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.ArrayList;
-import java.util.List;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 
 public class BlockETLog extends BlockLog implements IBlockMetadata {
 

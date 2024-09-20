@@ -1,13 +1,14 @@
 package binnie.extratrees.item;
 
-import binnie.core.item.IItemMisc;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import java.util.List;
+import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
 
 public enum ExtraTreeItems implements IItemMisc {
 

@@ -1,25 +1,8 @@
 package binnie.botany.flower;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.*;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.gardening.BlockPlant;
-import binnie.botany.gardening.Gardening;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.genetics.EnumFlowerType;
-import binnie.botany.genetics.Flower;
-import binnie.botany.network.MessageFlowerUpdate;
-import binnie.core.BinnieCore;
-import com.mojang.authlib.GameProfile;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IPollinatable;
-import forestry.api.lepidopterology.IButterfly;
-import forestry.api.lepidopterology.IButterflyNursery;
-import forestry.lepidopterology.entities.EntityButterfly;
-import forestry.plugins.PluginLepidopterology;
+import java.util.EnumSet;
+import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -33,8 +16,27 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.EnumPlantType;
 
-import java.util.EnumSet;
-import java.util.Random;
+import com.mojang.authlib.GameProfile;
+
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.*;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.gardening.BlockPlant;
+import binnie.botany.gardening.Gardening;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.botany.genetics.Flower;
+import binnie.botany.network.MessageFlowerUpdate;
+import binnie.core.BinnieCore;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.api.lepidopterology.IButterflyNursery;
+import forestry.lepidopterology.entities.EntityButterfly;
+import forestry.plugins.PluginLepidopterology;
 
 public class TileEntityFlower extends TileEntity implements IPollinatable, IButterflyNursery {
 

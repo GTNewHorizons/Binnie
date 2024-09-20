@@ -1,11 +1,12 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.util.IValidator;
-import forestry.api.core.INBTTagable;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import java.util.Collection;
 import java.util.EnumSet;
+
+import net.minecraftforge.common.util.ForgeDirection;
+
+import binnie.core.util.IValidator;
+import forestry.api.core.INBTTagable;
 
 public abstract class BaseSlot<T> implements INBTTagable, IValidator<T> {
 

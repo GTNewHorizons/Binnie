@@ -1,5 +1,13 @@
 package binnie.genetics.item;
 
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
@@ -15,13 +23,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import java.util.List;
 
 public class ItemSequence extends Item implements IItemAnalysable, IItemChargable {
 

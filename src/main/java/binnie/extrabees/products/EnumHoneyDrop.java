@@ -1,15 +1,16 @@
 package binnie.extrabees.products;
 
+import java.awt.*;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.item.IItemEnum;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-
-import java.awt.*;
 
 public enum EnumHoneyDrop implements IItemEnum {
 

@@ -1,13 +1,8 @@
 package binnie.extratrees.block;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWoodSlab;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,8 +16,14 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.ArrayList;
-import java.util.List;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 
 public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 
@@ -43,7 +44,8 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int blockMeta, int fortune) {
-        ArrayList<ItemStack> drops = new ArrayList<>(BlockMetadata.getBlockDropped((IBlockMetadata) ExtraTrees.blockSlab, world, x, y, z, blockMeta));
+        ArrayList<ItemStack> drops = new ArrayList<>(
+                BlockMetadata.getBlockDropped((IBlockMetadata) ExtraTrees.blockSlab, world, x, y, z, blockMeta));
         if (field_150004_a) {
             drops.addAll(
                     BlockMetadata.getBlockDropped((IBlockMetadata) ExtraTrees.blockSlab, world, x, y, z, blockMeta));

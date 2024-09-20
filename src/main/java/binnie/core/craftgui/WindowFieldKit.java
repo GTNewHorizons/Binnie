@@ -1,5 +1,14 @@
 package binnie.core.craftgui;
 
+import java.util.*;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -27,14 +36,6 @@ import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.analyser.Analyser;
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.genetics.*;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import java.util.*;
 
 public class WindowFieldKit extends Window {
 

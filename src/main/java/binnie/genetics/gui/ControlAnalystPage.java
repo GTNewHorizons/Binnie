@@ -1,11 +1,11 @@
 package binnie.genetics.gui;
 
+import java.text.DecimalFormat;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.util.I18N;
-
-import java.text.DecimalFormat;
 
 public abstract class ControlAnalystPage extends Control {
 

@@ -1,16 +1,9 @@
 package binnie.botany.gardening;
 
-import binnie.botany.Botany;
-import binnie.botany.api.EnumAcidity;
-import binnie.botany.api.EnumMoisture;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.gardening.IBlockSoil;
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.items.BotanyItems;
-import binnie.core.BinnieCore;
-import com.mojang.authlib.GameProfile;
-import forestry.api.core.EnumTemperature;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -20,9 +13,18 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import com.mojang.authlib.GameProfile;
+
+import binnie.botany.Botany;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.gardening.IBlockSoil;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.items.BotanyItems;
+import binnie.core.BinnieCore;
+import forestry.api.core.EnumTemperature;
 
 public class Gardening {
 

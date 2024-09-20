@@ -1,5 +1,12 @@
 package binnie.extratrees.genetics;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+
 import binnie.Binnie;
 import binnie.core.util.I18N;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
@@ -8,12 +15,6 @@ import forestry.api.arboriculture.ITreeMutation;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class ExtraTreeMutation implements ITreeMutation {
 

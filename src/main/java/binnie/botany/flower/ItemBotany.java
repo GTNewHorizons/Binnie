@@ -1,5 +1,19 @@
 package binnie.botany.flower;
 
+import java.util.List;
+
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
@@ -14,19 +28,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 import forestry.core.config.Config;
-import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-
-import java.util.List;
 
 public abstract class ItemBotany extends Item {
 

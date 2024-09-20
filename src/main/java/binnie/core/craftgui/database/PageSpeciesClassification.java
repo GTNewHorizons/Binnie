@@ -1,13 +1,13 @@
 package binnie.core.craftgui.database;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IClassification;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class PageSpeciesClassification extends PageSpecies {
 

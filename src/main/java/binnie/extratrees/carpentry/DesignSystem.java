@@ -1,5 +1,12 @@
 package binnie.extratrees.carpentry;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.extratrees.ExtraTrees;
@@ -9,12 +16,6 @@ import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
 import binnie.extratrees.block.PlankType;
 import binnie.extratrees.item.ExtraTreeItems;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public enum DesignSystem implements IDesignSystem {
 

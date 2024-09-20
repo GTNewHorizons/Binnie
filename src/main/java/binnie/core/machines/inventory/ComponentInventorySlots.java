@@ -1,6 +1,7 @@
 package binnie.core.machines.inventory;
 
-import binnie.core.machines.IMachine;
+import java.util.*;
+
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -10,7 +11,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.*;
+import binnie.core.machines.IMachine;
 
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
 

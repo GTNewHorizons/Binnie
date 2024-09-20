@@ -1,5 +1,13 @@
 package binnie.extratrees.block;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
 import binnie.core.Mods;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.ExtraTrees;
@@ -7,13 +15,6 @@ import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.block.decor.FenceDescription;
 import binnie.extratrees.block.decor.FenceType;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class WoodManager {
 

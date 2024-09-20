@@ -1,11 +1,12 @@
 package binnie.extrabees.products;
 
-import binnie.core.item.IItemEnum;
+import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.List;
+import binnie.core.item.IItemEnum;
 
 public class ItemProduct extends Item {
 

@@ -1,5 +1,12 @@
 package binnie.extrabees.gui.database.product;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
@@ -7,12 +14,6 @@ import binnie.core.craftgui.controls.listbox.ControlListBox;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.genetics.IAllele;
-import net.minecraft.item.ItemStack;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class ControlProductsBox extends ControlListBox<Product> {
 

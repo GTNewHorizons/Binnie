@@ -1,15 +1,9 @@
 package binnie.extrabees.genetics.effect;
 
-import binnie.Binnie;
-import binnie.core.Mods;
-import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
-import binnie.extrabees.genetics.ExtraBeesFlowers;
-import cofh.api.energy.IEnergyReceiver;
-import forestry.api.apiculture.*;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IEffectData;
-import forestry.core.proxy.Proxies;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -31,9 +25,16 @@ import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import binnie.Binnie;
+import binnie.core.Mods;
+import binnie.core.util.I18N;
+import binnie.extrabees.ExtraBees;
+import binnie.extrabees.genetics.ExtraBeesFlowers;
+import cofh.api.energy.IEnergyReceiver;
+import forestry.api.apiculture.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IEffectData;
+import forestry.core.proxy.Proxies;
 
 public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
@@ -634,7 +635,8 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
         }
 
         public boolean isToday() {
-            return Calendar.getInstance().get(Calendar.MONTH) == month && Calendar.getInstance().get(Calendar.DATE) == day;
+            return Calendar.getInstance().get(Calendar.MONTH) == month
+                    && Calendar.getInstance().get(Calendar.DATE) == day;
         }
 
         public String getName() {

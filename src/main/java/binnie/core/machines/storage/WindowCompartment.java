@@ -1,5 +1,16 @@
 package binnie.core.machines.storage;
 
+import java.util.*;
+import java.util.Map.Entry;
+
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
@@ -33,16 +44,6 @@ import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.util.I18N;
 import binnie.genetics.craftgui.WindowMachine;
 import cpw.mods.fml.relauncher.Side;
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import java.util.*;
-import java.util.Map.Entry;
 
 @SuppressWarnings("Duplicates")
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {

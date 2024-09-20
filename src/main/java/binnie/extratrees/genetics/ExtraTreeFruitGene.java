@@ -1,12 +1,24 @@
 package binnie.extratrees.genetics;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+import com.gtnewhorizon.gtnhlib.reflect.Fields;
+
 import binnie.Binnie;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.item.Food;
-import com.gtnewhorizon.gtnhlib.reflect.Fields;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.arboriculture.*;
@@ -15,16 +27,6 @@ import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderNone;
 import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 

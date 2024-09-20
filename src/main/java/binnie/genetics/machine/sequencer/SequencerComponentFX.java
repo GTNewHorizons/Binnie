@@ -1,5 +1,10 @@
 package binnie.genetics.machine.sequencer;
 
+import java.util.Random;
+
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.world.World;
+
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
@@ -7,10 +12,6 @@ import binnie.core.machines.component.IRender;
 import binnie.core.resource.BinnieIcon;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.world.World;
-
-import java.util.Random;
 
 public class SequencerComponentFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
 
