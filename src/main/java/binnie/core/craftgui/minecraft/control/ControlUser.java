@@ -13,7 +13,7 @@ public class ControlUser extends Control implements ITooltip {
 
     protected String team;
 
-    private String username;
+    private final String username;
 
     public ControlUser(IWidget parent, float x, float y, String username) {
         super(parent, x, y, 16.0f, 16.0f);

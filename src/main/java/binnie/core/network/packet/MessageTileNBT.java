@@ -1,12 +1,11 @@
 package binnie.core.network.packet;
 
-import java.io.IOException;
-
+import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-import io.netty.buffer.ByteBuf;
+import java.io.IOException;
 
 public class MessageTileNBT extends MessageNBT implements IPacketLocation {
 
@@ -62,13 +61,4 @@ public class MessageTileNBT extends MessageNBT implements IPacketLocation {
         return posZ;
     }
 
-    @Override
-    public NBTTagCompound getTagCompound() {
-        return nbt;
-    }
-
-    @Override
-    void setTagCompound(NBTTagCompound nbt) {
-        this.nbt = nbt;
-    }
 }

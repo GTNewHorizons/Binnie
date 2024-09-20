@@ -67,11 +67,11 @@ public interface ILogType {
         Cinnamon("cinnamon", 0x86583c, PlankType.VanillaPlanks.JUNGLE),
         PinkIvory("pinkivory", 0x7f6554, PlankType.ExtraTreePlanks.PinkIvory);
 
-        protected String name;
-        protected int color;
-        protected IDesignMaterial plank;
-        protected IIcon trunk;
-        protected IIcon bark;
+        private final String name;
+        private final int color;
+        private final IDesignMaterial plank;
+        private IIcon trunk;
+        private IIcon bark;
 
         ExtraTreeLog(String name, int color) {
             this.name = name;
@@ -161,9 +161,9 @@ public interface ILogType {
         MAPLE(6, 2, 9078657),
         CITRUS(6, 3, 5983033);
 
-        protected int block;
-        protected int metadata;
-        protected int colour;
+        private final int block;
+        private final int metadata;
+        private final int colour;
 
         ForestryLog(int blockOffset, int meta, int colour) {
             block = blockOffset;
@@ -197,7 +197,7 @@ public interface ILogType {
         Birch(6376752),
         Jungle(5456154);
 
-        protected int colour;
+        private final int colour;
 
         VanillaLog(int colour) {
             this.colour = colour;

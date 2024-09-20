@@ -1,13 +1,5 @@
 package binnie.genetics.item;
 
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
@@ -23,6 +15,13 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import java.util.List;
+import java.util.Map;
 
 public class ItemSerum extends ItemGene implements IItemSerum {
 
@@ -41,7 +40,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
 
     @SideOnly(Side.CLIENT)
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
     }
 
@@ -51,7 +50,7 @@ public class ItemSerum extends ItemGene implements IItemSerum {
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (ISpeciesRoot root : AlleleManager.alleleRegistry.getSpeciesRoot().values()) {
             Map<IChromosomeType, List<IAllele>> chromosomeMap = Binnie.Genetics.getChromosomeMap(root);
             for (Map.Entry<IChromosomeType, List<IAllele>> entry : chromosomeMap.entrySet()) {

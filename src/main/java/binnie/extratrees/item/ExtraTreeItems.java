@@ -1,14 +1,13 @@
 package binnie.extratrees.item;
 
-import java.util.List;
-
+import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import binnie.core.item.IItemMisc;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
+import java.util.List;
 
 public enum ExtraTreeItems implements IItemMisc {
 
@@ -19,9 +18,9 @@ public enum ExtraTreeItems implements IItemMisc {
     WoodWax("woodWax"),
     GlassFitting("glassFitting");
 
-    protected String name;
-    protected String iconPath;
-    protected IIcon icon;
+    private final String name;
+    private final String iconPath;
+    private IIcon icon;
 
     ExtraTreeItems(String name) {
         this.name = name;
@@ -39,7 +38,7 @@ public enum ExtraTreeItems implements IItemMisc {
     }
 
     @Override
-    public void addInformation(List tooltip) {
+    public void addInformation(List<String> tooltip) {
         // ignored
     }
 

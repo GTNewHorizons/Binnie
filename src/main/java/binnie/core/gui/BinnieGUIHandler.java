@@ -11,7 +11,7 @@ import cpw.mods.fml.relauncher.Side;
 
 public class BinnieGUIHandler implements IGuiHandler {
 
-    private AbstractMod mod;
+    private final AbstractMod mod;
 
     public BinnieGUIHandler(AbstractMod mod) {
         this.mod = mod;

@@ -12,7 +12,7 @@ public abstract class TankValidator extends Validator<FluidStack> {
 
     public static class Basic extends TankValidator {
 
-        private Fluid fluid;
+        private final Fluid fluid;
 
         public Basic(String name) {
             fluid = Binnie.Liquid.getLiquidStack(name, 1).getFluid();

@@ -1,13 +1,5 @@
 package binnie.extratrees.carpentry;
 
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.IBlockAccess;
-
 import binnie.botany.Botany;
 import binnie.core.block.TileEntityMetadata;
 import binnie.core.util.I18N;
@@ -15,6 +7,13 @@ import binnie.extratrees.api.IDesign;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockStainedDesign extends BlockDesign {
 
@@ -65,7 +64,7 @@ public class BlockStainedDesign extends BlockDesign {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack stack, List tooltip) {
+    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
         DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
         if (block.getPrimaryMaterial() != block.getSecondaryMaterial()) {
             tooltip.add(

@@ -1,16 +1,5 @@
 package binnie.core.genetics;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeSet;
-
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.world.WorldEvent;
-
 import binnie.Binnie;
 import binnie.botany.api.IFlowerRoot;
 import binnie.botany.genetics.AlleleColor;
@@ -19,17 +8,12 @@ import binnie.core.ManagerBase;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import forestry.api.apiculture.IBeeRoot;
 import forestry.api.arboriculture.ITreeRoot;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.EnumTolerance;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleFloat;
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.*;
 import forestry.api.lepidopterology.IButterflyRoot;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.world.WorldEvent;
+
+import java.util.*;
 
 public class ManagerGenetics extends ManagerBase {
 
@@ -37,9 +21,9 @@ public class ManagerGenetics extends ManagerBase {
     public BreedingSystem treeBreedingSystem;
     public BreedingSystem mothBreedingSystem;
     public BreedingSystem flowerBreedingSystem;
-    private Map<ISpeciesRoot, BreedingSystem> breedingSystems;
-    private List<IChromosomeType> invalidChromosomeTypes;
-    private Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
+    private final Map<ISpeciesRoot, BreedingSystem> breedingSystems;
+    private final List<IChromosomeType> invalidChromosomeTypes;
+    private final Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
 
     public ManagerGenetics() {
         breedingSystems = new LinkedHashMap<>();
@@ -178,11 +162,10 @@ public class ManagerGenetics extends ManagerBase {
                 }
 
                 system.addExtraAlleles(chromosome, alleles);
-                if (alleles.size() == 0) {
+                if (alleles.isEmpty()) {
                     invalidChromosomeTypes.add(chromosome);
                 } else {
-                    List<IAllele> alleleList = new ArrayList<>();
-                    alleleList.addAll(alleles);
+                    List<IAllele> alleleList = new ArrayList<>(alleles);
                     chromosomeMap.put(chromosome, alleleList);
                 }
             }
@@ -209,11 +192,11 @@ public class ManagerGenetics extends ManagerBase {
             if (o1 == null || o2 == null) {
                 throw new NullPointerException("Allele is null!");
             }
-            if (o1 instanceof IAlleleFloat && o2 instanceof IAlleleFloat) {
-                return Float.valueOf(((IAlleleFloat) o1).getValue()).compareTo(((IAlleleFloat) o2).getValue());
+            if (o1 instanceof IAlleleFloat af1 && o2 instanceof IAlleleFloat af2) {
+                return Float.compare(af1.getValue(), af2.getValue());
             }
-            if (o1 instanceof IAlleleInteger && o2 instanceof IAlleleInteger && !(o1 instanceof AlleleColor)) {
-                return Integer.valueOf(((IAlleleInteger) o1).getValue()).compareTo(((IAlleleInteger) o2).getValue());
+            if (o1 instanceof IAlleleInteger ai1 && o2 instanceof IAlleleInteger ai2 && !(o1 instanceof AlleleColor)) {
+                return Integer.compare(ai1.getValue(), ai2.getValue());
             }
             // if (o1.getName() != null && o2.getName() != null) {
             // return o1.getName().compareTo(o2.getName());

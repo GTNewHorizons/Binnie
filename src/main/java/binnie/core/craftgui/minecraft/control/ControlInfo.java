@@ -11,7 +11,7 @@ import binnie.core.util.I18N;
 
 public class ControlInfo extends Control implements ITooltip {
 
-    private String info;
+    private final String info;
 
     public ControlInfo(IWidget parent, float x, float y, String info) {
         super(parent, x, y, 16.0f, 16.0f);

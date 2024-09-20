@@ -1,8 +1,6 @@
 package binnie.core.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.BinnieCore;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -15,7 +13,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.core.BinnieCore;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
@@ -62,7 +61,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
         // ignored
     }
 
@@ -97,7 +96,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
         boolean hasBeenBroken = world.setBlockToAir(i, j, k);
         if (hasBeenBroken && BinnieCore.proxy.isSimulating(world)
-                && drops.size() > 0
+                && !drops.isEmpty()
                 && (player == null || !player.capabilities.isCreativeMode)) {
             for (ItemStack drop : drops) {
                 block.dropAsStack(world, i, j, k, drop);

@@ -1,13 +1,5 @@
 package binnie.extratrees.machines.designer;
 
-import java.util.Map;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.component.ComponentRecipe;
 import binnie.core.machines.component.IComponentRecipe;
@@ -20,6 +12,13 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.carpentry.EnumDesign;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.Map;
 
 public class WoodworkerRecipeComponent extends ComponentRecipe
         implements IComponentRecipe, INetwork.GuiNBT, IErrorStateSource {
@@ -62,8 +61,7 @@ public class WoodworkerRecipeComponent extends ComponentRecipe
         IDesignMaterial type1 = type.getSystem().getMaterial(plank1);
         IDesignMaterial type2 = type.getSystem().getMaterial(plank2);
         IDesign design = getDesign();
-        ItemStack stack = type.getBlock(type1, type2, design);
-        return stack;
+        return type.getBlock(type1, type2, design);
     }
 
     @Override

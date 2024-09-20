@@ -1,11 +1,6 @@
 package binnie.core.machines.inventory;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
+import binnie.core.machines.IMachine;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,11 +10,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.core.machines.IMachine;
+import java.util.*;
 
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
 
-    private Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
+    private final Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
 
     public ComponentInventorySlots(IMachine machine) {
         super(machine);

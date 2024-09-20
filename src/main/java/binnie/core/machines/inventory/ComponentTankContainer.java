@@ -1,10 +1,9 @@
 package binnie.core.machines.inventory;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-
+import binnie.core.machines.IMachine;
+import binnie.core.machines.MachineComponent;
+import binnie.core.machines.power.ITankMachine;
+import binnie.core.machines.power.TankInfo;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -13,14 +12,14 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
 
-import binnie.core.machines.IMachine;
-import binnie.core.machines.MachineComponent;
-import binnie.core.machines.power.ITankMachine;
-import binnie.core.machines.power.TankInfo;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
 
-    private Map<Integer, TankSlot> tanks = new LinkedHashMap<>();
+    private final Map<Integer, TankSlot> tanks = new LinkedHashMap<>();
 
     public ComponentTankContainer(IMachine machine) {
         super(machine);

@@ -1,8 +1,13 @@
 package binnie.extratrees.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,14 +20,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockETStairs extends BlockStairs implements IBlockMetadata {
 
@@ -42,7 +41,7 @@ public class BlockETStairs extends BlockStairs implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tabs, List<ItemStack> list) {
         for (int i = 0; i < PlankType.ExtraTreePlanks.values().length; ++i) {
             list.add(new ItemStack(this, 1, i));
         }

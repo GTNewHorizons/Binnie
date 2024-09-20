@@ -56,7 +56,7 @@ public class ExtraBees extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent ignored) {
         addModule(new ModuleCore());
         addModule(new ModuleProducts());
         addModule(new ModuleGenetics());
@@ -67,12 +67,12 @@ public class ExtraBees extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent ignored) {
         init();
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent ignored) {
         postInit();
     }
 

@@ -1,20 +1,19 @@
 package binnie.core.circuits;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import forestry.api.circuits.ChipsetManager;
 import forestry.api.circuits.ICircuit;
 import forestry.api.circuits.ICircuitLayout;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class BinnieCircuit implements ICircuit {
 
-    private String uid;
-    private int limit;
-    private List<String> tooltips;
+    private final String uid;
+    private final int limit;
+    private final List<String> tooltips;
 
     public BinnieCircuit(String uid, int limit, ICircuitLayout layout, ItemStack itemStack) {
         tooltips = new ArrayList<>();

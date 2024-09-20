@@ -7,9 +7,9 @@ public enum ExtraTreeFruitFamily implements IFruitFamily {
     Berry("Berries", "berry", "berri"),
     Citrus("Citrus", "citrus", "citrus");
 
-    protected String name;
-    protected String uid;
-    protected String scientific;
+    private final String name;
+    private final String uid;
+    private final String scientific;
 
     ExtraTreeFruitFamily(String name, String uid, String scientific) {
         this.name = name;

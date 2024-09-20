@@ -1,8 +1,12 @@
 package binnie.extratrees.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockWood;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,13 +21,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockETPlanks extends BlockWood implements IBlockMetadata {
 
@@ -79,7 +78,7 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
         // ignored
     }
 
@@ -89,7 +88,7 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < PlankType.ExtraTreePlanks.values().length; ++i) {
             list.add(TileEntityMetadata.getItemStack(this, i));
         }

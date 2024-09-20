@@ -1,14 +1,14 @@
 package binnie.extratrees.genetics;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IClassification;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class ModuleGenetics implements IInitializable {
 
@@ -88,7 +88,7 @@ public class ModuleGenetics implements IInitializable {
                     if (set2.contains(clss.getScientific().toLowerCase())) {
                         String nextLevel = "";
                         int index = set2.indexOf(clss.getScientific().toLowerCase()) + 1;
-                        while (nextLevel.length() == 0) {
+                        while (nextLevel.isEmpty()) {
                             try {
                                 nextLevel = set2.get(index++);
                             } catch (IndexOutOfBoundsException ex) {

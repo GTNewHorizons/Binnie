@@ -1,23 +1,12 @@
 package binnie.extratrees.genetics;
 
-import java.awt.Color;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.BiomeDictionary;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.EnumHumidity;
@@ -30,6 +19,15 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.EnumFlutterType;
 import forestry.api.lepidopterology.IAlleleButterflySpecies;
 import forestry.api.lepidopterology.IButterflyRoot;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
+
+import java.awt.*;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public enum ButterflySpecies implements IAlleleButterflySpecies {
 
@@ -58,14 +56,14 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
     public IClassification branch;
 
-    protected String name;
-    protected String branchName;
-    protected String scientific;
-    protected BinnieResource texture;
-    protected int color;
+    private final String name;
+    final String branchName;
+    private final String scientific;
+    private final BinnieResource texture;
+    private final int color;
 
-    private Map<ItemStack, Float> butterflyLoot;
-    private Map<ItemStack, Float> caterpillarLoot;
+    private final Map<ItemStack, Float> butterflyLoot;
+    private final Map<ItemStack, Float> caterpillarLoot;
 
     ButterflySpecies(String name, String scientific, Color color) {
         this.name = name;

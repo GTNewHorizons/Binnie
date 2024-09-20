@@ -1,8 +1,14 @@
 package binnie.botany.ceramic;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,15 +24,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockCeramic extends Block implements IBlockMetadata {
 
@@ -81,7 +80,7 @@ public class BlockCeramic extends Block implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack stack, List tooltip) {
+    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
         int meta = TileEntityMetadata.getItemDamage(stack);
         tooltip.add(EnumChatFormatting.GRAY + EnumFlowerColor.get(meta).getName());
     }
@@ -92,7 +91,7 @@ public class BlockCeramic extends Block implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tabs, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs tabs, List<ItemStack> itemList) {
         for (EnumFlowerColor c : EnumFlowerColor.values()) {
             itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
         }

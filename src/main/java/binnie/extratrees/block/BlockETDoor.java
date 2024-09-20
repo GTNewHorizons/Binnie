@@ -1,8 +1,13 @@
 package binnie.extratrees.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.material.Material;
@@ -19,14 +24,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 
@@ -40,7 +39,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 
     public static DoorType getDoorType(int tileMeta) {
         int type = (tileMeta & 0xF00) >> 8;
-        if (type >= 0 && type < DoorType.values().length) {
+        if (type < DoorType.values().length) {
             return DoorType.values()[type];
         }
         return DoorType.STANDARD;
@@ -226,7 +225,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack stack, List tooltip) {
+    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
         // ignored
     }
 
@@ -236,7 +235,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
         for (IPlankType type : PlankType.ExtraTreePlanks.values()) {
             itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
         }

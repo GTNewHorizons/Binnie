@@ -1,16 +1,5 @@
 package binnie.core.craftgui;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -38,6 +27,16 @@ import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class WindowGenesis extends Window {
 
@@ -75,7 +74,7 @@ public class WindowGenesis extends Window {
         new Panel(this, one.outset(1), MinecraftGUI.PanelType.Black);
         new Panel(this, two.outset(1), MinecraftGUI.PanelType.Black);
 
-        geneList = new ControlListBox<Gene>(this, one.x(), one.y(), one.w(), one.h(), 10.0f) {
+        geneList = new ControlListBox<>(this, one.x(), one.y(), one.w(), one.h(), 10.0f) {
 
             @Override
             public IWidget createOption(Gene value, int y) {
@@ -83,7 +82,7 @@ public class WindowGenesis extends Window {
             }
         };
 
-        geneOptions = new ControlListBox<Gene>(this, two.x(), two.y(), two.w(), two.h(), 10.0f) {
+        geneOptions = new ControlListBox<>(this, two.x(), two.y(), two.w(), two.h(), 10.0f) {
 
             @Override
             public IWidget createOption(Gene value, int y) {

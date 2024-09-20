@@ -1,33 +1,23 @@
 package binnie.core.machines;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.inventory.ValidatorIcon;
 import forestry.api.core.INBTTagable;
 
+import java.util.*;
+
 public class ManagerMachine extends ManagerBase {
 
-    private Map<Class<?>, Class<?>[]> componentInterfaceMap;
-    private Map<String, MachineGroup> machineGroups;
-    private Map<Integer, Class<?>> networkIDToComponent;
-    private Map<Class<?>, Integer> componentToNetworkID;
-    private int nextNetworkID;
+    private final Map<Class<?>, Class<?>[]> componentInterfaceMap = new HashMap<>();
+    private final Map<String, MachineGroup> machineGroups = new HashMap<>();
+    private final Map<Integer, Class<?>> networkIDToComponent = new HashMap<>();
+    private final Map<Class<?>, Integer> componentToNetworkID = new HashMap<>();
+    private int nextNetworkID = 0;
     private int machineRenderID;
 
-    public ManagerMachine() {
-        componentInterfaceMap = new HashMap<>();
-        machineGroups = new HashMap<>();
-        networkIDToComponent = new HashMap<>();
-        componentToNetworkID = new HashMap<>();
-        nextNetworkID = 0;
-    }
+    public ManagerMachine() {}
 
     public void registerMachineGroup(MachineGroup group) {
         machineGroups.put(group.getUID(), group);

@@ -1,7 +1,10 @@
 package binnie.botany.flower;
 
-import java.util.List;
-
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,11 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 
 public class ItemInsulatedTube extends Item {
 
@@ -33,7 +32,7 @@ public class ItemInsulatedTube extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (Material mat : Material.values()) {
             for (Insulate ins : Insulate.values()) {
                 list.add(new ItemStack(this, 1, mat.ordinal() + ins.ordinal() * 128));
@@ -61,7 +60,7 @@ public class ItemInsulatedTube extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(Insulate.get(stack.getItemDamage()).getName());
     }
@@ -93,8 +92,8 @@ public class ItemInsulatedTube extends Item {
         Bronze(0xddc276, "bronze"),
         Iron(0xd8d8d8, "iron");
 
-        protected int color;
-        protected String name;
+        private final int color;
+        private final String name;
 
         Material(int color, String name) {
             this.color = color;
@@ -123,8 +122,8 @@ public class ItemInsulatedTube extends Item {
         Stone(0x6d6d6d, "smoothStone"),
         Sandstone(0xc1b989, "sandstone");
 
-        protected int color;
-        protected String name;
+        private final int color;
+        private final String name;
 
         Insulate(int color, String name) {
             this.color = color;
@@ -144,26 +143,14 @@ public class ItemInsulatedTube extends Item {
         }
 
         public ItemStack getStack() {
-            switch (this) {
-                case Clay:
-                    return new ItemStack(Blocks.clay);
-
-                case Cobble:
-                    return new ItemStack(Blocks.cobblestone);
-
-                case HardenedClay:
-                    return new ItemStack(Blocks.hardened_clay);
-
-                case Sand:
-                    return new ItemStack(Blocks.sand);
-
-                case Sandstone:
-                    return new ItemStack(Blocks.sandstone);
-
-                case Stone:
-                    return new ItemStack(Blocks.stone);
-            }
-            return null;
+            return switch (this) {
+                case Clay -> new ItemStack(Blocks.clay);
+                case Cobble -> new ItemStack(Blocks.cobblestone);
+                case HardenedClay -> new ItemStack(Blocks.hardened_clay);
+                case Sand -> new ItemStack(Blocks.sand);
+                case Sandstone -> new ItemStack(Blocks.sandstone);
+                case Stone -> new ItemStack(Blocks.stone);
+            };
         }
     }
 }

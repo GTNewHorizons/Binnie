@@ -46,10 +46,7 @@ public class ItemETDoor extends ItemMetadata {
                 + (world.isBlockNormalCubeDefault(x + b0, y + 1, z + b2, false) ? 1 : 0);
         boolean flag = world.getBlock(x - b0, y, z - b2) == block || world.getBlock(x - b0, y + 1, z - b2) == block;
         boolean flag2 = world.getBlock(x + b0, y, z + b2) == block || world.getBlock(x + b0, y + 1, z + b2) == block;
-        boolean flag3 = false;
-        if (flag && !flag2 || j1 > i1) {
-            flag3 = true;
-        }
+        boolean flag3 = flag && !flag2 || j1 > i1;
 
         world.setBlock(x, y, z, block, meta, 2);
         world.setBlock(x, y + 1, z, block, 0x8 | (flag3 ? 1 : 0), 2);

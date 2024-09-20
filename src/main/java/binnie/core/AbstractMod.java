@@ -1,13 +1,5 @@
 package binnie.core;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-
-import net.minecraftforge.common.MinecraftForge;
-
 import binnie.Binnie;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.mod.parser.FieldParser;
@@ -19,6 +11,13 @@ import binnie.core.proxy.IProxyCore;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraftforge.common.MinecraftForge;
+
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
@@ -47,7 +46,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         return new IBinnieGUID[0];
     }
 
-    public Class[] getConfigs() {
+    public Class<?>[] getConfigs() {
         return new Class[0];
     }
 
@@ -68,7 +67,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         }
 
         if (getConfigs() != null) {
-            for (Class cls : getConfigs()) {
+            for (Class<?> cls : getConfigs()) {
                 Binnie.Configuration.registerConfiguration(cls, this);
             }
         }
@@ -80,7 +79,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
         // TODO what does it mean?
         Collections.addAll(fields, getClass().getFields());
-        for (Class cls : getClass().getClasses()) {
+        for (Class<?> cls : getClass().getClasses()) {
             Collections.addAll(fields, getClass().getFields());
         }
         for (IInitializable module : modules) {

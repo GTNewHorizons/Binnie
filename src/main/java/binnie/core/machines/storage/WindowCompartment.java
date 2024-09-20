@@ -1,22 +1,5 @@
 package binnie.core.machines.storage;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
-import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.CraftGUI;
@@ -40,17 +23,8 @@ import binnie.core.craftgui.geometry.CraftGUIUtil;
 import binnie.core.craftgui.geometry.IBorder;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.Position;
-import binnie.core.craftgui.minecraft.Dialog;
-import binnie.core.craftgui.minecraft.EnumColor;
-import binnie.core.craftgui.minecraft.IWindowAffectsShiftClick;
-import binnie.core.craftgui.minecraft.MinecraftGUI;
-import binnie.core.craftgui.minecraft.Window;
-import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
-import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
-import binnie.core.craftgui.minecraft.control.ControlSlide;
-import binnie.core.craftgui.minecraft.control.ControlSlot;
-import binnie.core.craftgui.minecraft.control.ControlSlotArray;
-import binnie.core.craftgui.minecraft.control.ControlTabIcon;
+import binnie.core.craftgui.minecraft.*;
+import binnie.core.craftgui.minecraft.control.*;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.window.Panel;
@@ -59,11 +33,21 @@ import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.util.I18N;
 import binnie.genetics.craftgui.WindowMachine;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 @SuppressWarnings("Duplicates")
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {
 
-    private Map<Panel, Integer> panels;
+    private final Map<Panel, Integer> panels;
     private ControlTextEdit tabName;
     private ControlItemDisplay tabIcon;
     private ControlColourSelector tabColour;
@@ -443,17 +427,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
                 }
 
                 if (sortByName) {
-                    List<Entry<Integer, String>> list = new LinkedList(slotIds.entrySet());
-                    list.sort(new Comparator<Entry<Integer, String>>() {
+                    List<Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
+                    list.sort((o1, o2) -> -o2.getValue().compareTo(o1.getValue()));
 
-                        @Override
-                        public int compare(Entry<Integer, String> o1, Entry<Integer, String> o2) {
-                            return -o2.getValue().compareTo(o1.getValue());
-                        }
-                    });
-
-                    Map result = new LinkedHashMap();
-                    for (Map.Entry entry : list) {
+                    Map<Integer, String> result = new LinkedHashMap<>();
+                    for (Map.Entry<Integer, String> entry : list) {
                         result.put(entry.getKey(), entry.getValue());
                     }
                     slotIds = result;

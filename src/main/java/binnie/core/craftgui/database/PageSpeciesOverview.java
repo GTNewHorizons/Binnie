@@ -14,14 +14,14 @@ import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesOverview extends PageSpecies {
 
-    private ControlText controlName;
-    private ControlText controlScientific;
-    private ControlText controlAuthority;
-    private ControlText controlComplexity;
-    private ControlText controlDescription;
-    private ControlText controlSignature;
-    private ControlDatabaseIndividualDisplay controlInd1;
-    private ControlDatabaseIndividualDisplay controlInd2;
+    private final ControlText controlName;
+    private final ControlText controlScientific;
+    private final ControlText controlAuthority;
+    private final ControlText controlComplexity;
+    private final ControlText controlDescription;
+    private final ControlText controlSignature;
+    private final ControlDatabaseIndividualDisplay controlInd1;
+    private final ControlDatabaseIndividualDisplay controlInd2;
 
     public PageSpeciesOverview(IWidget parent, DatabaseTab tab) {
         super(parent, tab);
@@ -58,23 +58,23 @@ public class PageSpeciesOverview extends PageSpecies {
                         + EnumChatFormatting.RESET);
         controlComplexity.setValue(I18N.localise("extratrees.genetics.complexity", species.getComplexity()));
         String desc = species.getDescription();
-        String descBody = EnumChatFormatting.ITALIC.toString();
+        StringBuilder descBody = new StringBuilder(EnumChatFormatting.ITALIC.toString());
         String descSig = "";
 
         if (desc == null || desc.isEmpty() || desc.matches("(\\w+\\.?)+")) {
-            descBody += I18N.localise("binniecore.gui.database.species.noDesc");
+            descBody.append(I18N.localise("binniecore.gui.database.species.noDesc"));
         } else {
             String[] descStrings = desc.split("\\|");
-            descBody += descStrings[0];
+            descBody.append(descStrings[0]);
             for (int i = 1; i < descStrings.length - 1; ++i) {
-                descBody = descBody + " " + descStrings[i];
+                descBody.append(" ").append(descStrings[i]);
             }
             if (descStrings.length > 1) {
                 descSig += descStrings[descStrings.length - 1];
             }
         }
 
-        controlDescription.setValue(descBody + EnumChatFormatting.RESET);
+        controlDescription.setValue(descBody.toString() + EnumChatFormatting.RESET);
         controlSignature.setValue(descSig + EnumChatFormatting.RESET);
         float descHeight = CraftGUI.render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
         controlSignature.setPosition(

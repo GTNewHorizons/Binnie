@@ -33,20 +33,12 @@ public abstract class EventHandler<E extends Event> {
         DirectChild;
 
         public boolean isOrigin(IWidget origin, IWidget test) {
-            switch (this) {
-                case Any:
-                    return true;
-
-                case DirectChild:
-                    return test.getWidgets().contains(origin);
-
-                case Parent:
-                    return test.getParent() == origin;
-
-                case Self:
-                    return test == origin;
-            }
-            return false;
+            return switch (this) {
+                case Any -> true;
+                case DirectChild -> test.getWidgets().contains(origin);
+                case Parent -> test.getParent() == origin;
+                case Self -> test == origin;
+            };
         }
     }
 }

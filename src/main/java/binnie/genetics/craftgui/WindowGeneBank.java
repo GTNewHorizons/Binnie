@@ -1,16 +1,5 @@
 package binnie.genetics.craftgui;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.Tooltip;
@@ -38,6 +27,16 @@ import binnie.genetics.genetics.GeneTracker;
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 
 public class WindowGeneBank extends WindowMachine {
 
@@ -78,9 +77,7 @@ public class WindowGeneBank extends WindowMachine {
     @Override
     public void initialiseServer() {
         GeneTracker tracker = GeneTracker.getTracker(getWorld(), getUsername());
-        if (tracker != null) {
-            tracker.synchToPlayer(getPlayer());
-        }
+        tracker.synchToPlayer(getPlayer());
     }
 
     @Override

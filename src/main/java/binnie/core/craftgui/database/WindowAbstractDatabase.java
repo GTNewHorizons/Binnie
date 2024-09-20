@@ -1,13 +1,5 @@
 package binnie.core.craftgui.database;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.entity.player.EntityPlayer;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlTextEdit;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
@@ -30,18 +22,24 @@ import binnie.core.craftgui.window.Panel;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.util.I18N;
 import binnie.core.util.IValidator;
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IClassification;
+import net.minecraft.entity.player.EntityPlayer;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class WindowAbstractDatabase extends Window {
 
     protected boolean isNEI;
 
     private float selectionBoxWidth;
-    private Map<IDatabaseMode, ModeWidgets> modes;
-    private BreedingSystem system;
+    private final Map<IDatabaseMode, ModeWidgets> modes;
+    private final BreedingSystem system;
     private Panel panelInformation;
     private Panel panelSearch;
     private ControlPages<IDatabaseMode> modePages;
@@ -88,13 +86,12 @@ public abstract class WindowAbstractDatabase extends Window {
 
             @Override
             public void onEvent(EventValueChanged event) {
-                if (!(event.getOrigin().getParent() instanceof ControlPage)) {
+                if (!(event.getOrigin().getParent() instanceof ControlPage parent)) {
                     return;
                 } else if ((event.getValue() instanceof DatabaseTab)) {
                     return;
                 }
 
-                ControlPage parent = (ControlPage) event.getOrigin().getParent();
                 if (!(parent.getValue() instanceof IDatabaseMode)) {
                     return;
                 }
@@ -185,7 +182,7 @@ public abstract class WindowAbstractDatabase extends Window {
 
             @Override
             public ControlTab<IDatabaseMode> createTab(float x, float y, float w, float h, IDatabaseMode value) {
-                return new ControlTab<IDatabaseMode>(this, x, y, w, h, value) {
+                return new ControlTab<>(this, x, y, w, h, value) {
 
                     @Override
                     public String getName() {
@@ -199,7 +196,7 @@ public abstract class WindowAbstractDatabase extends Window {
         CraftGUIUtil.linkWidgets(tab, modePages);
         changeMode(Mode.Species);
         for (IDatabaseMode mode : modes.keySet()) {
-            modes.get(mode).infoTabs = new ControlTabBar(
+            modes.get(mode).infoTabs = new ControlTabBar<>(
                     modes.get(mode).modePage,
                     8.0f,
                     24.0f,
@@ -266,7 +263,7 @@ public abstract class WindowAbstractDatabase extends Window {
         public ControlPage<IDatabaseMode> modePage;
         public ControlListBox listBox;
 
-        private ControlPages<DatabaseTab> infoPages;
+        private final ControlPages<DatabaseTab> infoPages;
         private ControlTabBar<DatabaseTab> infoTabs;
 
         public ModeWidgets(IDatabaseMode mode, WindowAbstractDatabase database) {

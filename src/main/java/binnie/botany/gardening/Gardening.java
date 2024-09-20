@@ -1,20 +1,5 @@
 package binnie.botany.gardening;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
@@ -24,7 +9,20 @@ import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
+import com.mojang.authlib.GameProfile;
 import forestry.api.core.EnumTemperature;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
+
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class Gardening {
 
@@ -46,16 +44,16 @@ public class Gardening {
             for (int dz = -1; dz < 2; ++dz) {
                 if (dx != 0 || dz != 0) {
                     if (world.getBlock(x + dx, y, z + dz) == Blocks.sand) {
-                        bias -= 1.5;
+                        bias -= 1.5f;
                     } else if (world.getBlock(x + dx, y, z + dz) == Blocks.water) {
-                        bias += 1.5;
+                        bias += 1.5f;
                     }
                 }
             }
         }
 
         if (world.isRaining() && world.canBlockSeeTheSky(x, y + 1, z) && world.getPrecipitationHeight(x, z) <= y + 1) {
-            bias += 1.5;
+            bias += 1.5f;
         }
 
         for (int dx = -1; dx < 2; ++dx) {
@@ -120,11 +118,11 @@ public class Gardening {
 
         TileEntity tileFlower = world.getTileEntity(x, y, z);
         TileEntity below = world.getTileEntity(x, y - 1, z);
-        if (tileFlower != null && tileFlower instanceof TileEntityFlower) {
-            if (below instanceof TileEntityFlower) {
-                ((TileEntityFlower) tileFlower).setSection(((TileEntityFlower) below).getSection());
+        if (tileFlower instanceof TileEntityFlower tef) {
+            if (below instanceof TileEntityFlower tefB) {
+                tef.setSection(tefB.getSection());
             } else {
-                ((TileEntityFlower) tileFlower).create(flower, owner);
+                tef.create(flower, owner);
             }
         }
 
@@ -138,7 +136,7 @@ public class Gardening {
         }
 
         TileEntity flower = world.getTileEntity(x, y, z);
-        if (flower == null || !(flower instanceof TileEntityFlower)) {
+        if (!(flower instanceof TileEntityFlower)) {
             return;
         }
 
@@ -151,7 +149,7 @@ public class Gardening {
 
         world.setBlock(x, y + 1, z, Botany.flower, 0, 2);
         TileEntity tileFlower = world.getTileEntity(x, y + 1, z);
-        if (tileFlower != null && tileFlower instanceof TileEntityFlower) {
+        if (tileFlower instanceof TileEntityFlower) {
             ((TileEntityFlower) tileFlower).setSection(section + 1);
         }
     }
@@ -250,14 +248,11 @@ public class Gardening {
     }
 
     public static Block getSoilBlock(EnumSoilType type, boolean weedkill) {
-        switch (type) {
-            case FLOWERBED:
-                return weedkill ? Botany.flowerbedNoWeed : Botany.flowerbed;
-
-            case LOAM:
-                return weedkill ? Botany.loamNoWeed : Botany.loam;
-        }
-        return weedkill ? Botany.soilNoWeed : Botany.soil;
+        return switch (type) {
+            case FLOWERBED -> weedkill ? Botany.flowerbedNoWeed : Botany.flowerbed;
+            case LOAM -> weedkill ? Botany.loamNoWeed : Botany.loam;
+            default -> weedkill ? Botany.soilNoWeed : Botany.soil;
+        };
     }
 
     public static boolean canTolerate(IFlower flower, EnumAcidity ePH, EnumMoisture eMoisture, EnumTemperature eTemp) {

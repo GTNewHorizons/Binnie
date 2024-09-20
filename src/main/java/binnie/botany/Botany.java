@@ -95,7 +95,7 @@ public class Botany extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent ignored) {
         addModule(new ModuleCore());
         addModule(new ModuleGenetics());
         addModule(new ModuleGardening());
@@ -103,23 +103,18 @@ public class Botany extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent ignored) {
         init();
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent ignored) {
         postInit();
     }
 
     @Override
     public IBinnieGUID[] getGUIDs() {
         return BotanyGUI.values();
-    }
-
-    @Override
-    public Class<?>[] getConfigs() {
-        return new Class[0];
     }
 
     @Override
@@ -156,9 +151,8 @@ public class Botany extends AbstractMod {
         if (event.entityPlayer != null && event.entityPlayer.getHeldItem() != null
                 && event.entityPlayer.getHeldItem().getItem() == Items.shears) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
-            if (tile instanceof TileEntityFlower) {
-                TileEntityFlower flower = (TileEntityFlower) tile;
-                flower.onShear();
+            if (tile instanceof TileEntityFlower tef) {
+                tef.onShear();
                 event.entityPlayer.getHeldItem().damageItem(1, event.entityPlayer);
             }
         }
@@ -166,11 +160,10 @@ public class Botany extends AbstractMod {
         if (event.entityPlayer != null && event.entityPlayer.getHeldItem() != null
                 && event.entityPlayer.getHeldItem().getItem() == Botany.pollen) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
-            if (tile instanceof TileEntityFlower) {
-                TileEntityFlower flower = (TileEntityFlower) tile;
+            if (tile instanceof TileEntityFlower tef) {
                 IFlower pollen = BotanyCore.getFlowerRoot().getMember(event.entityPlayer.getHeldItem());
-                if (pollen != null && flower.canMateWith(pollen)) {
-                    flower.mateWith(pollen);
+                if (pollen != null && tef.canMateWith(pollen)) {
+                    tef.mateWith(pollen);
                     if (!event.entityPlayer.capabilities.isCreativeMode) {
                         ItemStack heldItem = event.entityPlayer.getHeldItem();
                         heldItem.stackSize--;
@@ -192,10 +185,10 @@ public class Botany extends AbstractMod {
 
         int y = event.y;
         Block block = event.world.getBlock(event.x, y, event.z);
-        if (block == null || !Gardening.isSoil(block)) {
+        if (!Gardening.isSoil(block)) {
             block = event.world.getBlock(event.x, --y, event.z);
         }
-        if (block == null || !Gardening.isSoil(block)) {
+        if (!Gardening.isSoil(block)) {
             return;
         }
 

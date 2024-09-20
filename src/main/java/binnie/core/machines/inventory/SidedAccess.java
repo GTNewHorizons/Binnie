@@ -1,16 +1,12 @@
 package binnie.core.machines.inventory;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.*;
 
 class SidedAccess {
 
-    private Map<ForgeDirection, AccessDirection> accesses = new HashMap<>();
+    private final Map<ForgeDirection, AccessDirection> accesses = new HashMap<>();
     private AccessDirection base = AccessDirection.Both;
     private boolean insertLocked;
     private boolean extractLocked;

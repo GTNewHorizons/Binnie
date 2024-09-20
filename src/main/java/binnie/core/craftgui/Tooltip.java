@@ -1,11 +1,11 @@
 package binnie.core.craftgui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tooltip {
 
@@ -39,13 +39,11 @@ public class Tooltip {
     }
 
     public boolean exists() {
-        return tooltip.size() > 0;
+        return !tooltip.isEmpty();
     }
 
-    public void add(List list) {
-        for (Object obj : list) {
-            tooltip.add((String) obj);
-        }
+    public void add(List<String> list) {
+        tooltip.addAll(list);
     }
 
     public List<String> getList() {

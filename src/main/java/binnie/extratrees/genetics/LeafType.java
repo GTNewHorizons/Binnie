@@ -9,10 +9,10 @@ public enum LeafType {
     MAPLE((short) 30, (short) 31, (short) 32, "Maple"),
     PALM((short) 35, (short) 36, (short) 37, "Palm");
 
-    public short fancyUID;
-    public short plainUID;
-    public short changedUID;
-    public String description;
+    public final short fancyUID;
+    public final short plainUID;
+    public final short changedUID;
+    public final String description;
 
     LeafType(short fancyUID, short plainUID, short changedUID, String description) {
         this.fancyUID = fancyUID;

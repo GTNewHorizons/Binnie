@@ -17,7 +17,6 @@ public class ItemHammer extends Item implements IToolHammer {
     protected boolean isDurableHammer;
 
     public ItemHammer(boolean durable) {
-        isDurableHammer = false;
         isDurableHammer = durable;
         setCreativeTab(CreativeTabs.tabTools);
         setUnlocalizedName(durable ? "durableHammer" : "hammer");

@@ -1,19 +1,5 @@
 package binnie.extratrees.carpentry;
 
-import java.util.List;
-
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-
 import binnie.core.BinnieCore;
 import binnie.core.block.BlockMetadata;
 import binnie.core.block.IMultipassBlock;
@@ -27,6 +13,19 @@ import binnie.extratrees.api.IToolHammer;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+
+import java.util.List;
 
 public abstract class BlockDesign extends BlockMetadata implements IMultipassBlock {
 
@@ -55,11 +54,10 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
         int x = event.x;
         int y = event.y;
         int z = event.z;
-        if (!(world.getBlock(x, y, z) instanceof BlockDesign)) {
+        if (!(world.getBlock(x, y, z) instanceof BlockDesign blockC)) {
             return;
         }
 
-        BlockDesign blockC = (BlockDesign) world.getBlock(x, y, z);
         ItemStack item = player.getHeldItem();
         if (item == null || !(item.getItem() instanceof IToolHammer)
                 || !((IToolHammer) item.getItem()).isActive(item)) {
@@ -76,7 +74,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
     public abstract ItemStack getCreativeStack(IDesign design);
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (IDesign design : CarpentryManager.carpentryInterface.getSortedDesigns()) {
             list.add(getCreativeStack(design));
         }
@@ -126,7 +124,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
     }
 
     @Override
-    public void addBlockTooltip(ItemStack stack, List tooltip) {
+    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
         DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
         if (block.getPrimaryMaterial() != block.getSecondaryMaterial()) {
             tooltip.add(

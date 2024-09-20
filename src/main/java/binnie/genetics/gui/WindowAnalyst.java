@@ -1,20 +1,9 @@
 package binnie.genetics.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-
 import binnie.Binnie;
 import binnie.botany.api.IFlower;
 import binnie.core.AbstractMod;
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.Widget;
-import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.*;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.scroll.ControlScrollBar;
@@ -46,6 +35,12 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class WindowAnalyst extends Window {
 
@@ -315,7 +310,7 @@ public class WindowAnalyst extends Window {
 
         ControlAnalystPage databasePage = null;
         if (isDatabase && !systemChange) {
-            databasePage = ((analystPages.size() > 0) ? analystPages.get(0) : null);
+            databasePage = ((!analystPages.isEmpty()) ? analystPages.get(0) : null);
         }
 
         analystPages.clear();
@@ -419,8 +414,8 @@ public class WindowAnalyst extends Window {
             x += width;
         }
 
-        if (analystPages.size() > 0) {
-            setPage(leftPage, analystPages.get((oldLeft >= 0) ? oldLeft : 0));
+        if (!analystPages.isEmpty()) {
+            setPage(leftPage, analystPages.get(Math.max(oldLeft, 0)));
         }
         if (analystPages.size() > 1) {
             setPage(rightPage, analystPages.get((oldRight >= 0) ? oldRight : 1));

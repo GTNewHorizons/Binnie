@@ -1,11 +1,7 @@
 package binnie.genetics.machine.acclimatiser;
 
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.InventorySlot;
@@ -15,6 +11,7 @@ import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.PackageGeneticBase;
+import net.minecraft.item.ItemStack;
 
 public class AcclimatiserPackage extends PackageGeneticBase implements IMachineInformation {
 
@@ -62,10 +59,5 @@ public class AcclimatiserPackage extends PackageGeneticBase implements IMachineI
 
         new ComponentPowerReceptor(machine, 5000);
         new AcclimatiserComponentLogic(machine);
-    }
-
-    @Override
-    public TileEntity createTileEntity() {
-        return new TileEntityMachine(this);
     }
 }

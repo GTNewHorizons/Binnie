@@ -21,7 +21,7 @@ enum Compartment implements IMachineType {
     CompartmentGold(StandardCompartment.PackageCompartmentGold.class),
     CompartmentDiamond(StandardCompartment.PackageCompartmentDiamond.class);
 
-    Class<? extends MachinePackage> clss;
+    final Class<? extends MachinePackage> clss;
 
     Compartment(Class<? extends MachinePackage> clss) {
         this.clss = clss;
@@ -43,7 +43,7 @@ enum Compartment implements IMachineType {
 
     public abstract static class PackageCompartment extends MachinePackage {
 
-        private BinnieResource renderTexture;
+        private final BinnieResource renderTexture;
 
         protected PackageCompartment(String uid, IBinnieTexture renderTexture) {
             super(uid, false);
@@ -58,7 +58,7 @@ enum Compartment implements IMachineType {
         @Override
         public void renderMachine(Machine machine, double x, double y, double z, float partialTick,
                 RenderBlocks renderer) {
-            MachineRendererCompartment.instance.renderMachine(machine, 0xffffff, renderTexture, x, y, z, partialTick);
+            MachineRendererCompartment.instance.renderMachine(machine, renderTexture, x, y, z);
         }
     }
 }

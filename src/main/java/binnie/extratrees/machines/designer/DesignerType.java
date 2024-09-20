@@ -1,9 +1,5 @@
 package binnie.extratrees.machines.designer;
 
-import java.util.Locale;
-
-import net.minecraft.item.ItemStack;
-
 import binnie.botany.Botany;
 import binnie.botany.ceramic.CeramicDesignSystem;
 import binnie.core.util.I18N;
@@ -16,6 +12,9 @@ import binnie.extratrees.carpentry.DesignSystem;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.carpentry.ModuleCarpentry;
 import binnie.extratrees.core.ExtraTreeTexture;
+import net.minecraft.item.ItemStack;
+
+import java.util.Locale;
 
 public enum DesignerType {
 
@@ -24,8 +23,8 @@ public enum DesignerType {
     GLASSWORKER(ExtraTreeTexture.panelerTexture),
     TILEWORKER(ExtraTreeTexture.tileworkerTexture);
 
-    public String name;
-    public String texture;
+    public final String name;
+    public final String texture;
 
     DesignerType(String texture) {
         this.name = name().toLowerCase(Locale.ENGLISH);
@@ -33,17 +32,11 @@ public enum DesignerType {
     }
 
     public IDesignSystem getSystem() {
-        switch (this) {
-            case GLASSWORKER: {
-                return DesignSystem.Glass;
-            }
-            case TILEWORKER: {
-                return CeramicDesignSystem.instance;
-            }
-            default: {
-                return DesignSystem.Wood;
-            }
-        }
+        return switch (this) {
+            case GLASSWORKER -> DesignSystem.Glass;
+            case TILEWORKER -> CeramicDesignSystem.instance;
+            default -> DesignSystem.Wood;
+        };
     }
 
     public ItemStack getBlock(IDesignMaterial type1, IDesignMaterial type2, IDesign design) {
@@ -59,17 +52,12 @@ public enum DesignerType {
     }
 
     private BlockDesign getBlock() {
-        switch (this) {
-            case GLASSWORKER:
-                return ExtraTrees.blockStained;
-
-            case PANELWORKER:
-                return ExtraTrees.blockPanel;
-
-            case TILEWORKER:
-                return Botany.ceramicTile;
-        }
-        return ExtraTrees.blockCarpentry;
+        return switch (this) {
+            case GLASSWORKER -> ExtraTrees.blockStained;
+            case PANELWORKER -> ExtraTrees.blockPanel;
+            case TILEWORKER -> Botany.ceramicTile;
+            default -> ExtraTrees.blockCarpentry;
+        };
     }
 
     public ItemStack getDisplayStack(IDesign design) {
@@ -77,19 +65,11 @@ public enum DesignerType {
     }
 
     public String getMaterialTooltip() {
-        switch (this) {
-            case GLASSWORKER:
-                return I18N.localise("extratrees.machine.glassworker.material");
-
-            case PANELWORKER:
-                return I18N.localise("extratrees.machine.panelworker.material");
-
-            case TILEWORKER:
-                return I18N.localise("extratrees.machine.tileworker.material");
-
-            case WOODWORKER:
-                return I18N.localise("extratrees.machine.woodworker.material");
-        }
-        return "";
+        return switch (this) {
+            case GLASSWORKER -> I18N.localise("extratrees.machine.glassworker.material");
+            case PANELWORKER -> I18N.localise("extratrees.machine.panelworker.material");
+            case TILEWORKER -> I18N.localise("extratrees.machine.tileworker.material");
+            case WOODWORKER -> I18N.localise("extratrees.machine.woodworker.material");
+        };
     }
 }

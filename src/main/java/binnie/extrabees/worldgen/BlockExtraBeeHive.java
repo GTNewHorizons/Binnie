@@ -1,9 +1,10 @@
 package binnie.extrabees.worldgen;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
+import binnie.extrabees.ExtraBees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.apiculture.IHiveDrop;
+import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,11 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import binnie.extrabees.ExtraBees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.apiculture.IHiveDrop;
-import forestry.api.core.Tabs;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class BlockExtraBeeHive extends Block {
 
@@ -36,7 +35,7 @@ public class BlockExtraBeeHive extends Block {
     }
 
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List itemList) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> itemList) {
         for (int i = 0; i < 4; ++i) {
             itemList.add(new ItemStack(this, 1, i));
         }

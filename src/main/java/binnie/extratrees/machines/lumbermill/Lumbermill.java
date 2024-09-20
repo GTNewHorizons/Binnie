@@ -1,19 +1,15 @@
 package binnie.extratrees.machines.lumbermill;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import binnie.extratrees.block.IPlankType;
+import binnie.extratrees.block.WoodManager;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import binnie.extratrees.block.IPlankType;
-import binnie.extratrees.block.WoodManager;
+import java.util.*;
 
 public class Lumbermill {
 
@@ -53,39 +49,35 @@ public class Lumbermill {
 
     private static Collection<ItemStack> getRecipeResult(ItemStack output) {
         List<ItemStack> list = new ArrayList<>();
-        for (Object recipeO : CraftingManager.getInstance().getRecipeList()) {
-            if (recipeO instanceof ShapelessRecipes) {
-                ShapelessRecipes recipe = (ShapelessRecipes) recipeO;
+        for (IRecipe iRecipe : CraftingManager.getInstance().getRecipeList()) {
+            if (iRecipe instanceof ShapelessRecipes recipe) {
                 if (recipe.recipeItems.size() != 1 || !(recipe.recipeItems.get(0) instanceof ItemStack)) {
                     continue;
                 }
 
-                ItemStack input = (ItemStack) recipe.recipeItems.get(0);
+                ItemStack input = recipe.recipeItems.get(0);
                 if (recipe.getRecipeOutput() != null && recipe.getRecipeOutput().isItemEqual(output)) {
                     list.add(input);
                 }
             }
 
-            if (recipeO instanceof ShapedRecipes) {
-                ShapedRecipes recipe2 = (ShapedRecipes) recipeO;
-                if (recipe2.recipeItems.length != 1) {
+            if (iRecipe instanceof ShapedRecipes shaped) {
+                if (shaped.recipeItems.length != 1) {
                     continue;
                 }
 
-                ItemStack input = recipe2.recipeItems[0];
-                if (recipe2.getRecipeOutput() != null && recipe2.getRecipeOutput().isItemEqual(output)) {
+                ItemStack input = shaped.recipeItems[0];
+                if (shaped.getRecipeOutput() != null && shaped.getRecipeOutput().isItemEqual(output)) {
                     list.add(input);
                 }
             }
 
-            if (recipeO instanceof ShapelessOreRecipe) {
-                ShapelessOreRecipe recipe3 = (ShapelessOreRecipe) recipeO;
-                if (recipe3.getInput().size() != 1 || !(recipe3.getInput().get(0) instanceof ItemStack)) {
+            if (iRecipe instanceof ShapelessOreRecipe shore) {
+                if (shore.getInput().size() != 1 || !(shore.getInput().get(0) instanceof ItemStack input)) {
                     continue;
                 }
 
-                ItemStack input = (ItemStack) recipe3.getInput().get(0);
-                if (recipe3.getRecipeOutput() == null || !recipe3.getRecipeOutput().isItemEqual(output)) {
+                if (shore.getRecipeOutput() == null || !shore.getRecipeOutput().isItemEqual(output)) {
                     continue;
                 }
                 list.add(input);

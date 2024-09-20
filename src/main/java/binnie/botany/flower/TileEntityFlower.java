@@ -1,8 +1,25 @@
 package binnie.botany.flower;
 
-import java.util.EnumSet;
-import java.util.Random;
-
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.api.*;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.gardening.BlockPlant;
+import binnie.botany.gardening.Gardening;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.botany.genetics.Flower;
+import binnie.botany.network.MessageFlowerUpdate;
+import binnie.core.BinnieCore;
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
+import forestry.api.lepidopterology.IButterfly;
+import forestry.api.lepidopterology.IButterflyNursery;
+import forestry.lepidopterology.entities.EntityButterfly;
+import forestry.plugins.PluginLepidopterology;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
@@ -16,33 +33,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.EnumPlantType;
 
-import com.mojang.authlib.GameProfile;
-
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.IAlleleFlowerSpecies;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerColor;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.gardening.BlockPlant;
-import binnie.botany.gardening.Gardening;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.genetics.EnumFlowerType;
-import binnie.botany.genetics.Flower;
-import binnie.botany.network.MessageFlowerUpdate;
-import binnie.core.BinnieCore;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IPollinatable;
-import forestry.api.lepidopterology.IButterfly;
-import forestry.api.lepidopterology.IButterflyNursery;
-import forestry.lepidopterology.entities.EntityButterfly;
-import forestry.plugins.PluginLepidopterology;
+import java.util.EnumSet;
+import java.util.Random;
 
 public class TileEntityFlower extends TileEntity implements IPollinatable, IButterflyNursery {
 
@@ -213,11 +205,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
             return;
         }
 
-        if (!canTolerate || light < 1.0f) {
-            flower.setWilted(true);
-        } else {
-            flower.setWilted(false);
-        }
+        flower.setWilted(!canTolerate || light < 1.0f);
 
         float chanceDispersal = 0.8f;
         chanceDispersal += 0.2f * flower.getGenome().getFertility();
@@ -302,7 +290,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
     public void updateRender(boolean update) {
         if (update && getFlower() != null && getFlower().getGenome() != null) {
             RenderInfo newInfo = new RenderInfo(getFlower(), this);
-            if (renderInfo == null || !newInfo.equals(renderInfo)) {
+            if (!newInfo.equals(renderInfo)) {
                 setRender(newInfo);
             }
         }
@@ -619,8 +607,7 @@ public class TileEntityFlower extends TileEntity implements IPollinatable, IButt
 
         @Override
         public boolean equals(Object obj) {
-            if (obj instanceof RenderInfo) {
-                RenderInfo o = (RenderInfo) obj;
+            if (obj instanceof RenderInfo o) {
                 return o.age == age && o.wilted == wilted
                         && o.flowered == flowered
                         && o.primary == primary

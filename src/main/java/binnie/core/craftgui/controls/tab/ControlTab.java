@@ -20,7 +20,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
 
     protected T value;
 
-    private ControlTabBar<T> tabBar;
+    private final ControlTabBar<T> tabBar;
 
     public ControlTab(ControlTabBar<T> parent, float x, float y, float w, float h, T value) {
         super(parent, x, y, w, h);
@@ -59,8 +59,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
         }
 
         CraftGUI.render.texture(iTexture, area);
-        if (this instanceof ControlTabIcon) {
-            ControlTabIcon icon = (ControlTabIcon) this;
+        if (this instanceof ControlTabIcon icon) {
             ControlItemDisplay item = (ControlItemDisplay) getWidgets().get(0);
             if (texture == CraftGUITexture.TabDisabled) {
                 item.setColor(0xaaaaaaaa);

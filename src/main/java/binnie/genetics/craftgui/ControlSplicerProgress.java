@@ -12,7 +12,6 @@ public class ControlSplicerProgress extends ControlProgressBase {
     public ControlSplicerProgress(IWidget parent, float x, float y, float w, float h) {
         super(parent, x, y, w, h);
         strength = 0.0f;
-        strength = 0.0f;
     }
 
     @Override
@@ -27,7 +26,6 @@ public class ControlSplicerProgress extends ControlProgressBase {
         float oy = ooy + ddy * progress;
 
         for (int i = 0; i < n; ++i) {
-            int seed = 432523;
             int[] colours = { 0x990000, 0x007700, 0x0000ff, 0x997700 };
             int c1 = colours[(int) Math.abs(13.0 * Math.sin(i) + 48.0 * Math.cos(i) + 25.0 * Math.sin(7 * i)) % 4];
             int c2 = colours[(int) Math.abs(23.0 * Math.sin(i) + 28.0 * Math.cos(i) + 15.0 * Math.sin(7 * i)) % 4];

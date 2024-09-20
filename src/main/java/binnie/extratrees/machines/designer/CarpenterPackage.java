@@ -8,7 +8,7 @@ import binnie.extratrees.machines.ExtraTreeMachine;
 
 public abstract class CarpenterPackage extends ExtraTreeMachine.PackageExtraTreeMachine implements IMachineInformation {
 
-    private DesignerType type;
+    private final DesignerType type;
 
     public CarpenterPackage(DesignerType type) {
         super(type.name, type.texture, false);

@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 public class GateItemRenderer implements IItemRenderer {
 
-    private void renderStairBlock(RenderBlocks renderBlocks, ItemStack item, float f, float g, float h) {
+    private void renderStairBlock(RenderBlocks renderBlocks, ItemStack item) {
         Tessellator tessellator = Tessellator.instance;
         Block block = ((ItemBlock) item.getItem()).field_150939_a;
         for (int k = 0; k < 3; ++k) {
@@ -22,7 +22,6 @@ public class GateItemRenderer implements IItemRenderer {
             if (k == 1) {
                 renderBlocks.setRenderBounds(0.5f - f2, 0.30000001192092896, 1.0f - f2 * 2.0f, 0.5f + f2, 1.0, 1.0);
             }
-            f2 = 0.0625f;
             if (k == 2) {
                 renderBlocks.setRenderBounds(0.5f - f2, 0.5, 0.0, 0.5f + f2, 1.0f - f2, 1.0);
             }
@@ -87,13 +86,10 @@ public class GateItemRenderer implements IItemRenderer {
 
     @Override
     public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
-        switch (type) {
-            case ENTITY:
-            case EQUIPPED:
-            case INVENTORY:
-                return true;
-        }
-        return false;
+        return switch (type) {
+            case ENTITY, EQUIPPED, INVENTORY -> true;
+            default -> false;
+        };
     }
 
     @Override
@@ -106,15 +102,15 @@ public class GateItemRenderer implements IItemRenderer {
     public void renderItem(IItemRenderer.ItemRenderType type, ItemStack item, Object... data) {
         switch (type) {
             case ENTITY:
-                renderStairBlock((RenderBlocks) data[0], item, -0.5f, -0.5f, -0.5f);
+                renderStairBlock((RenderBlocks) data[0], item);
                 break;
 
             case EQUIPPED:
-                renderStairBlock((RenderBlocks) data[0], item, 0.0f, 0.0f, 0.0f);
+                renderStairBlock((RenderBlocks) data[0], item);
                 break;
 
             case INVENTORY:
-                renderStairBlock((RenderBlocks) data[0], item, -0.5f, -0.5f, -0.5f);
+                renderStairBlock((RenderBlocks) data[0], item);
                 break;
         }
     }

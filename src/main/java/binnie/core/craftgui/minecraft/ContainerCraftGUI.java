@@ -1,21 +1,5 @@
 package binnie.core.craftgui.minecraft;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.inventory.Container;
-import net.minecraft.inventory.ICrafting;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.minecraft.control.EnumHighlighting;
@@ -25,14 +9,28 @@ import binnie.core.machines.network.INetwork;
 import binnie.core.machines.power.*;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.network.packet.MessageContainerUpdate;
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ContainerCraftGUI extends Container {
 
-    private Window window;
-    private Map<String, NBTTagCompound> syncedNBT;
-    private Map<String, NBTTagCompound> sentNBT;
-    private Map<Integer, TankInfo> syncedTanks;
+    private final Window window;
+    private final Map<String, NBTTagCompound> syncedNBT;
+    private final Map<String, NBTTagCompound> sentNBT;
+    private final Map<Integer, TankInfo> syncedTanks;
     private PowerInfo syncedPower;
     private ProcessInfo syncedProcess;
     private int errorType;
@@ -54,8 +52,8 @@ public class ContainerCraftGUI extends Container {
             return;
         }
 
-        inventoryItemStacks = new ListMap();
-        inventorySlots = new ListMap();
+        inventoryItemStacks = new ListMap<>();
+        inventorySlots = new ListMap<>();
         if (machine == null) {
             return;
         }
@@ -82,7 +80,7 @@ public class ContainerCraftGUI extends Container {
         if (index < 0 || index >= inventorySlots.size()) {
             return null;
         }
-        return (Slot) inventorySlots.get(index);
+        return inventorySlots.get(index);
     }
 
     @Override
@@ -160,7 +158,7 @@ public class ContainerCraftGUI extends Container {
         }
 
         ItemStack stack = request.transfer(true);
-        Slot shiftClickedSlot = (Slot) inventorySlots.get(index);
+        Slot shiftClickedSlot = inventorySlots.get(index);
         shiftClickedSlot.putStack(stack);
         shiftClickedSlot.onSlotChanged();
         return null;
@@ -226,9 +224,8 @@ public class ContainerCraftGUI extends Container {
                 int slotNumber = action.getShort("n");
                 getOrCreateSlot(InventoryType.values()[type % 4], index, slotNumber);
 
-                for (Object crafterObject : crafters) {
-                    ICrafting crafter = (ICrafting) crafterObject;
-                    crafter.sendContainerAndContentsToPlayer(this, getInventory());
+                for (ICrafting crafterObject : crafters) {
+                    crafterObject.sendContainerAndContentsToPlayer(this, getInventory());
                 }
             }
         }
@@ -292,8 +289,7 @@ public class ContainerCraftGUI extends Container {
 
             if (shouldSend) {
                 for (Object crafter : crafters) {
-                    if (crafter instanceof EntityPlayerMP) {
-                        EntityPlayerMP player = (EntityPlayerMP) crafter;
+                    if (crafter instanceof EntityPlayerMP player) {
                         BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), player);
                     }
                 }

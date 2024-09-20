@@ -1,16 +1,16 @@
 package binnie.core.craftgui.minecraft.control;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.InventoryType;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 
-    private List<ControlSlot> slots;
+    private final List<ControlSlot> slots;
 
     public ControlSlotArray(IWidget parent, int x, int y, int columns, int rows) {
         super(parent, x, y, columns * 18, rows * 18);

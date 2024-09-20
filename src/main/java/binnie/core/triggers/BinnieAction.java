@@ -22,10 +22,10 @@ class BinnieAction implements IActionExternal {
     private static int incrementalID = 800;
     public static BinnieAction actionPauseProcess;
     public static BinnieAction actionCancelTask;
-    private String desc;
-    private BinnieIcon icon;
-    private String tag;
-    private int id;
+    private final String desc;
+    private final BinnieIcon icon;
+    private final String tag;
+    private final int id;
 
     BinnieAction(String desc, String tag, String iconFile) {
         this(desc, tag, BinnieCore.instance, iconFile);

@@ -1,14 +1,13 @@
 package binnie.genetics.item;
 
-import java.util.List;
-
+import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import binnie.core.item.IItemMisc;
-import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
+import java.util.List;
 
 public enum GeneticsItems implements IItemMisc {
 
@@ -25,9 +24,9 @@ public enum GeneticsItems implements IItemMisc {
     IntegratedCPU("integratedCPU"),
     IntegratedCasing("casingCircuit");
 
-    protected IIcon icon;
-    protected String name;
-    protected String iconPath;
+    private IIcon icon;
+    private final String name;
+    private final String iconPath;
 
     GeneticsItems(String name) {
         this.name = name;
@@ -45,7 +44,7 @@ public enum GeneticsItems implements IItemMisc {
     }
 
     @Override
-    public void addInformation(List data) {
+    public void addInformation(List<String> data) {
         // ignored
     }
 

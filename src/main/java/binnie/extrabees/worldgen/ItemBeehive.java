@@ -1,14 +1,13 @@
 package binnie.extrabees.worldgen;
 
-import java.util.List;
-
+import binnie.core.util.I18N;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-import binnie.core.util.I18N;
+import java.util.List;
 
 public class ItemBeehive extends ItemBlock {
 
@@ -25,7 +24,7 @@ public class ItemBeehive extends ItemBlock {
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < 4; ++i) {
             list.add(new ItemStack(this, 1, i));
         }

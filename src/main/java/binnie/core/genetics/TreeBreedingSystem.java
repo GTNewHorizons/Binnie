@@ -1,23 +1,5 @@
 package binnie.core.genetics;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.EnumSet;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.Binnie;
 import binnie.core.util.I18N;
 import binnie.core.util.UniqueItemStackSet;
@@ -25,35 +7,24 @@ import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.FakeWorld;
 import binnie.extratrees.machines.lumbermill.Lumbermill;
 import binnie.genetics.genetics.AlleleHelper;
-import forestry.api.arboriculture.EnumGermlingType;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.arboriculture.IArboristTracker;
-import forestry.api.arboriculture.IFruitProvider;
-import forestry.api.arboriculture.ITreeGenome;
-import forestry.api.arboriculture.ITreeMutation;
-import forestry.api.arboriculture.ITreeRoot;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleInteger;
-import forestry.api.genetics.IAllelePlantType;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IFruitFamily;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
+import com.mojang.authlib.GameProfile;
+import forestry.api.arboriculture.*;
+import forestry.api.genetics.*;
 import forestry.core.genetics.alleles.EnumAllele;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.*;
 
 public class TreeBreedingSystem extends BreedingSystem {
 
     public UniqueItemStackSet allFruits = new UniqueItemStackSet();
     public UniqueItemStackSet allWoods = new UniqueItemStackSet();
-    private UniqueItemStackSet discoveredFruits = new UniqueItemStackSet();
-    private UniqueItemStackSet discoveredWoods = new UniqueItemStackSet();
+    private final UniqueItemStackSet discoveredFruits = new UniqueItemStackSet();
+    private final UniqueItemStackSet discoveredWoods = new UniqueItemStackSet();
 
     public TreeBreedingSystem() {
         iconUndiscovered = Binnie.Resource.getItemIcon(ExtraTrees.instance, "icon/undiscoveredTree");
@@ -142,7 +113,6 @@ public class TreeBreedingSystem extends BreedingSystem {
             // this.discoveredWoods.add(wood);
             // }
             discoveredFruits.addAll(Arrays.asList(genome.getFruitProvider().getProducts()));
-            for (ItemStack wood2 : discoveredWoods) {}
         }
     }
 

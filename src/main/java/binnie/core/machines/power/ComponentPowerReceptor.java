@@ -1,13 +1,5 @@
 package binnie.core.machines.power;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
-
 import binnie.core.Mods;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
@@ -19,6 +11,13 @@ import cpw.mods.fml.common.Optional;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyTile;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Optional.Interface(iface = "binnie.core.machines.component.IBuildcraft.TriggerProvider", modid = "BuildCraft|Silicon")
 public class ComponentPowerReceptor extends MachineComponent
@@ -28,7 +27,7 @@ public class ComponentPowerReceptor extends MachineComponent
     public LinkedList<Float> inputs;
 
     private boolean registeredToIC2EnergyNet;
-    private PowerInterface container;
+    private final PowerInterface container;
 
     public ComponentPowerReceptor(IMachine machine) {
         this(machine, 1000);

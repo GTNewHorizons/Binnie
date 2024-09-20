@@ -75,7 +75,7 @@ public class ExtraTrees extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
+    public void preInit(FMLPreInitializationEvent ignored) {
         addModule(new ModuleBlocks());
         addModule(new ModuleItems());
         addModule(new ModuleGenetics());
@@ -87,12 +87,12 @@ public class ExtraTrees extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent event) {
+    public void init(FMLInitializationEvent ignored) {
         init();
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+    public void postInit(FMLPostInitializationEvent ignored) {
         postInit();
     }
 
@@ -102,7 +102,7 @@ public class ExtraTrees extends AbstractMod {
     }
 
     @Override
-    public Class[] getConfigs() {
+    public Class<?>[] getConfigs() {
         return new Class[] { ConfigurationMain.class };
     }
 

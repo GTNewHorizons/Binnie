@@ -1,26 +1,21 @@
 package binnie.genetics.gui;
 
-import java.util.EnumSet;
-
-import net.minecraft.util.EnumChatFormatting;
-
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.*;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IBorder;
 import binnie.core.genetics.Tolerance;
 import forestry.api.core.EnumTemperature;
 import forestry.api.genetics.EnumTolerance;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.EnumSet;
 
 public abstract class ControlToleranceBar<T extends Enum<T>> extends Control implements ITooltip {
 
     EnumSet<T> tolerated;
     EnumSet<T> fullSet;
-    private Class<T> enumClass;
+    private final Class<T> enumClass;
 
     public ControlToleranceBar(IWidget parent, float x, float y, float width, float height, Class<T> clss) {
         super(parent, x, y, width, height);

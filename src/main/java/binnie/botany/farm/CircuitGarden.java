@@ -13,11 +13,11 @@ import forestry.api.farming.IFarmHousing;
 
 public class CircuitGarden extends BinnieCircuit {
 
-    private boolean isManual;
-    private boolean isFertilised;
-    private ItemStack icon;
-    private EnumMoisture moisture;
-    private EnumAcidity acidity;
+    private final boolean isManual;
+    private final boolean isFertilised;
+    private final ItemStack icon;
+    private final EnumMoisture moisture;
+    private final EnumAcidity acidity;
 
     public CircuitGarden(EnumMoisture moisture, EnumAcidity ph, boolean manual, boolean fertilised, ItemStack recipe,
             ItemStack icon) {
@@ -46,27 +46,27 @@ public class CircuitGarden extends BinnieCircuit {
         }
 
         if (acidity == EnumAcidity.ACID) {
-            if (info.length() > 0) {
+            if (!info.isEmpty()) {
                 info += ", ";
             }
             info += EnumChatFormatting.RED + I18N.localise("botany.ph.acid") + EnumChatFormatting.RESET;
         }
 
         if (acidity == EnumAcidity.NEUTRAL) {
-            if (info.length() > 0) {
+            if (!info.isEmpty()) {
                 info += ", ";
             }
             info += EnumChatFormatting.GREEN + I18N.localise("botany.ph.neutral") + EnumChatFormatting.RESET;
         }
 
         if (acidity == EnumAcidity.ALKALINE) {
-            if (info.length() > 0) {
+            if (!info.isEmpty()) {
                 info += ", ";
             }
             info += EnumChatFormatting.AQUA + I18N.localise("botany.ph.alkaline") + EnumChatFormatting.RESET;
         }
 
-        if (info.length() > 0) {
+        if (!info.isEmpty()) {
             info = " (" + info + EnumChatFormatting.RESET + ")";
         }
         addTooltipString(I18N.localise("botany.circuit.flowers") + info);
@@ -101,8 +101,4 @@ public class CircuitGarden extends BinnieCircuit {
         ((IFarmHousing) tile).resetFarmLogic(FarmDirection.values()[slot]);
     }
 
-    @Override
-    public void onTick(int arg0, Object arg1) {
-        // ignored
-    }
 }

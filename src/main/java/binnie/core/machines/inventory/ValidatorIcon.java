@@ -1,16 +1,16 @@
 package binnie.core.machines.inventory;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.resource.BinnieIcon;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ValidatorIcon {
 
-    private List<BinnieIcon> iconsInput;
-    private List<BinnieIcon> iconsOutput;
+    private final List<BinnieIcon> iconsInput;
+    private final List<BinnieIcon> iconsOutput;
 
     public ValidatorIcon(AbstractMod mod, String pathInput, String pathOutput) {
         iconsInput = new ArrayList<>();

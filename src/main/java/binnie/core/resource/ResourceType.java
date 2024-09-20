@@ -9,7 +9,7 @@ public enum ResourceType {
     FX("fx"),
     Entity("entities");
 
-    String name;
+    final String name;
 
     ResourceType(String name) {
         this.name = name;

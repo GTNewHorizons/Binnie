@@ -1,21 +1,18 @@
 package binnie.core.nei;
 
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
-
-import org.lwjgl.opengl.GL11;
-
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIClientConfig;
 import codechicken.nei.PositionedStack;
 import codechicken.nei.guihook.GuiContainerManager;
 import codechicken.nei.recipe.GuiRecipe;
 import codechicken.nei.recipe.TemplateRecipeHandler;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
+import org.lwjgl.opengl.GL11;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
 
@@ -196,8 +193,7 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
 
     public void drawFluidTanks(int recipe) {
         CachedRecipe cachedRecipe = this.arecipes.get(recipe);
-        if (cachedRecipe instanceof CachedBaseRecipe) {
-            CachedBaseRecipe crecipe = (CachedBaseRecipe) cachedRecipe;
+        if (cachedRecipe instanceof CachedBaseRecipe crecipe) {
             if (crecipe.getFluidTanks() != null) {
                 for (PositionedFluidTank fluidTank : crecipe.getFluidTanks()) {
                     fluidTank.draw();

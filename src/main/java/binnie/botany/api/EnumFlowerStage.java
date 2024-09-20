@@ -7,7 +7,7 @@ public enum EnumFlowerStage {
     POLLEN("Pollen"),
     NONE("NONE");
 
-    protected String name;
+    private final String name;
 
     EnumFlowerStage(String name) {
         this.name = name;

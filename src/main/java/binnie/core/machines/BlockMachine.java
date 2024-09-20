@@ -1,9 +1,10 @@
 package binnie.core.machines;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.core.machines.component.IRender;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -19,15 +20,13 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.core.machines.component.IRender;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
-class BlockMachine extends BlockContainer implements IBlockMachine {
+public class BlockMachine extends BlockContainer implements IBlockMachine {
 
-    private MachineGroup group;
+    private final MachineGroup group;
 
     public BlockMachine(MachineGroup group, String blockName) {
         super(Material.iron);
@@ -37,7 +36,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
         for (MachinePackage pack : group.getPackages()) {
             if (pack.isActive()) {
                 itemList.add(new ItemStack(this, 1, pack.getMetadata()));
@@ -134,11 +133,10 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         TileEntity tileentity = world.getTileEntity(x, y, z);
-        if (!(tileentity instanceof TileEntityMachine)) {
+        if (!(tileentity instanceof TileEntityMachine entity)) {
             return;
         }
 
-        TileEntityMachine entity = (TileEntityMachine) tileentity;
         entity.onBlockDestroy();
         super.breakBlock(world, x, y, z, block, meta);
     }

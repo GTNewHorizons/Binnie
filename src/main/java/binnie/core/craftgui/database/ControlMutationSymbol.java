@@ -17,11 +17,11 @@ import forestry.api.genetics.IMutation;
 
 class ControlMutationSymbol extends Control implements ITooltip {
 
-    private static Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
-    private static Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
+    private static final Texture MutationPlus = new StandardTexture(2, 94, 16, 16, CraftGUITextureSheet.Controls2);
+    private static final Texture MutationArrow = new StandardTexture(20, 94, 32, 16, CraftGUITextureSheet.Controls2);
     private IMutation value;
     private boolean discovered;
-    private int type;
+    private final int type;
 
     @Override
     public void onRenderBackground() {

@@ -1,17 +1,16 @@
 package binnie.genetics.genetics;
 
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-
 import binnie.genetics.api.IGene;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public interface IGeneItem {
 
     ISpeciesRoot getSpeciesRoot();
 
-    void getInfo(List tooltip);
+    void getInfo(List<String> tooltip);
 
     int getColour(int color);
 

@@ -1,7 +1,11 @@
 package binnie.genetics.item;
 
-import java.util.List;
-
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
+import binnie.genetics.GeneticsCreativeTab;
+import binnie.genetics.core.GeneticsGUI;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,12 +14,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
-import binnie.genetics.GeneticsCreativeTab;
-import binnie.genetics.core.GeneticsGUI;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 
 public class ItemDatabase extends Item {
 
@@ -42,13 +41,13 @@ public class ItemDatabase extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         super.getSubItems(item, tab, list);
         list.add(new ItemStack(item, 1, 1));
     }

@@ -28,7 +28,7 @@ public class ControlButton extends Control {
         textWidget = new ControlText(this, getArea(), text, TextJustification.MIDDLE_CENTER);
     }
 
-    private EventMouse.Down.Handler mouseHandler = new EventMouse.Down.Handler() {
+    private final EventMouse.Down.Handler mouseHandler = new EventMouse.Down.Handler() {
 
         @Override
         public void onEvent(EventMouse.Down event) {

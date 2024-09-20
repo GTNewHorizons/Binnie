@@ -1,7 +1,11 @@
 package binnie.genetics.item;
 
-import java.util.List;
-
+import binnie.core.util.I18N;
+import binnie.genetics.Genetics;
+import binnie.genetics.GeneticsCreativeTab;
+import binnie.genetics.genetics.IGeneItem;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,12 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
-import binnie.genetics.GeneticsCreativeTab;
-import binnie.genetics.genetics.IGeneItem;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 
 public abstract class ItemGene extends Item {
 
@@ -32,11 +31,6 @@ public abstract class ItemGene extends Item {
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamageForRenderPass(int damage, int pass) {
         return icons[pass];
-    }
-
-    @Override
-    public boolean getShareTag() {
-        return true;
     }
 
     @Override
@@ -73,7 +67,7 @@ public abstract class ItemGene extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         int damage = getMaxDamage() - stack.getItemDamage();
         if (damage == 0) {
@@ -92,7 +86,7 @@ public abstract class ItemGene extends Item {
     public abstract String getItemStackDisplayName(ItemStack stack);
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List itemList) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> itemList) {
         // ignored
     }
 

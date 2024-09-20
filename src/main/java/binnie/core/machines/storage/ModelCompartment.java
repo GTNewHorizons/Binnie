@@ -6,23 +6,23 @@ import net.minecraft.entity.Entity;
 
 class ModelCompartment extends ModelBase {
 
-    private ModelRenderer column1;
-    private ModelRenderer column4;
-    private ModelRenderer column2;
-    private ModelRenderer column3;
-    private ModelRenderer lid1;
-    private ModelRenderer body1;
-    private ModelRenderer lock1;
-    private ModelRenderer lid2;
-    private ModelRenderer body2;
-    private ModelRenderer lock2;
-    private ModelRenderer body;
-    private ModelRenderer lid3;
-    private ModelRenderer body3;
-    private ModelRenderer lock3;
-    private ModelRenderer lid4;
-    private ModelRenderer body4;
-    private ModelRenderer lock4;
+    private final ModelRenderer column1;
+    private final ModelRenderer column4;
+    private final ModelRenderer column2;
+    private final ModelRenderer column3;
+    private final ModelRenderer lid1;
+    private final ModelRenderer body1;
+    private final ModelRenderer lock1;
+    private final ModelRenderer lid2;
+    private final ModelRenderer body2;
+    private final ModelRenderer lock2;
+    private final ModelRenderer body;
+    private final ModelRenderer lid3;
+    private final ModelRenderer body3;
+    private final ModelRenderer lock3;
+    private final ModelRenderer lid4;
+    private final ModelRenderer body4;
+    private final ModelRenderer lock4;
 
     public ModelCompartment() {
         textureWidth = 128;

@@ -96,7 +96,7 @@ public class FlowerGenome extends Genome implements IFlowerGenome {
 
     @Override
     public float getAgeChance() {
-        return 1.0f * (float) Math.sqrt(2.0f / getLifespan());
+        return (float) Math.sqrt(2.0f / getLifespan());
     }
 
     @Override

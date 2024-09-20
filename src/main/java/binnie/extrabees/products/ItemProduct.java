@@ -1,12 +1,11 @@
 package binnie.extrabees.products;
 
-import java.util.List;
-
+import binnie.core.item.IItemEnum;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import binnie.core.item.IItemEnum;
+import java.util.List;
 
 public class ItemProduct extends Item {
 
@@ -33,7 +32,7 @@ public class ItemProduct extends Item {
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (IItemEnum type : types) {
             if (type.isActive()) {
                 list.add(new ItemStack(this, 1, type.ordinal()));

@@ -34,14 +34,10 @@ public class MultipassItemRenderer implements IItemRenderer {
 
     @Override
     public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
-        switch (type) {
-            case ENTITY:
-            case EQUIPPED:
-            case INVENTORY:
-            case EQUIPPED_FIRST_PERSON:
-                return true;
-        }
-        return false;
+        return switch (type) {
+            case ENTITY, EQUIPPED, INVENTORY, EQUIPPED_FIRST_PERSON -> true;
+            default -> false;
+        };
     }
 
     @Override

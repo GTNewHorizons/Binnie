@@ -1,16 +1,15 @@
 package binnie.extratrees.carpentry;
 
-import java.awt.Color;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
 import binnie.core.block.TileEntityMetadata;
 import binnie.extratrees.api.IDesignMaterial;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+
+import java.awt.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class GlassType implements IDesignMaterial {
 
@@ -98,8 +97,8 @@ public class GlassType implements IDesignMaterial {
         Red("Red", new Color(0x993333)),
         Black("Black", new Color(0x191919));
 
-        protected String name;
-        protected int color;
+        private final String name;
+        private final int color;
 
         StandardColor(String name, Color color) {
             this.name = name;

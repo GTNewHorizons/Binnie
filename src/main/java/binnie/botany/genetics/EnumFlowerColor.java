@@ -1,13 +1,12 @@
 package binnie.botany.genetics;
 
-import java.util.Locale;
-
-import org.apache.commons.lang3.StringUtils;
-
 import binnie.botany.api.IFlowerColor;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IAlleleInteger;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Locale;
 
 public enum EnumFlowerColor implements IFlowerColor {
 
@@ -93,10 +92,10 @@ public enum EnumFlowerColor implements IFlowerColor {
     YELLOW_GREEN("yellowGreen", 0x9acd32);
 
     private static final EnumFlowerColor[] ALL_VALUES = values();
-    private int color;
-    private int colorDis;
-    private String name;
-    private AlleleColor allele;
+    private final int color;
+    private final int colorDis;
+    private final String name;
+    private final AlleleColor allele;
 
     EnumFlowerColor(String name, int color) {
         this.name = name;

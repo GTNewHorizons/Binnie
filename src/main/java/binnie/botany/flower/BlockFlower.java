@@ -1,9 +1,16 @@
 package binnie.botany.flower;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import binnie.botany.Botany;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IFlower;
+import binnie.botany.api.IFlowerType;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.gardening.Gardening;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.core.BinnieCore;
+import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -18,18 +25,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import com.mojang.authlib.GameProfile;
-
-import binnie.botany.Botany;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.gardening.Gardening;
-import binnie.botany.genetics.EnumFlowerType;
-import binnie.core.BinnieCore;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BlockFlower extends BlockContainer {
 
@@ -85,7 +83,7 @@ public class BlockFlower extends BlockContainer {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
         TileEntity flower = world.getTileEntity(x, y, z);
         if (!BinnieCore.proxy.isSimulating(world)) {
-            if (flower != null && flower instanceof TileEntityFlower) {
+            if (flower instanceof TileEntityFlower) {
                 IFlower f = BotanyCore.getFlowerRoot().getMember(stack);
                 ((TileEntityFlower) flower).setRender(new TileEntityFlower.RenderInfo(f, (TileEntityFlower) flower));
             }
@@ -93,7 +91,7 @@ public class BlockFlower extends BlockContainer {
         }
 
         TileEntity below = world.getTileEntity(x, y - 1, z);
-        if (flower != null && flower instanceof TileEntityFlower) {
+        if (flower instanceof TileEntityFlower) {
             if (below instanceof TileEntityFlower) {
                 ((TileEntityFlower) flower).setSection(((TileEntityFlower) below).getSection());
             } else {
@@ -108,11 +106,10 @@ public class BlockFlower extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (!(tile instanceof TileEntityFlower)) {
+        if (!(tile instanceof TileEntityFlower f)) {
             return super.getIcon(world, x, y, z, side);
         }
 
-        TileEntityFlower f = (TileEntityFlower) tile;
         EnumFlowerStage stage = (f.getAge() == 0) ? EnumFlowerStage.SEED : EnumFlowerStage.FLOWER;
         IFlowerType flower = f.getType();
         int section = f.getRenderSection();
@@ -129,8 +126,7 @@ public class BlockFlower extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileEntityFlower) {
-            TileEntityFlower f = (TileEntityFlower) tile;
+        if (tile instanceof TileEntityFlower f) {
             if (RendererBotany.pass == 0) {
                 return f.getStemColour();
             }
@@ -153,11 +149,10 @@ public class BlockFlower extends BlockContainer {
         super.onNeighborBlockChange(world, x, y, z, block);
         checkAndDropBlock(world, x, y, z);
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (!(tile instanceof TileEntityFlower)) {
+        if (!(tile instanceof TileEntityFlower flower)) {
             return;
         }
 
-        TileEntityFlower flower = (TileEntityFlower) tile;
         if (flower.getSection() == 0 && flower.getFlower() != null
                 && flower.getFlower().getAge() > 0
                 && flower.getFlower().getGenome().getPrimary().getType().getSections() > 1
@@ -212,7 +207,7 @@ public class BlockFlower extends BlockContainer {
         List<ItemStack> drops = getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
         boolean hasBeenBroken = world.setBlockToAir(x, y, z);
         if (hasBeenBroken && BinnieCore.proxy.isSimulating(world)
-                && drops.size() > 0
+                && !drops.isEmpty()
                 && (player == null || !player.capabilities.isCreativeMode)) {
             for (ItemStack drop : drops) {
                 dropBlockAsItem(world, x, y, z, drop);

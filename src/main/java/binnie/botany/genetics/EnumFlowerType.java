@@ -57,18 +57,18 @@ public enum EnumFlowerType implements IFlowerType {
     DELPHINIUM(2),
     HOLLYHOCK(2);
 
-    protected int sections;
-    protected IIcon[] stem;
-    protected IIcon[] petal;
-    protected IIcon[] variant;
-    protected IIcon[] unflowered;
-    protected IIcon seedStem;
-    protected IIcon seedPetal;
-    protected IIcon seedVariant;
-    protected IIcon pollenStem;
-    protected IIcon pollenPetal;
-    protected IIcon pollenVariant;
-    protected IIcon blank;
+    private final int sections;
+    private final IIcon[] stem;
+    private final IIcon[] petal;
+    private final IIcon[] variant;
+    private final IIcon[] unflowered;
+    private IIcon seedStem;
+    private IIcon seedPetal;
+    private IIcon seedVariant;
+    private IIcon pollenStem;
+    private IIcon pollenPetal;
+    private IIcon pollenVariant;
+    private IIcon blank;
 
     EnumFlowerType() {
         this(1);

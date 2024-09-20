@@ -1,7 +1,19 @@
 package binnie.botany.flower;
 
-import java.util.List;
-
+import binnie.Binnie;
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.*;
+import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.EnumFlowerType;
+import binnie.botany.genetics.Flower;
+import binnie.core.BinnieCore;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
+import forestry.core.config.Config;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -14,24 +26,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import binnie.Binnie;
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumFlowerStage;
-import binnie.botany.api.IFlower;
-import binnie.botany.api.IFlowerColor;
-import binnie.botany.api.IFlowerGenome;
-import binnie.botany.api.IFlowerType;
-import binnie.botany.core.BotanyCore;
-import binnie.botany.genetics.EnumFlowerType;
-import binnie.botany.genetics.Flower;
-import binnie.core.BinnieCore;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IPollinatable;
-import forestry.core.config.Config;
+import java.util.List;
 
 public abstract class ItemBotany extends Item {
 
@@ -58,11 +53,6 @@ public abstract class ItemBotany extends Item {
     }
 
     @Override
-    public boolean getShareTag() {
-        return true;
-    }
-
-    @Override
     public boolean hasEffect(ItemStack stack, int pass) {
         if (!stack.hasTagCompound()) {
             return false;
@@ -73,7 +63,7 @@ public abstract class ItemBotany extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack itemstack, EntityPlayer player, List tooltip, boolean flag) {
+    public void addInformation(ItemStack itemstack, EntityPlayer player, List<String> tooltip, boolean flag) {
         if (!itemstack.hasTagCompound()) {
             return;
         }
@@ -138,11 +128,11 @@ public abstract class ItemBotany extends Item {
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List itemList) {
+    public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List<ItemStack> itemList) {
         addCreativeItems(itemList, true);
     }
 
-    public void addCreativeItems(List itemList, boolean hideSecrets) {
+    public void addCreativeItems(List<ItemStack> itemList, boolean hideSecrets) {
         for (IIndividual individual : BotanyCore.speciesRoot.getIndividualTemplates()) {
             if (hideSecrets && individual.isSecret() && !Config.isDebug) {
                 continue;
@@ -199,10 +189,9 @@ public abstract class ItemBotany extends Item {
         if (getStage() == EnumFlowerStage.POLLEN) {
             IFlower flower = Binnie.Genetics.getFlowerRoot().getMember(itemstack);
             TileEntity target = world.getTileEntity(x, y, z);
-            if (!(target instanceof IPollinatable)) {
+            if (!(target instanceof IPollinatable pollinatable)) {
                 return false;
             }
-            IPollinatable pollinatable = (IPollinatable) target;
             if (!pollinatable.canMateWith(flower)) {
                 return false;
             }

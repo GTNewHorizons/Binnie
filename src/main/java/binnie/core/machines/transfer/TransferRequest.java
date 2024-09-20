@@ -1,8 +1,9 @@
 package binnie.core.machines.transfer;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.machines.Machine;
+import binnie.core.machines.inventory.IInventorySlots;
+import binnie.core.machines.inventory.IValidatedTankContainer;
+import binnie.core.machines.power.ITankMachine;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -10,10 +11,8 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import net.minecraftforge.fluids.IFluidTank;
 
-import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.IInventorySlots;
-import binnie.core.machines.inventory.IValidatedTankContainer;
-import binnie.core.machines.power.ITankMachine;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransferRequest {
 
@@ -25,8 +24,8 @@ public class TransferRequest {
     private int[] targetTanks;
     private boolean transferLiquids;
     private boolean ignoreReadOnly;
-    private List<TransferSlot> insertedSlots;
-    private List<Integer> insertedTanks;
+    private final List<TransferSlot> insertedSlots;
+    private final List<Integer> insertedTanks;
 
     public TransferRequest(ItemStack toTransfer, IInventory destination) {
         itemToTransfer = null;
@@ -180,10 +179,9 @@ public class TransferRequest {
             int space = merged.getMaxStackSize() - merged.stackSize;
             if (space > 0) {
                 if (itemstack.stackSize > space) {
-                    ItemStack itemStack = itemstack;
-                    itemStack.stackSize -= space;
+                    itemstack.stackSize -= space;
                     merged.stackSize += space;
-                } else if (itemstack.stackSize <= space) {
+                } else {
                     merged.stackSize += itemstack.stackSize;
                     itemstack = null;
                 }
@@ -201,11 +199,10 @@ public class TransferRequest {
 
     private ItemStack transferToTankUsingFluidContainer(ItemStack item, IInventory origin, ITankMachine destination,
             int tankID, boolean doAdd) {
-        if (item == null || !(item.getItem() instanceof IFluidContainerItem)) {
+        if (item == null || !(item.getItem() instanceof IFluidContainerItem fluidContainer)) {
             return item;
         }
 
-        IFluidContainerItem fluidContainer = (IFluidContainerItem) item.getItem();
         FluidStack fluid = fluidContainer.getFluid(item);
         if (fluid == null) {
             return item;
@@ -307,11 +304,10 @@ public class TransferRequest {
 
     private ItemStack transferFromTankUsingFluidContainer(ItemStack item, IInventory origin, ITankMachine destination,
             int tankID, boolean doAdd) {
-        if (item == null || !(item.getItem() instanceof IFluidContainerItem)) {
+        if (item == null || !(item.getItem() instanceof IFluidContainerItem fluidContainer)) {
             return item;
         }
 
-        IFluidContainerItem fluidContainer = (IFluidContainerItem) item.getItem();
         IFluidTank tank = destination.getTanks()[tankID];
         FluidStack fluid = tank.getFluid();
         if (fluid == null) {

@@ -1,23 +1,21 @@
 package binnie.core.genetics;
 
-import java.util.Set;
-
+import com.mojang.authlib.GameProfile;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IErrorState;
+import forestry.api.genetics.IHousing;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import com.mojang.authlib.GameProfile;
-
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.core.IErrorState;
-import forestry.api.genetics.IHousing;
+import java.util.Set;
 
 class VirtualHousing implements IHousing {
 
-    private EntityPlayer player;
+    private final EntityPlayer player;
 
     public VirtualHousing(EntityPlayer player) {
         this.player = player;

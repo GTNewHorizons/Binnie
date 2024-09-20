@@ -6,7 +6,7 @@ import forestry.api.core.INBTTagable;
 
 public class PowerInterface implements INBTTagable {
 
-    private int capacity;
+    private final int capacity;
     private int energy;
 
     public PowerInterface(int capacity) {

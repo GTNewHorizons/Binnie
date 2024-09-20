@@ -1,7 +1,5 @@
 package binnie.core.craftgui.database;
 
-import java.util.List;
-
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.listbox.ControlListBox;
 import binnie.core.craftgui.minecraft.Window;
@@ -9,9 +7,11 @@ import binnie.core.genetics.BreedingSystem;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IMutation;
 
+import java.util.List;
+
 class ControlMutationBox extends ControlListBox<IMutation> {
 
-    private Type type;
+    private final Type type;
     private IAlleleSpecies species;
 
     @Override

@@ -1,13 +1,5 @@
 package binnie.genetics.item;
 
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-
 import binnie.Binnie;
 import binnie.core.genetics.Gene;
 import binnie.core.util.I18N;
@@ -23,6 +15,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.AlleleManager;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public class ItemSequence extends Item implements IItemAnalysable, IItemChargable {
 
@@ -56,7 +55,7 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18N.localise("genetics.item.sequence." + (5 - stack.getItemDamage() % 6)));
         SequencerItem gene = new SequencerItem(stack);
@@ -87,7 +86,7 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry
                 .getAllele("forestry.speciesMeadows");
         list.add(create(new Gene(species, EnumBeeChromosome.SPECIES, Binnie.Genetics.getBeeRoot()), false));

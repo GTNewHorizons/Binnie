@@ -1,18 +1,6 @@
 package binnie.extratrees.craftgui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.*;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.controls.core.IControlValue;
@@ -28,6 +16,13 @@ import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
 import binnie.extratrees.carpentry.EnumDesign;
 import binnie.extratrees.machines.designer.WoodworkerRecipeComponent;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ControlTileSelect extends Control implements IControlValue<IDesign>, IControlScrollable {
 
@@ -156,7 +151,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
         public void onRenderForeground() {
             ItemStack image = ((WindowWoodworker) getSuperParent()).getDesignerType().getDisplayStack(getValue());
             CraftGUI.render.item(new IPoint(1.0f, 1.0f), image);
-            if (((IControlValue) getParent()).getValue() == getValue()) {
+            if (((IControlValue<?>) getParent()).getValue() == getValue()) {
                 return;
             }
 

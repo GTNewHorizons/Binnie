@@ -45,7 +45,7 @@ public enum CraftGUITexture {
     CheckboxChecked("checkbox.checked"),
     CheckboxCheckedHighlighted("checkbox.checked.highlighted");
 
-    String name;
+    final String name;
 
     CraftGUITexture(String name) {
         this.name = name;

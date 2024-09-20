@@ -1,16 +1,15 @@
 package binnie.extrabees.products;
 
-import java.awt.Color;
-import java.util.LinkedHashMap;
-import java.util.Locale;
-import java.util.Map;
-
-import net.minecraft.item.ItemStack;
-
 import binnie.core.item.IItemEnum;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
+import net.minecraft.item.ItemStack;
+
+import java.awt.*;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+import java.util.Map;
 
 public enum EnumHoneyComb implements IItemEnum {
 
@@ -101,12 +100,12 @@ public enum EnumHoneyComb implements IItemEnum {
     CYANITE(new Color(0x27204d), new Color(0x86ed)),
     BLUTONIUM(new Color(0x27204d), new Color(0x1b00e6));
 
-    public Map<ItemStack, Float> products;
+    public final Map<ItemStack, Float> products;
     public final int primaryColor;
     public final int secondaryColor;
     public final String name;
 
-    protected boolean active;
+    boolean active;
 
     EnumHoneyComb(Color primaryColor, Color secondaryColor) {
         this.primaryColor = primaryColor.getRGB();

@@ -5,9 +5,9 @@ import java.util.List;
 
 public class MachinePayload {
 
-    private List<Integer> intPayload;
-    private List<Float> floatPayload;
-    private List<String> stringPayload;
+    private final List<Integer> intPayload;
+    private final List<Float> floatPayload;
+    private final List<String> stringPayload;
     private int id;
 
     public MachinePayload(int id) {

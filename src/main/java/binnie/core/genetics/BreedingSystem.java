@@ -1,39 +1,20 @@
 package binnie.core.genetics;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-
+import binnie.Binnie;
+import binnie.core.resource.BinnieIcon;
+import binnie.core.util.I18N;
+import binnie.extrabees.genetics.ExtraBeeMutation;
+import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import forestry.api.core.ForestryEvent;
+import forestry.api.genetics.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-import com.mojang.authlib.GameProfile;
-
-import binnie.Binnie;
-import binnie.core.resource.BinnieIcon;
-import binnie.core.util.I18N;
-import binnie.extrabees.genetics.ExtraBeeMutation;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import forestry.api.core.ForestryEvent;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IAlleleBoolean;
-import forestry.api.genetics.IAlleleSpecies;
-import forestry.api.genetics.IBreedingTracker;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IClassification;
-import forestry.api.genetics.IGenome;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IMutation;
-import forestry.api.genetics.ISpeciesRoot;
+import java.util.*;
 
 public abstract class BreedingSystem implements IItemStackRepresentative {
 
@@ -131,6 +112,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
                 for (IAlleleSpecies species2 : branch.getMemberSpecies()) {
                     if (allActiveSpecies.contains(species2)) {
                         possible = true;
+                        break;
                     }
                 }
                 if (!possible) {

@@ -1,14 +1,5 @@
 package binnie.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.client.event.TextureStitchEvent;
-
 import binnie.Binnie;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
@@ -47,6 +38,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.client.event.TextureStitchEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mod(
         modid = "BinnieCore",
@@ -69,7 +68,7 @@ public class BinnieCore extends AbstractMod {
     public static ItemFieldKit fieldKit;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent evt) {
+    public void preInit(FMLPreInitializationEvent ignored) {
         Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
         for (ManagerBase baseManager : Binnie.Managers) {
             addModule(baseManager);
@@ -85,12 +84,12 @@ public class BinnieCore extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent evt) {
+    public void init(FMLInitializationEvent ignored) {
         init();
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent evt) {
+    public void postInit(FMLPostInitializationEvent ignored) {
         postInit();
     }
 

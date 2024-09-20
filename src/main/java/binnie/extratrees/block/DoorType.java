@@ -11,12 +11,12 @@ public enum DoorType {
     DOUBLE("double"),
     FULL("full");
 
-    protected String id;
-    protected IIcon iconDoorLower;
-    protected IIcon iconDoorUpper;
-    protected IIcon iconDoorLowerFlip;
-    protected IIcon iconDoorUpperFlip;
-    protected IIcon iconItem;
+    final String id;
+    IIcon iconDoorLower;
+    IIcon iconDoorUpper;
+    IIcon iconDoorLowerFlip;
+    IIcon iconDoorUpperFlip;
+    IIcon iconItem;
 
     DoorType(String id) {
         this.id = id;

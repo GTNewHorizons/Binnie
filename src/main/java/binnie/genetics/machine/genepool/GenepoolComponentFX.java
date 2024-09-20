@@ -1,16 +1,15 @@
 package binnie.genetics.machine.genepool;
 
-import java.util.Random;
-
-import net.minecraft.client.particle.EntityFX;
-import net.minecraft.world.World;
-
 import binnie.core.BinnieCore;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IRender;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.particle.EntityFX;
+import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class GenepoolComponentFX extends MachineComponent implements IRender.RandomDisplayTick, IRender.DisplayTick {
 
@@ -27,7 +26,7 @@ public class GenepoolComponentFX extends MachineComponent implements IRender.Ran
     @SideOnly(Side.CLIENT)
     @Override
     public void onDisplayTick(World world, int x, int y, int z, Random rand) {
-        if (rand.nextFloat() >= 1.0f || !getUtil().getProcess().isInProgress()) {
+        if (!getUtil().getProcess().isInProgress()) {
             return;
         }
 
@@ -41,14 +40,7 @@ public class GenepoolComponentFX extends MachineComponent implements IRender.Ran
                         0.0,
                         0.0) {
 
-                    double axisX = posX;
-                    double axisZ = posZ;
-                    double angle = rand.nextDouble() * 2.0 * 3.1415;
-
                     {
-                        axisX = 0.0;
-                        axisZ = 0.0;
-                        angle = 0.0;
                         motionX = 0.0;
                         motionZ = 0.0;
                         motionY = rand.nextFloat() * 0.01;
@@ -65,11 +57,6 @@ public class GenepoolComponentFX extends MachineComponent implements IRender.Ran
                     public void onUpdate() {
                         super.onUpdate();
                         setAlphaF((float) Math.cos(1.57 * particleAge / particleMaxAge));
-                    }
-
-                    @Override
-                    public int getFXLayer() {
-                        return 0;
                     }
                 });
     }

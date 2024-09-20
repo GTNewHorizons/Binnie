@@ -1,23 +1,22 @@
 package binnie.core.craftgui.database;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.util.EnumChatFormatting;
-
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.util.I18N;
 import forestry.api.genetics.IClassification;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PageBranchOverview extends PageBranch {
 
-    private ControlText branchName;
-    private ControlText branchScientific;
-    private ControlText branchAuthority;
-    private List<ControlText> branchDescription;
+    private final ControlText branchName;
+    private final ControlText branchScientific;
+    private final ControlText branchAuthority;
+    private final List<ControlText> branchDescription;
 
     public PageBranchOverview(IWidget parent, DatabaseTab tab) {
         super(parent, tab);

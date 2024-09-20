@@ -1,13 +1,5 @@
 package binnie.genetics.genetics;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.EnumChatFormatting;
-
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.genetics.BreedingSystem;
@@ -16,6 +8,13 @@ import binnie.core.util.I18N;
 import binnie.genetics.api.IGene;
 import forestry.api.core.INBTTagable;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GeneArrayItem implements INBTTagable, IGeneItem {
 
@@ -47,8 +46,8 @@ public class GeneArrayItem implements INBTTagable, IGeneItem {
     }
 
     @Override
-    public void getInfo(List tooltip) {
-        List<Object> totalList = new ArrayList<>();
+    public void getInfo(List<String> tooltip) {
+        List<String> totalList = new ArrayList<>();
         for (IGene gene : genes) {
             String chromosomeName = getBreedingSystem().getChromosomeName(gene.getChromosome());
             totalList.add(EnumChatFormatting.GOLD + chromosomeName + EnumChatFormatting.GRAY + ": " + gene.getName());
@@ -64,7 +63,7 @@ public class GeneArrayItem implements INBTTagable, IGeneItem {
     }
 
     public BreedingSystem getBreedingSystem() {
-        if (genes.size() == 0) {
+        if (genes.isEmpty()) {
             return null;
         }
         BreedingSystem system = Binnie.Genetics.getSystem(genes.get(0).getSpeciesRoot().getUID());

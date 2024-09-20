@@ -1,21 +1,7 @@
 package binnie.core.craftgui.minecraft.control;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.Fluid;
-
-import org.lwjgl.opengl.GL11;
-
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.*;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.IArea;
@@ -29,12 +15,20 @@ import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.TankInfo;
 import binnie.core.util.I18N;
+import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.Fluid;
+import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ControlLiquidTank extends Control implements ITooltip {
 
     public static List<Integer> tankError = new ArrayList<>();
     private int tankID;
-    private boolean horizontal;
+    private final boolean horizontal;
 
     public ControlLiquidTank(IWidget parent, int x, int y) {
         this(parent, x, y, false);

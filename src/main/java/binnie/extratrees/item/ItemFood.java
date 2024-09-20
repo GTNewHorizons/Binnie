@@ -1,7 +1,9 @@
 package binnie.extratrees.item;
 
-import java.util.List;
-
+import binnie.core.item.IItemMisc;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -9,10 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import binnie.core.item.IItemMisc;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
+import java.util.List;
 
 public class ItemFood extends net.minecraft.item.ItemFood {
 
@@ -28,7 +27,7 @@ public class ItemFood extends net.minecraft.item.ItemFood {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (IItemMisc itemMisc : items) {
             if (itemMisc.isActive()) {
                 list.add(getStack(itemMisc, 1));
@@ -46,7 +45,7 @@ public class ItemFood extends net.minecraft.item.ItemFood {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         IItemMisc item = getItem(stack.getItemDamage());
         if (item != null) {

@@ -1,8 +1,17 @@
 package binnie.core.craftgui.minecraft;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.BinnieCore;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.events.EventKey;
+import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IBorder;
+import binnie.core.craftgui.geometry.IPoint;
+import binnie.core.craftgui.minecraft.control.ControlSlotBase;
+import binnie.core.nei.NEIHook;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
@@ -17,28 +26,17 @@ import net.minecraft.nbt.NBTException;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import binnie.core.BinnieCore;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.events.EventKey;
-import binnie.core.craftgui.events.EventMouse;
-import binnie.core.craftgui.geometry.IArea;
-import binnie.core.craftgui.geometry.IBorder;
-import binnie.core.craftgui.geometry.IPoint;
-import binnie.core.craftgui.minecraft.control.ControlSlotBase;
-import binnie.core.nei.NEIHook;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
 
 @SideOnly(Side.CLIENT)
 public class GuiCraftGUI extends GuiContainer {
 
-    private Window window;
+    private final Window window;
     private ItemStack draggedItem;
 
     public GuiCraftGUI(Window window) {

@@ -1,11 +1,11 @@
 package binnie.core.nei;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
 import codechicken.nei.PositionedStack;
 import codechicken.nei.recipe.GuiRecipe;
+
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PositionedStackAdv extends PositionedStack {
 
@@ -26,17 +26,13 @@ public class PositionedStackAdv extends PositionedStack {
 
     public List<String> handleTooltip(GuiRecipe guiRecipe, List<String> currenttip) {
         if (!this.tooltip.isEmpty()) {
-            for (String tip : this.tooltip) {
-                currenttip.add(tip);
-            }
+            currenttip.addAll(this.tooltip);
         }
         return currenttip;
     }
 
     public PositionedStackAdv addToTooltip(List<String> lines) {
-        for (String tip : lines) {
-            this.tooltip.add(tip);
-        }
+        this.tooltip.addAll(lines);
         return this;
     }
 

@@ -1,11 +1,11 @@
 package binnie.core.block;
 
-import java.util.List;
-
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.List;
 
 public interface IBlockMetadata extends ITileEntityProvider {
 
@@ -15,7 +15,7 @@ public interface IBlockMetadata extends ITileEntityProvider {
 
     String getBlockName(ItemStack itemStack);
 
-    void addBlockTooltip(ItemStack itemStack, List tooltip);
+    void addBlockTooltip(ItemStack itemStack, List<String> tooltip);
 
     void dropAsStack(World world, int x, int y, int z, ItemStack itemStack);
 }

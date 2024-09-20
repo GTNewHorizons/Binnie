@@ -1,12 +1,12 @@
 package binnie.extratrees.carpentry;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import binnie.core.util.I18N;
 import binnie.extratrees.api.CarpentryManager;
 import binnie.extratrees.api.IDesign;
 import binnie.extratrees.api.IDesignCategory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public enum EnumDesignCategory implements IDesignCategory {
 
@@ -17,8 +17,8 @@ public enum EnumDesignCategory implements IDesignCategory {
     Letters("letters"),
     Diagonal("diagonals");
 
-    protected String name;
-    protected List<IDesign> designs;
+    private final String name;
+    private final List<IDesign> designs;
 
     EnumDesignCategory(String name) {
         this.name = name;

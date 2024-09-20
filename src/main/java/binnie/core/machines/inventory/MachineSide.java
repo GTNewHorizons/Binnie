@@ -1,11 +1,10 @@
 package binnie.core.machines.inventory;
 
-import java.util.Collection;
-import java.util.EnumSet;
-
+import binnie.core.util.I18N;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.core.util.I18N;
+import java.util.Collection;
+import java.util.EnumSet;
 
 public class MachineSide {
 
@@ -32,50 +31,38 @@ public class MachineSide {
 
         String text = "";
         if (sides.contains(ForgeDirection.UP)) {
-            if (sides.size() > 0) {
-                text += ", ";
-            }
+            text += ", ";
             text += I18N.localise("binniecore.gui.side.up");
         }
 
         if (sides.contains(ForgeDirection.DOWN)) {
-            if (sides.size() > 0) {
-                text += ", ";
-            }
+            text += ", ";
             text += I18N.localise("binniecore.gui.side.down");
         }
 
         if (sides.containsAll(MachineSide.SIDES)) {
-            if (sides.size() > 0) {
+            if (!sides.isEmpty()) {
                 text += ", ";
             }
             text += I18N.localise("binniecore.gui.side.sides");
         } else {
             if (sides.contains(ForgeDirection.NORTH)) {
-                if (sides.size() > 0) {
-                    text += ", ";
-                }
+                text += ", ";
                 text += I18N.localise("binniecore.gui.side.north");
             }
 
             if (sides.contains(ForgeDirection.EAST)) {
-                if (sides.size() > 0) {
-                    text += ", ";
-                }
+                text += ", ";
                 text += I18N.localise("binniecore.gui.side.east");
             }
 
             if (sides.contains(ForgeDirection.SOUTH)) {
-                if (sides.size() > 0) {
-                    text += ", ";
-                }
+                text += ", ";
                 text += I18N.localise("binniecore.gui.side.south");
             }
 
             if (sides.contains(ForgeDirection.WEST)) {
-                if (sides.size() > 0) {
-                    text += ", ";
-                }
+                text += ", ";
                 text += I18N.localise("binniecore.gui.side.west");
             }
         }

@@ -13,7 +13,6 @@ public class ControlTankSlot extends ControlSlotFluid {
 
     public ControlTankSlot(IWidget parent, int x, int y, int i) {
         super(parent, x, y, null);
-        tankID = 0;
         tankID = i;
         addSelfEventHandler(new EventMouse.Down.Handler() {
 

@@ -1,22 +1,21 @@
 package binnie.core.craftgui.minecraft;
 
+import binnie.core.machines.inventory.SlotValidator;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-
-import binnie.core.machines.inventory.SlotValidator;
-
 public class WindowInventory implements IInventory {
 
-    private Window window;
-    private Map<Integer, ItemStack> inventory;
-    private Map<Integer, SlotValidator> validators;
-    private List<Integer> disabledAutoDispenses;
+    private final Window window;
+    private final Map<Integer, ItemStack> inventory;
+    private final Map<Integer, SlotValidator> validators;
+    private final List<Integer> disabledAutoDispenses;
 
     public WindowInventory(Window window) {
         inventory = new HashMap<>();
@@ -27,7 +26,7 @@ public class WindowInventory implements IInventory {
 
     @Override
     public int getSizeInventory() {
-        if (inventory.size() == 0) {
+        if (inventory.isEmpty()) {
             return 0;
         }
 
@@ -61,8 +60,7 @@ public class WindowInventory implements IInventory {
             amount = available;
         }
 
-        ItemStack itemStack = item;
-        itemStack.stackSize -= amount;
+        item.stackSize -= amount;
         output.stackSize = amount;
         if (item.stackSize == 0) {
             setInventorySlotContents(index, null);

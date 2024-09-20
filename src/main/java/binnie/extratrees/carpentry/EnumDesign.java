@@ -311,13 +311,13 @@ public enum EnumDesign implements IDesign {
         EnumDesign.OverlappedBarred.setTopPattern(EnumPattern.OverlappedBarred.layout());
     }
 
-    protected String name;
-    protected ILayout topPattern;
-    protected ILayout bottomPattern;
-    protected ILayout northPattern;
-    protected ILayout southPattern;
-    protected ILayout eastPattern;
-    protected ILayout westPattern;
+    private String name;
+    private ILayout topPattern;
+    private ILayout bottomPattern;
+    private ILayout northPattern;
+    private ILayout southPattern;
+    private ILayout eastPattern;
+    private ILayout westPattern;
 
     EnumDesign(String name) {
         this.name = name;

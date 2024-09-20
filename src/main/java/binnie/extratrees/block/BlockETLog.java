@@ -1,8 +1,12 @@
 package binnie.extratrees.block;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.core.Tabs;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -17,13 +21,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.core.Tabs;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockETLog extends BlockLog implements IBlockMetadata {
 
@@ -36,7 +35,7 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < ILogType.ExtraTreeLog.values().length; ++i) {
             list.add(TileEntityMetadata.getItemStack(this, i));
         }
@@ -83,11 +82,6 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
         ILogType.ExtraTreeLog.registerIcons(register);
-    }
-
-    @Override
-    public int getRenderType() {
-        return 31;
     }
 
     @Override
@@ -138,13 +132,8 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
         // ignored
-    }
-
-    @Override
-    public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z) {
-        return true;
     }
 
     @Override
@@ -154,35 +143,17 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 
     @Override
     public int onBlockPlaced(World world, int x, int y, int z, int side, float par6, float par7, float par8, int meta) {
-        byte b0 = 0;
-        switch (side) {
-            case 0:
-            case 1:
-                b0 = 0;
-                break;
-
-            case 2:
-            case 3:
-                b0 = 8;
-                break;
-
-            case 4:
-            case 5:
-                b0 = 4;
-                break;
-        }
-        return b0;
+        return switch (side) {
+            case 2, 3 -> 8;
+            case 4, 5 -> 4;
+            default -> 0;
+        };
     }
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int side) {
         super.breakBlock(world, x, y, z, block, side);
         world.removeTileEntity(x, y, z);
-    }
-
-    @Override
-    public boolean isWood(IBlockAccess world, int x, int y, int z) {
-        return true;
     }
 
     @Override

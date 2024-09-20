@@ -1,18 +1,5 @@
 package binnie.core.craftgui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -39,11 +26,15 @@ import binnie.extrabees.gui.ExtraBeeGUITexture;
 import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.analyser.Analyser;
 import cpw.mods.fml.relauncher.Side;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.ISpeciesRoot;
+import forestry.api.genetics.*;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+
+import java.util.*;
 
 public class WindowFieldKit extends Window {
 
@@ -51,13 +42,13 @@ public class WindowFieldKit extends Window {
     private float glassOffsetY;
     private float glassVX;
     private float glassVY;
-    private Random glassRand;
+    private final Random glassRand;
     private Control GlassControl;
     private ControlChromosome chromo;
     private ControlText text;
     private float analyseProgress;
     private boolean isAnalysing;
-    private Map<IChromosomeType, String> info;
+    private final Map<IChromosomeType, String> info;
 
     public WindowFieldKit(EntityPlayer player, IInventory inventory, Side side) {
         super(280.0f, 230.0f, player, inventory, side);

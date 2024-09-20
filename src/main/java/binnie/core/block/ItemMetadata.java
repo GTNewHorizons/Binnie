@@ -1,7 +1,7 @@
 package binnie.core.block;
 
-import java.util.List;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -10,18 +10,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
 
 public class ItemMetadata extends ItemBlock {
 
     public ItemMetadata(Block block) {
         super(block);
-    }
-
-    @Override
-    public int getMetadata(int damage) {
-        return 0;
     }
 
     @Override
@@ -56,7 +50,7 @@ public class ItemMetadata extends ItemBlock {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         ((IBlockMetadata) field_150939_a).addBlockTooltip(itemStack, tooltip);
     }
 

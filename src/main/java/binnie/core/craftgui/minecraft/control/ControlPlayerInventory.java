@@ -1,15 +1,15 @@
 package binnie.core.craftgui.minecraft.control;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.InventoryType;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ControlPlayerInventory extends Control {
 
-    private List<ControlSlot> slots;
+    private final List<ControlSlot> slots;
 
     public ControlPlayerInventory(IWidget parent, boolean wide) {
         super(
@@ -77,8 +77,4 @@ public class ControlPlayerInventory extends Control {
         return slots.get(i);
     }
 
-    @Override
-    public void onUpdateClient() {
-        // ignored
-    }
 }

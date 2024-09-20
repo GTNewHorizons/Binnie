@@ -1,11 +1,26 @@
 package binnie.extratrees.genetics;
 
-import java.awt.Color;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
-
+import binnie.Binnie;
+import binnie.core.Mods;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.block.ILogType;
+import binnie.extratrees.worldgen.*;
+import binnie.genetics.genetics.AlleleHelper;
+import com.mojang.authlib.GameProfile;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.apiculture.EnumBeeChromosome;
+import forestry.api.arboriculture.*;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IIconProvider;
+import forestry.api.genetics.*;
+import forestry.api.world.ITreeGenData;
+import forestry.arboriculture.render.TextureLeaves;
+import forestry.core.genetics.alleles.EnumAllele;
+import forestry.core.render.TextureManager;
+import forestry.plugins.PluginArboriculture;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -13,100 +28,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.EnumPlantType;
 
-import com.mojang.authlib.GameProfile;
-
-import binnie.Binnie;
-import binnie.core.Mods;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.ILogType;
-import binnie.extratrees.worldgen.DefaultTreeGenerator;
-import binnie.extratrees.worldgen.WorldGenAcornOak;
-import binnie.extratrees.worldgen.WorldGenAspen;
-import binnie.extratrees.worldgen.WorldGenBalsamFir;
-import binnie.extratrees.worldgen.WorldGenBanana;
-import binnie.extratrees.worldgen.WorldGenBox;
-import binnie.extratrees.worldgen.WorldGenBrazilNut;
-import binnie.extratrees.worldgen.WorldGenBrazilwood;
-import binnie.extratrees.worldgen.WorldGenButternut;
-import binnie.extratrees.worldgen.WorldGenCedar;
-import binnie.extratrees.worldgen.WorldGenClove;
-import binnie.extratrees.worldgen.WorldGenCoconut;
-import binnie.extratrees.worldgen.WorldGenCoffee;
-import binnie.extratrees.worldgen.WorldGenCommonAlder;
-import binnie.extratrees.worldgen.WorldGenCommonAsh;
-import binnie.extratrees.worldgen.WorldGenCommonBeech;
-import binnie.extratrees.worldgen.WorldGenCopperBeech;
-import binnie.extratrees.worldgen.WorldGenCypress;
-import binnie.extratrees.worldgen.WorldGenDefault;
-import binnie.extratrees.worldgen.WorldGenDouglasFir;
-import binnie.extratrees.worldgen.WorldGenElder;
-import binnie.extratrees.worldgen.WorldGenElm;
-import binnie.extratrees.worldgen.WorldGenFloweringCrabapple;
-import binnie.extratrees.worldgen.WorldGenGingko;
-import binnie.extratrees.worldgen.WorldGenHawthorn;
-import binnie.extratrees.worldgen.WorldGenHazel;
-import binnie.extratrees.worldgen.WorldGenHolly;
-import binnie.extratrees.worldgen.WorldGenHornbeam;
-import binnie.extratrees.worldgen.WorldGenIroko;
-import binnie.extratrees.worldgen.WorldGenLazy;
-import binnie.extratrees.worldgen.WorldGenLoblollyPine;
-import binnie.extratrees.worldgen.WorldGenLocust;
-import binnie.extratrees.worldgen.WorldGenLogwood;
-import binnie.extratrees.worldgen.WorldGenMango;
-import binnie.extratrees.worldgen.WorldGenMonkeyPuzzle;
-import binnie.extratrees.worldgen.WorldGenOldFustic;
-import binnie.extratrees.worldgen.WorldGenOlive;
-import binnie.extratrees.worldgen.WorldGenOrchardApple;
-import binnie.extratrees.worldgen.WorldGenOsangeOsange;
-import binnie.extratrees.worldgen.WorldGenPear;
-import binnie.extratrees.worldgen.WorldGenPecan;
-import binnie.extratrees.worldgen.WorldGenPrairieCrabapple;
-import binnie.extratrees.worldgen.WorldGenPurpleheart;
-import binnie.extratrees.worldgen.WorldGenRainbowGum;
-import binnie.extratrees.worldgen.WorldGenRedMaple;
-import binnie.extratrees.worldgen.WorldGenRoseGum;
-import binnie.extratrees.worldgen.WorldGenRosewood;
-import binnie.extratrees.worldgen.WorldGenRowan;
-import binnie.extratrees.worldgen.WorldGenSallow;
-import binnie.extratrees.worldgen.WorldGenShrub;
-import binnie.extratrees.worldgen.WorldGenSilverFir;
-import binnie.extratrees.worldgen.WorldGenSwampGum;
-import binnie.extratrees.worldgen.WorldGenSweetCrabapple;
-import binnie.extratrees.worldgen.WorldGenSweetgum;
-import binnie.extratrees.worldgen.WorldGenSycamore;
-import binnie.extratrees.worldgen.WorldGenTree;
-import binnie.extratrees.worldgen.WorldGenWesternHemlock;
-import binnie.extratrees.worldgen.WorldGenWhitebeam;
-import binnie.extratrees.worldgen.WorldGenYew;
-import binnie.genetics.genetics.AlleleHelper;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.apiculture.EnumBeeChromosome;
-import forestry.api.arboriculture.EnumGermlingType;
-import forestry.api.arboriculture.EnumLeafType;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.arboriculture.IGermlingIconProvider;
-import forestry.api.arboriculture.ITree;
-import forestry.api.arboriculture.ITreeGenerator;
-import forestry.api.arboriculture.ITreeRoot;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.core.EnumHumidity;
-import forestry.api.core.EnumTemperature;
-import forestry.api.core.IIconProvider;
-import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IClassification;
-import forestry.api.genetics.IFruitFamily;
-import forestry.api.genetics.IIndividual;
-import forestry.api.genetics.IMutation;
-import forestry.api.world.ITreeGenData;
-import forestry.arboriculture.render.TextureLeaves;
-import forestry.core.genetics.alleles.EnumAllele;
-import forestry.core.render.TextureManager;
-import forestry.plugins.PluginArboriculture;
+import java.awt.*;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
 
 public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGermlingIconProvider {
 
@@ -233,19 +159,19 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
     DwarfHazel("Corylus", "americana", 0x9bb552, ILogType.ExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut,
             WorldGenShrub.class);
 
-    public ILogType wood;
+    public final ILogType wood;
 
-    protected ArrayList<IFruitFamily> families;
-    protected int girth;
-    protected Class<? extends WorldGenerator> gen;
-    protected IAlleleFruit fruit;
-    protected IAllele[] template;
-    protected int color;
-    protected String binomial;
-    protected String uid;
-    protected String branchName;
-    protected IClassification branch;
-    protected int colorPollineted;
+    private final ArrayList<IFruitFamily> families;
+    private final int girth;
+    private Class<? extends WorldGenerator> gen;
+    private final IAlleleFruit fruit;
+    private IAllele[] template;
+    private final int color;
+    private final String binomial;
+    private final String uid;
+    final String branchName;
+    IClassification branch;
+    private final int colorPollineted;
 
     private LeafType leafType;
     private SaplingType saplingType;
@@ -816,7 +742,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
         return new WorldGenDefault(tree);
     }
 
-    protected ExtraTreeSpecies setLeafType(LeafType type) {
+    private ExtraTreeSpecies setLeafType(LeafType type) {
         leafType = type;
         if (leafType == LeafType.CONIFER) {
             saplingType = SaplingType.CONIFER;
@@ -828,7 +754,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
         return this;
     }
 
-    protected ExtraTreeSpecies setSaplingType(SaplingType saplingType) {
+    private ExtraTreeSpecies setSaplingType(SaplingType saplingType) {
         this.saplingType = saplingType;
         return this;
     }
@@ -886,7 +812,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
         return this;
     }
 
-    public int getLeafColor(ITree tree) {
+    public int getLeafColor() {
         return color;
     }
 
@@ -935,9 +861,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
             return 0.0f;
         }
 
-        if (template[EnumTreeChromosome.FRUITS.ordinal()] instanceof ExtraTreeFruitGene) {
-            ExtraTreeFruitGene fruit = (ExtraTreeFruitGene) template[EnumTreeChromosome.FRUITS.ordinal()];
-            for (ItemStack stack : fruit.products.keySet()) {
+        if (template[EnumTreeChromosome.FRUITS.ordinal()] instanceof ExtraTreeFruitGene fruitGene) {
+            for (ItemStack stack : fruitGene.products.keySet()) {
                 if (stack.isItemEqual(itemstack)) {
                     return 1.0f;
                 }
@@ -971,7 +896,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
         ItemStack research = null;
         if (world.rand.nextFloat() < 10.0f / bountyLevel) {
             Collection<? extends IMutation> combinations = getRoot().getCombinations(this);
-            if (combinations.size() > 0) {
+            if (!combinations.isEmpty()) {
                 IMutation[] candidates = combinations.toArray(new IMutation[0]);
                 research = AlleleManager.alleleRegistry
                         .getMutationNoteStack(researcher, candidates[world.rand.nextInt(candidates.length)]);
@@ -982,9 +907,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
             bounty.add(research);
         }
 
-        if (template[EnumTreeChromosome.FRUITS.ordinal()] instanceof ExtraTreeFruitGene) {
-            ExtraTreeFruitGene fruit = (ExtraTreeFruitGene) template[EnumTreeChromosome.FRUITS.ordinal()];
-            for (ItemStack stack : fruit.products.keySet()) {
+        if (template[EnumTreeChromosome.FRUITS.ordinal()] instanceof ExtraTreeFruitGene fruitGene) {
+            for (ItemStack stack : fruitGene.products.keySet()) {
                 ItemStack stack2 = stack.copy();
                 stack2.stackSize = world.rand.nextInt((int) (bountyLevel / 2.0f)) + 1;
                 bounty.add(stack2);
@@ -998,14 +922,14 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
     public int getGermlingColour(EnumGermlingType type, int renderPass) {
         if (type == EnumGermlingType.SAPLING) {
             if (renderPass == 0) {
-                return getLeafColor(null);
+                return getLeafColor();
             }
             if (getLog() == null) {
                 return 0xffffff;
             }
             return getLog().getColour();
         }
-        return getLeafColor(null);
+        return getLeafColor();
     }
 
     @Override
@@ -1033,7 +957,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
                 highest = otherAdvance;
             }
         }
-        return own + ((highest < 0) ? 0 : highest);
+        return own + highest;
     }
 
     @Override

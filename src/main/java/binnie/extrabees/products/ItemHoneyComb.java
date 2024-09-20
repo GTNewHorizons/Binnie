@@ -243,43 +243,23 @@ public class ItemHoneyComb extends ItemProduct {
             EnumHoneyDrop drop = EnumHoneyDrop.values()[EnumHoneyDrop.RED.ordinal() + i];
             int[] dyeC = { 1, 11, 4, 2, 0, 15, 3, 14, 6, 5, 8, 12, 9, 10, 13, 7 };
             int k = dyeC[i];
-            ItemStack dye = new ItemStack(Items.dye, 1, k);
-            switch (k) {
-                case 0:
-                    dye = ExtraBeeItems.BlackDye.get(1);
-                    break;
-
-                case 1:
-                    dye = ExtraBeeItems.RedDye.get(1);
-                    break;
-
-                case 2:
-                    dye = ExtraBeeItems.GreenDye.get(1);
-                    break;
-
-                case 3:
-                    dye = ExtraBeeItems.BrownDye.get(1);
-                    break;
-
-                case 4:
-                    dye = ExtraBeeItems.BlueDye.get(1);
-                    break;
-
-                case 11:
-                    dye = ExtraBeeItems.YellowDye.get(1);
-                    break;
-
-                case 15:
-                    dye = ExtraBeeItems.WhiteDye.get(1);
-                    break;
-            }
+            ItemStack dye = switch (k) {
+                case 0 -> ExtraBeeItems.BlackDye.get(1);
+                case 1 -> ExtraBeeItems.RedDye.get(1);
+                case 2 -> ExtraBeeItems.GreenDye.get(1);
+                case 3 -> ExtraBeeItems.BrownDye.get(1);
+                case 4 -> ExtraBeeItems.BlueDye.get(1);
+                case 11 -> ExtraBeeItems.YellowDye.get(1);
+                case 15 -> ExtraBeeItems.WhiteDye.get(1);
+                default -> new ItemStack(Items.dye, 1, k);
+            };
             type.addProduct(drop.get(1), 1.00f);
             drop.addRemenant(dye);
         }
     }
 
     private static ItemStack getOreDictionary(String string) {
-        if (OreDictionary.getOres(string).size() > 0) {
+        if (!OreDictionary.getOres(string).isEmpty()) {
             return OreDictionary.getOres(string).get(0);
         }
         return null;

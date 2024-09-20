@@ -1,8 +1,14 @@
 package binnie.botany.ceramic;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.botany.items.BotanyItems;
+import binnie.core.BinnieCore;
+import binnie.core.block.*;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -18,19 +24,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.items.BotanyItems;
-import binnie.core.BinnieCore;
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.IMultipassBlock;
-import binnie.core.block.MultipassBlockRenderer;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipassBlock {
 
@@ -90,7 +85,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
     }
 
     @Override
-    public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
         int meta = TileEntityMetadata.getItemDamage(itemStack);
         getType(meta).addTooltip(tooltip);
     }
@@ -101,7 +96,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
         for (EnumFlowerColor c : EnumFlowerColor.values()) {
             BlockType type = new BlockType(c, c, TileType.Tile);
             itemList.add(TileEntityMetadata.getItemStack(this, type.ordinal()));
@@ -205,9 +200,9 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
         VerticalStripeBrick("verticalbrickstripe", "verticalStripedCeramicBricks"),
         VerticalLargeBrick("verticalbricklarge", "largeVerticalCeramicBricks");
 
-        protected String id;
-        protected String name;
-        protected IIcon[] icons;
+        private final String id;
+        private final String name;
+        private final IIcon[] icons;
 
         TileType(String id, String name) {
             icons = new IIcon[3];
@@ -224,32 +219,15 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
         }
 
         public ItemStack getRecipe(List<ItemStack> stacks) {
-            switch (this) {
-                case Tile:
-                    return getTileRecipe(stacks);
-
-                case Split:
-                    return getSplitRecipe(stacks);
-
-                case Chequered:
-                    return getChequeredRecipe(stacks);
-
-                case Mixed:
-                    return getMixedRecipe(stacks);
-
-                case LargeBrick:
-                    return getLargeBrickRecipe(stacks);
-
-                case Brick:
-                case StripeBrick:
-                    return getBrickRecipe(stacks);
-
-                case VerticalLargeBrick:
-                case VerticalBrick:
-                case VerticalStripeBrick:
-                    return getVerticalBrickRecipe(stacks);
-            }
-            return null;
+            return switch (this) {
+                case Tile -> getTileRecipe(stacks);
+                case Split -> getSplitRecipe(stacks);
+                case Chequered -> getChequeredRecipe(stacks);
+                case Mixed -> getMixedRecipe(stacks);
+                case LargeBrick -> getLargeBrickRecipe(stacks);
+                case Brick, StripeBrick -> getBrickRecipe(stacks);
+                case VerticalLargeBrick, VerticalBrick, VerticalStripeBrick -> getVerticalBrickRecipe(stacks);
+            };
         }
 
         private ItemStack getTileRecipe(List<ItemStack> stacks) {
@@ -541,7 +519,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
             return I18N.localise("botany." + type.name);
         }
 
-        public void addTooltip(List tooltip) {
+        public void addTooltip(List<String> tooltip) {
             String name = color1.getName();
             if (type.canDouble() && color2 != color1) {
                 name = I18N.localise("botany.colour.double", name, color2.getName());

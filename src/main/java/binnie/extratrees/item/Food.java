@@ -1,20 +1,19 @@
 package binnie.extratrees.item;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.oredict.OreDictionary;
-
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.item.IItemMisc;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import forestry.api.recipes.RecipeManagers;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public enum Food implements IItemMisc {
 
@@ -79,13 +78,9 @@ public enum Food implements IItemMisc {
     Starfruit(2),
     Candlenut(0);
 
-    protected IIcon icon;
-    protected int hunger;
-    private List<String> ores;
-
-    Food() {
-        this(0);
-    }
+    private IIcon icon;
+    private final int hunger;
+    private final List<String> ores;
 
     Food(int hunger) {
         ores = new ArrayList<>();
@@ -188,7 +183,7 @@ public enum Food implements IItemMisc {
     }
 
     @Override
-    public void addInformation(List tooltip) {
+    public void addInformation(List<String> tooltip) {
         // ignored
     }
 

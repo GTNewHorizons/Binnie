@@ -23,7 +23,7 @@ public class ControlCheckbox extends Control implements IControlValue<Boolean> {
     }
 
     public ControlCheckbox(IWidget parent, float x, float y, float w, String text, boolean bool) {
-        super(parent, x, y, (w > 16.0f) ? w : 16.0f, 16.0f);
+        super(parent, x, y, Math.max(w, 16.0f), 16.0f);
         this.text = text;
         value = bool;
         if (w > 16.0f) {

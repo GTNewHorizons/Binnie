@@ -1,36 +1,30 @@
 package binnie.extratrees.genetics;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
-
-import com.gtnewhorizon.gtnhlib.reflect.Fields;
-
 import binnie.Binnie;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.item.Food;
+import com.gtnewhorizon.gtnhlib.reflect.Fields;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import forestry.api.arboriculture.EnumTreeChromosome;
-import forestry.api.arboriculture.IAlleleFruit;
-import forestry.api.arboriculture.IAlleleTreeSpecies;
-import forestry.api.arboriculture.IFruitProvider;
-import forestry.api.arboriculture.ITreeGenome;
+import forestry.api.arboriculture.*;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAlleleSpecies;
 import forestry.api.genetics.IFruitFamily;
 import forestry.arboriculture.FruitProviderNone;
 import forestry.arboriculture.genetics.alleles.AlleleTreeSpecies;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 
@@ -95,17 +89,17 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
     Gooseberry(8, 0xb99f50, 0xb9cf50, FruitSprite.Tiny),
     GoldenRaspberry(8, 0xbeb03b, 0xf3b03b, FruitSprite.Tiny);
 
-    protected IFruitFamily family;
-    protected boolean isRipening;
-    protected int diffR;
-    protected int diffG;
-    protected int diffB;
-    protected FruitPod pod;
-    protected int ripeningPeriod;
-    protected int colorUnripe;
-    protected int color;
-    protected FruitSprite index;
-    protected HashMap<ItemStack, Float> products;
+    private IFruitFamily family;
+    private boolean isRipening;
+    private int diffR;
+    private int diffG;
+    private int diffB;
+    private final FruitPod pod;
+    private int ripeningPeriod;
+    private int colorUnripe;
+    private int color;
+    private FruitSprite index;
+    final HashMap<ItemStack, Float> products;
 
     ExtraTreeFruitGene(int time, int unripe, int color, FruitSprite index) {
         this.color = color;

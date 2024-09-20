@@ -1,37 +1,14 @@
 package binnie.core.craftgui.minecraft;
 
-import java.util.ArrayList;
-import java.util.Deque;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.Binnie;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.CraftGUI;
-import binnie.core.craftgui.ITooltip;
-import binnie.core.craftgui.ITooltipHelp;
-import binnie.core.craftgui.IWidget;
-import binnie.core.craftgui.Tooltip;
-import binnie.core.craftgui.TopLevelWidget;
-import binnie.core.craftgui.WidgetAttribute;
+import binnie.core.craftgui.*;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.controls.ControlTextCentered;
 import binnie.core.craftgui.events.EventWidget;
 import binnie.core.craftgui.geometry.IPoint;
-import binnie.core.craftgui.minecraft.control.ControlHelp;
-import binnie.core.craftgui.minecraft.control.ControlInfo;
-import binnie.core.craftgui.minecraft.control.ControlPowerSystem;
-import binnie.core.craftgui.minecraft.control.ControlSlot;
-import binnie.core.craftgui.minecraft.control.ControlSlotBase;
-import binnie.core.craftgui.minecraft.control.ControlUser;
-import binnie.core.craftgui.minecraft.control.EnumHighlighting;
+import binnie.core.craftgui.minecraft.control.*;
 import binnie.core.craftgui.renderer.Renderer;
 import binnie.core.craftgui.resource.StyleSheetManager;
 import binnie.core.craftgui.resource.Texture;
@@ -45,23 +22,32 @@ import binnie.core.nei.NEIHook;
 import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.Deque;
 
 public abstract class Window extends TopLevelWidget implements INetwork.RecieveGuiNBT {
 
     protected float titleButtonLeft;
     protected float titleButtonRight;
     private GuiCraftGUI gui;
-    private ContainerCraftGUI container;
-    private WindowInventory windowInventory;
+    private final ContainerCraftGUI container;
+    private final WindowInventory windowInventory;
     private ControlText title;
     private StandardTexture bgText1;
     private StandardTexture bgText2;
     private boolean hasBeenInitialised;
     private EntityPlayer player;
     private IInventory entityInventory;
-    private Side side;
+    private final Side side;
 
     public Window(float width, float height, EntityPlayer player, IInventory inventory, Side side) {
         this.side = side;

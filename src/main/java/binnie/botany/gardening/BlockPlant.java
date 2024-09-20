@@ -1,9 +1,12 @@
 package binnie.botany.gardening;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumSoilType;
+import binnie.botany.api.gardening.IBlockSoil;
+import binnie.core.util.I18N;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,13 +17,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.api.EnumSoilType;
-import binnie.botany.api.gardening.IBlockSoil;
-import binnie.core.util.I18N;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BlockPlant extends BlockBush {
 
@@ -71,7 +70,7 @@ public class BlockPlant extends BlockBush {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (Type type : Type.values()) {
             list.add(type.get());
         }
@@ -137,7 +136,7 @@ public class BlockPlant extends BlockBush {
 
         public IIcon icon;
 
-        protected String name;
+        private final String name;
 
         Type(String name) {
             this.name = name;

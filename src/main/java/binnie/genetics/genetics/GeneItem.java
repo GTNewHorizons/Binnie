@@ -1,17 +1,16 @@
 package binnie.genetics.genetics;
 
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
-
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
 import binnie.core.genetics.Gene;
 import binnie.genetics.api.IGene;
 import forestry.api.core.INBTTagable;
 import forestry.api.genetics.ISpeciesRoot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+
+import java.util.List;
 
 public class GeneItem implements INBTTagable, IGeneItem {
 
@@ -52,7 +51,7 @@ public class GeneItem implements INBTTagable, IGeneItem {
     }
 
     @Override
-    public void getInfo(List tooltip) {
+    public void getInfo(List<String> tooltip) {
         String chromosomeName = getBreedingSystem().getChromosomeName(gene.getChromosome());
         tooltip.add(EnumChatFormatting.GOLD + chromosomeName + EnumChatFormatting.GRAY + ": " + gene.getName());
     }

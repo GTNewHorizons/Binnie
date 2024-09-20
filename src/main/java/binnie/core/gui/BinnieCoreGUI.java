@@ -18,17 +18,11 @@ public enum BinnieCoreGUI implements IBinnieGUID {
     Genesis;
 
     public Window getWindow(EntityPlayer player, IInventory object, Side side) throws Exception {
-        switch (this) {
-            case Compartment:
-                return new WindowCompartment(player, object, side);
-
-            case FieldKit:
-                return new WindowFieldKit(player, null, side);
-
-            case Genesis:
-                return new WindowGenesis(player, null, side);
-        }
-        return null;
+        return switch (this) {
+            case Compartment -> new WindowCompartment(player, object, side);
+            case FieldKit -> new WindowFieldKit(player, null, side);
+            case Genesis -> new WindowGenesis(player, null, side);
+        };
     }
 
     @Override

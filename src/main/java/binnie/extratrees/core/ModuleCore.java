@@ -1,12 +1,5 @@
 package binnie.extratrees.core;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Queue;
-
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.extratrees.api.CarpentryManager;
@@ -17,6 +10,13 @@ import binnie.extratrees.block.PlankType;
 import binnie.extratrees.genetics.ExtraTreeFruitGene;
 import binnie.extratrees.genetics.ExtraTreeSpecies;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class ModuleCore implements IInitializable {
 
@@ -54,8 +54,7 @@ public class ModuleCore implements IInitializable {
             Queue<ExtraTreeFruitGene> fruitQueue = new LinkedList<>();
             Collections.addAll(fruitQueue, ExtraTreeFruitGene.values());
 
-            Queue<IDesign> designQueue = new LinkedList<>();
-            designQueue.addAll(CarpentryManager.carpentryInterface.getSortedDesigns());
+            Queue<IDesign> designQueue = new LinkedList<>(CarpentryManager.carpentryInterface.getSortedDesigns());
 
             fruitQueue.remove(ExtraTreeFruitGene.Apple);
             outputSpecies.println("<table style=\"width: 100%;\">");

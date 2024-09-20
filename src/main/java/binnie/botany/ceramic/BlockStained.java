@@ -1,9 +1,15 @@
 package binnie.botany.ceramic;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import binnie.botany.Botany;
+import binnie.botany.CreativeTabBotany;
+import binnie.botany.genetics.EnumFlowerColor;
+import binnie.core.block.BlockMetadata;
+import binnie.core.block.IBlockMetadata;
+import binnie.core.block.TileEntityMetadata;
+import binnie.core.util.I18N;
+import binnie.extratrees.ExtraTrees;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,16 +25,9 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import binnie.botany.Botany;
-import binnie.botany.CreativeTabBotany;
-import binnie.botany.genetics.EnumFlowerColor;
-import binnie.core.block.BlockMetadata;
-import binnie.core.block.IBlockMetadata;
-import binnie.core.block.TileEntityMetadata;
-import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class BlockStained extends Block implements IBlockMetadata {
 
@@ -111,7 +110,7 @@ public class BlockStained extends Block implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
         int meta = TileEntityMetadata.getItemDamage(itemStack);
         tooltip.add(EnumChatFormatting.GRAY + EnumFlowerColor.get(meta).getName());
     }
@@ -122,7 +121,7 @@ public class BlockStained extends Block implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
         for (EnumFlowerColor c : EnumFlowerColor.values()) {
             itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
         }
