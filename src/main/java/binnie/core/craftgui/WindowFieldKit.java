@@ -1,6 +1,10 @@
 package binnie.core.craftgui;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -35,7 +39,11 @@ import binnie.extrabees.gui.ExtraBeeGUITexture;
 import binnie.genetics.gui.ControlChromosome;
 import binnie.genetics.machine.analyser.Analyser;
 import cpw.mods.fml.relauncher.Side;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
 
 public class WindowFieldKit extends Window {
 

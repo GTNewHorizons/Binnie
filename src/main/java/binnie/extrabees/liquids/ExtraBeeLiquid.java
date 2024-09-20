@@ -1,6 +1,6 @@
 package binnie.extrabees.liquids;
 
-import java.awt.*;
+import java.awt.Color;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;

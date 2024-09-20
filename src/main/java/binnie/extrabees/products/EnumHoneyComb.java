@@ -1,6 +1,6 @@
 package binnie.extrabees.products;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;

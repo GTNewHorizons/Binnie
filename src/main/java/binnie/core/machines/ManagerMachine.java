@@ -1,6 +1,10 @@
 package binnie.core.machines;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 import binnie.core.BinnieCore;
 import binnie.core.ManagerBase;

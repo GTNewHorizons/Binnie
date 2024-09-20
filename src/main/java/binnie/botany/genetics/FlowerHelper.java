@@ -1,6 +1,11 @@
 package binnie.botany.genetics;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,9 +15,21 @@ import net.minecraft.world.World;
 import com.mojang.authlib.GameProfile;
 
 import binnie.botany.Botany;
-import binnie.botany.api.*;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IBotanistTracker;
+import binnie.botany.api.IColourMix;
 import binnie.botany.api.IFlower;
-import forestry.api.genetics.*;
+import binnie.botany.api.IFlowerGenome;
+import binnie.botany.api.IFlowerMutation;
+import binnie.botany.api.IFlowerRoot;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IMutation;
+import forestry.api.genetics.ISpeciesType;
 import forestry.core.genetics.SpeciesRoot;
 
 public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {

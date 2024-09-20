@@ -1,6 +1,6 @@
 package binnie.extratrees.carpentry;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

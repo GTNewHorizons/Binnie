@@ -1,6 +1,6 @@
 package binnie.extrabees.products;
 
-import java.awt.*;
+import java.awt.Color;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;

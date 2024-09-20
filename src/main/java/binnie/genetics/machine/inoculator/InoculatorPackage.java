@@ -4,7 +4,11 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.inventory.*;
+import binnie.core.machines.inventory.ComponentInventorySlots;
+import binnie.core.machines.inventory.ComponentInventoryTransfer;
+import binnie.core.machines.inventory.ComponentTankContainer;
+import binnie.core.machines.inventory.InventorySlot;
+import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;

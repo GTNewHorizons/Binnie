@@ -9,7 +9,12 @@ import net.minecraft.world.World;
 
 import com.mojang.authlib.GameProfile;
 
-import binnie.botany.api.*;
+import binnie.botany.api.EnumAcidity;
+import binnie.botany.api.EnumFlowerChromosome;
+import binnie.botany.api.EnumMoisture;
+import binnie.botany.api.IAlleleFlowerSpecies;
+import binnie.botany.api.IFlowerRoot;
+import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
 import binnie.core.util.I18N;
 import binnie.genetics.genetics.AlleleHelper;
@@ -18,7 +23,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.EnumHumidity;
 import forestry.api.core.EnumTemperature;
 import forestry.api.core.IIconProvider;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.EnumTolerance;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IClassification;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.ISpeciesRoot;
 import forestry.core.genetics.alleles.EnumAllele;
 
 public enum FlowerSpecies implements IAlleleFlowerSpecies {

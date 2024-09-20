@@ -11,7 +11,11 @@ import net.minecraftforge.fluids.Fluid;
 import org.lwjgl.opengl.GL11;
 
 import binnie.core.BinnieCore;
-import binnie.core.craftgui.*;
+import binnie.core.craftgui.CraftGUI;
+import binnie.core.craftgui.ITooltip;
+import binnie.core.craftgui.IWidget;
+import binnie.core.craftgui.Tooltip;
+import binnie.core.craftgui.WidgetAttribute;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.geometry.IArea;

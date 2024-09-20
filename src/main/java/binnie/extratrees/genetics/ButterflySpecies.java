@@ -1,6 +1,6 @@
 package binnie.extratrees.genetics;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;

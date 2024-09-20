@@ -1,6 +1,11 @@
 package binnie.extrabees.genetics;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.EnumSet;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,7 +19,16 @@ import net.minecraftforge.common.EnumPlantType;
 import binnie.core.Mods;
 import binnie.core.util.I18N;
 import forestry.api.apiculture.FlowerManager;
-import forestry.api.genetics.*;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
+import forestry.api.genetics.IAlleleFlowers;
+import forestry.api.genetics.IChromosomeType;
+import forestry.api.genetics.IFlower;
+import forestry.api.genetics.IFlowerProvider;
+import forestry.api.genetics.IFruitBearer;
+import forestry.api.genetics.IIndividual;
+import forestry.api.genetics.IPollinatable;
+import forestry.api.genetics.ISpeciesRoot;
 
 public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromosomeType {
 
