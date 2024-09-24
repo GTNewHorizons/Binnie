@@ -1,9 +1,10 @@
 package binnie.core.genetics;
 
+import net.minecraft.util.MathHelper;
+
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
-import net.minecraft.util.MathHelper;
 
 public enum Tolerance {
 
