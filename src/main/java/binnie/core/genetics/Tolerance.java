@@ -3,6 +3,7 @@ package binnie.core.genetics;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
+import net.minecraft.util.MathHelper;
 
 public enum Tolerance {
 
@@ -43,7 +44,7 @@ public enum Tolerance {
     }
 
     public static Tolerance getHigh(int i) {
-        return switch (i) {
+        return switch (MathHelper.clamp_int(i, 0, 5)) {
             case 0 -> None;
             case 1 -> Up1;
             case 2 -> Up2;
@@ -54,18 +55,18 @@ public enum Tolerance {
     }
 
     public static Tolerance getLow(int i) {
-        return switch (i) {
-            case 0 -> None;
-            case 1 -> Down1;
-            case 2 -> Down2;
-            case 3 -> Down3;
-            case 4 -> Down4;
+        return switch (MathHelper.clamp_int(i, -5, 0)) {
+            case -0 -> None;
+            case -1 -> Down1;
+            case -2 -> Down2;
+            case -3 -> Down3;
+            case -4 -> Down4;
             default -> Down5;
         };
     }
 
     public static Tolerance getBoth(int i) {
-        return switch (i) {
+        return switch (MathHelper.clamp_int(i, 0, 5)) {
             case 0 -> None;
             case 1 -> Both1;
             case 2 -> Both2;
