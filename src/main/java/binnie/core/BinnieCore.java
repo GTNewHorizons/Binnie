@@ -69,7 +69,7 @@ public class BinnieCore extends AbstractMod {
     public static ItemFieldKit fieldKit;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent ignored) {
+    public void preInit(FMLPreInitializationEvent event) {
         Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
         for (ManagerBase baseManager : Binnie.Managers) {
             addModule(baseManager);
@@ -85,12 +85,12 @@ public class BinnieCore extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent ignored) {
+    public void init(FMLInitializationEvent event) {
         init();
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent ignored) {
+    public void postInit(FMLPostInitializationEvent event) {
         postInit();
     }
 

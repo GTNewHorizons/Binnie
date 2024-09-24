@@ -95,7 +95,7 @@ public class Botany extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent ignored) {
+    public void preInit(FMLPreInitializationEvent event) {
         addModule(new ModuleCore());
         addModule(new ModuleGenetics());
         addModule(new ModuleGardening());
@@ -103,12 +103,12 @@ public class Botany extends AbstractMod {
     }
 
     @Mod.EventHandler
-    public void init(FMLInitializationEvent ignored) {
+    public void init(FMLInitializationEvent event) {
         init();
     }
 
     @Mod.EventHandler
-    public void postInit(FMLPostInitializationEvent ignored) {
+    public void postInit(FMLPostInitializationEvent event) {
         postInit();
     }
 
