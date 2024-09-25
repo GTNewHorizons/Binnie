@@ -3,6 +3,7 @@ package binnie.core;
 import binnie.Binnie;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.config.ModsConfig;
 import binnie.core.craftgui.minecraft.ModuleCraftGUI;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
@@ -13,7 +14,6 @@ import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.machines.MachineGroup;
 import binnie.core.machines.storage.ModuleStorage;
-import binnie.core.mod.config.ConfigurationMods;
 import binnie.core.mod.parser.FieldParser;
 import binnie.core.mod.parser.ItemParser;
 import binnie.core.network.BinnieCorePacketID;
@@ -46,12 +46,16 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.TextureStitchEvent;
 
 @Mod(
-        modid = "BinnieCore",
-        name = "Binnie Core",
+        modid = BinnieCore.CORE_MODID,
+        name = BinnieCore.CORE_MOD_NAME,
         version = Tags.VERSION,
         useMetadata = true,
-        dependencies = "after:Forestry@[4.2,),required-after:gtnhlib@[0.0.10,)")
+        dependencies = "after:Forestry@[4.2,),required-after:gtnhlib@[0.0.10,)",
+        guiFactory = "binnie.core.config.ModsConfigGUIFactory")
 public class BinnieCore extends AbstractMod {
+
+    public static final String CORE_MODID = "BinnieCore";
+    public static final String CORE_MOD_NAME = "Binnie Core";
 
     @Mod.Instance("BinnieCore")
     public static BinnieCore instance;
@@ -67,7 +71,6 @@ public class BinnieCore extends AbstractMod {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
         for (ManagerBase baseManager : Binnie.Managers) {
             addModule(baseManager);
         }
@@ -132,19 +135,19 @@ public class BinnieCore extends AbstractMod {
     }
 
     public static boolean isBotanyActive() {
-        return ConfigurationMods.botany;
+        return ModsConfig.botany;
     }
 
     public static boolean isGeneticsActive() {
-        return ConfigurationMods.genetics;
+        return ModsConfig.genetics;
     }
 
     public static boolean isExtraBeesActive() {
-        return ConfigurationMods.extraBees && isApicultureActive();
+        return ModsConfig.extraBees && isApicultureActive();
     }
 
     public static boolean isExtraTreesActive() {
-        return ConfigurationMods.extraTrees && isArboricultureActive();
+        return ModsConfig.extraTrees && isArboricultureActive();
     }
 
     @Override
