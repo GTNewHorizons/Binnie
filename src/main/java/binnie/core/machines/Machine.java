@@ -35,7 +35,7 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
     private final TileEntity tile;
     private boolean queuedInventoryUpdate = false;
     private GameProfile owner;
-    private final MachineUtil mu = new MachineUtil(this);
+    private final MachineUtil machineUtil = new MachineUtil(this);
 
     public Machine(MachinePackage pack, TileEntity tile) {
         this.tile = tile;
@@ -225,7 +225,7 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 
     @Override
     public MachineUtil getMachineUtil() {
-        return mu;
+        return machineUtil;
     }
 
     @Override
