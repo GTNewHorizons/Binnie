@@ -1,5 +1,7 @@
 package binnie.extratrees;
 
+import static binnie.extratrees.ExtraTrees.MODID;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
@@ -16,7 +18,6 @@ import binnie.extratrees.block.decor.BlockMultiFence;
 import binnie.extratrees.carpentry.BlockCarpentry;
 import binnie.extratrees.carpentry.BlockStainedDesign;
 import binnie.extratrees.carpentry.ModuleCarpentry;
-import binnie.extratrees.config.ConfigurationMain;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.core.ModuleCore;
 import binnie.extratrees.genetics.ModuleGenetics;
@@ -30,13 +31,10 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(
-        modid = "ExtraTrees",
-        name = "Extra Trees",
-        version = Tags.VERSION,
-        useMetadata = true,
-        dependencies = "after:BinnieCore")
+@Mod(modid = MODID, name = "Extra Trees", version = Tags.VERSION, useMetadata = true, dependencies = "after:BinnieCore")
 public class ExtraTrees extends AbstractMod {
+
+    public static final String MODID = "ExtraTrees";
 
     @Mod.Instance("ExtraTrees")
     public static ExtraTrees instance;
@@ -99,11 +97,6 @@ public class ExtraTrees extends AbstractMod {
     @Override
     public IBinnieGUID[] getGUIDs() {
         return ExtraTreesGUID.values();
-    }
-
-    @Override
-    public Class<?>[] getConfigs() {
-        return new Class[] { ConfigurationMain.class };
     }
 
     @Override
