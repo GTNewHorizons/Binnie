@@ -78,7 +78,8 @@ public class Lumbermill {
             }
 
             if (iRecipe instanceof ShapelessOreRecipe shapelessOre) {
-                if (shapelessOre.getInput().size() != 1 || !(shapelessOre.getInput().get(0) instanceof ItemStack input)) {
+                if (shapelessOre.getInput().size() != 1
+                        || !(shapelessOre.getInput().get(0) instanceof ItemStack input)) {
                     continue;
                 }
 
