@@ -221,9 +221,9 @@ public class PlankType {
 
         @Override
         public IIcon getIcon() {
-            getStack();
-            int meta = getStack().getItemDamage();
-            Block block = ((ItemBlock) getStack().getItem()).field_150939_a;
+            final ItemStack stack = getStack();
+            final int meta = stack.getItemDamage();
+            final Block block = ((ItemBlock) stack.getItem()).field_150939_a;
             return block.getIcon(2, meta);
         }
 
@@ -272,9 +272,10 @@ public class PlankType {
 
         @Override
         public IIcon getIcon() {
-            if (getStack() != null) {
-                int meta = getStack().getItemDamage();
-                Block block = ((ItemBlock) getStack().getItem()).field_150939_a;
+            final ItemStack stack = getStack();
+            if (stack != null) {
+                int meta = stack.getItemDamage();
+                Block block = ((ItemBlock) stack.getItem()).field_150939_a;
                 return block.getIcon(2, meta);
             }
             return null;
