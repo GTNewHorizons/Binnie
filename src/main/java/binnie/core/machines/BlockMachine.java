@@ -134,11 +134,11 @@ public class BlockMachine extends BlockContainer implements IBlockMachine {
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         TileEntity tileentity = world.getTileEntity(x, y, z);
-        if (!(tileentity instanceof TileEntityMachine entity)) {
+        if (!(tileentity instanceof TileEntityMachine machine)) {
             return;
         }
 
-        entity.onBlockDestroy();
+        machine.onBlockDestroy();
         super.breakBlock(world, x, y, z, block, meta);
     }
 

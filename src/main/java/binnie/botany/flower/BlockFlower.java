@@ -108,14 +108,14 @@ public class BlockFlower extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (!(tile instanceof TileEntityFlower f)) {
+        if (!(tile instanceof TileEntityFlower tileFlower)) {
             return super.getIcon(world, x, y, z, side);
         }
 
-        EnumFlowerStage stage = (f.getAge() == 0) ? EnumFlowerStage.SEED : EnumFlowerStage.FLOWER;
-        IFlowerType flower = f.getType();
-        int section = f.getRenderSection();
-        boolean flowered = f.isFlowered();
+        EnumFlowerStage stage = (tileFlower.getAge() == 0) ? EnumFlowerStage.SEED : EnumFlowerStage.FLOWER;
+        IFlowerType flower = tileFlower.getType();
+        int section = tileFlower.getRenderSection();
+        boolean flowered = tileFlower.isFlowered();
         if (RendererBotany.pass == 0) {
             return flower.getStem(stage, flowered, section);
         }
@@ -128,11 +128,11 @@ public class BlockFlower extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileEntityFlower f) {
+        if (tile instanceof TileEntityFlower tileFlower) {
             if (RendererBotany.pass == 0) {
-                return f.getStemColour();
+                return tileFlower.getStemColour();
             }
-            return (RendererBotany.pass == 1) ? f.getPrimaryColor() : f.getSecondaryColor();
+            return (RendererBotany.pass == 1) ? tileFlower.getPrimaryColor() : tileFlower.getSecondaryColor();
         }
         return 0xffffff;
     }
@@ -151,13 +151,13 @@ public class BlockFlower extends BlockContainer {
         super.onNeighborBlockChange(world, x, y, z, block);
         checkAndDropBlock(world, x, y, z);
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (!(tile instanceof TileEntityFlower flower)) {
+        if (!(tile instanceof TileEntityFlower tileFlower)) {
             return;
         }
 
-        if (flower.getSection() == 0 && flower.getFlower() != null
-                && flower.getFlower().getAge() > 0
-                && flower.getFlower().getGenome().getPrimary().getType().getSections() > 1
+        if (tileFlower.getSection() == 0 && tileFlower.getFlower() != null
+                && tileFlower.getFlower().getAge() > 0
+                && tileFlower.getFlower().getGenome().getPrimary().getType().getSections() > 1
                 && world.getBlock(x, y + 1, z) != Botany.flower) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
             world.setBlockToAir(x, y, z);

@@ -55,7 +55,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
         int x = event.x;
         int y = event.y;
         int z = event.z;
-        if (!(world.getBlock(x, y, z) instanceof BlockDesign blockC)) {
+        if (!(world.getBlock(x, y, z) instanceof BlockDesign blockDesign)) {
             return;
         }
 
@@ -65,10 +65,10 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
             return;
         }
 
-        DesignBlock block = blockC.getCarpentryBlock(world, x, y, z);
+        DesignBlock carpentryBlock = blockDesign.getCarpentryBlock(world, x, y, z);
         TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(x, y, z);
-        block.rotate(event.face, item, player, world, x, y, z);
-        int meta = block.getBlockMetadata(blockC.getDesignSystem());
+        carpentryBlock.rotate(event.face, item, player, world, x, y, z);
+        int meta = carpentryBlock.getBlockMetadata(blockDesign.getDesignSystem());
         tile.setTileMetadata(meta, true);
     }
 

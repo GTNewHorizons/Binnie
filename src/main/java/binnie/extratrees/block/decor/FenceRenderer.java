@@ -145,8 +145,8 @@ public class FenceRenderer implements ISimpleBlockRenderingHandler {
         float i = 0.0625f;
         FenceType fenceType = new FenceType(0);
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileEntityMetadata tem && block instanceof BlockMultiFence) {
-            fenceType = WoodManager.getFenceType(tem.getTileMetadata());
+        if (tile instanceof TileEntityMetadata tileMeta && block instanceof BlockMultiFence) {
+            fenceType = WoodManager.getFenceType(tileMeta.getTileMetadata());
         }
 
         boolean rendered;

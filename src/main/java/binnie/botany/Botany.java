@@ -151,8 +151,8 @@ public class Botany extends AbstractMod {
         if (event.entityPlayer != null && event.entityPlayer.getHeldItem() != null
                 && event.entityPlayer.getHeldItem().getItem() == Items.shears) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
-            if (tile instanceof TileEntityFlower tef) {
-                tef.onShear();
+            if (tile instanceof TileEntityFlower tileFlower) {
+                tileFlower.onShear();
                 event.entityPlayer.getHeldItem().damageItem(1, event.entityPlayer);
             }
         }
@@ -160,10 +160,10 @@ public class Botany extends AbstractMod {
         if (event.entityPlayer != null && event.entityPlayer.getHeldItem() != null
                 && event.entityPlayer.getHeldItem().getItem() == Botany.pollen) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
-            if (tile instanceof TileEntityFlower tef) {
+            if (tile instanceof TileEntityFlower tileFlower) {
                 IFlower pollen = BotanyCore.getFlowerRoot().getMember(event.entityPlayer.getHeldItem());
-                if (pollen != null && tef.canMateWith(pollen)) {
-                    tef.mateWith(pollen);
+                if (pollen != null && tileFlower.canMateWith(pollen)) {
+                    tileFlower.mateWith(pollen);
                     if (!event.entityPlayer.capabilities.isCreativeMode) {
                         ItemStack heldItem = event.entityPlayer.getHeldItem();
                         heldItem.stackSize--;

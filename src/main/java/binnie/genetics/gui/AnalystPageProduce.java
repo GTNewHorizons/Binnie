@@ -114,9 +114,9 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
                 }
             }
 
-            if (iRecipe instanceof ShapelessOreRecipe shore) {
+            if (iRecipe instanceof ShapelessOreRecipe shapelessOre) {
                 boolean match = true;
-                for (final Object rec : shore.getInput()) {
+                for (final Object rec : shapelessOre.getInput()) {
                     if (rec != null && (!(rec instanceof ItemStack i) || !stack.isItemEqual(i))) {
                         match = false;
                         break;
@@ -126,7 +126,7 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
                 if (!match) {
                     continue;
                 }
-                products.add(shore.getRecipeOutput());
+                products.add(shapelessOre.getRecipeOutput());
             }
         }
         return products;

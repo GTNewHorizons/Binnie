@@ -145,9 +145,9 @@ public class ContainerCraftGUI extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        if (player instanceof EntityPlayerMP emp) {
-            if (!crafters.contains(emp)) {
-                crafters.add(emp);
+        if (player instanceof EntityPlayerMP playerMP) {
+            if (!crafters.contains(playerMP)) {
+                crafters.add(playerMP);
             }
             sentNBT.clear();
         }
@@ -298,8 +298,8 @@ public class ContainerCraftGUI extends Container {
 
             if (shouldSend) {
                 for (Object crafter : crafters) {
-                    if (crafter instanceof EntityPlayerMP player) {
-                        BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), player);
+                    if (crafter instanceof EntityPlayerMP playerMP) {
+                        BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), playerMP);
                     }
                 }
                 sentThisTime.put(nbt.getKey(), nbt.getValue());

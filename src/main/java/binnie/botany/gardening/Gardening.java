@@ -118,13 +118,13 @@ public class Gardening {
             return false;
         }
 
-        TileEntity tileFlower = world.getTileEntity(x, y, z);
-        TileEntity below = world.getTileEntity(x, y - 1, z);
-        if (tileFlower instanceof TileEntityFlower tef) {
-            if (below instanceof TileEntityFlower tefB) {
-                tef.setSection(tefB.getSection());
+        final TileEntity tile = world.getTileEntity(x, y, z);
+        final TileEntity below = world.getTileEntity(x, y - 1, z);
+        if (tile instanceof TileEntityFlower tileFlower) {
+            if (below instanceof TileEntityFlower lowerFlower) {
+                tileFlower.setSection(lowerFlower.getSection());
             } else {
-                tef.create(flower, owner);
+                tileFlower.create(flower, owner);
             }
         }
 

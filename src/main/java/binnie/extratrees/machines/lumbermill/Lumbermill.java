@@ -55,13 +55,13 @@ public class Lumbermill {
     private static Collection<ItemStack> getRecipeResult(ItemStack output) {
         List<ItemStack> list = new ArrayList<>();
         for (IRecipe iRecipe : CraftingManager.getInstance().getRecipeList()) {
-            if (iRecipe instanceof ShapelessRecipes recipe) {
-                if (recipe.recipeItems.size() != 1 || !(recipe.recipeItems.get(0) instanceof ItemStack)) {
+            if (iRecipe instanceof ShapelessRecipes shapeless) {
+                if (shapeless.recipeItems.size() != 1 || !(shapeless.recipeItems.get(0) instanceof ItemStack)) {
                     continue;
                 }
 
-                ItemStack input = recipe.recipeItems.get(0);
-                if (recipe.getRecipeOutput() != null && recipe.getRecipeOutput().isItemEqual(output)) {
+                ItemStack input = shapeless.recipeItems.get(0);
+                if (shapeless.getRecipeOutput() != null && shapeless.getRecipeOutput().isItemEqual(output)) {
                     list.add(input);
                 }
             }
@@ -77,12 +77,12 @@ public class Lumbermill {
                 }
             }
 
-            if (iRecipe instanceof ShapelessOreRecipe shore) {
-                if (shore.getInput().size() != 1 || !(shore.getInput().get(0) instanceof ItemStack input)) {
+            if (iRecipe instanceof ShapelessOreRecipe shapelessOre) {
+                if (shapelessOre.getInput().size() != 1 || !(shapelessOre.getInput().get(0) instanceof ItemStack input)) {
                     continue;
                 }
 
-                if (shore.getRecipeOutput() == null || !shore.getRecipeOutput().isItemEqual(output)) {
+                if (shapelessOre.getRecipeOutput() == null || !shapelessOre.getRecipeOutput().isItemEqual(output)) {
                     continue;
                 }
                 list.add(input);
