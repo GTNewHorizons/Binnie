@@ -12,12 +12,7 @@ import binnie.core.util.I18N;
 
 public class MachineSide {
 
-    // TODO: scream test removing these
-    @Deprecated
-    public static final EnumSet<ForgeDirection> TOP_AND_BOTTOM = EnumSet.of(UP, DOWN);
-    @Deprecated
-    public static final EnumSet<ForgeDirection> NONE = EnumSet.noneOf(ForgeDirection.class);
-    public static final EnumSet<ForgeDirection> SIDES = EnumSet
+    private static final EnumSet<ForgeDirection> SIDES = EnumSet
             .of(ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST);
     private static final EnumSet<ForgeDirection> ALL = EnumSet
             .of(UP, DOWN, ForgeDirection.NORTH, ForgeDirection.SOUTH, ForgeDirection.EAST, ForgeDirection.WEST);
