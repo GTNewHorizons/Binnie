@@ -1,7 +1,11 @@
 package binnie.extratrees;
 
 import static binnie.extratrees.ExtraTrees.MODID;
+import static binnie.extratrees.ExtraTrees.MOD_NAME;
 
+import binnie.extratrees.config.ETConfig;
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 
@@ -31,16 +35,26 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = MODID, name = "Extra Trees", version = Tags.VERSION, useMetadata = true, dependencies = "after:BinnieCore")
+@Mod(modid = MODID, name = MOD_NAME, version = Tags.VERSION, useMetadata = true, dependencies = "after:BinnieCore",
+guiFactory = "binnie.extratrees.config.ETConfigGUIFactory")
 public class ExtraTrees extends AbstractMod {
 
     public static final String MODID = "ExtraTrees";
+    public static final String MOD_NAME = "Extra Trees";
 
     @Mod.Instance("ExtraTrees")
     public static ExtraTrees instance;
 
     @SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
     public static Proxy proxy;
+
+    static {
+        try {
+            ConfigurationManager.registerConfig(ETConfig.class);
+        } catch (ConfigException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static Item itemDictionary;
     public static Item itemDictionaryLepi;
@@ -109,6 +123,7 @@ public class ExtraTrees extends AbstractMod {
         return ExtraTrees.proxy;
     }
 
+    // Concerningly, this isn't the same as the MODID
     @Override
     public String getModID() {
         return "extratrees";
