@@ -1,23 +1,22 @@
 package binnie.genetics.nei;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.oredict.OreDictionary;
+import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
 
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSequence;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class AnalyserRecipeHandler extends RecipeHandlerBase {
 
@@ -25,7 +24,7 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void prepare() {
-        recipes.add(new AnalyserRecipe(new ItemStack(Genetics.itemSequencer, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new AnalyserRecipe(new ItemStack(SEQUENCER.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
 
         if (BinnieCore.isApicultureActive()) {
             recipes.add(new AnalyserRecipe(Mods.forestry.stack("beeDroneGE", 1, OreDictionary.WILDCARD_VALUE)));
@@ -130,8 +129,8 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
                 List<ItemStack> analysableList = new ArrayList<>();
 
                 if (recipe.getAnalysable().getItem() instanceof ItemSequence) {
-                    for (ItemStack seq : ItemList.itemMap.get(Genetics.itemSequencer)) {
-                        for (int i = Genetics.itemSequencer.getMaxDamage(); i >= 0; i--) {
+                    for (ItemStack seq : ItemList.itemMap.get(SEQUENCER.getItem())) {
+                        for (int i = SEQUENCER.getItem().getMaxDamage(); i >= 0; i--) {
                             ItemStack temp = seq.copy();
                             temp.setItemDamage(i);
                             analysableList.add(temp);

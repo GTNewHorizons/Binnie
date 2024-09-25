@@ -1,7 +1,5 @@
 package binnie.genetics;
 
-import net.minecraft.item.Item;
-
 import binnie.core.AbstractMod;
 import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
@@ -11,9 +9,6 @@ import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
-import binnie.genetics.item.ItemAnalyst;
-import binnie.genetics.item.ItemDatabase;
-import binnie.genetics.item.ItemSerumArray;
 import binnie.genetics.item.ModuleItem;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.nei.IMCForNEI;
@@ -23,6 +18,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.item.Item;
 
 @Mod(
         modid = "Genetics",
@@ -38,18 +34,11 @@ public class Genetics extends AbstractMod {
     @SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
     public static Proxy proxy;
 
-    public static ItemSerumArray itemSerumArray = null;
     public static final String CHANNEL = "GEN";
     public static Item itemGenetics;
-    public static Item itemSerum;
-    public static Item itemSequencer;
     public static MachineGroup packageGenetic;
     public static MachineGroup packageAdvGenetic;
     public static MachineGroup packageLabMachine;
-    public static ItemDatabase database;
-    public static ItemAnalyst analyst;
-    public static Item registry;
-    public static Item masterRegistry;
 
     public Genetics() {
         Genetics.instance = this;

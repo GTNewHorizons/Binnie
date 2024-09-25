@@ -1,18 +1,18 @@
 package binnie.genetics.nei;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import static binnie.genetics.item.GeneticsItemsN.DATABASE;
+import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
 
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 public class SequencerRecipeHandler extends RecipeHandlerBase {
 
@@ -61,9 +61,9 @@ public class SequencerRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
-        if (NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(Genetics.itemSequencer), ingredient)
+        if (NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(SEQUENCER.getItem()), ingredient)
                 || NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.FluorescentDye.get(1), ingredient)
-                || NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(Genetics.database), ingredient)) {
+                || NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(DATABASE.getItem()), ingredient)) {
             this.loadAllRecipes();
         }
     }
@@ -72,7 +72,7 @@ public class SequencerRecipeHandler extends RecipeHandlerBase {
 
         public PositionedStack seq;
         public PositionedStack fluorescentDye = new PositionedStack(GeneticsItems.FluorescentDye.get(1), 53, 40);
-        public PositionedStack database = new PositionedStack(new ItemStack(Genetics.database), 105, 19);
+        public PositionedStack database = new PositionedStack(new ItemStack(DATABASE.getItem()), 105, 19);
         public PositionedStack emptySeq = new PositionedStack(GeneticsItems.EmptySequencer.get(1), 105, 40);
         public List<PositionedStack> ingredients = new ArrayList<>();
         public List<PositionedStack> results = new ArrayList<>();
@@ -80,8 +80,8 @@ public class SequencerRecipeHandler extends RecipeHandlerBase {
         public CachedSequencerRecipe() {
             List<ItemStack> seqList = new ArrayList<>();
 
-            for (ItemStack itemStack : ItemList.itemMap.get(Genetics.itemSequencer)) {
-                for (int i = Genetics.itemSequencer.getMaxDamage(); i >= 0; i--) {
+            for (ItemStack itemStack : ItemList.itemMap.get(SEQUENCER.getItem())) {
+                for (int i = SEQUENCER.getItem().getMaxDamage(); i >= 0; i--) {
                     ItemStack temp = itemStack.copy();
                     temp.setItemDamage(i);
                     seqList.add(temp);

@@ -1,12 +1,12 @@
 package binnie.genetics.machine.sequencer;
 
-import net.minecraft.item.ItemStack;
+import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
 import binnie.genetics.genetics.SequencerItem;
 import binnie.genetics.machine.ModuleMachine;
+import net.minecraft.item.ItemStack;
 
 public class UnsequencedSlotValidator extends SlotValidator {
 
@@ -16,7 +16,7 @@ public class UnsequencedSlotValidator extends SlotValidator {
 
     @Override
     public boolean isValid(ItemStack itemStack) {
-        if (itemStack.getItem() == Genetics.itemSequencer) {
+        if (itemStack.getItem() == SEQUENCER.getItem()) {
             SequencerItem seq = new SequencerItem(itemStack);
             return seq.sequenced < 100;
         }

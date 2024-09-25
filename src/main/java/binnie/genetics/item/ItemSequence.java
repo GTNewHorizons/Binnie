@@ -1,5 +1,7 @@
 package binnie.genetics.item;
 
+import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -38,7 +40,7 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
     }
 
     public static ItemStack create(IGene gene, boolean sequenced) {
-        ItemStack item = new ItemStack(Genetics.itemSequencer);
+        ItemStack item = new ItemStack(SEQUENCER.getItem());
         item.setItemDamage(sequenced ? 0 : item.getMaxDamage());
         SequencerItem seq = new SequencerItem(gene);
         seq.writeToItem(item);

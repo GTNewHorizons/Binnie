@@ -1,5 +1,12 @@
 package binnie.genetics.item;
 
+import static binnie.genetics.item.GeneticsItemsN.ANALYST;
+import static binnie.genetics.item.GeneticsItemsN.DATABASE;
+import static binnie.genetics.item.GeneticsItemsN.REGISTRY;
+import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
+import static binnie.genetics.item.GeneticsItemsN.SERUM;
+import static binnie.genetics.item.GeneticsItemsN.SERUM_ARRAY;
+
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -41,14 +48,7 @@ public class ModuleItem implements IInitializable {
 
     @Override
     public void preInit() {
-        Genetics.itemSerum = new ItemSerum();
-        Genetics.itemSerumArray = new ItemSerumArray();
-        Genetics.itemSequencer = new ItemSequence();
         Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), GeneticsCreativeTab.instance);
-        Genetics.database = new ItemDatabase();
-        Genetics.analyst = new ItemAnalyst();
-        Genetics.registry = new ItemRegistry();
-        Genetics.masterRegistry = new ItemMasterRegistry();
         Binnie.Liquid.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
     }
 
@@ -145,7 +145,7 @@ public class ModuleItem implements IInitializable {
                 100,
                 Binnie.Liquid.getLiquidStack("water", 2000),
                 null,
-                new ItemStack(Genetics.database),
+                new ItemStack(DATABASE.getItem()),
                 "X#X",
                 "YEY",
                 "RDR",
@@ -162,9 +162,9 @@ public class ModuleItem implements IInitializable {
                 'E',
                 Blocks.obsidian);
 
-        GameRegistry.addSmelting(Genetics.itemSequencer, GeneticsItems.EmptySequencer.get(1), 0.0f);
-        GameRegistry.addSmelting(Genetics.itemSerum, GeneticsItems.EmptySerum.get(1), 0.0f);
-        GameRegistry.addSmelting(Genetics.itemSerumArray, GeneticsItems.EmptyGenome.get(1), 0.0f);
+        GameRegistry.addSmelting(SEQUENCER.getItem(), GeneticsItems.EmptySequencer.get(1), 0.0f);
+        GameRegistry.addSmelting(SERUM.getItem(), GeneticsItems.EmptySerum.get(1), 0.0f);
+        GameRegistry.addSmelting(SERUM_ARRAY.getItem(), GeneticsItems.EmptyGenome.get(1), 0.0f);
 
         // TODONE refactor refactor refactor this!
         // CombatZAK up to the task!
@@ -184,7 +184,7 @@ public class ModuleItem implements IInitializable {
         ItemStack circuit = GeneticsItems.IntegratedCircuit.get(1); // get a reference to Integrated circuit
         Item diamond = Items.diamond; // save a reference to diamond
 
-        ItemStack analyst = new ItemStack(Genetics.analyst); // save a reference to the analyst, will make the next bit
+        ItemStack analyst = new ItemStack(ANALYST.getItem()); // save a reference to the analyst, will make the next bit
                                                              // easier
 
         // the following code is a sufficient replacement for the 3 nested loops that preceded it; arguably this is
@@ -291,7 +291,7 @@ public class ModuleItem implements IInitializable {
         // get some references to dictionary/databases for the various modules; these names are very inconsistent for
         // like items.
         // should be refactored in their respective modules.
-        ItemStack registry = new ItemStack(Genetics.registry);
+        ItemStack registry = new ItemStack(REGISTRY.getItem());
         Item beeDb = ExtraBees.dictionary;
         Item treeDb = ExtraTrees.itemDictionary;
         Item flwrDb = Botany.database;

@@ -1,5 +1,7 @@
 package binnie.genetics.genetics;
 
+import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
+
 import net.minecraft.item.ItemStack;
 
 import binnie.genetics.Genetics;
@@ -57,7 +59,7 @@ public class Engineering {
         if (serum.getItem() instanceof IItemSerum) {
             return ((IItemSerum) serum.getItem()).getGenes(serum);
         }
-        if (serum.getItem() == Genetics.itemSequencer) {
+        if (serum.getItem() == SEQUENCER.getItem()) {
             return new IGene[] { new SequencerItem(serum).gene };
         }
         return new IGene[0];

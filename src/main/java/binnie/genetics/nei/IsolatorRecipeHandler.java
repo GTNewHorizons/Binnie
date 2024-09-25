@@ -1,13 +1,6 @@
 package binnie.genetics.nei;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
+import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
 
 import binnie.Binnie;
 import binnie.botany.Botany;
@@ -18,7 +11,6 @@ import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
 import binnie.core.nei.PositionedStackAdv;
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSequence;
 import codechicken.lib.gui.GuiDraw;
@@ -28,6 +20,13 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class IsolatorRecipeHandler extends RecipeHandlerBase {
 
@@ -96,7 +95,7 @@ public class IsolatorRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void loadCraftingRecipes(ItemStack result) {
-        if (NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(Genetics.itemSequencer), result)) {
+        if (NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(SEQUENCER.getItem()), result)) {
             for (IsolatorRecipe recipe : recipes) {
                 this.arecipes.add(new CachedIsolatorRecipe(recipe));
             }

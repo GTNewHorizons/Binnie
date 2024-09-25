@@ -1,12 +1,7 @@
 package binnie.genetics.nei;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
+import static binnie.genetics.item.GeneticsItemsN.SERUM;
+import static binnie.genetics.item.GeneticsItemsN.SERUM_ARRAY;
 
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
@@ -14,7 +9,6 @@ import binnie.core.Mods;
 import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.genetics.Genetics;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.GeneticLiquid;
 import codechicken.lib.gui.GuiDraw;
@@ -22,6 +16,12 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class SplicerRecipeHandler extends RecipeHandlerBase {
 
@@ -29,11 +29,11 @@ public class SplicerRecipeHandler extends RecipeHandlerBase {
 
     private void createSplicerRecipeForNEI(ItemStack dnaManipulable) {
         recipes.add(
-                new SplicerRecipe(dnaManipulable, new ItemStack(Genetics.itemSerum, 1, OreDictionary.WILDCARD_VALUE)));
+                new SplicerRecipe(dnaManipulable, new ItemStack(SERUM.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
         recipes.add(
                 new SplicerRecipe(
                         dnaManipulable,
-                        new ItemStack(Genetics.itemSerumArray, 1, OreDictionary.WILDCARD_VALUE)));
+                        new ItemStack(SERUM_ARRAY.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override

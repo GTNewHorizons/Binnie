@@ -1,16 +1,9 @@
 package binnie.genetics.machine;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import static binnie.genetics.item.GeneticsItemsN.ANALYST;
+import static binnie.genetics.item.GeneticsItemsN.DATABASE;
+import static binnie.genetics.item.GeneticsItemsN.MASTER_REGISTRY;
+import static binnie.genetics.item.GeneticsItemsN.REGISTRY;
 
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
@@ -20,8 +13,17 @@ import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.network.INetwork;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;
-import binnie.genetics.Genetics;
 import buildcraft.api.tools.IToolWrench;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {
 
@@ -128,10 +130,10 @@ public class ComponentGUIHolder extends MachineComponent implements INetwork.Til
                 validSelections.add(ExtraTrees.itemDictionaryLepi);
             }
 
-            validSelections.add(Genetics.database);
-            validSelections.add(Genetics.analyst);
-            validSelections.add(Genetics.registry);
-            validSelections.add(Genetics.masterRegistry);
+            validSelections.add(DATABASE.getItem());
+            validSelections.add(ANALYST.getItem());
+            validSelections.add(REGISTRY.getItem());
+            validSelections.add(MASTER_REGISTRY.getItem());
             validSelections.add(BinnieCore.genesis);
 
             if (stack == null && validSelections.contains(player.getHeldItem().getItem())) {

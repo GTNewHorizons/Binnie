@@ -1,5 +1,7 @@
 package binnie.genetics.item;
 
+import static binnie.genetics.item.GeneticsItemsN.SERUM_ARRAY;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -34,7 +36,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
     }
 
     public static ItemStack create(IGene gene) {
-        ItemStack item = new ItemStack(Genetics.itemSerumArray);
+        ItemStack item = new ItemStack(SERUM_ARRAY.getItem());
         item.setItemDamage(item.getMaxDamage());
         GeneArrayItem seq = new GeneArrayItem(gene);
         seq.writeToItem(item);
