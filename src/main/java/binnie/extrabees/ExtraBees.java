@@ -11,8 +11,6 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.apiary.ModuleApiary;
-import binnie.extrabees.config.ConfigurationMachines;
-import binnie.extrabees.config.ConfigurationMain;
 import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ModuleCore;
 import binnie.extrabees.genetics.ModuleGenetics;
@@ -27,12 +25,15 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(
-        modid = "ExtraBees",
-        name = "Extra Bees",
+        modid = ExtraBees.EB_MODID,
+        name = ExtraBees.EB_MOD_NAME,
         version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class ExtraBees extends AbstractMod {
+
+    public static final String EB_MODID = "ExtraBees";
+    public static final String EB_MOD_NAME = "Extra Bees";
 
     @Mod.Instance("ExtraBees")
     public static ExtraBees instance;
@@ -79,11 +80,6 @@ public class ExtraBees extends AbstractMod {
     @Override
     public IBinnieGUID[] getGUIDs() {
         return ExtraBeeGUID.values();
-    }
-
-    @Override
-    public Class<?>[] getConfigs() {
-        return new Class[] { ConfigurationMain.class, ConfigurationMachines.class };
     }
 
     @Override

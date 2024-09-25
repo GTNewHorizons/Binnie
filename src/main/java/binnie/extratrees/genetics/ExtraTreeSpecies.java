@@ -1,5 +1,19 @@
 package binnie.extratrees.genetics;
 
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.EnumPlantType;
+
+import com.mojang.authlib.GameProfile;
+
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.util.I18N;
@@ -65,7 +79,6 @@ import binnie.extratrees.worldgen.WorldGenWesternHemlock;
 import binnie.extratrees.worldgen.WorldGenWhitebeam;
 import binnie.extratrees.worldgen.WorldGenYew;
 import binnie.genetics.genetics.AlleleHelper;
-import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -92,16 +105,6 @@ import forestry.arboriculture.render.TextureLeaves;
 import forestry.core.genetics.alleles.EnumAllele;
 import forestry.core.render.TextureManager;
 import forestry.plugins.PluginArboriculture;
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.EnumPlantType;
 
 public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGermlingIconProvider {
 

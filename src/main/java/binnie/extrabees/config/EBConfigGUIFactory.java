@@ -1,13 +1,13 @@
-package binnie.extratrees.config;
+package binnie.extrabees.config;
 
 import net.minecraft.client.gui.GuiScreen;
 
 import com.gtnewhorizon.gtnhlib.config.SimpleGuiFactory;
 
-public class ETConfigGUIFactory implements SimpleGuiFactory {
+public class EBConfigGUIFactory implements SimpleGuiFactory {
 
     @Override
     public Class<? extends GuiScreen> mainConfigGuiClass() {
-        return ETConfigGUI.class;
+        return EBConfigGUI.class;
     }
 }

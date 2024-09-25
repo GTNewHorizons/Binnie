@@ -11,6 +11,7 @@ import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
+import binnie.extrabees.config.EBConfigMachines;
 import binnie.genetics.item.ItemSequence;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
@@ -86,7 +87,7 @@ public class IsolatorComponentLogic extends ComponentProcessSetCost implements I
         ItemStack serum = ItemSequence.create(gene);
         getUtil().setStack(Isolator.SLOT_RESULT, serum);
         getUtil().decreaseStack(Isolator.SLOT_SEQUENCER_VIAL, 1);
-        if (rand.nextFloat() < 0.05f) {
+        if (rand.nextFloat() < EBConfigMachines.isolatorConsumptionChance) {
             getUtil().decreaseStack(Isolator.SLOT_TARGET, 1);
         }
         getUtil().drainTank(Isolator.TANK_ETHANOL, (int) ethanolPerProcess);
