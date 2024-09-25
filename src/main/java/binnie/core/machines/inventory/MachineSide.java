@@ -60,7 +60,7 @@ public class MachineSide {
             }
         } else {
             for (ForgeDirection side : sides) {
-                if (!text.isEmpty()) text.append(", ");
+                if (text.length() > 0) text.append(", ");
 
                 text.append(I18N.localise(SIDE_NAMES[side.ordinal()]));
             }
