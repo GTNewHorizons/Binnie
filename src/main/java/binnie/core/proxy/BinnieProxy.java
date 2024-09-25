@@ -1,7 +1,14 @@
 package binnie.core.proxy;
 
+import binnie.core.AbstractMod;
+import binnie.core.BinnieCore;
+import binnie.core.network.BinnieCorePacketID;
+import binnie.core.network.INetworkedEntity;
+import binnie.core.network.packet.MessageUpdate;
+import binnie.core.resource.BinnieResource;
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import java.io.File;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,16 +19,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.IItemRenderer;
-
-import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
-import binnie.core.network.BinnieCorePacketID;
-import binnie.core.network.INetworkedEntity;
-import binnie.core.network.packet.MessageUpdate;
-import binnie.core.resource.BinnieResource;
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.registry.GameRegistry;
 
 public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
 
@@ -67,11 +64,6 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
     @Override
     public World getWorld() {
         return null;
-    }
-
-    // TODO unused method?
-    public void throwException(String message, Throwable e) {
-        FMLCommonHandler.instance().raiseException(e, message, true);
     }
 
     @Override
@@ -127,16 +119,6 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
     @Override
     public IIcon getIcon(IIconRegister register, String mod, String name) {
         return null;
-    }
-
-    // TODO unused method?
-    public void handleTextureRefresh(IIconRegister register, int type) {
-        // ignored
-    }
-
-    // TODO unused method?
-    public void handlePostTextureRefresh(IIconRegister register, int type) {
-        // ignored
     }
 
     public short getUniqueTextureUID() {

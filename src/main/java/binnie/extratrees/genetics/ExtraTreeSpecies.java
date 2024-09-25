@@ -1,20 +1,5 @@
 package binnie.extratrees.genetics;
 
-import java.awt.Color;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Map;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.EnumPlantType;
-
-import com.mojang.authlib.GameProfile;
-
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.util.I18N;
@@ -80,6 +65,7 @@ import binnie.extratrees.worldgen.WorldGenWesternHemlock;
 import binnie.extratrees.worldgen.WorldGenWhitebeam;
 import binnie.extratrees.worldgen.WorldGenYew;
 import binnie.genetics.genetics.AlleleHelper;
+import com.mojang.authlib.GameProfile;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.EnumBeeChromosome;
@@ -106,6 +92,16 @@ import forestry.arboriculture.render.TextureLeaves;
 import forestry.core.genetics.alleles.EnumAllele;
 import forestry.core.render.TextureManager;
 import forestry.plugins.PluginArboriculture;
+import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Map;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+import net.minecraftforge.common.EnumPlantType;
 
 public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGermlingIconProvider {
 
@@ -688,19 +684,6 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
         ExtraTreeSpecies.Hemlock.setLeafType(LeafType.CONIFER).setGirth(2).setHeight(EnumAllele.Height.AVERAGE)
                 .setFertility(EnumAllele.Saplings.LOW).setMaturation(EnumAllele.Maturation.SLOWER);
-    }
-
-    // TODO unused method?
-    static ItemStack getEBXLStack(String name) {
-        try {
-            Class elements = Class.forName("extrabiomes.lib.Element");
-            Method getElementMethod = elements.getMethod("valueOf", String.class);
-            Method getItemStack = elements.getMethod("get");
-            Object element = getElementMethod.invoke(null, "SAPLING_AUTUMN_YELLOW");
-            return (ItemStack) getItemStack.invoke(element);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private ExtraTreeSpecies addFamily(IFruitFamily family) {

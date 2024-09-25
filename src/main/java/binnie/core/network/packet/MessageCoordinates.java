@@ -1,12 +1,9 @@
 package binnie.core.network.packet;
 
-import java.io.IOException;
-
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.World;
-
 import io.netty.buffer.ByteBuf;
+import java.io.IOException;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class MessageCoordinates extends MessageBase {
 
@@ -16,11 +13,6 @@ public class MessageCoordinates extends MessageBase {
 
     public MessageCoordinates(MessageBinnie message) {
         super(message);
-    }
-
-    // TODO unused constructor?
-    public MessageCoordinates(int id, ChunkCoordinates coordinates) {
-        this(id, coordinates.posX, coordinates.posY, coordinates.posZ);
     }
 
     public MessageCoordinates(int id, int posX, int posY, int posZ) {
@@ -42,11 +34,6 @@ public class MessageCoordinates extends MessageBase {
         posX = data.readInt();
         posY = data.readInt();
         posZ = data.readInt();
-    }
-
-    // TODO unused method?
-    public ChunkCoordinates getCoordinates() {
-        return new ChunkCoordinates(posX, posY, posZ);
     }
 
     public TileEntity getTileEntity(World world) {

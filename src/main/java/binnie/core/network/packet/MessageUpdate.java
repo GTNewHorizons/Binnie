@@ -1,13 +1,10 @@
 package binnie.core.network.packet;
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-
 import binnie.core.network.INetworkedEntity;
 import io.netty.buffer.ByteBuf;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import net.minecraft.tileentity.TileEntity;
 
 public class MessageUpdate extends MessageCoordinates {
 
@@ -75,8 +72,4 @@ public class MessageUpdate extends MessageCoordinates {
         }
     }
 
-    // TODO unused method?
-    public TileEntity getTarget(World world) {
-        return world.getTileEntity(posX, posY, posZ);
-    }
 }

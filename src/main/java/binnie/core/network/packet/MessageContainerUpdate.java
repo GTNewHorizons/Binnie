@@ -8,8 +8,4 @@ public class MessageContainerUpdate extends MessageCraftGUI {
         super(nbt);
     }
 
-    // TODO unused constructor?
-    public MessageContainerUpdate(MessageBinnie message) {
-        super(message);
-    }
 }
