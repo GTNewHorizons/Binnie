@@ -3,7 +3,6 @@ package binnie.core;
 import binnie.Binnie;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
-import binnie.core.config.ModsConfig;
 import binnie.core.craftgui.minecraft.ModuleCraftGUI;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
@@ -134,20 +133,12 @@ public class BinnieCore extends AbstractMod {
         return PluginManager.Module.ARBORICULTURE.isEnabled();
     }
 
-    public static boolean isBotanyActive() {
-        return ModsConfig.botany;
-    }
-
-    public static boolean isGeneticsActive() {
-        return ModsConfig.genetics;
-    }
-
     public static boolean isExtraBeesActive() {
-        return ModsConfig.extraBees && isApicultureActive();
+        return isApicultureActive();
     }
 
     public static boolean isExtraTreesActive() {
-        return ModsConfig.extraTrees && isArboricultureActive();
+        return isArboricultureActive();
     }
 
     @Override

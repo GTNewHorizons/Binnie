@@ -28,11 +28,6 @@ public enum GeneticMachine implements IMachineType {
         return clss;
     }
 
-    @Override
-    public boolean isActive() {
-        return true;
-    }
-
     public ItemStack get(int i) {
         return new ItemStack(Genetics.packageGenetic.getBlock(), i, ordinal());
     }

@@ -30,7 +30,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    public abstract boolean isActive();
+    public boolean isActive() { return true; }
 
     @Override
     public abstract String getChannel();
