@@ -11,16 +11,18 @@ public class EBConfig {
     @Config.RequiresMcRestart
     public static boolean canQuarryMineHives;
 
+    @Config.Comment("Attempt to generate this many hives per chunk.")
+    @Config.RangeInt(min = 0)
     @Config.DefaultInt(1)
     public static int waterHiveRate;
 
+    @Config.Comment("Attempt to generate this many hives per chunk.")
+    @Config.RangeInt(min = 0)
     @Config.DefaultInt(2)
     public static int rockHiveRate;
 
+    @Config.Comment("Attempt to generate this many hives per chunk.")
+    @Config.RangeInt(min = 0)
     @Config.DefaultInt(2)
     public static int netherHiveRate;
-
-    @Config.Comment("Marble hives don't appear to be implemented in code, so this does nothing.")
-    @Config.DefaultInt(2)
-    public static int marbleHiveRate;
 }
