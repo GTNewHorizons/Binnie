@@ -12,9 +12,9 @@ import forestry.api.circuits.ICircuitLayout;
 
 public class BinnieCircuit implements ICircuit {
 
-    private String uid;
-    private int limit;
-    private List<String> tooltips;
+    private final String uid;
+    private final int limit;
+    private final List<String> tooltips;
 
     public BinnieCircuit(String uid, int limit, ICircuitLayout layout, ItemStack itemStack) {
         tooltips = new ArrayList<>();

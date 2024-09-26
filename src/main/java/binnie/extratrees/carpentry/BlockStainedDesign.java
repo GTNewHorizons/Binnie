@@ -65,7 +65,7 @@ public class BlockStainedDesign extends BlockDesign {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack stack, List tooltip) {
+    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
         DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
         if (block.getPrimaryMaterial() != block.getSecondaryMaterial()) {
             tooltip.add(

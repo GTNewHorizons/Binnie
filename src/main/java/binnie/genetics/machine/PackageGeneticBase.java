@@ -27,6 +27,6 @@ public abstract class PackageGeneticBase extends MachinePackage {
 
     @Override
     public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
-        MachineRendererGenetics.instance.renderMachine(machine, color, renderTexture, x, y, z, partialTick);
+        MachineRendererGenetics.instance.renderMachine(machine, renderTexture, x, y, z);
     }
 }

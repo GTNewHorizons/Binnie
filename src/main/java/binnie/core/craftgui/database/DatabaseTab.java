@@ -7,8 +7,8 @@ import binnie.core.util.I18N;
 
 public class DatabaseTab implements ITooltipHelp {
 
-    private String mod;
-    private String unloc;
+    private final String mod;
+    private final String unloc;
 
     public DatabaseTab(AbstractMod mod, String unloc) {
         this.mod = mod.getModID();

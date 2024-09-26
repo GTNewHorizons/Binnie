@@ -11,7 +11,7 @@ import forestry.api.genetics.IAlleleSpecies;
 
 class ControlSpeciesBoxOption extends ControlTextOption<IAlleleSpecies> {
 
-    private ControlDatabaseIndividualDisplay controlBee;
+    private final ControlDatabaseIndividualDisplay controlBee;
 
     public ControlSpeciesBoxOption(ControlList<IAlleleSpecies> controlList, IAlleleSpecies option, int y) {
         super(controlList, option, option.getName(), y);

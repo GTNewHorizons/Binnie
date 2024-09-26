@@ -14,20 +14,14 @@ import forestry.api.core.INBTTagable;
 
 public class ManagerMachine extends ManagerBase {
 
-    private Map<Class<?>, Class<?>[]> componentInterfaceMap;
-    private Map<String, MachineGroup> machineGroups;
-    private Map<Integer, Class<?>> networkIDToComponent;
-    private Map<Class<?>, Integer> componentToNetworkID;
-    private int nextNetworkID;
+    private final Map<Class<?>, Class<?>[]> componentInterfaceMap = new HashMap<>();
+    private final Map<String, MachineGroup> machineGroups = new HashMap<>();
+    private final Map<Integer, Class<?>> networkIDToComponent = new HashMap<>();
+    private final Map<Class<?>, Integer> componentToNetworkID = new HashMap<>();
+    private int nextNetworkID = 0;
     private int machineRenderID;
 
-    public ManagerMachine() {
-        componentInterfaceMap = new HashMap<>();
-        machineGroups = new HashMap<>();
-        networkIDToComponent = new HashMap<>();
-        componentToNetworkID = new HashMap<>();
-        nextNetworkID = 0;
-    }
+    public ManagerMachine() {}
 
     public void registerMachineGroup(MachineGroup group) {
         machineGroups.put(group.getUID(), group);

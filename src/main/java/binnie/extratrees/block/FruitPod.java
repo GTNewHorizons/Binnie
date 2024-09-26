@@ -18,8 +18,8 @@ public enum FruitPod implements IIconProvider {
     RedBanana,
     Papayimar;
 
-    protected short[] textures;
-    protected IIcon[] icons;
+    private final short[] textures;
+    private final IIcon[] icons;
 
     FruitPod() {
         textures = new short[] { BinnieCore.proxy.getUniqueTextureUID(), BinnieCore.proxy.getUniqueTextureUID(),

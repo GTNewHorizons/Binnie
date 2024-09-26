@@ -81,7 +81,7 @@ public class BlockCeramic extends Block implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack stack, List tooltip) {
+    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
         int meta = TileEntityMetadata.getItemDamage(stack);
         tooltip.add(EnumChatFormatting.GRAY + EnumFlowerColor.get(meta).getName());
     }
@@ -92,7 +92,7 @@ public class BlockCeramic extends Block implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tabs, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs tabs, List<ItemStack> itemList) {
         for (EnumFlowerColor c : EnumFlowerColor.values()) {
             itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
         }

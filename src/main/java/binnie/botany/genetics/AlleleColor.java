@@ -4,10 +4,9 @@ import forestry.api.genetics.IAlleleInteger;
 
 public class AlleleColor implements IAlleleInteger {
 
-    private String uid;
-    private int value;
-    private EnumFlowerColor color;
-    private boolean dominant = true;
+    private final String uid;
+    private final int value;
+    private final EnumFlowerColor color;
 
     public AlleleColor(EnumFlowerColor color, String uid, int value) {
         this.color = color;
@@ -22,7 +21,7 @@ public class AlleleColor implements IAlleleInteger {
 
     @Override
     public boolean isDominant() {
-        return dominant;
+        return true;
     }
 
     @Override

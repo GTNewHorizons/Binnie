@@ -53,15 +53,15 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
     protected float titleButtonLeft;
     protected float titleButtonRight;
     private GuiCraftGUI gui;
-    private ContainerCraftGUI container;
-    private WindowInventory windowInventory;
+    private final ContainerCraftGUI container;
+    private final WindowInventory windowInventory;
     private ControlText title;
     private StandardTexture bgText1;
     private StandardTexture bgText2;
     private boolean hasBeenInitialised;
     private EntityPlayer player;
     private IInventory entityInventory;
-    private Side side;
+    private final Side side;
 
     public Window(float width, float height, EntityPlayer player, IInventory inventory, Side side) {
         this.side = side;

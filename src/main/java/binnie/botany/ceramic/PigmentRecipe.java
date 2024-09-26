@@ -13,7 +13,7 @@ public class PigmentRecipe implements IRecipe {
 
     protected ItemStack cached;
 
-    private ItemStack unknown;
+    private final ItemStack unknown;
 
     public PigmentRecipe() {
         unknown = null;

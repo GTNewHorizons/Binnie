@@ -79,7 +79,7 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
         // ignored
     }
 
@@ -89,7 +89,7 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < PlankType.ExtraTreePlanks.values().length; ++i) {
             list.add(TileEntityMetadata.getItemStack(this, i));
         }

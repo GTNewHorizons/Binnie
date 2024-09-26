@@ -22,8 +22,8 @@ public enum DesignSystem implements IDesignSystem {
     Wood,
     Glass;
 
-    protected Map<Integer, IIcon> primary;
-    protected Map<Integer, IIcon> secondary;
+    private final Map<Integer, IIcon> primary;
+    private final Map<Integer, IIcon> secondary;
 
     DesignSystem() {
         primary = new HashMap<>();
@@ -33,85 +33,57 @@ public enum DesignSystem implements IDesignSystem {
 
     @Override
     public IDesignMaterial getDefaultMaterial() {
-        switch (this) {
-            case Glass:
-                return GlassType.get(0);
-
-            case Wood:
-                return PlankType.ExtraTreePlanks.Fir;
-        }
-        return null;
+        return switch (this) {
+            case Glass -> GlassType.get(0);
+            case Wood -> PlankType.ExtraTreePlanks.Fir;
+        };
     }
 
     @Override
     public IDesignMaterial getDefaultMaterial2() {
-        switch (this) {
-            case Glass:
-                return GlassType.get(1);
-
-            case Wood:
-                return PlankType.ExtraTreePlanks.Whitebeam;
-        }
-        return null;
+        return switch (this) {
+            case Glass -> GlassType.get(1);
+            case Wood -> PlankType.ExtraTreePlanks.Whitebeam;
+        };
     }
 
     @Override
     public IDesignMaterial getMaterial(int id) {
-        switch (this) {
-            case Glass:
-                return GlassType.get(id);
-
-            case Wood:
-                return CarpentryManager.carpentryInterface.getWoodMaterial(id);
-        }
-        return null;
+        return switch (this) {
+            case Glass -> GlassType.get(id);
+            case Wood -> CarpentryManager.carpentryInterface.getWoodMaterial(id);
+        };
     }
 
     @Override
     public int getMaterialIndex(IDesignMaterial id) {
-        switch (this) {
-            case Glass:
-                return GlassType.getIndex(id);
-
-            case Wood:
-                return CarpentryManager.carpentryInterface.getCarpentryWoodIndex(id);
-        }
-        return 0;
+        return switch (this) {
+            case Glass -> GlassType.getIndex(id);
+            case Wood -> CarpentryManager.carpentryInterface.getCarpentryWoodIndex(id);
+        };
     }
 
     public String getTexturePath() {
-        switch (this) {
-            case Glass:
-                return "glass";
-
-            case Wood:
-                return "patterns";
-        }
-        return "";
+        return switch (this) {
+            case Glass -> "glass";
+            case Wood -> "patterns";
+        };
     }
 
     @Override
     public IDesignMaterial getMaterial(ItemStack stack) {
-        switch (this) {
-            case Glass:
-                return GlassType.get(stack);
-
-            case Wood:
-                return CarpentryManager.carpentryInterface.getWoodMaterial(stack);
-        }
-        return null;
+        return switch (this) {
+            case Glass -> GlassType.get(stack);
+            case Wood -> CarpentryManager.carpentryInterface.getWoodMaterial(stack);
+        };
     }
 
     @Override
     public ItemStack getAdhesive() {
-        switch (this) {
-            case Glass:
-                return ExtraTreeItems.GlassFitting.get(1);
-
-            case Wood:
-                return ExtraTreeItems.WoodWax.get(1);
-        }
-        return null;
+        return switch (this) {
+            case Glass -> ExtraTreeItems.GlassFitting.get(1);
+            case Wood -> ExtraTreeItems.WoodWax.get(1);
+        };
     }
 
     @Override
@@ -132,7 +104,7 @@ public enum DesignSystem implements IDesignSystem {
 
     @Override
     public void registerIcons(IIconRegister register) {
-        for (EnumPattern pattern : EnumPattern.values()) {
+        for (final EnumPattern pattern : EnumPattern.VALUES) {
             primary.put(
                     pattern.ordinal(),
                     BinnieCore.proxy.getIcon(

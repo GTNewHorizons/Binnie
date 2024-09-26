@@ -23,7 +23,7 @@ public class WorldGenRedMaple extends WorldGenTree {
             generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 0.4f, 1, leaf, false);
         }
 
-        width += 0.6;
+        width += 0.6f;
         while (leafSpawn > bottom) {
             generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width, 1, leaf, false);
             generateCylinder(new Vector(0.0f, leafSpawn--, 0.0f), width - 0.4f, 1, leaf, false);

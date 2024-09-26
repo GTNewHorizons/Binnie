@@ -7,8 +7,8 @@ import java.util.Map;
 
 public class BeeModifierLogic {
 
-    private Map<EnumBeeModifier, Float[]> modifiers;
-    private List<EnumBeeBooleanModifier> booleanModifiers;
+    private final Map<EnumBeeModifier, Float[]> modifiers;
+    private final List<EnumBeeBooleanModifier> booleanModifiers;
 
     public BeeModifierLogic() {
         modifiers = new HashMap<>();

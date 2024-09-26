@@ -21,7 +21,8 @@ import binnie.core.util.ItemStackSet;
 
 public class MachineUtil {
 
-    private IMachine machine;
+    private final IMachine machine;
+    private final Random random = new Random();
 
     public MachineUtil(IMachine machine) {
         this.machine = machine;
@@ -48,7 +49,7 @@ public class MachineUtil {
     }
 
     public boolean spaceInTank(int id, int amount) {
-        IFluidTank tank = getTank(id);
+        final IFluidTank tank = getTank(id);
         int space = tank.getCapacity() - tank.getFluidAmount();
         return amount <= space;
     }
@@ -70,7 +71,7 @@ public class MachineUtil {
     }
 
     public void fillTank(int id, FluidStack liquidStack) {
-        IFluidTank tank = getTank(id);
+        final IFluidTank tank = getTank(id);
         tank.fill(liquidStack, true);
     }
 
@@ -78,10 +79,9 @@ public class MachineUtil {
         if (isSlotEmpty(slot)) {
             setStack(slot, addition);
         } else {
-            ItemStack merge = getStack(slot);
+            final ItemStack merge = getStack(slot);
             if (merge.isItemEqual(addition) && merge.stackSize + addition.stackSize <= merge.getMaxStackSize()) {
-                ItemStack itemStack = merge;
-                itemStack.stackSize += addition.stackSize;
+                merge.stackSize += addition.stackSize;
                 setStack(slot, merge);
             }
         }
@@ -97,7 +97,7 @@ public class MachineUtil {
     }
 
     public void damageItem(int slot, int damage) {
-        ItemStack item = getStack(slot);
+        final ItemStack item = getStack(slot);
         if (damage < 0) {
             item.setItemDamage(Math.max(0, item.getItemDamage() + damage));
         } else if (item.attemptDamageItem(damage, new Random())) {
@@ -154,7 +154,7 @@ public class MachineUtil {
     }
 
     public Random getRandom() {
-        return new Random();
+        return random;
     }
 
     public void refreshBlock() {

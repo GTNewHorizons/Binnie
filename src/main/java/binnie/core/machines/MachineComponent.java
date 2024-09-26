@@ -38,7 +38,7 @@ public class MachineComponent implements INBTTagable {
         // ignored
     }
 
-    public Class[] getComponentInterfaces() {
+    public Class<?>[] getComponentInterfaces() {
         return Binnie.Machine.getComponentInterfaces(getClass());
     }
 

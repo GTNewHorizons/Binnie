@@ -55,28 +55,27 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
         int x = event.x;
         int y = event.y;
         int z = event.z;
-        if (!(world.getBlock(x, y, z) instanceof BlockDesign)) {
+        if (!(world.getBlock(x, y, z) instanceof BlockDesign blockDesign)) {
             return;
         }
 
-        BlockDesign blockC = (BlockDesign) world.getBlock(x, y, z);
         ItemStack item = player.getHeldItem();
         if (item == null || !(item.getItem() instanceof IToolHammer)
                 || !((IToolHammer) item.getItem()).isActive(item)) {
             return;
         }
 
-        DesignBlock block = blockC.getCarpentryBlock(world, x, y, z);
+        DesignBlock carpentryBlock = blockDesign.getCarpentryBlock(world, x, y, z);
         TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(x, y, z);
-        block.rotate(event.face, item, player, world, x, y, z);
-        int meta = block.getBlockMetadata(blockC.getDesignSystem());
+        carpentryBlock.rotate(event.face, item, player, world, x, y, z);
+        int meta = carpentryBlock.getBlockMetadata(blockDesign.getDesignSystem());
         tile.setTileMetadata(meta, true);
     }
 
     public abstract ItemStack getCreativeStack(IDesign design);
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (IDesign design : CarpentryManager.carpentryInterface.getSortedDesigns()) {
             list.add(getCreativeStack(design));
         }
@@ -126,7 +125,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
     }
 
     @Override
-    public void addBlockTooltip(ItemStack stack, List tooltip) {
+    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
         DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
         if (block.getPrimaryMaterial() != block.getSecondaryMaterial()) {
             tooltip.add(

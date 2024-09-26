@@ -20,7 +20,7 @@ public abstract class ControlToleranceBar<T extends Enum<T>> extends Control imp
 
     EnumSet<T> tolerated;
     EnumSet<T> fullSet;
-    private Class<T> enumClass;
+    private final Class<T> enumClass;
 
     public ControlToleranceBar(IWidget parent, float x, float y, float width, float height, Class<T> clss) {
         super(parent, x, y, width, height);

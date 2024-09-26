@@ -12,7 +12,7 @@ import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 
 public class ControlItemStackOption extends ControlTextOption<ItemStack> {
 
-    private ControlItemDisplay controlBee;
+    private final ControlItemDisplay controlBee;
 
     public ControlItemStackOption(ControlList<ItemStack> controlList, ItemStack option, int y) {
         super(controlList, option, option.getDisplayName(), y);

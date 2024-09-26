@@ -3,11 +3,11 @@ package binnie.core.liquid;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
-class BinnieFluid extends Fluid {
+public class BinnieFluid extends Fluid {
 
     protected IFluidType fluidType;
 
-    private String name;
+    private final String name;
 
     @Override
     public String getLocalizedName(FluidStack stack) {

@@ -5,7 +5,6 @@ import java.util.Random;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -24,7 +23,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class AnalyserComponentFX extends MachineComponent
         implements IRender.RandomDisplayTick, IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 
-    private EntityItem dummyEntityItem;
+    private final EntityItem dummyEntityItem;
 
     public AnalyserComponentFX(IMachine machine) {
         super(machine);
@@ -40,7 +39,7 @@ public class AnalyserComponentFX extends MachineComponent
     @SideOnly(Side.CLIENT)
     @Override
     public void onDisplayTick(World world, int x, int y, int z, Random rand) {
-        if (rand.nextFloat() < 1.0f && getUtil().getProcess().isInProgress()) {
+        if (getUtil().getProcess().isInProgress()) {
             BinnieCore.proxy.getMinecraftInstance().effectRenderer
                     .addEffect(new EntityFX(world, x + 0.5, y + 1.3 + rand.nextDouble() * 0.2, z + 0.5, 0.0, 0.0, 0.0) {
 
@@ -66,11 +65,6 @@ public class AnalyserComponentFX extends MachineComponent
                             super.onUpdate();
                             setAlphaF((float) Math.cos(1.57 * particleAge / particleMaxAge));
                         }
-
-                        @Override
-                        public int getFXLayer() {
-                            return 0;
-                        }
                     });
         }
     }
@@ -92,10 +86,6 @@ public class AnalyserComponentFX extends MachineComponent
             return;
         }
 
-        EntityPlayer player = BinnieCore.proxy.getPlayer();
-        double dx = x + 0.5 - player.lastTickPosX;
-        double dz = z + 0.5 - player.lastTickPosZ;
-        double t = Math.atan2(dz, dx) * 180.0 / 3.1415;
         GL11.glPushMatrix();
         GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);
         GL11.glTranslatef(0.0f, -0.2f, 0.0f);

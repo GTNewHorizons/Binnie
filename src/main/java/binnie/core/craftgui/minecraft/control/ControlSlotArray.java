@@ -10,7 +10,7 @@ import binnie.core.craftgui.minecraft.InventoryType;
 
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 
-    private List<ControlSlot> slots;
+    private final List<ControlSlot> slots;
 
     public ControlSlotArray(IWidget parent, int x, int y, int columns, int rows) {
         super(parent, x, y, columns * 18, rows * 18);

@@ -1,6 +1,7 @@
 package binnie.core.network.packet;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -43,7 +44,7 @@ public class MessageUpdate extends MessageCoordinates {
             data.writeFloat(floatData);
         }
         for (String stringData : payload.stringPayload) {
-            byte[] bytes = stringData.getBytes("UTF-8");
+            byte[] bytes = stringData.getBytes(StandardCharsets.UTF_8);
             data.writeShort(bytes.length);
             data.writeBytes(bytes);
         }
@@ -70,7 +71,7 @@ public class MessageUpdate extends MessageCoordinates {
         for (int i = 0; i < stringLength; ++i) {
             int length = data.readShort();
             byte[] string = data.readBytes(length).array();
-            payload.addString(new String(string, "UTF-8"));
+            payload.addString(new String(string, StandardCharsets.UTF_8));
         }
     }
 

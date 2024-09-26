@@ -10,7 +10,7 @@ public class ErrorState implements INBTTagable {
     private String name;
     private String desc;
     private int[] data;
-    private boolean progress;
+    private final boolean progress;
     private boolean itemError;
     private boolean tankError;
     private boolean powerError;

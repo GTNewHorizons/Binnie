@@ -11,7 +11,7 @@ public interface IGeneItem {
 
     ISpeciesRoot getSpeciesRoot();
 
-    void getInfo(List tooltip);
+    void getInfo(List<String> tooltip);
 
     int getColour(int color);
 

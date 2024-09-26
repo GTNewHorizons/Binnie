@@ -40,7 +40,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 
     public static DoorType getDoorType(int tileMeta) {
         int type = (tileMeta & 0xF00) >> 8;
-        if (type >= 0 && type < DoorType.values().length) {
+        if (type < DoorType.values().length) {
             return DoorType.values()[type];
         }
         return DoorType.STANDARD;
@@ -226,7 +226,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack stack, List tooltip) {
+    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
         // ignored
     }
 
@@ -236,7 +236,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
         for (IPlankType type : PlankType.ExtraTreePlanks.values()) {
             itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
         }

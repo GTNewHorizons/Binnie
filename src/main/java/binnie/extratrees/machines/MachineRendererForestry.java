@@ -13,7 +13,7 @@ public class MachineRendererForestry {
     static Map<String, Object> instances = new HashMap<>();
     static Method renderMethod;
 
-    private static void loadMethod(String file, boolean waterTank, boolean productTank) {
+    private static void loadMethod(String file) {
         try {
             Class cls = Class.forName("forestry.core.render.RenderMachine");
             Object instance = cls.getConstructor(String.class).newInstance(file);
@@ -32,9 +32,9 @@ public class MachineRendererForestry {
         }
     }
 
-    public static void renderMachine(String name, double x, double y, double z, float var8) {
+    public static void renderMachine(String name, double x, double y, double z) {
         if (!MachineRendererForestry.instances.containsKey(name)) {
-            loadMethod(name, false, false);
+            loadMethod(name);
         }
 
         try {

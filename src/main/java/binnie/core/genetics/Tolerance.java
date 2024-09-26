@@ -1,5 +1,7 @@
 package binnie.core.genetics;
 
+import net.minecraft.util.MathHelper;
+
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IAllele;
@@ -23,14 +25,15 @@ public enum Tolerance {
     Down4(-4, 0),
     Down5(-5, 0);
 
-    private int[] bounds;
+    private final int[] bounds;
+    private static final Tolerance[] VALUES = values();
 
     Tolerance(int a, int b) {
         bounds = new int[] { a, b };
     }
 
     public String getUID() {
-        return "forestry.tolerance" + toString();
+        return "forestry.tolerance" + this;
     }
 
     public int[] getBounds() {
@@ -38,7 +41,40 @@ public enum Tolerance {
     }
 
     public static Tolerance get(EnumTolerance tol) {
-        return values()[tol.ordinal()];
+        return VALUES[tol.ordinal()];
+    }
+
+    public static Tolerance getHigh(int i) {
+        return switch (MathHelper.clamp_int(i, 0, 5)) {
+            case 0 -> None;
+            case 1 -> Up1;
+            case 2 -> Up2;
+            case 3 -> Up3;
+            case 4 -> Up4;
+            default -> Up5;
+        };
+    }
+
+    public static Tolerance getLow(int i) {
+        return switch (MathHelper.clamp_int(i, -5, 0)) {
+            case -0 -> None;
+            case -1 -> Down1;
+            case -2 -> Down2;
+            case -3 -> Down3;
+            case -4 -> Down4;
+            default -> Down5;
+        };
+    }
+
+    public static Tolerance getBoth(int i) {
+        return switch (MathHelper.clamp_int(i, 0, 5)) {
+            case 0 -> None;
+            case 1 -> Both1;
+            case 2 -> Both2;
+            case 3 -> Both3;
+            case 4 -> Both4;
+            default -> Both5;
+        };
     }
 
     public IAllele getAllele() {

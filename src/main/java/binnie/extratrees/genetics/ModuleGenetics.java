@@ -88,7 +88,7 @@ public class ModuleGenetics implements IInitializable {
                     if (set2.contains(clss.getScientific().toLowerCase())) {
                         String nextLevel = "";
                         int index = set2.indexOf(clss.getScientific().toLowerCase()) + 1;
-                        while (nextLevel.length() == 0) {
+                        while (nextLevel.isEmpty()) {
                             try {
                                 nextLevel = set2.get(index++);
                             } catch (IndexOutOfBoundsException ex) {

@@ -41,7 +41,7 @@ public class BlockHedge extends Block implements IBlockFence {
     }
 
     @Override
-    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List list,
+    public void addCollisionBoxesToList(World world, int x, int y, int z, AxisAlignedBB aabb, List<AxisAlignedBB> list,
             Entity entity) {
         boolean connectNegZ = canConnectFenceTo(world, x, y, z - 1);
         boolean connectPosZ = canConnectFenceTo(world, x, y, z + 1);
@@ -166,7 +166,7 @@ public class BlockHedge extends Block implements IBlockFence {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (int i = 0; i < 6; ++i) {
             for (int f = 0; f < 2; ++f) {
                 list.add(new ItemStack(item, 1, i + f * 8));

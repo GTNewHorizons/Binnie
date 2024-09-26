@@ -40,7 +40,7 @@ public class BlockCeramicPatterned extends BlockDesign {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack stack, List tooltip) {
+    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
         super.addBlockTooltip(stack, tooltip);
         DesignBlock block = ModuleCarpentry.getDesignBlock(getDesignSystem(), TileEntityMetadata.getItemDamage(stack));
         tooltip.add(EnumChatFormatting.GRAY + block.getDesign().getName());

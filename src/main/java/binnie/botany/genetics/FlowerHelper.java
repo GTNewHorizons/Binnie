@@ -39,8 +39,8 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
 
     protected static String UID = "rootFlowers";
 
-    private static ArrayList<IFlowerMutation> flowerMutations = new ArrayList<>();
-    private static ArrayList<IColourMix> colourMixes = new ArrayList<>();
+    private static final ArrayList<IFlowerMutation> flowerMutations = new ArrayList<>();
+    private static final ArrayList<IColourMix> colourMixes = new ArrayList<>();
 
     protected Map<ItemStack, IFlower> conversions;
 
@@ -226,7 +226,7 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
     }
 
     @Override
-    public Class getMemberClass() {
+    public Class<? extends IIndividual> getMemberClass() {
         return IFlower.class;
     }
 

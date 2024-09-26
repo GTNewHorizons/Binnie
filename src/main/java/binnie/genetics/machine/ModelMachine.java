@@ -5,13 +5,13 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelMachine extends ModelBase {
 
-    private ModelRenderer base;
-    private ModelRenderer body;
-    private ModelRenderer arm1;
-    private ModelRenderer arm2;
-    private ModelRenderer arm3;
-    private ModelRenderer arm4;
-    private ModelRenderer top;
+    private final ModelRenderer base;
+    private final ModelRenderer body;
+    private final ModelRenderer arm1;
+    private final ModelRenderer arm2;
+    private final ModelRenderer arm3;
+    private final ModelRenderer arm4;
+    private final ModelRenderer top;
 
     public ModelMachine() {
         textureWidth = 64;
@@ -79,6 +79,7 @@ public class ModelMachine extends ModelBase {
         top.render(f5);
     }
 
+    @SuppressWarnings("SameParameterValue")
     private void setRotation(ModelRenderer model, float x, float y, float z) {
         model.rotateAngleX = x;
         model.rotateAngleY = y;

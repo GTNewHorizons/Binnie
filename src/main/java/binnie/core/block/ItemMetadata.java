@@ -20,11 +20,6 @@ public class ItemMetadata extends ItemBlock {
     }
 
     @Override
-    public int getMetadata(int damage) {
-        return 0;
-    }
-
-    @Override
     public boolean placeBlockAt(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
             float hitX, float hitY, float hitZ, int metadata) {
         Block block = field_150939_a;
@@ -56,7 +51,7 @@ public class ItemMetadata extends ItemBlock {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         ((IBlockMetadata) field_150939_a).addBlockTooltip(itemStack, tooltip);
     }
 

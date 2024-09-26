@@ -14,11 +14,6 @@ public abstract class ControlAnalystPage extends Control {
         hide();
     }
 
-    @Override
-    public void onRenderBackground() {
-        // ignored
-    }
-
     public abstract String getTitle();
 
     protected String getTimeString(float time) {

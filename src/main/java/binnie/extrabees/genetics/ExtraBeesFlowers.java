@@ -45,7 +45,7 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
     MYSTICAL,
     BEDROCK;
 
-    protected boolean dominant;
+    private final boolean dominant;
 
     ExtraBeesFlowers() {
         dominant = true;
@@ -87,41 +87,20 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
     }
 
     public ItemStack[] getItemStacks() {
-        switch (this) {
-            case WATER:
-                return new ItemStack[] { new ItemStack(Blocks.waterlily) };
-
-            case SUGAR:
-                return new ItemStack[] { new ItemStack(Blocks.reeds) };
-
-            case ROCK:
-                return new ItemStack[] { new ItemStack(Blocks.cobblestone) };
-
-            case BOOK:
-                return new ItemStack[] { new ItemStack(Blocks.bookshelf) };
-
-            case REDSTONE:
-                return new ItemStack[] { new ItemStack(Blocks.redstone_torch) };
-
-            case DEAD:
-                return new ItemStack[] { new ItemStack(Blocks.deadbush) };
-
-            case FRUIT:
-                return new ItemStack[] { new ItemStack(Items.apple) };
-
-            case LEAVES:
-                return new ItemStack[] { new ItemStack(Blocks.leaves) };
-
-            case SAPLING:
-                return new ItemStack[] { new ItemStack(Blocks.sapling) };
-
-            case WOOD:
-                return new ItemStack[] { new ItemStack(Blocks.log) };
-
-            case BEDROCK:
-                return new ItemStack[] { new ItemStack(Blocks.bedrock) };
-        }
-        return new ItemStack[0];
+        return switch (this) {
+            case WATER -> new ItemStack[] { new ItemStack(Blocks.waterlily) };
+            case SUGAR -> new ItemStack[] { new ItemStack(Blocks.reeds) };
+            case ROCK -> new ItemStack[] { new ItemStack(Blocks.cobblestone) };
+            case BOOK -> new ItemStack[] { new ItemStack(Blocks.bookshelf) };
+            case REDSTONE -> new ItemStack[] { new ItemStack(Blocks.redstone_torch) };
+            case DEAD -> new ItemStack[] { new ItemStack(Blocks.deadbush) };
+            case FRUIT -> new ItemStack[] { new ItemStack(Items.apple) };
+            case LEAVES -> new ItemStack[] { new ItemStack(Blocks.leaves) };
+            case SAPLING -> new ItemStack[] { new ItemStack(Blocks.sapling) };
+            case WOOD -> new ItemStack[] { new ItemStack(Blocks.log) };
+            case BEDROCK -> new ItemStack[] { new ItemStack(Blocks.bedrock) };
+            default -> new ItemStack[0];
+        };
     }
 
     @Override
@@ -136,57 +115,31 @@ public enum ExtraBeesFlowers implements IFlowerProvider, IAlleleFlowers, IChromo
             return false;
         }
 
-        switch (this) {
-            case WATER:
-                return block == Blocks.waterlily;
-
-            case ROCK:
-                return block.getMaterial() == Material.rock;
-
-            case SUGAR:
-                return block == Blocks.reeds;
-
-            case BOOK:
-                return block == Blocks.bookshelf;
-
-            case REDSTONE:
-                return block == Blocks.redstone_torch;
-
-            case DEAD:
-                return block == Blocks.deadbush;
-
-            case WOOD:
-                return block.isWood(world, x, y, z);
-
-            case FRUIT:
-                return world.getTileEntity(x, y, z) instanceof IFruitBearer;
-
-            case LEAVES:
-                return block.isLeaves(world, x, y, z);
-
-            case SAPLING:
-                return block.getClass().getName().toLowerCase().contains("sapling");
-
-            case MYSTICAL:
-                return block == Mods.botania.block("flower");
-            case BEDROCK:
-                return block == Blocks.bedrock;
-        }
-        return false;
+        return switch (this) {
+            case WATER -> block == Blocks.waterlily;
+            case ROCK -> block.getMaterial() == Material.rock;
+            case SUGAR -> block == Blocks.reeds;
+            case BOOK -> block == Blocks.bookshelf;
+            case REDSTONE -> block == Blocks.redstone_torch;
+            case DEAD -> block == Blocks.deadbush;
+            case WOOD -> block.isWood(world, x, y, z);
+            case FRUIT -> world.getTileEntity(x, y, z) instanceof IFruitBearer;
+            case LEAVES -> block.isLeaves(world, x, y, z);
+            case SAPLING -> block.getClass().getName().toLowerCase().contains("sapling");
+            case MYSTICAL -> block == Mods.botania.block("flower");
+            case BEDROCK -> block == Blocks.bedrock;
+        };
     }
 
     @Override
     public boolean growFlower(World world, IIndividual individual, int x, int y, int z) {
-        switch (this) {
-            case WATER:
-                return world.isAirBlock(x, y, z) && world.getBlock(x, y - 1, z) == Blocks.water
-                        && world.setBlock(x, y, z, Blocks.waterlily, 0, 2);
-
-            case SUGAR:
-                return world.getBlock(x, y - 1, z) == Blocks.reeds && world.isAirBlock(x, y, z)
-                        && world.setBlock(x, y, z, Blocks.reeds, 0, 0);
-        }
-        return false;
+        return switch (this) {
+            case WATER -> world.isAirBlock(x, y, z) && world.getBlock(x, y - 1, z) == Blocks.water
+                    && world.setBlock(x, y, z, Blocks.waterlily, 0, 2);
+            case SUGAR -> world.getBlock(x, y - 1, z) == Blocks.reeds && world.isAirBlock(x, y, z)
+                    && world.setBlock(x, y, z, Blocks.reeds, 0, 0);
+            default -> false;
+        };
     }
 
     @Override

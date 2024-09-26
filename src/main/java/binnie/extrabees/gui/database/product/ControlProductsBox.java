@@ -19,7 +19,7 @@ public class ControlProductsBox extends ControlListBox<Product> {
 
     protected IAlleleBeeSpecies species;
 
-    private ProductType type;
+    private final ProductType type;
 
     public ControlProductsBox(IWidget parent, int x, int y, int width, int height, ProductType type) {
         super(parent, x, y, width, height, 12.0f);

@@ -14,10 +14,10 @@ import forestry.api.genetics.IClassification;
 
 public class PageBranchOverview extends PageBranch {
 
-    private ControlText branchName;
-    private ControlText branchScientific;
-    private ControlText branchAuthority;
-    private List<ControlText> branchDescription;
+    private final ControlText branchName;
+    private final ControlText branchScientific;
+    private final ControlText branchAuthority;
+    private final List<ControlText> branchDescription;
 
     public PageBranchOverview(IWidget parent, DatabaseTab tab) {
         super(parent, tab);

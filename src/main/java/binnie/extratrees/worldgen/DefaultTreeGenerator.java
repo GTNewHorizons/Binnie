@@ -19,7 +19,7 @@ import forestry.plugins.PluginArboriculture;
 
 public class DefaultTreeGenerator implements ITreeGenerator {
 
-    private ExtraTreeSpecies extraTreeSpecies;
+    private final ExtraTreeSpecies extraTreeSpecies;
 
     public DefaultTreeGenerator(ExtraTreeSpecies extraTreeSpecies) {
         this.extraTreeSpecies = extraTreeSpecies;

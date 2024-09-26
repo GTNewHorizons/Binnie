@@ -13,9 +13,9 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemETSlab extends ItemMetadata {
 
-    private boolean isFullBlock;
-    private BlockETSlab theHalfSlab;
-    private BlockETSlab doubleSlab;
+    private final boolean isFullBlock;
+    private final BlockETSlab theHalfSlab;
+    private final BlockETSlab doubleSlab;
 
     public ItemETSlab(Block block) {
         super(block);
@@ -54,11 +54,11 @@ public class ItemETSlab extends ItemMetadata {
             }
             return true;
         }
-        return func_77888_a(stack, player, world, x, y, z, meta)
+        return func_77888_a(stack, world, x, y, z, meta)
                 || super.onItemUse(stack, player, world, x, y, z, meta, hitX, hitY, hitZ);
     }
 
-    private boolean func_77888_a(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side) {
+    private boolean func_77888_a(ItemStack stack, World world, int x, int y, int z, int side) {
         if (side == 0) {
             y--;
         } else if (side == 1) {

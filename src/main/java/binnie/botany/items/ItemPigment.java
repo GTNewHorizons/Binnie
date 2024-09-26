@@ -25,7 +25,7 @@ public class ItemPigment extends Item {
     }
 
     @Override
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(EnumChatFormatting.GRAY + EnumFlowerColor.get(stack.getItemDamage()).getName());
     }
@@ -44,7 +44,7 @@ public class ItemPigment extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (EnumFlowerColor c : EnumFlowerColor.values()) {
             list.add(new ItemStack(this, 1, c.ordinal()));
         }

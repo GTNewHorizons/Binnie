@@ -26,6 +26,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.IFluidHandler;
 
 import binnie.Binnie;
+import binnie.core.Mods;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.ExtraBeesFlowers;
@@ -67,18 +68,25 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
     BONEMEAL_MUSHROOM,
     POWER;
 
-    protected static List<Birthday> birthdays;
+    private static final List<Birthday> birthdays = new ArrayList<>();
 
     static {
-        birthdays = new ArrayList<>();
-        birthdays.add(new Birthday(3, 10, "Binnie"));
+
+        // At the time Binnie abandoned this, the month was bumped by one, the day by two, and the order flipped.
+        // That resulted in the actual date being Apr. 11th instead of Oct. 3rd. I fixed this, but the old behavior is
+        // preserved outside NH, in case someone wasn't expecting that.
+        if (Mods.dreamcraft.active()) {
+            birthdays.add(new Birthday(3, 10, "Binnie"));
+        } else {
+            birthdays.add(new Birthday(11, 4, "Binnie"));
+        }
     }
 
-    public boolean combinable;
-    public boolean dominant;
+    public final boolean combinable;
+    public final boolean dominant;
     public int id;
     String fx;
-    private String uid;
+    private final String uid;
 
     ExtraBeesEffect() {
         fx = "";
@@ -382,8 +390,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
     private void onFoodEffect(IBeeGenome genome, IBeeHousing housing) {
         for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
-            if (entity instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer) entity;
+            if (entity instanceof EntityPlayer player) {
                 player.getFoodStats().addStats(2, 0.2f);
             }
         }
@@ -391,8 +398,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
     private void onHungerEffect(IBeeGenome genome, IBeeHousing housing, World world) {
         for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
-            if (entity instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer) entity;
+            if (entity instanceof EntityPlayer player) {
                 if (world.rand.nextInt(4) < wearsItems(player)) {
                     continue;
                 }
@@ -405,8 +411,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
     private void onPotionEffect(IBeeGenome genome, IBeeHousing housing, World world, PotionEffect potion) {
         for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
-            if (entity instanceof EntityPlayer) {
-                EntityPlayer player = (EntityPlayer) entity;
+            if (entity instanceof EntityPlayer player) {
                 if (world.rand.nextInt(4) < wearsItems(player)) {
                     continue;
                 }
@@ -493,12 +498,12 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
         }
 
         List<Entity> entities = getEntities(Entity.class, genome, housing);
-        if (entities.size() == 0) {
+        if (entities.isEmpty()) {
             return;
         }
 
         Entity entity = entities.get(world.rand.nextInt(entities.size()));
-        if (!(entity instanceof EntityLiving)) {
+        if (!(entity instanceof EntityLiving living)) {
             return;
         }
 
@@ -509,7 +514,6 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
             return;
         }
 
-        EntityLiving living = (EntityLiving) entity;
         living.setPositionAndUpdate(x, y, z);
         living.addPotionEffect(new PotionEffect(Potion.confusion.id, 160, 10));
     }
@@ -562,21 +566,19 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
         }
     }
 
-    protected int[] getModifiedArea(IBeeGenome genome, IBeeHousing housing) {
+    private int[] getModifiedArea(IBeeGenome genome, IBeeHousing housing) {
         int[] territory;
         int[] area = territory = genome.getTerritory();
         int n = 0;
         territory[n] *= (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f)
                 * 3.0f);
 
-        int[] array = area;
         int n2 = 1;
-        array[n2] *= (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f)
+        area[n2] *= (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f)
                 * 3.0f);
 
-        int[] array2 = area;
         int n3 = 2;
-        array2[n3] *= (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f)
+        area[n3] *= (int) (BeeManager.beeRoot.createBeeHousingModifier(housing).getTerritoryModifier(genome, 1.0f)
                 * 3.0f);
 
         if (area[0] < 1) {
@@ -609,7 +611,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
     public <T extends Entity> List<T> getEntities(Class<T> eClass, IBeeGenome genome, IBeeHousing housing) {
         int[] area = genome.getTerritory();
-        int[] offset = { -Math.round(area[0] / 2), -Math.round(area[1] / 2), -Math.round(area[2] / 2) };
+        int[] offset = { -Math.round(area[0] / 2f), -Math.round(area[1] / 2f), -Math.round(area[2] / 2f) };
         int[] min = { housing.getCoordinates().posX + offset[0], housing.getCoordinates().posY + offset[1],
                 housing.getCoordinates().posZ + offset[2] };
         int[] max = { housing.getCoordinates().posX + offset[0] + area[0],
@@ -632,12 +634,13 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
         private Birthday(int day, int month, String name) {
             this.day = day;
-            this.month = month + 1;
+            this.month = month - 1;
             this.name = name;
         }
 
         public boolean isToday() {
-            return Calendar.getInstance().get(5) == month && Calendar.getInstance().get(2) == day;
+            return Calendar.getInstance().get(Calendar.MONTH) == month
+                    && Calendar.getInstance().get(Calendar.DATE) == day;
         }
 
         public String getName() {

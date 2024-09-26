@@ -15,8 +15,8 @@ import binnie.core.ManagerBase;
 
 public class ManagerConfig extends ManagerBase {
 
-    private Map<Class<?>, Configuration> configurations;
-    private Map<AbstractMod, List<BinnieItemData>> itemIDs;
+    private final Map<Class<?>, Configuration> configurations;
+    private final Map<AbstractMod, List<BinnieItemData>> itemIDs;
 
     public ManagerConfig() {
         configurations = new LinkedHashMap<>();

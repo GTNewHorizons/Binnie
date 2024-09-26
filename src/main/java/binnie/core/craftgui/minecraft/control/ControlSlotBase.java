@@ -17,7 +17,7 @@ import binnie.core.nei.NEIHook;
 
 public abstract class ControlSlotBase extends Control implements ITooltip {
 
-    private ControlItemDisplay itemDisplay;
+    private final ControlItemDisplay itemDisplay;
 
     public ControlSlotBase(IWidget parent, float x, float y) {
         this(parent, x, y, 18);
@@ -31,9 +31,7 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
 
             @Override
             public void onEvent(EventWidget.ChangeSize event) {
-                if (itemDisplay != null) {
-                    itemDisplay.setSize(getSize().sub(new IPoint(2.0f, 2.0f)));
-                }
+                itemDisplay.setSize(getSize().sub(new IPoint(2.0f, 2.0f)));
             }
         });
     }

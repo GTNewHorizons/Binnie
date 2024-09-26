@@ -74,11 +74,6 @@ public class PolymeriserComponentFX extends MachineComponent implements IRender.
                                         particleBlue + (1.0f - particleBlue) / 10.0f);
                             }
                         }
-
-                        @Override
-                        public int getFXLayer() {
-                            return 0;
-                        }
                     });
         }
     }

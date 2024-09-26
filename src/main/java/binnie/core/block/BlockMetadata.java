@@ -62,7 +62,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
         // ignored
     }
 
@@ -97,7 +97,7 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
         boolean hasBeenBroken = world.setBlockToAir(i, j, k);
         if (hasBeenBroken && BinnieCore.proxy.isSimulating(world)
-                && drops.size() > 0
+                && !drops.isEmpty()
                 && (player == null || !player.capabilities.isCreativeMode)) {
             for (ItemStack drop : drops) {
                 block.dropAsStack(world, i, j, k, drop);

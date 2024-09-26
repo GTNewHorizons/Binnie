@@ -11,7 +11,7 @@ import binnie.core.machines.component.IInteraction;
 
 class ComponentBinnieCoreGUI extends MachineComponent implements IInteraction.RightClick {
 
-    private BinnieCoreGUI id;
+    private final BinnieCoreGUI id;
 
     public ComponentBinnieCoreGUI(Machine machine, BinnieCoreGUI id) {
         super(machine);

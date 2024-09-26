@@ -9,6 +9,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraft.item.crafting.ShapelessRecipes;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -43,8 +44,9 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
         for (Map.Entry<Object[], Object[]> recipe : RecipeManagers.centrifugeManager.getRecipes().entrySet()) {
             boolean isRecipe = false;
             for (Object obj : recipe.getKey()) {
-                if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
+                if (obj instanceof ItemStack i && stack.isItemEqual(i)) {
                     isRecipe = true;
+                    break;
                 }
             }
 
@@ -64,8 +66,9 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
         for (Map.Entry<Object[], Object[]> recipe : RecipeManagers.squeezerManager.getRecipes().entrySet()) {
             boolean isRecipe = false;
             for (Object obj : recipe.getKey()) {
-                if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
+                if (obj instanceof ItemStack i && stack.isItemEqual(i)) {
                     isRecipe = true;
+                    break;
                 }
             }
 
@@ -82,73 +85,72 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
 
     public Collection<ItemStack> getCrafting(ItemStack stack) {
         List<ItemStack> products = new ArrayList<>();
-        for (Object recipeO : CraftingManager.getInstance().getRecipeList()) {
-            if (recipeO instanceof ShapelessRecipes) {
-                ShapelessRecipes recipe = (ShapelessRecipes) recipeO;
+        for (IRecipe iRecipe : CraftingManager.getInstance().getRecipeList()) {
+            if (iRecipe instanceof ShapelessRecipes shapeless) {
                 boolean match = true;
-                for (Object rec : recipe.recipeItems) {
-                    if (rec != null && (!(rec instanceof ItemStack) || !stack.isItemEqual((ItemStack) rec))) {
+                for (final ItemStack rec : shapeless.recipeItems) {
+                    if (rec != null && !stack.isItemEqual(rec)) {
                         match = false;
+                        break;
                     }
                 }
 
                 if (match) {
-                    products.add(recipe.getRecipeOutput());
+                    products.add(shapeless.getRecipeOutput());
                 }
             }
 
-            if (recipeO instanceof ShapedRecipes) {
-                ShapedRecipes recipe2 = (ShapedRecipes) recipeO;
+            if (iRecipe instanceof ShapedRecipes shaped) {
                 boolean match = true;
-                for (Object rec2 : recipe2.recipeItems) {
-                    if (rec2 != null && (!(rec2 instanceof ItemStack) || !stack.isItemEqual((ItemStack) rec2))) {
+                for (final ItemStack rec : shaped.recipeItems) {
+                    if (rec != null && !stack.isItemEqual(rec)) {
                         match = false;
+                        break;
                     }
                 }
 
                 if (match) {
-                    products.add(recipe2.getRecipeOutput());
+                    products.add(shaped.getRecipeOutput());
                 }
             }
 
-            if (recipeO instanceof ShapelessOreRecipe) {
-                ShapelessOreRecipe recipe3 = (ShapelessOreRecipe) recipeO;
+            if (iRecipe instanceof ShapelessOreRecipe shapelessOre) {
                 boolean match = true;
-                for (Object rec : recipe3.getInput()) {
-                    if (rec != null && (!(rec instanceof ItemStack) || !stack.isItemEqual((ItemStack) rec))) {
+                for (final Object rec : shapelessOre.getInput()) {
+                    if (rec != null && (!(rec instanceof ItemStack i) || !stack.isItemEqual(i))) {
                         match = false;
+                        break;
                     }
                 }
 
                 if (!match) {
                     continue;
                 }
-                products.add(recipe3.getRecipeOutput());
+                products.add(shapelessOre.getRecipeOutput());
             }
         }
         return products;
     }
 
     public Collection<FluidStack> getAllFluids(ItemStack stack) {
-        List<FluidStack> products = new ArrayList<>();
-        products.addAll(getSqueezerFluid(stack));
-        return products;
+        return new ArrayList<>(getSqueezerFluid(stack));
     }
 
     public Collection<FluidStack> getSqueezerFluid(ItemStack stack) {
         List<FluidStack> products = new ArrayList<>();
-        for (Map.Entry<Object[], Object[]> recipe : RecipeManagers.squeezerManager.getRecipes().entrySet()) {
+        for (final Map.Entry<Object[], Object[]> recipe : RecipeManagers.squeezerManager.getRecipes().entrySet()) {
             boolean isRecipe = false;
-            for (Object obj : recipe.getKey()) {
-                if (obj instanceof ItemStack && stack.isItemEqual((ItemStack) obj)) {
+            for (final Object obj : recipe.getKey()) {
+                if (obj instanceof ItemStack i && stack.isItemEqual(i)) {
                     isRecipe = true;
+                    break;
                 }
             }
 
             if (isRecipe) {
-                for (Object obj : recipe.getValue()) {
-                    if (obj instanceof FluidStack) {
-                        products.add((FluidStack) obj);
+                for (final Object obj : recipe.getValue()) {
+                    if (obj instanceof FluidStack f) {
+                        products.add(f);
                     }
                 }
             }
@@ -156,41 +158,41 @@ public abstract class AnalystPageProduce extends ControlAnalystPage {
         return products;
     }
 
-    protected Collection<? extends FluidStack> getAllProducts(FluidStack stack) {
+    protected Collection<? extends FluidStack> getAllProducts() {
         return new UniqueFluidStackSet();
     }
 
     protected Collection<ItemStack> getAllProductsAndFluids(Collection<ItemStack> collection) {
         Collection<ItemStack> products = new UniqueItemStackSet();
-        for (ItemStack stack : collection) {
+        for (final ItemStack stack : collection) {
             products.addAll(getAllProducts(stack));
         }
 
         Collection<ItemStack> products2 = new UniqueItemStackSet();
-        for (ItemStack stack2 : products) {
+        for (final ItemStack stack2 : products) {
             products2.addAll(getAllProducts(stack2));
         }
 
         Collection<ItemStack> products3 = new UniqueItemStackSet();
-        for (ItemStack stack3 : products2) {
+        for (final ItemStack stack3 : products2) {
             products3.addAll(getAllProducts(stack3));
         }
 
         products.addAll(products2);
         products.addAll(products3);
         Collection<FluidStack> allFluids = new UniqueFluidStackSet();
-        for (ItemStack stack4 : collection) {
+        for (final ItemStack stack4 : collection) {
             allFluids.addAll(getAllFluids(stack4));
         }
 
         Collection<FluidStack> fluids2 = new UniqueFluidStackSet();
-        for (FluidStack stack5 : allFluids) {
-            fluids2.addAll(getAllProducts(stack5));
+        for (FluidStack ignored : allFluids) {
+            fluids2.addAll(getAllProducts());
         }
 
         Collection<FluidStack> fluids3 = new UniqueFluidStackSet();
-        for (FluidStack stack6 : fluids2) {
-            fluids3.addAll(getAllProducts(stack6));
+        for (FluidStack ignored : fluids2) {
+            fluids3.addAll(getAllProducts());
         }
 
         allFluids.addAll(fluids2);

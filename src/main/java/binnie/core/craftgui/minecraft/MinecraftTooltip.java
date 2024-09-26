@@ -33,9 +33,9 @@ public class MinecraftTooltip extends Tooltip {
         USER(0x962433, EnumChatFormatting.RED, EnumChatFormatting.DARK_RED),
         POWER(0x896e00, EnumChatFormatting.YELLOW, EnumChatFormatting.GOLD);
 
-        int outline;
-        String mainText;
-        String bodyText;
+        final int outline;
+        final String mainText;
+        final String bodyText;
 
         TypeColor(int outline, EnumChatFormatting mainText, EnumChatFormatting bodyText) {
             this.outline = outline;

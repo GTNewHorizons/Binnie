@@ -52,7 +52,7 @@ public class GeneItem implements INBTTagable, IGeneItem {
     }
 
     @Override
-    public void getInfo(List tooltip) {
+    public void getInfo(List<String> tooltip) {
         String chromosomeName = getBreedingSystem().getChromosomeName(gene.getChromosome());
         tooltip.add(EnumChatFormatting.GOLD + chromosomeName + EnumChatFormatting.GRAY + ": " + gene.getName());
     }

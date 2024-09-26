@@ -134,7 +134,7 @@ public class AnalystPageSoil extends ControlAnalystPage {
 
     protected void createMoisture(IWidget parent, float x, float y, float w, float h, EnumMoisture value,
             EnumTolerance tol) {
-        new ControlToleranceBar<EnumMoisture>(parent, x, y, w, h, EnumMoisture.class) {
+        new ControlToleranceBar<>(parent, x, y, w, h, EnumMoisture.class) {
 
             @Override
             protected String getName(EnumMoisture value) {
@@ -143,14 +143,18 @@ public class AnalystPageSoil extends ControlAnalystPage {
 
             @Override
             protected int getColor(EnumMoisture value) {
-                return (new int[] { 0xccffcc, 0x66ccff, 0x3366ff })[value.ordinal()];
+                return switch (value) {
+                    case DRY -> 0xccffcc;
+                    case NORMAL -> 0x66ccff;
+                    case DAMP -> 0x3366ff;
+                };
             }
         }.setValues(value, tol);
     }
 
     protected void createAcidity(IWidget parent, float x, float y, float w, float h, EnumAcidity value,
             EnumTolerance tol) {
-        new ControlToleranceBar<EnumAcidity>(parent, x, y, w, h, EnumAcidity.class) {
+        new ControlToleranceBar<>(parent, x, y, w, h, EnumAcidity.class) {
 
             @Override
             protected String getName(EnumAcidity value) {
@@ -159,7 +163,11 @@ public class AnalystPageSoil extends ControlAnalystPage {
 
             @Override
             protected int getColor(EnumAcidity value) {
-                return (new int[] { 0xff0066, 0x00ff00, 0x0066ff })[value.ordinal()];
+                return switch (value) {
+                    case ACID -> 0xff0066;
+                    case NEUTRAL -> 0x00ff00;
+                    case ALKALINE -> 0x0066ff;
+                };
             }
         }.setValues(value, tol);
     }

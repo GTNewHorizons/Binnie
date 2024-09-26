@@ -47,15 +47,11 @@ public class AnalystPageWood extends AnalystPageProduce {
             products.add(stackWood);
         }
 
-        // for (ItemStack stack :
-        // ind.getGenome().getFruitProvider().getProducts()) {
-        // products.add(stack);
-        // }
-
-        if (products.size() > 0) {
+        if (!products.isEmpty()) {
             new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.wood.logs")).setColor(getColor());
             y += 10;
             int w = products.size() * 18 - 2;
+            // TODO: Is this meant to increment i?
             int i = 0;
             for (ItemStack stack : products) {
                 ControlItemDisplay d = new ControlItemDisplay(this, (w() - w) / 2.0f + 18 * i, y);
@@ -70,12 +66,12 @@ public class AnalystPageWood extends AnalystPageProduce {
 
         Collection<ItemStack> refinedProducts = new UniqueItemStackSet();
         refinedProducts.addAll(getAllProductsAndFluids(allProducts));
-        if (refinedProducts.size() > 0) {
+        if (!refinedProducts.isEmpty()) {
             y = getRefined(I18N.localise("genetics.gui.analyst.wood.products"), y, refinedProducts);
             y += 8;
         }
 
-        if (products.size() == 0) {
+        if (products.isEmpty()) {
             new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.wood.noFruits")).setColor(getColor());
             y += 28;
         }

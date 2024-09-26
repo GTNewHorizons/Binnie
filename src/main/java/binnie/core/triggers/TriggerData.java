@@ -6,7 +6,7 @@ import buildcraft.api.statements.ITriggerExternal;
 
 public class TriggerData implements Map.Entry<ITriggerExternal, Boolean> {
 
-    private ITriggerExternal key;
+    private final ITriggerExternal key;
     private Boolean value;
 
     public TriggerData(ITriggerExternal key, Boolean value) {

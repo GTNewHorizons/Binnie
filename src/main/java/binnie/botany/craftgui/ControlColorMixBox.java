@@ -6,7 +6,7 @@ import binnie.core.craftgui.controls.listbox.ControlListBox;
 
 public class ControlColorMixBox extends ControlListBox<IColourMix> {
 
-    private Type type;
+    private final Type type;
 
     public ControlColorMixBox(IWidget parent, int x, int y, int width, int height, Type type) {
         super(parent, x, y, width, height, 12.0f);
@@ -18,7 +18,7 @@ public class ControlColorMixBox extends ControlListBox<IColourMix> {
         return new ControlColorMixItem(getContent(), value, y);
     }
 
-    enum Type {
+    public enum Type {
         Resultant,
         Further
     }

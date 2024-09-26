@@ -30,7 +30,7 @@ public class WoodManager {
 
     public static int getPlankTypeIndex(IPlankType type) {
         int index = CarpentryManager.carpentryInterface.getCarpentryWoodIndex(type);
-        return (index < 0) ? 0 : index;
+        return Math.max(index, 0);
     }
 
     public static FenceType getFenceType(ItemStack stack) {

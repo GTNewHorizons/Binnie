@@ -12,7 +12,7 @@ public enum AdvGeneticMachine implements IMachineType {
 
     Splicer(SplicerPackage.class);
 
-    protected Class<? extends MachinePackage> cls;
+    private final Class<? extends MachinePackage> cls;
 
     AdvGeneticMachine(Class<? extends MachinePackage> cls) {
         this.cls = cls;

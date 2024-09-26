@@ -406,8 +406,9 @@ public enum EnumPattern implements IPattern {
         EnumPattern.OverlappedSplitBarred2.setLeftRotation(EnumPattern.OverlappedSplitBarred, false);
     }
 
-    protected ILayout leftRotation;
-    protected ILayout horizontalFlip;
+    private ILayout leftRotation;
+    private ILayout horizontalFlip;
+    public static final EnumPattern[] VALUES = values();
 
     EnumPattern() {
         leftRotation = Layout.get(this, false);
@@ -506,7 +507,7 @@ public enum EnumPattern implements IPattern {
         return horizontalFlip;
     }
 
-    protected void setLeftRotation(EnumPattern pattern, boolean inverted) {
+    private void setLeftRotation(EnumPattern pattern, boolean inverted) {
         leftRotation = Layout.get(pattern, inverted);
     }
 

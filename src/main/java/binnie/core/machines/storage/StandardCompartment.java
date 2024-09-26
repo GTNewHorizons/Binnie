@@ -1,13 +1,10 @@
 package binnie.core.machines.storage;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.texture.BinnieCoreTexture;
 
-class StandardCompartment {
+public class StandardCompartment {
 
     public static class PackageCompartment extends Compartment.PackageCompartment {
 
@@ -21,10 +18,6 @@ class StandardCompartment {
             new ComponentCompartmentInventory(machine, 4, 25);
         }
 
-        @Override
-        public TileEntity createTileEntity() {
-            return new TileEntityMachine(this);
-        }
     }
 
     public static class PackageCompartmentCopper extends Compartment.PackageCompartment {
@@ -39,10 +32,6 @@ class StandardCompartment {
             new ComponentCompartmentInventory(machine, 6, 25);
         }
 
-        @Override
-        public TileEntity createTileEntity() {
-            return new TileEntityMachine(this);
-        }
     }
 
     public static class PackageCompartmentBronze extends Compartment.PackageCompartment {
@@ -57,10 +46,6 @@ class StandardCompartment {
             new ComponentCompartmentInventory(machine, 8, 25);
         }
 
-        @Override
-        public TileEntity createTileEntity() {
-            return new TileEntityMachine(this);
-        }
     }
 
     public static class PackageCompartmentIron extends Compartment.PackageCompartment {
@@ -75,10 +60,6 @@ class StandardCompartment {
             new ComponentCompartmentInventory(machine, 4, 50);
         }
 
-        @Override
-        public TileEntity createTileEntity() {
-            return new TileEntityMachine(this);
-        }
     }
 
     public static class PackageCompartmentGold extends Compartment.PackageCompartment {
@@ -93,10 +74,6 @@ class StandardCompartment {
             new ComponentCompartmentInventory(machine, 6, 50);
         }
 
-        @Override
-        public TileEntity createTileEntity() {
-            return new TileEntityMachine(this);
-        }
     }
 
     public static class PackageCompartmentDiamond extends Compartment.PackageCompartment {
@@ -111,9 +88,5 @@ class StandardCompartment {
             new ComponentCompartmentInventory(machine, 8, 50);
         }
 
-        @Override
-        public TileEntity createTileEntity() {
-            return new TileEntityMachine(this);
-        }
     }
 }

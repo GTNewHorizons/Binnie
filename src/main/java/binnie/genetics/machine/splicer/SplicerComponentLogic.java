@@ -72,7 +72,7 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
                 i++;
             }
         }
-        return (i < 1) ? 1 : i;
+        return Math.max(i, 1);
     }
 
     private int getFullNumberOfGenes() {
@@ -190,10 +190,5 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
             Splicer.setGene(gene, target, 1);
         }
         getUtil().damageItem(Splicer.SLOT_SERUM_VIAL, 1);
-    }
-
-    @Override
-    protected void onTickTask() {
-        // ignored
     }
 }

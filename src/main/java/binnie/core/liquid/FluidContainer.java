@@ -22,9 +22,9 @@ public enum FluidContainer {
     Glass,
     Cylinder;
 
-    protected IIcon bottle;
-    protected IIcon contents;
-    protected ItemFluidContainer item;
+    private IIcon bottle;
+    private IIcon contents;
+    ItemFluidContainer item;
 
     public int getMaxStackSize() {
         return (this == FluidContainer.Bucket) ? 1 : 16;
@@ -65,26 +65,14 @@ public enum FluidContainer {
     }
 
     public ItemStack getEmpty() {
-        switch (this) {
-            case Bucket:
-                return new ItemStack(Items.bucket, 1, 0);
-
-            case Can:
-                return Mods.forestry.stack("canEmpty");
-
-            case Capsule:
-                return Mods.forestry.stack("waxCapsule");
-
-            case Glass:
-                return new ItemStack(Items.glass_bottle, 1, 0);
-
-            case Refractory:
-                return Mods.forestry.stack("refractoryEmpty");
-
-            case Cylinder:
-                return GeneticsItems.Cylinder.get(1);
-        }
-        return null;
+        return switch (this) {
+            case Bucket -> new ItemStack(Items.bucket, 1, 0);
+            case Can -> Mods.forestry.stack("canEmpty");
+            case Capsule -> Mods.forestry.stack("waxCapsule");
+            case Glass -> new ItemStack(Items.glass_bottle, 1, 0);
+            case Refractory -> Mods.forestry.stack("refractoryEmpty");
+            case Cylinder -> GeneticsItems.Cylinder.get(1);
+        };
     }
 
     public void registerContainerData(IFluidType fluid) {

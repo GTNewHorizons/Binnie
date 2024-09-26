@@ -25,10 +25,10 @@ public enum GeneticsTexture implements IBinnieTexture {
     Acclimatiser(ResourceType.Tile, "Acclimatiser"),
     Splicer(ResourceType.Tile, "Splicer");
 
-    public static BinnieIcon dnaIcon = Binnie.Resource.getItemIcon(Genetics.instance, "dna");
+    public static final BinnieIcon dnaIcon = Binnie.Resource.getItemIcon(Genetics.instance, "dna");
 
-    protected String texture;
-    protected ResourceType type;
+    private final String texture;
+    private final ResourceType type;
 
     GeneticsTexture(ResourceType base, String texture) {
         this.texture = texture;

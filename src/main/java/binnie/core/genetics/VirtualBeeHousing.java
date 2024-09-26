@@ -24,7 +24,7 @@ import forestry.core.access.FakeAccessHandler;
 public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IBeeModifier {
 
     ArrayList<IBeeModifier> beeModifier = new ArrayList<>();
-    private InventoryBeeHousing beeInventory;
+    private final InventoryBeeHousing beeInventory;
 
     public VirtualBeeHousing(EntityPlayer player) {
         super(player);
@@ -68,11 +68,6 @@ public class VirtualBeeHousing extends VirtualHousing implements IBeeHousing, IB
 
     public boolean canBreed() {
         return true;
-    }
-
-    @Override
-    public boolean addProduct(ItemStack product, boolean all) {
-        return false;
     }
 
     public void wearOutEquipment(int amount) {}

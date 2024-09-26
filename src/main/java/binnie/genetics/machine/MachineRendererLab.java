@@ -21,11 +21,11 @@ public class MachineRendererLab {
 
     public static MachineRendererLab instance = new MachineRendererLab();
 
-    private EntityItem dummyEntityItem;
-    private EntityItem[] itemSides;
-    private RenderItem customRenderItem;
+    private final EntityItem dummyEntityItem;
+    private final EntityItem[] itemSides;
+    private final RenderItem customRenderItem;
     private long lastTick;
-    private ModelMachine model;
+    private final ModelMachine model;
 
     public MachineRendererLab() {
         dummyEntityItem = new EntityItem(null);
@@ -46,8 +46,7 @@ public class MachineRendererLab {
         }).setRenderManager(RenderManager.instance);
     }
 
-    public void renderMachine(Machine machine, int colour, BinnieResource texture, double x, double y, double z,
-            float var8) {
+    public void renderMachine(Machine machine, BinnieResource texture, double x, double y, double z) {
         GL11.glPushMatrix();
         int ix = machine.getTileEntity().xCoord;
         int iz = machine.getTileEntity().zCoord;

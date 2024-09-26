@@ -38,7 +38,7 @@ public class ControlProgressBase extends Control {
         }
 
         if (seconds > 0) {
-            if (ts.length() > 0) {
+            if (!ts.isEmpty()) {
                 ts += " ";
             }
             if (seconds == 1) {

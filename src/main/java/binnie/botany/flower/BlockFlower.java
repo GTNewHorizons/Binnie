@@ -85,7 +85,7 @@ public class BlockFlower extends BlockContainer {
         super.onBlockPlacedBy(world, x, y, z, entity, stack);
         TileEntity flower = world.getTileEntity(x, y, z);
         if (!BinnieCore.proxy.isSimulating(world)) {
-            if (flower != null && flower instanceof TileEntityFlower) {
+            if (flower instanceof TileEntityFlower) {
                 IFlower f = BotanyCore.getFlowerRoot().getMember(stack);
                 ((TileEntityFlower) flower).setRender(new TileEntityFlower.RenderInfo(f, (TileEntityFlower) flower));
             }
@@ -93,7 +93,7 @@ public class BlockFlower extends BlockContainer {
         }
 
         TileEntity below = world.getTileEntity(x, y - 1, z);
-        if (flower != null && flower instanceof TileEntityFlower) {
+        if (flower instanceof TileEntityFlower) {
             if (below instanceof TileEntityFlower) {
                 ((TileEntityFlower) flower).setSection(((TileEntityFlower) below).getSection());
             } else {
@@ -108,15 +108,14 @@ public class BlockFlower extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (!(tile instanceof TileEntityFlower)) {
+        if (!(tile instanceof TileEntityFlower tileFlower)) {
             return super.getIcon(world, x, y, z, side);
         }
 
-        TileEntityFlower f = (TileEntityFlower) tile;
-        EnumFlowerStage stage = (f.getAge() == 0) ? EnumFlowerStage.SEED : EnumFlowerStage.FLOWER;
-        IFlowerType flower = f.getType();
-        int section = f.getRenderSection();
-        boolean flowered = f.isFlowered();
+        EnumFlowerStage stage = (tileFlower.getAge() == 0) ? EnumFlowerStage.SEED : EnumFlowerStage.FLOWER;
+        IFlowerType flower = tileFlower.getType();
+        int section = tileFlower.getRenderSection();
+        boolean flowered = tileFlower.isFlowered();
         if (RendererBotany.pass == 0) {
             return flower.getStem(stage, flowered, section);
         }
@@ -129,12 +128,11 @@ public class BlockFlower extends BlockContainer {
     @SideOnly(Side.CLIENT)
     public int colorMultiplier(IBlockAccess world, int x, int y, int z) {
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile instanceof TileEntityFlower) {
-            TileEntityFlower f = (TileEntityFlower) tile;
+        if (tile instanceof TileEntityFlower tileFlower) {
             if (RendererBotany.pass == 0) {
-                return f.getStemColour();
+                return tileFlower.getStemColour();
             }
-            return (RendererBotany.pass == 1) ? f.getPrimaryColor() : f.getSecondaryColor();
+            return (RendererBotany.pass == 1) ? tileFlower.getPrimaryColor() : tileFlower.getSecondaryColor();
         }
         return 0xffffff;
     }
@@ -153,14 +151,13 @@ public class BlockFlower extends BlockContainer {
         super.onNeighborBlockChange(world, x, y, z, block);
         checkAndDropBlock(world, x, y, z);
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (!(tile instanceof TileEntityFlower)) {
+        if (!(tile instanceof TileEntityFlower tileFlower)) {
             return;
         }
 
-        TileEntityFlower flower = (TileEntityFlower) tile;
-        if (flower.getSection() == 0 && flower.getFlower() != null
-                && flower.getFlower().getAge() > 0
-                && flower.getFlower().getGenome().getPrimary().getType().getSections() > 1
+        if (tileFlower.getSection() == 0 && tileFlower.getFlower() != null
+                && tileFlower.getFlower().getAge() > 0
+                && tileFlower.getFlower().getGenome().getPrimary().getType().getSections() > 1
                 && world.getBlock(x, y + 1, z) != Botany.flower) {
             dropBlockAsItem(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
             world.setBlockToAir(x, y, z);
@@ -212,7 +209,7 @@ public class BlockFlower extends BlockContainer {
         List<ItemStack> drops = getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
         boolean hasBeenBroken = world.setBlockToAir(x, y, z);
         if (hasBeenBroken && BinnieCore.proxy.isSimulating(world)
-                && drops.size() > 0
+                && !drops.isEmpty()
                 && (player == null || !player.capabilities.isCreativeMode)) {
             for (ItemStack drop : drops) {
                 dropBlockAsItem(world, x, y, z, drop);

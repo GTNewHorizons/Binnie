@@ -70,8 +70,8 @@ public class PlankType {
         Gingko(0xf4e7ba),
         PinkIvory(0xec8ca0);
 
-        protected int color;
-        protected IIcon icon;
+        private final int color;
+        private IIcon icon;
 
         ExtraTreePlanks(int color) {
             this.color = color;
@@ -121,7 +121,7 @@ public class PlankType {
         ACACIA(0xba6337),
         DARKOAK(0x462d15);
 
-        protected int color;
+        private final int color;
 
         VanillaPlanks(int color) {
             this.color = color;
@@ -192,7 +192,7 @@ public class PlankType {
         COCOBOLO(0x731302),
         ZEBRAWOOD(0xa6824e);
 
-        protected int color;
+        private final int color;
 
         ForestryPlanks(int color) {
             this.color = color;
@@ -221,12 +221,10 @@ public class PlankType {
 
         @Override
         public IIcon getIcon() {
-            if (getStack() != null) {
-                int meta = getStack().getItemDamage();
-                Block block = ((ItemBlock) getStack().getItem()).field_150939_a;
-                return block.getIcon(2, meta);
-            }
-            return null;
+            final ItemStack stack = getStack();
+            final int meta = stack.getItemDamage();
+            final Block block = ((ItemBlock) stack.getItem()).field_150939_a;
+            return block.getIcon(2, meta);
         }
 
         @Override
@@ -243,7 +241,7 @@ public class PlankType {
         Fir(0x7e774a),
         Acacia(0xbfaa7e);
 
-        protected int color;
+        private final int color;
 
         ExtraBiomesPlank(int color) {
             this.color = color;
@@ -274,9 +272,10 @@ public class PlankType {
 
         @Override
         public IIcon getIcon() {
-            if (getStack() != null) {
-                int meta = getStack().getItemDamage();
-                Block block = ((ItemBlock) getStack().getItem()).field_150939_a;
+            final ItemStack stack = getStack();
+            if (stack != null) {
+                int meta = stack.getItemDamage();
+                Block block = ((ItemBlock) stack.getItem()).field_150939_a;
                 return block.getIcon(2, meta);
             }
             return null;

@@ -54,11 +54,6 @@ public class ManagerLiquid extends ManagerBase {
     }
 
     @Override
-    public void init() {
-        // ignored
-    }
-
-    @Override
     public void postInit() {
         for (IFluidType fluid : fluids.values()) {
             for (FluidContainer container : FluidContainer.values()) {

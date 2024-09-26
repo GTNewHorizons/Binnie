@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class InoculatorComponentFX extends MachineComponent
         implements IRender.RandomDisplayTick, IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 
-    private EntityItem dummyEntityItem;
+    private final EntityItem dummyEntityItem;
 
     public InoculatorComponentFX(IMachine machine) {
         super(machine);
@@ -77,11 +77,6 @@ public class InoculatorComponentFX extends MachineComponent
                                         particleGreen + (0.0f - particleGreen) / 10.0f,
                                         particleBlue + (0.0f - particleBlue) / 10.0f);
                             }
-                        }
-
-                        @Override
-                        public int getFXLayer() {
-                            return 0;
                         }
                     });
         }

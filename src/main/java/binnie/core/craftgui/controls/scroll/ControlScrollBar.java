@@ -30,7 +30,7 @@ public class ControlScrollBar extends Control {
         addSelfEventHandler(mouseDownHandler);
     }
 
-    private EventMouse.Down.Handler mouseDownHandler = new EventMouse.Down.Handler() {
+    private final EventMouse.Down.Handler mouseDownHandler = new EventMouse.Down.Handler() {
 
         @Override
         public void onEvent(EventMouse.Down event) {
@@ -49,11 +49,6 @@ public class ControlScrollBar extends Control {
             }
         }
     };
-
-    @Override
-    public void onUpdateClient() {
-        // ignored
-    }
 
     @Override
     public void onRenderBackground() {

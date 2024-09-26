@@ -79,13 +79,9 @@ public enum Food implements IItemMisc {
     Starfruit(2),
     Candlenut(0);
 
-    protected IIcon icon;
-    protected int hunger;
-    private List<String> ores;
-
-    Food() {
-        this(0);
-    }
+    private IIcon icon;
+    private final int hunger;
+    private final List<String> ores;
 
     Food(int hunger) {
         ores = new ArrayList<>();
@@ -188,7 +184,7 @@ public enum Food implements IItemMisc {
     }
 
     @Override
-    public void addInformation(List tooltip) {
+    public void addInformation(List<String> tooltip) {
         // ignored
     }
 

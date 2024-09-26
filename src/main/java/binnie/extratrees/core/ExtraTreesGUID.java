@@ -34,29 +34,15 @@ public enum ExtraTreesGUID implements IBinnieGUID {
         if (tileEntity instanceof IInventory) {
             object = (IInventory) tileEntity;
         }
-        switch (this) {
-            case Database:
-            case DatabaseNEI:
-                window = WindowArboristDatabase.create(player, side, this != ExtraTreesGUID.Database);
-                break;
-
-            case Woodworker:
-                window = WindowWoodworker.create(player, object, side);
-                break;
-
-            case Lumbermill:
-                window = WindowLumbermill.create(player, object, side);
-                break;
-
-            case MothDatabase:
-            case MothDatabaseNEI:
-                window = WindowLepidopteristDatabase.create(player, side, this != ExtraTreesGUID.MothDatabase);
-                break;
-
-            case SetSquare:
-                window = WindowSetSquare.create(player, world, x, y, z, side);
-                break;
-        }
+        window = switch (this) {
+            case Database, DatabaseNEI -> WindowArboristDatabase.create(player, side, this != ExtraTreesGUID.Database);
+            case Woodworker -> WindowWoodworker.create(player, object, side);
+            case Lumbermill -> WindowLumbermill.create(player, object, side);
+            case MothDatabase, MothDatabaseNEI -> WindowLepidopteristDatabase
+                    .create(player, side, this != ExtraTreesGUID.MothDatabase);
+            case SetSquare -> WindowSetSquare.create(player, world, x, y, z, side);
+            default -> window;
+        };
         return window;
     }
 }

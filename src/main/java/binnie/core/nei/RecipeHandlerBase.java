@@ -196,10 +196,9 @@ public abstract class RecipeHandlerBase extends TemplateRecipeHandler {
 
     public void drawFluidTanks(int recipe) {
         CachedRecipe cachedRecipe = this.arecipes.get(recipe);
-        if (cachedRecipe instanceof CachedBaseRecipe) {
-            CachedBaseRecipe crecipe = (CachedBaseRecipe) cachedRecipe;
-            if (crecipe.getFluidTanks() != null) {
-                for (PositionedFluidTank fluidTank : crecipe.getFluidTanks()) {
+        if (cachedRecipe instanceof CachedBaseRecipe baseRecipe) {
+            if (baseRecipe.getFluidTanks() != null) {
+                for (PositionedFluidTank fluidTank : baseRecipe.getFluidTanks()) {
                     fluidTank.draw();
                 }
             }

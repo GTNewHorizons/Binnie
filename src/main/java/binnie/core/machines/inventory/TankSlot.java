@@ -13,7 +13,7 @@ public class TankSlot extends BaseSlot<FluidStack> {
     public static final String NAME_WATER = "Water Tank";
     public static final String NAME_CUPBOARD = "Cupboard Slot";
 
-    private FluidTank tank;
+    private final FluidTank tank;
 
     public TankSlot(int index, String name, int capacity) {
         super(index, name);

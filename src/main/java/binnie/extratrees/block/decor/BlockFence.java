@@ -41,7 +41,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (IFenceProvider type : PlankType.ExtraTreePlanks.values()) {
             list.add(type.getFence());
         }

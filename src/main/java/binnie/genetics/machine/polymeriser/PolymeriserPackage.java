@@ -2,11 +2,9 @@ package binnie.genetics.machine.polymeriser;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentChargedSlots;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
@@ -72,10 +70,5 @@ public class PolymeriserPackage extends PackageGeneticBase implements IMachineIn
         new ComponentPowerReceptor(machine, Polymeriser.POWER_CAPACITY);
         new PolymeriserComponentLogic(machine);
         new PolymeriserComponentFX(machine);
-    }
-
-    @Override
-    public TileEntity createTileEntity() {
-        return new TileEntityMachine(this);
     }
 }

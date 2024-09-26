@@ -41,7 +41,7 @@ public class ControlPages<T> extends Control implements IControlValues<T>, ICont
     public Collection<T> getValues() {
         List<T> list = new ArrayList<>();
         for (IWidget child : getWidgets()) {
-            list.add((T) ((IControlValue) child).getValue());
+            list.add((T) ((IControlValue<?>) child).getValue());
         }
         return list;
     }

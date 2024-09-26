@@ -16,5 +16,5 @@ public interface IItemMisc extends IItemEnum {
     @SideOnly(Side.CLIENT)
     void registerIcons(IIconRegister register);
 
-    void addInformation(List data);
+    void addInformation(List<String> data);
 }

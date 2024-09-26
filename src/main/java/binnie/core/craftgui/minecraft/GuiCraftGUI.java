@@ -38,7 +38,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiCraftGUI extends GuiContainer {
 
-    private Window window;
+    private final Window window;
     private ItemStack draggedItem;
 
     public GuiCraftGUI(Window window) {

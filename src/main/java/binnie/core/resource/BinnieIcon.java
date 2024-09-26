@@ -11,7 +11,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BinnieIcon extends BinnieResource {
 
-    private int textureSheet;
+    private final int textureSheet;
     private IIcon icon;
 
     public BinnieIcon(AbstractMod mod, ResourceType type, String path) {

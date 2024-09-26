@@ -28,7 +28,7 @@ public class ItemFood extends net.minecraft.item.ItemFood {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (IItemMisc itemMisc : items) {
             if (itemMisc.isActive()) {
                 list.add(getStack(itemMisc, 1));
@@ -46,7 +46,7 @@ public class ItemFood extends net.minecraft.item.ItemFood {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         IItemMisc item = getItem(stack.getItemDamage());
         if (item != null) {

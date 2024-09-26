@@ -131,6 +131,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
                 for (IAlleleSpecies species2 : branch.getMemberSpecies()) {
                     if (allActiveSpecies.contains(species2)) {
                         possible = true;
+                        break;
                     }
                 }
                 if (!possible) {

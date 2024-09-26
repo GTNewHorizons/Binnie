@@ -53,11 +53,6 @@ public class IsolatorComponentFX extends MachineComponent implements IRender.Ran
                         angle += 0.06;
                         setAlphaF((float) Math.sin(3.14 * particleAge / particleMaxAge));
                     }
-
-                    @Override
-                    public int getFXLayer() {
-                        return 0;
-                    }
                 });
     }
 
@@ -72,14 +67,11 @@ public class IsolatorComponentFX extends MachineComponent implements IRender.Ran
         BinnieCore.proxy.getMinecraftInstance().effectRenderer
                 .addEffect(new EntityFX(world, x + 0.5, y + 1, z + 0.5, 0.0, 0.0, 0.0) {
 
-                    double axisX = posX;
-                    double axisZ = posZ;
-                    double angle = 0.7 + (int) (worldObj.getTotalWorldTime() % 2L) * 3.1415;
+                    final double axisX = 0.0;
+                    final double axisZ = 0.0;
+                    double angle = 0.0;
 
                     {
-                        axisX = 0.0;
-                        axisZ = 0.0;
-                        angle = 0.0;
                         motionX = 0.0;
                         motionZ = 0.0;
                         motionY = 0.012;
@@ -95,11 +87,6 @@ public class IsolatorComponentFX extends MachineComponent implements IRender.Ran
                         angle += 0.06;
                         setPosition(axisX + 0.26 * Math.sin(angle), posY, axisZ + 0.26 * Math.cos(angle));
                         setAlphaF((float) Math.cos(1.57 * particleAge / particleMaxAge));
-                    }
-
-                    @Override
-                    public int getFXLayer() {
-                        return 0;
                     }
                 });
     }

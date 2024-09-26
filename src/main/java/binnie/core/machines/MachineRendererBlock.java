@@ -12,7 +12,7 @@ public class MachineRendererBlock {
 
     public static MachineRendererBlock instance = new MachineRendererBlock();
     private BinnieResource texture;
-    private ModelBlock model;
+    private final ModelBlock model;
 
     public MachineRendererBlock() {
         model = new ModelBlock();

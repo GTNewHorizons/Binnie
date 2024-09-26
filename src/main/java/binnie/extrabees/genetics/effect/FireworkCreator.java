@@ -53,7 +53,7 @@ public class FireworkCreator {
                 nbt.setBoolean("Trail", true);
             }
 
-            if (colors.size() == 0) {
+            if (colors.isEmpty()) {
                 addColor(0xffffff);
             }
 

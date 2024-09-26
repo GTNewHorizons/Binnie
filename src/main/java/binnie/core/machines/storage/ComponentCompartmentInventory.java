@@ -14,9 +14,9 @@ import cpw.mods.fml.relauncher.Side;
 
 class ComponentCompartmentInventory extends ComponentInventorySlots implements INetwork.GuiNBT {
 
-    private int numberOfTabs;
-    private int slotsPerPage;
-    private Map<Integer, CompartmentTab> tabs;
+    private final int numberOfTabs;
+    private final int slotsPerPage;
+    private final Map<Integer, CompartmentTab> tabs;
 
     public ComponentCompartmentInventory(IMachine machine, int sections) {
         this(machine, sections, 4);

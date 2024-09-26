@@ -28,7 +28,7 @@ public class ComponentPowerReceptor extends MachineComponent
     public LinkedList<Float> inputs;
 
     private boolean registeredToIC2EnergyNet;
-    private PowerInterface container;
+    private final PowerInterface container;
 
     public ComponentPowerReceptor(IMachine machine) {
         this(machine, 1000);

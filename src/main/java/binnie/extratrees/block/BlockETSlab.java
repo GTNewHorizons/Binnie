@@ -44,8 +44,8 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int blockMeta, int fortune) {
-        ArrayList<ItemStack> drops = new ArrayList<>();
-        drops.addAll(BlockMetadata.getBlockDropped((IBlockMetadata) ExtraTrees.blockSlab, world, x, y, z, blockMeta));
+        ArrayList<ItemStack> drops = new ArrayList<>(
+                BlockMetadata.getBlockDropped((IBlockMetadata) ExtraTrees.blockSlab, world, x, y, z, blockMeta));
         if (field_150004_a) {
             drops.addAll(
                     BlockMetadata.getBlockDropped((IBlockMetadata) ExtraTrees.blockSlab, world, x, y, z, blockMeta));
@@ -92,7 +92,7 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
     }
 
     @Override
-    public void addBlockTooltip(ItemStack itemStack, List tooltip) {
+    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
         // ignored
     }
 
@@ -102,7 +102,7 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         if (field_150004_a) {
             return;
         }

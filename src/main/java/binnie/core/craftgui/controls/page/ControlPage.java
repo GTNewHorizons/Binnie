@@ -15,8 +15,8 @@ public class ControlPage<T> extends Control implements IControlValue<T> {
     public ControlPage(IWidget parent, float x, float y, float w, float h, T value) {
         super(parent, x, y, w, h);
         setValue(value);
-        if (parent instanceof IControlValue && ((IControlValue) parent).getValue() == null) {
-            ((IControlValue) parent).setValue(value);
+        if (parent instanceof IControlValue cv && ((IControlValue<?>) parent).getValue() == null) {
+            cv.setValue(value);
         }
     }
 

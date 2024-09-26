@@ -8,16 +8,16 @@ import java.util.List;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
 
-abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
+public abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
 
     protected Configuration file;
     protected Property property;
     protected ValueType defaultValue;
     protected AnnotationType annotatedProperty;
 
-    private ConfigProperty configProperty;
-    private List<String> comments;
-    private Field field;
+    private final ConfigProperty configProperty;
+    private final List<String> comments;
+    private final Field field;
 
     protected PropertyBase(Field field, BinnieConfiguration file, ConfigProperty configProperty,
             AnnotationType annotedProperty) throws IllegalArgumentException, IllegalAccessException {
@@ -44,7 +44,7 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
     protected abstract void addComments();
 
     protected String getCategory() {
-        return configProperty.category().equals("")
+        return configProperty.category().isEmpty()
                 ? annotatedProperty.annotationType().getAnnotation(ConfigProperty.Type.class).category()
                 : configProperty.category();
     }
@@ -62,10 +62,10 @@ abstract class PropertyBase<ValueType, AnnotationType extends Annotation> {
     }
 
     protected String getComment() {
-        String comment = "";
+        StringBuilder comment = new StringBuilder();
         for (String com : comments) {
-            comment = comment + com + " ";
+            comment.append(com).append(" ");
         }
-        return comment;
+        return comment.toString();
     }
 }

@@ -6,6 +6,7 @@ import net.minecraft.item.Item;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
@@ -28,7 +29,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(
         modid = "ExtraBees",
         name = "Extra Bees",
-        version = BinnieCore.VERSION,
+        version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class ExtraBees extends AbstractMod {

@@ -35,11 +35,6 @@ public abstract class ItemGene extends Item {
     }
 
     @Override
-    public boolean getShareTag() {
-        return true;
-    }
-
-    @Override
     public boolean isRepairable() {
         return false;
     }
@@ -73,7 +68,7 @@ public abstract class ItemGene extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         int damage = getMaxDamage() - stack.getItemDamage();
         if (damage == 0) {
@@ -92,7 +87,7 @@ public abstract class ItemGene extends Item {
     public abstract String getItemStackDisplayName(ItemStack stack);
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List itemList) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> itemList) {
         // ignored
     }
 

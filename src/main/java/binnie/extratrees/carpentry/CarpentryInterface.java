@@ -82,7 +82,7 @@ public class CarpentryInterface implements ICarpentryInterface {
     public Collection<IDesignCategory> getAllDesignCategories() {
         List<IDesignCategory> categories = new ArrayList<>();
         for (IDesignCategory category : CarpentryInterface.designCategories.values()) {
-            if (category.getDesigns().size() > 0) {
+            if (!category.getDesigns().isEmpty()) {
                 categories.add(category);
             }
         }

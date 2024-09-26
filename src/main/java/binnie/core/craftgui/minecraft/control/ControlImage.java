@@ -8,7 +8,7 @@ import binnie.core.craftgui.resource.Texture;
 
 public class ControlImage extends Control {
 
-    private Object key;
+    private final Object key;
 
     public ControlImage(IWidget parent, float x, float y, Texture text) {
         super(parent, x, y, text.w(), text.h());

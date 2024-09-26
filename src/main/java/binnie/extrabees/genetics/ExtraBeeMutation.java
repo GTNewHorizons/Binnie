@@ -7,12 +7,10 @@ import java.util.List;
 import binnie.extrabees.genetics.requirements.DummyMutationCondition;
 import binnie.extrabees.genetics.requirements.IMutationRequirement;
 import binnie.extrabees.genetics.requirements.RequirementPerson;
-import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.apiculture.IBeeMutationCustom;
-import forestry.api.apiculture.IBeeRoot;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IMutation;
 import forestry.apiculture.genetics.BeeMutation;
@@ -21,17 +19,12 @@ public class ExtraBeeMutation extends BeeMutation implements IBeeMutationCustom 
 
     public static List<IMutation> mutations = new ArrayList<>();
 
-    private List<IMutationRequirement> requirements;
+    private final List<IMutationRequirement> requirements;
 
     public ExtraBeeMutation(IAlleleBeeSpecies bee0, IAlleleBeeSpecies bee1, IAllele[] result, int chance) {
         super(bee0, bee1, result, chance);
         requirements = new ArrayList<>();
         mutations.add(this);
-    }
-
-    @Override
-    public IBeeRoot getRoot() {
-        return BeeManager.beeRoot;
     }
 
     @Override

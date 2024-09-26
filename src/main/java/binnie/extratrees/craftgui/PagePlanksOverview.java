@@ -43,17 +43,11 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
             ItemStack fence = WoodManager.getFence(type, new FenceType(0), 1);
             ItemStack gate = WoodManager.getGate(type);
             ItemStack door = WoodManager.getDoor(type, DoorType.STANDARD);
-            if (fence != null) {
-                new ControlItemDisplay(this, x, 48.0f).setItemStack(fence);
-                x += 22;
-            }
-            if (gate != null) {
-                new ControlItemDisplay(this, x, 48.0f).setItemStack(gate);
-                x += 22;
-            }
-            if (door != null) {
-                new ControlItemDisplay(this, x, 48.0f).setItemStack(door);
-            }
+            new ControlItemDisplay(this, x, 48.0f).setItemStack(fence);
+            x += 22;
+            new ControlItemDisplay(this, x, 48.0f).setItemStack(gate);
+            x += 22;
+            new ControlItemDisplay(this, x, 48.0f).setItemStack(door);
         }
 
         ControlText controlDescription = new ControlText(
@@ -71,22 +65,22 @@ public class PagePlanksOverview extends PageAbstract<ItemStack> {
             desc = type.getDescription();
         }
 
-        String descBody = EnumChatFormatting.ITALIC.toString();
+        StringBuilder descBody = new StringBuilder(EnumChatFormatting.ITALIC.toString());
         String descSig = "";
         if (desc == null || desc.isEmpty() || desc.matches("(\\w+\\.?)+")) {
-            descBody += I18N.localise("binniecore.gui.database.nodescription");
+            descBody.append(I18N.localise("binniecore.gui.database.nodescription"));
         } else {
             String[] descStrings = desc.split("\\|");
-            descBody += descStrings[0];
+            descBody.append(descStrings[0]);
             for (int i = 1; i < descStrings.length - 1; ++i) {
-                descBody = descBody + " " + descStrings[i];
+                descBody.append(" ").append(descStrings[i]);
             }
             if (descStrings.length > 1) {
                 descSig += descStrings[descStrings.length - 1];
             }
         }
 
-        controlDescription.setValue(descBody + EnumChatFormatting.RESET);
+        controlDescription.setValue(descBody.toString() + EnumChatFormatting.RESET);
         controlSignature.setValue(descSig + EnumChatFormatting.RESET);
         float descHeight = CraftGUI.render.textHeight(controlDescription.getValue(), controlDescription.getSize().x());
         controlSignature.setPosition(

@@ -1,7 +1,6 @@
 package binnie.core.machines.storage;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -63,7 +62,7 @@ import cpw.mods.fml.relauncher.Side;
 @SuppressWarnings("Duplicates")
 public class WindowCompartment extends WindowMachine implements IWindowAffectsShiftClick {
 
-    private Map<Panel, Integer> panels;
+    private final Map<Panel, Integer> panels;
     private ControlTextEdit tabName;
     private ControlItemDisplay tabIcon;
     private ControlColourSelector tabColour;
@@ -443,17 +442,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
                 }
 
                 if (sortByName) {
-                    List<Entry<Integer, String>> list = new LinkedList(slotIds.entrySet());
-                    list.sort(new Comparator<Entry<Integer, String>>() {
+                    List<Entry<Integer, String>> list = new LinkedList<>(slotIds.entrySet());
+                    list.sort((o1, o2) -> -o2.getValue().compareTo(o1.getValue()));
 
-                        @Override
-                        public int compare(Entry<Integer, String> o1, Entry<Integer, String> o2) {
-                            return -o2.getValue().compareTo(o1.getValue());
-                        }
-                    });
-
-                    Map result = new LinkedHashMap();
-                    for (Map.Entry entry : list) {
+                    Map<Integer, String> result = new LinkedHashMap<>();
+                    for (Map.Entry<Integer, String> entry : list) {
                         result.put(entry.getKey(), entry.getValue());
                     }
                     slotIds = result;

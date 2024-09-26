@@ -145,8 +145,8 @@ public class FenceRenderer implements ISimpleBlockRenderingHandler {
         float i = 0.0625f;
         FenceType fenceType = new FenceType(0);
         TileEntity tile = world.getTileEntity(x, y, z);
-        if (tile != null && tile instanceof TileEntityMetadata && block instanceof BlockMultiFence) {
-            fenceType = WoodManager.getFenceType(((TileEntityMetadata) tile).getTileMetadata());
+        if (tile instanceof TileEntityMetadata tileMeta && block instanceof BlockMultiFence) {
+            fenceType = WoodManager.getFenceType(tileMeta.getTileMetadata());
         }
 
         boolean rendered;
@@ -203,13 +203,11 @@ public class FenceRenderer implements ISimpleBlockRenderingHandler {
         if (connectAnyX) {
             renderer.setRenderBounds(minX, barMinY, minPostPos, maxX, barMaxY, maxPostPos);
             renderer.renderStandardBlock(blockFence, x, y, z);
-            rendered = true;
         }
 
         if (connectAnyZ) {
             renderer.setRenderBounds(minPostPos, barMinY, minZ, maxPostPos, barMaxY, maxZ);
             renderer.renderStandardBlock(blockFence, x, y, z);
-            rendered = true;
         }
 
         if (renderBottom) {
@@ -221,12 +219,10 @@ public class FenceRenderer implements ISimpleBlockRenderingHandler {
             if (connectAnyX) {
                 renderer.setRenderBounds(minX, barMinY, minPostPos, maxX, barMaxY, maxPostPos);
                 renderer.renderStandardBlock(blockFence, x, y, z);
-                rendered = true;
             }
             if (connectAnyZ) {
                 renderer.setRenderBounds(minPostPos, barMinY, minZ, maxPostPos, barMaxY, maxZ);
                 renderer.renderStandardBlock(blockFence, x, y, z);
-                rendered = true;
             }
         }
 
@@ -237,12 +233,10 @@ public class FenceRenderer implements ISimpleBlockRenderingHandler {
             if (connectAnyX) {
                 renderer.setRenderBounds(minX, barMinY, minPostPos, maxX, barMaxY, maxPostPos);
                 renderer.renderStandardBlock(blockFence, x, y, z);
-                rendered = true;
             }
             if (connectAnyZ) {
                 renderer.setRenderBounds(minPostPos, barMinY, minZ, maxPostPos, barMaxY, maxZ);
                 renderer.renderStandardBlock(blockFence, x, y, z);
-                rendered = true;
             }
         }
 

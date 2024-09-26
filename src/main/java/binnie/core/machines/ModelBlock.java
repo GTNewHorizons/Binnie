@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 
 class ModelBlock extends ModelBase {
 
-    private ModelRenderer block;
+    private final ModelRenderer block;
 
     public ModelBlock() {
         textureWidth = 64;

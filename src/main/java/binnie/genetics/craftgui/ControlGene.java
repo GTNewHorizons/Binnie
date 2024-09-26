@@ -71,11 +71,6 @@ public class ControlGene extends Control implements IControlValue<IGene>, IToolt
     }
 
     @Override
-    public void onRenderForeground() {
-        // ignored
-    }
-
-    @Override
     public void onRenderBackground() {
         if (isMouseOver() && canFill(Window.get(this).getHeldItemStack())) {
             CraftGUI.render.solid(getArea(), 0xffffffff);

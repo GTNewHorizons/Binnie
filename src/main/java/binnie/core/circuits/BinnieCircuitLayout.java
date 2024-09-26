@@ -9,8 +9,8 @@ import forestry.api.circuits.ICircuitSocketType;
 
 public class BinnieCircuitLayout implements ICircuitLayout {
 
-    private String uid;
-    private AbstractMod mod;
+    private final String uid;
+    private final AbstractMod mod;
 
     public BinnieCircuitLayout(AbstractMod mod, String uid) {
         this.uid = uid;

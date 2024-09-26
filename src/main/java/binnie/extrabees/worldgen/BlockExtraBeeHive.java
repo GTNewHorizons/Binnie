@@ -36,7 +36,7 @@ public class BlockExtraBeeHive extends Block {
     }
 
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List itemList) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> itemList) {
         for (int i = 0; i < 4; ++i) {
             itemList.add(new ItemStack(this, 1, i));
         }

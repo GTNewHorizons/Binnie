@@ -56,11 +56,7 @@ class CompartmentTab implements INBTTagable {
     }
 
     public void setName(String name) {
-        if (name == null) {
-            this.name = "";
-        } else {
-            this.name = name;
-        }
+        this.name = name == null ? "" : name;
     }
 
     public void setIcon(ItemStack icon) {

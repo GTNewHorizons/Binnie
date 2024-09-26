@@ -7,8 +7,8 @@ public enum Position {
     LEFT(-1, 0),
     RIGHT(1, 0);
 
-    protected int x;
-    protected int y;
+    private final int x;
+    private final int y;
 
     Position(int x, int y) {
         this.x = x;
@@ -24,19 +24,11 @@ public enum Position {
     }
 
     public Position opposite() {
-        switch (this) {
-            case BOTTOM:
-                return Position.TOP;
-
-            case LEFT:
-                return Position.RIGHT;
-
-            case RIGHT:
-                return Position.LEFT;
-
-            case TOP:
-                return Position.BOTTOM;
-        }
-        return null;
+        return switch (this) {
+            case BOTTOM -> Position.TOP;
+            case LEFT -> Position.RIGHT;
+            case RIGHT -> Position.LEFT;
+            case TOP -> Position.BOTTOM;
+        };
     }
 }

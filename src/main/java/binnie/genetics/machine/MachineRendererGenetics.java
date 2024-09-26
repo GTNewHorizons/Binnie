@@ -20,7 +20,7 @@ public class MachineRendererGenetics {
 
     public RenderItem customRenderItem;
 
-    private ModelMachine model;
+    private final ModelMachine model;
 
     public MachineRendererGenetics() {
         model = new ModelMachine();
@@ -39,8 +39,7 @@ public class MachineRendererGenetics {
         customRenderItem.setRenderManager(RenderManager.instance);
     }
 
-    public void renderMachine(Machine machine, int colour, BinnieResource texture, double x, double y, double z,
-            float var8) {
+    public void renderMachine(Machine machine, BinnieResource texture, double x, double y, double z) {
         GL11.glPushMatrix();
         GL11.glTranslated(x + 0.5, y + 1.5, z + 0.5);
         GL11.glRotatef(180.0f, 0.0f, 0.0f, 1.0f);

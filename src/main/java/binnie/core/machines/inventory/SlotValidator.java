@@ -12,7 +12,7 @@ public abstract class SlotValidator extends Validator<ItemStack> {
     public static ValidatorIcon IconFrame;
     public static ValidatorIcon IconCircuit;
     public static ValidatorIcon IconBlock;
-    private ValidatorIcon icon;
+    private final ValidatorIcon icon;
 
     public SlotValidator(ValidatorIcon icon) {
         this.icon = icon;
@@ -27,7 +27,7 @@ public abstract class SlotValidator extends Validator<ItemStack> {
 
     public static class Item extends SlotValidator {
 
-        private ItemStack target;
+        private final ItemStack target;
 
         public Item(ItemStack target, ValidatorIcon icon) {
             super(icon);

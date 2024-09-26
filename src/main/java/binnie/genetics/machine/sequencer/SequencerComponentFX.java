@@ -54,11 +54,6 @@ public class SequencerComponentFX extends MachineComponent implements IRender.Ra
                         motionY = 0.0;
                         setAlphaF((float) Math.sin(3.14 * particleAge / particleMaxAge));
                     }
-
-                    @Override
-                    public int getFXLayer() {
-                        return 0;
-                    }
                 });
     }
 

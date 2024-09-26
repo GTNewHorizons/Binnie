@@ -95,7 +95,7 @@ public class ControlErrorState extends Control implements ITooltip {
         }
 
         tooltip.add(errorState.toString());
-        if (errorState.getTooltip().length() > 0) {
+        if (!errorState.getTooltip().isEmpty()) {
             tooltip.add(errorState.getTooltip());
         }
     }

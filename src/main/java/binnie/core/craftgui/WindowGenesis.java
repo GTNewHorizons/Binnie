@@ -75,7 +75,7 @@ public class WindowGenesis extends Window {
         new Panel(this, one.outset(1), MinecraftGUI.PanelType.Black);
         new Panel(this, two.outset(1), MinecraftGUI.PanelType.Black);
 
-        geneList = new ControlListBox<Gene>(this, one.x(), one.y(), one.w(), one.h(), 10.0f) {
+        geneList = new ControlListBox<>(this, one.x(), one.y(), one.w(), one.h(), 10.0f) {
 
             @Override
             public IWidget createOption(Gene value, int y) {
@@ -83,7 +83,7 @@ public class WindowGenesis extends Window {
             }
         };
 
-        geneOptions = new ControlListBox<Gene>(this, two.x(), two.y(), two.w(), two.h(), 10.0f) {
+        geneOptions = new ControlListBox<>(this, two.x(), two.y(), two.w(), two.h(), 10.0f) {
 
             @Override
             public IWidget createOption(Gene value, int y) {

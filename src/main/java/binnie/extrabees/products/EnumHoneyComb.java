@@ -101,12 +101,12 @@ public enum EnumHoneyComb implements IItemEnum {
     CYANITE(new Color(0x27204d), new Color(0x86ed)),
     BLUTONIUM(new Color(0x27204d), new Color(0x1b00e6));
 
-    public Map<ItemStack, Float> products;
+    public final Map<ItemStack, Float> products;
     public final int primaryColor;
     public final int secondaryColor;
     public final String name;
 
-    protected boolean active;
+    boolean active;
 
     EnumHoneyComb(Color primaryColor, Color secondaryColor) {
         this.primaryColor = primaryColor.getRGB();
