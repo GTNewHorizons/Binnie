@@ -1,5 +1,13 @@
 package binnie.core;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.List;
+
+import net.minecraftforge.common.MinecraftForge;
+
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.mod.parser.FieldParser;
 import binnie.core.network.BinniePacketHandler;
@@ -10,12 +18,6 @@ import binnie.core.proxy.IProxyCore;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-import net.minecraftforge.common.MinecraftForge;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
@@ -30,7 +32,9 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    public boolean isActive() { return true; }
+    public boolean isActive() {
+        return true;
+    }
 
     @Override
     public abstract String getChannel();

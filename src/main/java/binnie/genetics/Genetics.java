@@ -1,5 +1,7 @@
 package binnie.genetics;
 
+import net.minecraft.item.Item;
+
 import binnie.core.AbstractMod;
 import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
@@ -21,7 +23,6 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.item.Item;
 
 @Mod(
         modid = "Genetics",

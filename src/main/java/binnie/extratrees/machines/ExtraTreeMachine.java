@@ -1,5 +1,11 @@
 package binnie.extratrees.machines;
 
+import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
 import binnie.Binnie;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
@@ -16,11 +22,6 @@ import binnie.extratrees.machines.designer.PanelworkerPackage;
 import binnie.extratrees.machines.designer.TileworkerPackage;
 import binnie.extratrees.machines.designer.WoodworkerPackage;
 import binnie.extratrees.machines.lumbermill.LumbermillPackage;
-import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public enum ExtraTreeMachine implements IMachineType {
 
