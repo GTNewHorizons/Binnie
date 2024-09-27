@@ -4,10 +4,10 @@ import binnie.core.item.DamageItems;
 import net.minecraft.item.Item;
 
 public class ETItems {
-    public static DamageItems itemMisc;
-    public static Item itemDictionary;
+    public final static DamageItems itemMisc = new ETMisc();
+    public final static Item itemDictionary = new ItemDictionary();
     public static Item itemDictionaryLepi;
-    public static Item itemFood;
-    public static Item itemHammer;
-    public static Item itemDurableHammer;
+    public static Item itemFood = new ItemFood();
+    public static Item itemHammer = new ItemHammer(false);
+    public static Item itemDurableHammer = new ItemHammer(true);
 }

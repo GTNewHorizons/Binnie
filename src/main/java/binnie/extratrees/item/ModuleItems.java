@@ -29,17 +29,11 @@ public class ModuleItems implements IInitializable {
 
     @Override
     public void preInit() {
-        ETItems.itemMisc = new ETMisc();
-        ETItems.itemDictionary = new ItemDictionary();
         if (BinnieCore.isLepidopteryActive()) {
             ETItems.itemDictionaryLepi = new ItemMothDatabase();
         }
 
         Binnie.Liquid.createLiquids(ExtraTreeLiquid.values(), ItemFluidContainer.LiquidExtraTree);
-        ETItems.itemFood = new ItemFood();
-
-        ETItems.itemHammer = new ItemHammer(false);
-        ETItems.itemDurableHammer = new ItemHammer(true);
     }
 
     @Override
