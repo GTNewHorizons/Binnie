@@ -16,8 +16,11 @@ import binnie.genetics.proxy.Proxy;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+import java.util.List;
 
 @Mod(
         modid = Genetics.GENETICS_MODID,
@@ -60,6 +63,20 @@ public class Genetics extends AbstractMod {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         postInit();
+    }
+
+    @Mod.EventHandler
+    public void missingMappings(FMLMissingMappingsEvent event) {
+        final List<FMLMissingMappingsEvent.MissingMapping> l = event.getAll();
+        for (FMLMissingMappingsEvent.MissingMapping m : l) {
+            final String[] name = m.name.split(":");
+            if (name.length < 2) continue;
+
+            if (name[0].equals("Genetics")) {
+                if (m.type == GameRegistry.Type.BLOCK) m.remap(GameRegistry.findBlock(GENETICS_MODID, name[1]));
+                else m.remap(GameRegistry.findItem(GENETICS_MODID, name[1]));
+            } else { m.warn(); }
+        }
     }
 
     @Override
