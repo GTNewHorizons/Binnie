@@ -1,5 +1,6 @@
 package binnie.extratrees.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,31 +15,31 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemHammer extends Item implements IToolHammer {
 
+    private final String name;
     protected boolean isDurableHammer;
 
     public ItemHammer(boolean durable) {
+        name = durable ? "durableHammer" : "hammer";
+
         isDurableHammer = durable;
         setCreativeTab(CreativeTabs.tabTools);
-        setUnlocalizedName(durable ? "durableHammer" : "hammer");
+        setUnlocalizedName(name);
         setMaxStackSize(1);
         setMaxDamage(durable ? 1562 : 251);
+
+        GameRegistry.registerItem(this, name);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
-        itemIcon = ExtraTrees.proxy.getIcon(register, isDurableHammer ? "durableHammer" : "carpentryHammer");
+        itemIcon = ExtraTrees.proxy.getIcon(register, name);
     }
 
     @Override
     public String getItemStackDisplayName(ItemStack i) {
-        return isDurableHammer ? I18N.localise("extratrees.item.masterCarpentryHammer")
-                : I18N.localise("extratrees.item.carpentryHammer");
-    }
-
-    @Override
-    public boolean isActive(ItemStack stack) {
-        return true;
+        return isDurableHammer ? I18N.localise("extratrees.item.masterCarpentryHammer.name")
+                : I18N.localise("extratrees.item.carpentryHammer.name");
     }
 
     @Override

@@ -60,8 +60,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
         }
 
         ItemStack item = player.getHeldItem();
-        if (item == null || !(item.getItem() instanceof IToolHammer)
-                || !((IToolHammer) item.getItem()).isActive(item)) {
+        if (item == null || !(item.getItem() instanceof IToolHammer)) {
             return;
         }
 

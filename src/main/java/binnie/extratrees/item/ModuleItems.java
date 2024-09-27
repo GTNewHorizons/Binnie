@@ -1,9 +1,10 @@
 package binnie.extratrees.item;
 
+import static binnie.extratrees.item.ETItems.itemMisc;
 import static binnie.extratrees.item.ETMisc.Items.Bark;
-import static binnie.extratrees.item.ETMisc.Items.WoodWax;
-import static binnie.extratrees.item.ETMisc.Items.ProvenGear;
 import static binnie.extratrees.item.ETMisc.Items.GlassFitting;
+import static binnie.extratrees.item.ETMisc.Items.ProvenGear;
+import static binnie.extratrees.item.ETMisc.Items.WoodWax;
 
 import binnie.Binnie;
 import binnie.core.BinnieCore;
@@ -29,6 +30,10 @@ public class ModuleItems implements IInitializable {
 
     @Override
     public void preInit() {
+        // Loads ETItems.class, guaranteeing that items are init by this point
+        // TODO: is this needed?
+        itemMisc.getUnlocalizedName();
+
         if (BinnieCore.isLepidopteryActive()) {
             ETItems.itemDictionaryLepi = new ItemMothDatabase();
         }

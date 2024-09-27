@@ -1,6 +1,7 @@
 package binnie.extratrees.item;
 
 import binnie.core.item.IItemMisc;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -17,10 +18,14 @@ public class ItemFood extends net.minecraft.item.ItemFood {
 
     public ItemFood() {
         super(0, 0.0f, false);
-        setUnlocalizedName("food");
+        final String name = "food";
+
+        setUnlocalizedName(name);
         setCreativeTab(Tabs.tabArboriculture);
         setHasSubtypes(true);
         items = Food.values();
+
+        GameRegistry.registerItem(this, name);
     }
 
     @Override
