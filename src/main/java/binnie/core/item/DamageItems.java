@@ -1,5 +1,6 @@
 package binnie.core.item;
 
+import binnie.core.util.I18N;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -54,7 +55,7 @@ public abstract class DamageItems extends Item {
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         final int damage = stack.getItemDamage();
-        return (damage < NAMES.length) ? getUnlocalizedName(NAMES[damage]) : "null";
+        return (damage < NAMES.length) ? I18N.localise(getUnlocalizedName(NAMES[damage])) : "null";
     }
 
     @Override
