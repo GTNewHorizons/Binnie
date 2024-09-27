@@ -1,5 +1,7 @@
 package binnie.genetics.machine.sequencer;
 
+import static binnie.genetics.item.GeneticsMisc.Items.FluorescentDye;
+
 import binnie.Binnie;
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
@@ -12,7 +14,6 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.PackageGeneticBase;
@@ -33,7 +34,7 @@ public class SequencerPackage extends PackageGeneticBase implements IMachineInfo
         ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
 
         InventorySlot slotDye = inventory.addSlot(Sequencer.SLOT_DYE_INDEX, "dye");
-        slotDye.setValidator(new SlotValidator.Item(GeneticsItems.FluorescentDye.get(1), ModuleMachine.IconDye));
+        slotDye.setValidator(new SlotValidator.Item(FluorescentDye.get(1), ModuleMachine.IconDye));
         slotDye.forbidExtraction();
 
         inventory.addSlotArray(Sequencer.SLOT_RESERVE, "input");

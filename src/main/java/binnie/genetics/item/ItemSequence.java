@@ -1,6 +1,6 @@
 package binnie.genetics.item;
 
-import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
+import static binnie.genetics.item.GeneticsItems.SEQUENCER;
 
 import java.util.List;
 

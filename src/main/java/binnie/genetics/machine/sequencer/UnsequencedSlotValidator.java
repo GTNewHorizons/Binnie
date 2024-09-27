@@ -1,6 +1,6 @@
 package binnie.genetics.machine.sequencer;
 
-import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
+import static binnie.genetics.item.GeneticsItems.SEQUENCER;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;

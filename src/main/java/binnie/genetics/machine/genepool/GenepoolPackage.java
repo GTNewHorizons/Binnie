@@ -1,5 +1,7 @@
 package binnie.genetics.machine.genepool;
 
+import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentChargedSlots;
@@ -12,7 +14,6 @@ import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.PackageGeneticBase;
@@ -28,7 +29,7 @@ public class GenepoolPackage extends PackageGeneticBase implements IMachineInfor
         new ComponentGeneticGUI(machine, GeneticsGUI.Genepool);
         ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
         InventorySlot enzymeSlot = inventory.addSlot(Genepool.SLOT_ENZYME, "enzyme");
-        enzymeSlot.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.IconEnzyme));
+        enzymeSlot.setValidator(new SlotValidator.Item(Enzyme.get(1), ModuleMachine.IconEnzyme));
         enzymeSlot.forbidExtraction();
 
         InventorySlot slotBee = inventory.addSlot(Genepool.SLOT_BEE, "process");

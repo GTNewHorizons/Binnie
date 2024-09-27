@@ -1,6 +1,6 @@
 package binnie.genetics.item;
 
-import static binnie.genetics.item.GeneticsItemsN.SERUM;
+import static binnie.genetics.item.GeneticsItems.SERUM;
 
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;

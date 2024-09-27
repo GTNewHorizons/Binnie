@@ -1,10 +1,12 @@
 package binnie.genetics.machine;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
+import static binnie.genetics.item.GeneticsMisc.Items.DNADye;
+import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
+import static binnie.genetics.item.GeneticsMisc.Items.FluorescentDye;
+import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCPU;
+import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCasing;
+import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCircuit;
+import static binnie.genetics.item.GeneticsMisc.Items.LaboratoryCasing;
 
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
@@ -13,10 +15,14 @@ import binnie.core.machines.MachineGroup;
 import binnie.core.machines.inventory.ValidatorIcon;
 import binnie.genetics.Genetics;
 import binnie.genetics.GeneticsCreativeTab;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.acclimatiser.Acclimatiser;
 import binnie.genetics.machine.incubator.Incubator;
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
 
@@ -68,7 +74,7 @@ public class ModuleMachine implements IInitializable {
     public void postInit() {
         Acclimatiser.setupRecipes();
         Object[] standardCircuit = { Mods.forestry.stack("chipsets", 1, 1) };
-        Object[] advCircuit = { GeneticsItems.IntegratedCircuit.get(1) };
+        Object[] advCircuit = { IntegratedCircuit.get(1) };
         String ironGear = OreDictionary.getOres("gearIron").isEmpty() ? "gearIron" : "ingotIron";
         String goldGear = OreDictionary.getOres("gearGold").isEmpty() ? "gearIron" : "ingotIron";
         String diamondGear = OreDictionary.getOres("gearDiamond").isEmpty() ? "gearIron" : "ingotIron";
@@ -77,7 +83,7 @@ public class ModuleMachine implements IInitializable {
             GameRegistry.addRecipe(
                     new ShapedOreRecipe(
                             LaboratoryMachine.Incubator.get(1),
-                            new Object[] { "gFg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'F',
+                            new Object[] { "gFg", "cCc", "aPa", 'C', LaboratoryCasing.get(1), 'F',
                                     Blocks.furnace, 'c', circuit, 'g', Blocks.glass_pane, 'P', "gearBronze", 'a',
                                     ironGear }));
 
@@ -94,21 +100,21 @@ public class ModuleMachine implements IInitializable {
                 GameRegistry.addRecipe(
                         new ShapedOreRecipe(
                                 LaboratoryMachine.Analyser.get(1),
-                                new Object[] { "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B',
+                                new Object[] { "gBg", "cCc", "aPa", 'C', LaboratoryCasing.get(1), 'B',
                                         alyzer, 'c', circuit, 'g', Blocks.glass_pane, 'P', "gearBronze", 'a',
-                                        GeneticsItems.DNADye.get(1) }));
+                                        DNADye.get(1) }));
             }
 
             GameRegistry.addRecipe(
                     new ShapedOreRecipe(
                             LaboratoryMachine.Genepool.get(1),
-                            new Object[] { "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B',
+                            new Object[] { "gBg", "cCc", "aPa", 'C', LaboratoryCasing.get(1), 'B',
                                     "gearBronze", 'c', circuit, 'g', Blocks.glass_pane, 'P', "gearBronze", 'a',
                                     Blocks.glass }));
             GameRegistry.addRecipe(
                     new ShapedOreRecipe(
                             LaboratoryMachine.Acclimatiser.get(1),
-                            new Object[] { "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B',
+                            new Object[] { "gBg", "cCc", "aPa", 'C', LaboratoryCasing.get(1), 'B',
                                     Items.lava_bucket, 'c', circuit, 'g', Blocks.glass_pane, 'P', "gearBronze", 'a',
                                     Items.water_bucket }));
         }
@@ -117,24 +123,24 @@ public class ModuleMachine implements IInitializable {
             GameRegistry.addRecipe(
                     new ShapedOreRecipe(
                             GeneticMachine.Isolator.get(1),
-                            new Object[] { "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B',
+                            new Object[] { "gBg", "cCc", "aPa", 'C', LaboratoryCasing.get(1), 'B',
                                     goldGear, 'c', circuit, 'g', Items.gold_nugget, 'P', "gearBronze", 'a',
-                                    GeneticsItems.Enzyme.get(1) }));
+                                    Enzyme.get(1) }));
             GameRegistry.addRecipe(
                     new ShapedOreRecipe(
                             GeneticMachine.Polymeriser.get(1),
-                            new Object[] { "gBg", "cCc", "gPg", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B',
+                            new Object[] { "gBg", "cCc", "gPg", 'C', LaboratoryCasing.get(1), 'B',
                                     ironGear, 'c', circuit, 'g', Items.gold_nugget, 'P', "gearBronze" }));
             GameRegistry.addRecipe(
                     new ShapedOreRecipe(
                             GeneticMachine.Sequencer.get(1),
-                            new Object[] { "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B',
+                            new Object[] { "gBg", "cCc", "aPa", 'C', LaboratoryCasing.get(1), 'B',
                                     "gearBronze", 'c', circuit, 'g', Items.gold_nugget, 'P', "gearBronze", 'a',
-                                    GeneticsItems.FluorescentDye.get(1) }));
+                                    FluorescentDye.get(1) }));
             GameRegistry.addRecipe(
                     new ShapedOreRecipe(
                             GeneticMachine.Inoculator.get(1),
-                            new Object[] { "gBg", "cCc", "aPa", 'C', GeneticsItems.LaboratoryCasing.get(1), 'B',
+                            new Object[] { "gBg", "cCc", "aPa", 'C', LaboratoryCasing.get(1), 'B',
                                     diamondGear, 'c', circuit, 'g', Items.gold_nugget, 'P', "gearBronze", 'a',
                                     Items.emerald }));
         }
@@ -142,13 +148,13 @@ public class ModuleMachine implements IInitializable {
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
                         AdvGeneticMachine.Splicer.get(1),
-                        new Object[] { "gBg", "cCc", "aPa", 'C', GeneticsItems.IntegratedCasing.get(1), 'B',
-                                diamondGear, 'c', GeneticsItems.IntegratedCPU.get(1), 'g', Items.gold_nugget, 'P',
+                        new Object[] { "gBg", "cCc", "aPa", 'C', IntegratedCasing.get(1), 'B',
+                                diamondGear, 'c', IntegratedCPU.get(1), 'g', Items.gold_nugget, 'P',
                                 "gearBronze", 'a', Items.blaze_rod }));
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
                         LaboratoryMachine.LabMachine.get(1),
-                        new Object[] { "igi", "gCg", "igi", 'C', GeneticsItems.LaboratoryCasing.get(1), 'i',
+                        new Object[] { "igi", "gCg", "igi", 'C', LaboratoryCasing.get(1), 'i',
                                 "ingotIron", 'g', Blocks.glass_pane }));
     }
 }

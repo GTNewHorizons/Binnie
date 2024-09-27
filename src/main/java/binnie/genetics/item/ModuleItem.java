@@ -1,18 +1,22 @@
 package binnie.genetics.item;
 
-import static binnie.genetics.item.GeneticsItemsN.ANALYST;
-import static binnie.genetics.item.GeneticsItemsN.DATABASE;
-import static binnie.genetics.item.GeneticsItemsN.REGISTRY;
-import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
-import static binnie.genetics.item.GeneticsItemsN.SERUM;
-import static binnie.genetics.item.GeneticsItemsN.SERUM_ARRAY;
-
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
+import static binnie.genetics.item.GeneticsMisc.Items.Cylinder;
+import static binnie.genetics.item.GeneticsMisc.Items.DNADye;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptyGenome;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptySequencer;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptySerum;
+import static binnie.genetics.item.GeneticsMisc.Items.FluorescentDye;
+import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCPU;
+import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCasing;
+import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCircuit;
+import static binnie.genetics.item.GeneticsMisc.Items.LaboratoryCasing;
+import static binnie.genetics.item.GeneticsMisc.Items.GrowthMedium;
+import static binnie.genetics.item.GeneticsItems.ANALYST;
+import static binnie.genetics.item.GeneticsItems.DATABASE;
+import static binnie.genetics.item.GeneticsItems.REGISTRY;
+import static binnie.genetics.item.GeneticsItems.SEQUENCER;
+import static binnie.genetics.item.GeneticsItems.SERUM;
+import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
 
 import binnie.Binnie;
 import binnie.botany.Botany;
@@ -24,9 +28,14 @@ import binnie.core.resource.BinnieIcon;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;
 import binnie.genetics.Genetics;
-import binnie.genetics.GeneticsCreativeTab;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModuleItem implements IInitializable {
 
@@ -48,7 +57,7 @@ public class ModuleItem implements IInitializable {
 
     @Override
     public void preInit() {
-        Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), GeneticsCreativeTab.instance);
+        Genetics.itemGenetics = new GeneticsMisc();
         Binnie.Liquid.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
     }
 
@@ -74,71 +83,71 @@ public class ModuleItem implements IInitializable {
     @Override
     public void postInit() {
         GameRegistry
-                .addShapelessRecipe(GeneticsItems.DNADye.get(8), Items.glowstone_dust, new ItemStack(Items.dye, 1, 5));
+                .addShapelessRecipe(DNADye.get(8), Items.glowstone_dust, new ItemStack(Items.dye, 1, 5));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        GeneticsItems.LaboratoryCasing.get(1),
+                        LaboratoryCasing.get(1),
                         new Object[] { "iii", "iYi", "iii", 'i', "ingotIron", 'Y',
                                 Mods.forestry.item("sturdyMachine") }));
 
         GameRegistry.addRecipe(
                 new ShapelessOreRecipe(
-                        GeneticsItems.DNADye.get(2),
+                        DNADye.get(2),
                         new Object[] { "dyePurple", "dyeMagenta", "dyePink" }));
 
         GameRegistry.addRecipe(
                 new ShapelessOreRecipe(
-                        GeneticsItems.FluorescentDye.get(2),
+                        FluorescentDye.get(2),
                         new Object[] { "dyeOrange", "dyeYellow", "dustGlowstone" }));
 
         GameRegistry.addRecipe(
                 new ShapelessOreRecipe(
-                        GeneticsItems.GrowthMedium.get(2),
+                        GrowthMedium.get(2),
                         new Object[] { new ItemStack(Items.dye, 1, 15), Items.sugar }));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        GeneticsItems.EmptySequencer.get(1),
+                        EmptySequencer.get(1),
                         new Object[] { " p ", "iGi", " p ", 'i', "ingotGold", 'G', Blocks.glass_pane, 'p',
                                 Items.paper }));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        GeneticsItems.EmptySerum.get(1),
+                        EmptySerum.get(1),
                         new Object[] { " g ", " G ", "GGG", 'g', "ingotGold", 'G', Blocks.glass_pane }));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        GeneticsItems.EmptyGenome.get(1),
-                        new Object[] { "sss", "sss", "sss", 's', GeneticsItems.EmptySerum.get(1) }));
+                        EmptyGenome.get(1),
+                        new Object[] { "sss", "sss", "sss", 's', EmptySerum.get(1) }));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        GeneticsItems.Cylinder.get(8),
+                        Cylinder.get(8),
                         new Object[] { " g ", "g g", "   ", 'g', Blocks.glass_pane }));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        GeneticsItems.IntegratedCircuit.get(1),
+                        IntegratedCircuit.get(1),
                         new Object[] { "l g", " c ", "g l", 'c', Mods.forestry.stack("chipsets", 1, 1), 'l',
                                 new ItemStack(Items.dye, 1, 4), 'g', "dustGlowstone" }));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        GeneticsItems.IntegratedCircuit.get(1),
+                        IntegratedCircuit.get(1),
                         new Object[] { "g l", " c ", "l g", 'c', Mods.forestry.stack("chipsets", 1, 1), 'l',
                                 new ItemStack(Items.dye, 1, 4), 'g', "dustGlowstone" }));
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        GeneticsItems.IntegratedCasing.get(1),
-                        new Object[] { "ccc", "cdc", "ccc", 'c', GeneticsItems.IntegratedCircuit.get(1), 'd',
-                                GeneticsItems.LaboratoryCasing.get(1) }));
+                        IntegratedCasing.get(1),
+                        new Object[] { "ccc", "cdc", "ccc", 'c', IntegratedCircuit.get(1), 'd',
+                                LaboratoryCasing.get(1) }));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        GeneticsItems.IntegratedCPU.get(1),
-                        new Object[] { "ccc", "cdc", "ccc", 'c', GeneticsItems.IntegratedCircuit.get(1), 'd',
+                        IntegratedCPU.get(1),
+                        new Object[] { "ccc", "cdc", "ccc", 'c', IntegratedCircuit.get(1), 'd',
                                 Items.diamond }));
 
         RecipeManagers.carpenterManager.addRecipe(
@@ -162,9 +171,9 @@ public class ModuleItem implements IInitializable {
                 'E',
                 Blocks.obsidian);
 
-        GameRegistry.addSmelting(SEQUENCER.getItem(), GeneticsItems.EmptySequencer.get(1), 0.0f);
-        GameRegistry.addSmelting(SERUM.getItem(), GeneticsItems.EmptySerum.get(1), 0.0f);
-        GameRegistry.addSmelting(SERUM_ARRAY.getItem(), GeneticsItems.EmptyGenome.get(1), 0.0f);
+        GameRegistry.addSmelting(SEQUENCER.getItem(), EmptySequencer.get(1), 0.0f);
+        GameRegistry.addSmelting(SERUM.getItem(), EmptySerum.get(1), 0.0f);
+        GameRegistry.addSmelting(SERUM_ARRAY.getItem(), EmptyGenome.get(1), 0.0f);
 
         // TODONE refactor refactor refactor this!
         // CombatZAK up to the task!
@@ -181,7 +190,7 @@ public class ModuleItem implements IInitializable {
                                                                                                   // is active
                 : Items.diamond; // otherwise just replace it with another diamond
 
-        ItemStack circuit = GeneticsItems.IntegratedCircuit.get(1); // get a reference to Integrated circuit
+        ItemStack circuit = IntegratedCircuit.get(1); // get a reference to Integrated circuit
         Item diamond = Items.diamond; // save a reference to diamond
 
         ItemStack analyst = new ItemStack(ANALYST.getItem()); // save a reference to the analyst, will make the next bit

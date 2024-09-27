@@ -1,11 +1,6 @@
 package binnie.genetics.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
+import static binnie.genetics.item.GeneticsMisc.Items.DNADye;
 
 import binnie.Binnie;
 import binnie.botany.api.IFlower;
@@ -36,7 +31,6 @@ import binnie.core.genetics.BreedingSystem;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.analyser.Analyser;
 import cpw.mods.fml.relauncher.Side;
@@ -46,6 +40,11 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
 
 public class WindowAnalyst extends Window {
 
@@ -102,7 +101,7 @@ public class WindowAnalyst extends Window {
                 }
             });
             getWindowInventory()
-                    .setValidator(1, new SlotValidator.Item(GeneticsItems.DNADye.get(1), ModuleMachine.IconDye));
+                    .setValidator(1, new SlotValidator.Item(DNADye.get(1), ModuleMachine.IconDye));
         }
     }
 

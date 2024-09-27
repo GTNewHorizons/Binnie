@@ -1,6 +1,6 @@
 package binnie.genetics.item;
 
-import static binnie.genetics.item.GeneticsItemsN.SERUM_ARRAY;
+import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
 
 import java.util.List;
 

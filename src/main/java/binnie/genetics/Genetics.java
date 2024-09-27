@@ -3,6 +3,7 @@ package binnie.genetics;
 import binnie.core.AbstractMod;
 import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.item.DamageItems;
 import binnie.core.machines.MachineGroup;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
@@ -18,15 +19,16 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.item.Item;
 
 @Mod(
-        modid = "Genetics",
+        modid = Genetics.GENETICS_MODID,
         name = "Genetics",
         version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class Genetics extends AbstractMod {
+
+    public static final String GENETICS_MODID = "genetics";
 
     @Mod.Instance("Genetics")
     public static Genetics instance;
@@ -35,7 +37,7 @@ public class Genetics extends AbstractMod {
     public static Proxy proxy;
 
     public static final String CHANNEL = "GEN";
-    public static Item itemGenetics;
+    public static DamageItems itemGenetics;
     public static MachineGroup packageGenetic;
     public static MachineGroup packageAdvGenetic;
     public static MachineGroup packageLabMachine;
@@ -84,17 +86,12 @@ public class Genetics extends AbstractMod {
 
     @Override
     public String getModID() {
-        return "genetics";
+        return GENETICS_MODID;
     }
 
     @Override
     protected Class<? extends BinniePacketHandler> getPacketHandler() {
         return PacketHandler.class;
-    }
-
-    @Override
-    public boolean isActive() {
-        return true;
     }
 
     public static class PacketHandler extends BinniePacketHandler {

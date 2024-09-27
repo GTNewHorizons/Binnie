@@ -1,6 +1,6 @@
 package binnie.genetics.machine.sequencer;
 
-import net.minecraft.item.ItemStack;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptySequencer;
 
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
@@ -10,7 +10,7 @@ import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import binnie.genetics.genetics.GeneTracker;
 import binnie.genetics.genetics.SequencerItem;
-import binnie.genetics.item.GeneticsItems;
+import net.minecraft.item.ItemStack;
 
 public class SequencerComponentLogic extends ComponentProcess
         implements IProcess, ComponentInventoryTransfer.ITransferRestockListener {
@@ -96,7 +96,7 @@ public class SequencerComponentLogic extends ComponentProcess
         getUtil().decreaseStack(Sequencer.SLOT_TARGET_INDEX, 1);
 
         if (getUtil().getStack(Sequencer.SLOT_DONE_INDEX) == null) {
-            getUtil().setStack(Sequencer.SLOT_DONE_INDEX, GeneticsItems.EmptySequencer.get(1));
+            getUtil().setStack(Sequencer.SLOT_DONE_INDEX, EmptySequencer.get(1));
         } else {
             getUtil().decreaseStack(Sequencer.SLOT_DONE_INDEX, -1);
         }

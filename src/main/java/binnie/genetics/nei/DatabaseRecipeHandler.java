@@ -1,10 +1,11 @@
 package binnie.genetics.nei;
 
-import static binnie.genetics.item.GeneticsItemsN.SERUM;
-import static binnie.genetics.item.GeneticsItemsN.SERUM_ARRAY;
+import static binnie.genetics.item.GeneticsItems.SERUM;
+import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptyGenome;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptySerum;
 
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerumArray;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
@@ -102,8 +103,8 @@ public class DatabaseRecipeHandler extends RecipeHandlerBase {
         }
 
         public ItemStack getEmptySerum() {
-            return this.serum.getItem() instanceof ItemSerumArray ? GeneticsItems.EmptyGenome.get(1)
-                    : GeneticsItems.EmptySerum.get(1);
+            return this.serum.getItem() instanceof ItemSerumArray ? EmptyGenome.get(1)
+                    : EmptySerum.get(1);
         }
     }
 

@@ -1,8 +1,8 @@
 package binnie.genetics.nei;
 
-import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
-import static binnie.genetics.item.GeneticsItemsN.SERUM;
-import static binnie.genetics.item.GeneticsItemsN.SERUM_ARRAY;
+import static binnie.genetics.item.GeneticsItems.SEQUENCER;
+import static binnie.genetics.item.GeneticsItems.SERUM;
+import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
 
 import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;

@@ -1,13 +1,6 @@
 package binnie.genetics.nei;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
+import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
 
 import binnie.Binnie;
 import binnie.botany.Botany;
@@ -17,11 +10,17 @@ import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
 import binnie.core.nei.RecipeHandlerBase;
 import binnie.genetics.item.GeneticLiquid;
-import binnie.genetics.item.GeneticsItems;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import forestry.api.apiculture.EnumBeeType;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class GenepoolRecipeHandler extends RecipeHandlerBase {
 
@@ -97,7 +96,7 @@ public class GenepoolRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
-        if (NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.Enzyme.get(1), ingredient)) {
+        if (NEIServerUtils.areStacksSameTypeCrafting(Enzyme.get(1), ingredient)) {
             this.loadAllRecipes();
         } else {
             for (GenepoolRecipe recipe : recipes) {
@@ -143,7 +142,7 @@ public class GenepoolRecipeHandler extends RecipeHandlerBase {
         }
 
         public ItemStack getEnzyme() {
-            return GeneticsItems.Enzyme.get(1);
+            return Enzyme.get(1);
         }
 
         public FluidStack getEthanol() {

@@ -1,9 +1,9 @@
 package binnie.genetics.machine;
 
-import static binnie.genetics.item.GeneticsItemsN.ANALYST;
-import static binnie.genetics.item.GeneticsItemsN.DATABASE;
-import static binnie.genetics.item.GeneticsItemsN.MASTER_REGISTRY;
-import static binnie.genetics.item.GeneticsItemsN.REGISTRY;
+import static binnie.genetics.item.GeneticsItems.ANALYST;
+import static binnie.genetics.item.GeneticsItems.DATABASE;
+import static binnie.genetics.item.GeneticsItems.MASTER_REGISTRY;
+import static binnie.genetics.item.GeneticsItems.REGISTRY;
 
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;

@@ -1,10 +1,11 @@
 package binnie.genetics.nei;
 
-import static binnie.genetics.item.GeneticsItemsN.DATABASE;
-import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
+import static binnie.genetics.item.GeneticsItems.DATABASE;
+import static binnie.genetics.item.GeneticsItems.SEQUENCER;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptySequencer;
+import static binnie.genetics.item.GeneticsMisc.Items.FluorescentDye;
 
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.genetics.item.GeneticsItems;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
@@ -54,7 +55,7 @@ public class SequencerRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void loadCraftingRecipes(ItemStack result) {
-        if (NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.EmptySequencer.get(1), result)) {
+        if (NEIServerUtils.areStacksSameTypeCrafting(EmptySequencer.get(1), result)) {
             this.loadAllRecipes();
         }
     }
@@ -62,7 +63,7 @@ public class SequencerRecipeHandler extends RecipeHandlerBase {
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
         if (NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(SEQUENCER.getItem()), ingredient)
-                || NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.FluorescentDye.get(1), ingredient)
+                || NEIServerUtils.areStacksSameTypeCrafting(FluorescentDye.get(1), ingredient)
                 || NEIServerUtils.areStacksSameTypeCrafting(new ItemStack(DATABASE.getItem()), ingredient)) {
             this.loadAllRecipes();
         }
@@ -71,9 +72,9 @@ public class SequencerRecipeHandler extends RecipeHandlerBase {
     public class CachedSequencerRecipe extends CachedBaseRecipe {
 
         public PositionedStack seq;
-        public PositionedStack fluorescentDye = new PositionedStack(GeneticsItems.FluorescentDye.get(1), 53, 40);
+        public PositionedStack fluorescentDye = new PositionedStack(FluorescentDye.get(1), 53, 40);
         public PositionedStack database = new PositionedStack(new ItemStack(DATABASE.getItem()), 105, 19);
-        public PositionedStack emptySeq = new PositionedStack(GeneticsItems.EmptySequencer.get(1), 105, 40);
+        public PositionedStack emptySeq = new PositionedStack(EmptySequencer.get(1), 105, 40);
         public List<PositionedStack> ingredients = new ArrayList<>();
         public List<PositionedStack> results = new ArrayList<>();
 

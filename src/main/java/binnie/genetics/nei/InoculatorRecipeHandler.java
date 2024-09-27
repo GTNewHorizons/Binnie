@@ -1,7 +1,7 @@
 package binnie.genetics.nei;
 
-import static binnie.genetics.item.GeneticsItemsN.SERUM;
-import static binnie.genetics.item.GeneticsItemsN.SERUM_ARRAY;
+import static binnie.genetics.item.GeneticsItems.SERUM;
+import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
 
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;

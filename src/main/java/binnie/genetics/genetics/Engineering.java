@@ -1,16 +1,16 @@
 package binnie.genetics.genetics;
 
-import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
-
-import net.minecraft.item.ItemStack;
+import static binnie.genetics.item.GeneticsItems.SEQUENCER;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptyGenome;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptySerum;
 
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemChargable;
 import binnie.genetics.api.IItemSerum;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
+import net.minecraft.item.ItemStack;
 
 public class Engineering {
 
@@ -21,8 +21,8 @@ public class Engineering {
         if (stack.getItem() instanceof IItemSerum) {
             return ((IItemSerum) stack.getItem()).getCharges(stack) == 0;
         }
-        return stack.getItem() == Genetics.itemGenetics && (stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal()
-                || stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal());
+        return stack.getItem() == Genetics.itemGenetics && (stack.getItemDamage() == EmptySerum.ordinal()
+                || stack.getItemDamage() == EmptyGenome.ordinal());
     }
 
     public static boolean canAcceptGene(ItemStack stack, IGene gene) {
@@ -46,10 +46,10 @@ public class Engineering {
         if (stack.getItem() instanceof IItemSerum) {
             ((IItemSerum) stack.getItem()).addGene(stack, gene);
         }
-        if (stack.getItem() == Genetics.itemGenetics && stack.getItemDamage() == GeneticsItems.EmptySerum.ordinal()) {
+        if (stack.getItem() == Genetics.itemGenetics && stack.getItemDamage() == EmptySerum.ordinal()) {
             return ItemSerum.create(gene);
         }
-        if (stack.getItem() == Genetics.itemGenetics && stack.getItemDamage() == GeneticsItems.EmptyGenome.ordinal()) {
+        if (stack.getItem() == Genetics.itemGenetics && stack.getItemDamage() == EmptyGenome.ordinal()) {
             return ItemSerumArray.create(gene);
         }
         return stack;

@@ -1,11 +1,11 @@
 package binnie.genetics.machine.analyser;
 
-import net.minecraft.item.ItemStack;
+import static binnie.genetics.item.GeneticsMisc.Items.DNADye;
 
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ModuleMachine;
+import net.minecraft.item.ItemStack;
 
 public class DyeSlotValidator extends SlotValidator {
 
@@ -15,7 +15,7 @@ public class DyeSlotValidator extends SlotValidator {
 
     @Override
     public boolean isValid(ItemStack itemStack) {
-        return itemStack.isItemEqual(GeneticsItems.DNADye.get(1));
+        return itemStack.isItemEqual(DNADye.get(1));
     }
 
     @Override

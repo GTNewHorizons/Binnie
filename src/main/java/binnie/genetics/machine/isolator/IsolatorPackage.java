@@ -1,5 +1,8 @@
 package binnie.genetics.machine.isolator;
 
+import static binnie.genetics.item.GeneticsMisc.Items.EmptySequencer;
+import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
+
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentChargedSlots;
@@ -11,7 +14,6 @@ import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.PackageGeneticBase;
@@ -27,11 +29,11 @@ public class IsolatorPackage extends PackageGeneticBase implements IMachineInfor
         new ComponentGeneticGUI(machine, GeneticsGUI.Isolator);
         ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
         InventorySlot enzymeSlot = inventory.addSlot(Isolator.SLOT_ENZYME, "enzyme");
-        enzymeSlot.setValidator(new SlotValidator.Item(GeneticsItems.Enzyme.get(1), ModuleMachine.IconEnzyme));
+        enzymeSlot.setValidator(new SlotValidator.Item(Enzyme.get(1), ModuleMachine.IconEnzyme));
         enzymeSlot.forbidExtraction();
 
         InventorySlot vialSlot = inventory.addSlot(Isolator.SLOT_SEQUENCER_VIAL, "sequencervial");
-        vialSlot.setValidator(new SlotValidator.Item(GeneticsItems.EmptySequencer.get(1), ModuleMachine.IconSequencer));
+        vialSlot.setValidator(new SlotValidator.Item(EmptySequencer.get(1), ModuleMachine.IconSequencer));
         vialSlot.forbidExtraction();
 
         inventory.addSlotArray(Isolator.SLOT_RESERVE, "input");

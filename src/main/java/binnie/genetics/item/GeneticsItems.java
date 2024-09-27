@@ -1,56 +1,23 @@
 package binnie.genetics.item;
 
-import binnie.core.item.IItemMisc;
-import binnie.core.util.I18N;
-import binnie.genetics.Genetics;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import net.minecraft.item.Item;
 
-public enum GeneticsItems implements IItemMisc {
+public enum GeneticsItems {
+    SERUM(new ItemSerum()),
+    SERUM_ARRAY(new ItemSerumArray()),
+    SEQUENCER(new ItemSequence()),
+    DATABASE(new ItemDatabase()),
+    ANALYST(new ItemAnalyst()),
+    REGISTRY(new ItemRegistry()),
+    MASTER_REGISTRY(new ItemMasterRegistry());
 
-    LaboratoryCasing("casingIron"),
-    DNADye("dnaDye"),
-    FluorescentDye("dyeFluor"),
-    Enzyme("enzyme"),
-    GrowthMedium("growthMedium"),
-    EmptySequencer("sequencerEmpty"),
-    EmptySerum("serumEmpty"),
-    EmptyGenome("genomeEmpty"),
-    Cylinder("cylinderEmpty"),
-    IntegratedCircuit("integratedCircuit"),
-    IntegratedCPU("integratedCPU"),
-    IntegratedCasing("casingCircuit");
+    private final Item item;
 
-    private IIcon icon;
-    private final String name;
-    private final String iconPath;
-
-    GeneticsItems(String name) {
-        this.name = name;
-        this.iconPath = name;
+    GeneticsItems(Item item) {
+        this.item = item;
     }
 
-    @Override
-    public IIcon getIcon(ItemStack itemStack) {
-        return icon;
-    }
-
-    @Override
-    public void registerIcons(IIconRegister register) {
-        icon = Genetics.proxy.getIcon(register, iconPath);
-    }
-
-    @Override
-    public String getName(ItemStack itemStack) {
-        return I18N.localise("genetics.item." + name + ".name");
-    }
-
-    @Override
-    public ItemStack get(int count) {
-        if (Genetics.itemGenetics == null) {
-            return null;
-        }
-        return new ItemStack(Genetics.itemGenetics, count, ordinal());
+    public Item getItem() {
+        return item;
     }
 }

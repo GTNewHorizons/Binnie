@@ -1,12 +1,12 @@
 package binnie.genetics.nei;
 
-import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
+import static binnie.genetics.item.GeneticsItems.SEQUENCER;
+import static binnie.genetics.item.GeneticsMisc.Items.DNADye;
 
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSequence;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
@@ -90,7 +90,7 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
-        if (NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.DNADye.get(0), ingredient)) {
+        if (NEIServerUtils.areStacksSameTypeCrafting(DNADye.get(0), ingredient)) {
             this.loadAllRecipes();
         } else {
             for (AnalyserRecipe recipe : recipes) {
@@ -110,7 +110,7 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
         }
 
         public ItemStack getDNADye() {
-            return GeneticsItems.DNADye.get(1);
+            return DNADye.get(1);
         }
 
         public ItemStack getAnalysable() {

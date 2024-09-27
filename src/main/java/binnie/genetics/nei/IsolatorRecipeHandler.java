@@ -1,6 +1,8 @@
 package binnie.genetics.nei;
 
-import static binnie.genetics.item.GeneticsItemsN.SEQUENCER;
+import static binnie.genetics.item.GeneticsItems.SEQUENCER;
+import static binnie.genetics.item.GeneticsMisc.Items.EmptySequencer;
+import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
 
 import binnie.Binnie;
 import binnie.botany.Botany;
@@ -11,7 +13,6 @@ import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
 import binnie.core.nei.PositionedStackAdv;
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSequence;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
@@ -111,8 +112,8 @@ public class IsolatorRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void loadUsageRecipes(ItemStack ingredient) {
-        if (NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.EmptySequencer.get(1), ingredient)
-                || NEIServerUtils.areStacksSameTypeCrafting(GeneticsItems.Enzyme.get(1), ingredient)) {
+        if (NEIServerUtils.areStacksSameTypeCrafting(EmptySequencer.get(1), ingredient)
+                || NEIServerUtils.areStacksSameTypeCrafting(Enzyme.get(1), ingredient)) {
             this.loadAllRecipes();
         } else {
             for (IsolatorRecipe recipe : recipes) {
@@ -150,11 +151,11 @@ public class IsolatorRecipeHandler extends RecipeHandlerBase {
         }
 
         public ItemStack getEnzyme() {
-            return GeneticsItems.Enzyme.get(1);
+            return Enzyme.get(1);
         }
 
         public ItemStack getEmptySequencer() {
-            return GeneticsItems.EmptySequencer.get(1);
+            return EmptySequencer.get(1);
         }
     }
 
