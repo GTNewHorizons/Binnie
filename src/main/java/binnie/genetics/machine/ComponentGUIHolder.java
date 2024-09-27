@@ -1,21 +1,9 @@
 package binnie.genetics.machine;
 
-import static binnie.genetics.item.GeneticsItems.ANALYST;
-import static binnie.genetics.item.GeneticsItems.DATABASE;
-import static binnie.genetics.item.GeneticsItems.MASTER_REGISTRY;
-import static binnie.genetics.item.GeneticsItems.REGISTRY;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import static binnie.genetics.item.GeneticsItems.analyst;
+import static binnie.genetics.item.GeneticsItems.database;
+import static binnie.genetics.item.GeneticsItems.masterRegistry;
+import static binnie.genetics.item.GeneticsItems.registry;
 
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
@@ -24,8 +12,18 @@ import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.network.INetwork;
 import binnie.extrabees.ExtraBees;
-import binnie.extratrees.ExtraTrees;
+import binnie.extratrees.item.ETItems;
 import buildcraft.api.tools.IToolWrench;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
 public class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {
 
@@ -126,16 +124,16 @@ public class ComponentGUIHolder extends MachineComponent implements INetwork.Til
                 validSelections.add(ExtraBees.dictionary);
             }
             if (BinnieCore.isExtraTreesActive()) {
-                validSelections.add(ExtraTrees.itemDictionary);
+                validSelections.add(ETItems.itemDictionary);
             }
             if (BinnieCore.isLepidopteryActive()) {
-                validSelections.add(ExtraTrees.itemDictionaryLepi);
+                validSelections.add(ETItems.itemDictionaryLepi);
             }
 
-            validSelections.add(DATABASE.getItem());
-            validSelections.add(ANALYST.getItem());
-            validSelections.add(REGISTRY.getItem());
-            validSelections.add(MASTER_REGISTRY.getItem());
+            validSelections.add(database);
+            validSelections.add(analyst);
+            validSelections.add(registry);
+            validSelections.add(masterRegistry);
             validSelections.add(BinnieCore.genesis);
 
             if (stack == null && validSelections.contains(player.getHeldItem().getItem())) {

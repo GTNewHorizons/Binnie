@@ -312,13 +312,13 @@ extratrees.genetics.unknown=<未知>
 extratrees.genetics.discoveredBy=由 %s 发现
 extratrees.genetics.complexity=复杂度：%d
 
-extratrees.item.carpentryHammer=木工大师锤
-extratrees.item.masterCarpentryHammer=木工锤
-extratrees.item.sawdust=锯末
-extratrees.item.bark=树皮
-extratrees.item.provenGear=标定齿轮
-extratrees.item.woodWax=光泽剂
-extratrees.item.glassFitting=玻璃配件
+extratrees.item.carpentryHammer.name=木工大师锤
+extratrees.item.masterCarpentryHammer.name=木工锤
+extratrees.item.sawdust.name=锯末
+extratrees.item.bark.name=树皮
+extratrees.item.provenGear.name=标定齿轮
+extratrees.item.woodWax.name=光泽剂
+extratrees.item.glassFitting.name=玻璃配件
 
 for.extratrees.item.food.apple=苹果
 for.extratrees.item.food.crabapple=海棠果
@@ -383,12 +383,12 @@ for.extratrees.item.food.mango=芒果
 for.extratrees.item.food.starfruit=杨桃
 for.extratrees.item.food.candlenut=石栗
 
-extratrees.item.database=林业员数据库
-extratrees.item.masterDatabase=林业员大师数据库
+extratrees.item.database.name=林业员数据库
+extratrees.item.masterDatabase.name=林业员大师数据库
 extratrees.item.database.tooltip=内含关于 Sir. Sengir 的一切
 
-extratrees.item.mothDatabase=鳞翅目昆虫学家数据库
-extratrees.item.mothMasterDatabase=鳞翅目昆虫学大师数据库
+extratrees.item.mothDatabase.name=鳞翅目昆虫学家数据库
+extratrees.item.mothMasterDatabase.name=鳞翅目昆虫学大师数据库
 extratrees.item.mothDatabase.tooltip=Binnie 为所有鳞翅目昆虫学家留下的宝藏
 
 extratrees.fluid.sap=树液

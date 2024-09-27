@@ -1,5 +1,20 @@
 package binnie.extratrees.item;
 
+import static binnie.extratrees.item.ETMisc.Items.Bark;
+import static binnie.extratrees.item.ETMisc.Items.WoodWax;
+import static binnie.extratrees.item.ETMisc.Items.ProvenGear;
+import static binnie.extratrees.item.ETMisc.Items.GlassFitting;
+
+import binnie.Binnie;
+import binnie.core.BinnieCore;
+import binnie.core.IInitializable;
+import binnie.core.Mods;
+import binnie.core.liquid.ItemFluidContainer;
+import binnie.extratrees.block.ILogType;
+import cpw.mods.fml.common.registry.GameRegistry;
+import forestry.api.fuels.EngineBronzeFuel;
+import forestry.api.fuels.FuelManager;
+import forestry.api.recipes.RecipeManagers;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -10,40 +25,26 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
-import binnie.Binnie;
-import binnie.core.BinnieCore;
-import binnie.core.IInitializable;
-import binnie.core.Mods;
-import binnie.core.item.ItemMisc;
-import binnie.core.liquid.ItemFluidContainer;
-import binnie.extratrees.ExtraTrees;
-import binnie.extratrees.block.ILogType;
-import cpw.mods.fml.common.registry.GameRegistry;
-import forestry.api.core.Tabs;
-import forestry.api.fuels.EngineBronzeFuel;
-import forestry.api.fuels.FuelManager;
-import forestry.api.recipes.RecipeManagers;
-
 public class ModuleItems implements IInitializable {
 
     @Override
     public void preInit() {
-        ExtraTrees.itemMisc = Binnie.Item.registerMiscItems(ExtraTreeItems.values(), Tabs.tabArboriculture);
-        ExtraTrees.itemDictionary = new ItemDictionary();
+        ETItems.itemMisc = new ETMisc();
+        ETItems.itemDictionary = new ItemDictionary();
         if (BinnieCore.isLepidopteryActive()) {
-            ExtraTrees.itemDictionaryLepi = new ItemMothDatabase();
+            ETItems.itemDictionaryLepi = new ItemMothDatabase();
         }
 
         Binnie.Liquid.createLiquids(ExtraTreeLiquid.values(), ItemFluidContainer.LiquidExtraTree);
-        ExtraTrees.itemFood = new ItemFood();
+        ETItems.itemFood = new ItemFood();
 
-        ExtraTrees.itemHammer = new ItemHammer(false);
-        ExtraTrees.itemDurableHammer = new ItemHammer(true);
+        ETItems.itemHammer = new ItemHammer(false);
+        ETItems.itemDurableHammer = new ItemHammer(true);
     }
 
     @Override
     public void init() {
-        OreDictionary.registerOre("pulpWood", ExtraTreeItems.Sawdust.get(1));
+        OreDictionary.registerOre("pulpWood", ETMisc.Items.Sawdust.get(1));
         Food.registerOreDictionary();
         OreDictionary.registerOre("cropApple", Items.apple);
         OreDictionary.registerOre("seedWheat", Items.wheat_seeds);
@@ -104,7 +105,7 @@ public class ModuleItems implements IInitializable {
     public void postInit() {
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        new ItemStack(ExtraTrees.itemDurableHammer, 1, 0),
+                        new ItemStack(ETItems.itemDurableHammer, 1, 0),
                         "wiw",
                         " s ",
                         " s ",
@@ -117,7 +118,7 @@ public class ModuleItems implements IInitializable {
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
-                        new ItemStack(ExtraTrees.itemHammer, 1, 0),
+                        new ItemStack(ETItems.itemHammer, 1, 0),
                         "wiw",
                         " s ",
                         " s ",
@@ -129,10 +130,10 @@ public class ModuleItems implements IInitializable {
                         Items.stick));
 
         GameRegistry
-                .addRecipe(ExtraTreeItems.ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.forestry.stack("oakStick"));
+                .addRecipe(ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.forestry.stack("oakStick"));
 
         GameRegistry.addRecipe(
-                ExtraTreeItems.GlassFitting.get(6),
+                GlassFitting.get(6),
                 "s s",
                 " i ",
                 "s s",
@@ -152,7 +153,7 @@ public class ModuleItems implements IInitializable {
                 100,
                 Binnie.Liquid.getLiquidStack("water", 2000),
                 null,
-                new ItemStack(ExtraTrees.itemDictionary),
+                new ItemStack(ETItems.itemDictionary),
                 "X#X",
                 "YEY",
                 "RDR",
@@ -173,7 +174,7 @@ public class ModuleItems implements IInitializable {
                 100,
                 Binnie.Liquid.getLiquidStack("water", 2000),
                 null,
-                new ItemStack(ExtraTrees.itemDictionaryLepi),
+                new ItemStack(ETItems.itemDictionaryLepi),
                 "X#X",
                 "YEY",
                 "RDR",
@@ -196,7 +197,7 @@ public class ModuleItems implements IInitializable {
                 25,
                 ExtraTreeLiquid.Turpentine.get(50),
                 null,
-                ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.WoodWax, 4),
+                WoodWax.get(4),
                 "x",
                 'x',
                 Mods.forestry.stack("beeswax"));
@@ -206,7 +207,7 @@ public class ModuleItems implements IInitializable {
                     25,
                     Binnie.Liquid.getLiquidStack("Creosote Oil", 50),
                     null,
-                    ((ItemMisc) ExtraTrees.itemMisc).getStack(ExtraTreeItems.WoodWax, 1),
+                    WoodWax.get(1),
                     "x",
                     'x',
                     Mods.forestry.stack("beeswax"));
@@ -221,7 +222,7 @@ public class ModuleItems implements IInitializable {
                         "bwb",
                         " b ",
                         'b',
-                        ExtraTreeItems.Bark.get(1),
+                        Bark.get(1),
                         'w',
                         data.filledContainer.copy());
             }

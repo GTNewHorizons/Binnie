@@ -1,5 +1,6 @@
 package binnie.extratrees.genetics;
 
+import binnie.extratrees.item.ETItems;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -15,7 +16,6 @@ import com.gtnewhorizon.gtnhlib.reflect.Fields;
 
 import binnie.Binnie;
 import binnie.core.util.I18N;
-import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
 import binnie.extratrees.config.ETConfig;
 import binnie.extratrees.item.Food;
@@ -435,7 +435,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
         }
 
         for (ItemStack stack : products.keySet()) {
-            if (stack.getItem() == ExtraTrees.itemFood) {
+            if (stack.getItem() == ETItems.itemFood) {
                 return Food.values()[stack.getItemDamage()].toString();
             }
         }

@@ -165,7 +165,7 @@ public enum Food implements IItemMisc {
 
     @Override
     public ItemStack get(int count) {
-        return new ItemStack(ExtraTrees.itemFood, count, ordinal());
+        return new ItemStack(ETItems.itemFood, count, ordinal());
     }
 
     @Override

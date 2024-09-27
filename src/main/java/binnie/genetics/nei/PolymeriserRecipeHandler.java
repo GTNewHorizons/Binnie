@@ -1,18 +1,8 @@
 package binnie.genetics.nei;
 
-import static binnie.genetics.item.GeneticsItems.SEQUENCER;
-import static binnie.genetics.item.GeneticsItems.SERUM;
-import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
-
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
+import static binnie.genetics.item.GeneticsItems.sequencer;
+import static binnie.genetics.item.GeneticsItems.serum;
+import static binnie.genetics.item.GeneticsItems.serumArray;
 
 import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
@@ -26,6 +16,14 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class PolymeriserRecipeHandler extends RecipeHandlerBase {
 
@@ -33,9 +31,9 @@ public class PolymeriserRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void prepare() {
-        recipes.add(new PolymeriserRecipe(new ItemStack(SEQUENCER.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new PolymeriserRecipe(new ItemStack(SERUM.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new PolymeriserRecipe(new ItemStack(SERUM_ARRAY.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new PolymeriserRecipe(new ItemStack(sequencer, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new PolymeriserRecipe(new ItemStack(serum, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new PolymeriserRecipe(new ItemStack(serumArray, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override

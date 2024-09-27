@@ -1,11 +1,7 @@
 package binnie.extratrees.carpentry;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import static binnie.extratrees.item.ETMisc.Items.GlassFitting;
+import static binnie.extratrees.item.ETMisc.Items.WoodWax;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -15,7 +11,11 @@ import binnie.extratrees.api.IDesignMaterial;
 import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
 import binnie.extratrees.block.PlankType;
-import binnie.extratrees.item.ExtraTreeItems;
+import java.util.HashMap;
+import java.util.Map;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 public enum DesignSystem implements IDesignSystem {
 
@@ -81,8 +81,8 @@ public enum DesignSystem implements IDesignSystem {
     @Override
     public ItemStack getAdhesive() {
         return switch (this) {
-            case Glass -> ExtraTreeItems.GlassFitting.get(1);
-            case Wood -> ExtraTreeItems.WoodWax.get(1);
+            case Glass -> GlassFitting.get(1);
+            case Wood -> WoodWax.get(1);
         };
     }
 

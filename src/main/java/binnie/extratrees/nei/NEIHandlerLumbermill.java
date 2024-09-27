@@ -1,23 +1,23 @@
 package binnie.extratrees.nei;
 
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
+import static binnie.extratrees.item.ETMisc.Items.Bark;
+import static binnie.extratrees.item.ETMisc.Items.Sawdust;
 
 import binnie.Binnie;
 import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
 import binnie.core.nei.RecipeHandlerBase;
-import binnie.extratrees.item.ExtraTreeItems;
 import binnie.extratrees.machines.lumbermill.Lumbermill;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
 
 public class NEIHandlerLumbermill extends RecipeHandlerBase {
 
@@ -65,8 +65,8 @@ public class NEIHandlerLumbermill extends RecipeHandlerBase {
 
     @Override
     public void loadCraftingRecipes(ItemStack result) {
-        if (NEIServerUtils.areStacksSameTypeCrafting(ExtraTreeItems.Sawdust.get(1), result)
-                || (NEIServerUtils.areStacksSameTypeCrafting(ExtraTreeItems.Bark.get(1), result))) {
+        if (NEIServerUtils.areStacksSameTypeCrafting(Sawdust.get(1), result)
+                || (NEIServerUtils.areStacksSameTypeCrafting(Bark.get(1), result))) {
             this.loadAllRecipes();
         } else {
             for (Map.Entry<ItemStack, ItemStack> entry : Lumbermill.recipes.entrySet()) {
@@ -101,8 +101,8 @@ public class NEIHandlerLumbermill extends RecipeHandlerBase {
                 Binnie.Liquid.getLiquidStack("water", 300),
                 1000,
                 new Rectangle(28, 6, 16, 58));
-        public PositionedStack bark = new PositionedStack(ExtraTreeItems.Sawdust.get(1), 123, 6);
-        public PositionedStack sawDust = new PositionedStack(ExtraTreeItems.Bark.get(1), 123, 48);
+        public PositionedStack bark = new PositionedStack(Sawdust.get(1), 123, 6);
+        public PositionedStack sawDust = new PositionedStack(Bark.get(1), 123, 48);
         public PositionedStack wood;
         public PositionedStack plank;
         public List<PositionedStack> results = new ArrayList<>();

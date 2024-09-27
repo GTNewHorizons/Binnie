@@ -1,6 +1,7 @@
 package binnie.genetics.item;
 
-import static binnie.genetics.item.GeneticsItems.SEQUENCER;
+
+import static binnie.genetics.item.GeneticsItems.sequencer;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
@@ -45,7 +46,7 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
     }
 
     public static ItemStack create(IGene gene, boolean sequenced) {
-        ItemStack item = new ItemStack(SEQUENCER.getItem());
+        ItemStack item = new ItemStack(sequencer);
         item.setItemDamage(sequenced ? 0 : item.getMaxDamage());
         SequencerItem seq = new SequencerItem(gene);
         seq.writeToItem(item);

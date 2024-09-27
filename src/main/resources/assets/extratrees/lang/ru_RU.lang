@@ -309,13 +309,13 @@ extratrees.genetics.unknown=<Неизвестно>
 extratrees.genetics.discoveredBy=Изучено игроком %s
 extratrees.genetics.complexity=Сложность: %d
 
-extratrees.item.carpentryHammer=Master Carpentry Hammer
-extratrees.item.masterCarpentryHammer=Carpentry Hammer
-extratrees.item.sawdust=Опилки
-extratrees.item.bark=Кора
-extratrees.item.provenGear=Проверенная шестерня
-extratrees.item.woodWax=Полироль
-extratrees.item.glassFitting=Стеклянные фитинги
+extratrees.item.carpentryHammer.name=Master Carpentry Hammer
+extratrees.item.masterCarpentryHammer.name=Carpentry Hammer
+extratrees.item.sawdust.name=Опилки
+extratrees.item.bark.name=Кора
+extratrees.item.provenGear.name=Проверенная шестерня
+extratrees.item.woodWax.name=Полироль
+extratrees.item.glassFitting.name=Стеклянные фитинги
 
 for.extratrees.item.food.apple=Яблоко
 for.extratrees.item.food.crabapple=Яблоко-дичка
@@ -381,12 +381,12 @@ for.extratrees.item.food.mango=Манго
 for.extratrees.item.food.starfruit=Карамбола
 for.extratrees.item.food.candlenut=Лумбанг
 
-extratrees.item.database=База данных лесовода
-extratrees.item.masterDatabase=База данных лесовода-мастера
+extratrees.item.database.name=База данных лесовода
+extratrees.item.masterDatabase.name=База данных лесовода-мастера
 extratrees.item.database.tooltip=Sengir-в-банке
 
-extratrees.item.mothDatabase=База данных бабочковеда
-extratrees.item.mothMasterDatabase=База данных бабочковеда-мастера
+extratrees.item.mothDatabase.name=База данных бабочковеда
+extratrees.item.mothMasterDatabase.name=База данных бабочковеда-мастера
 extratrees.item.mothDatabase.tooltip=Эмпиум Binnie о чешуекрылых
 
 extratrees.fluid.sap=Живица

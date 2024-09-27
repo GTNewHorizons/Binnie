@@ -1,14 +1,6 @@
 package binnie.genetics.item;
 
-import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
-
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import static binnie.genetics.item.GeneticsItems.serumArray;
 
 import binnie.Binnie;
 import binnie.core.genetics.BreedingSystem;
@@ -27,6 +19,12 @@ import forestry.api.genetics.IChromosome;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
+import java.util.List;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class ItemSerumArray extends ItemGene implements IItemSerum {
 
@@ -36,7 +34,7 @@ public class ItemSerumArray extends ItemGene implements IItemSerum {
     }
 
     public static ItemStack create(IGene gene) {
-        ItemStack item = new ItemStack(SERUM_ARRAY.getItem());
+        ItemStack item = new ItemStack(serumArray);
         item.setItemDamage(item.getMaxDamage());
         GeneArrayItem seq = new GeneArrayItem(gene);
         seq.writeToItem(item);

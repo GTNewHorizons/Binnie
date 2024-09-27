@@ -1,17 +1,16 @@
 package binnie.genetics.genetics;
 
-import static binnie.genetics.item.GeneticsItems.SEQUENCER;
+import static binnie.genetics.item.GeneticsItems.sequencer;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptyGenome;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptySerum;
-
-import binnie.genetics.item.GeneticsItems;
-import net.minecraft.item.ItemStack;
 
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemChargable;
 import binnie.genetics.api.IItemSerum;
+import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
+import net.minecraft.item.ItemStack;
 
 public class Engineering {
 
@@ -60,7 +59,7 @@ public class Engineering {
         if (serum.getItem() instanceof IItemSerum) {
             return ((IItemSerum) serum.getItem()).getGenes(serum);
         }
-        if (serum.getItem() == SEQUENCER.getItem()) {
+        if (serum.getItem() == sequencer) {
             return new IGene[] { new SequencerItem(serum).gene };
         }
         return new IGene[0];

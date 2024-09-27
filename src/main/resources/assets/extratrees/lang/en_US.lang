@@ -312,13 +312,13 @@ extratrees.genetics.unknown=<Unknown>
 extratrees.genetics.discoveredBy=Discovered by %s 
 extratrees.genetics.complexity=Complexity: %d 
 
-extratrees.item.carpentryHammer=Master Carpentry Hammer
-extratrees.item.masterCarpentryHammer=Carpentry Hammer
-extratrees.item.sawdust=Sawdust
-extratrees.item.bark=Bark
-extratrees.item.provenGear=Proven Gear
-extratrees.item.woodWax=Wood Polish
-extratrees.item.glassFitting=Glass Fittings
+extratrees.item.carpentryHammer.name=Master Carpentry Hammer
+extratrees.item.masterCarpentryHammer.name=Carpentry Hammer
+extratrees.item.sawdust.name=Sawdust
+extratrees.item.bark.name=Bark
+extratrees.item.provenGear.name=Proven Gear
+extratrees.item.woodWax.name=Wood Polish
+extratrees.item.glassFitting.name=Glass Fittings
 
 for.extratrees.item.food.apple=Apple
 for.extratrees.item.food.crabapple=Crabapple
@@ -383,12 +383,12 @@ for.extratrees.item.food.mango=Mango
 for.extratrees.item.food.starfruit=Starfruit
 for.extratrees.item.food.candlenut=Candlenut
 
-extratrees.item.database=Arborist Database
-extratrees.item.masterDatabase=Master Arborist Database
+extratrees.item.database.name=Arborist Database
+extratrees.item.masterDatabase.name=Master Arborist Database
 extratrees.item.database.tooltip=Sengir-in-a-can
 
-extratrees.item.mothDatabase=Lepidopterist Database
-extratrees.item.mothMasterDatabase=Master Lepidopterist Database
+extratrees.item.mothDatabase.name=Lepidopterist Database
+extratrees.item.mothMasterDatabase.name=Master Lepidopterist Database
 extratrees.item.mothDatabase.tooltip=Binnie's Emporium of Lepidopterans
 
 extratrees.fluid.sap=Sap

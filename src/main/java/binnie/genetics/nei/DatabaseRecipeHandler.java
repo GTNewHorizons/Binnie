@@ -1,16 +1,9 @@
 package binnie.genetics.nei;
 
-import static binnie.genetics.item.GeneticsItems.SERUM;
-import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
+import static binnie.genetics.item.GeneticsItems.serum;
+import static binnie.genetics.item.GeneticsItems.serumArray;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptyGenome;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptySerum;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.oredict.OreDictionary;
 
 import binnie.core.nei.RecipeHandlerBase;
 import binnie.genetics.item.ItemSerumArray;
@@ -18,6 +11,11 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class DatabaseRecipeHandler extends RecipeHandlerBase {
 
@@ -25,8 +23,8 @@ public class DatabaseRecipeHandler extends RecipeHandlerBase {
 
     @Override
     public void prepare() {
-        recipes.add(new DatabaseRecipe(new ItemStack(SERUM.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new DatabaseRecipe(new ItemStack(SERUM_ARRAY.getItem(), 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new DatabaseRecipe(new ItemStack(serum, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new DatabaseRecipe(new ItemStack(serumArray, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override
@@ -92,7 +90,7 @@ public class DatabaseRecipeHandler extends RecipeHandlerBase {
         }
     }
 
-    private static class DatabaseRecipe {
+    public static class DatabaseRecipe {
 
         private final ItemStack serum;
 

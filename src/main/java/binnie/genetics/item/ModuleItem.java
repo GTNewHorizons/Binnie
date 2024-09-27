@@ -1,11 +1,12 @@
 package binnie.genetics.item;
 
-import static binnie.genetics.item.GeneticsItems.ANALYST;
-import static binnie.genetics.item.GeneticsItems.DATABASE;
-import static binnie.genetics.item.GeneticsItems.REGISTRY;
-import static binnie.genetics.item.GeneticsItems.SEQUENCER;
-import static binnie.genetics.item.GeneticsItems.SERUM;
-import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
+import static binnie.genetics.item.GeneticsItems.analyst;
+import static binnie.genetics.item.GeneticsItems.database;
+import static binnie.genetics.item.GeneticsItems.itemGenetics;
+import static binnie.genetics.item.GeneticsItems.registry;
+import static binnie.genetics.item.GeneticsItems.sequencer;
+import static binnie.genetics.item.GeneticsItems.serum;
+import static binnie.genetics.item.GeneticsItems.serumArray;
 import static binnie.genetics.item.GeneticsMisc.Items.Cylinder;
 import static binnie.genetics.item.GeneticsMisc.Items.DNADye;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptyGenome;
@@ -18,6 +19,7 @@ import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCasing;
 import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCircuit;
 import static binnie.genetics.item.GeneticsMisc.Items.LaboratoryCasing;
 
+import binnie.extratrees.item.ETItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -33,7 +35,6 @@ import binnie.core.Mods;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
 import binnie.extrabees.ExtraBees;
-import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
 
@@ -57,7 +58,10 @@ public class ModuleItem implements IInitializable {
 
     @Override
     public void preInit() {
-        GeneticsItems.itemGenetics = new GeneticsMisc();
+        // Loads GeneticsItems.class, guaranteeing that items are init by this point
+        // TODO: is this needed?
+        itemGenetics.getUnlocalizedName();
+
         Binnie.Liquid.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
     }
 
@@ -146,7 +150,7 @@ public class ModuleItem implements IInitializable {
                 100,
                 Binnie.Liquid.getLiquidStack("water", 2000),
                 null,
-                new ItemStack(DATABASE.getItem()),
+                new ItemStack(database),
                 "X#X",
                 "YEY",
                 "RDR",
@@ -163,9 +167,9 @@ public class ModuleItem implements IInitializable {
                 'E',
                 Blocks.obsidian);
 
-        GameRegistry.addSmelting(SEQUENCER.getItem(), EmptySequencer.get(1), 0.0f);
-        GameRegistry.addSmelting(SERUM.getItem(), EmptySerum.get(1), 0.0f);
-        GameRegistry.addSmelting(SERUM_ARRAY.getItem(), EmptyGenome.get(1), 0.0f);
+        GameRegistry.addSmelting(sequencer, EmptySequencer.get(1), 0.0f);
+        GameRegistry.addSmelting(serum, EmptySerum.get(1), 0.0f);
+        GameRegistry.addSmelting(serumArray, EmptyGenome.get(1), 0.0f);
 
         // TODONE refactor refactor refactor this!
         // CombatZAK up to the task!
@@ -185,7 +189,7 @@ public class ModuleItem implements IInitializable {
         ItemStack circuit = IntegratedCircuit.get(1); // get a reference to Integrated circuit
         Item diamond = Items.diamond; // save a reference to diamond
 
-        ItemStack analyst = new ItemStack(ANALYST.getItem()); // save a reference to the analyst, will make the next bit
+        ItemStack analystStack = new ItemStack(analyst); // save a reference to the analyst, will make the next bit
                                                               // easier
 
         // the following code is a sufficient replacement for the 3 nested loops that preceded it; arguably this is
@@ -198,7 +202,7 @@ public class ModuleItem implements IInitializable {
         // some cycles rather than spinning through an n^3 loop wasting most of the combinations.
         // expand the first one out for readability, but the following five are compressed to a single line
         GameRegistry.addShapedRecipe(
-                analyst,
+                analystStack,
                 " b ",
                 "tcf",
                 " d ",
@@ -214,7 +218,7 @@ public class ModuleItem implements IInitializable {
                 diamond);
 
         GameRegistry.addShapedRecipe(
-                analyst,
+                analystStack,
                 " b ",
                 "fct",
                 " d ",
@@ -229,7 +233,7 @@ public class ModuleItem implements IInitializable {
                 'd',
                 diamond);
         GameRegistry.addShapedRecipe(
-                analyst,
+                analystStack,
                 " t ",
                 "bcf",
                 " d ",
@@ -244,7 +248,7 @@ public class ModuleItem implements IInitializable {
                 'd',
                 diamond);
         GameRegistry.addShapedRecipe(
-                analyst,
+                analystStack,
                 " t ",
                 "fcb",
                 " d ",
@@ -259,7 +263,7 @@ public class ModuleItem implements IInitializable {
                 'd',
                 diamond);
         GameRegistry.addShapedRecipe(
-                analyst,
+                analystStack,
                 " f ",
                 "bct",
                 " d ",
@@ -274,7 +278,7 @@ public class ModuleItem implements IInitializable {
                 'd',
                 diamond);
         GameRegistry.addShapedRecipe(
-                analyst,
+                analystStack,
                 " f ",
                 "tcb",
                 " d ",
@@ -292,14 +296,14 @@ public class ModuleItem implements IInitializable {
         // get some references to dictionary/databases for the various modules; these names are very inconsistent for
         // like items.
         // should be refactored in their respective modules.
-        ItemStack registry = new ItemStack(REGISTRY.getItem());
+        ItemStack registryStack = new ItemStack(registry);
         Item beeDb = ExtraBees.dictionary;
-        Item treeDb = ExtraTrees.itemDictionary;
+        Item treeDb = ETItems.itemDictionary;
         Item flwrDb = Botany.database;
 
         // do a check to ensure that the butterfly module is enabled before using the butterfly dictionary.
         // a similar check could be done for arboriculture and apiculture as well, but that is left to the mod owner
-        Item lepiDb = BinnieCore.isLepidopteryActive() ? ExtraTrees.itemDictionaryLepi : Items.diamond; // just use a
+        Item lepiDb = BinnieCore.isLepidopteryActive() ? ETItems.itemDictionaryLepi : Items.diamond; // just use a
                                                                                                         // diamond if
                                                                                                         // Butterflies
                                                                                                         // is disabled
@@ -317,7 +321,7 @@ public class ModuleItem implements IInitializable {
             // now go through each of the permutations and create a recipe
             for (String p : permutations) {
                 GameRegistry.addShapedRecipe(
-                        registry, // adding the recipe with registry as output
+                        registryStack, // adding the recipe with registry as output
                         // this line is the 3-string arrangement, with the characters pulled from the current
                         // permutation
                         String.format(" %c ", p.charAt(0)),
