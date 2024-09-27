@@ -1,14 +1,11 @@
 package binnie.genetics.item;
 
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-
 import binnie.core.item.IItemMisc;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 public enum GeneticsItems implements IItemMisc {
 
@@ -45,11 +42,6 @@ public enum GeneticsItems implements IItemMisc {
     }
 
     @Override
-    public void addInformation(List<String> data) {
-        // ignored
-    }
-
-    @Override
     public String getName(ItemStack itemStack) {
         return I18N.localise("genetics.item." + name + ".name");
     }
@@ -60,10 +52,5 @@ public enum GeneticsItems implements IItemMisc {
             return null;
         }
         return new ItemStack(Genetics.itemGenetics, count, ordinal());
-    }
-
-    @Override
-    public boolean isActive() {
-        return true;
     }
 }

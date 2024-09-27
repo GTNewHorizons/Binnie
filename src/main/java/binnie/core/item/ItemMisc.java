@@ -1,16 +1,13 @@
 package binnie.core.item;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
-
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMisc extends Item {
 
@@ -42,16 +39,6 @@ public class ItemMisc extends Item {
 
     public ItemStack getStack(IItemMisc type, int size) {
         return new ItemStack(this, size, type.ordinal());
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean advanced) {
-        super.addInformation(itemStack, player, tooltip, advanced);
-        IItemMisc item = getItem(itemStack.getItemDamage());
-        if (item != null) {
-            item.addInformation(tooltip);
-        }
     }
 
     @Override

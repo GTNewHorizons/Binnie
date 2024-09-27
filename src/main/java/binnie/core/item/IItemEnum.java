@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 
 public interface IItemEnum {
 
-    boolean isActive();
+    default boolean isActive() { return true; }
 
     String getName(ItemStack itemStack);
 

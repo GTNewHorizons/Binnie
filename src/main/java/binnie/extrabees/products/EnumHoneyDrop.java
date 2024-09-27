@@ -2,6 +2,7 @@ package binnie.extrabees.products;
 
 import java.awt.Color;
 
+import javax.annotation.Nonnull;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -50,7 +51,7 @@ public enum EnumHoneyDrop implements IItemEnum {
     private final String liquidName;
     private ItemStack remenant;
 
-    EnumHoneyDrop(Color primaryColor, Color secondaryColor, String liquid) {
+    EnumHoneyDrop(Color primaryColor, Color secondaryColor, @Nonnull String liquid) {
         this.primaryColor = primaryColor.getRGB();
         this.secondaryColor = secondaryColor.getRGB();
         liquidName = liquid;

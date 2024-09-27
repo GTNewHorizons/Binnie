@@ -159,11 +159,6 @@ public enum Food implements IItemMisc {
     }
 
     @Override
-    public boolean isActive() {
-        return true;
-    }
-
-    @Override
     public String getName(ItemStack itemStack) {
         return I18N.localise("for.extratrees.item.food." + name().toLowerCase());
     }
@@ -181,11 +176,6 @@ public enum Food implements IItemMisc {
     @Override
     public void registerIcons(IIconRegister register) {
         icon = ExtraTrees.proxy.getIcon(register, "food/" + toString());
-    }
-
-    @Override
-    public void addInformation(List<String> tooltip) {
-        // ignored
     }
 
     public void addJuice(int time, int amount, int mulch) {

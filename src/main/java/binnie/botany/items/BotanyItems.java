@@ -1,14 +1,11 @@
 package binnie.botany.items;
 
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-
 import binnie.botany.Botany;
 import binnie.core.item.IItemMisc;
 import binnie.core.util.I18N;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 public enum BotanyItems implements IItemMisc {
 
@@ -41,11 +38,6 @@ public enum BotanyItems implements IItemMisc {
     }
 
     @Override
-    public void addInformation(List<String> data) {
-        // ignored
-    }
-
-    @Override
     public String getName(ItemStack itemStack) {
         return I18N.localise("botany.item." + name + ".name");
     }
@@ -55,8 +47,4 @@ public enum BotanyItems implements IItemMisc {
         return new ItemStack(Botany.misc, count, ordinal());
     }
 
-    @Override
-    public boolean isActive() {
-        return true;
-    }
 }
