@@ -2,6 +2,13 @@ package binnie.genetics.gui;
 
 import static binnie.genetics.item.GeneticsMisc.Items.DNADye;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.botany.api.IFlower;
 import binnie.core.AbstractMod;
@@ -40,11 +47,6 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IBreedingTracker;
 import forestry.api.genetics.IIndividual;
 import forestry.api.lepidopterology.IButterfly;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.item.ItemStack;
 
 public class WindowAnalyst extends Window {
 
@@ -100,8 +102,7 @@ public class WindowAnalyst extends Window {
                             || (Analyser.isAnalysable(itemStack) && getWindowInventory().getStackInSlot(1) != null);
                 }
             });
-            getWindowInventory()
-                    .setValidator(1, new SlotValidator.Item(DNADye.get(1), ModuleMachine.IconDye));
+            getWindowInventory().setValidator(1, new SlotValidator.Item(DNADye.get(1), ModuleMachine.IconDye));
         }
     }
 

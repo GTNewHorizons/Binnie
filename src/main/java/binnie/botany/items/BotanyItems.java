@@ -1,11 +1,12 @@
 package binnie.botany.items;
 
-import binnie.botany.Botany;
-import binnie.core.item.IItemMisc;
-import binnie.core.util.I18N;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
+import binnie.botany.Botany;
+import binnie.core.item.IItemMisc;
+import binnie.core.util.I18N;
 
 public enum BotanyItems implements IItemMisc {
 

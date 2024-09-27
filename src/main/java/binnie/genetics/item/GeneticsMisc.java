@@ -3,14 +3,17 @@ package binnie.genetics.item;
 import static binnie.genetics.Genetics.GENETICS_MODID;
 import static binnie.genetics.Genetics.itemGenetics;
 
+import java.util.Arrays;
+
+import net.minecraft.item.ItemStack;
+
 import binnie.core.item.DamageItems;
 import binnie.genetics.GeneticsCreativeTab;
-import java.util.Arrays;
-import net.minecraft.item.ItemStack;
 
 public class GeneticsMisc extends DamageItems {
 
     public enum Items {
+
         LaboratoryCasing("casingIron"),
         DNADye("dnaDye"),
         FluorescentDye("dyeFluor"),
@@ -37,7 +40,9 @@ public class GeneticsMisc extends DamageItems {
     }
 
     protected GeneticsMisc() {
-        super(GeneticsCreativeTab.instance, GENETICS_MODID,
+        super(
+                GeneticsCreativeTab.instance,
+                GENETICS_MODID,
                 Arrays.stream(Items.VALUES).map(i -> i.name).toArray(String[]::new));
     }
 }

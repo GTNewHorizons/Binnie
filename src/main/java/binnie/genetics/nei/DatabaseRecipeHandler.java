@@ -5,17 +5,19 @@ import static binnie.genetics.item.GeneticsItems.SERUM_ARRAY;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptyGenome;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptySerum;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.core.nei.RecipeHandlerBase;
 import binnie.genetics.item.ItemSerumArray;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class DatabaseRecipeHandler extends RecipeHandlerBase {
 
@@ -103,8 +105,7 @@ public class DatabaseRecipeHandler extends RecipeHandlerBase {
         }
 
         public ItemStack getEmptySerum() {
-            return this.serum.getItem() instanceof ItemSerumArray ? EmptyGenome.get(1)
-                    : EmptySerum.get(1);
+            return this.serum.getItem() instanceof ItemSerumArray ? EmptyGenome.get(1) : EmptySerum.get(1);
         }
     }
 

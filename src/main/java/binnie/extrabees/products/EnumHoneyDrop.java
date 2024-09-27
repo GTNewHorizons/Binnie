@@ -3,6 +3,7 @@ package binnie.extrabees.products;
 import java.awt.Color;
 
 import javax.annotation.Nonnull;
+
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;

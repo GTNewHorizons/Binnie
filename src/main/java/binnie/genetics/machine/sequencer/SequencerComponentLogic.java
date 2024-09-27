@@ -2,6 +2,8 @@ package binnie.genetics.machine.sequencer;
 
 import static binnie.genetics.item.GeneticsMisc.Items.EmptySequencer;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.power.ComponentProcess;
@@ -10,7 +12,6 @@ import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 import binnie.genetics.genetics.GeneTracker;
 import binnie.genetics.genetics.SequencerItem;
-import net.minecraft.item.ItemStack;
 
 public class SequencerComponentLogic extends ComponentProcess
         implements IProcess, ComponentInventoryTransfer.ITransferRestockListener {

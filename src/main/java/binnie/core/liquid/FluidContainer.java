@@ -1,16 +1,17 @@
 package binnie.core.liquid;
 
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.util.I18N;
 import binnie.genetics.item.GeneticsMisc;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 
 public enum FluidContainer {
 

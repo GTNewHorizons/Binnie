@@ -3,6 +3,12 @@ package binnie.genetics.machine.incubator;
 import static binnie.genetics.item.GeneticLiquid.GrowthMedium;
 import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.genetics.api.IIncubatorRecipe;
@@ -13,10 +19,6 @@ import forestry.api.apiculture.EnumBeeType;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IIndividual;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 
 public class Incubator {
 

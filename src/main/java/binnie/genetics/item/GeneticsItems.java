@@ -3,6 +3,7 @@ package binnie.genetics.item;
 import net.minecraft.item.Item;
 
 public enum GeneticsItems {
+
     SERUM(new ItemSerum()),
     SERUM_ARRAY(new ItemSerumArray()),
     SEQUENCER(new ItemSequence()),

@@ -3,6 +3,13 @@ package binnie.genetics.nei;
 import static binnie.genetics.item.GeneticsItems.SEQUENCER;
 import static binnie.genetics.item.GeneticsMisc.Items.DNADye;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
@@ -12,11 +19,6 @@ import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class AnalyserRecipeHandler extends RecipeHandlerBase {
 

@@ -4,13 +4,14 @@ import static binnie.genetics.item.GeneticsItems.SEQUENCER;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptyGenome;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptySerum;
 
+import net.minecraft.item.ItemStack;
+
 import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemChargable;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.item.ItemSerum;
 import binnie.genetics.item.ItemSerumArray;
-import net.minecraft.item.ItemStack;
 
 public class Engineering {
 
@@ -21,8 +22,8 @@ public class Engineering {
         if (stack.getItem() instanceof IItemSerum) {
             return ((IItemSerum) stack.getItem()).getCharges(stack) == 0;
         }
-        return stack.getItem() == Genetics.itemGenetics && (stack.getItemDamage() == EmptySerum.ordinal()
-                || stack.getItemDamage() == EmptyGenome.ordinal());
+        return stack.getItem() == Genetics.itemGenetics
+                && (stack.getItemDamage() == EmptySerum.ordinal() || stack.getItemDamage() == EmptyGenome.ordinal());
     }
 
     public static boolean canAcceptGene(ItemStack stack, IGene gene) {
