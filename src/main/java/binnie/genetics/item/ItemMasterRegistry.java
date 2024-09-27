@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -15,16 +16,20 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMasterRegistry extends Item {
 
+    private final String NAME = "masterRegistry";
+
     public ItemMasterRegistry() {
         setCreativeTab(GeneticsCreativeTab.instance);
-        setUnlocalizedName("masterRegistry");
+        setUnlocalizedName(NAME);
         setMaxStackSize(1);
+
+        GameRegistry.registerItem(this, NAME);
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
-        itemIcon = Genetics.proxy.getIcon(register, "masterRegistry");
+        itemIcon = Genetics.proxy.getIcon(register, NAME);
     }
 
     @Override

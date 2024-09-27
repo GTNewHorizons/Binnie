@@ -3,7 +3,6 @@ package binnie.genetics;
 import binnie.core.AbstractMod;
 import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.item.DamageItems;
 import binnie.core.machines.MachineGroup;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
@@ -37,7 +36,6 @@ public class Genetics extends AbstractMod {
     public static Proxy proxy;
 
     public static final String CHANNEL = "GEN";
-    public static DamageItems itemGenetics;
     public static MachineGroup packageGenetic;
     public static MachineGroup packageAdvGenetic;
     public static MachineGroup packageLabMachine;

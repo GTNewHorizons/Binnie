@@ -34,7 +34,6 @@ import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
 import binnie.extrabees.ExtraBees;
 import binnie.extratrees.ExtraTrees;
-import binnie.genetics.Genetics;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
 
@@ -58,7 +57,7 @@ public class ModuleItem implements IInitializable {
 
     @Override
     public void preInit() {
-        Genetics.itemGenetics = new GeneticsMisc();
+        GeneticsItems.itemGenetics = new GeneticsMisc();
         Binnie.Liquid.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
     }
 

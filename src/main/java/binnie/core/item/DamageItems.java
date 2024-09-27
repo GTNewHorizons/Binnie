@@ -19,14 +19,16 @@ public abstract class DamageItems extends Item {
     private final String modid;
 
     protected DamageItems(CreativeTabs tab, String modid, String... names) {
+        final String name = "misc";
+
         setCreativeTab(tab);
         setHasSubtypes(true);
-        setUnlocalizedName("misc");
+        setUnlocalizedName(name);
 
         NAMES = names;
         ICONS = new IIcon[names.length];
         this.modid = modid;
-        GameRegistry.registerItem(this, getUnlocalizedName());
+        GameRegistry.registerItem(this, name);
     }
 
     public ItemStack getStack(int count, int damage) {

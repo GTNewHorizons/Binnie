@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.item.DamageItems;
 import net.minecraft.item.Item;
 
 public enum GeneticsItems {
@@ -11,6 +12,9 @@ public enum GeneticsItems {
     ANALYST(new ItemAnalyst()),
     REGISTRY(new ItemRegistry()),
     MASTER_REGISTRY(new ItemMasterRegistry());
+
+    // TODO: put this back in Genetics once the itemparser is killed
+    public static DamageItems itemGenetics;
 
     private final Item item;
 

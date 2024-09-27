@@ -1,7 +1,7 @@
 package binnie.genetics.item;
 
 import static binnie.genetics.Genetics.GENETICS_MODID;
-import static binnie.genetics.Genetics.itemGenetics;
+import static binnie.genetics.item.GeneticsItems.itemGenetics;
 
 import java.util.Arrays;
 

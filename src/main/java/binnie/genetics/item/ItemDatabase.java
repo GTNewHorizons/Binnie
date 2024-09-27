@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,9 +23,13 @@ public class ItemDatabase extends Item {
     protected IIcon iconMaster;
 
     public ItemDatabase() {
+        final String name = "database";
+
         setCreativeTab(GeneticsCreativeTab.instance);
-        setUnlocalizedName("database");
+        setUnlocalizedName(name);
         setMaxStackSize(1);
+
+        GameRegistry.registerItem(this, name);
     }
 
     @Override

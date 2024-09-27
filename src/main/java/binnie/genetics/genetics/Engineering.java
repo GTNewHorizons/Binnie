@@ -4,9 +4,9 @@ import static binnie.genetics.item.GeneticsItems.SEQUENCER;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptyGenome;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptySerum;
 
+import binnie.genetics.item.GeneticsItems;
 import net.minecraft.item.ItemStack;
 
-import binnie.genetics.Genetics;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemChargable;
 import binnie.genetics.api.IItemSerum;
@@ -22,7 +22,7 @@ public class Engineering {
         if (stack.getItem() instanceof IItemSerum) {
             return ((IItemSerum) stack.getItem()).getCharges(stack) == 0;
         }
-        return stack.getItem() == Genetics.itemGenetics
+        return stack.getItem() == GeneticsItems.itemGenetics
                 && (stack.getItemDamage() == EmptySerum.ordinal() || stack.getItemDamage() == EmptyGenome.ordinal());
     }
 
@@ -47,10 +47,10 @@ public class Engineering {
         if (stack.getItem() instanceof IItemSerum) {
             ((IItemSerum) stack.getItem()).addGene(stack, gene);
         }
-        if (stack.getItem() == Genetics.itemGenetics && stack.getItemDamage() == EmptySerum.ordinal()) {
+        if (stack.getItem() == GeneticsItems.itemGenetics && stack.getItemDamage() == EmptySerum.ordinal()) {
             return ItemSerum.create(gene);
         }
-        if (stack.getItem() == Genetics.itemGenetics && stack.getItemDamage() == EmptyGenome.ordinal()) {
+        if (stack.getItem() == GeneticsItems.itemGenetics && stack.getItemDamage() == EmptyGenome.ordinal()) {
             return ItemSerumArray.create(gene);
         }
         return stack;

@@ -2,6 +2,7 @@ package binnie.genetics.item;
 
 import static binnie.genetics.item.GeneticsItems.SEQUENCER;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -29,10 +30,14 @@ import forestry.api.genetics.AlleleManager;
 public class ItemSequence extends Item implements IItemAnalysable, IItemChargable {
 
     public ItemSequence() {
+        final String name = "sequence";
+
         setMaxStackSize(1);
         setMaxDamage(5);
-        setUnlocalizedName("sequence");
+        setUnlocalizedName(name);
         setCreativeTab(GeneticsCreativeTab.instance);
+
+        GameRegistry.registerItem(this, name);
     }
 
     public static ItemStack create(IGene gene) {

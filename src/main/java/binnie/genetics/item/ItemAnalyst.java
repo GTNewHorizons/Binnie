@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -16,9 +17,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemAnalyst extends Item {
 
     public ItemAnalyst() {
+        final String name = "analyst";
+
         setCreativeTab(GeneticsCreativeTab.instance);
-        setUnlocalizedName("analyst");
+        setUnlocalizedName(name);
         setMaxStackSize(1);
+
+        GameRegistry.registerItem(this, name);
     }
 
     @Override
