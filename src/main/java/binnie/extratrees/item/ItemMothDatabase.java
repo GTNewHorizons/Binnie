@@ -83,7 +83,7 @@ public class ItemMothDatabase extends Item {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return (stack.getItemDamage() == 0) ? I18N.localise("extratrees.item.mothDatabase")
-                : I18N.localise("extratrees.item.mothMasterDatabase");
+        return (stack.getItemDamage() == 0) ? I18N.localise("extratrees.item.mothDatabase.name")
+                : I18N.localise("extratrees.item.mothMasterDatabase.name");
     }
 }

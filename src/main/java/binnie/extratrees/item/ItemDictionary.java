@@ -79,7 +79,7 @@ public class ItemDictionary extends Item {
 
     @Override
     public String getItemStackDisplayName(ItemStack i) {
-        return (i.getItemDamage() == 0) ? I18N.localise("extratrees.item.database")
-                : I18N.localise("extratrees.item.masterDatabase");
+        return (i.getItemDamage() == 0) ? I18N.localise("extratrees.item.database.name")
+                : I18N.localise("extratrees.item.masterDatabase.name");
     }
 }

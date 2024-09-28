@@ -155,17 +155,17 @@ extratrees.block.planks.pinkivory.desc=What can I say. It's very pink.|Lumber Ja
 extratrees.block.tooltip.twoColors=%s and %s
 extratrees.block.tooltip.twoMaterials=%s and %s
 
-< %1$s is name of wood used for door >
+# %1$s is name of wood used for door
 extratrees.block.door.name=%1$s Wood Door
 
-< %1$s is name of wood used for door, %2$s is type of door >
+# %1$s is name of wood used for door, %2$s is type of door
 extratrees.block.door.name.adv=%2$s %1$s Wood Door
 extratrees.block.door.type.standard=
 extratrees.block.door.type.solid=Solid
 extratrees.block.door.type.double=Split
 extratrees.block.door.type.full=Full
 
-< %1$s is name of the wood>
+# %1$s is name of the wood
 extratrees.block.plank.name=%1$s Wood Planks
 extratrees.block.log.name=%1$s Wood
 extratrees.block.woodslab.name=%1$s Wood Slab
@@ -173,12 +173,15 @@ extratrees.block.woodstairs.name=%1$s Stairs
 extratrees.block.woodfence.name=%1$s Fence
 extratrees.block.woodgate.name=%1$s Gate
 
-< %1$s is the adjective for the fence type, %2$s is the name of the wood >
+# %1$s is the fence type (may be empty), %2$s is the first wood, %3$s is the second
+extratrees.block.woodslab.name2=%1$s%2$s/%3$s Wood Slab
+
+# %1$s is the adjective for the fence type, %2$s is the name of the wood
 extratrees.block.multifence.name=%2$s %1$s Gate
-< %3$s is the name of the second wood >
+# %3$s is the name of the second wood
 extratrees.block.multifence.name2=%2$s %1$s & $3$s Gate
 
-< %1$s is name of the design >
+# %1$s is name of the design
 extratrees.block.woodentile.name=%1$s Wooden Tile
 extratrees.block.woodenpanel.name=%1$s Wooden Panel
 extratrees.block.stainedglass.name=%1$s Stained Glass
