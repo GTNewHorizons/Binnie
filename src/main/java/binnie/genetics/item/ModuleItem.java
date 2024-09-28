@@ -19,9 +19,6 @@ import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCasing;
 import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCircuit;
 import static binnie.genetics.item.GeneticsMisc.Items.LaboratoryCasing;
 
-import binnie.botany.items.BotanyItems;
-import binnie.extrabees.item.EBItems;
-import binnie.extratrees.item.ETItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -30,11 +27,14 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import binnie.Binnie;
+import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
+import binnie.extrabees.item.EBItems;
+import binnie.extratrees.item.ETItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
 
@@ -190,7 +190,7 @@ public class ModuleItem implements IInitializable {
         Item diamond = Items.diamond; // save a reference to diamond
 
         ItemStack analystStack = new ItemStack(analyst); // save a reference to the analyst, will make the next bit
-                                                              // easier
+                                                         // easier
 
         // the following code is a sufficient replacement for the 3 nested loops that preceded it; arguably this is
         // still
@@ -304,9 +304,9 @@ public class ModuleItem implements IInitializable {
         // do a check to ensure that the butterfly module is enabled before using the butterfly dictionary.
         // a similar check could be done for arboriculture and apiculture as well, but that is left to the mod owner
         Item lepiDb = BinnieCore.isLepidopteryActive() ? ETItems.itemDictionaryLepi : Items.diamond; // just use a
-                                                                                                        // diamond if
-                                                                                                        // Butterflies
-                                                                                                        // is disabled
+                                                                                                     // diamond if
+                                                                                                     // Butterflies
+                                                                                                     // is disabled
         // going to use the circuit reference above as well
 
         // as above, there are only 24 permutations here; let's find a way to just get those recipes rather than trying

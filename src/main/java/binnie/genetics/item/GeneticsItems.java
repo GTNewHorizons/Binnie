@@ -1,7 +1,8 @@
 package binnie.genetics.item;
 
-import binnie.core.item.DamageItems;
 import net.minecraft.item.Item;
+
+import binnie.core.item.DamageItems;
 
 public class GeneticsItems {
 

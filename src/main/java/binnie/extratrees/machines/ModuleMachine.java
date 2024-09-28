@@ -2,15 +2,16 @@ package binnie.extratrees.machines;
 
 import static binnie.extratrees.item.ETMisc.Items.ProvenGear;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+
 import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.machines.MachineGroup;
 import binnie.extratrees.ExtraTrees;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.Tabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class ModuleMachine implements IInitializable {
 
@@ -30,8 +31,8 @@ public class ModuleMachine implements IInitializable {
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(
                         ExtraTreeMachine.Lumbermill.get(1),
-                        new Object[] { "gAg", "GsG", "gPg", 'G', Blocks.glass, 'g', ProvenGear.get(1),
-                                'A', Items.iron_axe, 's', Mods.forestry.stack("sturdyMachine"), 'P', "gearBronze" }));
+                        new Object[] { "gAg", "GsG", "gPg", 'G', Blocks.glass, 'g', ProvenGear.get(1), 'A',
+                                Items.iron_axe, 's', Mods.forestry.stack("sturdyMachine"), 'P', "gearBronze" }));
 
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(

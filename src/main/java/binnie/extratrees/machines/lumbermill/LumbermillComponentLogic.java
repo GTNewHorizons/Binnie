@@ -1,15 +1,15 @@
 package binnie.extratrees.machines.lumbermill;
 
-
 import static binnie.extratrees.item.ETMisc.Items.Bark;
 import static binnie.extratrees.item.ETMisc.Items.Sawdust;
+
+import net.minecraft.item.ItemStack;
 
 import binnie.core.machines.Machine;
 import binnie.core.machines.power.ComponentProcessSetCost;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
-import net.minecraft.item.ItemStack;
 
 public class LumbermillComponentLogic extends ComponentProcessSetCost implements IProcess {
 
@@ -56,9 +56,7 @@ public class LumbermillComponentLogic extends ComponentProcessSetCost implements
         }
 
         getUtil().addStack(Lumbermill.SLOT_PLANKS, result);
-        getUtil().addStack(
-                Lumbermill.SLOT_SAWDUST,
-                Sawdust.get(1));
+        getUtil().addStack(Lumbermill.SLOT_SAWDUST, Sawdust.get(1));
         getUtil().addStack(Lumbermill.SLOT_BARK, Bark.get(1));
         getUtil().decreaseStack(Lumbermill.SLOT_WOOD, 1);
     }

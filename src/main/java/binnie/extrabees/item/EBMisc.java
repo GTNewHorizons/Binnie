@@ -3,20 +3,24 @@ package binnie.extrabees.item;
 import static binnie.extrabees.ExtraBees.EB_MODID;
 import static binnie.extrabees.item.EBItems.itemMisc;
 
+import java.util.Arrays;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.item.DamageItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.Tabs;
 import forestry.api.recipes.RecipeManagers;
-import java.util.Arrays;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class EBMisc extends DamageItems {
+
     public enum Items {
+
         ScentedGear("scentedGear"),
         DiamondShard("diamondShard", "Diamond", false),
         EmeraldShard("emeraldShard", "Emerald", false),
@@ -89,17 +93,14 @@ public class EBMisc extends DamageItems {
     }
 
     protected EBMisc() {
-        super(
-                Tabs.tabApiculture,
-                EB_MODID,
-                Arrays.stream(Items.VALUES).map(i -> i.name).toArray(String[]::new));
+        super(Tabs.tabApiculture, EB_MODID, Arrays.stream(Items.VALUES).map(i -> i.name).toArray(String[]::new));
     }
 
     @Override
     public String getIconName(int damage) {
         return "misc/" + super.getIconName(damage);
     }
-    
+
     public static void init() {
         OreDictionary.registerOre("dyeRed", Items.RedDye.get(1));
         OreDictionary.registerOre("dyeYellow", Items.YellowDye.get(1));
@@ -112,7 +113,12 @@ public class EBMisc extends DamageItems {
 
     public static void postInit() {
         ItemStack lapisShard = Items.LapisShard.get(1);
-        GameRegistry.addShapelessRecipe(new ItemStack(net.minecraft.init.Items.dye, 1, 4), lapisShard, lapisShard, lapisShard, lapisShard);
+        GameRegistry.addShapelessRecipe(
+                new ItemStack(net.minecraft.init.Items.dye, 1, 4),
+                lapisShard,
+                lapisShard,
+                lapisShard,
+                lapisShard);
         for (Items item : Items.VALUES) {
             if (item.resourceString != null && item.isMetal) {
                 ItemStack dust = null;
@@ -131,7 +137,12 @@ public class EBMisc extends DamageItems {
                     GameRegistry
                             .addShapelessRecipe(ingot, input, input, input, input, input, input, input, input, input);
                 } else if (item == Items.CoalDust) {
-                    GameRegistry.addShapelessRecipe(new ItemStack(net.minecraft.init.Items.coal), input, input, input, input);
+                    GameRegistry.addShapelessRecipe(
+                            new ItemStack(net.minecraft.init.Items.coal),
+                            input,
+                            input,
+                            input,
+                            input);
                 }
             } else if (item.resourceString != null) {
                 ItemStack gem = null;

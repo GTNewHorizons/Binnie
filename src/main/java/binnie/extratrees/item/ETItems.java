@@ -1,9 +1,11 @@
 package binnie.extratrees.item;
 
-import binnie.core.item.DamageItems;
 import net.minecraft.item.Item;
 
+import binnie.core.item.DamageItems;
+
 public class ETItems {
+
     public final static DamageItems itemMisc = new ETMisc();
     public final static Item itemDictionary = new ItemDictionary();
     public static Item itemDictionaryLepi;

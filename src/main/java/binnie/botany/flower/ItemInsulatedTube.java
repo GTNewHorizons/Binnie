@@ -1,6 +1,5 @@
 package binnie.botany.flower;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,6 +13,7 @@ import net.minecraft.util.IIcon;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.core.util.I18N;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

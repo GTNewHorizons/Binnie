@@ -1,8 +1,8 @@
 package binnie.core.block;
 
-import binnie.core.BinnieCore;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -13,6 +13,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import binnie.core.BinnieCore;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 

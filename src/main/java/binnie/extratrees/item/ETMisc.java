@@ -3,13 +3,17 @@ package binnie.extratrees.item;
 import static binnie.extratrees.ExtraTrees.ET_MODID;
 import static binnie.extratrees.item.ETItems.itemMisc;
 
-import binnie.core.item.DamageItems;
-import forestry.api.core.Tabs;
 import java.util.Arrays;
+
 import net.minecraft.item.ItemStack;
 
+import binnie.core.item.DamageItems;
+import forestry.api.core.Tabs;
+
 public class ETMisc extends DamageItems {
+
     public enum Items {
+
         // Binnie never enabled this one, so it does nothing
         // TODO: re-enable or remove this
         CarpentryHammer("carpentryHammer"),
@@ -32,9 +36,6 @@ public class ETMisc extends DamageItems {
     }
 
     protected ETMisc() {
-        super(
-                Tabs.tabArboriculture,
-                ET_MODID,
-                Arrays.stream(Items.VALUES).map(i -> i.name).toArray(String[]::new));
+        super(Tabs.tabArboriculture, ET_MODID, Arrays.stream(Items.VALUES).map(i -> i.name).toArray(String[]::new));
     }
 }

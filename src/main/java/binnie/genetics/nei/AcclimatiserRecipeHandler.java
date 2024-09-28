@@ -1,6 +1,5 @@
 package binnie.genetics.nei;
 
-import binnie.botany.items.BotanyItems;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.oredict.OreDictionary;
 
+import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.nei.PositionedStackAdv;

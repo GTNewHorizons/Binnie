@@ -1,6 +1,5 @@
 package binnie.extrabees.genetics.items;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -14,6 +13,7 @@ import net.minecraft.world.World;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.ExtraBeeGUID;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;

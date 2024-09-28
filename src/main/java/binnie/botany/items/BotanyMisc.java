@@ -3,13 +3,17 @@ package binnie.botany.items;
 import static binnie.botany.Botany.BOTANY_MODID;
 import static binnie.botany.items.BotanyItems.misc;
 
-import binnie.botany.CreativeTabBotany;
-import binnie.core.item.DamageItems;
 import java.util.Arrays;
+
 import net.minecraft.item.ItemStack;
 
+import binnie.botany.CreativeTabBotany;
+import binnie.core.item.DamageItems;
+
 public class BotanyMisc extends DamageItems {
+
     public enum Items {
+
         AshPowder("powderAsh"),
         PulpPowder("powderPulp"),
         MulchPowder("powderMulch"),
@@ -32,6 +36,9 @@ public class BotanyMisc extends DamageItems {
     }
 
     public BotanyMisc() {
-        super(CreativeTabBotany.instance, BOTANY_MODID, Arrays.stream(Items.VALUES).map(i -> i.name).toArray(String[]::new));
+        super(
+                CreativeTabBotany.instance,
+                BOTANY_MODID,
+                Arrays.stream(Items.VALUES).map(i -> i.name).toArray(String[]::new));
     }
 }

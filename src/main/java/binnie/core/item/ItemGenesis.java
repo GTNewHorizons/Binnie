@@ -1,6 +1,5 @@
 package binnie.core.item;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -10,6 +9,7 @@ import net.minecraft.world.World;
 import binnie.core.BinnieCore;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.util.I18N;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;

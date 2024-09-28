@@ -1,9 +1,7 @@
 package binnie.genetics.item;
 
-
 import static binnie.genetics.item.GeneticsItems.sequencer;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,6 +20,7 @@ import binnie.genetics.api.IItemAnalysable;
 import binnie.genetics.api.IItemChargable;
 import binnie.genetics.genetics.GeneItem;
 import binnie.genetics.genetics.SequencerItem;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.apiculture.EnumBeeChromosome;

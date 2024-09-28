@@ -1,5 +1,10 @@
 package binnie.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraftforge.common.MinecraftForge;
+
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
@@ -9,9 +14,6 @@ import binnie.core.proxy.IProxyCore;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraftforge.common.MinecraftForge;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
 

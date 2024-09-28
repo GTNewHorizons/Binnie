@@ -6,6 +6,16 @@ import static binnie.extratrees.item.ETMisc.Items.GlassFitting;
 import static binnie.extratrees.item.ETMisc.Items.ProvenGear;
 import static binnie.extratrees.item.ETMisc.Items.WoodWax;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraftforge.fluids.FluidContainerRegistry;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
 import binnie.Binnie;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
@@ -16,15 +26,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.fuels.EngineBronzeFuel;
 import forestry.api.fuels.FuelManager;
 import forestry.api.recipes.RecipeManagers;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModuleItems implements IInitializable {
 
@@ -128,18 +129,9 @@ public class ModuleItems implements IInitializable {
                         's',
                         Items.stick));
 
-        GameRegistry
-                .addRecipe(ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.forestry.stack("oakStick"));
+        GameRegistry.addRecipe(ProvenGear.get(1), " s ", "s s", " s ", 's', Mods.forestry.stack("oakStick"));
 
-        GameRegistry.addRecipe(
-                GlassFitting.get(6),
-                "s s",
-                " i ",
-                "s s",
-                'i',
-                Items.iron_ingot,
-                's',
-                Items.stick);
+        GameRegistry.addRecipe(GlassFitting.get(6), "s s", " i ", "s s", 'i', Items.iron_ingot, 's', Items.stick);
 
         try {
             Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("miniumShard").get(null);

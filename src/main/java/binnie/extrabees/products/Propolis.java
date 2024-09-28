@@ -3,21 +3,25 @@ package binnie.extrabees.products;
 import static binnie.extrabees.ExtraBees.EB_MODID;
 import static binnie.extrabees.item.EBItems.propolis;
 
+import java.awt.Color;
+import java.util.Arrays;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.item.DamageItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import forestry.api.recipes.RecipeManagers;
-import java.awt.Color;
-import java.util.Arrays;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.FluidStack;
 
 public class Propolis extends DamageItems {
+
     public enum Items {
+
         WATER(new Color(0x24b3c9), new Color(0xc2bea7), "water"),
         OIL(new Color(0x172f33), new Color(0xc2bea7), "oil"),
         FUEL(new Color(0xa38d12), new Color(0xc2bea7), "fuel"),

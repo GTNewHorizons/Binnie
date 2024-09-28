@@ -2,7 +2,6 @@ package binnie.genetics.nei;
 
 import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
 
-import binnie.botany.items.BotanyItems;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +12,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import binnie.Binnie;
+import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.nei.NEIUtils;

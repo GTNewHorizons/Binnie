@@ -9,6 +9,18 @@ import static binnie.botany.items.BotanyMisc.Items.PulpPowder;
 import static binnie.botany.items.BotanyMisc.Items.SulphurPowder;
 import static binnie.botany.items.BotanyMisc.Items.Weedkiller;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.RecipeSorter;
+import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
+
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumMoisture;
@@ -31,16 +43,6 @@ import binnie.core.block.ItemMetadataRenderer;
 import binnie.core.block.MultipassItemRenderer;
 import binnie.core.block.TileEntityMetadata;
 import cpw.mods.fml.common.registry.GameRegistry;
-import java.util.HashMap;
-import java.util.Map;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.RecipeSorter;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 public class ModuleGardening implements IInitializable {
 
@@ -208,8 +210,7 @@ public class ModuleGardening implements IInitializable {
         GameRegistry.addShapelessRecipe(CompostPowder.get(4), Mods.forestry.stack("fertilizerBio"));
         GameRegistry.addShapelessRecipe(FertiliserPowder.get(4), Mods.forestry.stack("fertilizerCompound"));
         GameRegistry.addShapelessRecipe(PulpPowder.get(4), Mods.forestry.stack("woodPulp"));
-        GameRegistry
-                .addRecipe(new ShapelessOreRecipe(SulphurPowder.get(4), new Object[] { "dustSulphur" }));
+        GameRegistry.addRecipe(new ShapelessOreRecipe(SulphurPowder.get(4), new Object[] { "dustSulphur" }));
 
         GameRegistry.addRecipe(
                 new ShapelessOreRecipe(
@@ -247,8 +248,7 @@ public class ModuleGardening implements IInitializable {
             addNutrientFertiliser(entry.getKey(), entry.getValue());
         }
 
-        GameRegistry
-                .addRecipe(Mortar.get(6), " c ", "cgc", " c ", 'c', Items.clay_ball, 'g', Blocks.gravel);
+        GameRegistry.addRecipe(Mortar.get(6), " c ", "cgc", " c ", 'c', Items.clay_ball, 'g', Blocks.gravel);
 
         for (EnumFlowerColor c : EnumFlowerColor.values()) {
             ItemStack clay = new ItemStack(BotanyItems.clay, 1, c.ordinal());

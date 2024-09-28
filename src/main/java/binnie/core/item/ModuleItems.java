@@ -2,6 +2,14 @@ package binnie.core.item;
 
 import static binnie.core.item.BinnieItems.fieldKit;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+
 import binnie.botany.Botany;
 import binnie.botany.api.IFlower;
 import binnie.botany.flower.TileEntityFlower;
@@ -10,13 +18,6 @@ import binnie.core.IInitializable;
 import binnie.core.network.packet.MessageNBT;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 public class ModuleItems implements IInitializable {
 

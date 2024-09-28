@@ -3,6 +3,17 @@ package binnie.extratrees.item;
 import static binnie.extratrees.ExtraTrees.ET_MODID;
 import static binnie.extratrees.item.ETItems.itemFood;
 
+import java.util.Arrays;
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.Binnie;
 import binnie.core.Mods;
 import binnie.core.item.DamageItems;
@@ -12,22 +23,15 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import forestry.api.recipes.RecipeManagers;
-import java.util.Arrays;
-import java.util.List;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.oredict.OreDictionary;
 
 /**
  * This class doesn't extend {@link DamageItems} because it needs to extend {@link net.minecraft.item.ItemFood}, and
  * Java doesn't allow multiple inheritance.
  */
 public class FoodItems extends ItemFood {
+
     public enum Items {
+
         Crabapple("Crabapple", 2),
         Orange("Orange", 4),
         Kumquat("Kumquat", 2),
@@ -203,7 +207,7 @@ public class FoodItems extends ItemFood {
         NAMES = Arrays.stream(Items.VALUES).map(i -> i.name).toArray(String[]::new);
         ICONS = new IIcon[NAMES.length];
         this.modid = ET_MODID;
-        
+
         GameRegistry.registerItem(this, name);
     }
 
@@ -226,7 +230,8 @@ public class FoodItems extends ItemFood {
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
         final int damage = stack.getItemDamage();
-        return (damage < NAMES.length) ? I18N.localise("for.extratrees.item.food." + NAMES[damage].toLowerCase()) : "null";
+        return (damage < NAMES.length) ? I18N.localise("for.extratrees.item.food." + NAMES[damage].toLowerCase())
+                : "null";
     }
 
     @Override
@@ -255,7 +260,7 @@ public class FoodItems extends ItemFood {
      * I don't quite understand why these next two functions were overridden instead of using something with deobfed
      * names. In the vain hope of not breaking things, I leave them unchanged.
      */
-    
+
     @Override
     public int func_150905_g(ItemStack stack) {
         return Items.VALUES[stack.getItemDamage()].hunger;

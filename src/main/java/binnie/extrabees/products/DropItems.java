@@ -3,22 +3,25 @@ package binnie.extrabees.products;
 import static binnie.extrabees.ExtraBees.EB_MODID;
 import static binnie.extrabees.item.EBItems.honeyDrop;
 
+import java.awt.Color;
+import java.util.Arrays;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.item.DamageItems;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import forestry.api.recipes.RecipeManagers;
-import java.awt.Color;
-import java.util.Arrays;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.FluidStack;
 
 public class DropItems extends DamageItems {
-    
+
     public enum Items {
+
         ENERGY("energy", new Color(0x9c4972), new Color(0xe37171), ""),
         ACID("acid", new Color(0x4bb541), new Color(0x49de3c), "acid"),
         POISON("poison", new Color(0xd106b9), new Color(0xff03e2), "poison"),
@@ -109,7 +112,9 @@ public class DropItems extends DamageItems {
     @Override
     public int getColorFromItemStack(ItemStack stack, int indexColor) {
         final int damage = stack.getItemDamage();
-        final CombItems.Items comb = damage < CombItems.Items.VALUES.length ? CombItems.Items.VALUES[stack.getItemDamage()] : null;
+        final CombItems.Items comb = damage < CombItems.Items.VALUES.length
+                ? CombItems.Items.VALUES[stack.getItemDamage()]
+                : null;
 
         if (comb == null) return 0xffffff;
         return indexColor == 0 ? comb.primary : comb.secondary;

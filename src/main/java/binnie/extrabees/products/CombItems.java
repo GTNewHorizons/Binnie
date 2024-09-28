@@ -23,6 +23,16 @@ import static binnie.extrabees.item.EBMisc.Items.YelloriumDust;
 import static binnie.extrabees.item.EBMisc.Items.ZincDust;
 import static net.minecraft.init.Items.dye;
 
+import java.awt.Color;
+import java.util.Arrays;
+import java.util.List;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.core.Mods;
 import binnie.core.item.DamageItems;
 import binnie.extrabees.item.EBItems;
@@ -32,17 +42,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
 import forestry.api.recipes.RecipeManagers;
 import it.unimi.dsi.fastutil.objects.Object2FloatOpenHashMap;
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.List;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class CombItems extends DamageItems {
+
     public enum Items {
+
         BARREN("barren", new Color(0x736c44), new Color(0xc2bea7)),
         ROTTEN("rotten", new Color(0x3e5221), new Color(0xb1cc89)),
         BONE("bone", new Color(0xc4c4af), new Color(0xdedec1)),
@@ -220,7 +224,7 @@ public class CombItems extends DamageItems {
     public static void addSubtypes() {
         final ItemStack beeswax = Mods.forestry.stack("beeswax");
         final ItemStack honeyDrop = Mods.forestry.stack("honeyDrop");
-        
+
         OreDictionary.registerOre("gemLapis", new ItemStack(dye, 1, 4));
 
         Items.BARREN.addProduct(beeswax, 1.00f);

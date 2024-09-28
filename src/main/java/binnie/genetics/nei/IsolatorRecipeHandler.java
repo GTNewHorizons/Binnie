@@ -4,6 +4,15 @@ import static binnie.genetics.item.GeneticsItems.sequencer;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptySequencer;
 import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
 
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.Binnie;
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
@@ -21,13 +30,6 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class IsolatorRecipeHandler extends RecipeHandlerBase {
 

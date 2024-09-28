@@ -5,15 +5,17 @@ import static binnie.genetics.item.GeneticsItems.sequencer;
 import static binnie.genetics.item.GeneticsMisc.Items.EmptySequencer;
 import static binnie.genetics.item.GeneticsMisc.Items.FluorescentDye;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+
 import binnie.core.nei.RecipeHandlerBase;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
 
 public class SequencerRecipeHandler extends RecipeHandlerBase {
 

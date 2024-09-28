@@ -1,6 +1,5 @@
 package binnie.botany.ceramic;
 
-import binnie.botany.items.BotanyItems;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +10,7 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.world.World;
 
 import binnie.botany.Botany;
+import binnie.botany.items.BotanyItems;
 
 public class CeramicTileRecipe implements IRecipe {
 

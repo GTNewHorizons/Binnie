@@ -1,5 +1,7 @@
 package binnie.botany.items;
 
+import net.minecraft.item.Item;
+
 import binnie.botany.flower.ItemFlower;
 import binnie.botany.flower.ItemInsulatedTube;
 import binnie.botany.flower.ItemPollen;
@@ -8,7 +10,6 @@ import binnie.botany.gardening.ItemSoilMeter;
 import binnie.botany.gardening.ItemTrowel;
 import binnie.botany.genetics.ItemDictionary;
 import binnie.core.item.DamageItems;
-import net.minecraft.item.Item;
 
 public class BotanyItems {
 

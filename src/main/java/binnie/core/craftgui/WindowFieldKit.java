@@ -1,6 +1,5 @@
 package binnie.core.craftgui;
 
-import binnie.core.item.BinnieItems;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +32,7 @@ import binnie.core.craftgui.resource.StyleSheet;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.resource.minecraft.PaddedTexture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.item.BinnieItems;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;

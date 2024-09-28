@@ -1,6 +1,5 @@
 package binnie.botany.genetics;
 
-import binnie.botany.items.BotanyItems;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -24,6 +23,7 @@ import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerMutation;
 import binnie.botany.api.IFlowerRoot;
+import binnie.botany.items.BotanyItems;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;

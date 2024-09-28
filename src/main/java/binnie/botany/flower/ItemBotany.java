@@ -1,6 +1,5 @@
 package binnie.botany.flower;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -28,6 +27,7 @@ import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.Flower;
 import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.genetics.IIndividual;

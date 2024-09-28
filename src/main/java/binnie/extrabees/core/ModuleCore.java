@@ -1,6 +1,5 @@
 package binnie.extrabees.core;
 
-
 import static binnie.extrabees.item.EBItems.itemMisc;
 
 import binnie.core.IInitializable;

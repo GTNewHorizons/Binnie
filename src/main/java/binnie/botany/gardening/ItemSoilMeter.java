@@ -1,6 +1,5 @@
 package binnie.botany.gardening;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +19,7 @@ import binnie.botany.api.gardening.IBlockSoil;
 import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import binnie.genetics.genetics.AlleleHelper;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

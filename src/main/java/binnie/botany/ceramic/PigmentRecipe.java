@@ -1,6 +1,5 @@
 package binnie.botany.ceramic;
 
-import binnie.botany.items.BotanyItems;
 import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
@@ -8,6 +7,7 @@ import net.minecraft.world.World;
 
 import binnie.Binnie;
 import binnie.botany.api.IFlower;
+import binnie.botany.items.BotanyItems;
 
 public class PigmentRecipe implements IRecipe {
 

@@ -1,5 +1,16 @@
 package binnie.extrabees.genetics;
 
+import java.awt.Color;
+import java.util.Arrays;
+import java.util.EnumSet;
+import java.util.Locale;
+import java.util.Map;
+
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.BiomeDictionary;
+
 import binnie.core.Mods;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
 import binnie.extrabees.genetics.requirements.RequirementPerson;
@@ -22,15 +33,6 @@ import forestry.apiculture.genetics.IBeeDefinition;
 import forestry.apiculture.genetics.alleles.AlleleEffect;
 import forestry.core.genetics.IBranchDefinition;
 import forestry.core.genetics.alleles.EnumAllele;
-import java.awt.Color;
-import java.util.Arrays;
-import java.util.EnumSet;
-import java.util.Locale;
-import java.util.Map;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.BiomeDictionary;
 
 public enum ExtraBeeDefinition implements IBeeDefinition {
 
@@ -91,8 +93,9 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.30f).addSpecialty(CombItems.Items.COMPOST.get(1), 0.08f)
-                    .setTemperature(EnumTemperature.HOT).setHumidity(EnumHumidity.ARID);
+            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.30f)
+                    .addSpecialty(CombItems.Items.COMPOST.get(1), 0.08f).setTemperature(EnumTemperature.HOT)
+                    .setHumidity(EnumHumidity.ARID);
         }
 
         @Override
@@ -104,8 +107,9 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.25f).addSpecialty(CombItems.Items.SAWDUST.get(1), 0.25f)
-                    .setTemperature(EnumTemperature.HOT).setHumidity(EnumHumidity.ARID);
+            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.25f)
+                    .addSpecialty(CombItems.Items.SAWDUST.get(1), 0.25f).setTemperature(EnumTemperature.HOT)
+                    .setHumidity(EnumHumidity.ARID);
         }
 
         @Override
@@ -127,8 +131,9 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.30f).addSpecialty(CombItems.Items.ROTTEN.get(1), 0.10f)
-                    .setTemperature(EnumTemperature.HOT).setHumidity(EnumHumidity.ARID);
+            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.30f)
+                    .addSpecialty(CombItems.Items.ROTTEN.get(1), 0.10f).setTemperature(EnumTemperature.HOT)
+                    .setHumidity(EnumHumidity.ARID);
         }
 
         @Override
@@ -250,7 +255,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.COPPER.get(1), 0.06f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.COPPER.get(1), 0.06f);
         }
 
         @Override
@@ -317,7 +323,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.TITANIUM.get(1), 0.02f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.TITANIUM.get(1), 0.02f);
         }
 
         @Override
@@ -329,7 +336,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.TUNGSTEN.get(1), 0.01f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.TUNGSTEN.get(1), 0.01f);
         }
 
         @Override
@@ -341,7 +349,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.NICKEL.get(1), 0.05f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.NICKEL.get(1), 0.05f);
         }
 
         @Override
@@ -371,7 +380,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.SILVER.get(1), 0.02f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.SILVER.get(1), 0.02f);
         }
 
         @Override
@@ -387,7 +397,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.PLATINUM.get(1), 0.01f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.PLATINUM.get(1), 0.01f);
         }
 
         @Override
@@ -401,7 +412,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.LAPIS.get(1), 0.05f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.LAPIS.get(1), 0.05f);
         }
 
         @Override
@@ -420,7 +432,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.EMERALD.get(1), 0.04f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.EMERALD.get(1), 0.04f);
         }
 
         @Override
@@ -444,7 +457,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.SAPPHIRE.get(1), 0.03f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.SAPPHIRE.get(1), 0.03f);
         }
 
         @Override
@@ -457,7 +471,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f).addSpecialty(CombItems.Items.DIAMOND.get(1), 0.01f);
+            beeSpecies.addProduct(CombItems.Items.STONE.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.DIAMOND.get(1), 0.01f);
         }
 
         @Override
@@ -500,8 +515,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.20f).addSpecialty(CombItems.Items.URANIUM.get(1), 0.02f)
-                    .setHasEffect();
+            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.URANIUM.get(1), 0.02f).setHasEffect();
         }
 
         @Override
@@ -537,7 +552,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.20f).addSpecialty(CombItems.Items.CYANITE.get(1), 0.01f);
+            beeSpecies.addProduct(CombItems.Items.BARREN.get(1), 0.20f)
+                    .addSpecialty(CombItems.Items.CYANITE.get(1), 0.01f);
         }
 
         @Override
@@ -716,8 +732,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.COAL.get(1), 0.10f).addSpecialty(CombItems.Items.CREOSOTE.get(1), 0.07f)
-                    .setHasEffect();
+            beeSpecies.addProduct(CombItems.Items.COAL.get(1), 0.10f)
+                    .addSpecialty(CombItems.Items.CREOSOTE.get(1), 0.07f).setHasEffect();
         }
 
         @Override
@@ -776,8 +792,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
 
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
-            beeSpecies.addProduct(CombItems.Items.WATER.get(1), 0.30f).addSpecialty(new ItemStack(Items.dye, 1, 0), 0.10f)
-                    .setHumidity(EnumHumidity.DAMP);
+            beeSpecies.addProduct(CombItems.Items.WATER.get(1), 0.30f)
+                    .addSpecialty(new ItemStack(Items.dye, 1, 0), 0.10f).setHumidity(EnumHumidity.DAMP);
         }
 
         @Override
@@ -925,8 +941,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
             beeSpecies.addProduct(CombItems.ForestryCombs.HONEY.get(), 0.30f)
-                    .addProduct(new ItemStack(Items.sugar, 1, 0), 0.15f).addSpecialty(CombItems.Items.FRUIT.get(1), 0.20f)
-                    .setHasEffect();
+                    .addProduct(new ItemStack(Items.sugar, 1, 0), 0.15f)
+                    .addSpecialty(CombItems.Items.FRUIT.get(1), 0.20f).setHasEffect();
         }
 
         @Override
@@ -1642,8 +1658,8 @@ public enum ExtraBeeDefinition implements IBeeDefinition {
         @Override
         protected void setSpeciesProperties(IAlleleBeeSpeciesCustom beeSpecies) {
             beeSpecies.addProduct(CombItems.ForestryCombs.HONEY.get(), 0.30f)
-                    .addSpecialty(Mods.forestry.stack("pollen"), 0.20f).addSpecialty(CombItems.Items.PURPLE.get(1), 0.15f)
-                    .setIsNotCounted().setHasEffect();
+                    .addSpecialty(Mods.forestry.stack("pollen"), 0.20f)
+                    .addSpecialty(CombItems.Items.PURPLE.get(1), 0.15f).setIsNotCounted().setHasEffect();
         }
 
         @Override

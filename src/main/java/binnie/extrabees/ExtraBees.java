@@ -1,5 +1,13 @@
 package binnie.extrabees;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Items;
+import net.minecraftforge.oredict.OreDictionary;
+
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.Tags;
@@ -16,8 +24,6 @@ import binnie.extrabees.products.CombItems;
 import binnie.extrabees.products.ModuleProducts;
 import binnie.extrabees.proxy.ExtraBeesProxy;
 import binnie.extrabees.worldgen.ModuleGeneration;
-import com.gtnewhorizon.gtnhlib.config.ConfigException;
-import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -25,10 +31,6 @@ import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Items;
-import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(
         modid = ExtraBees.EB_MODID,
@@ -101,10 +103,8 @@ public class ExtraBees extends AbstractMod {
             if (name.length < 2) continue;
 
             if (name[0].equals("ExtraBees")) {
-                if (m.type == GameRegistry.Type.BLOCK)
-                    m.remap(GameRegistry.findBlock(EB_MODID, name[1]));
-                else
-                    m.remap(GameRegistry.findItem(EB_MODID, name[1]));
+                if (m.type == GameRegistry.Type.BLOCK) m.remap(GameRegistry.findBlock(EB_MODID, name[1]));
+                else m.remap(GameRegistry.findItem(EB_MODID, name[1]));
             }
         }
     }

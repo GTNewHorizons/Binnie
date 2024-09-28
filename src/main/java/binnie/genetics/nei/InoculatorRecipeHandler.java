@@ -3,6 +3,15 @@ package binnie.genetics.nei;
 import static binnie.genetics.item.GeneticsItems.serum;
 import static binnie.genetics.item.GeneticsItems.serumArray;
 
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.oredict.OreDictionary;
+
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
@@ -16,25 +25,14 @@ import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.ISpeciesRoot;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class InoculatorRecipeHandler extends RecipeHandlerBase {
 
     private static final List<InoculatorRecipe> recipes = new ArrayList<>();
 
     private void createInoculatorRecipeForNEI(ItemStack dnaManipulable) {
-        recipes.add(
-                new InoculatorRecipe(dnaManipulable, new ItemStack(serum, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(
-                new InoculatorRecipe(
-                        dnaManipulable,
-                        new ItemStack(serumArray, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new InoculatorRecipe(dnaManipulable, new ItemStack(serum, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new InoculatorRecipe(dnaManipulable, new ItemStack(serumArray, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override

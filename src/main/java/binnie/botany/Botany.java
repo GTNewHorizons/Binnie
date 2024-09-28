@@ -2,6 +2,15 @@ package binnie.botany;
 
 import static binnie.botany.items.BotanyItems.misc;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.BonemealEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
+
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IFlower;
@@ -39,16 +48,13 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
 
-@Mod(modid = Botany.BOTANY_MODID, name = Botany.BOTANY_MODNAME, version = Tags.VERSION, useMetadata = true, dependencies = "after:BinnieCore")
+@Mod(
+        modid = Botany.BOTANY_MODID,
+        name = Botany.BOTANY_MODNAME,
+        version = Tags.VERSION,
+        useMetadata = true,
+        dependencies = "after:BinnieCore")
 public class Botany extends AbstractMod {
 
     public static final String BOTANY_MODID = "botany";

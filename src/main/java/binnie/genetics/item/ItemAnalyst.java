@@ -1,6 +1,5 @@
 package binnie.genetics.item;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -11,6 +10,7 @@ import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.GeneticsCreativeTab;
 import binnie.genetics.core.GeneticsGUI;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 

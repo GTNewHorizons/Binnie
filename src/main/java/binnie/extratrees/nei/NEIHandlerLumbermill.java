@@ -3,6 +3,15 @@ package binnie.extratrees.nei;
 import static binnie.extratrees.item.ETMisc.Items.Bark;
 import static binnie.extratrees.item.ETMisc.Items.Sawdust;
 
+import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
+import net.minecraftforge.fluids.FluidStack;
+
 import binnie.Binnie;
 import binnie.core.nei.NEIUtils;
 import binnie.core.nei.PositionedFluidTank;
@@ -11,13 +20,6 @@ import binnie.extratrees.machines.lumbermill.Lumbermill;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.fluids.FluidStack;
 
 public class NEIHandlerLumbermill extends RecipeHandlerBase {
 

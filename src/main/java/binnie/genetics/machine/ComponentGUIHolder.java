@@ -5,6 +5,18 @@ import static binnie.genetics.item.GeneticsItems.database;
 import static binnie.genetics.item.GeneticsItems.masterRegistry;
 import static binnie.genetics.item.GeneticsItems.registry;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+
 import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.item.BinnieItems;
@@ -15,16 +27,6 @@ import binnie.core.machines.network.INetwork;
 import binnie.extrabees.item.EBItems;
 import binnie.extratrees.item.ETItems;
 import buildcraft.api.tools.IToolWrench;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
 
 public class ComponentGUIHolder extends MachineComponent implements INetwork.TilePacketSync, IInteraction.RightClick {
 
