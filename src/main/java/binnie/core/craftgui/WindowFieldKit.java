@@ -1,5 +1,6 @@
 package binnie.core.craftgui;
 
+import binnie.core.item.BinnieItems;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -225,7 +226,7 @@ public class WindowFieldKit extends Window {
         super.onWindowInventoryChanged();
         if (isServer()) {
             ItemStack kit = getPlayer().getHeldItem();
-            if (kit == null || !kit.getItem().equals(BinnieCore.fieldKit)) {
+            if (kit == null || !kit.getItem().equals(BinnieItems.fieldKit)) {
                 return;
             }
 

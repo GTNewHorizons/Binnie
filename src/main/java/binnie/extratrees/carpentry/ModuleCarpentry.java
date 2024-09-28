@@ -99,11 +99,6 @@ public class ModuleCarpentry implements IInitializable {
     }
 
     @Override
-    public void init() {
-        // ignored
-    }
-
-    @Override
     public void postInit() {
         for (EnumDesign design : EnumDesign.values()) {
             CarpentryManager.carpentryInterface.registerDesign(design.ordinal(), design);

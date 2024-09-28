@@ -33,11 +33,6 @@ public class ModuleGenetics implements IInitializable {
     }
 
     @Override
-    public void init() {
-        // ignored
-    }
-
-    @Override
     public void postInit() {
         ExtraTreeSpecies.init();
         ExtraTreeFruitGene.init();

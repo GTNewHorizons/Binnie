@@ -7,6 +7,7 @@ import static binnie.genetics.item.GeneticsItems.registry;
 
 import binnie.botany.Botany;
 import binnie.core.BinnieCore;
+import binnie.core.item.BinnieItems;
 import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IInteraction;
@@ -134,7 +135,7 @@ public class ComponentGUIHolder extends MachineComponent implements INetwork.Til
             validSelections.add(analyst);
             validSelections.add(registry);
             validSelections.add(masterRegistry);
-            validSelections.add(BinnieCore.genesis);
+            validSelections.add(BinnieItems.genesis);
 
             if (stack == null && validSelections.contains(player.getHeldItem().getItem())) {
                 stack = player.getHeldItem().copy();

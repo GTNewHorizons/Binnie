@@ -21,16 +21,6 @@ import forestry.api.arboriculture.IAlleleTreeSpecies;
 public class ModuleCore implements IInitializable {
 
     @Override
-    public void preInit() {
-        // ignored
-    }
-
-    @Override
-    public void init() {
-        // ignored
-    }
-
-    @Override
     public void postInit() {
         if (!BinnieCore.proxy.isDebug()) {
             return;

@@ -12,7 +12,6 @@ import binnie.botany.Botany;
 import binnie.botany.api.IFlower;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.network.PacketID;
-import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.network.packet.MessageNBT;
 import binnie.genetics.item.ItemFieldKit;
@@ -23,19 +22,18 @@ public class ModuleItems implements IInitializable {
 
     @Override
     public void preInit() {
-        BinnieCore.fieldKit = new ItemFieldKit();
-        BinnieCore.genesis = new ItemGenesis();
+        BinnieItems.fieldKit = new ItemFieldKit();
+        BinnieItems.genesis = new ItemGenesis();
     }
 
     @Override
     public void init() {
-        // ignored
     }
 
     @Override
     public void postInit() {
         GameRegistry.addRecipe(
-                new ItemStack(BinnieCore.fieldKit, 1, 63),
+                new ItemStack(BinnieItems.fieldKit, 1, 63),
                 "g  ",
                 " is",
                 " pi",
@@ -57,7 +55,7 @@ public class ModuleItems implements IInitializable {
 
         EntityPlayer player = event.entityPlayer;
         if (player != null && player.getHeldItem() != null
-                && player.getHeldItem().getItem() == BinnieCore.fieldKit
+                && player.getHeldItem().getItem() == BinnieItems.fieldKit
                 && player.isSneaking()) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
             if (!(tile instanceof TileEntityFlower tileFlower)) {

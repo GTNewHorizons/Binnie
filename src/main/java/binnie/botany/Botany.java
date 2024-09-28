@@ -1,15 +1,5 @@
 package binnie.botany;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Items;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.world.BlockEvent;
-
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IFlower;
@@ -20,7 +10,6 @@ import binnie.botany.ceramic.BlockCeramicPatterned;
 import binnie.botany.ceramic.BlockStained;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.core.BotanyGUI;
-import binnie.botany.core.ModuleCore;
 import binnie.botany.flower.BlockFlower;
 import binnie.botany.flower.ItemFlower;
 import binnie.botany.flower.ItemInsulatedTube;
@@ -53,6 +42,15 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import net.minecraft.block.Block;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.player.BonemealEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.world.BlockEvent;
 
 @Mod(modid = "Botany", name = "Botany", version = Tags.VERSION, useMetadata = true, dependencies = "after:BinnieCore")
 public class Botany extends AbstractMod {
@@ -96,7 +94,6 @@ public class Botany extends AbstractMod {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        addModule(new ModuleCore());
         addModule(new ModuleGenetics());
         addModule(new ModuleGardening());
         preInit();

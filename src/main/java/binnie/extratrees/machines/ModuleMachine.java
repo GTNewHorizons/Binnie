@@ -26,11 +26,6 @@ public class ModuleMachine implements IInitializable {
     }
 
     @Override
-    public void init() {
-        // ignore
-    }
-
-    @Override
     public void postInit() {
         GameRegistry.addRecipe(
                 new ShapedOreRecipe(

@@ -7,11 +7,6 @@ import buildcraft.api.statements.StatementManager;
 public class ModuleTrigger implements IInitializable {
 
     @Override
-    public void preInit() {
-        // ignored
-    }
-
-    @Override
     public void init() {
         BinnieAction.actionPauseProcess = new BinnieAction(
                 "Pause Process",
@@ -80,8 +75,4 @@ public class ModuleTrigger implements IInitializable {
         StatementManager.registerTriggerProvider(new TriggerProvider());
     }
 
-    @Override
-    public void postInit() {
-        // ignored
-    }
 }

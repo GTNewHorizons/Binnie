@@ -16,7 +16,6 @@ import binnie.core.craftgui.minecraft.ModuleCraftGUI;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.item.ItemGenesis;
 import binnie.core.item.ModuleItems;
 import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ItemFluidContainer;
@@ -30,7 +29,6 @@ import binnie.core.network.IPacketID;
 import binnie.core.proxy.BinnieProxy;
 import binnie.core.proxy.IBinnieProxy;
 import binnie.core.triggers.ModuleTrigger;
-import binnie.genetics.item.ItemFieldKit;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
@@ -66,8 +64,6 @@ public class BinnieCore extends AbstractMod {
     public static int multipassRenderID;
     private static final List<AbstractMod> modList = new ArrayList<>();
     public static MachineGroup packageCompartment;
-    public static ItemGenesis genesis;
-    public static ItemFieldKit fieldKit;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {

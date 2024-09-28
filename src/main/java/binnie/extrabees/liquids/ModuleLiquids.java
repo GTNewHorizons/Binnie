@@ -10,14 +10,4 @@ public class ModuleLiquids implements IInitializable {
     public void preInit() {
         Binnie.Liquid.createLiquids(ExtraBeeLiquid.values(), ItemFluidContainer.LiquidExtraBee);
     }
-
-    @Override
-    public void init() {
-        // ignored
-    }
-
-    @Override
-    public void postInit() {
-        // ignored
-    }
 }

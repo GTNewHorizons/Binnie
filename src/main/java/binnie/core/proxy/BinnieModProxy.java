@@ -44,19 +44,4 @@ public class BinnieModProxy implements IBinnieModProxy {
     public IIcon getIcon(IIconRegister register, String string) {
         return BinnieCore.proxy.getIcon(register, mod.getModID(), string);
     }
-
-    @Override
-    public void preInit() {
-        // ignored
-    }
-
-    @Override
-    public void init() {
-        // ignored
-    }
-
-    @Override
-    public void postInit() {
-        // ignored
-    }
 }

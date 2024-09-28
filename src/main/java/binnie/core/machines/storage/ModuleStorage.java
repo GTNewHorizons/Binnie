@@ -24,11 +24,6 @@ public class ModuleStorage implements IInitializable {
     }
 
     @Override
-    public void init() {
-        // ignored
-    }
-
-    @Override
     public void postInit() {
         String ironGear = OreDictionary.getOres("gearIron").isEmpty() ? "ingotIron" : "gearIron";
         String goldGear = OreDictionary.getOres("gearGold").isEmpty() ? "ingotGold" : "gearGold";
