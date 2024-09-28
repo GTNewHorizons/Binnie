@@ -20,8 +20,9 @@ public abstract class DamageItems extends Item {
     private final String modid;
 
     protected DamageItems(CreativeTabs tab, String modid, String... names) {
-        final String name = "misc";
-
+        this(tab, modid, "misc", names);
+    }
+    protected DamageItems(CreativeTabs tab, String modid, String name, String... names) {
         setCreativeTab(tab);
         setHasSubtypes(true);
         setUnlocalizedName(name);

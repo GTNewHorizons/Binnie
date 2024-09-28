@@ -77,14 +77,14 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.BONE.addProduct(honeyDrop, 0.20f);
         EnumHoneyComb.BONE.addProduct(new ItemStack(Items.dye, 1, 15), 0.80f);
 
-        EnumHoneyComb.OIL.tryAddProduct(EnumPropolis.OIL.get(1), 0.60f);
+        EnumHoneyComb.OIL.tryAddProduct(Propolis.Items.OIL.get(1), 0.60f);
         EnumHoneyComb.OIL.addProduct(honeyDrop, 0.75f);
 
         EnumHoneyComb.COAL.addProduct(beeswax, 0.80f);
         EnumHoneyComb.COAL.addProduct(honeyDrop, 0.75f);
         EnumHoneyComb.COAL.tryAddProduct(CoalDust.get(1), 1.00f);
 
-        EnumHoneyComb.WATER.tryAddProduct(EnumPropolis.WATER.get(1), 1.00f);
+        EnumHoneyComb.WATER.tryAddProduct(Propolis.Items.WATER.get(1), 1.00f);
         EnumHoneyComb.WATER.addProduct(honeyDrop, 0.90f);
 
         EnumHoneyComb.STONE.addProduct(beeswax, 0.50f);
@@ -102,10 +102,10 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.ALCOHOL.tryAddProduct(EnumHoneyDrop.ALCOHOL.get(1), 1.00f);
         EnumHoneyComb.ALCOHOL.addProduct(honeyDrop, 0.90f);
 
-        EnumHoneyComb.FUEL.tryAddProduct(EnumPropolis.FUEL.get(1), 0.60f);
+        EnumHoneyComb.FUEL.tryAddProduct(Propolis.Items.FUEL.get(1), 0.60f);
         EnumHoneyComb.FUEL.addProduct(honeyDrop, 0.50f);
 
-        EnumHoneyComb.CREOSOTE.tryAddProduct(EnumPropolis.CREOSOTE.get(1), 0.70f);
+        EnumHoneyComb.CREOSOTE.tryAddProduct(Propolis.Items.CREOSOTE.get(1), 0.70f);
         EnumHoneyComb.CREOSOTE.addProduct(honeyDrop, 0.50f);
 
         EnumHoneyComb.LATEX.addProduct(honeyDrop, 0.50f);

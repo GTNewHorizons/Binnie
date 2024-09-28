@@ -26,8 +26,8 @@ public class ModuleProducts implements IInitializable {
         for (EnumHoneyDrop info2 : EnumHoneyDrop.values()) {
             info2.addRecipe();
         }
-        for (EnumPropolis info3 : EnumPropolis.values()) {
-            info3.addRecipe();
+        for (Propolis.Items propolis : Propolis.Items.VALUES) {
+            propolis.addRecipe();
         }
     }
 }
