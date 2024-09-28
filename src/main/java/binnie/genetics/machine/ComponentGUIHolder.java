@@ -11,7 +11,7 @@ import binnie.core.machines.IMachine;
 import binnie.core.machines.MachineComponent;
 import binnie.core.machines.component.IInteraction;
 import binnie.core.machines.network.INetwork;
-import binnie.extrabees.ExtraBees;
+import binnie.extrabees.item.EBItems;
 import binnie.extratrees.item.ETItems;
 import buildcraft.api.tools.IToolWrench;
 import java.util.ArrayList;
@@ -121,7 +121,7 @@ public class ComponentGUIHolder extends MachineComponent implements INetwork.Til
             validSelections.add(Botany.database);
 
             if (BinnieCore.isExtraBeesActive()) {
-                validSelections.add(ExtraBees.dictionary);
+                validSelections.add(EBItems.dictionary);
             }
             if (BinnieCore.isExtraTreesActive()) {
                 validSelections.add(ETItems.itemDictionary);

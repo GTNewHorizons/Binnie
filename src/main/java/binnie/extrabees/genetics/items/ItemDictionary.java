@@ -1,5 +1,6 @@
 package binnie.extrabees.genetics.items;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,9 +23,13 @@ public class ItemDictionary extends Item {
     protected IIcon iconMaster;
 
     public ItemDictionary() {
+        final String name = "dictionary";
+
         setCreativeTab(Tabs.tabApiculture);
-        setUnlocalizedName("dictionary");
+        setUnlocalizedName(name);
         setMaxStackSize(1);
+
+        GameRegistry.registerItem(this, name);
     }
 
     @Override
@@ -70,7 +75,7 @@ public class ItemDictionary extends Item {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return (stack.getItemDamage() == 0) ? I18N.localise("extrabees.item.database")
-                : I18N.localise("extrabees.item.masterDatabase");
+        return (stack.getItemDamage() == 0) ? I18N.localise("extrabees.item.database.name")
+                : I18N.localise("extrabees.item.masterDatabase.name");
     }
 }

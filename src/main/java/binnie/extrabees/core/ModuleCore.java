@@ -1,24 +1,27 @@
 package binnie.extrabees.core;
 
-import binnie.Binnie;
+
+import static binnie.extrabees.item.EBItems.itemMisc;
+
 import binnie.core.IInitializable;
-import binnie.extrabees.ExtraBees;
-import forestry.api.core.Tabs;
+import binnie.extrabees.item.EBMisc;
 
 public class ModuleCore implements IInitializable {
 
     @Override
     public void preInit() {
-        ExtraBees.itemMisc = Binnie.Item.registerMiscItems(ExtraBeeItems.values(), Tabs.tabApiculture);
+        // Loads EBItems.class, guaranteeing that items are init by this point
+        // TODO: is this needed?
+        itemMisc.getUnlocalizedName();
     }
 
     @Override
     public void init() {
-        ExtraBeeItems.init();
+        EBMisc.init();
     }
 
     @Override
     public void postInit() {
-        ExtraBeeItems.postInit();
+        EBMisc.postInit();
     }
 }

@@ -68,11 +68,15 @@ public abstract class DamageItems extends Item {
         return (damage < ICONS.length && damage >= 0) ? ICONS[damage] : null;
     }
 
+    public String getIconName(int damage) {
+        return NAMES[damage];
+    }
+
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
         for (int i = 0; i < NAMES.length; ++i) {
-            ICONS[i] = register.registerIcon(modid + ":" + NAMES[i]);
+            ICONS[i] = register.registerIcon(modid + ":" + getIconName(i));
         }
     }
 }

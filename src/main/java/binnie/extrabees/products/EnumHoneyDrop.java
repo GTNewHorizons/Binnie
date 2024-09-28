@@ -1,5 +1,6 @@
 package binnie.extrabees.products;
 
+import binnie.extrabees.item.EBItems;
 import java.awt.Color;
 
 import javax.annotation.Nonnull;
@@ -11,7 +12,6 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.Binnie;
 import binnie.core.item.IItemEnum;
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
 
 public enum EnumHoneyDrop implements IItemEnum {
@@ -85,7 +85,7 @@ public enum EnumHoneyDrop implements IItemEnum {
 
     @Override
     public ItemStack get(int count) {
-        return new ItemStack(ExtraBees.honeyDrop, count, ordinal());
+        return new ItemStack(EBItems.honeyDrop, count, ordinal());
     }
 
     @Override

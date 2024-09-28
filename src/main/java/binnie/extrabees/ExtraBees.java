@@ -1,8 +1,9 @@
 package binnie.extrabees;
 
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
 
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
@@ -37,7 +38,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
         guiFactory = "binnie.extrabees.config.EBConfigGUIFactory")
 public class ExtraBees extends AbstractMod {
 
-    public static final String EB_MODID = "ExtraBees";
+    public static final String EB_MODID = "extrabees";
     public static final String EB_MOD_NAME = "Extra Bees";
 
     @Mod.Instance("ExtraBees")
@@ -59,11 +60,6 @@ public class ExtraBees extends AbstractMod {
     public static Block hive;
     public static Material materialBeehive;
     public static Block ectoplasm;
-    public static Item comb;
-    public static Item propolis;
-    public static Item honeyDrop;
-    public static Item dictionary;
-    public static Item itemMisc;
 
     public ExtraBees() {
         ExtraBees.instance = this;
@@ -90,6 +86,21 @@ public class ExtraBees extends AbstractMod {
         postInit();
     }
 
+    @Mod.EventHandler
+    public void missingMappings(FMLMissingMappingsEvent event) {
+        for (FMLMissingMappingsEvent.MissingMapping m : event.getAll()) {
+            final String[] name = m.name.split(":");
+            if (name.length < 2) continue;
+
+            if (name[0].equals("ExtraBees")) {
+                if (m.type == GameRegistry.Type.BLOCK)
+                    m.remap(GameRegistry.findBlock(EB_MODID, name[1]));
+                else
+                    m.remap(GameRegistry.findItem(EB_MODID, name[1]));
+            }
+        }
+    }
+
     @Override
     public IBinnieGUID[] getGUIDs() {
         return ExtraBeeGUID.values();
@@ -107,7 +118,7 @@ public class ExtraBees extends AbstractMod {
 
     @Override
     public String getModID() {
-        return "extrabees";
+        return EB_MODID;
     }
 
     @Override

@@ -19,6 +19,7 @@ import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCasing;
 import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCircuit;
 import static binnie.genetics.item.GeneticsMisc.Items.LaboratoryCasing;
 
+import binnie.extrabees.item.EBItems;
 import binnie.extratrees.item.ETItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -34,7 +35,6 @@ import binnie.core.IInitializable;
 import binnie.core.Mods;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
-import binnie.extrabees.ExtraBees;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.recipes.RecipeManagers;
 
@@ -297,7 +297,7 @@ public class ModuleItem implements IInitializable {
         // like items.
         // should be refactored in their respective modules.
         ItemStack registryStack = new ItemStack(registry);
-        Item beeDb = ExtraBees.dictionary;
+        Item beeDb = EBItems.dictionary;
         Item treeDb = ETItems.itemDictionary;
         Item flwrDb = Botany.database;
 

@@ -1,5 +1,6 @@
 package binnie.extrabees.products;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -16,8 +17,12 @@ public class ItemHoneyDrop extends ItemProduct {
 
     public ItemHoneyDrop() {
         super(EnumHoneyDrop.values());
+        final String name = "honeyDrop";
+
         setCreativeTab(Tabs.tabApiculture);
-        setUnlocalizedName("honeyDrop");
+        setUnlocalizedName(name);
+
+        GameRegistry.registerItem(this, name);
     }
 
     @Override

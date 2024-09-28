@@ -1,5 +1,6 @@
 package binnie.extrabees.products;
 
+import binnie.extrabees.item.EBItems;
 import java.awt.Color;
 
 import net.minecraft.item.ItemStack;
@@ -8,7 +9,6 @@ import net.minecraftforge.fluids.FluidStack;
 import binnie.Binnie;
 import binnie.core.item.IItemEnum;
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
 
 public enum EnumPropolis implements IItemEnum {
@@ -57,7 +57,7 @@ public enum EnumPropolis implements IItemEnum {
 
     @Override
     public ItemStack get(int count) {
-        return new ItemStack(ExtraBees.propolis, count, ordinal());
+        return new ItemStack(EBItems.propolis, count, ordinal());
     }
 
     @Override

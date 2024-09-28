@@ -1,19 +1,18 @@
 package binnie.extrabees.genetics;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
 import binnie.Binnie;
 import binnie.core.IInitializable;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.genetics.effect.BlockEctoplasm;
 import binnie.extrabees.genetics.effect.ExtraBeesEffect;
-import binnie.extrabees.genetics.items.ItemDictionary;
+import binnie.extrabees.item.EBItems;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.apiculture.IAlleleBeeSpecies;
 import forestry.api.genetics.IGenome;
 import forestry.api.recipes.RecipeManagers;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 public class ModuleGenetics implements IInitializable {
 
@@ -24,8 +23,6 @@ public class ModuleGenetics implements IInitializable {
 
     @Override
     public void preInit() {
-        ExtraBees.dictionary = new ItemDictionary();
-
         ExtraBees.ectoplasm = new BlockEctoplasm();
         GameRegistry.registerBlock(ExtraBees.ectoplasm, "ectoplasm");
     }
@@ -43,7 +40,7 @@ public class ModuleGenetics implements IInitializable {
                 100,
                 Binnie.Liquid.getLiquidStack("water", 2000),
                 null,
-                new ItemStack(ExtraBees.dictionary),
+                new ItemStack(EBItems.dictionary),
                 "X#X",
                 "YEY",
                 "RDR",

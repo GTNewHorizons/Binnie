@@ -1,5 +1,6 @@
 package binnie.extrabees.products;
 
+import binnie.extrabees.item.EBItems;
 import java.awt.Color;
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -9,7 +10,6 @@ import net.minecraft.item.ItemStack;
 
 import binnie.core.item.IItemEnum;
 import binnie.core.util.I18N;
-import binnie.extrabees.ExtraBees;
 import forestry.api.recipes.RecipeManagers;
 
 public enum EnumHoneyComb implements IItemEnum {
@@ -134,7 +134,7 @@ public enum EnumHoneyComb implements IItemEnum {
 
     @Override
     public ItemStack get(int count) {
-        return new ItemStack(ExtraBees.comb, count, ordinal());
+        return new ItemStack(EBItems.comb, count, ordinal());
     }
 
     @Override
@@ -152,11 +152,6 @@ public enum EnumHoneyComb implements IItemEnum {
 
     public void tryAddProduct(ItemStack item, Float chance) {
         active = addProduct(item, chance);
-    }
-
-    public void tryAddProduct(IItemEnum type, Float chance) {
-        tryAddProduct(type.get(1), chance);
-        active = active && type.isActive();
     }
 
     public void copyProducts(EnumHoneyComb comb) {
