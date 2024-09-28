@@ -53,6 +53,7 @@ public class EBMisc extends DamageItems {
         final String resourceString;
         final boolean isMetal;
         private static final Items[] VALUES = values();
+        private static final int[] binnieToVanillaColors = { 1, 11, 4, 2, 0, 15, 3, 14, 6, 5, 8, 12, 9, 10, 13, 7 };
 
         Items(String name) {
             this(name, null, false);
@@ -66,6 +67,24 @@ public class EBMisc extends DamageItems {
 
         public ItemStack get(int count) {
             return itemMisc.getStack(count, ordinal());
+        }
+
+        /**
+         * @param binnieID The index of colors used by Binnie's mods, starting with red = 0
+         * @return An itemstack containing one dye item, preferring Binnie's when possible
+         */
+        public static ItemStack getDye(int binnieID) {
+            final int i = binnieToVanillaColors[binnieID];
+            return switch (i) {
+                case 0 -> BlackDye.get(1);
+                case 1 -> RedDye.get(1);
+                case 2 -> GreenDye.get(1);
+                case 3 -> BrownDye.get(1);
+                case 4 -> BlueDye.get(1);
+                case 11 -> YellowDye.get(1);
+                case 15 -> WhiteDye.get(1);
+                default -> new ItemStack(net.minecraft.init.Items.dye, 1, i);
+            };
         }
     }
 

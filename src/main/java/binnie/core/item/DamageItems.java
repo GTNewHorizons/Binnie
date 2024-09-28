@@ -18,17 +18,19 @@ public abstract class DamageItems extends Item {
     private final String[] NAMES;
     private final IIcon[] ICONS;
     private final String modid;
+    private final boolean overrideIcons;
 
     protected DamageItems(CreativeTabs tab, String modid, String... names) {
-        this(tab, modid, "misc", names);
+        this(tab, modid, "misc", false, names);
     }
-    protected DamageItems(CreativeTabs tab, String modid, String name, String... names) {
+    protected DamageItems(CreativeTabs tab, String modid, String name, boolean overrideIcons, String... names) {
         setCreativeTab(tab);
         setHasSubtypes(true);
         setUnlocalizedName(name);
 
+        this.overrideIcons = overrideIcons;
         NAMES = names;
-        ICONS = new IIcon[names.length];
+        ICONS = overrideIcons ? null : new IIcon[names.length];
         this.modid = modid;
         GameRegistry.registerItem(this, name);
     }
@@ -60,12 +62,9 @@ public abstract class DamageItems extends Item {
     }
 
     @Override
-    public IIcon getIcon(ItemStack stack, int pass) {
-        return getIconFromDamage(stack.getItemDamage());
-    }
-
-    @Override
+    @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int damage) {
+        if (overrideIcons) return null;
         return (damage < ICONS.length && damage >= 0) ? ICONS[damage] : null;
     }
 
@@ -76,6 +75,8 @@ public abstract class DamageItems extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
+        if (overrideIcons) return;
+
         for (int i = 0; i < NAMES.length; ++i) {
             ICONS[i] = register.registerIcon(modid + ":" + getIconName(i));
         }

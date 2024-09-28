@@ -1,5 +1,6 @@
 package binnie.extrabees.products;
 
+import static binnie.extrabees.ExtraBees.EB_MODID;
 import static binnie.extrabees.item.EBItems.propolis;
 
 import binnie.Binnie;
@@ -10,7 +11,9 @@ import forestry.api.core.Tabs;
 import forestry.api.recipes.RecipeManagers;
 import java.awt.Color;
 import java.util.Arrays;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import net.minecraftforge.fluids.FluidStack;
 
 public class Propolis extends DamageItems {
@@ -47,8 +50,9 @@ public class Propolis extends DamageItems {
         // I don't like this, but the modid is actually only used for registering icons and names, so it's fine
         super(
                 Tabs.tabApiculture,
-                "forestry",
+                EB_MODID,
                 "propolis",
+                true,
                 Arrays.stream(Items.VALUES).map(i -> i.name).toArray(String[]::new));
 
         setMaxStackSize(64);
@@ -68,7 +72,18 @@ public class Propolis extends DamageItems {
     }
 
     @Override
-    public String getIconName(int damage) {
-        return "propolis.0";
+    @SideOnly(Side.CLIENT)
+    public void registerIcons(IIconRegister register) {
+        itemIcon = register.registerIcon("forestry:propolis.0");
+    }
+
+    @Override
+    public IIcon getIcon(ItemStack stack, int pass) {
+        return itemIcon;
+    }
+
+    @Override
+    public IIcon getIconFromDamage(int damage) {
+        return itemIcon;
     }
 }

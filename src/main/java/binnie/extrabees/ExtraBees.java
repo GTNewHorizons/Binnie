@@ -1,13 +1,5 @@
 package binnie.extrabees;
 
-import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-
-import com.gtnewhorizon.gtnhlib.config.ConfigException;
-import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
-
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.Tags;
@@ -20,14 +12,23 @@ import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ModuleCore;
 import binnie.extrabees.genetics.ModuleGenetics;
 import binnie.extrabees.liquids.ModuleLiquids;
+import binnie.extrabees.products.CombItems;
 import binnie.extrabees.products.ModuleProducts;
 import binnie.extrabees.proxy.ExtraBeesProxy;
 import binnie.extrabees.worldgen.ModuleGeneration;
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.init.Items;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(
         modid = ExtraBees.EB_MODID,
@@ -78,6 +79,13 @@ public class ExtraBees extends AbstractMod {
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
+        OreDictionary.registerOre("ingotIron", Items.iron_ingot);
+        OreDictionary.registerOre("ingotGold", Items.gold_ingot);
+        OreDictionary.registerOre("gemDiamond", Items.diamond);
+        OreDictionary.registerOre("gemEmerald", Items.emerald);
+
+        CombItems.addSubtypes();
+
         init();
     }
 
