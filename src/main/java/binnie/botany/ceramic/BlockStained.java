@@ -96,16 +96,6 @@ public class BlockStained extends Block implements IBlockMetadata {
     }
 
     @Override
-    public int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction) {
-        return TileEntityMetadata.getItemDamage(itemStack);
-    }
-
-    @Override
-    public int getDroppedMeta(int blockMeta, int tileMeta) {
-        return tileMeta;
-    }
-
-    @Override
     public String getBlockName(ItemStack itemStack) {
         return I18N.localise("botany.pigmentedGlass");
     }

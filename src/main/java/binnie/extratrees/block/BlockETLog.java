@@ -118,11 +118,6 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
     }
 
     @Override
-    public int getDroppedMeta(int blockMeta, int tileMeta) {
-        return tileMeta;
-    }
-
-    @Override
     public String getBlockName(ItemStack itemStack) {
         int meta = TileEntityMetadata.getItemDamage(itemStack);
         ILogType.ExtraTreeLog[] logs = ILogType.ExtraTreeLog.values();
@@ -130,16 +125,6 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
             meta = 0;
         }
         return I18N.localise("extratrees.block.log.name", logs[meta].getName());
-    }
-
-    @Override
-    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
-        // ignored
-    }
-
-    @Override
-    public int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction) {
-        return TileEntityMetadata.getItemDamage(itemStack);
     }
 
     @Override

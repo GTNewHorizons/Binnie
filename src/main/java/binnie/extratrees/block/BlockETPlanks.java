@@ -63,24 +63,9 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
     }
 
     @Override
-    public int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction) {
-        return TileEntityMetadata.getItemDamage(itemStack);
-    }
-
-    @Override
-    public int getDroppedMeta(int blockMeta, int tileMeta) {
-        return tileMeta;
-    }
-
-    @Override
     public String getBlockName(ItemStack itemStack) {
         int meta = TileEntityMetadata.getItemDamage(itemStack);
         return I18N.localise("extratrees.block.plank.name", PlankType.ExtraTreePlanks.values()[meta].getName());
-    }
-
-    @Override
-    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
-        // ignored
     }
 
     @Override

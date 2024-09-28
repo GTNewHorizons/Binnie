@@ -205,16 +205,6 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
     }
 
     @Override
-    public int getPlacedMeta(ItemStack stack, World world, int x, int y, int z, ForgeDirection direction) {
-        return TileEntityMetadata.getItemDamage(stack);
-    }
-
-    @Override
-    public int getDroppedMeta(int blockMeta, int tileMeta) {
-        return tileMeta;
-    }
-
-    @Override
     public String getBlockName(ItemStack stack) {
         int meta = TileEntityMetadata.getItemDamage(stack);
         String typeName = getDoorType(meta).getName();
@@ -223,11 +213,6 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
             return I18N.localise("extratrees.block.door.name", woodName);
         }
         return I18N.localise("extratrees.block.door.name.adv", woodName, typeName);
-    }
-
-    @Override
-    public void addBlockTooltip(ItemStack stack, List<String> tooltip) {
-        // ignored
     }
 
     @Override

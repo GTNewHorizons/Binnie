@@ -9,13 +9,17 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public interface IBlockMetadata extends ITileEntityProvider {
 
-    int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction);
+    default int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction) {
+        return TileEntityMetadata.getItemDamage(itemStack);
+    }
 
-    int getDroppedMeta(int blockMeta, int tileMeta);
+    default int getDroppedMeta(int blockMeta, int tileMeta) {
+        return tileMeta;
+    }
 
     String getBlockName(ItemStack itemStack);
 
-    void addBlockTooltip(ItemStack itemStack, List<String> tooltip);
+    default void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {}
 
     void dropAsStack(World world, int x, int y, int z, ItemStack itemStack);
 }

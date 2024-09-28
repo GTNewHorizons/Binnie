@@ -1,8 +1,8 @@
 package binnie.core.block;
 
+import binnie.core.BinnieCore;
 import java.util.ArrayList;
 import java.util.List;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -13,9 +13,6 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import binnie.core.BinnieCore;
 
 public class BlockMetadata extends BlockContainer implements IBlockMetadata {
 
@@ -59,16 +56,6 @@ public class BlockMetadata extends BlockContainer implements IBlockMetadata {
     @Override
     public String getBlockName(ItemStack itemStack) {
         return getLocalizedName();
-    }
-
-    @Override
-    public void addBlockTooltip(ItemStack itemStack, List<String> tooltip) {
-        // ignored
-    }
-
-    @Override
-    public int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction) {
-        return TileEntityMetadata.getItemDamage(itemStack);
     }
 
     @Override

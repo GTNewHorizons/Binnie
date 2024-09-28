@@ -91,23 +91,10 @@ public class BlockGate extends BlockFenceGate implements IBlockMetadata {
     }
 
     @Override
-    public int getPlacedMeta(ItemStack itemStack, World world, int x, int y, int z, ForgeDirection direction) {
-        return TileEntityMetadata.getItemDamage(itemStack);
-    }
-
-    @Override
-    public int getDroppedMeta(int blockMeta, int tileMeta) {
-        return tileMeta;
-    }
-
-    @Override
     public String getBlockName(ItemStack itemStack) {
         int meta = TileEntityMetadata.getItemDamage(itemStack);
         return I18N.localise("extratrees.block.woodgate.name", WoodManager.getPlankType(meta).getName());
     }
-
-    @Override
-    public void addBlockTooltip(ItemStack itemStack, List tooltip) {}
 
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int side) {
