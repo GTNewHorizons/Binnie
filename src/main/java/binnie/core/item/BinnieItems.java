@@ -3,6 +3,6 @@ package binnie.core.item;
 import binnie.genetics.item.ItemFieldKit;
 
 public class BinnieItems {
-    public static ItemGenesis genesis;
-    public static ItemFieldKit fieldKit;
+    public static final ItemGenesis genesis = new ItemGenesis();
+    public static final ItemFieldKit fieldKit = new ItemFieldKit();
 }

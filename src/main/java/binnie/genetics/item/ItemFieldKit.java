@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,10 +26,14 @@ public class ItemFieldKit extends Item {
     private IIcon fieldKit3;
 
     public ItemFieldKit() {
-        setUnlocalizedName("fieldKit");
+        final String name = "fieldKit";
+
+        setUnlocalizedName(name);
         setCreativeTab(GeneticsCreativeTab.instance);
         setMaxStackSize(1);
         setMaxDamage(64);
+
+        GameRegistry.registerItem(this, name);
     }
 
     @Override

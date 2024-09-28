@@ -1,5 +1,15 @@
 package binnie.core.item;
 
+import static binnie.core.item.BinnieItems.fieldKit;
+
+import binnie.botany.Botany;
+import binnie.botany.api.IFlower;
+import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.network.PacketID;
+import binnie.core.IInitializable;
+import binnie.core.network.packet.MessageNBT;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -8,32 +18,19 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-import binnie.botany.Botany;
-import binnie.botany.api.IFlower;
-import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.network.PacketID;
-import binnie.core.IInitializable;
-import binnie.core.network.packet.MessageNBT;
-import binnie.genetics.item.ItemFieldKit;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
-
 public class ModuleItems implements IInitializable {
 
     @Override
     public void preInit() {
-        BinnieItems.fieldKit = new ItemFieldKit();
-        BinnieItems.genesis = new ItemGenesis();
-    }
-
-    @Override
-    public void init() {
+        // Loads BinnieItems.class, guaranteeing that items are init by this point
+        // TODO: is this needed?
+        fieldKit.getUnlocalizedName();
     }
 
     @Override
     public void postInit() {
         GameRegistry.addRecipe(
-                new ItemStack(BinnieItems.fieldKit, 1, 63),
+                new ItemStack(fieldKit, 1, 63),
                 "g  ",
                 " is",
                 " pi",
@@ -55,7 +52,7 @@ public class ModuleItems implements IInitializable {
 
         EntityPlayer player = event.entityPlayer;
         if (player != null && player.getHeldItem() != null
-                && player.getHeldItem().getItem() == BinnieItems.fieldKit
+                && player.getHeldItem().getItem() == fieldKit
                 && player.isSneaking()) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
             if (!(tile instanceof TileEntityFlower tileFlower)) {
