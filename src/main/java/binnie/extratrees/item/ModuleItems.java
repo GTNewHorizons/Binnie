@@ -44,60 +44,60 @@ public class ModuleItems implements IInitializable {
     @Override
     public void init() {
         OreDictionary.registerOre("pulpWood", ETMisc.Items.Sawdust.get(1));
-        Food.registerOreDictionary();
+        FoodItems.Items.registerOreDictionary();
         OreDictionary.registerOre("cropApple", Items.apple);
         OreDictionary.registerOre("seedWheat", Items.wheat_seeds);
 
-        Food.Crabapple.addJuice(10, 150, 10);
-        Food.Orange.addJuice(10, 400, 15);
-        Food.Kumquat.addJuice(10, 300, 10);
-        Food.Lime.addJuice(10, 300, 10);
-        Food.WildCherry.addOil(20, 50, 5);
-        Food.SourCherry.addOil(20, 50, 3);
-        Food.BlackCherry.addOil(20, 50, 5);
-        Food.Blackthorn.addJuice(10, 50, 5);
-        Food.CherryPlum.addJuice(10, 100, 60);
-        Food.Almond.addOil(20, 80, 5);
-        Food.Apricot.addJuice(10, 150, 40);
-        Food.Grapefruit.addJuice(10, 500, 15);
-        Food.Peach.addJuice(10, 150, 40);
-        Food.Satsuma.addJuice(10, 300, 10);
-        Food.BuddhaHand.addJuice(10, 400, 15);
-        Food.Citron.addJuice(10, 400, 15);
-        Food.FingerLime.addJuice(10, 300, 10);
-        Food.KeyLime.addJuice(10, 300, 10);
-        Food.Manderin.addJuice(10, 400, 10);
-        Food.Nectarine.addJuice(10, 150, 40);
-        Food.Pomelo.addJuice(10, 300, 10);
-        Food.Tangerine.addJuice(10, 300, 10);
-        Food.Pear.addJuice(10, 300, 20);
-        Food.SandPear.addJuice(10, 200, 10);
-        Food.Hazelnut.addOil(20, 150, 5);
-        Food.Butternut.addOil(20, 180, 5);
-        Food.Beechnut.addOil(20, 100, 4);
-        Food.Pecan.addOil(29, 50, 2);
-        Food.Banana.addJuice(10, 100, 30);
-        Food.RedBanana.addJuice(10, 100, 30);
-        Food.Plantain.addJuice(10, 100, 40);
-        Food.BrazilNut.addOil(20, 20, 2);
-        Food.Fig.addOil(20, 50, 3);
-        Food.Acorn.addOil(20, 50, 3);
-        Food.Elderberry.addJuice(10, 100, 5);
-        Food.Olive.addOil(20, 50, 3);
-        Food.GingkoNut.addOil(20, 50, 5);
-        Food.Coffee.addOil(15, 20, 2);
-        Food.OsangeOrange.addJuice(10, 300, 15);
-        Food.Clove.addOil(10, 25, 2);
-        Food.Coconut.addOil(20, 300, 25);
-        Food.Cashew.addJuice(10, 150, 15);
-        Food.Avacado.addJuice(10, 300, 15);
-        Food.Nutmeg.addOil(20, 50, 10);
-        Food.Allspice.addOil(20, 50, 10);
-        Food.Chilli.addJuice(10, 100, 10);
-        Food.StarAnise.addOil(20, 100, 10);
-        Food.Mango.addJuice(10, 400, 20);
-        Food.Starfruit.addJuice(10, 300, 10);
-        Food.Candlenut.addJuice(20, 50, 10);
+        FoodItems.Items.Crabapple.addJuice(10, 150, 10);
+        FoodItems.Items.Orange.addJuice(10, 400, 15);
+        FoodItems.Items.Kumquat.addJuice(10, 300, 10);
+        FoodItems.Items.Lime.addJuice(10, 300, 10);
+        FoodItems.Items.WildCherry.addOil(20, 50, 5);
+        FoodItems.Items.SourCherry.addOil(20, 50, 3);
+        FoodItems.Items.BlackCherry.addOil(20, 50, 5);
+        FoodItems.Items.Blackthorn.addJuice(10, 50, 5);
+        FoodItems.Items.CherryPlum.addJuice(10, 100, 60);
+        FoodItems.Items.Almond.addOil(20, 80, 5);
+        FoodItems.Items.Apricot.addJuice(10, 150, 40);
+        FoodItems.Items.Grapefruit.addJuice(10, 500, 15);
+        FoodItems.Items.Peach.addJuice(10, 150, 40);
+        FoodItems.Items.Satsuma.addJuice(10, 300, 10);
+        FoodItems.Items.BuddhaHand.addJuice(10, 400, 15);
+        FoodItems.Items.Citron.addJuice(10, 400, 15);
+        FoodItems.Items.FingerLime.addJuice(10, 300, 10);
+        FoodItems.Items.KeyLime.addJuice(10, 300, 10);
+        FoodItems.Items.Manderin.addJuice(10, 400, 10);
+        FoodItems.Items.Nectarine.addJuice(10, 150, 40);
+        FoodItems.Items.Pomelo.addJuice(10, 300, 10);
+        FoodItems.Items.Tangerine.addJuice(10, 300, 10);
+        FoodItems.Items.Pear.addJuice(10, 300, 20);
+        FoodItems.Items.SandPear.addJuice(10, 200, 10);
+        FoodItems.Items.Hazelnut.addOil(20, 150, 5);
+        FoodItems.Items.Butternut.addOil(20, 180, 5);
+        FoodItems.Items.Beechnut.addOil(20, 100, 4);
+        FoodItems.Items.Pecan.addOil(29, 50, 2);
+        FoodItems.Items.Banana.addJuice(10, 100, 30);
+        FoodItems.Items.RedBanana.addJuice(10, 100, 30);
+        FoodItems.Items.Plantain.addJuice(10, 100, 40);
+        FoodItems.Items.BrazilNut.addOil(20, 20, 2);
+        FoodItems.Items.Fig.addOil(20, 50, 3);
+        FoodItems.Items.Acorn.addOil(20, 50, 3);
+        FoodItems.Items.Elderberry.addJuice(10, 100, 5);
+        FoodItems.Items.Olive.addOil(20, 50, 3);
+        FoodItems.Items.GingkoNut.addOil(20, 50, 5);
+        FoodItems.Items.Coffee.addOil(15, 20, 2);
+        FoodItems.Items.OsangeOrange.addJuice(10, 300, 15);
+        FoodItems.Items.Clove.addOil(10, 25, 2);
+        FoodItems.Items.Coconut.addOil(20, 300, 25);
+        FoodItems.Items.Cashew.addJuice(10, 150, 15);
+        FoodItems.Items.Avacado.addJuice(10, 300, 15);
+        FoodItems.Items.Nutmeg.addOil(20, 50, 10);
+        FoodItems.Items.Allspice.addOil(20, 50, 10);
+        FoodItems.Items.Chilli.addJuice(10, 100, 10);
+        FoodItems.Items.StarAnise.addOil(20, 100, 10);
+        FoodItems.Items.Mango.addJuice(10, 400, 20);
+        FoodItems.Items.Starfruit.addJuice(10, 300, 10);
+        FoodItems.Items.Candlenut.addJuice(20, 50, 10);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class ModuleItems implements IInitializable {
 
         try {
             Item minium = (Item) Class.forName("com.pahimar.ee3.lib.ItemIds").getField("miniumShard").get(null);
-            GameRegistry.addRecipe(new ShapelessOreRecipe(Food.Papayimar.get(1), minium, "cropPapaya"));
+            GameRegistry.addRecipe(new ShapelessOreRecipe(FoodItems.Items.Papayimar.get(1), minium, "cropPapaya"));
         } catch (Exception ex) {
             // ignored
         }
