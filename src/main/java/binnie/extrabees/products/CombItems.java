@@ -247,16 +247,16 @@ public class CombItems extends DamageItems {
         Items.STONE.addProduct(beeswax, 0.50f);
         Items.STONE.addProduct(honeyDrop, 0.25f);
 
-        Items.MILK.addProduct(EnumHoneyDrop.MILK.get(1), 1.00f);
+        Items.MILK.addProduct(DropItems.Items.MILK.get(1), 1.00f);
         Items.MILK.addProduct(honeyDrop, 0.90f);
 
-        Items.FRUIT.addProduct(EnumHoneyDrop.APPLE.get(1), 1.00f);
+        Items.FRUIT.addProduct(DropItems.Items.APPLE.get(1), 1.00f);
         Items.FRUIT.addProduct(honeyDrop, 0.90f);
 
-        Items.SEED.addProduct(EnumHoneyDrop.SEED.get(1), 1.00f);
+        Items.SEED.addProduct(DropItems.Items.SEED.get(1), 1.00f);
         Items.SEED.addProduct(honeyDrop, 0.90f);
 
-        Items.ALCOHOL.addProduct(EnumHoneyDrop.ALCOHOL.get(1), 1.00f);
+        Items.ALCOHOL.addProduct(DropItems.Items.ALCOHOL.get(1), 1.00f);
         Items.ALCOHOL.addProduct(honeyDrop, 0.90f);
 
         Items.FUEL.addProduct(Propolis.Items.FUEL.get(1), 0.60f);
@@ -281,7 +281,7 @@ public class CombItems extends DamageItems {
 
         Items.IC2ENERGY.addProduct(beeswax, 0.80f);
         Items.IC2ENERGY.addProduct(new ItemStack(net.minecraft.init.Items.redstone, 1, 0), 0.75f);
-        Items.IC2ENERGY.addProduct(EnumHoneyDrop.ENERGY.get(1), 1.00f);
+        Items.IC2ENERGY.addProduct(DropItems.Items.ENERGY.get(1), 1.00f);
 
         Items.IRON.copyProducts(Items.STONE);
         Items.IRON.addProduct(IronDust.get(1), 1.00f);
@@ -318,13 +318,13 @@ public class CombItems extends DamageItems {
         Items.FUNGAL.addProduct(new ItemStack(Blocks.red_mushroom_block, 1, 0), 0.75f);
 
         Items.ACIDIC.addProduct(beeswax, 0.80f);
-        Items.ACIDIC.addProduct(EnumHoneyDrop.ACID.get(1), 0.50f);
+        Items.ACIDIC.addProduct(DropItems.Items.ACID.get(1), 0.50f);
         if (!OreDictionary.getOres("dustSulfur").isEmpty()) {
             Items.ACIDIC.addProduct(OreDictionary.getOres("dustSulfur").get(0), 0.75f);
         }
 
         Items.VENOMOUS.addProduct(beeswax, 0.80f);
-        Items.VENOMOUS.addProduct(EnumHoneyDrop.POISON.get(1), 0.80f);
+        Items.VENOMOUS.addProduct(DropItems.Items.POISON.get(1), 0.80f);
 
         Items.SLIME.addProduct(beeswax, 1.00f);
         Items.SLIME.addProduct(honeyDrop, 0.75f);
@@ -337,7 +337,7 @@ public class CombItems extends DamageItems {
         Items.COFFEE.addProduct(honeyDrop, 0.75f);
         Items.COFFEE.addProduct(Mods.ic2.stack("itemCofeePowder"), 0.75f);
 
-        Items.GLACIAL.addProduct(EnumHoneyDrop.ICE.get(1), 0.80f);
+        Items.GLACIAL.addProduct(DropItems.Items.ICE.get(1), 0.80f);
         Items.GLACIAL.addProduct(honeyDrop, 0.75f);
 
         Items.SHADOW.addProduct(honeyDrop, 0.50f);
@@ -420,7 +420,7 @@ public class CombItems extends DamageItems {
         // Copy the default products on RED, then add a drop
         for (int i = 0; i < 16; ++i) {
             final Items dyeComb = Items.VALUES[Items.RED.ordinal() + i];
-            final EnumHoneyDrop drop = EnumHoneyDrop.values()[EnumHoneyDrop.RED.ordinal() + i];
+            final DropItems.Items drop = DropItems.Items.VALUES[DropItems.Items.RED.ordinal() + i];
 
             if (dyeComb != Items.RED) {
                 dyeComb.copyProducts(Items.RED);
@@ -429,13 +429,13 @@ public class CombItems extends DamageItems {
         }
 
         // RED gets its drop later, to avoid copying it to all the others
-        Items.RED.addProduct(EnumHoneyDrop.RED.get(1), 1);
+        Items.RED.addProduct(DropItems.Items.RED.get(1), 1);
 
         // Add dyes to binnie drops
         // TODO: move this to itemDrop
         for (int i = 0; i < 16; ++i) {
-            final EnumHoneyDrop drop = EnumHoneyDrop.values()[EnumHoneyDrop.RED.ordinal() + i];
-            drop.addRemenant(EBMisc.Items.getDye(i));
+            final DropItems.Items drop = DropItems.Items.VALUES[DropItems.Items.RED.ordinal() + i];
+            drop.addRemnant(EBMisc.Items.getDye(i));
         }
     }
 }
