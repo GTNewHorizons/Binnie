@@ -1,18 +1,12 @@
 package binnie.botany.genetics;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.flower.BlockFlower;
-import binnie.botany.flower.ItemFlower;
-import binnie.botany.flower.ItemPollen;
-import binnie.botany.flower.ItemSeed;
 import binnie.botany.flower.RendererBotany;
 import binnie.botany.flower.TileEntityFlower;
+import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -21,6 +15,9 @@ import forestry.api.apiculture.FlowerManager;
 import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.recipes.RecipeManagers;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 
 public class ModuleGenetics implements IInitializable {
 
@@ -30,14 +27,10 @@ public class ModuleGenetics implements IInitializable {
     public void preInit() {
         EnumFlowerColor.setupMutations();
         Botany.flower = new BlockFlower();
-        Botany.flowerItem = new ItemFlower();
-        Botany.pollen = new ItemPollen();
-        Botany.seed = new ItemSeed();
         AlleleManager.alleleRegistry.registerSpeciesRoot(BotanyCore.speciesRoot);
         AlleleManager.alleleRegistry.registerAllele(ModuleGenetics.alleleEffectNone);
         GameRegistry.registerBlock(Botany.flower, "flower");
         BinnieCore.proxy.registerTileEntity(TileEntityFlower.class, "botany.tile.flower", null);
-        Botany.database = new ItemDictionary();
     }
 
     @Override
@@ -66,7 +59,7 @@ public class ModuleGenetics implements IInitializable {
                 100,
                 Binnie.Liquid.getLiquidStack("water", 2000),
                 null,
-                new ItemStack(Botany.database),
+                new ItemStack(BotanyItems.database),
                 "X#X",
                 "YEY",
                 "RDR",

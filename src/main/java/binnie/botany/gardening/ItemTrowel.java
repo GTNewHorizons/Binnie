@@ -1,5 +1,6 @@
 package binnie.botany.gardening;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,15 +20,18 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemTrowel extends Item {
 
     protected Item.ToolMaterial theToolMaterial;
-    String locName;
+    final String locName;
 
     public ItemTrowel(Item.ToolMaterial toolMaterial, String material) {
+        locName = "trowel" + material;
+
         theToolMaterial = toolMaterial;
         maxStackSize = 1;
         setMaxDamage(toolMaterial.getMaxUses());
         setCreativeTab(CreativeTabBotany.instance);
-        setUnlocalizedName("trowel" + material);
-        locName = "trowel" + material;
+        setUnlocalizedName(locName);
+
+        GameRegistry.registerItem(this, locName);
     }
 
     @Override

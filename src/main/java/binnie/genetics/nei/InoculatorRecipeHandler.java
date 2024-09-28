@@ -3,7 +3,7 @@ package binnie.genetics.nei;
 import static binnie.genetics.item.GeneticsItems.serum;
 import static binnie.genetics.item.GeneticsItems.serumArray;
 
-import binnie.botany.Botany;
+import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.nei.NEIUtils;
@@ -46,7 +46,7 @@ public class InoculatorRecipeHandler extends RecipeHandlerBase {
         if (BinnieCore.isLepidopteryActive())
             createInoculatorRecipeForNEI(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE));
 
-        createInoculatorRecipeForNEI(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
+        createInoculatorRecipeForNEI(new ItemStack(BotanyItems.pollen, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     @Override

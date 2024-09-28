@@ -1,5 +1,7 @@
 package binnie.botany;
 
+import static binnie.botany.items.BotanyItems.misc;
+
 import binnie.botany.api.EnumAcidity;
 import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IFlower;
@@ -11,26 +13,19 @@ import binnie.botany.ceramic.BlockStained;
 import binnie.botany.core.BotanyCore;
 import binnie.botany.core.BotanyGUI;
 import binnie.botany.flower.BlockFlower;
-import binnie.botany.flower.ItemFlower;
-import binnie.botany.flower.ItemInsulatedTube;
 import binnie.botany.flower.TileEntityFlower;
 import binnie.botany.gardening.BlockPlant;
 import binnie.botany.gardening.BlockSoil;
 import binnie.botany.gardening.Gardening;
-import binnie.botany.gardening.ItemSoilMeter;
-import binnie.botany.gardening.ItemTrowel;
 import binnie.botany.gardening.ModuleGardening;
-import binnie.botany.genetics.ItemDictionary;
 import binnie.botany.genetics.ModuleGenetics;
-import binnie.botany.items.ItemClay;
-import binnie.botany.items.ItemPigment;
+import binnie.botany.items.BotanyItems;
 import binnie.botany.network.PacketID;
 import binnie.botany.proxy.Proxy;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.item.ItemMisc;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
@@ -38,13 +33,14 @@ import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLInterModComms;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -52,8 +48,11 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 
-@Mod(modid = "Botany", name = "Botany", version = Tags.VERSION, useMetadata = true, dependencies = "after:BinnieCore")
+@Mod(modid = Botany.BOTANY_MODID, name = Botany.BOTANY_MODNAME, version = Tags.VERSION, useMetadata = true, dependencies = "after:BinnieCore")
 public class Botany extends AbstractMod {
+
+    public static final String BOTANY_MODID = "botany";
+    public static final String BOTANY_MODNAME = "Botany";
 
     @Mod.Instance("Botany")
     public static Botany instance;
@@ -62,27 +61,13 @@ public class Botany extends AbstractMod {
     public static Proxy proxy;
 
     public static BlockFlower flower;
-    public static Item seed;
-    public static Item pollen;
-    public static ItemDictionary database;
     public static BlockPlant plant;
-    public static ItemTrowel trowelWood;
-    public static ItemTrowel trowelStone;
-    public static ItemTrowel trowelIron;
-    public static ItemTrowel trowelDiamond;
-    public static ItemTrowel trowelGold;
     public static BlockSoil soil;
     public static BlockSoil loam;
     public static BlockSoil flowerbed;
     public static BlockSoil soilNoWeed;
     public static BlockSoil loamNoWeed;
     public static BlockSoil flowerbedNoWeed;
-    public static ItemInsulatedTube insulatedTube;
-    public static ItemSoilMeter soilMeter;
-    public static ItemMisc misc;
-    public static ItemFlower flowerItem;
-    public static ItemPigment pigment;
-    public static ItemClay clay;
     public static BlockCeramic ceramic;
     public static BlockCeramicPatterned ceramicTile;
     public static BlockStained stained;
@@ -94,6 +79,10 @@ public class Botany extends AbstractMod {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
+        // Loads BotanyItems.class, guaranteeing that items are init by this point
+        // TODO: is this needed?
+        misc.getUnlocalizedName();
+
         addModule(new ModuleGenetics());
         addModule(new ModuleGardening());
         preInit();
@@ -107,6 +96,19 @@ public class Botany extends AbstractMod {
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         postInit();
+    }
+
+    @Mod.EventHandler
+    public void missingMappings(FMLMissingMappingsEvent event) {
+        for (FMLMissingMappingsEvent.MissingMapping m : event.getAll()) {
+            final String[] name = m.name.split(":");
+            if (name.length < 2) continue;
+
+            if (name[0].equals("Botany")) {
+                if (m.type == GameRegistry.Type.BLOCK) m.remap(GameRegistry.findBlock(BOTANY_MODID, name[1]));
+                else m.remap(GameRegistry.findItem(BOTANY_MODID, name[1]));
+            }
+        }
     }
 
     @Override
@@ -131,7 +133,7 @@ public class Botany extends AbstractMod {
 
     @Override
     public String getModID() {
-        return "botany";
+        return BOTANY_MODID;
     }
 
     @Override
@@ -155,7 +157,7 @@ public class Botany extends AbstractMod {
         }
 
         if (event.entityPlayer != null && event.entityPlayer.getHeldItem() != null
-                && event.entityPlayer.getHeldItem().getItem() == Botany.pollen) {
+                && event.entityPlayer.getHeldItem().getItem() == BotanyItems.pollen) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
             if (tile instanceof TileEntityFlower tileFlower) {
                 IFlower pollen = BotanyCore.getFlowerRoot().getMember(event.entityPlayer.getHeldItem());

@@ -1,16 +1,9 @@
 package binnie.botany.ceramic;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import static binnie.botany.items.BotanyMisc.Items.Mortar;
 
 import binnie.botany.Botany;
 import binnie.botany.genetics.EnumFlowerColor;
-import binnie.botany.items.BotanyItems;
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.extratrees.api.IDesignMaterial;
@@ -18,6 +11,12 @@ import binnie.extratrees.api.IDesignSystem;
 import binnie.extratrees.api.IPattern;
 import binnie.extratrees.carpentry.DesignerManager;
 import binnie.extratrees.carpentry.EnumPattern;
+import java.util.HashMap;
+import java.util.Map;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
 public class CeramicDesignSystem implements IDesignSystem {
 
@@ -96,7 +95,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 
     @Override
     public ItemStack getAdhesive() {
-        return BotanyItems.Mortar.get(1);
+        return Mortar.get(1);
     }
 
     @Override

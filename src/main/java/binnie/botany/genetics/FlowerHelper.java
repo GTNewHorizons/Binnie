@@ -1,5 +1,6 @@
 package binnie.botany.genetics;
 
+import binnie.botany.items.BotanyItems;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -14,7 +15,6 @@ import net.minecraft.world.World;
 
 import com.mojang.authlib.GameProfile;
 
-import binnie.botany.Botany;
 import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
 import binnie.botany.api.IAlleleFlowerSpecies;
@@ -88,16 +88,16 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
             return null;
         }
 
-        Item flowerItem = Botany.flowerItem;
+        Item flowerItem = BotanyItems.flowerItem;
         if (type == EnumFlowerStage.SEED.ordinal()) {
-            flowerItem = Botany.seed;
+            flowerItem = BotanyItems.seed;
         }
 
         if (type == EnumFlowerStage.POLLEN.ordinal()) {
-            flowerItem = Botany.pollen;
+            flowerItem = BotanyItems.pollen;
         }
 
-        if (flowerItem != Botany.flowerItem) {
+        if (flowerItem != BotanyItems.flowerItem) {
             ((IFlower) flower).setAge(0);
         }
 
@@ -113,13 +113,13 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
         if (stack == null) {
             return EnumFlowerStage.NONE;
         }
-        if (stack.getItem() == Botany.flowerItem) {
+        if (stack.getItem() == BotanyItems.flowerItem) {
             return EnumFlowerStage.FLOWER;
         }
-        if (stack.getItem() == Botany.pollen) {
+        if (stack.getItem() == BotanyItems.pollen) {
             return EnumFlowerStage.POLLEN;
         }
-        if (stack.getItem() == Botany.seed) {
+        if (stack.getItem() == BotanyItems.seed) {
             return EnumFlowerStage.SEED;
         }
         return EnumFlowerStage.NONE;

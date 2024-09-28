@@ -3,7 +3,7 @@ package binnie.genetics.nei;
 import static binnie.genetics.item.GeneticsItems.sequencer;
 import static binnie.genetics.item.GeneticsMisc.Items.DNADye;
 
-import binnie.botany.Botany;
+import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.nei.RecipeHandlerBase;
@@ -42,9 +42,9 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
             recipes.add(new AnalyserRecipe(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE)));
         }
 
-        recipes.add(new AnalyserRecipe(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new AnalyserRecipe(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new AnalyserRecipe(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new AnalyserRecipe(new ItemStack(BotanyItems.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new AnalyserRecipe(new ItemStack(BotanyItems.seed, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new AnalyserRecipe(new ItemStack(BotanyItems.pollen, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package binnie.botany.gardening;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,9 +26,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class ItemSoilMeter extends Item {
 
     public ItemSoilMeter() {
+        final String name = "soilMeter";
+
         setCreativeTab(CreativeTabBotany.instance);
-        setUnlocalizedName("soilMeter");
+        setUnlocalizedName(name);
         setMaxStackSize(1);
+
+        GameRegistry.registerItem(this, name);
     }
 
     @Override

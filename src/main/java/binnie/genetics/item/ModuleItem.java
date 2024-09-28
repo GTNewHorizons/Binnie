@@ -19,6 +19,7 @@ import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCasing;
 import static binnie.genetics.item.GeneticsMisc.Items.IntegratedCircuit;
 import static binnie.genetics.item.GeneticsMisc.Items.LaboratoryCasing;
 
+import binnie.botany.items.BotanyItems;
 import binnie.extrabees.item.EBItems;
 import binnie.extratrees.item.ETItems;
 import net.minecraft.init.Blocks;
@@ -29,7 +30,6 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 import binnie.Binnie;
-import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
@@ -299,7 +299,7 @@ public class ModuleItem implements IInitializable {
         ItemStack registryStack = new ItemStack(registry);
         Item beeDb = EBItems.dictionary;
         Item treeDb = ETItems.itemDictionary;
-        Item flwrDb = Botany.database;
+        Item flwrDb = BotanyItems.database;
 
         // do a check to ensure that the butterfly module is enabled before using the butterfly dictionary.
         // a similar check could be done for arboriculture and apiculture as well, but that is left to the mod owner

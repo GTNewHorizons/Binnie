@@ -1,19 +1,6 @@
 package binnie.botany.gardening;
 
-import java.util.Collection;
-import java.util.LinkedHashMap;
-import java.util.Map;
-
-import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-
-import com.mojang.authlib.GameProfile;
+import static binnie.botany.items.BotanyMisc.Items.Weedkiller;
 
 import binnie.botany.Botany;
 import binnie.botany.api.EnumAcidity;
@@ -22,9 +9,20 @@ import binnie.botany.api.EnumSoilType;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.gardening.IBlockSoil;
 import binnie.botany.flower.TileEntityFlower;
-import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
+import com.mojang.authlib.GameProfile;
 import forestry.api.core.EnumTemperature;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 public class Gardening {
 
@@ -263,7 +261,7 @@ public class Gardening {
     }
 
     public static boolean isWeedkiller(ItemStack heldItem) {
-        return heldItem != null && heldItem.isItemEqual(BotanyItems.Weedkiller.get(1));
+        return heldItem != null && heldItem.isItemEqual(Weedkiller.get(1));
     }
 
     public static boolean addWeedKiller(World world, int x, int y, int z) {

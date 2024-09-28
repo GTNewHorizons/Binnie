@@ -2,6 +2,7 @@ package binnie.genetics.nei;
 
 import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
 
+import binnie.botany.items.BotanyItems;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 import binnie.Binnie;
-import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.nei.NEIUtils;
@@ -46,9 +46,9 @@ public class GenepoolRecipeHandler extends RecipeHandlerBase {
             recipes.add(new GenepoolRecipe(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE)));
         }
 
-        recipes.add(new GenepoolRecipe(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new GenepoolRecipe(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new GenepoolRecipe(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new GenepoolRecipe(new ItemStack(BotanyItems.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new GenepoolRecipe(new ItemStack(BotanyItems.seed, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new GenepoolRecipe(new ItemStack(BotanyItems.pollen, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override

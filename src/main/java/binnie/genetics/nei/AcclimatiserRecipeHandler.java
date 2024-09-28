@@ -1,5 +1,6 @@
 package binnie.genetics.nei;
 
+import binnie.botany.items.BotanyItems;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.oredict.OreDictionary;
 
-import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.nei.PositionedStackAdv;
@@ -38,9 +38,9 @@ public class AcclimatiserRecipeHandler extends RecipeHandlerBase {
                 targets.add(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE));
             }
 
-            targets.add(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE));
-            targets.add(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE));
-            targets.add(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(BotanyItems.flowerItem, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(BotanyItems.seed, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(BotanyItems.pollen, 1, OreDictionary.WILDCARD_VALUE));
             recipes.add(new AcclimatiserRecipe(targets, resource, effect, ToleranceType.Temperature));
         });
         Acclimatiser.humidityItems.forEach((resource, effect) -> {
@@ -57,9 +57,9 @@ public class AcclimatiserRecipeHandler extends RecipeHandlerBase {
                 targets.add(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE));
             }
 
-            targets.add(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE));
-            targets.add(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE));
-            targets.add(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(BotanyItems.flowerItem, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(BotanyItems.seed, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(BotanyItems.pollen, 1, OreDictionary.WILDCARD_VALUE));
             recipes.add(new AcclimatiserRecipe(targets, resource, effect, ToleranceType.Humidity));
         });
     }

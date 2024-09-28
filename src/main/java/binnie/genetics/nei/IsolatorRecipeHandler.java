@@ -5,7 +5,7 @@ import static binnie.genetics.item.GeneticsMisc.Items.EmptySequencer;
 import static binnie.genetics.item.GeneticsMisc.Items.Enzyme;
 
 import binnie.Binnie;
-import binnie.botany.Botany;
+import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.core.genetics.Gene;
@@ -51,9 +51,9 @@ public class IsolatorRecipeHandler extends RecipeHandlerBase {
             recipes.add(new IsolatorRecipe(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE)));
         }
 
-        recipes.add(new IsolatorRecipe(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new IsolatorRecipe(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE)));
-        recipes.add(new IsolatorRecipe(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new IsolatorRecipe(new ItemStack(BotanyItems.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new IsolatorRecipe(new ItemStack(BotanyItems.seed, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new IsolatorRecipe(new ItemStack(BotanyItems.pollen, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override

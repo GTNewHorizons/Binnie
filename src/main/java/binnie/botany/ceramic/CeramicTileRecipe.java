@@ -1,5 +1,6 @@
 package binnie.botany.ceramic;
 
+import binnie.botany.items.BotanyItems;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public class CeramicTileRecipe implements IRecipe {
         Item ceramicBlock = Item.getItemFromBlock(Botany.ceramic);
         Item ceramicTile = Item.getItemFromBlock(Botany.ceramicTile);
         Item ceramicBrick = Item.getItemFromBlock(Botany.ceramicBrick);
-        Item mortar = Botany.misc;
+        Item mortar = BotanyItems.misc;
         List<ItemStack> stacks = new ArrayList<>();
         int ix = -1;
         int iy = -1;

@@ -5,7 +5,7 @@ import static binnie.genetics.item.GeneticsItems.database;
 import static binnie.genetics.item.GeneticsItems.masterRegistry;
 import static binnie.genetics.item.GeneticsItems.registry;
 
-import binnie.botany.Botany;
+import binnie.botany.items.BotanyItems;
 import binnie.core.BinnieCore;
 import binnie.core.item.BinnieItems;
 import binnie.core.machines.IMachine;
@@ -119,7 +119,7 @@ public class ComponentGUIHolder extends MachineComponent implements INetwork.Til
             }
 
             List<Item> validSelections = new ArrayList<>();
-            validSelections.add(Botany.database);
+            validSelections.add(BotanyItems.database);
 
             if (BinnieCore.isExtraBeesActive()) {
                 validSelections.add(EBItems.dictionary);

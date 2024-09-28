@@ -1,5 +1,6 @@
 package binnie.botany.genetics;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,9 +23,13 @@ public class ItemDictionary extends Item {
     protected IIcon iconMaster;
 
     public ItemDictionary() {
+        final String name = "database";
+
         setCreativeTab(CreativeTabBotany.instance);
-        setUnlocalizedName("database");
+        setUnlocalizedName(name);
         setMaxStackSize(1);
+
+        GameRegistry.registerItem(this, name);
     }
 
     @Override

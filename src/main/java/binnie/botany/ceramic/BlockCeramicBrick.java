@@ -1,5 +1,7 @@
 package binnie.botany.ceramic;
 
+import static binnie.botany.items.BotanyMisc.Items.Mortar;
+
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
 import binnie.botany.genetics.EnumFlowerColor;
@@ -471,7 +473,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
         }
 
         private boolean isMortar(ItemStack stack) {
-            return stack.getItem() == Botany.misc && stack.getItemDamage() == BotanyItems.Mortar.ordinal();
+            return stack.getItem() == BotanyItems.misc && stack.getItemDamage() == Mortar.ordinal();
         }
     }
 
