@@ -51,8 +51,7 @@ import forestry.plugins.PluginManager;
         name = BinnieCore.CORE_MOD_NAME,
         version = Tags.VERSION,
         useMetadata = true,
-        dependencies = "after:Forestry@[4.2,),required-after:gtnhlib@[0.0.10,)",
-        guiFactory = "binnie.core.config.ModsConfigGUIFactory")
+        dependencies = "after:Forestry@[4.2,),required-after:gtnhlib@[0.0.10,)")
 public class BinnieCore extends AbstractMod {
 
     public static final String CORE_MODID = "BinnieCore";
