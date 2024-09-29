@@ -3,7 +3,6 @@ package binnie.genetics;
 import net.minecraft.item.Item;
 
 import binnie.core.AbstractMod;
-import binnie.core.BinnieCore;
 import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.machines.MachineGroup;
@@ -106,7 +105,7 @@ public class Genetics extends AbstractMod {
 
     @Override
     public boolean isActive() {
-        return BinnieCore.isGeneticsActive();
+        return true;
     }
 
     public static class PacketHandler extends BinniePacketHandler {

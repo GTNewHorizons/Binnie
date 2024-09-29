@@ -44,8 +44,8 @@ public class SplicerRecipeHandler extends RecipeHandlerBase {
             createSplicerRecipeForNEI(Mods.forestry.stack("pollenFertile", 1, OreDictionary.WILDCARD_VALUE));
         if (BinnieCore.isLepidopteryActive())
             createSplicerRecipeForNEI(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE));
-        if (BinnieCore.isBotanyActive())
-            createSplicerRecipeForNEI(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
+
+        createSplicerRecipeForNEI(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     @Override

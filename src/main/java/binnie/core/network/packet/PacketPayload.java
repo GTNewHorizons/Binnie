@@ -3,8 +3,6 @@ package binnie.core.network.packet;
 import java.util.ArrayList;
 import java.util.List;
 
-import binnie.core.network.INetworkedEntity;
-
 public class PacketPayload {
 
     public List<Integer> intPayload;
@@ -15,12 +13,6 @@ public class PacketPayload {
         intPayload = new ArrayList<>();
         floatPayload = new ArrayList<>();
         stringPayload = new ArrayList<>();
-    }
-
-    // TODO unused constructor?
-    public PacketPayload(INetworkedEntity tile) {
-        this();
-        tile.writeToPacket(this);
     }
 
     public void addInteger(int a) {
@@ -45,16 +37,6 @@ public class PacketPayload {
 
     public String getString() {
         return stringPayload.remove(0);
-    }
-
-    // TODO unused method
-    public void append(PacketPayload other) {
-        if (other == null) {
-            return;
-        }
-        intPayload.addAll(other.intPayload);
-        floatPayload.addAll(other.floatPayload);
-        stringPayload.addAll(other.stringPayload);
     }
 
     public boolean isEmpty() {

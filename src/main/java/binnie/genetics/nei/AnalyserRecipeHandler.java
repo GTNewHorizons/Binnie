@@ -42,11 +42,10 @@ public class AnalyserRecipeHandler extends RecipeHandlerBase {
             recipes.add(new AnalyserRecipe(Mods.forestry.stack("caterpillarGE", 1, OreDictionary.WILDCARD_VALUE)));
             recipes.add(new AnalyserRecipe(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE)));
         }
-        if (BinnieCore.isBotanyActive()) {
-            recipes.add(new AnalyserRecipe(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
-            recipes.add(new AnalyserRecipe(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE)));
-            recipes.add(new AnalyserRecipe(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE)));
-        }
+
+        recipes.add(new AnalyserRecipe(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new AnalyserRecipe(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new AnalyserRecipe(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override

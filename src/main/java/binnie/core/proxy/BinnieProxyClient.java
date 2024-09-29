@@ -21,7 +21,6 @@ import net.minecraftforge.client.MinecraftForgeClient;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
-import binnie.Binnie;
 import binnie.core.craftgui.resource.minecraft.CraftGUIResourceManager;
 import binnie.core.resource.BinnieResource;
 import cpw.mods.fml.client.FMLClientHandler;
@@ -137,13 +136,6 @@ public class BinnieProxyClient extends BinnieProxy implements IBinnieProxy {
     @Override
     public EntityPlayer getPlayer() {
         return Minecraft.getMinecraft().thePlayer;
-    }
-
-    // TODO unused method?
-    public void handlePreTextureRefresh(IIconRegister register, int type) {
-        if (type == 0) {
-            Binnie.Liquid.reloadIcons(register);
-        }
     }
 
     @Override

@@ -50,11 +50,10 @@ public class IsolatorRecipeHandler extends RecipeHandlerBase {
             recipes.add(new IsolatorRecipe(Mods.forestry.stack("caterpillarGE", 1, OreDictionary.WILDCARD_VALUE)));
             recipes.add(new IsolatorRecipe(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE)));
         }
-        if (BinnieCore.isBotanyActive()) {
-            recipes.add(new IsolatorRecipe(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
-            recipes.add(new IsolatorRecipe(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE)));
-            recipes.add(new IsolatorRecipe(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE)));
-        }
+
+        recipes.add(new IsolatorRecipe(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new IsolatorRecipe(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new IsolatorRecipe(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override
