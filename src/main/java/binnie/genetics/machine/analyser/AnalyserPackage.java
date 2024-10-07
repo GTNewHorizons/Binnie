@@ -1,11 +1,9 @@
 package binnie.genetics.machine.analyser;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentChargedSlots;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
@@ -61,10 +59,5 @@ public class AnalyserPackage extends PackageGeneticBase implements IMachineInfor
         new ComponentPowerReceptor(machine, 500);
         new AnalyserComponentLogic(machine);
         new AnalyserComponentFX(machine);
-    }
-
-    @Override
-    public TileEntity createTileEntity() {
-        return new TileEntityMachine(this);
     }
 }

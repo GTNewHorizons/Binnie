@@ -18,17 +18,15 @@ public enum GeneticLiquid implements IFluidType {
     RawDNA("dna.raw", 0xe63de9),
     BacteriaVector("bacteriaVector", 0xf38b7e);
 
-    protected String name;
-    protected String ident;
-    protected IIcon icon;
-    protected int color;
-    protected float transparency;
+    private final String name;
+    private final String ident;
+    private IIcon icon;
+    private final int color;
 
     GeneticLiquid(String name, int color) {
         this.name = name;
         this.ident = name;
         this.color = color;
-        transparency = 1.0f;
     }
 
     @Override

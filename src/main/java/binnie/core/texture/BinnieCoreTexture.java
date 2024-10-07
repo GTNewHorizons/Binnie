@@ -17,8 +17,8 @@ public enum BinnieCoreTexture implements IBinnieTexture {
     GUIBreeding(ResourceType.GUI, "breeding"),
     GUIAnalyst(ResourceType.GUI, "guianalyst");
 
-    String texture;
-    ResourceType type;
+    final String texture;
+    final ResourceType type;
 
     BinnieCoreTexture(ResourceType base, String texture) {
         this.texture = texture;

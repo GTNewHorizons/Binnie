@@ -7,7 +7,6 @@ import net.minecraft.inventory.InventoryCrafting;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class NBTShapedRecipe implements IRecipe {
@@ -15,11 +14,10 @@ public class NBTShapedRecipe implements IRecipe {
     public int recipeWidth;
     public int recipeHeight;
     public ItemStack[] recipeItems;
-    private ItemStack recipeOutput;
-    private boolean field_92101_f;
+    private final ItemStack recipeOutput;
 
     public NBTShapedRecipe(ItemStack stack, Object... p_92103_2_) {
-        String s = "";
+        StringBuilder s = new StringBuilder();
         int i = 0;
         int j = 0;
         int k = 0;
@@ -29,18 +27,18 @@ public class NBTShapedRecipe implements IRecipe {
             for (String s2 : astring) {
                 k++;
                 j = s2.length();
-                s += s2;
+                s.append(s2);
             }
         } else {
             while (p_92103_2_[i] instanceof String) {
                 String s3 = (String) p_92103_2_[i++];
                 ++k;
                 j = s3.length();
-                s += s3;
+                s.append(s3);
             }
         }
 
-        HashMap hashmap = new HashMap();
+        HashMap<Character, ItemStack> hashmap = new HashMap<>();
         while (i < p_92103_2_.length) {
             Character character = (Character) p_92103_2_[i];
             ItemStack itemstack1 = null;
@@ -130,17 +128,7 @@ public class NBTShapedRecipe implements IRecipe {
 
     @Override
     public ItemStack getCraftingResult(InventoryCrafting crafting) {
-        ItemStack itemstack = getRecipeOutput().copy();
-        // todo unused code?
-        if (field_92101_f) {
-            for (int i = 0; i < crafting.getSizeInventory(); ++i) {
-                ItemStack itemstack2 = crafting.getStackInSlot(i);
-                if (itemstack2 != null && itemstack2.hasTagCompound()) {
-                    itemstack.setTagCompound((NBTTagCompound) itemstack2.stackTagCompound.copy());
-                }
-            }
-        }
-        return itemstack;
+        return getRecipeOutput().copy();
     }
 
     @Override

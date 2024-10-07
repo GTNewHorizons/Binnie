@@ -78,9 +78,7 @@ public class WindowGeneBank extends WindowMachine {
     @Override
     public void initialiseServer() {
         GeneTracker tracker = GeneTracker.getTracker(getWorld(), getUsername());
-        if (tracker != null) {
-            tracker.synchToPlayer(getPlayer());
-        }
+        tracker.synchToPlayer(getPlayer());
     }
 
     @Override

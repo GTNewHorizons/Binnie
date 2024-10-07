@@ -7,7 +7,7 @@ import forestry.api.genetics.IAlleleSpecies;
 
 public class PageSpeciesResultant extends PageSpecies {
 
-    private ControlMutationBox list;
+    private final ControlMutationBox list;
 
     public PageSpeciesResultant(IWidget parent, DatabaseTab tab) {
         super(parent, tab);

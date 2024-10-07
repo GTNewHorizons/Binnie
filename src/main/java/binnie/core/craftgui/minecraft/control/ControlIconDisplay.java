@@ -9,7 +9,7 @@ import binnie.core.craftgui.geometry.IPoint;
 
 public class ControlIconDisplay extends Control {
 
-    private IIcon icon;
+    private final IIcon icon;
 
     public ControlIconDisplay(IWidget parent, float x, float y, IIcon icon) {
         super(parent, x, y, 16.0f, 16.0f);

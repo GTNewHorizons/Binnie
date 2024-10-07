@@ -56,7 +56,7 @@ public class ControlGeneScroll extends Control implements IControlValue<Breeding
                 }
             }
 
-            if (discovered.size() == 0) {
+            if (discovered.isEmpty()) {
                 continue;
             }
 

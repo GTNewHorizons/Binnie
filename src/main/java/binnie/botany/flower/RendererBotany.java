@@ -25,9 +25,8 @@ public class RendererBotany implements ISimpleBlockRenderingHandler {
         Tessellator tessellator = Tessellator.instance;
         tessellator.setBrightness(block.getMixedBrightnessForBlock(renderer.blockAccess, x, y, z));
         double d1 = x;
-        double d2 = y;
         double d3 = z;
-        long i1 = x * 3129871 ^ z * 116129781L;
+        long i1 = x * 3129871L ^ z * 116129781L;
         i1 = i1 * i1 * 42317861L + i1 * 11L;
         d1 += ((i1 >> 16 & 0xFL) / 15.0f - 0.5) * 0.3;
         d3 += ((i1 >> 24 & 0xFL) / 15.0f - 0.5) * 0.3;
@@ -46,7 +45,7 @@ public class RendererBotany implements ISimpleBlockRenderingHandler {
             }
             tessellator.setColorOpaque_F(f, f2, f3);
             IIcon iicon = block.getIcon(world, x, y, z, 0);
-            renderer.drawCrossedSquares(iicon, d1, d2, d3, 1.0f);
+            renderer.drawCrossedSquares(iicon, d1, y, d3, 1.0f);
         }
         return false;
     }

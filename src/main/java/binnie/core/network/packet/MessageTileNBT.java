@@ -62,13 +62,4 @@ public class MessageTileNBT extends MessageNBT implements IPacketLocation {
         return posZ;
     }
 
-    @Override
-    public NBTTagCompound getTagCompound() {
-        return nbt;
-    }
-
-    @Override
-    void setTagCompound(NBTTagCompound nbt) {
-        this.nbt = nbt;
-    }
 }

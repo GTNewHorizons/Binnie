@@ -13,7 +13,7 @@ import binnie.core.util.I18N;
 
 public class PageBreeder extends ControlPage<DatabaseTab> {
 
-    private GameProfile player;
+    private final GameProfile player;
 
     public PageBreeder(IWidget parent, GameProfile player, DatabaseTab tab) {
         super(parent, 0.0f, 0.0f, parent.getSize().x(), parent.getSize().y(), tab);
@@ -22,7 +22,7 @@ public class PageBreeder extends ControlPage<DatabaseTab> {
     }
 
     public void onPageRefresh() {
-        while (getWidgets().size() > 0) {
+        while (!getWidgets().isEmpty()) {
             deleteChild(getWidgets().get(0));
         }
 

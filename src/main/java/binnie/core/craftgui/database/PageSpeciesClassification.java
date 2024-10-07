@@ -11,8 +11,8 @@ import forestry.api.genetics.IClassification;
 
 public class PageSpeciesClassification extends PageSpecies {
 
-    private Map<IClassification.EnumClassLevel, ControlText> levels;
-    private ControlText genus;
+    private final Map<IClassification.EnumClassLevel, ControlText> levels;
+    private final ControlText genus;
 
     public PageSpeciesClassification(IWidget parent, DatabaseTab tab) {
         super(parent, tab);

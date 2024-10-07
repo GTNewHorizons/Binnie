@@ -17,8 +17,8 @@ public enum EnumDesignCategory implements IDesignCategory {
     Letters("letters"),
     Diagonal("diagonals");
 
-    protected String name;
-    protected List<IDesign> designs;
+    private final String name;
+    private final List<IDesign> designs;
 
     EnumDesignCategory(String name) {
         this.name = name;

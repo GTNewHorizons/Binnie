@@ -19,17 +19,16 @@ public class Widget implements IWidget {
     protected int color;
 
     private IWidget parent;
-    private List<IWidget> subWidgets;
-    private List<WidgetAttribute> attributes;
+    private final List<IWidget> subWidgets;
+    private final List<WidgetAttribute> attributes;
     private IPoint position;
     private IPoint size;
     private IPoint offset;
-    private Collection<EventHandler> globalEventHandlers;
+    private final Collection<EventHandler> globalEventHandlers;
     private boolean enabled;
     private boolean visible;
 
     public Widget(IWidget parent) {
-        this.parent = null;
         subWidgets = new ArrayList<>();
         attributes = new ArrayList<>();
         position = new IPoint(0.0f, 0.0f);
@@ -91,7 +90,7 @@ public class Widget implements IWidget {
 
     @Override
     public IWidget addWidget(IWidget widget) {
-        if (subWidgets.size() != 0
+        if (!subWidgets.isEmpty()
                 && subWidgets.get(subWidgets.size() - 1).hasAttribute(WidgetAttribute.ALWAYS_ON_TOP)) {
             subWidgets.add(subWidgets.size() - 1, widget);
         } else {

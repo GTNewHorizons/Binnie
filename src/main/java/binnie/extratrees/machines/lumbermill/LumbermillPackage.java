@@ -1,10 +1,7 @@
 package binnie.extratrees.machines.lumbermill;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
@@ -45,10 +42,5 @@ public class LumbermillPackage extends ExtraTreeMachine.PackageExtraTreeMachine 
 
         new ComponentPowerReceptor(machine);
         new LumbermillComponentLogic(machine);
-    }
-
-    @Override
-    public TileEntity createTileEntity() {
-        return new TileEntityMachine(this);
     }
 }

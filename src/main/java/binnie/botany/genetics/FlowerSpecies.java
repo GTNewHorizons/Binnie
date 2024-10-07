@@ -56,8 +56,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
     FOXGLOVE("foxglove", "digitalis", "purpurea", EnumFlowerType.FOXGLOVE, EnumFlowerColor.HOT_PINK),
     ZINNIA("zinnia", "zinnia", "elegans", EnumFlowerType.ZINNIA, EnumFlowerColor.MEDIUM_VIOLET_RED,
             EnumFlowerColor.YELLOW),
-    CHRYSANTHEMUM("chrysanthemum", "chrysanthemum", "\u00ef?? grandiflorum", EnumFlowerType.MUMS,
-            EnumFlowerColor.VIOLET),
+    CHRYSANTHEMUM("chrysanthemum", "chrysanthemum", "ï?? grandiflorum", EnumFlowerType.MUMS, EnumFlowerColor.VIOLET),
     MARIGOLD("marigold", "calendula", "officinalis", EnumFlowerType.MARIGOLD, EnumFlowerColor.GOLD,
             EnumFlowerColor.DARK_ORANGE),
     GERANIUM("geranium", "geranium", "maderense", EnumFlowerType.GERANIUM, EnumFlowerColor.DEEP_PINK),
@@ -68,7 +67,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
             EnumFlowerColor.WHITE),
     LILY("lily", "lilium", "auratum", EnumFlowerType.LILY, EnumFlowerColor.PINK, EnumFlowerColor.GOLD),
     YARROW("yarrow", "achillea", "millefolium", EnumFlowerType.YARROW, EnumFlowerColor.YELLOW),
-    PETUNIA("petunia", "petunia", "\u00ef?? atkinsiana", EnumFlowerType.PETUNIA, EnumFlowerColor.MEDIUM_VIOLET_RED,
+    PETUNIA("petunia", "petunia", "ï?? atkinsiana", EnumFlowerType.PETUNIA, EnumFlowerColor.MEDIUM_VIOLET_RED,
             EnumFlowerColor.THISTLE),
     AGAPANTHUS("agapanthus", "agapanthus", "praecox", EnumFlowerType.AGAPANTHUS, EnumFlowerColor.DEEP_SKY_BLUE),
     FUCHSIA("fuchsia", "fuchsia", "magellanica", EnumFlowerType.FUCHSIA, EnumFlowerColor.DEEP_PINK,
@@ -96,24 +95,24 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
     DELPHINIUM("delphinium", "delphinium", "staphisagria", EnumFlowerType.DELPHINIUM, EnumFlowerColor.DARK_SLATE_BLUE),
     HOLLYHOCK("hollyhock", "Alcea", "rosea", EnumFlowerType.HOLLYHOCK, EnumFlowerColor.BLACK, EnumFlowerColor.GOLD);
 
-    protected EnumFlowerColor stemColor;
-    protected EnumAllele.Fertility fert;
-    protected EnumAllele.Lifespan life;
-    protected EnumAllele.Sappiness sap;
-    protected IFlowerType type;
-    protected String name;
-    protected String binomial;
-    protected String branchName;
-    protected EnumFlowerColor primaryColor;
-    protected EnumFlowerColor secondaryColor;
-    protected EnumTemperature temperature;
-    protected EnumAcidity pH;
-    protected EnumMoisture moisture;
-    protected EnumTolerance tempTolerance;
-    protected EnumTolerance pHTolerance;
-    protected EnumTolerance moistureTolerance;
-    protected List<IAllele[]> variantTemplates;
-    protected IClassification branch;
+    private EnumFlowerColor stemColor;
+    private EnumAllele.Fertility fert;
+    private EnumAllele.Lifespan life;
+    private EnumAllele.Sappiness sap;
+    private final IFlowerType type;
+    private final String name;
+    private final String binomial;
+    private final String branchName;
+    private final EnumFlowerColor primaryColor;
+    private final EnumFlowerColor secondaryColor;
+    private EnumTemperature temperature;
+    private EnumAcidity pH;
+    private EnumMoisture moisture;
+    private EnumTolerance tempTolerance;
+    private EnumTolerance pHTolerance;
+    private EnumTolerance moistureTolerance;
+    private final List<IAllele[]> variantTemplates;
+    private IClassification branch;
 
     FlowerSpecies(String name, String branch, String binomial, IFlowerType type, EnumFlowerColor colour) {
         this(name, branch, binomial, type, colour, colour);

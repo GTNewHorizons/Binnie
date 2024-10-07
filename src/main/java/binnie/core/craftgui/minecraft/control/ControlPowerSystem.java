@@ -12,7 +12,7 @@ import binnie.core.util.I18N;
 
 public class ControlPowerSystem extends Control implements ITooltip {
 
-    private PowerSystem system;
+    private final PowerSystem system;
 
     public ControlPowerSystem(IWidget parent, float x, float y, PowerSystem system) {
         super(parent, x, y, 16.0f, 16.0f);

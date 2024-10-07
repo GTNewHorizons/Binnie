@@ -52,8 +52,8 @@ public class TreeBreedingSystem extends BreedingSystem {
 
     public UniqueItemStackSet allFruits = new UniqueItemStackSet();
     public UniqueItemStackSet allWoods = new UniqueItemStackSet();
-    private UniqueItemStackSet discoveredFruits = new UniqueItemStackSet();
-    private UniqueItemStackSet discoveredWoods = new UniqueItemStackSet();
+    private final UniqueItemStackSet discoveredFruits = new UniqueItemStackSet();
+    private final UniqueItemStackSet discoveredWoods = new UniqueItemStackSet();
 
     public TreeBreedingSystem() {
         iconUndiscovered = Binnie.Resource.getItemIcon(ExtraTrees.instance, "icon/undiscoveredTree");
@@ -142,7 +142,6 @@ public class TreeBreedingSystem extends BreedingSystem {
             // this.discoveredWoods.add(wood);
             // }
             discoveredFruits.addAll(Arrays.asList(genome.getFruitProvider().getProducts()));
-            for (ItemStack wood2 : discoveredWoods) {}
         }
     }
 

@@ -95,17 +95,17 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
     Gooseberry(8, 0xb99f50, 0xb9cf50, FruitSprite.Tiny),
     GoldenRaspberry(8, 0xbeb03b, 0xf3b03b, FruitSprite.Tiny);
 
-    protected IFruitFamily family;
-    protected boolean isRipening;
-    protected int diffR;
-    protected int diffG;
-    protected int diffB;
-    protected FruitPod pod;
-    protected int ripeningPeriod;
-    protected int colorUnripe;
-    protected int color;
-    protected FruitSprite index;
-    protected HashMap<ItemStack, Float> products;
+    private IFruitFamily family;
+    private boolean isRipening;
+    private int diffR;
+    private int diffG;
+    private int diffB;
+    private final FruitPod pod;
+    private int ripeningPeriod;
+    private int colorUnripe;
+    private int color;
+    private FruitSprite index;
+    final HashMap<ItemStack, Float> products;
 
     ExtraTreeFruitGene(int time, int unripe, int color, FruitSprite index) {
         this.color = color;

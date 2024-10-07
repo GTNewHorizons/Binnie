@@ -19,7 +19,7 @@ public enum FruitSprite implements IIconProvider {
     Larger,
     Pear;
 
-    protected BinnieIcon icon;
+    private BinnieIcon icon;
 
     public short getIndex() {
         return (short) (ordinal() + 4200);

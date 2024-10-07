@@ -15,9 +15,9 @@ import forestry.api.genetics.IAllele;
 
 public class HiveDrop implements IHiveDrop {
 
-    private IAllele[] template;
-    private ArrayList<ItemStack> additional;
-    private int chance;
+    private final IAllele[] template;
+    private final ArrayList<ItemStack> additional;
+    private final int chance;
 
     public HiveDrop(IAlleleBeeSpecies species, int chance) {
         this(Binnie.Genetics.getBeeRoot().getTemplate(species.getUID()), new ItemStack[0], chance);

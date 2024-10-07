@@ -25,9 +25,9 @@ import binnie.core.machines.component.IRender;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-class BlockMachine extends BlockContainer implements IBlockMachine {
+public class BlockMachine extends BlockContainer implements IBlockMachine {
 
-    private MachineGroup group;
+    private final MachineGroup group;
 
     public BlockMachine(MachineGroup group, String blockName) {
         super(Material.iron);
@@ -37,7 +37,7 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List itemList) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
         for (MachinePackage pack : group.getPackages()) {
             if (pack.isActive()) {
                 itemList.add(new ItemStack(this, 1, pack.getMetadata()));
@@ -134,12 +134,11 @@ class BlockMachine extends BlockContainer implements IBlockMachine {
     @Override
     public void breakBlock(World world, int x, int y, int z, Block block, int meta) {
         TileEntity tileentity = world.getTileEntity(x, y, z);
-        if (!(tileentity instanceof TileEntityMachine)) {
+        if (!(tileentity instanceof TileEntityMachine machine)) {
             return;
         }
 
-        TileEntityMachine entity = (TileEntityMachine) tileentity;
-        entity.onBlockDestroy();
+        machine.onBlockDestroy();
         super.breakBlock(world, x, y, z, block, meta);
     }
 

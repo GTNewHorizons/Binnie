@@ -13,9 +13,9 @@ import binnie.core.genetics.BreedingSystem;
 
 class ControlBreedingProgress extends Control {
 
-    private static Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.Controls2);
-    private float percentage;
-    private int colour;
+    private static final Texture Progress = new StandardTexture(80, 22, 4, 4, CraftGUITextureSheet.Controls2);
+    private final float percentage;
+    private final int colour;
 
     public ControlBreedingProgress(IWidget parent, int x, int y, int width, int height, BreedingSystem system,
             float percentage) {

@@ -89,7 +89,6 @@ import forestry.api.arboriculture.EnumTreeChromosome;
 import forestry.api.arboriculture.IAlleleFruit;
 import forestry.api.arboriculture.IAlleleTreeSpecies;
 import forestry.api.arboriculture.IGermlingIconProvider;
-import forestry.api.arboriculture.ITree;
 import forestry.api.arboriculture.ITreeGenerator;
 import forestry.api.arboriculture.ITreeRoot;
 import forestry.api.arboriculture.TreeManager;
@@ -233,19 +232,19 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
     DwarfHazel("Corylus", "americana", 0x9bb552, ILogType.ExtraTreeLog.Hazel, ExtraTreeFruitGene.Hazelnut,
             WorldGenShrub.class);
 
-    public ILogType wood;
+    public final ILogType wood;
 
-    protected ArrayList<IFruitFamily> families;
-    protected int girth;
-    protected Class<? extends WorldGenerator> gen;
-    protected IAlleleFruit fruit;
-    protected IAllele[] template;
-    protected int color;
-    protected String binomial;
-    protected String uid;
-    protected String branchName;
-    protected IClassification branch;
-    protected int colorPollineted;
+    private final ArrayList<IFruitFamily> families;
+    private final int girth;
+    private Class<? extends WorldGenerator> gen;
+    private final IAlleleFruit fruit;
+    private IAllele[] template;
+    private final int color;
+    private final String binomial;
+    private final String uid;
+    final String branchName;
+    IClassification branch;
+    private final int colorPollineted;
 
     private LeafType leafType;
     private SaplingType saplingType;
@@ -816,7 +815,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
         return new WorldGenDefault(tree);
     }
 
-    protected ExtraTreeSpecies setLeafType(LeafType type) {
+    private ExtraTreeSpecies setLeafType(LeafType type) {
         leafType = type;
         if (leafType == LeafType.CONIFER) {
             saplingType = SaplingType.CONIFER;
@@ -828,7 +827,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
         return this;
     }
 
-    protected ExtraTreeSpecies setSaplingType(SaplingType saplingType) {
+    private ExtraTreeSpecies setSaplingType(SaplingType saplingType) {
         this.saplingType = saplingType;
         return this;
     }
@@ -886,7 +885,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
         return this;
     }
 
-    public int getLeafColor(ITree tree) {
+    public int getLeafColor() {
         return color;
     }
 
@@ -935,9 +934,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
             return 0.0f;
         }
 
-        if (template[EnumTreeChromosome.FRUITS.ordinal()] instanceof ExtraTreeFruitGene) {
-            ExtraTreeFruitGene fruit = (ExtraTreeFruitGene) template[EnumTreeChromosome.FRUITS.ordinal()];
-            for (ItemStack stack : fruit.products.keySet()) {
+        if (template[EnumTreeChromosome.FRUITS.ordinal()] instanceof ExtraTreeFruitGene fruitGene) {
+            for (ItemStack stack : fruitGene.products.keySet()) {
                 if (stack.isItemEqual(itemstack)) {
                     return 1.0f;
                 }
@@ -971,7 +969,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
         ItemStack research = null;
         if (world.rand.nextFloat() < 10.0f / bountyLevel) {
             Collection<? extends IMutation> combinations = getRoot().getCombinations(this);
-            if (combinations.size() > 0) {
+            if (!combinations.isEmpty()) {
                 IMutation[] candidates = combinations.toArray(new IMutation[0]);
                 research = AlleleManager.alleleRegistry
                         .getMutationNoteStack(researcher, candidates[world.rand.nextInt(candidates.length)]);
@@ -982,9 +980,8 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
             bounty.add(research);
         }
 
-        if (template[EnumTreeChromosome.FRUITS.ordinal()] instanceof ExtraTreeFruitGene) {
-            ExtraTreeFruitGene fruit = (ExtraTreeFruitGene) template[EnumTreeChromosome.FRUITS.ordinal()];
-            for (ItemStack stack : fruit.products.keySet()) {
+        if (template[EnumTreeChromosome.FRUITS.ordinal()] instanceof ExtraTreeFruitGene fruitGene) {
+            for (ItemStack stack : fruitGene.products.keySet()) {
                 ItemStack stack2 = stack.copy();
                 stack2.stackSize = world.rand.nextInt((int) (bountyLevel / 2.0f)) + 1;
                 bounty.add(stack2);
@@ -998,14 +995,14 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
     public int getGermlingColour(EnumGermlingType type, int renderPass) {
         if (type == EnumGermlingType.SAPLING) {
             if (renderPass == 0) {
-                return getLeafColor(null);
+                return getLeafColor();
             }
             if (getLog() == null) {
                 return 0xffffff;
             }
             return getLog().getColour();
         }
-        return getLeafColor(null);
+        return getLeafColor();
     }
 
     @Override
@@ -1033,7 +1030,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
                 highest = otherAdvance;
             }
         }
-        return own + ((highest < 0) ? 0 : highest);
+        return own + highest;
     }
 
     @Override

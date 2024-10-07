@@ -58,14 +58,14 @@ public enum ButterflySpecies implements IAlleleButterflySpecies {
 
     public IClassification branch;
 
-    protected String name;
-    protected String branchName;
-    protected String scientific;
-    protected BinnieResource texture;
-    protected int color;
+    private final String name;
+    final String branchName;
+    private final String scientific;
+    private final BinnieResource texture;
+    private final int color;
 
-    private Map<ItemStack, Float> butterflyLoot;
-    private Map<ItemStack, Float> caterpillarLoot;
+    private final Map<ItemStack, Float> butterflyLoot;
+    private final Map<ItemStack, Float> caterpillarLoot;
 
     ButterflySpecies(String name, String scientific, Color color) {
         this.name = name;

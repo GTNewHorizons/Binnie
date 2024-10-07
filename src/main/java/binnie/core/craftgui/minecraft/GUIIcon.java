@@ -21,7 +21,7 @@ public enum GUIIcon {
     ArrowLeftDown("arrow-leftdown"),
     ArrowLeftUp("arrow-leftup");
 
-    String path;
+    final String path;
     BinnieIcon icon;
 
     GUIIcon(String path) {

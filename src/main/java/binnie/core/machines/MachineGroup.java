@@ -12,12 +12,12 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class MachineGroup {
 
-    private AbstractMod mod;
-    private String blockName;
-    private String uid;
-    private Map<String, MachinePackage> packages;
-    private Map<Integer, MachinePackage> packagesID;
-    private BlockMachine block;
+    private final AbstractMod mod;
+    private final String blockName;
+    private final String uid;
+    private final Map<String, MachinePackage> packages;
+    private final Map<Integer, MachinePackage> packagesID;
+    private final BlockMachine block;
     public boolean customRenderer;
     private boolean renderedTileEntity;
 

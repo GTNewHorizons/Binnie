@@ -26,7 +26,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
 
     public static boolean isError;
 
-    private Position direction;
+    private final Position direction;
 
     public ControlEnergyBar(IWidget parent, int x, int y, int width, int height, Position direction) {
         super(parent, x, y, width, height);
@@ -42,8 +42,7 @@ public class ControlEnergyBar extends Control implements ITooltip {
             return null;
         }
 
-        IPoweredMachine clientPower = machine.getMachine().getInterface(IPoweredMachine.class);
-        return clientPower;
+        return machine.getMachine().getInterface(IPoweredMachine.class);
     }
 
     public float getPercentage() {

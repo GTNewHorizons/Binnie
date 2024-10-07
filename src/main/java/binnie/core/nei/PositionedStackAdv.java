@@ -26,17 +26,13 @@ public class PositionedStackAdv extends PositionedStack {
 
     public List<String> handleTooltip(GuiRecipe guiRecipe, List<String> currenttip) {
         if (!this.tooltip.isEmpty()) {
-            for (String tip : this.tooltip) {
-                currenttip.add(tip);
-            }
+            currenttip.addAll(this.tooltip);
         }
         return currenttip;
     }
 
     public PositionedStackAdv addToTooltip(List<String> lines) {
-        for (String tip : lines) {
-            this.tooltip.add(tip);
-        }
+        this.tooltip.addAll(lines);
         return this;
     }
 

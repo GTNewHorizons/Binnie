@@ -36,10 +36,10 @@ import cpw.mods.fml.relauncher.Side;
 
 public class ContainerCraftGUI extends Container {
 
-    private Window window;
-    private Map<String, NBTTagCompound> syncedNBT;
-    private Map<String, NBTTagCompound> sentNBT;
-    private Map<Integer, TankInfo> syncedTanks;
+    private final Window window;
+    private final Map<String, NBTTagCompound> syncedNBT;
+    private final Map<String, NBTTagCompound> sentNBT;
+    private final Map<Integer, TankInfo> syncedTanks;
     private PowerInfo syncedPower;
     private ProcessInfo syncedProcess;
     private int errorType;
@@ -61,8 +61,8 @@ public class ContainerCraftGUI extends Container {
             return;
         }
 
-        inventoryItemStacks = new ListMap();
-        inventorySlots = new ListMap();
+        inventoryItemStacks = new ListMap<>();
+        inventorySlots = new ListMap<>();
         if (machine == null) {
             return;
         }
@@ -89,7 +89,7 @@ public class ContainerCraftGUI extends Container {
         if (index < 0 || index >= inventorySlots.size()) {
             return null;
         }
-        return (Slot) inventorySlots.get(index);
+        return inventorySlots.get(index);
     }
 
     @Override
@@ -145,9 +145,9 @@ public class ContainerCraftGUI extends Container {
 
     @Override
     public boolean canInteractWith(EntityPlayer player) {
-        if (player instanceof EntityPlayerMP) {
-            if (!crafters.contains(player)) {
-                crafters.add(player);
+        if (player instanceof EntityPlayerMP playerMP) {
+            if (!crafters.contains(playerMP)) {
+                crafters.add(playerMP);
             }
             sentNBT.clear();
         }
@@ -167,7 +167,7 @@ public class ContainerCraftGUI extends Container {
         }
 
         ItemStack stack = request.transfer(true);
-        Slot shiftClickedSlot = (Slot) inventorySlots.get(index);
+        Slot shiftClickedSlot = inventorySlots.get(index);
         shiftClickedSlot.putStack(stack);
         shiftClickedSlot.onSlotChanged();
         return null;
@@ -233,9 +233,8 @@ public class ContainerCraftGUI extends Container {
                 int slotNumber = action.getShort("n");
                 getOrCreateSlot(InventoryType.values()[type % 4], index, slotNumber);
 
-                for (Object crafterObject : crafters) {
-                    ICrafting crafter = (ICrafting) crafterObject;
-                    crafter.sendContainerAndContentsToPlayer(this, getInventory());
+                for (ICrafting crafterObject : crafters) {
+                    crafterObject.sendContainerAndContentsToPlayer(this, getInventory());
                 }
             }
         }
@@ -299,9 +298,8 @@ public class ContainerCraftGUI extends Container {
 
             if (shouldSend) {
                 for (Object crafter : crafters) {
-                    if (crafter instanceof EntityPlayerMP) {
-                        EntityPlayerMP player = (EntityPlayerMP) crafter;
-                        BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), player);
+                    if (crafter instanceof EntityPlayerMP playerMP) {
+                        BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), playerMP);
                     }
                 }
                 sentThisTime.put(nbt.getKey(), nbt.getValue());

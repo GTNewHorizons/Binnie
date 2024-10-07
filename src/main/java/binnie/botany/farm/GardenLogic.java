@@ -359,8 +359,7 @@ public class GardenLogic extends FarmLogic {
 
             try {
                 IOwnable housing2 = (IOwnable) housing;
-                GameProfile prof = (GameProfile) IOwnable.class.getMethod("getOwnerProfile", new Class[0])
-                        .invoke(housing2);
+                GameProfile prof = (GameProfile) IOwnable.class.getMethod("getOwnerProfile").invoke(housing2);
                 ((TileEntityFlower) tile).setOwner(prof);
             } catch (Exception ex) {
                 // ignored

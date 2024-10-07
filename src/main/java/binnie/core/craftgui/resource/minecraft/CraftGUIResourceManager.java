@@ -32,8 +32,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class CraftGUIResourceManager implements IResourceManagerReloadListener {
 
-    private Map<String, ParsedTextureSheet> textureSheets;
-    private Map<String, Texture> textures;
+    private final Map<String, ParsedTextureSheet> textureSheets;
+    private final Map<String, Texture> textures;
 
     public CraftGUIResourceManager() {
         textureSheets = new HashMap<>();
@@ -53,8 +53,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
                 bufferedreader = new BufferedReader(new InputStreamReader(res.getInputStream(), Charsets.UTF_8));
                 jsonobject = new JsonParser().parse(bufferedreader).getAsJsonObject();
                 for (JsonElement el : jsonobject.get("texture-sheets").getAsJsonArray()) {
-                    if (el instanceof JsonObject) {
-                        JsonObject sheet = (JsonObject) el;
+                    if (el instanceof JsonObject sheet) {
                         String name = sheet.get("name").getAsString();
                         String modid = sheet.get("modid").getAsString();
                         String path = sheet.get("path").getAsString();
@@ -63,8 +62,7 @@ public class CraftGUIResourceManager implements IResourceManagerReloadListener {
                 }
 
                 for (JsonElement el : jsonobject.get("textures").getAsJsonArray()) {
-                    if (el instanceof JsonObject) {
-                        JsonObject sheet = (JsonObject) el;
+                    if (el instanceof JsonObject sheet) {
                         String name = sheet.get("name").getAsString();
                         IBinnieTexture textureSheet = getTextureSheet(sheet.get("sheet").getAsString());
                         IArea uv = getArea(sheet.get("uv").getAsString());

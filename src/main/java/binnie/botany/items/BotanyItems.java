@@ -21,9 +21,9 @@ public enum BotanyItems implements IItemMisc {
     Mortar("mortar"),
     Weedkiller("weedkiller");
 
-    protected IIcon icon;
-    protected String name;
-    protected String iconPath;
+    private IIcon icon;
+    private final String name;
+    private final String iconPath;
 
     BotanyItems(String name) {
         this.name = name;
@@ -41,7 +41,7 @@ public enum BotanyItems implements IItemMisc {
     }
 
     @Override
-    public void addInformation(List data) {
+    public void addInformation(List<String> data) {
         // ignored
     }
 

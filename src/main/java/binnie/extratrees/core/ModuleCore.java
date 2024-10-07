@@ -54,8 +54,7 @@ public class ModuleCore implements IInitializable {
             Queue<ExtraTreeFruitGene> fruitQueue = new LinkedList<>();
             Collections.addAll(fruitQueue, ExtraTreeFruitGene.values());
 
-            Queue<IDesign> designQueue = new LinkedList<>();
-            designQueue.addAll(CarpentryManager.carpentryInterface.getSortedDesigns());
+            Queue<IDesign> designQueue = new LinkedList<>(CarpentryManager.carpentryInterface.getSortedDesigns());
 
             fruitQueue.remove(ExtraTreeFruitGene.Apple);
             outputSpecies.println("<table style=\"width: 100%;\">");

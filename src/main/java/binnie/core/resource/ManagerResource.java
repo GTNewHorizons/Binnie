@@ -11,7 +11,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ManagerResource {
 
-    private List<BinnieIcon> icons;
+    private final List<BinnieIcon> icons;
 
     public ManagerResource() {
         icons = new ArrayList<>();

@@ -12,14 +12,13 @@ import cpw.mods.fml.relauncher.SideOnly;
 class MachineRendererCompartment {
 
     public static MachineRendererCompartment instance = new MachineRendererCompartment();
-    private ModelCompartment model;
+    private final ModelCompartment model;
 
     public MachineRendererCompartment() {
         model = new ModelCompartment();
     }
 
-    public void renderMachine(Machine machine, int colour, BinnieResource texture, double x, double y, double z,
-            float var8) {
+    public void renderMachine(Machine machine, BinnieResource texture, double x, double y, double z) {
         GL11.glPushMatrix();
         int i1 = 0;
         int ix = machine.getTileEntity().xCoord;

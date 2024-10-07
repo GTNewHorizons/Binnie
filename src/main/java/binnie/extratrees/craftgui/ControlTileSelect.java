@@ -156,7 +156,7 @@ public class ControlTileSelect extends Control implements IControlValue<IDesign>
         public void onRenderForeground() {
             ItemStack image = ((WindowWoodworker) getSuperParent()).getDesignerType().getDisplayStack(getValue());
             CraftGUI.render.item(new IPoint(1.0f, 1.0f), image);
-            if (((IControlValue) getParent()).getValue() == getValue()) {
+            if (((IControlValue<?>) getParent()).getValue() == getValue()) {
                 return;
             }
 

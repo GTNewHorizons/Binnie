@@ -20,9 +20,9 @@ public enum ExtraBeeLiquid implements ILiquidType {
     POISON("poison", new Color(0xeb14eb)),
     GLACIAL("liquidnitrogen", new Color(0x96c8c8));
 
-    protected String ident;
-    protected IIcon icon;
-    protected int color;
+    private final String ident;
+    private IIcon icon;
+    private final int color;
 
     ExtraBeeLiquid(String ident, Color color) {
         this.ident = ident;

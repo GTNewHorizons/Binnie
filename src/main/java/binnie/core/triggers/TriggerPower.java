@@ -35,7 +35,7 @@ public class TriggerPower {
     private static double getPercentage(Object tile) {
         IPoweredMachine process = Machine.getInterface(IPoweredMachine.class, tile);
         if (process != null) {
-            return (double) (process.getInterface().getEnergy() / process.getInterface().getCapacity());
+            return (double) process.getInterface().getEnergy() / process.getInterface().getCapacity();
         }
         return 0.0;
     }

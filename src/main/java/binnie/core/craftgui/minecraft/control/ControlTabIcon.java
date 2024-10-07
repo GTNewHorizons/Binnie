@@ -9,7 +9,7 @@ import binnie.core.genetics.IItemStackRepresentative;
 
 public class ControlTabIcon<T> extends ControlTab<T> {
 
-    private ControlItemDisplay item;
+    private final ControlItemDisplay item;
 
     public ControlTabIcon(ControlTabBar<T> parent, float x, float y, float w, float h, T value) {
         super(parent, x, y, w, h, value);
@@ -28,7 +28,7 @@ public class ControlTabIcon<T> extends ControlTab<T> {
     public void onUpdateClient() {
         super.onUpdateClient();
         item.setItemStack(getItemStack());
-        float x = ((ControlTabBar) getParent()).getDirection().x();
+        float x = ((ControlTabBar<?>) getParent()).getDirection().x();
         item.setOffset(new IPoint((isCurrentSelection() || isMouseOver()) ? 0.0f : (-4.0f * x), 0.0f));
     }
 

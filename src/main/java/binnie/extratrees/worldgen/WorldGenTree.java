@@ -3,6 +3,7 @@ package binnie.extratrees.worldgen;
 import java.util.Random;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
@@ -73,7 +74,7 @@ public abstract class WorldGenTree extends WorldGenerator {
 
     protected int determineHeight(int required, int variation) {
         int determined = Math.round((required + rand.nextInt(variation)) * treeGen.getHeightModifier());
-        return (determined < minHeight) ? minHeight : ((determined > maxHeight) ? maxHeight : determined);
+        return MathHelper.clamp_int(determined, minHeight, maxHeight);
     }
 
     public BlockType getLeaf() {
@@ -142,7 +143,7 @@ public abstract class WorldGenTree extends WorldGenerator {
         for (int y2 = minPodHeight; y2 < height; ++y2) {
             for (int x2 = 0; x2 < girth; ++x2) {
                 for (int z = 0; z < girth; ++z) {
-                    if (x2 <= 0 || x2 >= girth || z <= 0 || z >= girth) {
+                    if (x2 <= 0 || x2 >= girth || z <= 0) {
                         treeGen.trySpawnFruitBlock(world, startX + x2 + 1, startY + y2, startZ + z);
                         treeGen.trySpawnFruitBlock(world, startX + x2 - 1, startY + y2, startZ + z);
                         treeGen.trySpawnFruitBlock(world, startX + x2, startY + y2, startZ + z + 1);
@@ -203,7 +204,7 @@ public abstract class WorldGenTree extends WorldGenerator {
         }
     }
 
-    static class Vector {
+    public static class Vector {
 
         float x;
         float y;

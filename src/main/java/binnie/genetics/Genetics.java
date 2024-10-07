@@ -4,6 +4,7 @@ import net.minecraft.item.Item;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.machines.MachineGroup;
 import binnie.core.network.BinniePacketHandler;
@@ -27,7 +28,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(
         modid = "Genetics",
         name = "Genetics",
-        version = BinnieCore.VERSION,
+        version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class Genetics extends AbstractMod {

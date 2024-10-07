@@ -24,7 +24,7 @@ import forestry.api.genetics.ISpeciesRoot;
 public class GeneTracker extends WorldSavedData {
 
     GameProfile username;
-    private ArrayList<IGene> discoveredGenes;
+    private final ArrayList<IGene> discoveredGenes;
 
     public GeneTracker(String s, GameProfile username) {
         super(s);

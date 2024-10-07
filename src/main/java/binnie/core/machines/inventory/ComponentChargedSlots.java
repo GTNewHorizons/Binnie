@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.Side;
 
 public class ComponentChargedSlots extends MachineComponent implements INetwork.GuiNBT, IChargedSlots {
 
-    private Map<Integer, Float> charges = new HashMap<>();
+    private final Map<Integer, Float> charges = new HashMap<>();
 
     public ComponentChargedSlots(Machine machine) {
         super(machine);
@@ -37,7 +37,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
         NBTTagList chargeList = new NBTTagList();
         for (Map.Entry<Integer, Float> entry : charges.entrySet()) {
             NBTTagCompound chargesNBT = new NBTTagCompound();
-            chargesNBT.setByte("i", (byte) (0 + entry.getKey()));
+            chargesNBT.setByte("i", entry.getKey().byteValue());
             chargesNBT.setByte("v", (byte) (entry.getValue() * 100.0f));
             chargeList.appendTag(chargesNBT);
         }
@@ -54,9 +54,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
             return;
         }
 
-        for (int i : charges.keySet()) {
-            charges.put(i, nbt.getShort("" + i) / 100.0f);
-        }
+        charges.replaceAll((i, v) -> nbt.getShort("" + i) / 100.0f);
     }
 
     @Override

@@ -36,12 +36,10 @@ public class BlockGate extends BlockFenceGate implements IBlockMetadata {
     }
 
     @Override
-    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List itemList) {
+    public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> itemList) {
         for (IPlankType type : WoodManager.getAllPlankTypes()) {
             ItemStack gate = WoodManager.getGate(type);
-            if (gate != null) {
-                itemList.add(gate);
-            }
+            itemList.add(gate);
         }
     }
 

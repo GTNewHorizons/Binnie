@@ -39,10 +39,10 @@ class BinnieTrigger implements ITriggerExternal {
     protected static BinnieTrigger triggerAcclimatiserCold;
     protected static BinnieTrigger triggerAcclimatiserWet;
     protected static BinnieTrigger triggerAcclimatiserDry;
-    private String desc;
-    private String tag;
-    private BinnieIcon icon;
-    private int id;
+    private final String desc;
+    private final String tag;
+    private final BinnieIcon icon;
+    private final int id;
 
     public BinnieTrigger(String desc, String tag, String iconFile) {
         this(desc, tag, BinnieCore.instance, iconFile);

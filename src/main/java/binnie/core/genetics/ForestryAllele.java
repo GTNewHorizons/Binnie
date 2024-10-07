@@ -18,7 +18,7 @@ public class ForestryAllele {
         Longest;
 
         public IAllele getAllele() {
-            return AlleleManager.alleleRegistry.getAllele("forestry.lifespan" + toString());
+            return AlleleManager.alleleRegistry.getAllele("forestry.lifespan" + this);
         }
     }
 
@@ -33,7 +33,7 @@ public class ForestryAllele {
         Fastest;
 
         public IAllele getAllele() {
-            return AlleleManager.alleleRegistry.getAllele("forestry.speed" + toString());
+            return AlleleManager.alleleRegistry.getAllele("forestry.speed" + this);
         }
     }
 
@@ -45,7 +45,7 @@ public class ForestryAllele {
         Maximum;
 
         public IAllele getAllele() {
-            return AlleleManager.alleleRegistry.getAllele("forestry.fertility" + toString());
+            return AlleleManager.alleleRegistry.getAllele("forestry.fertility" + this);
         }
     }
 
@@ -57,7 +57,7 @@ public class ForestryAllele {
         Largest;
 
         public IAllele getAllele() {
-            return AlleleManager.alleleRegistry.getAllele("forestry.territory" + toString());
+            return AlleleManager.alleleRegistry.getAllele("forestry.territory" + this);
         }
     }
 
@@ -72,7 +72,7 @@ public class ForestryAllele {
         Largest;
 
         public IAllele getAllele() {
-            return AlleleManager.alleleRegistry.getAllele("forestry.size" + toString());
+            return AlleleManager.alleleRegistry.getAllele("forestry.size" + this);
         }
     }
 
@@ -82,7 +82,7 @@ public class ForestryAllele {
         False;
 
         public IAllele getAllele() {
-            return AlleleManager.alleleRegistry.getAllele("forestry.bool" + toString());
+            return AlleleManager.alleleRegistry.getAllele("forestry.bool" + this);
         }
 
         public static IAllele get(boolean bool) {

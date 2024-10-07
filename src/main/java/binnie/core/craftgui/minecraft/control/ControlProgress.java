@@ -7,9 +7,9 @@ import binnie.core.craftgui.resource.Texture;
 
 public class ControlProgress extends ControlProgressBase {
 
-    private Texture progressBlank;
-    private Texture progressBar;
-    private Position direction;
+    private final Texture progressBlank;
+    private final Texture progressBar;
+    private final Position direction;
 
     public ControlProgress(IWidget parent, int x, int y, Texture progressBlank, Texture progressBar, Position dir) {
         super(

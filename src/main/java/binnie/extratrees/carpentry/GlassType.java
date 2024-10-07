@@ -98,8 +98,8 @@ public class GlassType implements IDesignMaterial {
         Red("Red", new Color(0x993333)),
         Black("Black", new Color(0x191919));
 
-        protected String name;
-        protected int color;
+        private final String name;
+        private final int color;
 
         StandardColor(String name, Color color) {
             this.name = name;

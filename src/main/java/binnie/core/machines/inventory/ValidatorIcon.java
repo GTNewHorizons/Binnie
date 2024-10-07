@@ -9,8 +9,8 @@ import binnie.core.resource.BinnieIcon;
 
 public class ValidatorIcon {
 
-    private List<BinnieIcon> iconsInput;
-    private List<BinnieIcon> iconsOutput;
+    private final List<BinnieIcon> iconsInput;
+    private final List<BinnieIcon> iconsOutput;
 
     public ValidatorIcon(AbstractMod mod, String pathInput, String pathOutput) {
         iconsInput = new ArrayList<>();

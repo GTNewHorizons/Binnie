@@ -56,7 +56,7 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         tooltip.add(I18N.localise("genetics.item.sequence." + (5 - stack.getItemDamage() % 6)));
         SequencerItem gene = new SequencerItem(stack);
@@ -87,7 +87,7 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
     }
 
     @Override
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         IAlleleBeeSpecies species = (IAlleleBeeSpecies) AlleleManager.alleleRegistry
                 .getAllele("forestry.speciesMeadows");
         list.add(create(new Gene(species, EnumBeeChromosome.SPECIES, Binnie.Genetics.getBeeRoot()), false));

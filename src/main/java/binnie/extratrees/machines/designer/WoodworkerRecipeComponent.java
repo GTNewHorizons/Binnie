@@ -62,8 +62,7 @@ public class WoodworkerRecipeComponent extends ComponentRecipe
         IDesignMaterial type1 = type.getSystem().getMaterial(plank1);
         IDesignMaterial type2 = type.getSystem().getMaterial(plank2);
         IDesign design = getDesign();
-        ItemStack stack = type.getBlock(type1, type2, design);
-        return stack;
+        return type.getBlock(type1, type2, design);
     }
 
     @Override

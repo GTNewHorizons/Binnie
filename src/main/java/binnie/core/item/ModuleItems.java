@@ -60,11 +60,10 @@ public class ModuleItems implements IInitializable {
                 && player.getHeldItem().getItem() == BinnieCore.fieldKit
                 && player.isSneaking()) {
             TileEntity tile = event.world.getTileEntity(event.x, event.y, event.z);
-            if (!(tile instanceof TileEntityFlower)) {
+            if (!(tile instanceof TileEntityFlower tileFlower)) {
                 return;
             }
 
-            TileEntityFlower tileFlower = (TileEntityFlower) tile;
             IFlower flower = tileFlower.getFlower();
             if (flower == null) {
                 return;

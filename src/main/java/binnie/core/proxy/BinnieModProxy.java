@@ -12,7 +12,7 @@ import binnie.core.network.packet.MessageBase;
 
 public class BinnieModProxy implements IBinnieModProxy {
 
-    private AbstractMod mod;
+    private final AbstractMod mod;
 
     public BinnieModProxy(AbstractMod mod) {
         this.mod = mod;

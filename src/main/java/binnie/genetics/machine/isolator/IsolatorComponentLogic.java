@@ -77,21 +77,11 @@ public class IsolatorComponentLogic extends ComponentProcessSetCost implements I
             return;
         }
 
-        IAllele allele;
-        IChromosomeType chromosome;
-        Gene gene = null;
-        if (getMachine().getWorld().rand.nextFloat() < 2.0f) {
-            while (gene == null) {
-                try {
-                    chromosome = root.getKaryotype()[rand.nextInt(root.getKaryotype().length)];
-                    allele = rand.nextBoolean() ? individual.getGenome().getActiveAllele(chromosome)
-                            : individual.getGenome().getInactiveAllele(chromosome);
-                    gene = Gene.create(allele, chromosome, root);
-                } catch (Exception e) {
-                    // ignored
-                }
-            }
-        }
+        final IChromosomeType[] karyo = root.getKaryotype();
+        final IChromosomeType chromosome = karyo[rand.nextInt(karyo.length)];
+        final IAllele allele = rand.nextBoolean() ? individual.getGenome().getActiveAllele(chromosome)
+                : individual.getGenome().getInactiveAllele(chromosome);
+        final Gene gene = new Gene(allele, chromosome, root);
 
         ItemStack serum = ItemSequence.create(gene);
         getUtil().setStack(Isolator.SLOT_RESULT, serum);

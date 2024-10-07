@@ -20,7 +20,7 @@ import binnie.core.machines.power.TankInfo;
 
 public class ComponentTankContainer extends MachineComponent implements ITankMachine {
 
-    private Map<Integer, TankSlot> tanks = new LinkedHashMap<>();
+    private final Map<Integer, TankSlot> tanks = new LinkedHashMap<>();
 
     public ComponentTankContainer(IMachine machine) {
         super(machine);

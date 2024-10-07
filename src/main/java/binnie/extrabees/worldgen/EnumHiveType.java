@@ -12,7 +12,7 @@ public enum EnumHiveType {
     NETHER,
     MARBLE;
 
-    public List<IHiveDrop> drops;
+    public final List<IHiveDrop> drops;
 
     EnumHiveType() {
         drops = new ArrayList<>();

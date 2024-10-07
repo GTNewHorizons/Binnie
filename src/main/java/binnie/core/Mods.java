@@ -9,14 +9,15 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class Mods {
 
-    public static Mod forestry;
-    public static Mod ic2;
-    public static Mod botania;
-    public static Mod extraBiomes;
+    public static final Mod forestry = new Mod("Forestry");
+    public static final Mod ic2 = new Mod("IC2");
+    public static final Mod botania = new Mod("Botania");
+    public static final Mod extraBiomes = new Mod("ExtrabiomesXL");
+    public static final Mod dreamcraft = new Mod("dreamcraft");
 
     private static Item findItem(String modId, String name) {
         Item stack = GameRegistry.findItem(modId, name);
-        if (stack == null && modId.equals("Forestry")) {
+        if (stack == null && forestry.matchID(modId)) {
             throw new RuntimeException("Item not found: " + modId + ":" + name);
         }
         return stack;
@@ -24,7 +25,7 @@ public class Mods {
 
     private static ItemStack findItemStack(String modId, String name, int stackSize) {
         ItemStack stack = GameRegistry.findItemStack(modId, name, stackSize);
-        if (stack == null && modId.equals("Forestry")) {
+        if (stack == null && forestry.matchID(modId)) {
             throw new RuntimeException("Stack not found: " + modId + ":" + name);
         }
         return stack;
@@ -32,37 +33,32 @@ public class Mods {
 
     private static Block findBlock(String modId, String name) {
         Block stack = GameRegistry.findBlock(modId, name);
-        if (stack == null && modId.equals("Forestry")) {
+        if (stack == null && forestry.matchID(modId)) {
             throw new RuntimeException("Block not found: " + modId + ":" + name);
         }
         return stack;
     }
 
-    static {
-        Mods.forestry = new Mod("Forestry");
-        Mods.ic2 = new Mod("IC2");
-        Mods.botania = new Mod("Botania");
-        Mods.extraBiomes = new Mod("ExtrabiomesXL");
-    }
-
     public static class Mod {
 
-        private String id;
+        private final String modid;
+        private final boolean isLoaded;
 
         private Mod(String id) {
-            this.id = id;
+            modid = id;
+            isLoaded = Loader.isModLoaded(id);
         }
 
         public Item item(String name) {
-            return findItem(id, name);
+            return findItem(modid, name);
         }
 
         public Block block(String name) {
-            return findBlock(id, name);
+            return findBlock(modid, name);
         }
 
         public ItemStack stack(String name, int stackSize) {
-            return findItemStack(id, name, stackSize);
+            return findItemStack(modid, name, stackSize);
         }
 
         public ItemStack stack(String name) {
@@ -74,7 +70,11 @@ public class Mods {
         }
 
         public boolean active() {
-            return Loader.isModLoaded(id);
+            return isLoaded;
+        }
+
+        public boolean matchID(final String id) {
+            return modid.equals(id);
         }
     }
 }

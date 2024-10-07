@@ -9,7 +9,7 @@ import binnie.core.util.I18N;
 
 public abstract class ComponentProcessIndefinate extends MachineComponent implements IProcess, INetwork.TilePacketSync {
 
-    private float energyPerTick;
+    private final float energyPerTick;
     private boolean inProgress;
     private float actionPauseProcess;
     private float actionCancelTask;

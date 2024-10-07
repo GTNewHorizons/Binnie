@@ -17,11 +17,10 @@ public class ProcessInfo implements INBTTagable {
         processTime = 0;
         energyPerTick = process.getEnergyPerTick();
 
-        if (process instanceof IProcessTimed) {
-            IProcessTimed time = (IProcessTimed) process;
-            currentProgress = time.getProgress();
-            processEnergy = time.getProcessEnergy();
-            processTime = time.getProcessLength();
+        if (process instanceof IProcessTimed processTimed) {
+            currentProgress = processTimed.getProgress();
+            processEnergy = processTimed.getProcessEnergy();
+            processTime = processTimed.getProcessLength();
         } else {
             currentProgress = process.isInProgress() ? 100.0f : 0.0f;
         }

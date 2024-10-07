@@ -47,7 +47,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         return new IBinnieGUID[0];
     }
 
-    public Class[] getConfigs() {
+    public Class<?>[] getConfigs() {
         return new Class[0];
     }
 
@@ -68,7 +68,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         }
 
         if (getConfigs() != null) {
-            for (Class cls : getConfigs()) {
+            for (Class<?> cls : getConfigs()) {
                 Binnie.Configuration.registerConfiguration(cls, this);
             }
         }
@@ -80,7 +80,7 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
         // TODO what does it mean?
         Collections.addAll(fields, getClass().getFields());
-        for (Class cls : getClass().getClasses()) {
+        for (Class<?> cls : getClass().getClasses()) {
             Collections.addAll(fields, getClass().getFields());
         }
         for (IInitializable module : modules) {

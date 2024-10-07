@@ -24,10 +24,10 @@ public class ExtraTreeMutation implements ITreeMutation {
     protected IAlleleTreeSpecies allele1;
     protected IAllele[] template;
 
-    private float minTemperature;
-    private float maxTemperature;
-    private float minRainfall;
-    private float maxRainfall;
+    private final float minTemperature;
+    private final float maxTemperature;
+    private final float minRainfall;
+    private final float maxRainfall;
     private float height;
 
     public ExtraTreeMutation(IAllele allele0, IAllele allele1, IAllele result, int chance) {

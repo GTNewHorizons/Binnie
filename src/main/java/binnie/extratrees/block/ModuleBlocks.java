@@ -125,9 +125,6 @@ public class ModuleBlocks implements IInitializable {
             ItemStack doorSplit = WoodManager.getDoor(plank2, DoorType.DOUBLE);
             ItemStack doorFull = WoodManager.getDoor(plank2, DoorType.FULL);
             if (planks2 != null) {
-                if (gate == null) {
-                    continue;
-                }
                 gate.stackSize = 1;
                 GameRegistry.addRecipe(gate.copy(), "fpf", 'f', fenceNormal.copy(), 'p', planks2.copy());
                 fenceNormal.stackSize = 4;

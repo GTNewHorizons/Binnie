@@ -4,8 +4,8 @@ import binnie.core.machines.IMachine;
 
 public class ComponentProcessSetCost extends ComponentProcess {
 
-    private int processLength;
-    private int processEnergy;
+    private final int processLength;
+    private final int processEnergy;
 
     public ComponentProcessSetCost(IMachine machine, int rfCost, int timePeriod) {
         super(machine);

@@ -51,13 +51,13 @@ public class WindowFieldKit extends Window {
     private float glassOffsetY;
     private float glassVX;
     private float glassVY;
-    private Random glassRand;
+    private final Random glassRand;
     private Control GlassControl;
     private ControlChromosome chromo;
     private ControlText text;
     private float analyseProgress;
     private boolean isAnalysing;
-    private Map<IChromosomeType, String> info;
+    private final Map<IChromosomeType, String> info;
 
     public WindowFieldKit(EntityPlayer player, IInventory inventory, Side side) {
         super(280.0f, 230.0f, player, inventory, side);

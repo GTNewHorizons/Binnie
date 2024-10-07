@@ -31,7 +31,7 @@ public class ControlRecipeSlot extends ControlSlotBase {
         @Override
         public void onEvent(EventMouse.Down event) {
             TileEntity tile = (TileEntity) Window.get(getWidget()).getInventory();
-            if (tile == null || !(tile instanceof TileEntityMachine)) {
+            if (!(tile instanceof TileEntityMachine)) {
                 return;
             }
 

@@ -67,10 +67,9 @@ public class TransferHandler {
             int space = merged.getMaxStackSize() - merged.stackSize;
             if (space > 0) {
                 if (itemstack.stackSize > space) {
-                    ItemStack itemStack = itemstack;
-                    itemStack.stackSize -= space;
+                    itemstack.stackSize -= space;
                     merged.stackSize += space;
-                } else if (itemstack.stackSize <= space) {
+                } else {
                     merged.stackSize += itemstack.stackSize;
                     itemstack = null;
                 }

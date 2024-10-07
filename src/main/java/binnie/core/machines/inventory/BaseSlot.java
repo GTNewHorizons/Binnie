@@ -13,7 +13,7 @@ public abstract class BaseSlot<T> implements INBTTagable, IValidator<T> {
     protected Validator<T> validator;
     protected String unlocName;
 
-    private SidedAccess access;
+    private final SidedAccess access;
     private boolean readOnly;
     private int index;
 

@@ -7,7 +7,7 @@ import binnie.core.util.I18N;
 
 public abstract class MachinePackage {
 
-    private String uid;
+    private final String uid;
     private boolean active;
     boolean powered;
     private int metadata;

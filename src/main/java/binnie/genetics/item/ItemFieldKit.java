@@ -67,7 +67,7 @@ public class ItemFieldKit extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         int i = getMaxDamage() - itemStack.getItemDamage();
         if (i == 0) {
             tooltip.add(I18N.localise("genetics.item.fieldKit.tooltip.noPaper"));

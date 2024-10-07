@@ -16,7 +16,6 @@ import binnie.core.Mods;
 import binnie.core.genetics.Tolerance;
 import forestry.api.apiculture.EnumBeeChromosome;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.EnumTolerance;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
 import forestry.api.lepidopterology.EnumButterflyChromosome;
@@ -32,7 +31,7 @@ public class Acclimatiser {
     public static Map<ItemStack, Float> temperatureItems = new HashMap<>();
     public static Map<ItemStack, Float> humidityItems = new HashMap<>();
 
-    private static List<ToleranceSystem> toleranceSystems = new ArrayList<>();
+    private static final List<ToleranceSystem> toleranceSystems = new ArrayList<>();
 
     private static ToleranceSystem getToleranceSystem(ItemStack stack, ItemStack acclim) {
         ISpeciesRoot root = AlleleManager.alleleRegistry.getSpeciesRoot(stack);
@@ -158,35 +157,17 @@ public class Acclimatiser {
 
     public static Tolerance alterTolerance(Tolerance tol, float effect) {
         int[] is = tol.getBounds();
-        int[] range;
-        if (effect < 0.0f) {
-            range = new int[] { is[0] - 1, is[1] };
-        } else {
-            range = new int[] { is[0], is[1] + 1 };
+        int low = Math.max(effect < 0.0f ? is[0] - 1 : is[0], -5);
+        int high = Math.min(effect < 0.0f ? is[1] : is[1] + 1, 5);
+
+        if (low == 0) {
+            return Tolerance.getHigh(high);
+        }
+        if (high == 0) {
+            return Tolerance.getLow(low);
         }
 
-        if (range[0] < -5) {
-            range[0] = -5;
-        }
-        if (range[1] > 5) {
-            range[1] = 5;
-        }
-
-        EnumTolerance[] up = { EnumTolerance.NONE, EnumTolerance.UP_1, EnumTolerance.UP_2, EnumTolerance.UP_3,
-                EnumTolerance.UP_4, EnumTolerance.UP_5 };
-        EnumTolerance[] down = { EnumTolerance.NONE, EnumTolerance.DOWN_1, EnumTolerance.DOWN_2, EnumTolerance.DOWN_3,
-                EnumTolerance.DOWN_4, EnumTolerance.DOWN_5 };
-        EnumTolerance[] both = { EnumTolerance.NONE, EnumTolerance.BOTH_1, EnumTolerance.BOTH_2, EnumTolerance.BOTH_3,
-                EnumTolerance.BOTH_4, EnumTolerance.BOTH_5 };
-
-        if (range[0] == 0) {
-            return Tolerance.get(up[range[1]]);
-        }
-        if (range[1] == 0) {
-            return Tolerance.get(down[-range[0]]);
-        }
-
-        int avg = (int) ((-range[0] + range[1]) / 2.0f + 0.6f);
-        return Tolerance.get(both[avg]);
+        int avg = (int) ((-low + high) / 2.0f + 0.6f);
+        return Tolerance.getBoth(avg);
     }
 }

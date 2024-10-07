@@ -9,7 +9,7 @@ import java.util.Map;
 
 class ListMap<T> implements List<T> {
 
-    private LinkedHashMap<Integer, T> map;
+    private final LinkedHashMap<Integer, T> map;
 
     ListMap() {
         map = new LinkedHashMap<>();

@@ -42,11 +42,10 @@ public class ToleranceSystem {
             return stack;
         }
 
-        IIndividual member = AlleleManager.alleleRegistry.getIndividual(stack);
-        IGenome genome = member.getGenome();
-        IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(chromosomeOrdinal);
-        Tolerance tol = Tolerance.get(tolAllele.getValue());
-        Tolerance newTol = Acclimatiser.alterTolerance(tol, effect);
+        final IGenome genome = AlleleManager.alleleRegistry.getIndividual(stack).getGenome();
+        final IAlleleTolerance tolAllele = (IAlleleTolerance) genome.getActiveAllele(chromosomeOrdinal);
+        final Tolerance tol = Tolerance.get(tolAllele.getValue());
+        final Tolerance newTol = Acclimatiser.alterTolerance(tol, effect);
         if (rand.nextFloat() > 1.0f / (-newTol.getBounds()[0] + newTol.getBounds()[1])) {
             return stack;
         }

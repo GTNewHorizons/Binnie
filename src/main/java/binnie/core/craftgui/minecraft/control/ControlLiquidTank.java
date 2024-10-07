@@ -34,7 +34,7 @@ public class ControlLiquidTank extends Control implements ITooltip {
 
     public static List<Integer> tankError = new ArrayList<>();
     private int tankID;
-    private boolean horizontal;
+    private final boolean horizontal;
 
     public ControlLiquidTank(IWidget parent, int x, int y) {
         this(parent, x, y, false);

@@ -119,31 +119,14 @@ public class DesignBlock {
             adjustedDir = adjustedDir.getRotation(ForgeDirection.DOWN);
         }
 
-        ILayout layout;
-        switch (adjustedDir) {
-            case EAST:
-                layout = getDesign().getEastPattern();
-                break;
-
-            case NORTH:
-                layout = getDesign().getNorthPattern();
-                break;
-
-            case SOUTH:
-                layout = getDesign().getSouthPattern();
-                break;
-
-            case WEST:
-                layout = getDesign().getWestPattern();
-                break;
-
-            case DOWN:
-                layout = getDesign().getBottomPattern();
-                break;
-
-            default:
-                layout = getDesign().getTopPattern();
-        }
+        ILayout layout = switch (adjustedDir) {
+            case EAST -> getDesign().getEastPattern();
+            case NORTH -> getDesign().getNorthPattern();
+            case SOUTH -> getDesign().getSouthPattern();
+            case WEST -> getDesign().getWestPattern();
+            case DOWN -> getDesign().getBottomPattern();
+            default -> getDesign().getTopPattern();
+        };
 
         // TODO remove label
         Label_1107: {

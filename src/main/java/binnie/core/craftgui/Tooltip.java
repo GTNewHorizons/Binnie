@@ -39,13 +39,11 @@ public class Tooltip {
     }
 
     public boolean exists() {
-        return tooltip.size() > 0;
+        return !tooltip.isEmpty();
     }
 
-    public void add(List list) {
-        for (Object obj : list) {
-            tooltip.add((String) obj);
-        }
+    public void add(List<String> list) {
+        tooltip.addAll(list);
     }
 
     public List<String> getList() {

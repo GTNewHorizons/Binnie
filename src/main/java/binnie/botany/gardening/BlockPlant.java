@@ -71,7 +71,7 @@ public class BlockPlant extends BlockBush {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         for (Type type : Type.values()) {
             list.add(type.get());
         }
@@ -137,7 +137,7 @@ public class BlockPlant extends BlockBush {
 
         public IIcon icon;
 
-        protected String name;
+        private final String name;
 
         Type(String name) {
             this.name = name;

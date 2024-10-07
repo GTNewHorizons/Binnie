@@ -47,8 +47,8 @@ public class GeneArrayItem implements INBTTagable, IGeneItem {
     }
 
     @Override
-    public void getInfo(List tooltip) {
-        List<Object> totalList = new ArrayList<>();
+    public void getInfo(List<String> tooltip) {
+        List<String> totalList = new ArrayList<>();
         for (IGene gene : genes) {
             String chromosomeName = getBreedingSystem().getChromosomeName(gene.getChromosome());
             totalList.add(EnumChatFormatting.GOLD + chromosomeName + EnumChatFormatting.GRAY + ": " + gene.getName());
@@ -64,7 +64,7 @@ public class GeneArrayItem implements INBTTagable, IGeneItem {
     }
 
     public BreedingSystem getBreedingSystem() {
-        if (genes.size() == 0) {
+        if (genes.isEmpty()) {
             return null;
         }
         BreedingSystem system = Binnie.Genetics.getSystem(genes.get(0).getSpeciesRoot().getUID());

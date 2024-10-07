@@ -37,7 +37,7 @@ public class ControlOption<T> extends Control implements IControlValue<T> {
         setColor(color);
     }
 
-    private EventMouse.Down.Handler mouseHandler = new EventMouse.Down.Handler() {
+    private final EventMouse.Down.Handler mouseHandler = new EventMouse.Down.Handler() {
 
         @Override
         public void onEvent(EventMouse.Down event) {

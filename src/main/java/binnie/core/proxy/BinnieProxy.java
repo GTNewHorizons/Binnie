@@ -33,21 +33,6 @@ public class BinnieProxy extends BinnieModProxy implements IBinnieProxy {
     }
 
     @Override
-    public void preInit() {
-        // ignored
-    }
-
-    @Override
-    public void init() {
-        // ignored
-    }
-
-    @Override
-    public void postInit() {
-        // ignored
-    }
-
-    @Override
     public void bindTexture(BinnieResource texture) {
         // ignored
     }

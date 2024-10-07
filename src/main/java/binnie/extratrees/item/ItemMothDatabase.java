@@ -42,7 +42,7 @@ public class ItemMothDatabase extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         if (stack.getItemDamage() > 0) {
             tooltip.add(I18N.localise("extratrees.item.mothDatabase.tooltip"));
@@ -51,7 +51,7 @@ public class ItemMothDatabase extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs tab, List list) {
+    public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
         super.getSubItems(item, tab, list);
         list.add(new ItemStack(item, 1, 1));
     }

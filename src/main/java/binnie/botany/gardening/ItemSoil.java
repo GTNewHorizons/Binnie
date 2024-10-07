@@ -20,7 +20,7 @@ public class ItemSoil extends ItemBlock {
 
     protected EnumSoilType type;
 
-    private boolean noWeed;
+    private final boolean noWeed;
 
     public ItemSoil(Block block) {
         super(block);
@@ -31,7 +31,7 @@ public class ItemSoil extends ItemBlock {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         EnumMoisture moisture = EnumMoisture.values()[stack.getItemDamage() % 3];
         EnumAcidity acidity = EnumAcidity.values()[stack.getItemDamage() / 3];
@@ -45,20 +45,20 @@ public class ItemSoil extends ItemBlock {
         }
 
         if (acidity == EnumAcidity.ACID) {
-            if (info.length() > 0) {
+            if (!info.isEmpty()) {
                 info += ", ";
             }
             info += EnumChatFormatting.YELLOW + I18N.localise("botany.ph.acid") + EnumChatFormatting.RESET;
         }
 
         if (acidity == EnumAcidity.ALKALINE) {
-            if (info.length() > 0) {
+            if (!info.isEmpty()) {
                 info += ", ";
             }
             info += EnumChatFormatting.YELLOW + I18N.localise("botany.ph.alkaline") + EnumChatFormatting.RESET;
         }
 
-        if (info.length() > 0) {
+        if (!info.isEmpty()) {
             tooltip.add(info);
         }
 

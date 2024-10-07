@@ -38,7 +38,7 @@ public class BlockCarpentryPanel extends BlockCarpentry {
     }
 
     @Override
-    public void getSubBlocks(Item item, CreativeTabs tab, List list) {
+    public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
         // ignored
     }
 

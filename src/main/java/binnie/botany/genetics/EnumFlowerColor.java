@@ -93,10 +93,10 @@ public enum EnumFlowerColor implements IFlowerColor {
     YELLOW_GREEN("yellowGreen", 0x9acd32);
 
     private static final EnumFlowerColor[] ALL_VALUES = values();
-    private int color;
-    private int colorDis;
-    private String name;
-    private AlleleColor allele;
+    private final int color;
+    private final int colorDis;
+    private final String name;
+    private final AlleleColor allele;
 
     EnumFlowerColor(String name, int color) {
         this.name = name;

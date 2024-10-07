@@ -95,12 +95,11 @@ public class Gene implements INBTTagable, IGene {
 
     @Override
     public boolean equals(Object obj) {
-        if (!(obj instanceof Gene)) {
+        if (!(obj instanceof Gene gene)) {
             return false;
         }
 
-        Gene g = (Gene) obj;
-        return allele == g.allele && chromosome.ordinal() == g.chromosome.ordinal() && root == g.root;
+        return allele == gene.allele && chromosome.ordinal() == gene.chromosome.ordinal() && root == gene.root;
     }
 
     public String getAlleleName() {

@@ -20,9 +20,9 @@ public enum EnumColor {
     Yellow("Yellow", 16777045, 'e'),
     White("White", 16777215, 'f');
 
-    protected int colour;
-    protected String name;
-    protected char code;
+    private final int colour;
+    private final String name;
+    private final char code;
 
     EnumColor(String name, int colour, char code) {
         this.name = name;
@@ -35,7 +35,7 @@ public enum EnumColor {
     }
 
     public String getCode() {
-        return "\u00a7" + code;
+        return "§" + code;
     }
 
     @Override

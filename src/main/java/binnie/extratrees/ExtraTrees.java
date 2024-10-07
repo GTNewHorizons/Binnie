@@ -5,6 +5,7 @@ import net.minecraft.item.Item;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
+import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
@@ -32,7 +33,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(
         modid = "ExtraTrees",
         name = "Extra Trees",
-        version = BinnieCore.VERSION,
+        version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class ExtraTrees extends AbstractMod {
@@ -101,7 +102,7 @@ public class ExtraTrees extends AbstractMod {
     }
 
     @Override
-    public Class[] getConfigs() {
+    public Class<?>[] getConfigs() {
         return new Class[] { ConfigurationMain.class };
     }
 

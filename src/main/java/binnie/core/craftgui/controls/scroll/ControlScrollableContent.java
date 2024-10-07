@@ -29,7 +29,7 @@ public class ControlScrollableContent<T extends IWidget> extends Control impleme
         setPercentageIndex(getPercentageIndex());
     }
 
-    private EventMouse.Wheel.Handler mouseWheelHandler = new EventMouse.Wheel.Handler() {
+    private final EventMouse.Wheel.Handler mouseWheelHandler = new EventMouse.Wheel.Handler() {
 
         @Override
         public void onEvent(EventMouse.Wheel event) {

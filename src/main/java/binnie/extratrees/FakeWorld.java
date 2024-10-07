@@ -20,7 +20,7 @@ import sun.misc.Unsafe;
 
 public class FakeWorld extends World {
 
-    private static Unsafe unsafe;
+    private static final Unsafe unsafe;
 
     static {
         try {

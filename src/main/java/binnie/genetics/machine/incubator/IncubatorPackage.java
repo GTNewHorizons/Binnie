@@ -1,10 +1,7 @@
 package binnie.genetics.machine.incubator;
 
-import net.minecraft.tileentity.TileEntity;
-
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentTankContainer;
 import binnie.core.machines.inventory.InventorySlot;
@@ -44,10 +41,5 @@ public class IncubatorPackage extends PackageGeneticBase implements IMachineInfo
         tanks.addTank(Incubator.TANK_INPUT, "input", Incubator.INPUT_TANK_CAPACITY).forbidExtraction();
         tanks.addTank(Incubator.TANK_OUTPUT, "output", Incubator.OUTPU_TANK_CAPACITY).setReadOnly();
         new IncubatorComponentLogic(machine);
-    }
-
-    @Override
-    public TileEntity createTileEntity() {
-        return new TileEntityMachine(this);
     }
 }

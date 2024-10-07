@@ -56,13 +56,10 @@ public class StairItemRenderer implements IItemRenderer {
 
     @Override
     public boolean handleRenderType(ItemStack item, IItemRenderer.ItemRenderType type) {
-        switch (type) {
-            case ENTITY:
-            case EQUIPPED:
-            case INVENTORY:
-                return true;
-        }
-        return false;
+        return switch (type) {
+            case ENTITY, EQUIPPED, INVENTORY -> true;
+            default -> false;
+        };
     }
 
     @Override

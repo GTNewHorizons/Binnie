@@ -69,11 +69,6 @@ public class ControlTextEdit extends Control implements IControlValue<String> {
         }.setOrigin(EventHandler.Origin.Self, this));
     }
 
-    @Override
-    public void onUpdateClient() {
-        // ignored
-    }
-
     protected void onTextEdit(String value) {
         // ignored
     }

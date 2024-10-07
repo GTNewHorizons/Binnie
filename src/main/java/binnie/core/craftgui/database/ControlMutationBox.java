@@ -11,7 +11,7 @@ import forestry.api.genetics.IMutation;
 
 class ControlMutationBox extends ControlListBox<IMutation> {
 
-    private Type type;
+    private final Type type;
     private IAlleleSpecies species;
 
     @Override

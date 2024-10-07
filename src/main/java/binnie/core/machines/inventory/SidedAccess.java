@@ -10,7 +10,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 class SidedAccess {
 
-    private Map<ForgeDirection, AccessDirection> accesses = new HashMap<>();
+    private final Map<ForgeDirection, AccessDirection> accesses = new HashMap<>();
     private AccessDirection base = AccessDirection.Both;
     private boolean insertLocked;
     private boolean extractLocked;

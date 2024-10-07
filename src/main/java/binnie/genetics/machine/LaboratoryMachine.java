@@ -19,7 +19,7 @@ public enum LaboratoryMachine implements IMachineType {
     Genepool(GenepoolPackage.class),
     Acclimatiser(AcclimatiserPackage.class);
 
-    private Class<? extends MachinePackage> clss;
+    private final Class<? extends MachinePackage> clss;
 
     LaboratoryMachine(Class<? extends MachinePackage> clss) {
         this.clss = clss;

@@ -16,10 +16,10 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 
 public class ControlSlide extends Control {
 
-    private IArea expanded;
-    private IArea shrunk;
+    private final IArea expanded;
+    private final IArea shrunk;
     private boolean slideActive;
-    private Position anchor;
+    private final Position anchor;
     private String label;
 
     public ControlSlide(IWidget parent, float x, float y, float w, float h, Position anchor2) {

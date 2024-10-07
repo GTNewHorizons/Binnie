@@ -22,7 +22,7 @@ public class ControlTextOption<T> extends ControlOption<T> {
         this(controlList, option, option.toString(), y);
     }
 
-    private EventWidget.ChangeColour.Handler mouseHandler = new EventWidget.ChangeColour.Handler() {
+    private final EventWidget.ChangeColour.Handler mouseHandler = new EventWidget.ChangeColour.Handler() {
 
         @Override
         public void onEvent(EventWidget.ChangeColour event) {

@@ -22,7 +22,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class SplicerComponentFX extends MachineComponent
         implements IRender.RandomDisplayTick, IRender.DisplayTick, IRender.Render, INetwork.TilePacketSync {
 
-    private EntityItem dummyEntityItem;
+    private final EntityItem dummyEntityItem;
 
     public SplicerComponentFX(IMachine machine) {
         super(machine);
@@ -69,11 +69,6 @@ public class SplicerComponentFX extends MachineComponent
                         double dist = 0.25 + 0.2 * Math.sin(particleAge / 50.0f);
                         setPosition(axisX + dist * Math.sin(angle), posY, axisZ + dist * Math.cos(angle));
                         setAlphaF((float) Math.cos(1.57 * particleAge / particleMaxAge));
-                    }
-
-                    @Override
-                    public int getFXLayer() {
-                        return 0;
                     }
                 });
     }

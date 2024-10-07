@@ -38,11 +38,6 @@ public class Control extends Widget implements ITooltipHelp, ITooltip {
         // ignored
     }
 
-    @Override
-    public void onUpdateClient() {
-        // ignored
-    }
-
     public void addHelp(String string) {
         helpStrings.add(string);
     }

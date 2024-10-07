@@ -7,7 +7,7 @@ import binnie.core.AbstractMod;
 public class BinnieResource {
 
     String mod;
-    private ResourceType type;
+    private final ResourceType type;
     String path;
 
     public BinnieResource(AbstractMod mod, ResourceType type, String path) {

@@ -15,7 +15,7 @@ public interface IBlockMetadata extends ITileEntityProvider {
 
     String getBlockName(ItemStack itemStack);
 
-    void addBlockTooltip(ItemStack itemStack, List tooltip);
+    void addBlockTooltip(ItemStack itemStack, List<String> tooltip);
 
     void dropAsStack(World world, int x, int y, int z, ItemStack itemStack);
 }

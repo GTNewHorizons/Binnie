@@ -47,8 +47,8 @@ public enum EnumHoneyDrop implements IItemEnum {
     public final int primaryColor;
     public final int secondaryColor;
 
-    protected String liquidName;
-    protected ItemStack remenant;
+    private final String liquidName;
+    private ItemStack remenant;
 
     EnumHoneyDrop(Color primaryColor, Color secondaryColor, String liquid) {
         this.primaryColor = primaryColor.getRGB();

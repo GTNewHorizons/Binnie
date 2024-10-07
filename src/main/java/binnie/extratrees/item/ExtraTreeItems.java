@@ -19,9 +19,9 @@ public enum ExtraTreeItems implements IItemMisc {
     WoodWax("woodWax"),
     GlassFitting("glassFitting");
 
-    protected String name;
-    protected String iconPath;
-    protected IIcon icon;
+    private final String name;
+    private final String iconPath;
+    private IIcon icon;
 
     ExtraTreeItems(String name) {
         this.name = name;
@@ -39,7 +39,7 @@ public enum ExtraTreeItems implements IItemMisc {
     }
 
     @Override
-    public void addInformation(List tooltip) {
+    public void addInformation(List<String> tooltip) {
         // ignored
     }
 

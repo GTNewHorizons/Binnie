@@ -315,7 +315,7 @@ public class WindowAnalyst extends Window {
 
         ControlAnalystPage databasePage = null;
         if (isDatabase && !systemChange) {
-            databasePage = ((analystPages.size() > 0) ? analystPages.get(0) : null);
+            databasePage = ((!analystPages.isEmpty()) ? analystPages.get(0) : null);
         }
 
         analystPages.clear();
@@ -419,8 +419,8 @@ public class WindowAnalyst extends Window {
             x += width;
         }
 
-        if (analystPages.size() > 0) {
-            setPage(leftPage, analystPages.get((oldLeft >= 0) ? oldLeft : 0));
+        if (!analystPages.isEmpty()) {
+            setPage(leftPage, analystPages.get(Math.max(oldLeft, 0)));
         }
         if (analystPages.size() > 1) {
             setPage(rightPage, analystPages.get((oldRight >= 0) ? oldRight : 1));

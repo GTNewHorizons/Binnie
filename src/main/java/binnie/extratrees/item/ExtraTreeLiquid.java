@@ -17,11 +17,11 @@ public enum ExtraTreeLiquid implements ILiquidType {
     Latex("latex", 0xd8dbc9),
     Turpentine("turpentine", 0x79533a);
 
-    public String name;
+    public final String name;
 
-    protected String ident;
-    protected IIcon icon;
-    protected int color;
+    private final String ident;
+    private IIcon icon;
+    private final int color;
 
     ExtraTreeLiquid(String name, int color) {
         this.name = name;

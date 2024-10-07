@@ -19,7 +19,7 @@ import binnie.core.machines.IMachine;
 
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
 
-    private Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
+    private final Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
 
     public ComponentInventorySlots(IMachine machine) {
         super(machine);

@@ -14,7 +14,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemMisc extends Item {
 
-    private IItemMisc[] items;
+    private final IItemMisc[] items;
 
     protected ItemMisc(CreativeTabs tab, IItemMisc[] items2) {
         setCreativeTab(tab);
@@ -25,7 +25,7 @@ public class ItemMisc extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void getSubItems(Item par1, CreativeTabs tab, List list) {
+    public void getSubItems(Item par1, CreativeTabs tab, List<ItemStack> list) {
         for (IItemMisc item : items) {
             if (item.isActive()) {
                 list.add(getStack(item, 1));
@@ -46,7 +46,7 @@ public class ItemMisc extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemStack, EntityPlayer player, List tooltip, boolean advanced) {
+    public void addInformation(ItemStack itemStack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(itemStack, player, tooltip, advanced);
         IItemMisc item = getItem(itemStack.getItemDamage());
         if (item != null) {

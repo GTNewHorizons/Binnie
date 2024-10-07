@@ -1,11 +1,9 @@
 package binnie.genetics.machine.inoculator;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.craftgui.minecraft.IMachineInformation;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
 import binnie.core.machines.inventory.ComponentTankContainer;
@@ -93,10 +91,5 @@ public class InoculatorPackage extends PackageGeneticBase implements IMachineInf
         new InoculatorComponentFX(machine);
         new ComponentTankContainer(machine).addTank(Inoculator.TANK_VECTOR, "input", Inoculator.TANK_CAPACITY)
                 .setValidator(new BacteriaVectorValidator());
-    }
-
-    @Override
-    public TileEntity createTileEntity() {
-        return new TileEntityMachine(this);
     }
 }
