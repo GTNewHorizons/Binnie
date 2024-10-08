@@ -176,4 +176,10 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
     public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z, EntityPlayer player) {
         return BlockMetadata.getPickBlock(world, x, y, z);
     }
+
+    @Override
+    public ItemStack getPickBlock(MovingObjectPosition target, World world, int x, int y, int z)
+    {
+        return this.getPickBlock(target, world, x, y, z, null);
+    }
 }
