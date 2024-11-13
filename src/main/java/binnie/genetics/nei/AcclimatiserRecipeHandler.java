@@ -37,11 +37,10 @@ public class AcclimatiserRecipeHandler extends RecipeHandlerBase {
                 targets.add(Mods.forestry.stack("caterpillarGE", 1, OreDictionary.WILDCARD_VALUE));
                 targets.add(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE));
             }
-            if (BinnieCore.isBotanyActive()) {
-                targets.add(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE));
-                targets.add(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE));
-                targets.add(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
-            }
+
+            targets.add(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
             recipes.add(new AcclimatiserRecipe(targets, resource, effect, ToleranceType.Temperature));
         });
         Acclimatiser.humidityItems.forEach((resource, effect) -> {
@@ -57,11 +56,10 @@ public class AcclimatiserRecipeHandler extends RecipeHandlerBase {
                 targets.add(Mods.forestry.stack("caterpillarGE", 1, OreDictionary.WILDCARD_VALUE));
                 targets.add(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE));
             }
-            if (BinnieCore.isBotanyActive()) {
-                targets.add(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE));
-                targets.add(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE));
-                targets.add(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
-            }
+
+            targets.add(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE));
+            targets.add(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
             recipes.add(new AcclimatiserRecipe(targets, resource, effect, ToleranceType.Humidity));
         });
     }

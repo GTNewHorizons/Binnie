@@ -14,6 +14,7 @@ public class Mods {
     public static final Mod botania = new Mod("Botania");
     public static final Mod extraBiomes = new Mod("ExtrabiomesXL");
     public static final Mod dreamcraft = new Mod("dreamcraft");
+    public static final Mod buildcraftCore = new Mod("BuildCraft|Core");
 
     private static Item findItem(String modId, String name) {
         Item stack = GameRegistry.findItem(modId, name);

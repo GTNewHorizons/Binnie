@@ -106,17 +106,15 @@ public class Acclimatiser {
                     ToleranceType.Temperature);
         }
 
-        if (BinnieCore.isBotanyActive()) {
-            addTolerance(
-                    Binnie.Genetics.getFlowerRoot().getUID(),
-                    EnumFlowerChromosome.HUMIDITY_TOLERANCE,
-                    ToleranceType.Humidity);
-            addTolerance(
-                    Binnie.Genetics.getFlowerRoot().getUID(),
-                    EnumFlowerChromosome.TEMPERATURE_TOLERANCE,
-                    ToleranceType.Temperature);
-            addTolerance(Binnie.Genetics.getFlowerRoot().getUID(), EnumFlowerChromosome.PH_TOLERANCE, ToleranceType.PH);
-        }
+        addTolerance(
+                Binnie.Genetics.getFlowerRoot().getUID(),
+                EnumFlowerChromosome.HUMIDITY_TOLERANCE,
+                ToleranceType.Humidity);
+        addTolerance(
+                Binnie.Genetics.getFlowerRoot().getUID(),
+                EnumFlowerChromosome.TEMPERATURE_TOLERANCE,
+                ToleranceType.Temperature);
+        addTolerance(Binnie.Genetics.getFlowerRoot().getUID(), EnumFlowerChromosome.PH_TOLERANCE, ToleranceType.PH);
 
         addTemperatureItem(new ItemStack(Items.blaze_powder), 0.5f);
         addTemperatureItem(new ItemStack(Items.blaze_rod), 0.75f);

@@ -303,11 +303,6 @@ public class Botany extends AbstractMod {
         }
     }
 
-    @Override
-    public boolean isActive() {
-        return BinnieCore.isBotanyActive();
-    }
-
     @Mod.EventHandler
     public void onIMC(FMLInterModComms.IMCEvent event) {
         for (FMLInterModComms.IMCMessage message : event.getMessages()) {

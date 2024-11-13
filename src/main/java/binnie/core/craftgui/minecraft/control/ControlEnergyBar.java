@@ -1,7 +1,5 @@
 package binnie.core.craftgui.minecraft.control;
 
-import net.minecraft.inventory.IInventory;
-
 import org.lwjgl.opengl.GL11;
 
 import binnie.core.craftgui.CraftGUI;
@@ -17,8 +15,6 @@ import binnie.core.craftgui.minecraft.MinecraftTooltip;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.Machine;
-import binnie.core.machines.TileEntityMachine;
-import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.IProcess;
 import binnie.core.util.I18N;
 
@@ -32,17 +28,6 @@ public class ControlEnergyBar extends Control implements ITooltip {
         super(parent, x, y, width, height);
         this.direction = direction;
         addAttribute(WidgetAttribute.MOUSE_OVER);
-    }
-
-    // TODO unused method?
-    public IPoweredMachine getClientPower() {
-        IInventory inventory = Window.get(this).getInventory();
-        TileEntityMachine machine = (inventory instanceof TileEntityMachine) ? (TileEntityMachine) inventory : null;
-        if (machine == null) {
-            return null;
-        }
-
-        return machine.getMachine().getInterface(IPoweredMachine.class);
     }
 
     public float getPercentage() {

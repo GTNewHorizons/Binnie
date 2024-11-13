@@ -1,10 +1,7 @@
 package binnie.extrabees.apiary;
 
-import net.minecraft.item.ItemStack;
-
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
-import forestry.api.apiculture.IBee;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
@@ -61,19 +58,9 @@ public class ComponentBeeModifier extends MachineComponent implements IBeeModifi
         return false;
     }
 
-    // TODO unused method?
-    public void onQueenChange(ItemStack queen) {
-        // ignored
-    }
-
     @Override
     public void wearOutEquipment(int amount) {
         // ignored
-    }
-
-    // TODO unused method?
-    public boolean onEggLaid(IBee queen) {
-        return false;
     }
 
     @Override

@@ -306,7 +306,7 @@ public class ModuleItem implements IInitializable {
 
         // as above, there are only 24 permutations here; let's find a way to just get those recipes rather than trying
         // 256 combinations in an n^4 loop. This will help performance and maybe be a bit more maintainable.
-        if (BinnieCore.isBotanyActive() && BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
+        if (BinnieCore.isExtraBeesActive() && BinnieCore.isExtraTreesActive()) {
             // 24 full recipe lines is a bit much to maintain; so we'll use a loop here, but we're only going
             // to run it 24 times. Start by making an array of all 24 valid dictionary permutations...
             String[] permutations = new String[] { "btlf", "btfl", "bltf", "blft", "bftl", "bflt", "tblf", "tbfl",

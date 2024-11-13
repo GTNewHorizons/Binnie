@@ -23,11 +23,6 @@ public enum AdvGeneticMachine implements IMachineType {
         return cls;
     }
 
-    @Override
-    public boolean isActive() {
-        return true;
-    }
-
     public ItemStack get(int i) {
         return new ItemStack(Genetics.packageAdvGenetic.getBlock(), i, ordinal());
     }
