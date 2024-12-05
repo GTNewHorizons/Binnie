@@ -33,7 +33,7 @@ public class PositionedFluidTank {
     public PositionedFluidTank(FluidTank[] tanks, Rectangle position, String overlayTexture, Point overlayTexturePos) {
         this.position = position;
         this.tanks = tanks;
-        this.tank = tanks[0];
+        if (tanks[0] != null) this.tank = tanks[0];
         this.overlayTexture = overlayTexture;
         this.overlayTexturePos = overlayTexturePos;
     }
