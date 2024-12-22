@@ -44,8 +44,8 @@ public class InoculatorRecipeHandler extends RecipeHandlerBase {
             createInoculatorRecipeForNEI(Mods.forestry.stack("pollenFertile", 1, OreDictionary.WILDCARD_VALUE));
         if (BinnieCore.isLepidopteryActive())
             createInoculatorRecipeForNEI(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE));
-        if (BinnieCore.isBotanyActive())
-            createInoculatorRecipeForNEI(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
+
+        createInoculatorRecipeForNEI(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE));
     }
 
     @Override
