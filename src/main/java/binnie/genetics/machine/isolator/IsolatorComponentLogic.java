@@ -4,9 +4,6 @@ import java.util.Random;
 
 import net.minecraft.item.ItemStack;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import binnie.core.genetics.Gene;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.IChargedSlots;
@@ -23,8 +20,6 @@ import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.ISpeciesRoot;
 
 public class IsolatorComponentLogic extends ComponentProcessSetCost implements IProcess {
-
-    private static final Logger LOG = LogManager.getLogger("Genetics");
 
     protected float enzymePerProcess = 0.5f;
     protected float ethanolPerProcess = 10.0f;
@@ -84,22 +79,14 @@ public class IsolatorComponentLogic extends ComponentProcessSetCost implements I
         }
 
         final IChromosomeType[] karyo = root.getKaryotype();
-        final IChromosomeType chromosome = karyo[rand.nextInt(karyo.length)];
-        final IAllele allele;
-        try {
-            allele = rand.nextBoolean() ? individual.getGenome().getActiveAllele(chromosome)
-                    : individual.getGenome().getInactiveAllele(chromosome);
-        } catch (NullPointerException npe) {
-            // just return and eat the power without eating the rest of it
-            LOG.warn(
-                    "NPE occurred on unknown gene: name: " + chromosome.getName()
-                            + " | ordinal: "
-                            + chromosome.ordinal()
-                            + " | is null? "
-                            + (individual.getGenome().getChromosomes()[chromosome.ordinal()] == null ? "true"
-                                    : "false"));
-            return;
-        }
+
+        IChromosomeType chromosome;
+        do {
+            chromosome = karyo[rand.nextInt(karyo.length)];
+        } while (individual.getGenome().getChromosomes()[chromosome.ordinal()] == null);
+
+        final IAllele allele = rand.nextBoolean() ? individual.getGenome().getActiveAllele(chromosome)
+                : individual.getGenome().getInactiveAllele(chromosome);
         final Gene gene = new Gene(allele, chromosome, root);
 
         ItemStack serum = ItemSequence.create(gene);
