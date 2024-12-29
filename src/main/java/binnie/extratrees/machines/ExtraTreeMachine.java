@@ -7,7 +7,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
 import binnie.Binnie;
-import binnie.core.BinnieCore;
 import binnie.core.machines.IMachineType;
 import binnie.core.machines.Machine;
 import binnie.core.machines.MachineComponent;
@@ -41,14 +40,6 @@ public enum ExtraTreeMachine implements IMachineType {
     @Override
     public Class<? extends MachinePackage> getPackageClass() {
         return cls;
-    }
-
-    @Override
-    public boolean isActive() {
-        if (this == ExtraTreeMachine.Tileworker) {
-            return BinnieCore.isBotanyActive();
-        }
-        return true;
     }
 
     public ItemStack get(int i) {

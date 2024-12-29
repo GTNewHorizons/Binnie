@@ -1,7 +1,13 @@
 package binnie.extratrees;
 
+import static binnie.extratrees.ExtraTrees.EB_MOD_NAME;
+import static binnie.extratrees.ExtraTrees.ET_MODID;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -16,7 +22,7 @@ import binnie.extratrees.block.decor.BlockMultiFence;
 import binnie.extratrees.carpentry.BlockCarpentry;
 import binnie.extratrees.carpentry.BlockStainedDesign;
 import binnie.extratrees.carpentry.ModuleCarpentry;
-import binnie.extratrees.config.ConfigurationMain;
+import binnie.extratrees.config.ETConfig;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.core.ModuleCore;
 import binnie.extratrees.genetics.ModuleGenetics;
@@ -31,18 +37,29 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(
-        modid = "ExtraTrees",
-        name = "Extra Trees",
+        modid = ET_MODID,
+        name = EB_MOD_NAME,
         version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class ExtraTrees extends AbstractMod {
+
+    public static final String ET_MODID = "ExtraTrees";
+    public static final String EB_MOD_NAME = "Extra Trees";
 
     @Mod.Instance("ExtraTrees")
     public static ExtraTrees instance;
 
     @SidedProxy(clientSide = "binnie.extratrees.proxy.ProxyClient", serverSide = "binnie.extratrees.proxy.ProxyServer")
     public static Proxy proxy;
+
+    static {
+        try {
+            ConfigurationManager.registerConfig(ETConfig.class);
+        } catch (ConfigException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static Item itemDictionary;
     public static Item itemDictionaryLepi;
@@ -102,11 +119,6 @@ public class ExtraTrees extends AbstractMod {
     }
 
     @Override
-    public Class<?>[] getConfigs() {
-        return new Class[] { ConfigurationMain.class };
-    }
-
-    @Override
     public String getChannel() {
         return "ET";
     }
@@ -116,6 +128,7 @@ public class ExtraTrees extends AbstractMod {
         return ExtraTrees.proxy;
     }
 
+    // Concerningly, this isn't the same as the MODID
     @Override
     public String getModID() {
         return "extratrees";

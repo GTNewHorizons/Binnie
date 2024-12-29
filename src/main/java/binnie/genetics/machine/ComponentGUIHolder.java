@@ -116,9 +116,8 @@ public class ComponentGUIHolder extends MachineComponent implements INetwork.Til
             }
 
             List<Item> validSelections = new ArrayList<>();
-            if (BinnieCore.isBotanyActive()) {
-                validSelections.add(Botany.database);
-            }
+            validSelections.add(Botany.database);
+
             if (BinnieCore.isExtraBeesActive()) {
                 validSelections.add(ExtraBees.dictionary);
             }

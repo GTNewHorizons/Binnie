@@ -44,11 +44,10 @@ public class GenepoolRecipeHandler extends RecipeHandlerBase {
             recipes.add(new GenepoolRecipe(Mods.forestry.stack("caterpillarGE", 1, OreDictionary.WILDCARD_VALUE)));
             recipes.add(new GenepoolRecipe(Mods.forestry.stack("serumGE", 1, OreDictionary.WILDCARD_VALUE)));
         }
-        if (BinnieCore.isBotanyActive()) {
-            recipes.add(new GenepoolRecipe(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
-            recipes.add(new GenepoolRecipe(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE)));
-            recipes.add(new GenepoolRecipe(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE)));
-        }
+
+        recipes.add(new GenepoolRecipe(new ItemStack(Botany.flowerItem, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new GenepoolRecipe(new ItemStack(Botany.seed, 1, OreDictionary.WILDCARD_VALUE)));
+        recipes.add(new GenepoolRecipe(new ItemStack(Botany.pollen, 1, OreDictionary.WILDCARD_VALUE)));
     }
 
     @Override

@@ -31,14 +31,14 @@ public class MachineGroup {
         this.blockName = blockName;
 
         for (IMachineType type : types) {
-            if (type.getPackageClass() != null && type.isActive()) {
+            if (type.getPackageClass() != null) {
                 try {
                     MachinePackage pack = type.getPackageClass().newInstance();
                     pack.assignMetadata(type.ordinal());
-                    pack.setActive(type.isActive());
+                    pack.setActive(true);
                     addPackage(pack);
                 } catch (Exception e) {
-                    throw new RuntimeException("Failed to create machine package " + type.toString(), e);
+                    throw new RuntimeException("Failed to create machine package " + type, e);
                 }
             }
         }

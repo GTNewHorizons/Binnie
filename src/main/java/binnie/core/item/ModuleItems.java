@@ -51,7 +51,7 @@ public class ModuleItems implements IInitializable {
 
     @SubscribeEvent
     public void onUseFieldKit(PlayerInteractEvent event) {
-        if (!BinnieCore.isBotanyActive() || event.action != PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+        if (event.action != PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
             return;
         }
 
