@@ -41,8 +41,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
         name = EB_MOD_NAME,
         version = Tags.VERSION,
         useMetadata = true,
-        dependencies = "after:BinnieCore",
-        guiFactory = "binnie.extratrees.config.ETConfigGUIFactory")
+        dependencies = "after:BinnieCore")
 public class ExtraTrees extends AbstractMod {
 
     public static final String ET_MODID = "ExtraTrees";

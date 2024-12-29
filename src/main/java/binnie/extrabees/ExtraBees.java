@@ -33,8 +33,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
         name = ExtraBees.EB_MOD_NAME,
         version = Tags.VERSION,
         useMetadata = true,
-        dependencies = "after:BinnieCore",
-        guiFactory = "binnie.extrabees.config.EBConfigGUIFactory")
+        dependencies = "after:BinnieCore")
 public class ExtraBees extends AbstractMod {
 
     public static final String EB_MODID = "ExtraBees";
