@@ -4,6 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
 
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.Tags;
@@ -11,8 +14,7 @@ import binnie.core.gui.IBinnieGUID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.apiary.ModuleApiary;
-import binnie.extrabees.config.ConfigurationMachines;
-import binnie.extrabees.config.ConfigurationMain;
+import binnie.extrabees.config.EBConfig;
 import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ModuleCore;
 import binnie.extrabees.genetics.ModuleGenetics;
@@ -27,12 +29,15 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(
-        modid = "ExtraBees",
-        name = "Extra Bees",
+        modid = ExtraBees.EB_MODID,
+        name = ExtraBees.EB_MOD_NAME,
         version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class ExtraBees extends AbstractMod {
+
+    public static final String EB_MODID = "ExtraBees";
+    public static final String EB_MOD_NAME = "Extra Bees";
 
     @Mod.Instance("ExtraBees")
     public static ExtraBees instance;
@@ -41,6 +46,14 @@ public class ExtraBees extends AbstractMod {
             clientSide = "binnie.extrabees.proxy.ExtraBeesProxyClient",
             serverSide = "binnie.extrabees.proxy.ExtraBeesProxyServer")
     public static ExtraBeesProxy proxy;
+
+    static {
+        try {
+            ConfigurationManager.registerConfig(EBConfig.class);
+        } catch (ConfigException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static Block hive;
     public static Material materialBeehive;
@@ -79,11 +92,6 @@ public class ExtraBees extends AbstractMod {
     @Override
     public IBinnieGUID[] getGUIDs() {
         return ExtraBeeGUID.values();
-    }
-
-    @Override
-    public Class<?>[] getConfigs() {
-        return new Class[] { ConfigurationMain.class, ConfigurationMachines.class };
     }
 
     @Override

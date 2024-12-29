@@ -17,7 +17,7 @@ import binnie.Binnie;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.block.FruitPod;
-import binnie.extratrees.config.ConfigurationMain;
+import binnie.extratrees.config.ETConfig;
 import binnie.extratrees.item.Food;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -254,7 +254,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
         ExtraTreeFruitGene.Candlenut.addProduct(Food.Candlenut.get(1), 1.0f);
         ExtraTreeFruitGene.Candlenut.setFamily(familyJungle);
 
-        if (ConfigurationMain.alterLemon) {
+        if (ETConfig.alterLemon) {
             try {
                 IAlleleFruit lemon = (IAlleleFruit) AlleleManager.alleleRegistry.getAllele("forestry.fruitLemon");
                 FruitProviderNone prov = (FruitProviderNone) lemon.getProvider();

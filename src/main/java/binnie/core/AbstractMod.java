@@ -8,7 +8,6 @@ import java.util.List;
 
 import net.minecraftforge.common.MinecraftForge;
 
-import binnie.Binnie;
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.mod.parser.FieldParser;
 import binnie.core.network.BinniePacketHandler;
@@ -33,7 +32,9 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    public abstract boolean isActive();
+    public boolean isActive() {
+        return true;
+    }
 
     @Override
     public abstract String getChannel();
@@ -45,10 +46,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
     public IBinnieGUID[] getGUIDs() {
         return new IBinnieGUID[0];
-    }
-
-    public Class<?>[] getConfigs() {
-        return new Class[0];
     }
 
     public abstract IProxyCore getProxy();
@@ -65,12 +62,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
     public void preInit() {
         if (!isActive()) {
             return;
-        }
-
-        if (getConfigs() != null) {
-            for (Class<?> cls : getConfigs()) {
-                Binnie.Configuration.registerConfiguration(cls, this);
-            }
         }
 
         getProxy().preInit();

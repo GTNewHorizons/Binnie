@@ -22,8 +22,6 @@ import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.machines.MachineGroup;
 import binnie.core.machines.storage.ModuleStorage;
-import binnie.core.mod.config.ConfigurationMain;
-import binnie.core.mod.config.ConfigurationMods;
 import binnie.core.mod.parser.FieldParser;
 import binnie.core.mod.parser.ItemParser;
 import binnie.core.network.BinnieCorePacketID;
@@ -49,12 +47,15 @@ import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;
 
 @Mod(
-        modid = "BinnieCore",
-        name = "Binnie Core",
+        modid = BinnieCore.CORE_MODID,
+        name = BinnieCore.CORE_MOD_NAME,
         version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:Forestry@[4.2,),required-after:gtnhlib@[0.0.10,)")
 public class BinnieCore extends AbstractMod {
+
+    public static final String CORE_MODID = "BinnieCore";
+    public static final String CORE_MOD_NAME = "Binnie Core";
 
     @Mod.Instance("BinnieCore")
     public static BinnieCore instance;
@@ -70,7 +71,6 @@ public class BinnieCore extends AbstractMod {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        Binnie.Configuration.registerConfiguration(ConfigurationMods.class, this);
         for (ManagerBase baseManager : Binnie.Managers) {
             addModule(baseManager);
         }
@@ -134,20 +134,12 @@ public class BinnieCore extends AbstractMod {
         return PluginManager.Module.ARBORICULTURE.isEnabled();
     }
 
-    public static boolean isBotanyActive() {
-        return ConfigurationMods.botany;
-    }
-
-    public static boolean isGeneticsActive() {
-        return ConfigurationMods.genetics;
-    }
-
     public static boolean isExtraBeesActive() {
-        return ConfigurationMods.extraBees && isApicultureActive();
+        return isApicultureActive();
     }
 
     public static boolean isExtraTreesActive() {
-        return ConfigurationMods.extraTrees && isArboricultureActive();
+        return isArboricultureActive();
     }
 
     @Override
@@ -213,11 +205,6 @@ public class BinnieCore extends AbstractMod {
             Binnie.Liquid.reloadIcons(event.map);
         }
         Binnie.Resource.registerIcons(event.map, event.map.getTextureType());
-    }
-
-    @Override
-    public Class<?>[] getConfigs() {
-        return new Class[] { ConfigurationMain.class };
     }
 
     @Override

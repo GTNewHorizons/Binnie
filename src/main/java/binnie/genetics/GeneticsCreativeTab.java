@@ -11,11 +11,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class GeneticsCreativeTab extends CreativeTabs {
 
-    public static CreativeTabs instance;
-
-    static {
-        GeneticsCreativeTab.instance = new GeneticsCreativeTab();
-    }
+    public static CreativeTabs instance = new GeneticsCreativeTab();
 
     public GeneticsCreativeTab() {
         super("Genetics");

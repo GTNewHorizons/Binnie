@@ -1,7 +1,6 @@
 package binnie.extratrees.genetics;
 
 import java.awt.Color;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
@@ -688,19 +687,6 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
         ExtraTreeSpecies.Hemlock.setLeafType(LeafType.CONIFER).setGirth(2).setHeight(EnumAllele.Height.AVERAGE)
                 .setFertility(EnumAllele.Saplings.LOW).setMaturation(EnumAllele.Maturation.SLOWER);
-    }
-
-    // TODO unused method?
-    static ItemStack getEBXLStack(String name) {
-        try {
-            Class elements = Class.forName("extrabiomes.lib.Element");
-            Method getElementMethod = elements.getMethod("valueOf", String.class);
-            Method getItemStack = elements.getMethod("get");
-            Object element = getElementMethod.invoke(null, "SAPLING_AUTUMN_YELLOW");
-            return (ItemStack) getItemStack.invoke(element);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private ExtraTreeSpecies addFamily(IFruitFamily family) {

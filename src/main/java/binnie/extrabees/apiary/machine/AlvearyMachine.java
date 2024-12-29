@@ -46,11 +46,6 @@ public enum AlvearyMachine implements IMachineType {
         return new ItemStack(ModuleApiary.blockComponent, size, ordinal());
     }
 
-    @Override
-    public boolean isActive() {
-        return true;
-    }
-
     public abstract static class AlvearyPackage extends MachinePackage {
 
         protected BinnieResource machineTexture;
