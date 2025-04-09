@@ -34,6 +34,7 @@ public class BlockStained extends Block implements IBlockMetadata {
 
     public BlockStained() {
         super(Material.glass);
+        setHardness(0.3f);
         setCreativeTab(CreativeTabBotany.instance);
         setBlockName("stained");
     }
