@@ -46,7 +46,7 @@ public class WindowGeneBank extends WindowMachine {
     protected ControlGeneScroll genes;
 
     public WindowGeneBank(EntityPlayer player, IInventory inventory, Side side, boolean isNEI) {
-        super(320, 224, player, inventory, side);
+        super(400, 224, player, inventory, side);
         isNei = isNEI;
     }
 
@@ -100,7 +100,7 @@ public class WindowGeneBank extends WindowMachine {
         new ControlPlayerInventory(this, x, y);
         x += 124;
         boxX = x;
-        int geneBoxWidth = 120;
+        int geneBoxWidth = 200;
         new Panel(this, boxX + 24, 32.0f, geneBoxWidth, 120.0f, MinecraftGUI.PanelType.Black);
         new Panel(this, boxX + 24 + geneBoxWidth, 32.0f, 14.0f, 120.0f, MinecraftGUI.PanelType.Gray);
         ControlScrollableContent scroll = new ControlScrollableContent(
