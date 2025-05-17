@@ -18,8 +18,7 @@ public class MutatorModifierComponent extends ComponentBeeModifier implements IB
             return 1.0f;
         }
 
-        float mult = AlvearyMutator.getMutationMult(getUtil().getStack(AlvearyMutator.SLOT_MUTATOR));
-        return Math.min(mult, 15.0f / currentModifier);
+        return AlvearyMutator.getMutationMult(getUtil().getStack(AlvearyMutator.SLOT_MUTATOR));
     }
 
     @Override
