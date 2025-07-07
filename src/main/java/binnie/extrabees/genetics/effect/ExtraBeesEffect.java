@@ -403,7 +403,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
                     continue;
                 }
 
-                player.getFoodStats().addExhaustion(4.0f);
+                player.addExhaustion(4.0f);
                 player.addPotionEffect(new PotionEffect(Potion.hunger.id, 100));
             }
         }
