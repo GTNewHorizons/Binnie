@@ -389,34 +389,27 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
     }
 
     private void onFoodEffect(IBeeGenome genome, IBeeHousing housing) {
-        for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
-            if (entity instanceof EntityPlayer player) {
-                player.getFoodStats().addStats(2, 0.2f);
-            }
+        for (EntityPlayer player : getEntities(EntityPlayer.class, genome, housing)) {
+            player.getFoodStats().addStats(2, 0.2f);
         }
     }
 
     private void onHungerEffect(IBeeGenome genome, IBeeHousing housing, World world) {
-        for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
-            if (entity instanceof EntityPlayer player) {
-                if (world.rand.nextInt(4) < wearsItems(player)) {
-                    continue;
-                }
-
-                player.getFoodStats().addExhaustion(4.0f);
-                player.addPotionEffect(new PotionEffect(Potion.hunger.id, 100));
+        for (EntityPlayer player : getEntities(EntityPlayer.class, genome, housing)) {
+            if (world.rand.nextInt(4) < wearsItems(player)) {
+                continue;
             }
+            player.addExhaustion(4.0f);
+            player.addPotionEffect(new PotionEffect(Potion.hunger.id, 100));
         }
     }
 
     private void onPotionEffect(IBeeGenome genome, IBeeHousing housing, World world, PotionEffect potion) {
-        for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
-            if (entity instanceof EntityPlayer player) {
-                if (world.rand.nextInt(4) < wearsItems(player)) {
-                    continue;
-                }
-                player.addPotionEffect(potion);
+        for (EntityPlayer player : getEntities(EntityPlayer.class, genome, housing)) {
+            if (world.rand.nextInt(4) < wearsItems(player)) {
+                continue;
             }
+            player.addPotionEffect(potion);
         }
     }
 
@@ -611,13 +604,16 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
     public <T extends Entity> List<T> getEntities(Class<T> eClass, IBeeGenome genome, IBeeHousing housing) {
         int[] area = genome.getTerritory();
-        int[] offset = { -Math.round(area[0] / 2f), -Math.round(area[1] / 2f), -Math.round(area[2] / 2f) };
-        int[] min = { housing.getCoordinates().posX + offset[0], housing.getCoordinates().posY + offset[1],
-                housing.getCoordinates().posZ + offset[2] };
-        int[] max = { housing.getCoordinates().posX + offset[0] + area[0],
-                housing.getCoordinates().posY + offset[1] + area[1],
-                housing.getCoordinates().posZ + offset[2] + area[2] };
-        AxisAlignedBB box = AxisAlignedBB.getBoundingBox(min[0], min[1], min[2], max[0], max[1], max[2]);
+        int offsetX = -Math.round(area[0] / 2f);
+        int offsetY = -Math.round(area[1] / 2f);
+        int offsetZ = -Math.round(area[2] / 2f);
+        int minX = housing.getCoordinates().posX + offsetX;
+        int minY = housing.getCoordinates().posY + offsetY;
+        int minZ = housing.getCoordinates().posZ + offsetZ;
+        int maxX = housing.getCoordinates().posX + offsetX + area[0];
+        int maxY = housing.getCoordinates().posY + offsetY + area[1];
+        int maxZ = housing.getCoordinates().posZ + offsetZ + area[2];
+        AxisAlignedBB box = AxisAlignedBB.getBoundingBox(minX, minY, minZ, maxX, maxY, maxZ);
         return housing.getWorld().getEntitiesWithinAABB(eClass, box);
     }
 
