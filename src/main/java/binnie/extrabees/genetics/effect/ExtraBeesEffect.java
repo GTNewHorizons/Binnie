@@ -389,34 +389,27 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
     }
 
     private void onFoodEffect(IBeeGenome genome, IBeeHousing housing) {
-        for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
-            if (entity instanceof EntityPlayer player) {
-                player.getFoodStats().addStats(2, 0.2f);
-            }
+        for (EntityPlayer player : getEntities(EntityPlayer.class, genome, housing)) {
+            player.getFoodStats().addStats(2, 0.2f);
         }
     }
 
     private void onHungerEffect(IBeeGenome genome, IBeeHousing housing, World world) {
-        for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
-            if (entity instanceof EntityPlayer player) {
-                if (world.rand.nextInt(4) < wearsItems(player)) {
-                    continue;
-                }
-
-                player.addExhaustion(4.0f);
-                player.addPotionEffect(new PotionEffect(Potion.hunger.id, 100));
+        for (EntityPlayer player : getEntities(EntityPlayer.class, genome, housing)) {
+            if (world.rand.nextInt(4) < wearsItems(player)) {
+                continue;
             }
+            player.addExhaustion(4.0f);
+            player.addPotionEffect(new PotionEffect(Potion.hunger.id, 100));
         }
     }
 
     private void onPotionEffect(IBeeGenome genome, IBeeHousing housing, World world, PotionEffect potion) {
-        for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
-            if (entity instanceof EntityPlayer player) {
-                if (world.rand.nextInt(4) < wearsItems(player)) {
-                    continue;
-                }
-                player.addPotionEffect(potion);
+        for (EntityPlayer player : getEntities(EntityPlayer.class, genome, housing)) {
+            if (world.rand.nextInt(4) < wearsItems(player)) {
+                continue;
             }
+            player.addPotionEffect(potion);
         }
     }
 
