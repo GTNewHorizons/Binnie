@@ -488,7 +488,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
     public void updateTabs() {
         CompartmentTab tab = getCurrentTab();
-        tabName.setValue(tab.getName());
+        if (!tabName.isFocused()) {
+            tabName.setValue(tab.getName());
+        }
         tabIcon.setItemStack(tab.getIcon());
         tabColour.setValue(tab.getColor());
     }
