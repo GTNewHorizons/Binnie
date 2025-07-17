@@ -93,7 +93,7 @@ public class ModuleCarpentry implements IInitializable {
         BinnieCore.proxy.registerCustomItemRenderer(
                 Item.getItemFromBlock(ExtraTrees.blockStained),
                 new MultipassItemRenderer());
-        MinecraftForge.EVENT_BUS.register(ExtraTrees.blockCarpentry);
+        MinecraftForge.EVENT_BUS.register(ExtraTrees.blockCarpentry.handler);
         BinnieCore.proxy
                 .registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockPanel), new MultipassItemRenderer());
     }
