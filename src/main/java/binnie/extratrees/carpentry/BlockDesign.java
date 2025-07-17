@@ -35,41 +35,16 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
     protected IDesignSystem designSystem;
 
+    public EventHandler handler;
+
     public BlockDesign(IDesignSystem system, Material material) {
         super(material);
         designSystem = system;
+        handler = new EventHandler();
     }
 
     public static int getMetadata(int plank1, int plank2, int design) {
         return plank1 + (plank2 << 9) + (design << 18);
-    }
-
-    @SubscribeEvent
-    public void onClick(PlayerInteractEvent event) {
-        if (event.action != PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
-            return;
-        }
-
-        World world = event.entityPlayer.worldObj;
-        EntityPlayer player = event.entityPlayer;
-        int x = event.x;
-        int y = event.y;
-        int z = event.z;
-        if (!(world.getBlock(x, y, z) instanceof BlockDesign blockDesign)) {
-            return;
-        }
-
-        ItemStack item = player.getHeldItem();
-        if (item == null || !(item.getItem() instanceof IToolHammer)
-                || !((IToolHammer) item.getItem()).isActive(item)) {
-            return;
-        }
-
-        DesignBlock carpentryBlock = blockDesign.getCarpentryBlock(world, x, y, z);
-        TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(x, y, z);
-        carpentryBlock.rotate(event.face, item, player, world, x, y, z);
-        int meta = carpentryBlock.getBlockMetadata(blockDesign.getDesignSystem());
-        tile.setTileMetadata(meta, true);
     }
 
     public abstract ItemStack getCreativeStack(IDesign design);
@@ -159,5 +134,36 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
     @Override
     public int getNumberOfPasses() {
         return 2;
+    }
+
+    public class EventHandler {
+
+        @SubscribeEvent
+        public void onClick(PlayerInteractEvent event) {
+            if (event.action != PlayerInteractEvent.Action.RIGHT_CLICK_BLOCK) {
+                return;
+            }
+
+            World world = event.entityPlayer.worldObj;
+            EntityPlayer player = event.entityPlayer;
+            int x = event.x;
+            int y = event.y;
+            int z = event.z;
+            if (!(world.getBlock(x, y, z) instanceof BlockDesign blockDesign)) {
+                return;
+            }
+
+            ItemStack item = player.getHeldItem();
+            if (item == null || !(item.getItem() instanceof IToolHammer)
+                    || !((IToolHammer) item.getItem()).isActive(item)) {
+                return;
+            }
+
+            DesignBlock carpentryBlock = blockDesign.getCarpentryBlock(world, x, y, z);
+            TileEntityMetadata tile = (TileEntityMetadata) world.getTileEntity(x, y, z);
+            carpentryBlock.rotate(event.face, item, player, world, x, y, z);
+            int meta = carpentryBlock.getBlockMetadata(blockDesign.getDesignSystem());
+            tile.setTileMetadata(meta, true);
+        }
     }
 }

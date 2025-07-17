@@ -81,9 +81,15 @@ public class BinnieCore extends AbstractMod {
             addModule(baseManager);
         }
 
+        MinecraftForge.EVENT_BUS.register(Binnie.Genetics.handler);
+
         addModule(new ModuleCraftGUI());
         addModule(new ModuleStorage());
+
+        ModuleItems moduleItems = new ModuleItems();
         addModule(new ModuleItems());
+        MinecraftForge.EVENT_BUS.register(moduleItems.handler);
+
         if (Loader.isModLoaded("BuildCraft|Silicon")) {
             addModule(new ModuleTrigger());
         }

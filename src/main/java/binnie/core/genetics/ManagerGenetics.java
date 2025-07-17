@@ -40,11 +40,13 @@ public class ManagerGenetics extends ManagerBase {
     private final Map<ISpeciesRoot, BreedingSystem> breedingSystems;
     private final List<IChromosomeType> invalidChromosomeTypes;
     private final Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
+    public EventHandler handler;
 
     public ManagerGenetics() {
         breedingSystems = new LinkedHashMap<>();
         invalidChromosomeTypes = new ArrayList<>();
         chromosomeArray = new LinkedHashMap<>();
+        handler = new EventHandler();
     }
 
     @Override
@@ -140,11 +142,6 @@ public class ManagerGenetics extends ManagerBase {
         return (system == null) ? null : system.getConversion(stack);
     }
 
-    @SubscribeEvent
-    public void onWorldLoad(WorldEvent.Load event) {
-        refreshData();
-    }
-
     private void refreshData() {
         loadAlleles();
         for (BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
@@ -217,6 +214,14 @@ public class ManagerGenetics extends ManagerBase {
             // return o1.getName().compareTo(o2.getName());
             // }
             return o1.getUID().compareTo(o2.getUID());
+        }
+    }
+
+    public class EventHandler {
+
+        @SubscribeEvent
+        public void onWorldLoad(WorldEvent.Load event) {
+            refreshData();
         }
     }
 }

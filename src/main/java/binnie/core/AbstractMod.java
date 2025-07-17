@@ -6,8 +6,6 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
 
-import net.minecraftforge.common.MinecraftForge;
-
 import binnie.core.gui.IBinnieGUID;
 import binnie.core.mod.parser.FieldParser;
 import binnie.core.network.BinniePacketHandler;
@@ -130,6 +128,5 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
     protected void addModule(IInitializable init) {
         modules.add(init);
-        MinecraftForge.EVENT_BUS.register(init);
     }
 }
