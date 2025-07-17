@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
 
 import binnie.Binnie;
 import binnie.core.block.MultipassBlockRenderer;
@@ -45,7 +46,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;
-import net.minecraftforge.common.MinecraftForge;
 
 @Mod(
         modid = BinnieCore.CORE_MODID,
@@ -204,7 +204,8 @@ public class BinnieCore extends AbstractMod {
         }
     }
 
-    public class EventHandler{
+    public class EventHandler {
+
         @SubscribeEvent
         @SideOnly(Side.CLIENT)
         public void handleSpeciesDiscovered(ForestryEvent.SpeciesDiscovered event) {
