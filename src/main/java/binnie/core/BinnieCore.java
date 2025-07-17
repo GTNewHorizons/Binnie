@@ -45,6 +45,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;
+import net.minecraftforge.common.MinecraftForge;
 
 @Mod(
         modid = BinnieCore.CORE_MODID,
@@ -59,6 +60,11 @@ public class BinnieCore extends AbstractMod {
 
     @Mod.Instance("BinnieCore")
     public static BinnieCore instance;
+
+    public BinnieCore() {
+        super();
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
+    }
 
     @SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
     public static BinnieProxy proxy;
@@ -161,23 +167,6 @@ public class BinnieCore extends AbstractMod {
         return list;
     }
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void handleSpeciesDiscovered(ForestryEvent.SpeciesDiscovered event) {
-        try {
-            EntityPlayerMP player = MinecraftServer.getServer().getConfigurationManager()
-                    .func_152612_a(event.username.getName());
-            if (player == null) {
-                return;
-            }
-            event.tracker.synchToPlayer(player);
-            NBTTagCompound nbt = new NBTTagCompound();
-            nbt.setString("species", event.species.getUID());
-        } catch (Exception ex) {
-            // ignored
-        }
-    }
-
     @Override
     public String getChannel() {
         return "BIN";
@@ -198,15 +187,6 @@ public class BinnieCore extends AbstractMod {
         return BinnieCorePacketID.values();
     }
 
-    @SubscribeEvent
-    @SideOnly(Side.CLIENT)
-    public void handleTextureRemap(TextureStitchEvent.Pre event) {
-        if (event.map.getTextureType() == 0) {
-            Binnie.Liquid.reloadIcons(event.map);
-        }
-        Binnie.Resource.registerIcons(event.map, event.map.getTextureType());
-    }
-
     @Override
     protected Class<? extends BinniePacketHandler> getPacketHandler() {
         return PacketHandler.class;
@@ -221,6 +201,34 @@ public class BinnieCore extends AbstractMod {
 
         public PacketHandler() {
             super(instance);
+        }
+    }
+
+    public class EventHandler{
+        @SubscribeEvent
+        @SideOnly(Side.CLIENT)
+        public void handleSpeciesDiscovered(ForestryEvent.SpeciesDiscovered event) {
+            try {
+                EntityPlayerMP player = MinecraftServer.getServer().getConfigurationManager()
+                        .func_152612_a(event.username.getName());
+                if (player == null) {
+                    return;
+                }
+                event.tracker.synchToPlayer(player);
+                NBTTagCompound nbt = new NBTTagCompound();
+                nbt.setString("species", event.species.getUID());
+            } catch (Exception ex) {
+                // ignored
+            }
+        }
+
+        @SubscribeEvent
+        @SideOnly(Side.CLIENT)
+        public void handleTextureRemap(TextureStitchEvent.Pre event) {
+            if (event.map.getTextureType() == 0) {
+                Binnie.Liquid.reloadIcons(event.map);
+            }
+            Binnie.Resource.registerIcons(event.map, event.map.getTextureType());
         }
     }
 }
