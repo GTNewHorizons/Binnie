@@ -2,7 +2,6 @@ package binnie.extratrees.carpentry;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import binnie.core.BinnieCore;
@@ -81,21 +80,18 @@ public class ModuleCarpentry implements IInitializable {
 
     @Override
     public void preInit() {
+        // spotless:off
         ExtraTrees.blockCarpentry = new BlockCarpentry();
         ExtraTrees.blockPanel = new BlockCarpentryPanel();
         ExtraTrees.blockStained = new BlockStainedDesign();
         GameRegistry.registerBlock(ExtraTrees.blockCarpentry, ItemMetadata.class, "carpentry");
         GameRegistry.registerBlock(ExtraTrees.blockPanel, ItemMetadata.class, "panel");
         GameRegistry.registerBlock(ExtraTrees.blockStained, ItemMetadata.class, "stainedglass");
-        BinnieCore.proxy.registerCustomItemRenderer(
-                Item.getItemFromBlock(ExtraTrees.blockCarpentry),
-                new MultipassItemRenderer());
-        BinnieCore.proxy.registerCustomItemRenderer(
-                Item.getItemFromBlock(ExtraTrees.blockStained),
-                new MultipassItemRenderer());
-        MinecraftForge.EVENT_BUS.register(ExtraTrees.blockCarpentry);
-        BinnieCore.proxy
-                .registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockPanel), new MultipassItemRenderer());
+        BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockCarpentry), new MultipassItemRenderer());
+        BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStained), new MultipassItemRenderer());
+        ExtraTrees.blockCarpentry.registerHandler();
+        BinnieCore.proxy.registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockPanel), new MultipassItemRenderer());
+        // spotless:on
     }
 
     @Override

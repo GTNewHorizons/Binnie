@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 
 import binnie.Binnie;
@@ -65,6 +66,11 @@ public class ManagerGenetics extends ManagerBase {
     @Override
     public void postInit() {
         refreshData();
+    }
+
+    @Override
+    public void registerEventHandler() {
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
     public ITreeRoot getTreeRoot() {
@@ -140,11 +146,6 @@ public class ManagerGenetics extends ManagerBase {
         return (system == null) ? null : system.getConversion(stack);
     }
 
-    @SubscribeEvent
-    public void onWorldLoad(WorldEvent.Load event) {
-        refreshData();
-    }
-
     private void refreshData() {
         loadAlleles();
         for (BreedingSystem system : Binnie.Genetics.getActiveSystems()) {
@@ -217,6 +218,14 @@ public class ManagerGenetics extends ManagerBase {
             // return o1.getName().compareTo(o2.getName());
             // }
             return o1.getUID().compareTo(o2.getUID());
+        }
+    }
+
+    public class EventHandler {
+
+        @SubscribeEvent
+        public void onWorldLoad(WorldEvent.Load event) {
+            refreshData();
         }
     }
 }
