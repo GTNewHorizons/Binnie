@@ -60,10 +60,6 @@ public class BinnieCore extends AbstractMod {
     @Mod.Instance("BinnieCore")
     public static BinnieCore instance;
 
-    public BinnieCore() {
-        MinecraftForge.EVENT_BUS.register(new EventHandler());
-    }
-
     @SidedProxy(clientSide = "binnie.core.proxy.BinnieProxyClient", serverSide = "binnie.core.proxy.BinnieProxyServer")
     public static BinnieProxy proxy;
 
@@ -72,6 +68,10 @@ public class BinnieCore extends AbstractMod {
     public static MachineGroup packageCompartment;
     public static ItemGenesis genesis;
     public static ItemFieldKit fieldKit;
+
+    public BinnieCore() {
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
+    }
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
