@@ -64,6 +64,10 @@ public class ExtraBees extends AbstractMod {
     public static Item dictionary;
     public static Item itemMisc;
 
+    public ExtraBees() {
+        ExtraBees.instance = this;
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         addModule(new ModuleCore());

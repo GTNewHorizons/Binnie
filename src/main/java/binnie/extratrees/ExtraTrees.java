@@ -87,6 +87,10 @@ public class ExtraTrees extends AbstractMod {
     public static int fenceID;
     public static int stairsID;
 
+    public ExtraTrees() {
+        ExtraTrees.instance = this;
+    }
+
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         addModule(new ModuleBlocks());
