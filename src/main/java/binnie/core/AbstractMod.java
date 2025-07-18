@@ -128,5 +128,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
     protected void addModule(IInitializable init) {
         modules.add(init);
+        init.registerEventHandler();
     }
 }

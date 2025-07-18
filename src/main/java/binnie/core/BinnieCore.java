@@ -79,14 +79,9 @@ public class BinnieCore extends AbstractMod {
             addModule(baseManager);
         }
 
-        Binnie.Genetics.registerHandler();
-
         addModule(new ModuleCraftGUI());
         addModule(new ModuleStorage());
-        ModuleItems moduleItems = new ModuleItems();
-        addModule(moduleItems);
-        moduleItems.registerHandler();
-
+        addModule(new ModuleItems());
         if (Loader.isModLoaded("BuildCraft|Silicon")) {
             addModule(new ModuleTrigger());
         }

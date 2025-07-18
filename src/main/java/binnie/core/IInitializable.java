@@ -7,4 +7,6 @@ public interface IInitializable {
     void init();
 
     void postInit();
+
+    default void registerEventHandler() {}
 }

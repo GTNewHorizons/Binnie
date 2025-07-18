@@ -22,10 +22,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModuleItems implements IInitializable {
 
-    public void registerHandler() {
-        MinecraftForge.EVENT_BUS.register(new EventHandler());
-    }
-
     @Override
     public void preInit() {
         BinnieCore.fieldKit = new ItemFieldKit();
@@ -52,6 +48,11 @@ public class ModuleItems implements IInitializable {
                 Items.paper,
                 's',
                 new ItemStack(Items.dye, 1));
+    }
+
+    @Override
+    public void registerEventHandler() {
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
     public static class EventHandler {

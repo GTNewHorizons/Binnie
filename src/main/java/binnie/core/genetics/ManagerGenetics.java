@@ -48,10 +48,6 @@ public class ManagerGenetics extends ManagerBase {
         chromosomeArray = new LinkedHashMap<>();
     }
 
-    public void registerHandler() {
-        MinecraftForge.EVENT_BUS.register(new EventHandler());
-    }
-
     @Override
     public void init() {
         if (BinnieCore.isApicultureActive()) {
@@ -70,6 +66,11 @@ public class ManagerGenetics extends ManagerBase {
     @Override
     public void postInit() {
         refreshData();
+    }
+
+    @Override
+    public void registerEventHandler() {
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
     public ITreeRoot getTreeRoot() {
