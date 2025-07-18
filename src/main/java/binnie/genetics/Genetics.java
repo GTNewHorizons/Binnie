@@ -51,10 +51,6 @@ public class Genetics extends AbstractMod {
     public static Item registry;
     public static Item masterRegistry;
 
-    public Genetics() {
-        Genetics.instance = this;
-    }
-
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         addModule(new ModuleItem());
