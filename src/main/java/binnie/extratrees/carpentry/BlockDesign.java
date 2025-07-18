@@ -136,7 +136,7 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
         return 2;
     }
 
-    public class EventHandler {
+    public static class EventHandler {
 
         @SubscribeEvent
         public void onClick(PlayerInteractEvent event) {

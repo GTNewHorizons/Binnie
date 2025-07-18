@@ -208,7 +208,7 @@ public class Botany extends AbstractMod {
         }
     }
 
-    public class EventHandler {
+    public static class EventHandler {
 
         @SubscribeEvent
         public void onShearFlower(PlayerInteractEvent event) {

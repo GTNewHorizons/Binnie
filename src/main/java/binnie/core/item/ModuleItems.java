@@ -55,7 +55,7 @@ public class ModuleItems implements IInitializable {
                 new ItemStack(Items.dye, 1));
     }
 
-    public class EventHandler {
+    public static class EventHandler {
 
         @SubscribeEvent
         public void onUseFieldKit(PlayerInteractEvent event) {

@@ -210,7 +210,7 @@ public class BinnieCore extends AbstractMod {
         }
     }
 
-    public class EventHandler {
+    public static class EventHandler {
 
         @SubscribeEvent
         @SideOnly(Side.CLIENT)
