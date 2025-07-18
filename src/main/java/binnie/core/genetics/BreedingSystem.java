@@ -57,7 +57,7 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 
     public BreedingSystem() {
         Binnie.Genetics.registerBreedingSystem(this);
-        MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
     public String getChromosomeName(IChromosomeType chromo) {
@@ -294,13 +294,16 @@ public abstract class BreedingSystem implements IItemStackRepresentative {
 
     public abstract Class<? extends IBreedingTracker> getTrackerClass();
 
-    @SubscribeEvent
-    public void onSyncBreedingTracker(ForestryEvent.SyncedBreedingTracker event) {
-        IBreedingTracker tracker = event.tracker;
-        if (!getTrackerClass().isInstance(tracker)) {
-            return;
+    public class EventHandler {
+
+        @SubscribeEvent
+        public void onSyncBreedingTracker(ForestryEvent.SyncedBreedingTracker event) {
+            IBreedingTracker tracker = event.tracker;
+            if (!getTrackerClass().isInstance(tracker)) {
+                return;
+            }
+            syncTracker(tracker);
         }
-        syncTracker(tracker);
     }
 
     public void syncTracker(IBreedingTracker tracker) {
