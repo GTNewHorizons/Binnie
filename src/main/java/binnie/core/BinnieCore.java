@@ -61,7 +61,6 @@ public class BinnieCore extends AbstractMod {
     public static BinnieCore instance;
 
     public BinnieCore() {
-        super();
         MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 

@@ -92,7 +92,6 @@ public class Botany extends AbstractMod {
     public static BlockCeramicBrick ceramicBrick;
 
     public Botany() {
-        super();
         MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
