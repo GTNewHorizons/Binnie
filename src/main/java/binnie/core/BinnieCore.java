@@ -5,7 +5,6 @@ import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -222,8 +221,6 @@ public class BinnieCore extends AbstractMod {
                     return;
                 }
                 event.tracker.synchToPlayer(player);
-                NBTTagCompound nbt = new NBTTagCompound();
-                nbt.setString("species", event.species.getUID());
             } catch (Exception ex) {
                 // ignored
             }
