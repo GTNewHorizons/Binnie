@@ -6,6 +6,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
 import binnie.botany.Botany;
@@ -21,10 +22,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModuleItems implements IInitializable {
 
-    public EventHandler handler;
-
-    public ModuleItems() {
-        handler = new EventHandler();
+    public void registerHandler() {
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
     @Override

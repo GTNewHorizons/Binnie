@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
@@ -35,12 +36,13 @@ public abstract class BlockDesign extends BlockMetadata implements IMultipassBlo
 
     protected IDesignSystem designSystem;
 
-    public EventHandler handler;
-
     public BlockDesign(IDesignSystem system, Material material) {
         super(material);
         designSystem = system;
-        handler = new EventHandler();
+    }
+
+    public void registerHandler() {
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
     public static int getMetadata(int plank1, int plank2, int design) {

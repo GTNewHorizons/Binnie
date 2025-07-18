@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 
 import binnie.Binnie;
@@ -40,13 +41,15 @@ public class ManagerGenetics extends ManagerBase {
     private final Map<ISpeciesRoot, BreedingSystem> breedingSystems;
     private final List<IChromosomeType> invalidChromosomeTypes;
     private final Map<ISpeciesRoot, Map<IChromosomeType, List<IAllele>>> chromosomeArray;
-    public EventHandler handler;
 
     public ManagerGenetics() {
         breedingSystems = new LinkedHashMap<>();
         invalidChromosomeTypes = new ArrayList<>();
         chromosomeArray = new LinkedHashMap<>();
-        handler = new EventHandler();
+    }
+
+    public void registerHandler() {
+        MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
     @Override
