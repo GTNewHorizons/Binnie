@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.IArea;
+import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
@@ -48,7 +49,7 @@ public class WindowAlvearyMutator extends Window {
                 I18N.localise("extrabees.machine.alveay.mutator.mutagens"),
                 TextJustification.MIDDLE_CENTER).setColor(0x555555);
         int size = AlvearyMutator.getMutagens().size();
-        int w = size * 18;
+        int w = size * 17;
 
         if (size <= 0) {
             return;
@@ -58,8 +59,9 @@ public class WindowAlvearyMutator extends Window {
         for (ItemStack stack : AlvearyMutator.getMutagens()) {
             ControlItemDisplay display = new ControlItemDisplay(this, x, 66.0f);
             display.setItemStack(stack);
+            display.setSize(new IPoint(14, 14));
             display.hastooltip = true;
-            x += 18.0f;
+            x += 17.0f;
         }
     }
 
