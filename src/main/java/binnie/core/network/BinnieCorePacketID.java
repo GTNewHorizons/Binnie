@@ -58,13 +58,13 @@ public enum BinnieCorePacketID implements IPacketID {
         if (context.side == Side.CLIENT) {
             final EntityPlayer player = BinnieCore.proxy.getPlayer();
 
-            if (player.openContainer instanceof ContainerCraftGUI containerCraftGUI) {
+            if (player.openContainer instanceof ContainerCraftGUI gui) {
                 final MessageCraftGUI packet = new MessageCraftGUI(message);
                 final NBTTagCompound tagCompound = packet.getTagCompound();
 
                 if (tagCompound == null) return;
 
-                containerCraftGUI.recieveNBT(Side.CLIENT, player, tagCompound);
+                gui.recieveNBT(Side.CLIENT, player, tagCompound);
             }
         } else {
             MessageCraftGUI packet = new MessageCraftGUI(message);
@@ -72,11 +72,11 @@ public enum BinnieCorePacketID implements IPacketID {
 
             if (tagCompound == null) return;
 
-            if (context.netHandler instanceof NetHandlerPlayServer netHandlerPlayServer) {
-                EntityPlayer player = netHandlerPlayServer.playerEntity;
+            if (context.netHandler instanceof NetHandlerPlayServer server) {
+                EntityPlayer player = server.playerEntity;
 
-                if (player.openContainer instanceof ContainerCraftGUI containerCraftGUI) {
-                    containerCraftGUI.recieveNBT(Side.SERVER, player, tagCompound);
+                if (player.openContainer instanceof ContainerCraftGUI gui) {
+                    gui.recieveNBT(Side.SERVER, player, tagCompound);
                 }
             }
         }
