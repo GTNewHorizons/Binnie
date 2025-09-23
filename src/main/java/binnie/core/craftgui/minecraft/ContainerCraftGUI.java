@@ -86,10 +86,7 @@ public class ContainerCraftGUI extends Container {
 
     @Override
     public Slot getSlot(int index) {
-        if (index < 0 || index >= inventorySlots.size()) {
-            return null;
-        }
-        return inventorySlots.get(index);
+        return index < 0 || index >= inventorySlots.size() ? null : inventorySlots.get(index);
     }
 
     @Override
