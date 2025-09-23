@@ -109,20 +109,17 @@ public class ContainerCraftGUI extends Container {
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
         WindowInventory inventory = window.getWindowInventory();
+
         for (int i = 0; i < inventory.getSizeInventory(); ++i) {
-            if (!inventory.dispenseOnClose(i)) {
-                continue;
-            }
+            if (!inventory.dispenseOnClose(i)) continue;
 
-            ItemStack stack = inventory.getStackInSlot(i);
-            if (stack == null) {
-                continue;
-            }
+            final ItemStack stack = inventory.getStackInSlot(i);
+            if (stack == null) continue;
 
-            stack = new TransferRequest(stack, player.inventory).transfer(true);
-            if (stack != null) {
-                player.dropPlayerItemWithRandomChoice(stack, false);
-            }
+            final ItemStack newStack = new TransferRequest(stack, player.inventory).transfer(true);
+            if (newStack == null) continue;
+
+            player.dropPlayerItemWithRandomChoice(newStack, false);
         }
     }
 
