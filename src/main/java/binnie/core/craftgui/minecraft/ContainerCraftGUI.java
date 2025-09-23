@@ -337,7 +337,8 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void onProcessUpdate(NBTTagCompound nbt) {
-        (syncedProcess = new ProcessInfo()).readFromNBT(nbt);
+        syncedProcess = new ProcessInfo();
+        syncedProcess.readFromNBT(nbt);
     }
 
     public void onPowerUpdate(NBTTagCompound nbt) {
