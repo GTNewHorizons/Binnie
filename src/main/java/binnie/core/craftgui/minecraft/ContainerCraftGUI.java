@@ -279,7 +279,7 @@ public class ContainerCraftGUI extends Container {
 
             if (nbtValue.equals(nbtValuePrev)) continue;
 
-            for (Object crafter : crafters) {
+            for (ICrafting crafter : crafters) {
                 if (crafter instanceof EntityPlayerMP playerMP) {
                     final MessageContainerUpdate packet = new MessageContainerUpdate(nbtValue);
                     BinnieCore.proxy.sendToPlayer(packet, playerMP);
