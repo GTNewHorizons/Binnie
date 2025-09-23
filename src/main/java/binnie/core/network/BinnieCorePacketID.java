@@ -55,23 +55,18 @@ public enum BinnieCorePacketID implements IPacketID {
     }
 
     private static void processCraftGUIAction(MessageBinnie message, MessageContext context) {
+        final MessageCraftGUI packet = new MessageCraftGUI(message);
+        final NBTTagCompound tagCompound = packet.getTagCompound();
+
+        if (tagCompound == null) return;
+
         if (context.side == Side.CLIENT) {
             final EntityPlayer player = BinnieCore.proxy.getPlayer();
 
             if (player.openContainer instanceof ContainerCraftGUI gui) {
-                final MessageCraftGUI packet = new MessageCraftGUI(message);
-                final NBTTagCompound tagCompound = packet.getTagCompound();
-
-                if (tagCompound == null) return;
-
                 gui.recieveNBT(Side.CLIENT, player, tagCompound);
             }
         } else {
-            final MessageCraftGUI packet = new MessageCraftGUI(message);
-            final NBTTagCompound tagCompound = packet.getTagCompound();
-
-            if (tagCompound == null) return;
-
             if (context.netHandler instanceof NetHandlerPlayServer server) {
                 final EntityPlayer player = server.playerEntity;
 
