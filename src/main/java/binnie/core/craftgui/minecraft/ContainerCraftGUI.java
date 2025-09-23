@@ -174,11 +174,9 @@ public class ContainerCraftGUI extends Container {
     }
 
     private TransferRequest getShiftClickRequest(EntityPlayer player, int index) {
-        if (index < 0) {
-            return null;
-        }
+        if (index < 0) return null;
 
-        Slot shiftClickedSlot = (Slot) inventorySlots.get(index);
+        Slot shiftClickedSlot = inventorySlots.get(index);
         ItemStack itemstack = null;
         if (shiftClickedSlot.getHasStack()) {
             itemstack = shiftClickedSlot.getStack().copy();
