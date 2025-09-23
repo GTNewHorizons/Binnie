@@ -116,8 +116,8 @@ public class ContainerCraftGUI extends Container {
     @Override
     public ItemStack slotClick(int slotNum, int mouseButton, int modifier, EntityPlayer player) {
         Slot slot = getSlot(slotNum);
-        if (slot instanceof CustomSlot && ((CustomSlot) slot).handleClick()) {
-            ((CustomSlot) slot).onSlotClick(this, mouseButton, modifier, player);
+        if (slot instanceof CustomSlot customSlot && customSlot.handleClick()) {
+            customSlot.onSlotClick(this, mouseButton, modifier, player);
             return player.inventory.getItemStack();
         }
         return super.slotClick(slotNum, mouseButton, modifier, player);
