@@ -207,18 +207,21 @@ public class ContainerCraftGUI extends Container {
         return request;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     public ItemStack tankClick(EntityPlayer player, int slotID) {
-        if (player.inventory.getItemStack() == null) {
-            return null;
-        }
+        if (player.inventory.getItemStack() == null) return null;
 
         ItemStack heldItem = player.inventory.getItemStack().copy();
-        heldItem = new TransferRequest(heldItem, window.getInventory()).setOrigin(player.inventory)
-                .setTargetSlots(new int[0]).setTargetTanks(new int[] { slotID }).transfer(true);
+        IInventory windowInventory = window.getInventory();
+        heldItem = new TransferRequest(heldItem, windowInventory).setOrigin(player.inventory).setTargetSlots(new int[0])
+                .setTargetTanks(new int[] { slotID }).transfer(true);
+
         player.inventory.setItemStack(heldItem);
-        if (player instanceof EntityPlayerMP) {
-            ((EntityPlayerMP) player).updateHeldItem();
+
+        if (player instanceof EntityPlayerMP entityPlayerMP) {
+            entityPlayerMP.updateHeldItem();
         }
+
         return heldItem;
     }
 
