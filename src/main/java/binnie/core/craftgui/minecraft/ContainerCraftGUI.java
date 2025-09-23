@@ -250,7 +250,7 @@ public class ContainerCraftGUI extends Container {
         } else if (name.equals("mouse-over-slot")) {
             onMouseOverSlot(player, action);
         } else if (name.equals("shift-click-info")) {
-            onRecieveShiftClickHighlights(player, action);
+            onReceiveShiftClickHighlights(player, action);
         }
         return false;
     }
@@ -441,7 +441,7 @@ public class ContainerCraftGUI extends Container {
         syncedNBT.put("shift-click-info", nbt);
     }
 
-    private void onRecieveShiftClickHighlights(EntityPlayer player, NBTTagCompound data) {
+    private void onReceiveShiftClickHighlights(EntityPlayer player, NBTTagCompound data) {
         ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).clear();
         for (int slotnumber : data.getIntArray("slots")) {
             ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).add(slotnumber);
@@ -458,16 +458,16 @@ public class ContainerCraftGUI extends Container {
         return null;
     }
 
-    public void recieveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
+    public void receiveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
         String name = action.getString("type");
         if (handleNBT(side, player, name, action)) {
             return;
         }
 
-        window.recieveGuiNBT(getSide(), player, name, action);
-        INetwork.RecieveGuiNBT machine = Machine.getInterface(INetwork.RecieveGuiNBT.class, window.getInventory());
+        window.receiveGuiNBT(getSide(), player, name, action);
+        INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, window.getInventory());
         if (machine != null) {
-            machine.recieveGuiNBT(getSide(), player, name, action);
+            machine.receiveGuiNBT(getSide(), player, name, action);
         }
     }
 

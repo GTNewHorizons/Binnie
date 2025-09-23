@@ -49,13 +49,13 @@ public class WindowSequencer extends WindowMachine {
     }
 
     @Override
-    public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
+    public void receiveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
         if (side == Side.CLIENT && name.equals("username")) {
             slotText.setValue(
                     EnumChatFormatting.DARK_GRAY
                             + I18N.localise("genetics.machine.sequencer.gui.sequensedBy", nbt.getString("username")));
         }
-        super.recieveGuiNBT(side, player, name, nbt);
+        super.receiveGuiNBT(side, player, name, nbt);
     }
 
     @Override

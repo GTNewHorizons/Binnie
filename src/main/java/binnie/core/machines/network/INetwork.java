@@ -21,11 +21,11 @@ public interface INetwork {
         void syncFromNBT(NBTTagCompound nbt);
     }
 
-    interface RecieveGuiNBT {
+    interface ReceiveGuiNBT {
 
-        void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt);
+        void receiveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt);
     }
 
-    interface GuiNBT extends RecieveGuiNBT, SendGuiNBT {
+    interface GuiNBT extends ReceiveGuiNBT, SendGuiNBT {
     }
 }

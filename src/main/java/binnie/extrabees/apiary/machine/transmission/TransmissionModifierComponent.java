@@ -48,8 +48,8 @@ public class TransmissionModifierComponent extends ComponentBeeModifier implemen
         }
 
         for (IEnergyHandler handler : handlers) {
-            int recieved = handler.receiveEnergy(ForgeDirection.NORTH, output, false);
-            getUtil().getPoweredMachine().receiveEnergy(ForgeDirection.NORTH, -recieved, false);
+            int received = handler.receiveEnergy(ForgeDirection.NORTH, output, false);
+            getUtil().getPoweredMachine().receiveEnergy(ForgeDirection.NORTH, -received, false);
             energy = getUtil().getPoweredMachine().getEnergyStored(ForgeDirection.NORTH);
             if (energy <= 0) {
                 return;

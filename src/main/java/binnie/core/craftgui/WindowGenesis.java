@@ -175,8 +175,8 @@ public class WindowGenesis extends Window {
     }
 
     @Override
-    public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
-        super.recieveGuiNBT(side, player, name, nbt);
+    public void receiveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
+        super.receiveGuiNBT(side, player, name, nbt);
         if (side == Side.SERVER && name.equals("genesis")) {
             ItemStack stack = ItemStack.loadItemStackFromNBT(nbt);
             InventoryPlayer playerInv = player.inventory;
