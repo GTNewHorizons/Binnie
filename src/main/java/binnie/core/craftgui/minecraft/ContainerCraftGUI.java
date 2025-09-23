@@ -37,42 +37,29 @@ import cpw.mods.fml.relauncher.Side;
 public class ContainerCraftGUI extends Container {
 
     private final Window window;
-    private final Map<String, NBTTagCompound> syncedNBT;
-    private final Map<String, NBTTagCompound> sentNBT;
-    private final Map<Integer, TankInfo> syncedTanks;
-    private PowerInfo syncedPower;
-    private ProcessInfo syncedProcess;
-    private int errorType;
-    private ErrorState error;
-    private int mousedOverSlotNumber;
+    private final Map<String, NBTTagCompound> syncedNBT = new HashMap<>();
+    private final Map<String, NBTTagCompound> sentNBT = new HashMap<>();
+    private final Map<Integer, TankInfo> syncedTanks = new HashMap<>();
+    private PowerInfo syncedPower = new PowerInfo();
+    private ProcessInfo syncedProcess = new ProcessInfo();
+    private int errorType = 0;
+    private ErrorState error = null;
+    private int mousedOverSlotNumber = -1;
 
     public ContainerCraftGUI(Window window) {
         this.window = window;
-        syncedNBT = new HashMap<>();
-        sentNBT = new HashMap<>();
-        syncedTanks = new HashMap<>();
-        syncedPower = new PowerInfo();
-        syncedProcess = new ProcessInfo();
-        errorType = 0;
-        error = null;
-        mousedOverSlotNumber = -1;
-        IMachine machine = Machine.getMachine(window.getInventory());
-        if (getSide() != Side.SERVER) {
-            return;
-        }
 
-        inventoryItemStacks = new ListMap<>();
-        inventorySlots = new ListMap<>();
-        if (machine == null) {
-            return;
-        }
+        if (!window.isServer()) return;
+
+        IMachine machine = Machine.getMachine(window.getInventory());
+        if (machine == null) return;
 
         GameProfile user = machine.getOwner();
-        if (user != null) {
-            NBTTagCompound nbt = new NBTTagCompound();
-            nbt.setString("username", user.getName());
-            sendNBTToClient("username", nbt);
-        }
+        if (user == null) return;
+
+        NBTTagCompound nbt = new NBTTagCompound();
+        nbt.setString("username", user.getName());
+        sendNBTToClient("username", nbt);
     }
 
     @Override
@@ -193,8 +180,8 @@ public class ContainerCraftGUI extends Container {
                     .setTargetSlots(target);
         }
 
-        if (window instanceof IWindowAffectsShiftClick) {
-            ((IWindowAffectsShiftClick) window).alterRequest(request);
+        if (window instanceof IWindowAffectsShiftClick iWindowAffectsShiftClick) {
+            iWindowAffectsShiftClick.alterRequest(request);
         }
         return request;
     }
