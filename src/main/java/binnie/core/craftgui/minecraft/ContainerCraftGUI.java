@@ -398,9 +398,7 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void setMouseOverSlot(Slot slot) {
-        if (slot.slotNumber == mousedOverSlotNumber) {
-            return;
-        }
+        if (slot.slotNumber == mousedOverSlotNumber) return;
 
         mousedOverSlotNumber = slot.slotNumber;
         ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).clear();
