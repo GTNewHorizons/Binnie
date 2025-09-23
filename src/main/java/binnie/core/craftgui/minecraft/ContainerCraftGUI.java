@@ -222,7 +222,7 @@ public class ContainerCraftGUI extends Container {
         return heldItem;
     }
 
-    public boolean handleNBT(Side side, EntityPlayer player, String name, NBTTagCompound action) {
+    public void handleNBT(Side side, EntityPlayer player, String name, NBTTagCompound action) {
         if (side == Side.SERVER) {
             if (name.equals("tank-click")) {
                 tankClick(player, action.getByte("id"));
@@ -249,8 +249,6 @@ public class ContainerCraftGUI extends Container {
                 if (name.contains("tank-update")) onTankUpdate(action);
             }
         }
-
-        return false;
     }
 
     @Override
@@ -457,10 +455,7 @@ public class ContainerCraftGUI extends Container {
 
     public void receiveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
         String name = action.getString("type");
-        if (handleNBT(side, player, name, action)) {
-            return;
-        }
-
+        handleNBT(side, player, name, action);
         window.receiveGuiNBT(getSide(), player, name, action);
         INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, window.getInventory());
         if (machine != null) {
