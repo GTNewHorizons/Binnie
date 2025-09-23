@@ -287,21 +287,22 @@ public class ContainerCraftGUI extends Container {
 
         Map<String, NBTTagCompound> sentThisTime = new HashMap<>();
         for (Map.Entry<String, NBTTagCompound> nbt : syncedNBT.entrySet()) {
-            nbt.getValue().setString("type", nbt.getKey());
-            boolean shouldSend = true;
-            NBTTagCompound lastSent = sentNBT.get(nbt.getKey());
-            if (lastSent != null) {
-                shouldSend = !lastSent.equals(nbt.getValue());
+            final NBTTagCompound nbtValue = nbt.getValue();
+            final String nbtKey = nbt.getKey();
+            final NBTTagCompound nbtValuePrev = sentNBT.get(nbtKey);
+
+            nbtValue.setString("type", nbtKey);
+
+            if (nbtValue.equals(nbtValuePrev)) continue;
+
+            for (Object crafter : crafters) {
+                if (crafter instanceof EntityPlayerMP playerMP) {
+                    final MessageContainerUpdate packet = new MessageContainerUpdate(nbtValue);
+                    BinnieCore.proxy.sendToPlayer(packet, playerMP);
+                }
             }
 
-            if (shouldSend) {
-                for (Object crafter : crafters) {
-                    if (crafter instanceof EntityPlayerMP playerMP) {
-                        BinnieCore.proxy.sendToPlayer(new MessageContainerUpdate(nbt.getValue()), playerMP);
-                    }
-                }
-                sentThisTime.put(nbt.getKey(), nbt.getValue());
-            }
+            sentThisTime.put(nbtKey, nbtValue);
         }
 
         sentNBT.putAll(sentThisTime);
