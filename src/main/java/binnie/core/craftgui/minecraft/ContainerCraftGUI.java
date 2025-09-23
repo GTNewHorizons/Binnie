@@ -278,10 +278,9 @@ public class ContainerCraftGUI extends Container {
             if (error != null) syncedNBT.put("error-update", createErrorNBT(error));
         }
 
-        INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, window.getInventory());
-        if (machineSync != null) {
-            machineSync.sendGuiNBT(syncedNBT);
-        }
+        INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, inventory);
+
+        if (machineSync != null) machineSync.sendGuiNBT(syncedNBT);
 
         Map<String, NBTTagCompound> sentThisTime = new HashMap<>();
         for (Map.Entry<String, NBTTagCompound> nbt : syncedNBT.entrySet()) {
