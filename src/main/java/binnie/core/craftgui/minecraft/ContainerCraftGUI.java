@@ -239,19 +239,17 @@ public class ContainerCraftGUI extends Container {
             }
         }
 
-        if (name.contains("tank-update")) {
-            onTankUpdate(action);
-        } else if (name.equals("power-update")) {
-            onPowerUpdate(action);
-        } else if (name.equals("process-update")) {
-            onProcessUpdate(action);
-        } else if (name.equals("error-update")) {
-            onErrorUpdate(action);
-        } else if (name.equals("mouse-over-slot")) {
-            onMouseOverSlot(player, action);
-        } else if (name.equals("shift-click-info")) {
-            onReceiveShiftClickHighlights(player, action);
+        switch (name) {
+            case "power-update" -> onPowerUpdate(action);
+            case "process-update" -> onProcessUpdate(action);
+            case "error-update" -> onErrorUpdate(action);
+            case "mouse-over-slot" -> onMouseOverSlot(player, action);
+            case "shift-click-info" -> onReceiveShiftClickHighlights(player, action);
+            default -> {
+                if (name.contains("tank-update")) onTankUpdate(action);
+            }
         }
+
         return false;
     }
 
