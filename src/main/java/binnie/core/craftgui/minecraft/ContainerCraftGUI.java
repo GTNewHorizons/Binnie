@@ -492,16 +492,13 @@ public class ContainerCraftGUI extends Container {
         return null;
     }
 
-    private Slot getOrCreateSlot(InventoryType type, int index, int slotNumber) {
-        IInventory inventory = getInventory(type);
-        if (inventorySlots.get(slotNumber) != null) {
-            return null;
-        }
+    private void getOrCreateSlot(InventoryType type, int index, int slotNumber) {
+        if (inventorySlots.get(slotNumber) != null) return;
 
+        IInventory inventory = getInventory(type);
         Slot slot = new CustomSlot(inventory, index);
         slot.slotNumber = slotNumber;
         inventorySlots.add(slotNumber, slot);
         inventoryItemStacks.add(slotNumber, null);
-        return slot;
     }
 }
