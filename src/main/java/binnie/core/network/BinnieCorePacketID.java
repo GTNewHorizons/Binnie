@@ -37,8 +37,8 @@ public enum BinnieCorePacketID implements IPacketID {
     }
 
     private static void processNetworkEntityUpdate(MessageBinnie message) {
-        MessageUpdate packet = new MessageUpdate(message);
-        TileEntity tile = packet.getTileEntity(BinnieCore.proxy.getWorld());
+        final MessageUpdate packet = new MessageUpdate(message);
+        final TileEntity tile = packet.getTileEntity(BinnieCore.proxy.getWorld());
 
         if (tile instanceof INetworkedEntity iNetworkedEntity) {
             iNetworkedEntity.readFromPacket(packet.payload);
@@ -46,8 +46,8 @@ public enum BinnieCorePacketID implements IPacketID {
     }
 
     private static void processTileMetadata(MessageBinnie message) {
-        MessageMetadata packet = new MessageMetadata(message);
-        TileEntity tile = packet.getTileEntity(BinnieCore.proxy.getWorld());
+        final MessageMetadata packet = new MessageMetadata(message);
+        final TileEntity tile = packet.getTileEntity(BinnieCore.proxy.getWorld());
 
         if (tile instanceof TileEntityMetadata tileEntityMetadata) {
             tileEntityMetadata.setTileMetadata(packet.meta, true);
@@ -67,13 +67,13 @@ public enum BinnieCorePacketID implements IPacketID {
                 gui.recieveNBT(Side.CLIENT, player, tagCompound);
             }
         } else {
-            MessageCraftGUI packet = new MessageCraftGUI(message);
-            NBTTagCompound tagCompound = packet.getTagCompound();
+            final MessageCraftGUI packet = new MessageCraftGUI(message);
+            final NBTTagCompound tagCompound = packet.getTagCompound();
 
             if (tagCompound == null) return;
 
             if (context.netHandler instanceof NetHandlerPlayServer server) {
-                EntityPlayer player = server.playerEntity;
+                final EntityPlayer player = server.playerEntity;
 
                 if (player.openContainer instanceof ContainerCraftGUI gui) {
                     gui.recieveNBT(Side.SERVER, player, tagCompound);
@@ -85,16 +85,16 @@ public enum BinnieCorePacketID implements IPacketID {
     private static void processTileDescriptionSync(MessageBinnie message, MessageContext context) {
         if (!context.side.isClient()) return;
 
-        MessageTileNBT packet = new MessageTileNBT(message);
-        NBTTagCompound tagCompound = packet.getTagCompound();
+        final MessageTileNBT packet = new MessageTileNBT(message);
+        final NBTTagCompound tagCompound = packet.getTagCompound();
 
         if (tagCompound == null) return;
 
-        TileEntity tile = packet.getTarget(BinnieCore.proxy.getWorld());
+        final TileEntity tile = packet.getTarget(BinnieCore.proxy.getWorld());
 
         if (tile == null) return;
 
-        IMachine machine = Machine.getMachine(tile);
+        final IMachine machine = Machine.getMachine(tile);
 
         if (machine instanceof INetwork.TilePacketSync tps) {
             tps.syncFromNBT(tagCompound);
