@@ -258,17 +258,20 @@ public class ContainerCraftGUI extends Container {
     @Override
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
-        ITankMachine tanks = Machine.getInterface(ITankMachine.class, window.getInventory());
-        IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, window.getInventory());
-        IErrorStateSource error = Machine.getInterface(IErrorStateSource.class, window.getInventory());
-        IProcess process = Machine.getInterface(IProcess.class, window.getInventory());
-        if (tanks != null && window.isServer()) {
-            for (int i = 0; i < tanks.getTankInfos().length; ++i) {
-                TankInfo tank = tanks.getTankInfos()[i];
-                if (!getTankInfo(i).equals(tank)) {
-                    syncedNBT.put("tank-update-" + i, createTankNBT(i, tank));
-                    syncedTanks.put(i, tank);
-                }
+
+        IInventory inventory = window.getInventory();
+        ITankMachine tanks = Machine.getInterface(ITankMachine.class, inventory);
+        IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, inventory);
+        IErrorStateSource error = Machine.getInterface(IErrorStateSource.class, inventory);
+        IProcess process = Machine.getInterface(IProcess.class, inventory);
+
+        if (window.isServer() && tanks != null) {
+            final TankInfo[] tankInfos = tanks.getTankInfos();
+            for (int i = 0; i < tankInfos.length; ++i) {
+                final TankInfo tank = tankInfos[i];
+                if (this.getTankInfo(i).equals(tank)) continue;
+                syncedNBT.put("tank-update-" + i, createTankNBT(i, tank));
+                syncedTanks.put(i, tank);
             }
         }
 
