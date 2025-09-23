@@ -438,8 +438,8 @@ public class ContainerCraftGUI extends Container {
 
     private void onReceiveShiftClickHighlights(EntityPlayer player, NBTTagCompound data) {
         ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).clear();
-        for (int slotnumber : data.getIntArray("slots")) {
-            ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).add(slotnumber);
+        for (int slotIndex : data.getIntArray("slots")) {
+            ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).add(slotIndex);
         }
     }
 
@@ -458,9 +458,8 @@ public class ContainerCraftGUI extends Container {
         handleNBT(side, player, name, action);
         window.receiveGuiNBT(getSide(), player, name, action);
         INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, window.getInventory());
-        if (machine != null) {
-            machine.receiveGuiNBT(getSide(), player, name, action);
-        }
+        if (machine == null) return;
+        machine.receiveGuiNBT(getSide(), player, name, action);
     }
 
     public Slot getOrCreateSlot(InventoryType type, int index) {
