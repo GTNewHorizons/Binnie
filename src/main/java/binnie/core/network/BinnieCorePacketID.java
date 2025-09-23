@@ -64,14 +64,14 @@ public enum BinnieCorePacketID implements IPacketID {
             final EntityPlayer player = BinnieCore.proxy.getPlayer();
 
             if (player.openContainer instanceof ContainerCraftGUI gui) {
-                gui.recieveNBT(Side.CLIENT, player, tagCompound);
+                gui.receiveNBT(Side.CLIENT, player, tagCompound);
             }
         } else {
             if (context.netHandler instanceof NetHandlerPlayServer server) {
                 final EntityPlayer player = server.playerEntity;
 
                 if (player.openContainer instanceof ContainerCraftGUI gui) {
-                    gui.recieveNBT(Side.SERVER, player, tagCompound);
+                    gui.receiveNBT(Side.SERVER, player, tagCompound);
                 }
             }
         }

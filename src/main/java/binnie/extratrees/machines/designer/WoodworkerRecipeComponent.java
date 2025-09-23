@@ -93,7 +93,7 @@ public class WoodworkerRecipeComponent extends ComponentRecipe
     }
 
     @Override
-    public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
+    public void receiveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
         if (name.equals("recipe")) {
             InventoryPlayer playerInv = player.inventory;
             ItemStack recipe = doRecipe(false);

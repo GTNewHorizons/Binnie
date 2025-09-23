@@ -49,7 +49,7 @@ public class ComponentChargedSlots extends MachineComponent implements INetwork.
     }
 
     @Override
-    public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
+    public void receiveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
         if (!name.equals("slot-charges")) {
             return;
         }

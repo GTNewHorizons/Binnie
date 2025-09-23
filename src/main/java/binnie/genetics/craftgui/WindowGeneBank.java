@@ -55,8 +55,8 @@ public class WindowGeneBank extends WindowMachine {
     }
 
     @Override
-    public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
-        super.recieveGuiNBT(side, player, name, nbt);
+    public void receiveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
+        super.receiveGuiNBT(side, player, name, nbt);
         if (side != Side.SERVER || !name.equals("gene-select")) {
             return;
         }

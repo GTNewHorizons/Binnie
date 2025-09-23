@@ -69,7 +69,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
     }
 
     @Override
-    public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
+    public void receiveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
         if (name.equals("comp-tabs")) {
             NBTTagList tags = nbt.getTagList("tabs", 10);
             for (int i = 0; i < tags.tagCount(); ++i) {

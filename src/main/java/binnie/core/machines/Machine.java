@@ -277,16 +277,16 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
     }
 
     @Override
-    public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
-        for (INetwork.RecieveGuiNBT recieve : getInterfaces(INetwork.RecieveGuiNBT.class)) {
-            recieve.recieveGuiNBT(side, player, name, nbt);
+    public void receiveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
+        for (INetwork.ReceiveGuiNBT receive : getInterfaces(INetwork.ReceiveGuiNBT.class)) {
+            receive.receiveGuiNBT(side, player, name, nbt);
         }
     }
 
     @Override
     public void sendGuiNBT(Map<String, NBTTagCompound> nbts) {
-        for (INetwork.SendGuiNBT recieve : getInterfaces(INetwork.SendGuiNBT.class)) {
-            recieve.sendGuiNBT(nbts);
+        for (INetwork.SendGuiNBT receive : getInterfaces(INetwork.SendGuiNBT.class)) {
+            receive.sendGuiNBT(nbts);
         }
     }
 }

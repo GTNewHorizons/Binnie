@@ -91,7 +91,7 @@ public interface IWidget {
 
     void callEvent(Event event);
 
-    void recieveEvent(Event event);
+    void receiveEvent(Event event);
 
     void onUpdateClient();
 

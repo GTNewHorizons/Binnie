@@ -50,7 +50,7 @@ public class MachineComponent implements INBTTagable {
         return new MachinePayload(Binnie.Machine.getNetworkID(getClass()));
     }
 
-    public void recieveData(MachinePayload payload) {}
+    public void receiveData(MachinePayload payload) {}
 
     public MachineUtil getUtil() {
         return getMachine().getMachineUtil();

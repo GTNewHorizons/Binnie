@@ -48,7 +48,7 @@ import binnie.core.resource.ResourceType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public abstract class Window extends TopLevelWidget implements INetwork.RecieveGuiNBT {
+public abstract class Window extends TopLevelWidget implements INetwork.ReceiveGuiNBT {
 
     protected float titleButtonLeft;
     protected float titleButtonRight;
@@ -291,7 +291,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.RecieveG
     }
 
     @Override
-    public void recieveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
+    public void receiveGuiNBT(Side side, EntityPlayer player, String name, NBTTagCompound nbt) {
         if (side == Side.CLIENT && name.equals("username")) {
             float w = w();
             float titleButtonRight = this.titleButtonRight + 16.0f;
