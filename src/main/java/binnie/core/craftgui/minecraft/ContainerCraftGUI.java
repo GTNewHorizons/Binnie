@@ -480,16 +480,12 @@ public class ContainerCraftGUI extends Container {
     }
 
     protected IInventory getInventory(InventoryType type) {
-        if (type == InventoryType.Machine) {
-            return window.getInventory();
-        }
-        if (type == InventoryType.Player) {
-            return window.getPlayer().inventory;
-        }
-        if (type == InventoryType.Window) {
-            return window.getWindowInventory();
-        }
-        return null;
+        return switch (type) {
+            case Machine -> window.getInventory();
+            case Player -> window.getPlayer().inventory;
+            case Window -> window.getWindowInventory();
+            default -> null;
+        };
     }
 
     private void getOrCreateSlot(InventoryType type, int index, int slotNumber) {
