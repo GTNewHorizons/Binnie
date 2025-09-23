@@ -272,14 +272,10 @@ public class ContainerCraftGUI extends Container {
             }
         }
 
-        if (powered != null && window.isServer()) {
-            syncedNBT.put("power-update", createPowerNBT(powered.getPowerInfo()));
-        }
-        if (process != null && window.isServer()) {
-            syncedNBT.put("process-update", createProcessNBT(process.getInfo()));
-        }
-        if (error != null && window.isServer()) {
-            syncedNBT.put("error-update", createErrorNBT(error));
+        if (window.isServer()) {
+            if (powered != null) syncedNBT.put("power-update", createPowerNBT(powered.getPowerInfo()));
+            if (process != null) syncedNBT.put("process-update", createProcessNBT(process.getInfo()));
+            if (error != null) syncedNBT.put("error-update", createErrorNBT(error));
         }
 
         INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, window.getInventory());
