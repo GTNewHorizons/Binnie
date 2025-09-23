@@ -97,4 +97,10 @@ public class BlockExtraBeeHive extends Block {
         }
         return ret;
     }
+
+    @Override
+    public int getDamageValue(World world, int x, int y, int z) {
+        int meta = world.getBlockMetadata(x, y, z);
+        return meta;
+    }
 }
