@@ -231,7 +231,7 @@ public class ContainerCraftGUI extends Container {
                 int type = action.getByte("t");
                 int index = action.getShort("i");
                 int slotNumber = action.getShort("n");
-                getOrCreateSlot(InventoryType.values()[type % 4], index, slotNumber);
+                createSlot(InventoryType.values()[type % 4], index, slotNumber);
 
                 for (ICrafting crafterObject : crafters) {
                     crafterObject.sendContainerAndContentsToPlayer(this, getInventory());
@@ -488,7 +488,7 @@ public class ContainerCraftGUI extends Container {
         };
     }
 
-    private void getOrCreateSlot(InventoryType type, int index, int slotNumber) {
+    private void createSlot(InventoryType type, int index, int slotNumber) {
         if (inventorySlots.get(slotNumber) != null) return;
 
         IInventory inventory = getInventory(type);
