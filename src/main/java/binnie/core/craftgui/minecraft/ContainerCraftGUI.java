@@ -7,6 +7,7 @@ import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
@@ -51,7 +52,8 @@ public class ContainerCraftGUI extends Container {
 
         if (!window.isServer()) return;
 
-        IMachine machine = Machine.getMachine(window.getInventory());
+        IInventory entityInventory = window.getInventory();
+        IMachine machine = Machine.getMachine(entityInventory);
         if (machine == null) return;
 
         GameProfile user = machine.getOwner();
@@ -95,15 +97,16 @@ public class ContainerCraftGUI extends Container {
     @Override
     public void onContainerClosed(EntityPlayer player) {
         super.onContainerClosed(player);
-        WindowInventory inventory = window.getWindowInventory();
+        WindowInventory windowInventory = window.getWindowInventory();
+        InventoryPlayer playerInventory = player.inventory;
 
-        for (int i = 0; i < inventory.getSizeInventory(); ++i) {
-            if (!inventory.dispenseOnClose(i)) continue;
+        for (int i = 0; i < windowInventory.getSizeInventory(); ++i) {
+            if (!windowInventory.dispenseOnClose(i)) continue;
 
-            final ItemStack stack = inventory.getStackInSlot(i);
+            final ItemStack stack = windowInventory.getStackInSlot(i);
             if (stack == null) continue;
 
-            final ItemStack newStack = new TransferRequest(stack, player.inventory).transfer(true);
+            final ItemStack newStack = new TransferRequest(stack, playerInventory).transfer(true);
             if (newStack == null) continue;
 
             player.dropPlayerItemWithRandomChoice(newStack, false);
@@ -132,8 +135,8 @@ public class ContainerCraftGUI extends Container {
             }
             sentNBT.clear();
         }
-        IInventory inventory = window.getInventory();
-        return inventory == null || inventory.isUseableByPlayer(player);
+        IInventory entityInventory = window.getInventory();
+        return entityInventory == null || entityInventory.isUseableByPlayer(player);
     }
 
     @Override
@@ -164,9 +167,9 @@ public class ContainerCraftGUI extends Container {
         }
 
         IInventory playerInventory = player.inventory;
-        IInventory containerInventory = window.getInventory();
+        IInventory entityInventory = window.getInventory();
         IInventory windowInventory = window.getWindowInventory();
-        IInventory fromPlayer = (containerInventory == null) ? windowInventory : containerInventory;
+        IInventory fromPlayer = (entityInventory == null) ? windowInventory : entityInventory;
         int[] target = new int[36];
         for (int i = 0; i < 36; ++i) {
             target[i] = i;
@@ -191,8 +194,8 @@ public class ContainerCraftGUI extends Container {
         if (player.inventory.getItemStack() == null) return null;
 
         ItemStack heldItem = player.inventory.getItemStack().copy();
-        IInventory windowInventory = window.getInventory();
-        heldItem = new TransferRequest(heldItem, windowInventory).setOrigin(player.inventory).setTargetSlots(new int[0])
+        IInventory entityInventory = window.getInventory();
+        heldItem = new TransferRequest(heldItem, entityInventory).setOrigin(player.inventory).setTargetSlots(new int[0])
                 .setTargetTanks(new int[] { slotID }).transfer(true);
 
         player.inventory.setItemStack(heldItem);
@@ -240,11 +243,11 @@ public class ContainerCraftGUI extends Container {
     public void detectAndSendChanges() {
         super.detectAndSendChanges();
 
-        IInventory inventory = window.getInventory();
-        ITankMachine tanks = Machine.getInterface(ITankMachine.class, inventory);
-        IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, inventory);
-        IErrorStateSource error = Machine.getInterface(IErrorStateSource.class, inventory);
-        IProcess process = Machine.getInterface(IProcess.class, inventory);
+        IInventory entityInventory = window.getInventory();
+        ITankMachine tanks = Machine.getInterface(ITankMachine.class, entityInventory);
+        IPoweredMachine powered = Machine.getInterface(IPoweredMachine.class, entityInventory);
+        IErrorStateSource error = Machine.getInterface(IErrorStateSource.class, entityInventory);
+        IProcess process = Machine.getInterface(IProcess.class, entityInventory);
 
         if (window.isServer() && tanks != null) {
             final TankInfo[] tankInfos = tanks.getTankInfos();
@@ -262,7 +265,7 @@ public class ContainerCraftGUI extends Container {
             if (error != null) syncedNBT.put("error-update", createErrorNBT(error));
         }
 
-        INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, inventory);
+        INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, entityInventory);
 
         if (machineSync != null) machineSync.sendGuiNBT(syncedNBT);
 
