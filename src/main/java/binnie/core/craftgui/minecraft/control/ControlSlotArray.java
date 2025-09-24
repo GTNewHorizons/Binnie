@@ -41,9 +41,10 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
     }
 
     public ControlSlotArray create(InventoryType inventoryType, int[] index) {
-        int slotIndex = 0;
+        int i = 0;
         for (ControlSlot controlSlot : slots) {
-            controlSlot.assign(inventoryType, index[slotIndex]);
+            final int slotIndex = index[i];
+            controlSlot.assign(inventoryType, slotIndex);
 
             NBTTagCompound slotReg = new NBTTagCompound();
             slotReg.setString(ACTION_TYPE, SLOT_REG);
@@ -54,7 +55,7 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
             MessageCraftGUI packet = new MessageCraftGUI(slotReg);
             BinnieCore.proxy.sendToServer(packet);
 
-            slotIndex++;
+            i++;
         }
         return this;
     }
