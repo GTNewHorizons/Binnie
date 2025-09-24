@@ -97,4 +97,9 @@ public class BlockExtraBeeHive extends Block {
         }
         return ret;
     }
+
+    @Override
+    public int damageDropped(int meta) {
+        return meta;
+    }
 }
