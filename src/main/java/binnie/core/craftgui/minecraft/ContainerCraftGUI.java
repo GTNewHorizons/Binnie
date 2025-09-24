@@ -50,7 +50,7 @@ public class ContainerCraftGUI extends Container {
     private final static String MOUSE_OVER_SLOT = "mouse-over-slot";
     private final static String SHIFT_CLICK_INFO = "shift-click-info";
 
-    // Error type is one of the error constants below (TODO)
+    // Error type is one of the error constants below
     private final static String ERROR_TYPE = "type";
 
     // Error constants
