@@ -53,6 +53,10 @@ public class ContainerCraftGUI extends Container {
     // Error type is one of the error constants below (TODO)
     private final static String ERROR_TYPE = "type";
 
+    // Error constants
+    private static final byte CANNOT_WORK = (byte) 0;
+    private static final byte CANNOT_PROGRESS = (byte) 1;
+
     // Slot constants
     private static final String SLOT_TYPE = "t";
     private static final String SLOT_INDEX = "i";
@@ -317,10 +321,10 @@ public class ContainerCraftGUI extends Container {
         NBTTagCompound nbt = new NBTTagCompound();
         ErrorState state = null;
         if (error.canWork() != null) {
-            nbt.setByte(ERROR_TYPE, (byte) 0);
+            nbt.setByte(ERROR_TYPE, CANNOT_WORK);
             state = error.canWork();
         } else if (error.canProgress() != null) {
-            nbt.setByte(ERROR_TYPE, (byte) 1);
+            nbt.setByte(ERROR_TYPE, CANNOT_PROGRESS);
             state = error.canProgress();
         }
 
