@@ -41,30 +41,30 @@ import cpw.mods.fml.relauncher.Side;
 public class ContainerCraftGUI extends Container {
 
     // Action type is one of the action constants below
-    private final static String ACTION_TYPE = "type";
+    public final static String ACTION_TYPE = "type";
 
     // Action constants
-    private final static String ACTION_BATCH = "batch";
-    private final static String TANK_CLICK = "tank-click";
-    private final static String SLOT_REG = "slot-reg";
-    private final static String TANK_UPDATE = "tank-update-";
-    private final static String POWER_UPDATE = "power-update";
-    private final static String PROCESS_UPDATE = "process-update";
-    private final static String ERROR_UPDATE = "error-update";
-    private final static String MOUSE_OVER_SLOT = "mouse-over-slot";
-    private final static String SHIFT_CLICK_INFO = "shift-click-info";
+    public final static String ACTION_BATCH = "batch";
+    public final static String SLOT_REG = "slot-reg";
+    public final static String TANK_CLICK = "tank-click";
+    public final static String TANK_UPDATE = "tank-update-";
+    public final static String POWER_UPDATE = "power-update";
+    public final static String PROCESS_UPDATE = "process-update";
+    public final static String ERROR_UPDATE = "error-update";
+    public final static String MOUSE_OVER_SLOT = "mouse-over-slot";
+    public final static String SHIFT_CLICK_INFO = "shift-click-info";
 
     // Error type is one of the error constants below
-    private final static String ERROR_TYPE = "type";
+    public final static String ERROR_TYPE = "type";
 
     // Error constants
-    private static final byte CANNOT_WORK = (byte) 0;
-    private static final byte CANNOT_PROGRESS = (byte) 1;
+    public static final byte CANNOT_WORK = (byte) 0;
+    public static final byte CANNOT_PROGRESS = (byte) 1;
 
     // Slot constants
-    private static final String SLOT_TYPE = "t";
-    private static final String SLOT_INDEX = "i";
-    private static final String SLOT_NUMBER = "n";
+    public static final String SLOT_TYPE = "t";
+    public static final String SLOT_INDEX = "i";
+    public static final String SLOT_NUMBER = "n";
 
     // Uncategorized constants
     private static final String ACTIONS = "actions";
@@ -182,20 +182,16 @@ public class ContainerCraftGUI extends Container {
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer player, int slotID) {
-        return shiftClick(player, slotID);
+        shiftClick(player, slotID);
+        return null;
     }
 
-    private ItemStack shiftClick(EntityPlayer player, int index) {
+    private void shiftClick(EntityPlayer player, int index) {
         TransferRequest request = getShiftClickRequest(player, index);
-        if (request == null) {
-            return null;
-        }
-
         ItemStack stack = request.transfer(true);
         Slot shiftClickedSlot = inventorySlots.get(index);
         shiftClickedSlot.putStack(stack);
         shiftClickedSlot.onSlotChanged();
-        return null;
     }
 
     private TransferRequest getShiftClickRequest(EntityPlayer player, int index) {
@@ -280,7 +276,7 @@ public class ContainerCraftGUI extends Container {
             case PROCESS_UPDATE -> onProcessUpdate(action);
             case ERROR_UPDATE -> onErrorUpdate(action);
             case MOUSE_OVER_SLOT -> onMouseOverSlot(player, action);
-            case SHIFT_CLICK_INFO -> onReceiveShiftClickHighlights(player, action);
+            case SHIFT_CLICK_INFO -> onReceiveShiftClickHighlights(action);
             default -> {
                 if (actionType.contains(TANK_UPDATE)) onTankUpdate(action);
             }
@@ -478,7 +474,7 @@ public class ContainerCraftGUI extends Container {
         syncedNBT.put(SHIFT_CLICK_INFO, nbt);
     }
 
-    private void onReceiveShiftClickHighlights(EntityPlayer player, NBTTagCompound data) {
+    private void onReceiveShiftClickHighlights(NBTTagCompound data) {
         ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).clear();
         for (int slotIndex : data.getIntArray(SLOTS)) {
             ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).add(slotIndex);
@@ -504,19 +500,15 @@ public class ContainerCraftGUI extends Container {
         machine.receiveGuiNBT(getSide(), player, actionType, action);
     }
 
-    public Slot getOrCreateSlot(InventoryType type, int slotIndex) {
-        IInventory inventory = getInventory(type);
+    public Slot getOrCreateSlot(InventoryType inventoryType, int slotIndex) {
+        final IInventory inventory = getInventory(inventoryType);
         Slot slot = getSlot(inventory, slotIndex);
+
         if (slot == null) {
             slot = new CustomSlot(inventory, slotIndex);
             addSlotToContainer(slot);
         }
 
-        NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setByte(SLOT_TYPE, (byte) type.ordinal());
-        nbt.setShort(SLOT_INDEX, (short) slotIndex);
-        nbt.setShort(SLOT_NUMBER, (short) slot.slotNumber);
-        window.sendClientAction(SLOT_REG, nbt);
         return slot;
     }
 

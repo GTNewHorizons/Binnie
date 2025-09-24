@@ -184,9 +184,7 @@ public class ControlSlot extends ControlSlotBase {
     }
 
     public ControlSlot assign(InventoryType inventory, int index) {
-        if (slot == null) {
-            slot = ((Window) getSuperParent()).getContainer().getOrCreateSlot(inventory, index);
-        }
+        if (slot == null) slot = ((Window) getSuperParent()).getContainer().getOrCreateSlot(inventory, index);
         return this;
     }
 
