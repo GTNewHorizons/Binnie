@@ -36,6 +36,15 @@ import cpw.mods.fml.relauncher.Side;
 
 public class ContainerCraftGUI extends Container {
 
+    private final static String TANK_CLICK = "tank-click";
+    private final static String SLOT_REG = "slot-reg";
+    private final static String TANK_UPDATE = "tank-update-";
+    private final static String POWER_UPDATE = "power-update";
+    private final static String PROCESS_UPDATE = "process-update";
+    private final static String ERROR_UPDATE = "error-update";
+    private final static String MOUSE_OVER_SLOT = "mouse-over-slot";
+    private final static String SHIFT_CLICK_INFO = "shift-click-info";
+
     private final Window window;
     private final Map<String, NBTTagCompound> syncedNBT;
     private final Map<String, NBTTagCompound> sentNBT;
@@ -224,10 +233,10 @@ public class ContainerCraftGUI extends Container {
 
     public boolean handleNBT(Side side, EntityPlayer player, String name, NBTTagCompound action) {
         if (side == Side.SERVER) {
-            if (name.equals("tank-click")) {
+            if (name.equals(TANK_CLICK)) {
                 tankClick(player, action.getByte("id"));
             }
-            if (name.equals("slot-reg")) {
+            if (name.equals(SLOT_REG)) {
                 int type = action.getByte("t");
                 int index = action.getShort("i");
                 int slotNumber = action.getShort("n");
@@ -239,17 +248,17 @@ public class ContainerCraftGUI extends Container {
             }
         }
 
-        if (name.contains("tank-update")) {
+        if (name.contains(TANK_UPDATE)) {
             onTankUpdate(action);
-        } else if (name.equals("power-update")) {
+        } else if (name.equals(POWER_UPDATE)) {
             onPowerUpdate(action);
-        } else if (name.equals("process-update")) {
+        } else if (name.equals(PROCESS_UPDATE)) {
             onProcessUpdate(action);
-        } else if (name.equals("error-update")) {
+        } else if (name.equals(ERROR_UPDATE)) {
             onErrorUpdate(action);
-        } else if (name.equals("mouse-over-slot")) {
+        } else if (name.equals(MOUSE_OVER_SLOT)) {
             onMouseOverSlot(player, action);
-        } else if (name.equals("shift-click-info")) {
+        } else if (name.equals(SHIFT_CLICK_INFO)) {
             onReceiveShiftClickHighlights(player, action);
         }
         return false;
@@ -266,20 +275,20 @@ public class ContainerCraftGUI extends Container {
             for (int i = 0; i < tanks.getTankInfos().length; ++i) {
                 TankInfo tank = tanks.getTankInfos()[i];
                 if (!getTankInfo(i).equals(tank)) {
-                    syncedNBT.put("tank-update-" + i, createTankNBT(i, tank));
+                    syncedNBT.put(TANK_UPDATE + i, createTankNBT(i, tank));
                     syncedTanks.put(i, tank);
                 }
             }
         }
 
         if (powered != null && window.isServer()) {
-            syncedNBT.put("power-update", createPowerNBT(powered.getPowerInfo()));
+            syncedNBT.put(POWER_UPDATE, createPowerNBT(powered.getPowerInfo()));
         }
         if (process != null && window.isServer()) {
-            syncedNBT.put("process-update", createProcessNBT(process.getInfo()));
+            syncedNBT.put(PROCESS_UPDATE, createProcessNBT(process.getInfo()));
         }
         if (error != null && window.isServer()) {
-            syncedNBT.put("error-update", createErrorNBT(error));
+            syncedNBT.put(ERROR_UPDATE, createErrorNBT(error));
         }
 
         INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, window.getInventory());
@@ -411,7 +420,7 @@ public class ContainerCraftGUI extends Container {
         ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).clear();
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setShort("slot", (short) slot.slotNumber);
-        window.sendClientAction("mouse-over-slot", nbt);
+        window.sendClientAction(MOUSE_OVER_SLOT, nbt);
     }
 
     private void onMouseOverSlot(EntityPlayer player, NBTTagCompound data) {
@@ -438,7 +447,7 @@ public class ContainerCraftGUI extends Container {
 
         nbt.setIntArray("slots", array);
         nbt.setShort("origin", (short) slotnumber);
-        syncedNBT.put("shift-click-info", nbt);
+        syncedNBT.put(SHIFT_CLICK_INFO, nbt);
     }
 
     private void onReceiveShiftClickHighlights(EntityPlayer player, NBTTagCompound data) {
