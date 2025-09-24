@@ -3,9 +3,12 @@ package binnie.core.craftgui.minecraft.control;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.minecraft.nbt.NBTTagList;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.InventoryType;
+import binnie.core.network.packet.MessageCraftGUI;
 
 public class ControlPlayerInventory extends Control {
 
@@ -57,17 +60,21 @@ public class ControlPlayerInventory extends Control {
     }
 
     public void create() {
+        final NBTTagList actions = new NBTTagList();
+
         for (int row = 0; row < 3; ++row) {
             for (int column = 0; column < 9; ++column) {
                 ControlSlot slot = slots.get(column + row * 9);
-                slot.assign(InventoryType.Player, 9 + column + row * 9);
+                slot.assign(actions, InventoryType.Player, 9 + column + row * 9);
             }
         }
 
         for (int i1 = 0; i1 < 9; ++i1) {
             ControlSlot slot2 = slots.get(27 + i1);
-            slot2.assign(InventoryType.Player, i1);
+            slot2.assign(actions, InventoryType.Player, i1);
         }
+
+        MessageCraftGUI.sendToServer(actions);
     }
 
     public ControlSlot getSlot(int i) {

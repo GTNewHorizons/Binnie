@@ -6,6 +6,7 @@ import net.minecraft.inventory.IInventory;
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.GUIIcon;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.core.craftgui.minecraft.control.ControlErrorState;
@@ -54,7 +55,7 @@ public class WindowIncubator extends WindowMachine {
                 WindowIncubator.progressBase,
                 WindowIncubator.progress,
                 Position.LEFT);
-        new ControlSlot(this, x + 10, y + 3 + 10).assign(Incubator.SLOT_INCUBATOR);
+        new ControlSlot(this, x + 10, y + 3 + 10).assignAndRegister(InventoryType.Machine, Incubator.SLOT_INCUBATOR);
         x += 40;
         new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
         x += 18;

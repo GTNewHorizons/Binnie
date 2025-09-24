@@ -5,6 +5,7 @@ import net.minecraft.inventory.IInventory;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
@@ -38,7 +39,7 @@ public class WindowAlvearyStimulator extends Window {
         setTitle(I18N.localise("extrabees.machine.alveay.stimulator"));
         new ControlEnergyBar(this, 75, 29, 60, 16, Position.LEFT);
         ControlSlot slot = new ControlSlot(this, 41.0f, 28.0f);
-        slot.assign(AlvearyStimulator.SLOT_CIRCUIT);
+        slot.assignAndRegister(InventoryType.Machine, AlvearyStimulator.SLOT_CIRCUIT);
         playerInventory = new ControlPlayerInventory(this);
     }
 
