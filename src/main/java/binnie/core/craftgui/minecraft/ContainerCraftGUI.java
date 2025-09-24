@@ -208,33 +208,30 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void handleNBT(Side side, EntityPlayer player, String name, NBTTagCompound action) {
-        switch (side) {
-            case SERVER -> {
-                switch (name) {
-                    case "tank-click" -> tankClick(player, action.getByte("id"));
-                    case "slot-reg" -> {
-                        int type = action.getByte("t");
-                        int index = action.getShort("i");
-                        int slotNumber = action.getShort("n");
-                        createSlot(InventoryType.values()[type % 4], index, slotNumber);
+        if (side == Side.SERVER) {
+            switch (name) {
+                case "tank-click" -> tankClick(player, action.getByte("id"));
+                case "slot-reg" -> {
+                    int type = action.getByte("t");
+                    int index = action.getShort("i");
+                    int slotNumber = action.getShort("n");
+                    createSlot(InventoryType.values()[type % 4], index, slotNumber);
 
-                        for (ICrafting crafterObject : crafters) {
-                            crafterObject.sendContainerAndContentsToPlayer(this, getInventory());
-                        }
+                    for (ICrafting crafterObject : crafters) {
+                        crafterObject.sendContainerAndContentsToPlayer(this, getInventory());
                     }
                 }
             }
-            case CLIENT -> {
-                switch (name) {
-                    case "power-update" -> onPowerUpdate(action);
-                    case "process-update" -> onProcessUpdate(action);
-                    case "error-update" -> onErrorUpdate(action);
-                    case "mouse-over-slot" -> onMouseOverSlot(player, action);
-                    case "shift-click-info" -> onReceiveShiftClickHighlights(player, action);
-                    default -> {
-                        if (name.contains("tank-update")) onTankUpdate(action);
-                    }
-                }
+        }
+
+        switch (name) {
+            case "power-update" -> onPowerUpdate(action);
+            case "process-update" -> onProcessUpdate(action);
+            case "error-update" -> onErrorUpdate(action);
+            case "mouse-over-slot" -> onMouseOverSlot(player, action);
+            case "shift-click-info" -> onReceiveShiftClickHighlights(player, action);
+            default -> {
+                if (name.contains("tank-update")) onTankUpdate(action);
             }
         }
     }
