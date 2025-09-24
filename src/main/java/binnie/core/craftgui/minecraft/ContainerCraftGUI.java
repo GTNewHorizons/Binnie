@@ -37,6 +37,33 @@ import cpw.mods.fml.relauncher.Side;
 
 public class ContainerCraftGUI extends Container {
 
+    // Action type is one of the action constants below
+    private final static String ACTION_TYPE = "type";
+
+    // Action constants
+    private final static String TANK_CLICK = "tank-click";
+    private final static String SLOT_REG = "slot-reg";
+    private final static String TANK_UPDATE = "tank-update-";
+    private final static String POWER_UPDATE = "power-update";
+    private final static String PROCESS_UPDATE = "process-update";
+    private final static String ERROR_UPDATE = "error-update";
+    private final static String MOUSE_OVER_SLOT = "mouse-over-slot";
+    private final static String SHIFT_CLICK_INFO = "shift-click-info";
+
+    // Error type is one of the error constants below
+    private final static String ERROR_TYPE = "type";
+
+    // Error constants
+    private static final byte CANNOT_WORK = (byte) 0;
+    private static final byte CANNOT_PROGRESS = (byte) 1;
+
+    // Slot constants
+    private static final String SLOT_TYPE = "t";
+    private static final String SLOT_INDEX = "i";
+    private static final String SLOT_NUMBER = "n";
+
+    private static final String USERNAME = "username";
+
     private final Window window;
     private final Map<String, NBTTagCompound> syncedNBT = new HashMap<>();
     private final Map<String, NBTTagCompound> sentNBT = new HashMap<>();
@@ -64,8 +91,8 @@ public class ContainerCraftGUI extends Container {
         if (user == null) return;
 
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setString("username", user.getName());
-        sendNBTToClient("username", nbt);
+        nbt.setString(USERNAME, user.getName());
+        sendNBTToClient(USERNAME, nbt);
     }
 
     @Override
@@ -214,12 +241,12 @@ public class ContainerCraftGUI extends Container {
     public void handleNBT(Side side, EntityPlayer player, String name, NBTTagCompound action) {
         if (side == Side.SERVER) {
             switch (name) {
-                case "tank-click" -> tankClick(player, action.getByte("id"));
-                case "slot-reg" -> {
-                    int type = action.getByte("t");
-                    int index = action.getShort("i");
-                    int slotNumber = action.getShort("n");
-                    createSlot(InventoryType.values()[type % 4], index, slotNumber);
+                case TANK_CLICK -> tankClick(player, action.getByte("id"));
+                case SLOT_REG -> {
+                    int slotType = action.getByte(SLOT_TYPE);
+                    int slotIndex = action.getShort(SLOT_INDEX);
+                    int slotNumber = action.getShort(SLOT_NUMBER);
+                    createSlot(InventoryType.values()[slotType % 4], slotIndex, slotNumber);
 
                     for (ICrafting crafterObject : crafters) {
                         crafterObject.sendContainerAndContentsToPlayer(this, getInventory());
@@ -229,13 +256,13 @@ public class ContainerCraftGUI extends Container {
         }
 
         switch (name) {
-            case "power-update" -> onPowerUpdate(action);
-            case "process-update" -> onProcessUpdate(action);
-            case "error-update" -> onErrorUpdate(action);
-            case "mouse-over-slot" -> onMouseOverSlot(player, action);
-            case "shift-click-info" -> onReceiveShiftClickHighlights(player, action);
+            case POWER_UPDATE -> onPowerUpdate(action);
+            case PROCESS_UPDATE -> onProcessUpdate(action);
+            case ERROR_UPDATE -> onErrorUpdate(action);
+            case MOUSE_OVER_SLOT -> onMouseOverSlot(player, action);
+            case SHIFT_CLICK_INFO -> onReceiveShiftClickHighlights(player, action);
             default -> {
-                if (name.contains("tank-update")) onTankUpdate(action);
+                if (name.contains(TANK_UPDATE)) onTankUpdate(action);
             }
         }
     }
@@ -255,15 +282,15 @@ public class ContainerCraftGUI extends Container {
             for (int i = 0; i < tankInfos.length; ++i) {
                 final TankInfo tank = tankInfos[i];
                 if (this.getTankInfo(i).equals(tank)) continue;
-                syncedNBT.put("tank-update-" + i, createTankNBT(i, tank));
+                syncedNBT.put(TANK_UPDATE + i, createTankNBT(i, tank));
                 syncedTanks.put(i, tank);
             }
         }
 
         if (window.isServer()) {
-            if (powered != null) syncedNBT.put("power-update", createPowerNBT(powered.getPowerInfo()));
-            if (process != null) syncedNBT.put("process-update", createProcessNBT(process.getInfo()));
-            if (error != null) syncedNBT.put("error-update", createErrorNBT(error));
+            if (powered != null) syncedNBT.put(POWER_UPDATE, createPowerNBT(powered.getPowerInfo()));
+            if (process != null) syncedNBT.put(PROCESS_UPDATE, createProcessNBT(process.getInfo()));
+            if (error != null) syncedNBT.put(ERROR_UPDATE, createErrorNBT(error));
         }
 
         INetwork.SendGuiNBT machineSync = Machine.getInterface(INetwork.SendGuiNBT.class, entityInventory);
@@ -276,7 +303,7 @@ public class ContainerCraftGUI extends Container {
             final String nbtKey = nbt.getKey();
             final NBTTagCompound nbtValuePrev = sentNBT.get(nbtKey);
 
-            nbtValue.setString("type", nbtKey);
+            nbtValue.setString(ACTION_TYPE, nbtKey);
 
             if (nbtValue.equals(nbtValuePrev)) continue;
 
@@ -298,10 +325,10 @@ public class ContainerCraftGUI extends Container {
         NBTTagCompound nbt = new NBTTagCompound();
         ErrorState state = null;
         if (error.canWork() != null) {
-            nbt.setByte("type", (byte) 0);
+            nbt.setByte(ERROR_TYPE, CANNOT_WORK);
             state = error.canWork();
         } else if (error.canProgress() != null) {
-            nbt.setByte("type", (byte) 1);
+            nbt.setByte(ERROR_TYPE, CANNOT_PROGRESS);
             state = error.canProgress();
         }
 
@@ -360,7 +387,7 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void onErrorUpdate(NBTTagCompound nbt) {
-        errorType = nbt.getByte("type");
+        errorType = nbt.getByte(ERROR_TYPE);
         if (nbt.hasKey("name")) {
             error = new ErrorState("", "");
             error.readFromNBT(nbt);
@@ -394,7 +421,7 @@ public class ContainerCraftGUI extends Container {
         ControlSlot.highlighting.get(EnumHighlighting.SHIFT_CLICK).clear();
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setShort("slot", (short) slot.slotNumber);
-        window.sendClientAction("mouse-over-slot", nbt);
+        window.sendClientAction(MOUSE_OVER_SLOT, nbt);
     }
 
     private void onMouseOverSlot(EntityPlayer player, NBTTagCompound data) {
@@ -421,7 +448,7 @@ public class ContainerCraftGUI extends Container {
 
         nbt.setIntArray("slots", array);
         nbt.setShort("origin", (short) slotnumber);
-        syncedNBT.put("shift-click-info", nbt);
+        syncedNBT.put(SHIFT_CLICK_INFO, nbt);
     }
 
     private void onReceiveShiftClickHighlights(EntityPlayer player, NBTTagCompound data) {
@@ -442,7 +469,7 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void receiveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
-        String name = action.getString("type");
+        String name = action.getString(ACTION_TYPE);
         handleNBT(side, player, name, action);
         window.receiveGuiNBT(getSide(), player, name, action);
         INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, window.getInventory());
@@ -450,19 +477,19 @@ public class ContainerCraftGUI extends Container {
         machine.receiveGuiNBT(getSide(), player, name, action);
     }
 
-    public Slot getOrCreateSlot(InventoryType type, int index) {
+    public Slot getOrCreateSlot(InventoryType type, int slotIndex) {
         IInventory inventory = getInventory(type);
-        Slot slot = getSlot(inventory, index);
+        Slot slot = getSlot(inventory, slotIndex);
         if (slot == null) {
-            slot = new CustomSlot(inventory, index);
+            slot = new CustomSlot(inventory, slotIndex);
             addSlotToContainer(slot);
         }
 
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setByte("t", (byte) type.ordinal());
-        nbt.setShort("i", (short) index);
-        nbt.setShort("n", (short) slot.slotNumber);
-        window.sendClientAction("slot-reg", nbt);
+        nbt.setByte(SLOT_TYPE, (byte) type.ordinal());
+        nbt.setShort(SLOT_INDEX, (short) slotIndex);
+        nbt.setShort(SLOT_NUMBER, (short) slot.slotNumber);
+        window.sendClientAction(SLOT_REG, nbt);
         return slot;
     }
 
