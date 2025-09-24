@@ -1,5 +1,7 @@
 package binnie.core.craftgui.minecraft;
 
+import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +16,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 import com.mojang.authlib.GameProfile;
 
@@ -41,6 +44,7 @@ public class ContainerCraftGUI extends Container {
     private final static String ACTION_TYPE = "type";
 
     // Action constants
+    private final static String ACTION_BATCH = "batch";
     private final static String TANK_CLICK = "tank-click";
     private final static String SLOT_REG = "slot-reg";
     private final static String TANK_UPDATE = "tank-update-";
@@ -62,6 +66,7 @@ public class ContainerCraftGUI extends Container {
     private static final String SLOT_INDEX = "i";
     private static final String SLOT_NUMBER = "n";
 
+    private static final String ACTIONS = "actions";
     private static final String USERNAME = "username";
 
     private final Window window;
@@ -238,14 +243,24 @@ public class ContainerCraftGUI extends Container {
         return heldItem;
     }
 
-    public void handleNBT(Side side, EntityPlayer player, String name, NBTTagCompound action) {
+    public void handleNBT(Side side, EntityPlayer player, NBTTagCompound action) {
+        final String actionType = action.getString(ACTION_TYPE);
+
+        if (actionType.equals(ACTION_BATCH)) {
+            NBTTagList actionsBatch = action.getTagList(ACTIONS, TAG_COMPOUND);
+            for (int i = 0; i < actionsBatch.tagCount(); i++) {
+                handleNBT(side, player, actionsBatch.getCompoundTagAt(i));
+            }
+        }
+
         if (side == Side.SERVER) {
-            switch (name) {
+            switch (actionType) {
                 case TANK_CLICK -> tankClick(player, action.getByte("id"));
                 case SLOT_REG -> {
                     int slotType = action.getByte(SLOT_TYPE);
                     int slotIndex = action.getShort(SLOT_INDEX);
                     int slotNumber = action.getShort(SLOT_NUMBER);
+
                     createSlot(InventoryType.values()[slotType % 4], slotIndex, slotNumber);
 
                     for (ICrafting crafterObject : crafters) {
@@ -255,14 +270,14 @@ public class ContainerCraftGUI extends Container {
             }
         }
 
-        switch (name) {
+        switch (actionType) {
             case POWER_UPDATE -> onPowerUpdate(action);
             case PROCESS_UPDATE -> onProcessUpdate(action);
             case ERROR_UPDATE -> onErrorUpdate(action);
             case MOUSE_OVER_SLOT -> onMouseOverSlot(player, action);
             case SHIFT_CLICK_INFO -> onReceiveShiftClickHighlights(player, action);
             default -> {
-                if (name.contains(TANK_UPDATE)) onTankUpdate(action);
+                if (actionType.contains(TANK_UPDATE)) onTankUpdate(action);
             }
         }
     }
@@ -298,23 +313,30 @@ public class ContainerCraftGUI extends Container {
         if (machineSync != null) machineSync.sendGuiNBT(syncedNBT);
 
         Map<String, NBTTagCompound> sentThisTime = new HashMap<>();
-        for (Map.Entry<String, NBTTagCompound> nbt : syncedNBT.entrySet()) {
-            final NBTTagCompound nbtValue = nbt.getValue();
-            final String nbtKey = nbt.getKey();
-            final NBTTagCompound nbtValuePrev = sentNBT.get(nbtKey);
+        NBTTagList actions = new NBTTagList();
 
-            nbtValue.setString(ACTION_TYPE, nbtKey);
+        for (Map.Entry<String, NBTTagCompound> entry : syncedNBT.entrySet()) {
+            final String actionType = entry.getKey();
+            final NBTTagCompound action = entry.getValue();
+            final NBTTagCompound actionPrev = sentNBT.get(actionType);
 
-            if (nbtValue.equals(nbtValuePrev)) continue;
+            action.setString(ACTION_TYPE, actionType);
 
-            for (ICrafting crafter : crafters) {
-                if (crafter instanceof EntityPlayerMP playerMP) {
-                    final MessageContainerUpdate packet = new MessageContainerUpdate(nbtValue);
-                    BinnieCore.proxy.sendToPlayer(packet, playerMP);
-                }
+            if (action.equals(actionPrev)) continue;
+
+            actions.appendTag(action);
+            sentThisTime.put(actionType, action);
+        }
+
+        NBTTagCompound actionsBatch = new NBTTagCompound();
+        actionsBatch.setString(ACTION_TYPE, ACTION_BATCH);
+        actionsBatch.setTag(ACTIONS, actions);
+
+        for (ICrafting crafter : crafters) {
+            if (crafter instanceof EntityPlayerMP playerMP) {
+                final MessageContainerUpdate packet = new MessageContainerUpdate(actionsBatch);
+                BinnieCore.proxy.sendToPlayer(packet, playerMP);
             }
-
-            sentThisTime.put(nbtKey, nbtValue);
         }
 
         sentNBT.putAll(sentThisTime);
@@ -469,12 +491,12 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void receiveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
-        String name = action.getString(ACTION_TYPE);
-        handleNBT(side, player, name, action);
-        window.receiveGuiNBT(getSide(), player, name, action);
+        String actionType = action.getString(ACTION_TYPE);
+        handleNBT(side, player, action);
+        window.receiveGuiNBT(getSide(), player, actionType, action);
         INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, window.getInventory());
         if (machine == null) return;
-        machine.receiveGuiNBT(getSide(), player, name, action);
+        machine.receiveGuiNBT(getSide(), player, actionType, action);
     }
 
     public Slot getOrCreateSlot(InventoryType type, int slotIndex) {
