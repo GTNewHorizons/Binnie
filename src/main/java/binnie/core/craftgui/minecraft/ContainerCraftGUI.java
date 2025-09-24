@@ -171,7 +171,7 @@ public class ContainerCraftGUI extends Container {
         IInventory windowInventory = window.getWindowInventory();
         IInventory fromPlayer = (entityInventory == null) ? windowInventory : entityInventory;
         int[] target = new int[36];
-        for (int i = 0; i < 36; ++i) {
+        for (int i = 0; i < target.length; ++i) {
             target[i] = i;
         }
 
