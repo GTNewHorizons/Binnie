@@ -37,6 +37,9 @@ import cpw.mods.fml.relauncher.Side;
 
 public class ContainerCraftGUI extends Container {
 
+    public List<ItemStack> inventoryItemStacks = new ListMap<>();
+    public List<Slot> inventorySlots = new ListMap<>();
+
     private final Window window;
     private final Map<String, NBTTagCompound> syncedNBT = new HashMap<>();
     private final Map<String, NBTTagCompound> sentNBT = new HashMap<>();
