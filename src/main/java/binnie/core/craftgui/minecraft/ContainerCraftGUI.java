@@ -239,10 +239,10 @@ public class ContainerCraftGUI extends Container {
             switch (name) {
                 case TANK_CLICK -> tankClick(player, action.getByte("id"));
                 case SLOT_REG -> {
-                    int type = action.getByte(SLOT_TYPE);
-                    int index = action.getShort(SLOT_INDEX);
+                    int slotType = action.getByte(SLOT_TYPE);
+                    int slotIndex = action.getShort(SLOT_INDEX);
                     int slotNumber = action.getShort(SLOT_NUMBER);
-                    createSlot(InventoryType.values()[type % 4], index, slotNumber);
+                    createSlot(InventoryType.values()[slotType % 4], slotIndex, slotNumber);
 
                     for (ICrafting crafterObject : crafters) {
                         crafterObject.sendContainerAndContentsToPlayer(this, getInventory());
@@ -473,17 +473,17 @@ public class ContainerCraftGUI extends Container {
         machine.receiveGuiNBT(getSide(), player, name, action);
     }
 
-    public Slot getOrCreateSlot(InventoryType type, int index) {
+    public Slot getOrCreateSlot(InventoryType type, int slotIndex) {
         IInventory inventory = getInventory(type);
-        Slot slot = getSlot(inventory, index);
+        Slot slot = getSlot(inventory, slotIndex);
         if (slot == null) {
-            slot = new CustomSlot(inventory, index);
+            slot = new CustomSlot(inventory, slotIndex);
             addSlotToContainer(slot);
         }
 
         NBTTagCompound nbt = new NBTTagCompound();
         nbt.setByte(SLOT_TYPE, (byte) type.ordinal());
-        nbt.setShort(SLOT_INDEX, (short) index);
+        nbt.setShort(SLOT_INDEX, (short) slotIndex);
         nbt.setShort(SLOT_NUMBER, (short) slot.slotNumber);
         window.sendClientAction(SLOT_REG, nbt);
         return slot;
