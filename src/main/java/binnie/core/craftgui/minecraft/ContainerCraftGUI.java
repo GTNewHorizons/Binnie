@@ -79,6 +79,10 @@ public class ContainerCraftGUI extends Container {
 
         if (!window.isServer()) return;
 
+        // WARNING: The client side expects `ArrayList` and the server expects `ListMap`
+        inventoryItemStacks = new ListMap<>();
+        inventorySlots = new ListMap<>();
+
         IInventory entityInventory = window.getInventory();
         IMachine machine = Machine.getMachine(entityInventory);
         if (machine == null) return;
