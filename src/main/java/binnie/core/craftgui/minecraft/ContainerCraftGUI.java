@@ -67,7 +67,7 @@ public class ContainerCraftGUI extends Container {
     public static final String SLOT_NUMBER = "n";
 
     // Uncategorized constants
-    private static final String ACTIONS = "actions";
+    public static final String ACTIONS = "actions";
     private static final String USERNAME = "username";
     private static final String SLOT_ID = "id";
     private static final String SLOT = "slot";

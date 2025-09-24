@@ -1,18 +1,11 @@
 package binnie.core.craftgui.minecraft.control;
 
-import static binnie.core.craftgui.minecraft.ContainerCraftGUI.ACTION_TYPE;
-import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_INDEX;
-import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_NUMBER;
-import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_REG;
-import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_TYPE;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
-import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.InventoryType;
@@ -41,22 +34,16 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
     }
 
     public ControlSlotArray create(InventoryType inventoryType, int[] index) {
+        final NBTTagList actions = new NBTTagList();
+
         int i = 0;
         for (ControlSlot controlSlot : slots) {
             final int slotIndex = index[i];
-            controlSlot.assign(inventoryType, slotIndex);
-
-            NBTTagCompound slotReg = new NBTTagCompound();
-            slotReg.setString(ACTION_TYPE, SLOT_REG);
-            slotReg.setByte(SLOT_TYPE, (byte) inventoryType.ordinal());
-            slotReg.setShort(SLOT_INDEX, (short) slotIndex);
-            slotReg.setShort(SLOT_NUMBER, (short) controlSlot.slot.slotNumber);
-
-            MessageCraftGUI packet = new MessageCraftGUI(slotReg);
-            BinnieCore.proxy.sendToServer(packet);
-
+            controlSlot.assign(actions, inventoryType, slotIndex);
             i++;
         }
+
+        MessageCraftGUI.sendToServer(actions);
         return this;
     }
 

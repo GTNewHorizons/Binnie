@@ -1,5 +1,11 @@
 package binnie.core.craftgui.minecraft.control;
 
+import static binnie.core.craftgui.minecraft.ContainerCraftGUI.ACTION_TYPE;
+import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_INDEX;
+import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_NUMBER;
+import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_REG;
+import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_TYPE;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -10,6 +16,8 @@ import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.IIcon;
 
 import binnie.core.craftgui.CraftGUI;
@@ -26,6 +34,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.machines.inventory.InventorySlot;
 import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 
 public class ControlSlot extends ControlSlotBase {
@@ -179,12 +188,28 @@ public class ControlSlot extends ControlSlotBase {
         return null;
     }
 
-    public ControlSlot assign(int index) {
-        return assign(InventoryType.Machine, index);
+    /// Assign a slot and register it immediately. Should be used when no other actions need to be sent.
+    @SuppressWarnings("UnusedReturnValue")
+    public ControlSlot assignAndRegister(InventoryType inventoryType, int slotIndex) {
+        final NBTTagList actions = new NBTTagList();
+        assign(actions, inventoryType, slotIndex);
+        MessageCraftGUI.sendToServer(actions);
+        return this;
     }
 
-    public ControlSlot assign(InventoryType inventory, int index) {
-        if (slot == null) slot = ((Window) getSuperParent()).getContainer().getOrCreateSlot(inventory, index);
+    /// Assign a slot and defer registration using an `NBTTagList`.
+    /// Use in combination with {@link MessageCraftGUI#sendToServer(NBTTagList)}.
+    public ControlSlot assign(NBTTagList actions, InventoryType inventoryType, int slotIndex) {
+        if (slot == null) slot = ((Window) getSuperParent()).getContainer().getOrCreateSlot(inventoryType, slotIndex);
+
+        NBTTagCompound slotReg = new NBTTagCompound();
+        slotReg.setString(ACTION_TYPE, SLOT_REG);
+        slotReg.setByte(SLOT_TYPE, (byte) inventoryType.ordinal());
+        slotReg.setShort(SLOT_INDEX, (short) slotIndex);
+        slotReg.setShort(SLOT_NUMBER, (short) slot.slotNumber);
+
+        actions.appendTag(slotReg);
+
         return this;
     }
 

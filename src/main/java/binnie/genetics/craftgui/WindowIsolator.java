@@ -2,10 +2,12 @@ package binnie.genetics.craftgui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagList;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.GUIIcon;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.core.craftgui.minecraft.control.ControlErrorState;
@@ -18,6 +20,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
@@ -40,6 +43,9 @@ public class WindowIsolator extends WindowMachine {
     @Override
     public void initialiseClient() {
         super.initialiseClient();
+
+        final NBTTagList actions = new NBTTagList();
+
         int x = 16;
         int y = 32;
         new ControlLiquidTank(this, x, y).setTankID(Isolator.TANK_ETHANOL);
@@ -48,14 +54,14 @@ public class WindowIsolator extends WindowMachine {
         x += 20;
         new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ArrowRight.getIcon());
         x += 18;
-        new ControlSlot(this, x, y + 3).assign(Isolator.SLOT_TARGET);
-        new ControlSlot(this, x, y + 36 + 3).assign(Isolator.SLOT_ENZYME);
+        new ControlSlot(this, x, y + 3).assign(actions, InventoryType.Machine, Isolator.SLOT_TARGET);
+        new ControlSlot(this, x, y + 36 + 3).assign(actions, InventoryType.Machine, Isolator.SLOT_ENZYME);
         new ControlSlotCharge(this, x + 18 + 2, y + 36 + 3, 0).setColor(0xefe8af);
         x += 18;
         new ControlProgress(this, x, y + 3, WindowIsolator.ProgressBase, WindowIsolator.Progress, Position.LEFT);
         x += 142;
-        new ControlSlot(this, x, y + 3).assign(Isolator.SLOT_RESULT);
-        new ControlSlot(this, x, y + 3 + 36).assign(Isolator.SLOT_SEQUENCER_VIAL);
+        new ControlSlot(this, x, y + 3).assign(actions, InventoryType.Machine, Isolator.SLOT_RESULT);
+        new ControlSlot(this, x, y + 3 + 36).assign(actions, InventoryType.Machine, Isolator.SLOT_SEQUENCER_VIAL);
         new ControlIconDisplay(this, x + 1, y + 3 + 19, GUIIcon.ArrowUp.getIcon());
         x += 20;
         new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ArrowRight.getIcon());
@@ -64,6 +70,8 @@ public class WindowIsolator extends WindowMachine {
         new ControlEnergyBar(this, 260, 130, 16, 60, Position.BOTTOM);
         new ControlErrorState(this, 153.0f, 81.0f);
         new ControlPlayerInventory(this);
+
+        MessageCraftGUI.sendToServer(actions);
     }
 
     @Override

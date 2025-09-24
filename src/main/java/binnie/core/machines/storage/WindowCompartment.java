@@ -15,6 +15,7 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
@@ -42,6 +43,7 @@ import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.Dialog;
 import binnie.core.craftgui.minecraft.EnumColor;
 import binnie.core.craftgui.minecraft.IWindowAffectsShiftClick;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
@@ -55,6 +57,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.Machine;
 import binnie.core.machines.transfer.TransferRequest;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.genetics.craftgui.WindowMachine;
 import cpw.mods.fml.relauncher.Side;
@@ -459,14 +462,18 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
                 slotGrid.deleteAllChildren();
                 slotGrid.setSize(new IPoint(width, height));
 
+                final NBTTagList actions = new NBTTagList();
+
                 for (int k : slotIds.keySet()) {
-                    new ControlSlot(slotGrid, x, y).assign(k);
+                    new ControlSlot(slotGrid, x, y).assign(actions, InventoryType.Machine, k);
                     x += 18;
                     if (x >= 108) {
                         x = 0;
                         y += 18;
                     }
                 }
+
+                MessageCraftGUI.sendToServer(actions);
 
                 while (y < 108 || x != 0) {
                     new ControlSlot(slotGrid, x, y);
