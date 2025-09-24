@@ -9,6 +9,7 @@ import binnie.core.craftgui.controls.ControlText;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlItemDisplay;
 import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
@@ -42,7 +43,7 @@ public class WindowAlvearyMutator extends Window {
         setTitle(I18N.localise("extrabees.machine.alveay.mutator"));
         playerInventory = new ControlPlayerInventory(this);
         ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
-        slot.assign(AlvearyMutator.SLOT_MUTATOR);
+        slot.assignAndRegister(InventoryType.Machine, AlvearyMutator.SLOT_MUTATOR);
         new ControlText(
                 this,
                 new IArea(0.0f, 52.0f, w(), 16.0f),

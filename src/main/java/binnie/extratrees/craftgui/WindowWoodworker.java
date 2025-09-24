@@ -2,6 +2,7 @@ package binnie.extratrees.craftgui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagList;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.controls.ControlText;
@@ -12,6 +13,7 @@ import binnie.core.craftgui.events.EventTextEdit;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.TextJustification;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.MinecraftGUI;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlErrorState;
@@ -19,6 +21,7 @@ import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.window.Panel;
 import binnie.core.machines.Machine;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.extratrees.ExtraTrees;
 import binnie.extratrees.machines.designer.Designer;
@@ -62,13 +65,17 @@ public class WindowWoodworker extends Window {
         new ControlErrorState(this, 76.0f, 65.0f);
 
         if (getInventory() != null) {
+            final NBTTagList actions = new NBTTagList();
+
             ControlSlot slotWood1 = new ControlSlot(this, 22.0f, 34.0f);
-            slotWood1.assign(Designer.DESIGN_1_SLOT);
+            slotWood1.assign(actions, InventoryType.Machine, Designer.DESIGN_1_SLOT);
             ControlSlot slotWood2 = new ControlSlot(this, 62.0f, 34.0f);
-            slotWood2.assign(Designer.DESIGN_2_SLOT);
+            slotWood2.assign(actions, InventoryType.Machine, Designer.DESIGN_2_SLOT);
             ControlSlot slotBeeswax = new ControlSlot(this, 42.0f, 64.0f);
-            slotBeeswax.assign(Designer.GLUE_SLOT);
+            slotBeeswax.assign(actions, InventoryType.Machine, Designer.GLUE_SLOT);
             new ControlRecipeSlot(this, 112, 34);
+
+            MessageCraftGUI.sendToServer(actions);
         }
     }
 

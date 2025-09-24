@@ -2,10 +2,12 @@ package binnie.genetics.craftgui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagList;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.GUIIcon;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.core.craftgui.minecraft.control.ControlErrorState;
@@ -18,6 +20,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
@@ -45,23 +48,28 @@ public class WindowPolymeriser extends WindowMachine {
     @Override
     public void initialiseClient() {
         super.initialiseClient();
+
+        final NBTTagList actions = new NBTTagList();
+
         int x = 16;
         int y = 38;
         new ControlSlotArray(this, x, y, 1, 4).create(Polymeriser.SLOT_SERUM_RESERVE);
         new ControlIconDisplay(this, x + 18, y + 1, GUIIcon.ArrowRight.getIcon());
         x += 34;
         new ControlMachineProgress(this, x + 18, y - 6, progressBase, progress, Position.LEFT);
-        new ControlSlot(this, x, y).assign(Polymeriser.SLOT_SERUM);
+        new ControlSlot(this, x, y).assign(actions, InventoryType.Machine, Polymeriser.SLOT_SERUM);
         new ControlLiquidTank(this, x, y + 18 + 16, true).setTankID(Polymeriser.TANK_BACTERIA);
         new ControlLiquidTank(this, x, y + 18 + 16 + 18 + 8, true).setTankID(Polymeriser.TANK_DNA);
         new ControlEnergyBar(this, x + 120, 96, 64, 16, Position.LEFT);
         x += 40;
-        new ControlSlot(this, x + 30, y + 18 + 8).assign(Polymeriser.SLOT_GOLD);
+        new ControlSlot(this, x + 30, y + 18 + 8).assign(actions, InventoryType.Machine, Polymeriser.SLOT_GOLD);
         new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColor(0xffd800);
         x += 138;
         new ControlSlotArray(this, x, y + 9, 2, 2).create(Polymeriser.SLOT_SERUM_FINISHED);
         new ControlErrorState(this, 244.0f, 97.0f);
         new ControlPlayerInventory(this);
+
+        MessageCraftGUI.sendToServer(actions);
     }
 
     @Override
