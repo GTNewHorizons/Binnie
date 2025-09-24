@@ -1,5 +1,6 @@
 package binnie.core.craftgui.minecraft.control;
 
+import static binnie.core.craftgui.minecraft.ContainerCraftGUI.ACTION_TYPE;
 import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_INDEX;
 import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_NUMBER;
 import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_REG;
@@ -11,10 +12,11 @@ import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
 
+import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.InventoryType;
-import binnie.core.craftgui.minecraft.Window;
+import binnie.core.network.packet.MessageCraftGUI;
 
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 
@@ -44,11 +46,13 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
             controlSlot.assign(inventoryType, index[slotIndex]);
 
             NBTTagCompound slotReg = new NBTTagCompound();
+            slotReg.setString(ACTION_TYPE, SLOT_REG);
             slotReg.setByte(SLOT_TYPE, (byte) inventoryType.ordinal());
             slotReg.setShort(SLOT_INDEX, (short) slotIndex);
             slotReg.setShort(SLOT_NUMBER, (short) controlSlot.slot.slotNumber);
 
-            ((Window) getSuperParent()).sendClientAction(SLOT_REG, slotReg);
+            MessageCraftGUI packet = new MessageCraftGUI(slotReg);
+            BinnieCore.proxy.sendToServer(packet);
 
             slotIndex++;
         }
