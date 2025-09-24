@@ -37,6 +37,7 @@ import cpw.mods.fml.relauncher.Side;
 
 public class ContainerCraftGUI extends Container {
 
+    // Update constants
     private final static String TANK_CLICK = "tank-click";
     private final static String SLOT_REG = "slot-reg";
     private final static String TANK_UPDATE = "tank-update-";
@@ -46,9 +47,12 @@ public class ContainerCraftGUI extends Container {
     private final static String MOUSE_OVER_SLOT = "mouse-over-slot";
     private final static String SHIFT_CLICK_INFO = "shift-click-info";
 
+    // Slot constants
     private static final String SLOT_TYPE = "t";
     private static final String SLOT_INDEX = "i";
     private static final String SLOT_NUMBER = "n";
+
+    private static final String USERNAME = "username";
 
     private final Window window;
     private final Map<String, NBTTagCompound> syncedNBT = new HashMap<>();
@@ -73,8 +77,8 @@ public class ContainerCraftGUI extends Container {
         if (user == null) return;
 
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setString("username", user.getName());
-        sendNBTToClient("username", nbt);
+        nbt.setString(USERNAME, user.getName());
+        sendNBTToClient(USERNAME, nbt);
     }
 
     @Override
