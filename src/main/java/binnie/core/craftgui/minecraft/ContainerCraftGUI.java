@@ -37,7 +37,10 @@ import cpw.mods.fml.relauncher.Side;
 
 public class ContainerCraftGUI extends Container {
 
-    // Update constants
+    // Action type is one of the action constants below
+    private final static String ACTION_TYPE = "type";
+
+    // Action constants
     private final static String TANK_CLICK = "tank-click";
     private final static String SLOT_REG = "slot-reg";
     private final static String TANK_UPDATE = "tank-update-";
@@ -46,6 +49,9 @@ public class ContainerCraftGUI extends Container {
     private final static String ERROR_UPDATE = "error-update";
     private final static String MOUSE_OVER_SLOT = "mouse-over-slot";
     private final static String SHIFT_CLICK_INFO = "shift-click-info";
+
+    // Error type is one of the error constants below (TODO)
+    private final static String ERROR_TYPE = "type";
 
     // Slot constants
     private static final String SLOT_TYPE = "t";
@@ -289,7 +295,7 @@ public class ContainerCraftGUI extends Container {
             final String nbtKey = nbt.getKey();
             final NBTTagCompound nbtValuePrev = sentNBT.get(nbtKey);
 
-            nbtValue.setString("type", nbtKey);
+            nbtValue.setString(ACTION_TYPE, nbtKey);
 
             if (nbtValue.equals(nbtValuePrev)) continue;
 
@@ -311,10 +317,10 @@ public class ContainerCraftGUI extends Container {
         NBTTagCompound nbt = new NBTTagCompound();
         ErrorState state = null;
         if (error.canWork() != null) {
-            nbt.setByte("type", (byte) 0);
+            nbt.setByte(ERROR_TYPE, (byte) 0);
             state = error.canWork();
         } else if (error.canProgress() != null) {
-            nbt.setByte("type", (byte) 1);
+            nbt.setByte(ERROR_TYPE, (byte) 1);
             state = error.canProgress();
         }
 
@@ -373,7 +379,7 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void onErrorUpdate(NBTTagCompound nbt) {
-        errorType = nbt.getByte("type");
+        errorType = nbt.getByte(ERROR_TYPE);
         if (nbt.hasKey("name")) {
             error = new ErrorState("", "");
             error.readFromNBT(nbt);
@@ -455,7 +461,7 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void receiveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
-        String name = action.getString("type");
+        String name = action.getString(ACTION_TYPE);
         handleNBT(side, player, name, action);
         window.receiveGuiNBT(getSide(), player, name, action);
         INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, window.getInventory());
