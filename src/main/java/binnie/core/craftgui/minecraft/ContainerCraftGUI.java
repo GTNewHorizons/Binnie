@@ -46,6 +46,10 @@ public class ContainerCraftGUI extends Container {
     private final static String MOUSE_OVER_SLOT = "mouse-over-slot";
     private final static String SHIFT_CLICK_INFO = "shift-click-info";
 
+    private static final String SLOT_TYPE = "t";
+    private static final String SLOT_INDEX = "i";
+    private static final String SLOT_NUMBER = "n";
+
     private final Window window;
     private final Map<String, NBTTagCompound> syncedNBT = new HashMap<>();
     private final Map<String, NBTTagCompound> sentNBT = new HashMap<>();
@@ -221,9 +225,9 @@ public class ContainerCraftGUI extends Container {
             switch (name) {
                 case TANK_CLICK -> tankClick(player, action.getByte("id"));
                 case SLOT_REG -> {
-                    int type = action.getByte("t");
-                    int index = action.getShort("i");
-                    int slotNumber = action.getShort("n");
+                    int type = action.getByte(SLOT_TYPE);
+                    int index = action.getShort(SLOT_INDEX);
+                    int slotNumber = action.getShort(SLOT_NUMBER);
                     createSlot(InventoryType.values()[type % 4], index, slotNumber);
 
                     for (ICrafting crafterObject : crafters) {
@@ -464,10 +468,10 @@ public class ContainerCraftGUI extends Container {
         }
 
         NBTTagCompound nbt = new NBTTagCompound();
-        nbt.setByte("t", (byte) type.ordinal());
-        nbt.setShort("i", (short) index);
-        nbt.setShort("n", (short) slot.slotNumber);
-        window.sendClientAction("slot-reg", nbt);
+        nbt.setByte(SLOT_TYPE, (byte) type.ordinal());
+        nbt.setShort(SLOT_INDEX, (short) index);
+        nbt.setShort(SLOT_NUMBER, (short) slot.slotNumber);
+        window.sendClientAction(SLOT_REG, nbt);
         return slot;
     }
 
