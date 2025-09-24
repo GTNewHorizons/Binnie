@@ -37,9 +37,6 @@ import cpw.mods.fml.relauncher.Side;
 
 public class ContainerCraftGUI extends Container {
 
-    public List<ItemStack> inventoryItemStacks = new ListMap<>();
-    public List<Slot> inventorySlots = new ListMap<>();
-
     private final Window window;
     private final Map<String, NBTTagCompound> syncedNBT = new HashMap<>();
     private final Map<String, NBTTagCompound> sentNBT = new HashMap<>();
@@ -54,6 +51,10 @@ public class ContainerCraftGUI extends Container {
         this.window = window;
 
         if (!window.isServer()) return;
+
+        // WARNING: The client side expects `ArrayList` and the server expects `ListMap`
+        inventoryItemStacks = new ListMap<>();
+        inventorySlots = new ListMap<>();
 
         IInventory entityInventory = window.getInventory();
         IMachine machine = Machine.getMachine(entityInventory);
