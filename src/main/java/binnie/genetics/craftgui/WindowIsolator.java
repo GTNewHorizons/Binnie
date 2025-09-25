@@ -66,12 +66,13 @@ public class WindowIsolator extends WindowMachine {
         x += 20;
         new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ArrowRight.getIcon());
         x += 18;
+
+        MessageCraftGUI.sendToServer(actions);
+
         new ControlSlotArray(this, x, y + 3, 2, 3).create(Isolator.SLOT_FINISHED);
         new ControlEnergyBar(this, 260, 130, 16, 60, Position.BOTTOM);
         new ControlErrorState(this, 153.0f, 81.0f);
         new ControlPlayerInventory(this);
-
-        MessageCraftGUI.sendToServer(actions);
     }
 
     @Override

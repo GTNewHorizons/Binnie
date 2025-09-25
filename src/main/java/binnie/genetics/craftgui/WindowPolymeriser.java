@@ -65,11 +65,12 @@ public class WindowPolymeriser extends WindowMachine {
         new ControlSlot(this, x + 30, y + 18 + 8).assign(actions, InventoryType.Machine, Polymeriser.SLOT_GOLD);
         new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColor(0xffd800);
         x += 138;
+
+        MessageCraftGUI.sendToServer(actions);
+
         new ControlSlotArray(this, x, y + 9, 2, 2).create(Polymeriser.SLOT_SERUM_FINISHED);
         new ControlErrorState(this, 244.0f, 97.0f);
         new ControlPlayerInventory(this);
-
-        MessageCraftGUI.sendToServer(actions);
     }
 
     @Override

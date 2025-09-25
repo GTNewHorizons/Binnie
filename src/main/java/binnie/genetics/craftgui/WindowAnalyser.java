@@ -71,10 +71,11 @@ public class WindowAnalyser extends WindowMachine {
         new ControlSlot(this, x + 38 - 9, y + 25 - 9).assign(actions, InventoryType.Machine, Analyser.SLOT_TARGET);
         new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ArrowRight.getIcon());
         x += 96;
-        new ControlSlotArray(this, x, y, 2, 3).create(Analyser.SLOT_FINISHED);
-        new ControlPlayerInventory(this);
 
         MessageCraftGUI.sendToServer(actions);
+
+        new ControlSlotArray(this, x, y, 2, 3).create(Analyser.SLOT_FINISHED);
+        new ControlPlayerInventory(this);
     }
 
     @Override

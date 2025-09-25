@@ -97,9 +97,10 @@ public class WindowSequencer extends WindowMachine {
         new ControlEnergyBar(this, x, y, 60, 16, Position.LEFT);
         x += 92;
         new ControlErrorState(this, x, y + 1);
-        new ControlPlayerInventory(this);
 
         MessageCraftGUI.sendToServer(actions);
+
+        new ControlPlayerInventory(this);
     }
 
     @Override
