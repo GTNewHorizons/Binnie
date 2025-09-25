@@ -3,6 +3,7 @@ package binnie.extrabees.gui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagList;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.controls.ControlText;
@@ -16,6 +17,7 @@ import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.mutator.AlvearyMutator;
@@ -40,10 +42,11 @@ public class WindowAlvearyMutator extends Window {
 
     @Override
     public void initialiseClient() {
+        final NBTTagList actions = new NBTTagList();
+
         setTitle(I18N.localise("extrabees.machine.alveay.mutator"));
-        playerInventory = new ControlPlayerInventory(this);
-        ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
-        slot.assignAndRegister(InventoryType.Machine, AlvearyMutator.SLOT_MUTATOR);
+        playerInventory = new ControlPlayerInventory(this).create(actions);
+        new ControlSlot(this, 79.0f, 30.0f).assign(actions, InventoryType.Machine, AlvearyMutator.SLOT_MUTATOR);
         new ControlText(
                 this,
                 new IArea(0.0f, 52.0f, w(), 16.0f),
@@ -64,6 +67,8 @@ public class WindowAlvearyMutator extends Window {
             display.hastooltip = true;
             x += 17.0f;
         }
+
+        MessageCraftGUI.sendToServer(actions);
     }
 
     @Override

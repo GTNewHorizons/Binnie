@@ -53,7 +53,7 @@ public class WindowPolymeriser extends WindowMachine {
 
         int x = 16;
         int y = 38;
-        new ControlSlotArray(this, x, y, 1, 4).create(Polymeriser.SLOT_SERUM_RESERVE);
+        new ControlSlotArray(this, x, y, 1, 4).create(actions, InventoryType.Machine, Polymeriser.SLOT_SERUM_RESERVE);
         new ControlIconDisplay(this, x + 18, y + 1, GUIIcon.ArrowRight.getIcon());
         x += 34;
         new ControlMachineProgress(this, x + 18, y - 6, progressBase, progress, Position.LEFT);
@@ -65,9 +65,10 @@ public class WindowPolymeriser extends WindowMachine {
         new ControlSlot(this, x + 30, y + 18 + 8).assign(actions, InventoryType.Machine, Polymeriser.SLOT_GOLD);
         new ControlSlotCharge(this, x + 30 + 20, y + 18 + 8, 1).setColor(0xffd800);
         x += 138;
-        new ControlSlotArray(this, x, y + 9, 2, 2).create(Polymeriser.SLOT_SERUM_FINISHED);
+        new ControlSlotArray(this, x, y + 9, 2, 2)
+                .create(actions, InventoryType.Machine, Polymeriser.SLOT_SERUM_FINISHED);
         new ControlErrorState(this, 244.0f, 97.0f);
-        new ControlPlayerInventory(this);
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
     }

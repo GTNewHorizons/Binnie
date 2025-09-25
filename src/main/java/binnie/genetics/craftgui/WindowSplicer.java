@@ -56,10 +56,12 @@ public class WindowSplicer extends WindowMachine {
         CraftGUIUtil.horizontalGrid(
                 x,
                 62.0f,
-                new ControlSlotArray(this, 0, 0, 2, 1).create(Splicer.SLOT_SERUM_RESERVE),
+                new ControlSlotArray(this, 0, 0, 2, 1)
+                        .create(actions, InventoryType.Machine, Splicer.SLOT_SERUM_RESERVE),
                 new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()),
                 new ControlSlot(this, 0.0f, 0.0f).assign(actions, InventoryType.Machine, Splicer.SLOT_SERUM_VIAL));
-        new ControlSlotArray(this, x + 12, 84, 2, 1).create(Splicer.SLOT_SERUM_EXPENDED);
+        new ControlSlotArray(this, x + 12, 84, 2, 1)
+                .create(actions, InventoryType.Machine, Splicer.SLOT_SERUM_EXPENDED);
         new ControlIconDisplay(this, x + 12 + 36 + 4, 86.0f, GUIIcon.ArrowUpLeft.getIcon());
         new ControlEnergyBar(this, 196, 64, 60, 16, Position.LEFT);
         new ControlErrorState(this, 218.0f, 86.0f);
@@ -68,12 +70,13 @@ public class WindowSplicer extends WindowMachine {
                 32.0f,
                 TextJustification.MIDDLE_CENTER,
                 4.0f,
-                new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.SLOT_RESERVE),
+                new ControlSlotArray(this, 0, 0, 4, 1).create(actions, InventoryType.Machine, Inoculator.SLOT_RESERVE),
                 new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowDown.getIcon()),
                 new ControlSlot(this, 0.0f, 0.0f).assign(actions, InventoryType.Machine, Splicer.SLOT_TARGET),
                 new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowDown.getIcon()),
-                new ControlSlotArray(this, 0, 0, 4, 1).create(Inoculator.SLOT_FINISHED));
-        new ControlPlayerInventory(this);
+                new ControlSlotArray(this, 0, 0, 4, 1)
+                        .create(actions, InventoryType.Machine, Inoculator.SLOT_FINISHED));
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
     }

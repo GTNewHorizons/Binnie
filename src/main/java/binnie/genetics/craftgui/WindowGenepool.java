@@ -51,7 +51,7 @@ public class WindowGenepool extends WindowMachine {
         new ControlLiquidTank(this, x, y).setTankID(Genepool.TANK_ETHANOL);
 
         x += 26;
-        new ControlSlotArray(this, x, y + 3, 2, 3).create(Genepool.SLOT_RESERVE);
+        new ControlSlotArray(this, x, y + 3, 2, 3).create(actions, InventoryType.Machine, Genepool.SLOT_RESERVE);
 
         x += 38;
         new ControlIconDisplay(this, x, y + 22, GUIIcon.ArrowRight.getIcon());
@@ -68,7 +68,7 @@ public class WindowGenepool extends WindowMachine {
         new ControlSlot(this, 121.0f, 82.0f).assign(actions, InventoryType.Machine, Genepool.SLOT_ENZYME);
         new ControlSlotCharge(this, 143, 82, 7).setColor(0xefe8af);
         new ControlErrorState(this, 181.0f, 83.0f);
-        new ControlPlayerInventory(this);
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
     }

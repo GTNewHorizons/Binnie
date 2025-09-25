@@ -2,6 +2,7 @@ package binnie.extrabees.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagList;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
@@ -12,6 +13,7 @@ import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.stimulator.AlvearyStimulator;
@@ -36,11 +38,12 @@ public class WindowAlvearyStimulator extends Window {
 
     @Override
     public void initialiseClient() {
+        final NBTTagList actions = new NBTTagList();
         setTitle(I18N.localise("extrabees.machine.alveay.stimulator"));
+        playerInventory = new ControlPlayerInventory(this).create(actions);
+        new ControlSlot(this, 41.0f, 28.0f).assign(actions, InventoryType.Machine, AlvearyStimulator.SLOT_CIRCUIT);
         new ControlEnergyBar(this, 75, 29, 60, 16, Position.LEFT);
-        ControlSlot slot = new ControlSlot(this, 41.0f, 28.0f);
-        slot.assignAndRegister(InventoryType.Machine, AlvearyStimulator.SLOT_CIRCUIT);
-        playerInventory = new ControlPlayerInventory(this);
+        MessageCraftGUI.sendToServer(actions);
     }
 
     @Override

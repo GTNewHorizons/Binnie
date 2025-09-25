@@ -74,7 +74,7 @@ public class WindowSequencer extends WindowMachine {
                 y,
                 TextJustification.MIDDLE_CENTER,
                 2.0f,
-                new ControlSlotArray(this, 0, 0, 2, 2).create(Sequencer.SLOT_RESERVE),
+                new ControlSlotArray(this, 0, 0, 2, 2).create(actions, InventoryType.Machine, Sequencer.SLOT_RESERVE),
                 new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()),
                 new ControlSequencerProgress(this, 0, 0),
                 new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()),
@@ -97,7 +97,7 @@ public class WindowSequencer extends WindowMachine {
         new ControlEnergyBar(this, x, y, 60, 16, Position.LEFT);
         x += 92;
         new ControlErrorState(this, x, y + 1);
-        new ControlPlayerInventory(this);
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
     }

@@ -190,7 +190,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
             for (int k = 0; k < inv.getPageSize(); ++k) {
                 slotsIDs[k] = i++;
             }
-            new ControlSlotArray(thisPage, 8, 8, inv.getPageSize() / 5, 5).create(slotsIDs);
+
+            final NBTTagList actions = new NBTTagList();
+            new ControlSlotArray(thisPage, 8, 8, inv.getPageSize() / 5, 5)
+                    .create(actions, InventoryType.Machine, slotsIDs);
+            MessageCraftGUI.sendToServer(actions);
         }
         x += compartmentPageWidth;
         if (tabs2.length > 0) {
@@ -248,7 +252,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
         setSize(new IPoint(Math.max(32 + compartmentWidth, 252), h()));
         controlCompartment.setPosition(new IPoint((w() - controlCompartment.w()) / 2.0f, controlCompartment.y()));
-        new ControlPlayerInventory(this, true);
+        new ControlPlayerInventory(this, true).createAndRegister();
         ControlSlide slide = new ControlSlide(this, 0.0f, 134.0f, 136.0f, 92.0f, Position.LEFT);
         slide.setLabel(I18N.localise("binniecore.machine.storage.tab.properties"));
         slide.setSlide(false);
@@ -370,7 +374,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
                 };
                 slotGrid = new Control(scroll, 1.0f, 1.0f, 108.0f, 18.0f);
                 scroll.setScrollableContent(slotGrid);
-                new ControlPlayerInventory(this, true);
+                new ControlPlayerInventory(this, true).createAndRegister();
                 new ControlTextEdit(this, 16.0f, 16.0f, 100.0f, 14.0f).addEventHandler(new EventTextEdit.Handler() {
 
                     @Override

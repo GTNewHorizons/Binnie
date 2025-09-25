@@ -63,7 +63,7 @@ public class WindowGenesis extends Window {
 
     @Override
     public void initialiseClient() {
-        new ControlPlayerInventory(this);
+        new ControlPlayerInventory(this).createAndRegister();
         setTitle(getName());
 
         ControlTabBar<BreedingSystem> tabSystems = new BreedingSystemControlTabBar();

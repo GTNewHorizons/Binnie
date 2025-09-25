@@ -279,7 +279,7 @@ public class WindowAnalyst extends Window {
                     244.0f,
                     80.0f,
                     Position.BOTTOM);
-            new ControlPlayerInventory(slideUpInv, true);
+            new ControlPlayerInventory(slideUpInv, true).createAndRegister();
             slideUpInv.setSlide(false);
         }
         addEventHandler(new EventKey.Down.Handler() {
@@ -301,7 +301,7 @@ public class WindowAnalyst extends Window {
                 @Override
                 public void initialise() {
                     new ControlTextCentered(this, 20.0f, I18N.localise("genetics.gui.analyst.info")).setColor(0x444444);
-                    new ControlPlayerInventory(this);
+                    new ControlPlayerInventory(this).createAndRegister();
                 }
             };
         }
