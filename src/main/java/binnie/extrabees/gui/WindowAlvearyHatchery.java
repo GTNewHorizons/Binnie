@@ -36,9 +36,9 @@ public class WindowAlvearyHatchery extends Window {
 
     @Override
     public void initialiseClient() {
-        setTitle(I18N.localise("extrabees.machine.alveay.hatchery"));
-        playerInventory = new ControlPlayerInventory(this);
         final NBTTagList actions = new NBTTagList();
+        setTitle(I18N.localise("extrabees.machine.alveay.hatchery"));
+        playerInventory = new ControlPlayerInventory(this).create(actions);
         new ControlSlotArray(this, 43, 30, 5, 1).create(actions, InventoryType.Machine, AlvearyHatchery.SLOT_LARVAE);
         MessageCraftGUI.sendToServer(actions);
     }

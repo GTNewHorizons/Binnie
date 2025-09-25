@@ -51,6 +51,8 @@ public class WindowWoodworker extends Window {
 
     @Override
     public void initialiseClient() {
+        final NBTTagList actions = new NBTTagList();
+
         setTitle(Machine.getMachine(getInventory()).getPackage().getDisplayName());
         new ControlText(
                 this,
@@ -61,11 +63,14 @@ public class WindowWoodworker extends Window {
         textEdit = new ControlTextEdit(this, 188.0f, 178.0f, 118.0f, 12.0f);
         ControlScrollableContent scroll = new ControlScrollableContent(this, 190.0f, 50.0f, 114.0f, 122.0f, 12.0f);
         scroll.setScrollableContent(tileSelect = new ControlTileSelect(scroll, 0.0f, 0.0f));
-        new ControlPlayerInventory(this).setPosition(new IPoint(14.0f, 96.0f));
+
+        ControlPlayerInventory controlPlayerInventory = new ControlPlayerInventory(this);
+        controlPlayerInventory.setPosition(new IPoint(14.0f, 96.0f));
+        controlPlayerInventory.create(actions);
+
         new ControlErrorState(this, 76.0f, 65.0f);
 
         if (getInventory() != null) {
-            final NBTTagList actions = new NBTTagList();
 
             ControlSlot slotWood1 = new ControlSlot(this, 22.0f, 34.0f);
             slotWood1.assign(actions, InventoryType.Machine, Designer.DESIGN_1_SLOT);
@@ -74,9 +79,9 @@ public class WindowWoodworker extends Window {
             ControlSlot slotBeeswax = new ControlSlot(this, 42.0f, 64.0f);
             slotBeeswax.assign(actions, InventoryType.Machine, Designer.GLUE_SLOT);
             new ControlRecipeSlot(this, 112, 34);
-
-            MessageCraftGUI.sendToServer(actions);
         }
+
+        MessageCraftGUI.sendToServer(actions);
     }
 
     @Override

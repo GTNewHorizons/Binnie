@@ -76,10 +76,9 @@ public class WindowSplicer extends WindowMachine {
                 new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowDown.getIcon()),
                 new ControlSlotArray(this, 0, 0, 4, 1)
                         .create(actions, InventoryType.Machine, Inoculator.SLOT_FINISHED));
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
-
-        new ControlPlayerInventory(this);
     }
 
     @Override

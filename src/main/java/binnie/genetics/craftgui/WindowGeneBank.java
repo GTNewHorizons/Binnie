@@ -97,7 +97,7 @@ public class WindowGeneBank extends WindowMachine {
         int boxX;
         int x = 16;
         int y = 32;
-        new ControlPlayerInventory(this, x, y);
+        new ControlPlayerInventory(this, x, y).createAndRegister();
         x += 124;
         boxX = x;
         int geneBoxWidth = 200;

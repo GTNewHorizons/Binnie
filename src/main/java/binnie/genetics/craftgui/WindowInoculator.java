@@ -82,10 +82,9 @@ public class WindowInoculator extends WindowMachine {
                         .create(actions, InventoryType.Machine, Inoculator.SLOT_FINISHED));
         new ControlIconDisplay(this, x + 18, y + 18 + 2, GUIIcon.ArrowUpLeft.getIcon());
         new ControlIconDisplay(this, x + 18, y + 18 + 18, GUIIcon.ArrowLeftDown.getIcon());
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
-
-        new ControlPlayerInventory(this);
     }
 
     @Override

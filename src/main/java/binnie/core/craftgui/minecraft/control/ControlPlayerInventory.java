@@ -40,7 +40,6 @@ public class ControlPlayerInventory extends Control {
                 slots.add(slot2);
             }
         }
-        create();
     }
 
     public ControlPlayerInventory(IWidget parent) {
@@ -56,12 +55,9 @@ public class ControlPlayerInventory extends Control {
                 slots.add(slot);
             }
         }
-        create();
     }
 
-    public void create() {
-        final NBTTagList actions = new NBTTagList();
-
+    public ControlPlayerInventory create(NBTTagList actions) {
         for (int row = 0; row < 3; ++row) {
             for (int column = 0; column < 9; ++column) {
                 ControlSlot slot = slots.get(column + row * 9);
@@ -74,14 +70,13 @@ public class ControlPlayerInventory extends Control {
             slot2.assign(actions, InventoryType.Player, i1);
         }
 
+        return this;
+    }
+
+    public ControlPlayerInventory createAndRegister() {
+        final NBTTagList actions = new NBTTagList();
+        create(actions);
         MessageCraftGUI.sendToServer(actions);
+        return this;
     }
-
-    public ControlSlot getSlot(int i) {
-        if (i < 0 || i >= slots.size()) {
-            return null;
-        }
-        return slots.get(i);
-    }
-
 }

@@ -69,10 +69,9 @@ public class WindowIsolator extends WindowMachine {
         new ControlSlotArray(this, x, y + 3, 2, 3).create(actions, InventoryType.Machine, Isolator.SLOT_FINISHED);
         new ControlEnergyBar(this, 260, 130, 16, 60, Position.BOTTOM);
         new ControlErrorState(this, 153.0f, 81.0f);
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
-
-        new ControlPlayerInventory(this);
     }
 
     @Override

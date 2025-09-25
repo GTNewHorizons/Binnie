@@ -57,10 +57,9 @@ public class WindowAcclimatiser extends WindowMachine {
         new ControlSlotArray(this, x, y, 2, 2).create(actions, InventoryType.Machine, Acclimatiser.SLOT_DONE);
         new ControlEnergyBar(this, 21, 115, 16, 60, Position.BOTTOM);
         new ControlErrorState(this, 181.0f, 83.0f);
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
-
-        new ControlPlayerInventory(this);
     }
 
     @Override

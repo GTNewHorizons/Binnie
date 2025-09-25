@@ -68,10 +68,9 @@ public class WindowGenepool extends WindowMachine {
         new ControlSlot(this, 121.0f, 82.0f).assign(actions, InventoryType.Machine, Genepool.SLOT_ENZYME);
         new ControlSlotCharge(this, 143, 82, 7).setColor(0xefe8af);
         new ControlErrorState(this, 181.0f, 83.0f);
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
-
-        new ControlPlayerInventory(this);
     }
 
     @Override

@@ -68,10 +68,9 @@ public class WindowPolymeriser extends WindowMachine {
         new ControlSlotArray(this, x, y + 9, 2, 2)
                 .create(actions, InventoryType.Machine, Polymeriser.SLOT_SERUM_FINISHED);
         new ControlErrorState(this, 244.0f, 97.0f);
+        new ControlPlayerInventory(this).create(actions);
 
         MessageCraftGUI.sendToServer(actions);
-
-        new ControlPlayerInventory(this);
     }
 
     @Override

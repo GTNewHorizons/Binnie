@@ -115,20 +115,20 @@ public class WindowFieldKit extends Window {
 
     @Override
     public void initialiseClient() {
+        final NBTTagList actions = new NBTTagList();
+
         setTitle(getName());
         CraftGUI.render.stylesheet(new StyleSheetPunnett());
         getWindowInventory().createSlot(0);
         getWindowInventory().createSlot(1);
         setupValidators();
-        new ControlPlayerInventory(this);
+        new ControlPlayerInventory(this).create(actions);
         IPoint handGlass = new IPoint(16.0f, 32.0f);
         GlassControl = new ControlImage(
                 this,
                 handGlass.x(),
                 handGlass.y(),
                 new StandardTexture(0, 160, 96, 96, ExtraBeeTexture.GUIPunnett));
-
-        final NBTTagList actions = new NBTTagList();
 
         new ControlSlot(this, handGlass.x() + 54.0f, handGlass.y() + 26.0f).assign(actions, InventoryType.Window, 0);
         new ControlSlot(this, 208.0f, 8.0f).assign(actions, InventoryType.Window, 1);
