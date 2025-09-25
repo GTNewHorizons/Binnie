@@ -50,7 +50,7 @@ public class WindowIsolator extends WindowMachine {
         int y = 32;
         new ControlLiquidTank(this, x, y).setTankID(Isolator.TANK_ETHANOL);
         x += 26;
-        new ControlSlotArray(this, x, y + 3, 1, 3).create(Isolator.SLOT_RESERVE);
+        new ControlSlotArray(this, x, y + 3, 1, 3).create(actions, InventoryType.Machine, Isolator.SLOT_RESERVE);
         x += 20;
         new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ArrowRight.getIcon());
         x += 18;
@@ -66,12 +66,12 @@ public class WindowIsolator extends WindowMachine {
         x += 20;
         new ControlIconDisplay(this, x, y + 3 + 1, GUIIcon.ArrowRight.getIcon());
         x += 18;
+        new ControlSlotArray(this, x, y + 3, 2, 3).create(actions, InventoryType.Machine, Isolator.SLOT_FINISHED);
+        new ControlEnergyBar(this, 260, 130, 16, 60, Position.BOTTOM);
+        new ControlErrorState(this, 153.0f, 81.0f);
 
         MessageCraftGUI.sendToServer(actions);
 
-        new ControlSlotArray(this, x, y + 3, 2, 3).create(Isolator.SLOT_FINISHED);
-        new ControlEnergyBar(this, 260, 130, 16, 60, Position.BOTTOM);
-        new ControlErrorState(this, 153.0f, 81.0f);
         new ControlPlayerInventory(this);
     }
 

@@ -51,7 +51,7 @@ public class WindowGenepool extends WindowMachine {
         new ControlLiquidTank(this, x, y).setTankID(Genepool.TANK_ETHANOL);
 
         x += 26;
-        new ControlSlotArray(this, x, y + 3, 2, 3).create(Genepool.SLOT_RESERVE);
+        new ControlSlotArray(this, x, y + 3, 2, 3).create(actions, InventoryType.Machine, Genepool.SLOT_RESERVE);
 
         x += 38;
         new ControlIconDisplay(this, x, y + 22, GUIIcon.ArrowRight.getIcon());

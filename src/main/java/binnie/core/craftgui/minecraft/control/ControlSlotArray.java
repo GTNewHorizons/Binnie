@@ -9,7 +9,6 @@ import net.minecraft.nbt.NBTTagList;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.InventoryType;
-import binnie.core.network.packet.MessageCraftGUI;
 
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 
@@ -29,13 +28,7 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
         return new ControlSlot(this, x, y);
     }
 
-    public ControlSlotArray create(int[] index) {
-        return create(InventoryType.Machine, index);
-    }
-
-    public ControlSlotArray create(InventoryType inventoryType, int[] index) {
-        final NBTTagList actions = new NBTTagList();
-
+    public ControlSlotArray create(NBTTagList actions, InventoryType inventoryType, int[] index) {
         int i = 0;
         for (ControlSlot controlSlot : slots) {
             final int slotIndex = index[i];
@@ -43,7 +36,6 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
             i++;
         }
 
-        MessageCraftGUI.sendToServer(actions);
         return this;
     }
 

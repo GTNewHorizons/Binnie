@@ -2,6 +2,7 @@ package binnie.genetics.craftgui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagList;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
@@ -18,6 +19,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.core.GeneticsTexture;
@@ -40,11 +42,14 @@ public class WindowIncubator extends WindowMachine {
     @Override
     public void initialiseClient() {
         super.initialiseClient();
+
+        final NBTTagList actions = new NBTTagList();
+
         int x = 16;
         int y = 32;
         new ControlLiquidTank(this, x, y).setTankID(Incubator.TANK_INPUT);
         x += 26;
-        new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.SLOT_QUEUE);
+        new ControlSlotArray(this, x, y + 3, 1, 3).create(actions, InventoryType.Machine, Incubator.SLOT_QUEUE);
         x += 20;
         new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
         x += 18;
@@ -55,16 +60,19 @@ public class WindowIncubator extends WindowMachine {
                 WindowIncubator.progressBase,
                 WindowIncubator.progress,
                 Position.LEFT);
-        new ControlSlot(this, x + 10, y + 3 + 10).assignAndRegister(InventoryType.Machine, Incubator.SLOT_INCUBATOR);
+        new ControlSlot(this, x + 10, y + 3 + 10).assign(actions, InventoryType.Machine, Incubator.SLOT_INCUBATOR);
         x += 40;
         new ControlIconDisplay(this, x, y + 3 + 10, GUIIcon.ArrowRight.getIcon());
         x += 18;
-        new ControlSlotArray(this, x, y + 3, 1, 3).create(Incubator.SLOT_OUTPUT);
+        new ControlSlotArray(this, x, y + 3, 1, 3).create(actions, InventoryType.Machine, Incubator.SLOT_OUTPUT);
         x += 26;
         new ControlLiquidTank(this, x, y).setTankID(Incubator.TANK_OUTPUT);
         x += 34;
         new ControlEnergyBar(this, x, y + 3, 16, 54, Position.BOTTOM);
         new ControlErrorState(this, 91.0f, 82.0f);
+
+        MessageCraftGUI.sendToServer(actions);
+
         new ControlPlayerInventory(this);
     }
 

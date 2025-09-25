@@ -57,7 +57,7 @@ public class WindowAnalyser extends WindowMachine {
         WindowAnalyser.progress = new StandardTexture(66, 51, 66, 40, GeneticsTexture.GUIProcess.getTexture());
         int x = 16;
         int y = 32;
-        new ControlSlotArray(this, x, y, 2, 3).create(Analyser.SLOT_RESERVE);
+        new ControlSlotArray(this, x, y, 2, 3).create(actions, InventoryType.Machine, Analyser.SLOT_RESERVE);
         x += 28;
         new ControlSlot(this, x, y + 54 + 8).assign(actions, InventoryType.Machine, 13);
         new ControlSlotCharge(this, x + 20, y + 54 + 8, 13).setColor(10040319);
@@ -71,10 +71,10 @@ public class WindowAnalyser extends WindowMachine {
         new ControlSlot(this, x + 38 - 9, y + 25 - 9).assign(actions, InventoryType.Machine, Analyser.SLOT_TARGET);
         new ControlIconDisplay(this, x + 76 + 2, y + 18, GUIIcon.ArrowRight.getIcon());
         x += 96;
+        new ControlSlotArray(this, x, y, 2, 3).create(actions, InventoryType.Machine, Analyser.SLOT_FINISHED);
 
         MessageCraftGUI.sendToServer(actions);
 
-        new ControlSlotArray(this, x, y, 2, 3).create(Analyser.SLOT_FINISHED);
         new ControlPlayerInventory(this);
     }
 

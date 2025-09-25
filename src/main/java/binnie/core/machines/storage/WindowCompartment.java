@@ -190,7 +190,11 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
             for (int k = 0; k < inv.getPageSize(); ++k) {
                 slotsIDs[k] = i++;
             }
-            new ControlSlotArray(thisPage, 8, 8, inv.getPageSize() / 5, 5).create(slotsIDs);
+
+            final NBTTagList actions = new NBTTagList();
+            new ControlSlotArray(thisPage, 8, 8, inv.getPageSize() / 5, 5)
+                    .create(actions, InventoryType.Machine, slotsIDs);
+            MessageCraftGUI.sendToServer(actions);
         }
         x += compartmentPageWidth;
         if (tabs2.length > 0) {
