@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import net.minecraft.nbt.NBTTagList;
+
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.InventoryType;
+import binnie.core.network.packet.MessageCraftGUI;
 
 public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
 
@@ -30,11 +33,17 @@ public class ControlSlotArray extends Control implements Iterable<ControlSlot> {
         return create(InventoryType.Machine, index);
     }
 
-    public ControlSlotArray create(InventoryType type, int[] index) {
+    public ControlSlotArray create(InventoryType inventoryType, int[] index) {
+        final NBTTagList actions = new NBTTagList();
+
         int i = 0;
-        for (ControlSlot slot : slots) {
-            slot.assign(type, index[i++]);
+        for (ControlSlot controlSlot : slots) {
+            final int slotIndex = index[i];
+            controlSlot.assign(actions, inventoryType, slotIndex);
+            i++;
         }
+
+        MessageCraftGUI.sendToServer(actions);
         return this;
     }
 

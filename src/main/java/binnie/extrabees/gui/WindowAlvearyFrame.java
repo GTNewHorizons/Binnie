@@ -4,6 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 
 import binnie.core.AbstractMod;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlPlayerInventory;
 import binnie.core.craftgui.minecraft.control.ControlSlot;
@@ -35,7 +36,7 @@ public class WindowAlvearyFrame extends Window {
         setTitle(I18N.localise("extrabees.machine.alveay.frame"));
         playerInventory = new ControlPlayerInventory(this);
         ControlSlot slot = new ControlSlot(this, 79.0f, 30.0f);
-        slot.assign(0);
+        slot.assignAndRegister(InventoryType.Machine, 0);
     }
 
     @Override

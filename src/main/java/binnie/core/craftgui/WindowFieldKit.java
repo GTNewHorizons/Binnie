@@ -12,6 +12,7 @@ import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 import binnie.Binnie;
 import binnie.core.AbstractMod;
@@ -33,6 +34,7 @@ import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.craftgui.resource.minecraft.PaddedTexture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
 import binnie.core.machines.inventory.SlotValidator;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.extrabees.gui.ExtraBeeGUITexture;
@@ -125,8 +127,14 @@ public class WindowFieldKit extends Window {
                 handGlass.x(),
                 handGlass.y(),
                 new StandardTexture(0, 160, 96, 96, ExtraBeeTexture.GUIPunnett));
-        new ControlSlot(this, handGlass.x() + 54.0f, handGlass.y() + 26.0f).assign(InventoryType.Window, 0);
-        new ControlSlot(this, 208.0f, 8.0f).assign(InventoryType.Window, 1);
+
+        final NBTTagList actions = new NBTTagList();
+
+        new ControlSlot(this, handGlass.x() + 54.0f, handGlass.y() + 26.0f).assign(actions, InventoryType.Window, 0);
+        new ControlSlot(this, 208.0f, 8.0f).assign(actions, InventoryType.Window, 1);
+
+        MessageCraftGUI.sendToServer(actions);
+
         (text = new ControlText(this, new IPoint(232.0f, 13.0f), I18N.localise("binniecore.gui.tooltip.paper")))
                 .setColor(0x222222);
         (text = new ControlText(this, new IArea(0.0f, 120.0f, w(), 24.0f), "", TextJustification.MIDDLE_CENTER))

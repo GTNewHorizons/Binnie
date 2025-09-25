@@ -2,10 +2,12 @@ package binnie.genetics.craftgui;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
+import net.minecraft.nbt.NBTTagList;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.minecraft.GUIIcon;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.core.craftgui.minecraft.control.ControlErrorState;
@@ -18,6 +20,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
@@ -40,6 +43,9 @@ public class WindowGenepool extends WindowMachine {
     @Override
     public void initialiseClient() {
         super.initialiseClient();
+
+        final NBTTagList actions = new NBTTagList();
+
         int x = 16;
         int y = 32;
         new ControlLiquidTank(this, x, y).setTankID(Genepool.TANK_ETHANOL);
@@ -51,7 +57,7 @@ public class WindowGenepool extends WindowMachine {
         new ControlIconDisplay(this, x, y + 22, GUIIcon.ArrowRight.getIcon());
 
         x += 18;
-        new ControlSlot(this, x, y + 21).assign(Genepool.SLOT_BEE);
+        new ControlSlot(this, x, y + 21).assign(actions, InventoryType.Machine, Genepool.SLOT_BEE);
 
         x += 18;
         new ControlMachineProgress(this, x, y + 19, progressBase, progress, Position.LEFT);
@@ -59,10 +65,12 @@ public class WindowGenepool extends WindowMachine {
         x += 130;
         new ControlLiquidTank(this, x, y).setTankID(Genepool.TANK_DNA);
         new ControlEnergyBar(this, 21, 115, 16, 60, Position.BOTTOM);
-        new ControlSlot(this, 121.0f, 82.0f).assign(Genepool.SLOT_ENZYME);
+        new ControlSlot(this, 121.0f, 82.0f).assign(actions, InventoryType.Machine, Genepool.SLOT_ENZYME);
         new ControlSlotCharge(this, 143, 82, 7).setColor(0xefe8af);
         new ControlErrorState(this, 181.0f, 83.0f);
         new ControlPlayerInventory(this);
+
+        MessageCraftGUI.sendToServer(actions);
     }
 
     @Override

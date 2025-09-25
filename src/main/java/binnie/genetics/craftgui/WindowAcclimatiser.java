@@ -5,6 +5,7 @@ import net.minecraft.inventory.IInventory;
 
 import binnie.core.AbstractMod;
 import binnie.core.craftgui.geometry.Position;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.core.craftgui.minecraft.control.ControlErrorState;
@@ -44,7 +45,7 @@ public class WindowAcclimatiser extends WindowMachine {
         int y = 32;
         new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_RESERVE);
         x += 54;
-        new ControlSlot(this, x + 18, y).assign(Acclimatiser.SLOT_TARGET);
+        new ControlSlot(this, x + 18, y).assignAndRegister(InventoryType.Machine, Acclimatiser.SLOT_TARGET);
         new ControlSlotArray(this, x, y + 18 + 18, 3, 1).create(Acclimatiser.SLOT_ACCLIMATISER);
         x += 72;
         new ControlSlotArray(this, x, y, 2, 2).create(Acclimatiser.SLOT_DONE);

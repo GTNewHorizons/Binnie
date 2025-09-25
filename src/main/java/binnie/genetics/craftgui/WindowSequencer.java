@@ -3,6 +3,7 @@ package binnie.genetics.craftgui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumChatFormatting;
 
 import binnie.core.AbstractMod;
@@ -12,6 +13,7 @@ import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.Position;
 import binnie.core.craftgui.geometry.TextJustification;
 import binnie.core.craftgui.minecraft.GUIIcon;
+import binnie.core.craftgui.minecraft.InventoryType;
 import binnie.core.craftgui.minecraft.Window;
 import binnie.core.craftgui.minecraft.control.ControlEnergyBar;
 import binnie.core.craftgui.minecraft.control.ControlErrorState;
@@ -22,6 +24,7 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.craftgui.minecraft.control.ControlSlotCharge;
 import binnie.core.craftgui.resource.Texture;
 import binnie.core.craftgui.resource.minecraft.StandardTexture;
+import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
 import binnie.extrabees.core.ExtraBeeTexture;
 import binnie.genetics.Genetics;
@@ -61,6 +64,9 @@ public class WindowSequencer extends WindowMachine {
     @Override
     public void initialiseClient() {
         super.initialiseClient();
+
+        final NBTTagList actions = new NBTTagList();
+
         int x = 16;
         int y = 32;
         CraftGUIUtil.horizontalGrid(
@@ -72,9 +78,9 @@ public class WindowSequencer extends WindowMachine {
                 new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()),
                 new ControlSequencerProgress(this, 0, 0),
                 new ControlIconDisplay(this, 0.0f, 0.0f, GUIIcon.ArrowRight.getIcon()),
-                new ControlSlot(this, 0.0f, 0.0f).assign(6));
+                new ControlSlot(this, 0.0f, 0.0f).assign(actions, InventoryType.Machine, 6));
         ControlSlot slotTarget = new ControlSlot(this, x + 96, y + 16);
-        slotTarget.assign(5);
+        slotTarget.assign(actions, InventoryType.Machine, 5);
         x = 34;
         y = 92;
         slotText = new ControlText(
@@ -84,7 +90,7 @@ public class WindowSequencer extends WindowMachine {
                 TextJustification.MIDDLE_CENTER);
         y += 20;
         ControlSlot slotDye = new ControlSlot(this, x, y);
-        slotDye.assign(0);
+        slotDye.assign(actions, InventoryType.Machine, 0);
         x += 20;
         new ControlSlotCharge(this, x, y, 0).setColor(16750848);
         x += 32;
@@ -92,6 +98,8 @@ public class WindowSequencer extends WindowMachine {
         x += 92;
         new ControlErrorState(this, x, y + 1);
         new ControlPlayerInventory(this);
+
+        MessageCraftGUI.sendToServer(actions);
     }
 
     @Override
