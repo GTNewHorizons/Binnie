@@ -248,13 +248,6 @@ public class ContainerCraftGUI extends Container {
     public void handleNBT(Side side, EntityPlayer player, NBTTagCompound action) {
         final String actionType = action.getString(ACTION_TYPE);
 
-        if (actionType.equals(ACTION_BATCH)) {
-            NBTTagList actionsBatch = action.getTagList(ACTIONS, TAG_COMPOUND);
-            for (int i = 0; i < actionsBatch.tagCount(); i++) {
-                handleNBT(side, player, actionsBatch.getCompoundTagAt(i));
-            }
-        }
-
         if (side == Side.SERVER) {
             switch (actionType) {
                 case TANK_CLICK -> tankClick(player, action.getByte(SLOT_ID));
@@ -494,6 +487,13 @@ public class ContainerCraftGUI extends Container {
 
     public void receiveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
         String actionType = action.getString(ACTION_TYPE);
+        if (actionType.equals(ACTION_BATCH)) {
+            NBTTagList actionsBatch = action.getTagList(ACTIONS, TAG_COMPOUND);
+            for (int i = 0; i < actionsBatch.tagCount(); i++) {
+                receiveNBT(side, player, actionsBatch.getCompoundTagAt(i));
+            }
+            return;
+        }
         handleNBT(side, player, action);
         window.receiveGuiNBT(getSide(), player, actionType, action);
         INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, window.getInventory());
