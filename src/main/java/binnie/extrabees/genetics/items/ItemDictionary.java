@@ -1,14 +1,6 @@
 package binnie.extrabees.genetics.items;
 
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
 
 import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
@@ -16,6 +8,14 @@ import binnie.extrabees.core.ExtraBeeGUID;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
+import java.util.List;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 
 public class ItemDictionary extends Item {
 
@@ -25,6 +25,8 @@ public class ItemDictionary extends Item {
         setCreativeTab(Tabs.tabApiculture);
         setUnlocalizedName("dictionary");
         setMaxStackSize(1);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override

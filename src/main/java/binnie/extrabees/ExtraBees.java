@@ -1,16 +1,10 @@
 package binnie.extrabees;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-
-import com.gtnewhorizon.gtnhlib.config.ConfigException;
-import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
-
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.item.ItemMisc;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.apiary.ModuleApiary;
@@ -18,15 +12,23 @@ import binnie.extrabees.config.EBConfig;
 import binnie.extrabees.core.ExtraBeeGUID;
 import binnie.extrabees.core.ModuleCore;
 import binnie.extrabees.genetics.ModuleGenetics;
+import binnie.extrabees.genetics.items.ItemDictionary;
 import binnie.extrabees.liquids.ModuleLiquids;
+import binnie.extrabees.products.ItemHoneyComb;
+import binnie.extrabees.products.ItemHoneyDrop;
+import binnie.extrabees.products.ItemPropolis;
 import binnie.extrabees.products.ModuleProducts;
 import binnie.extrabees.proxy.ExtraBeesProxy;
 import binnie.extrabees.worldgen.ModuleGeneration;
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 
 @Mod(
         modid = ExtraBees.EB_MODID,
@@ -58,11 +60,11 @@ public class ExtraBees extends AbstractMod {
     public static Block hive;
     public static Material materialBeehive;
     public static Block ectoplasm;
-    public static Item comb;
-    public static Item propolis;
-    public static Item honeyDrop;
-    public static Item dictionary;
-    public static Item itemMisc;
+    public static ItemHoneyComb comb;
+    public static ItemPropolis propolis;
+    public static ItemHoneyDrop honeyDrop;
+    public static ItemDictionary dictionary;
+    public static ItemMisc itemMisc;
 
     public ExtraBees() {
         ExtraBees.instance = this;
