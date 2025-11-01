@@ -1,5 +1,6 @@
 package binnie.genetics.item;
 
+import binnie.core.item.ItemMisc;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -44,7 +45,7 @@ public class ModuleItem implements IInitializable {
         Genetics.itemSerum = new ItemSerum();
         Genetics.itemSerumArray = new ItemSerumArray();
         Genetics.itemSequencer = new ItemSequence();
-        Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), GeneticsCreativeTab.instance);
+        Genetics.itemGenetics = new ItemMisc(GeneticsCreativeTab.instance, GeneticsItems.values());
         Genetics.database = new ItemDatabase();
         Genetics.analyst = new ItemAnalyst();
         Genetics.registry = new ItemRegistry();

@@ -16,7 +16,7 @@ public class ItemMisc extends Item {
 
     private final IItemMisc[] items;
 
-    protected ItemMisc(CreativeTabs tab, IItemMisc[] items2) {
+    public ItemMisc(CreativeTabs tab, IItemMisc[] items2) {
         setCreativeTab(tab);
         setHasSubtypes(true);
         setUnlocalizedName("misc");
