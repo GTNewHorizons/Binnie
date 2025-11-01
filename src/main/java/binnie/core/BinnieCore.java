@@ -1,14 +1,5 @@
 package binnie.core;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.Item;
-import net.minecraft.server.MinecraftServer;
-import net.minecraftforge.client.event.TextureStitchEvent;
-import net.minecraftforge.common.MinecraftForge;
-
 import binnie.Binnie;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
@@ -22,8 +13,6 @@ import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.machines.MachineGroup;
 import binnie.core.machines.storage.ModuleStorage;
-import binnie.core.mod.parser.FieldParser;
-import binnie.core.mod.parser.ItemParser;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
@@ -45,6 +34,13 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.ForestryEvent;
 import forestry.plugins.PluginManager;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.Item;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
 
 @Mod(
         modid = BinnieCore.CORE_MODID,
@@ -110,7 +106,6 @@ public class BinnieCore extends AbstractMod {
             Item item = new ItemFluidContainer(container);
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
         }
-        FieldParser.parsers.add(new ItemParser());
         super.preInit();
     }
 

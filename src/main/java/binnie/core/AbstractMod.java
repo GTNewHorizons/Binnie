@@ -1,13 +1,6 @@
 package binnie.core;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.List;
-
 import binnie.core.gui.IBinnieGUID;
-import binnie.core.mod.parser.FieldParser;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.network.IPacketProvider;
@@ -16,15 +9,15 @@ import binnie.core.proxy.IProxyCore;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.relauncher.Side;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class AbstractMod implements IPacketProvider, IInitializable {
 
     private SimpleNetworkWrapper wrapper;
-    private final LinkedHashSet<Field> fields;
     protected final List<IInitializable> modules;
 
     public AbstractMod() {
-        fields = new LinkedHashSet<>();
         modules = new ArrayList<>();
         BinnieCore.registerMod(this);
     }
@@ -65,22 +58,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         for (IInitializable module : modules) {
             module.preInit();
         }
-
-        // TODO what does it mean?
-        Collections.addAll(fields, getClass().getFields());
-        for (Class<?> cls : getClass().getClasses()) {
-            Collections.addAll(fields, getClass().getFields());
-        }
-        for (IInitializable module : modules) {
-            Collections.addAll(fields, module.getClass().getFields());
-        }
-        for (Field field4 : fields) {
-            try {
-                FieldParser.preInitParse(field4, this);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     @Override
@@ -96,14 +73,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         for (IInitializable module : modules) {
             module.init();
         }
-
-        for (Field field : fields) {
-            try {
-                FieldParser.initParse(field, this);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 
     @Override
@@ -115,14 +84,6 @@ public abstract class AbstractMod implements IPacketProvider, IInitializable {
         getProxy().postInit();
         for (IInitializable module : modules) {
             module.postInit();
-        }
-
-        for (Field field : fields) {
-            try {
-                FieldParser.postInitParse(field, this);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
         }
     }
 
