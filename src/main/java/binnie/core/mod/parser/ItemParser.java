@@ -1,5 +1,6 @@
 package binnie.core.mod.parser;
 
+import binnie.core.item.ItemMisc;
 import java.lang.reflect.Field;
 
 import net.minecraft.item.Item;
@@ -17,7 +18,7 @@ public class ItemParser extends FieldParser {
     @Override
     public void preInit(Field field, AbstractMod mod) throws IllegalArgumentException, IllegalAccessException {
         Item item = (Item) field.get(null);
-        if (item != null) {
+        if (item != null && !(item instanceof ItemMisc)) {
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
         }
     }
