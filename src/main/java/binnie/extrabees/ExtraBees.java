@@ -1,5 +1,11 @@
 package binnie.extrabees;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.Tags;
@@ -20,15 +26,11 @@ import binnie.extrabees.products.ItemPropolis;
 import binnie.extrabees.products.ModuleProducts;
 import binnie.extrabees.proxy.ExtraBeesProxy;
 import binnie.extrabees.worldgen.ModuleGeneration;
-import com.gtnewhorizon.gtnhlib.config.ConfigException;
-import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 
 @Mod(
         modid = ExtraBees.EB_MODID,

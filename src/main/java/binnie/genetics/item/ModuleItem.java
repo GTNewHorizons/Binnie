@@ -1,6 +1,5 @@
 package binnie.genetics.item;
 
-import binnie.core.item.ItemMisc;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -13,6 +12,7 @@ import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
+import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
 import binnie.extrabees.ExtraBees;

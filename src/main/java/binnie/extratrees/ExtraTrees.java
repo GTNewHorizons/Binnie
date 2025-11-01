@@ -3,6 +3,11 @@ package binnie.extratrees;
 import static binnie.extratrees.ExtraTrees.EB_MOD_NAME;
 import static binnie.extratrees.ExtraTrees.ET_MODID;
 
+import net.minecraft.block.Block;
+
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
+
 import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.Tags;
@@ -29,14 +34,11 @@ import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.nei.IMCForNEI;
 import binnie.extratrees.proxy.Proxy;
-import com.gtnewhorizon.gtnhlib.config.ConfigException;
-import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import net.minecraft.block.Block;
 
 @Mod(
         modid = ET_MODID,

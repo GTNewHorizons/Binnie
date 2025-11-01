@@ -1,6 +1,5 @@
 package binnie.botany.gardening;
 
-import binnie.core.item.ItemMisc;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +36,7 @@ import binnie.core.block.ItemMetadata;
 import binnie.core.block.ItemMetadataRenderer;
 import binnie.core.block.MultipassItemRenderer;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.item.ItemMisc;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 public class ModuleGardening implements IInitializable {
