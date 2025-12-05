@@ -1,5 +1,7 @@
 package binnie.extrabees.genetics.items;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,6 +27,8 @@ public class ItemDictionary extends Item {
         setCreativeTab(Tabs.tabApiculture);
         setUnlocalizedName("dictionary");
         setMaxStackSize(1);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override

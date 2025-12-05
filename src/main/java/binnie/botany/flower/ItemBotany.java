@@ -1,5 +1,7 @@
 package binnie.botany.flower;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import java.util.List;
 
 import net.minecraft.block.Block;
@@ -39,6 +41,8 @@ public abstract class ItemBotany extends Item {
         setCreativeTab(CreativeTabBotany.instance);
         setUnlocalizedName(name);
         hasSubtypes = true;
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override

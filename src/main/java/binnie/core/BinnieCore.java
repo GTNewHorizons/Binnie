@@ -22,8 +22,6 @@ import binnie.core.liquid.FluidContainer;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.machines.MachineGroup;
 import binnie.core.machines.storage.ModuleStorage;
-import binnie.core.mod.parser.FieldParser;
-import binnie.core.mod.parser.ItemParser;
 import binnie.core.network.BinnieCorePacketID;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
@@ -110,7 +108,6 @@ public class BinnieCore extends AbstractMod {
             Item item = new ItemFluidContainer(container);
             GameRegistry.registerItem(item, item.getUnlocalizedName().substring(5));
         }
-        FieldParser.parsers.add(new ItemParser());
         super.preInit();
     }
 

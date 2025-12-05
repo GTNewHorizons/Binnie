@@ -12,6 +12,7 @@ import binnie.botany.Botany;
 import binnie.core.BinnieCore;
 import binnie.core.IInitializable;
 import binnie.core.Mods;
+import binnie.core.item.ItemMisc;
 import binnie.core.liquid.ItemFluidContainer;
 import binnie.core.resource.BinnieIcon;
 import binnie.extrabees.ExtraBees;
@@ -44,7 +45,7 @@ public class ModuleItem implements IInitializable {
         Genetics.itemSerum = new ItemSerum();
         Genetics.itemSerumArray = new ItemSerumArray();
         Genetics.itemSequencer = new ItemSequence();
-        Genetics.itemGenetics = Binnie.Item.registerMiscItems(GeneticsItems.values(), GeneticsCreativeTab.instance);
+        Genetics.itemGenetics = new ItemMisc(GeneticsCreativeTab.instance, GeneticsItems.values());
         Genetics.database = new ItemDatabase();
         Genetics.analyst = new ItemAnalyst();
         Genetics.registry = new ItemRegistry();

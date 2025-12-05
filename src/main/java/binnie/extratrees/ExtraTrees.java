@@ -4,7 +4,6 @@ import static binnie.extratrees.ExtraTrees.EB_MOD_NAME;
 import static binnie.extratrees.ExtraTrees.ET_MODID;
 
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 
 import com.gtnewhorizon.gtnhlib.config.ConfigException;
 import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
@@ -13,6 +12,7 @@ import binnie.core.AbstractMod;
 import binnie.core.BinnieCore;
 import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
+import binnie.core.item.ItemMisc;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.proxy.IProxyCore;
 import binnie.extrabees.ExtraBees;
@@ -26,6 +26,10 @@ import binnie.extratrees.config.ETConfig;
 import binnie.extratrees.core.ExtraTreesGUID;
 import binnie.extratrees.core.ModuleCore;
 import binnie.extratrees.genetics.ModuleGenetics;
+import binnie.extratrees.item.ItemDictionary;
+import binnie.extratrees.item.ItemFood;
+import binnie.extratrees.item.ItemHammer;
+import binnie.extratrees.item.ItemMothDatabase;
 import binnie.extratrees.item.ModuleItems;
 import binnie.extratrees.machines.ModuleMachine;
 import binnie.extratrees.nei.IMCForNEI;
@@ -61,10 +65,13 @@ public class ExtraTrees extends AbstractMod {
         }
     }
 
-    public static Item itemDictionary;
-    public static Item itemDictionaryLepi;
-    public static Item itemMisc;
-    public static Item itemFood;
+    public static ItemDictionary itemDictionary;
+    public static ItemMothDatabase itemDictionaryLepi;
+    public static ItemMisc itemMisc;
+    public static ItemFood itemFood;
+    public static ItemHammer itemHammer;
+    public static ItemHammer itemDurableHammer;
+
     public static Block blockStairs;
     public static Block blockLog;
     public static BlockCarpentry blockCarpentry;
@@ -75,13 +82,12 @@ public class ExtraTrees extends AbstractMod {
     public static BlockCarpentry blockPanel;
     public static Block blockSlab;
     public static Block blockDoubleSlab;
-    public static Item itemHammer;
-    public static Item itemDurableHammer;
     public static Block blockGate;
     public static Block blockDoor;
     public static BlockMultiFence blockMultiFence;
     public static BlockHedge blockHedge;
     public static BlockStainedDesign blockStained;
+
     public static int doorRenderId;
     public static int branchRenderId;
     public static int fenceID;

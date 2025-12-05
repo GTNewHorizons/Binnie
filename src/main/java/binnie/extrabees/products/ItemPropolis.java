@@ -11,9 +11,8 @@ import forestry.api.core.Tabs;
 public class ItemPropolis extends ItemProduct {
 
     public ItemPropolis() {
-        super(EnumPropolis.values());
+        super("propolis", EnumPropolis.values());
         setCreativeTab(Tabs.tabApiculture);
-        setUnlocalizedName("propolis");
     }
 
     @Override

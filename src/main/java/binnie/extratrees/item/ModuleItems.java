@@ -28,7 +28,7 @@ public class ModuleItems implements IInitializable {
 
     @Override
     public void preInit() {
-        ExtraTrees.itemMisc = Binnie.Item.registerMiscItems(ExtraTreeItems.values(), Tabs.tabArboriculture);
+        ExtraTrees.itemMisc = new ItemMisc(Tabs.tabArboriculture, ExtraTreeItems.values());
         ExtraTrees.itemDictionary = new ItemDictionary();
         if (BinnieCore.isLepidopteryActive()) {
             ExtraTrees.itemDictionaryLepi = new ItemMothDatabase();

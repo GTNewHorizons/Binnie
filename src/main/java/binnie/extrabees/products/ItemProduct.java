@@ -1,5 +1,7 @@
 package binnie.extrabees.products;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -12,11 +14,14 @@ public class ItemProduct extends Item {
 
     protected IItemEnum[] types;
 
-    public ItemProduct(IItemEnum[] types) {
+    public ItemProduct(String name, IItemEnum[] types) {
         this.types = types;
         setMaxStackSize(64);
         setMaxDamage(0);
         setHasSubtypes(true);
+        setUnlocalizedName(name);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     public IItemEnum get(ItemStack stack) {

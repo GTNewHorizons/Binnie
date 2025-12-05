@@ -1,5 +1,7 @@
 package binnie.genetics.item;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -19,6 +21,8 @@ public class ItemMasterRegistry extends Item {
         setCreativeTab(GeneticsCreativeTab.instance);
         setUnlocalizedName("masterRegistry");
         setMaxStackSize(1);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override

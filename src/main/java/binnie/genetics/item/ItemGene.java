@@ -1,5 +1,7 @@
 package binnie.genetics.item;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,6 +28,8 @@ public abstract class ItemGene extends Item {
         setMaxDamage(16);
         setUnlocalizedName(unlocName);
         setCreativeTab(GeneticsCreativeTab.instance);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override

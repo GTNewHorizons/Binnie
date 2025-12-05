@@ -1,5 +1,7 @@
 package binnie.genetics.item;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -31,6 +33,8 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
         setMaxDamage(5);
         setUnlocalizedName("sequence");
         setCreativeTab(GeneticsCreativeTab.instance);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     public static ItemStack create(IGene gene) {

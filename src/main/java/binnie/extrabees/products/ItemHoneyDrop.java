@@ -15,9 +15,8 @@ public class ItemHoneyDrop extends ItemProduct {
     protected IIcon icon2;
 
     public ItemHoneyDrop() {
-        super(EnumHoneyDrop.values());
+        super("honeyDrop", EnumHoneyDrop.values());
         setCreativeTab(Tabs.tabApiculture);
-        setUnlocalizedName("honeyDrop");
     }
 
     @Override

@@ -64,32 +64,37 @@ public class Botany extends AbstractMod {
     @SidedProxy(clientSide = "binnie.botany.proxy.ProxyClient", serverSide = "binnie.botany.proxy.ProxyServer")
     public static Proxy proxy;
 
+    // Genetics module
     public static BlockFlower flower;
-    public static Item seed;
+
+    public static ItemFlower flowerItem;
     public static Item pollen;
+    public static Item seed;
     public static ItemDictionary database;
+
+    // Gardening module
     public static BlockPlant plant;
-    public static ItemTrowel trowelWood;
-    public static ItemTrowel trowelStone;
-    public static ItemTrowel trowelIron;
-    public static ItemTrowel trowelDiamond;
-    public static ItemTrowel trowelGold;
     public static BlockSoil soil;
     public static BlockSoil loam;
     public static BlockSoil flowerbed;
     public static BlockSoil soilNoWeed;
     public static BlockSoil loamNoWeed;
     public static BlockSoil flowerbedNoWeed;
-    public static ItemInsulatedTube insulatedTube;
+    public static BlockCeramic ceramic;
+    public static BlockStained stained;
+    public static BlockCeramicPatterned ceramicTile;
+    public static BlockCeramicBrick ceramicBrick;
+
     public static ItemSoilMeter soilMeter;
+    public static ItemInsulatedTube insulatedTube;
+    public static ItemTrowel trowelWood;
+    public static ItemTrowel trowelStone;
+    public static ItemTrowel trowelIron;
+    public static ItemTrowel trowelDiamond;
+    public static ItemTrowel trowelGold;
     public static ItemMisc misc;
-    public static ItemFlower flowerItem;
     public static ItemPigment pigment;
     public static ItemClay clay;
-    public static BlockCeramic ceramic;
-    public static BlockCeramicPatterned ceramicTile;
-    public static BlockStained stained;
-    public static BlockCeramicBrick ceramicBrick;
 
     public Botany() {
         Botany.instance = this;

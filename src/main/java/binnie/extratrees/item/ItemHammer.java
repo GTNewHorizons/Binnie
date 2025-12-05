@@ -1,5 +1,7 @@
 package binnie.extratrees.item;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,6 +24,8 @@ public class ItemHammer extends Item implements IToolHammer {
         setUnlocalizedName(durable ? "durableHammer" : "hammer");
         setMaxStackSize(1);
         setMaxDamage(durable ? 1562 : 251);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override
