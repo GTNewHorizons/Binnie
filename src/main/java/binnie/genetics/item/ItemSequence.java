@@ -120,4 +120,9 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
     public int getCharges(ItemStack stack) {
         return stack.getItem().getMaxDamage() - stack.getItemDamage();
     }
+
+    @Override
+    public boolean isRepairable() {
+        return false;
+    }
 }
