@@ -6,14 +6,23 @@ import java.util.List;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.util.Vec3;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 
 import com.mojang.authlib.GameProfile;
 
 import binnie.core.machines.TileEntityMachine;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
 import forestry.api.apiculture.IBeeGenome;
+import forestry.api.apiculture.IBeeHousing;
+import forestry.api.apiculture.IBeeHousingInventory;
 import forestry.api.apiculture.IBeeListener;
 import forestry.api.apiculture.IBeeModifier;
+import forestry.api.apiculture.IBeekeepingLogic;
+import forestry.api.core.EnumHumidity;
+import forestry.api.core.EnumTemperature;
+import forestry.api.core.IErrorLogic;
 import forestry.api.genetics.IIndividual;
 import forestry.api.multiblock.IAlvearyComponent;
 import forestry.api.multiblock.IMultiblockComponent;
@@ -21,7 +30,7 @@ import forestry.api.multiblock.IMultiblockController;
 import forestry.api.multiblock.IMultiblockLogicAlveary;
 import forestry.api.multiblock.MultiblockManager;
 
-public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyComponent.Active,
+public class TileExtraBeeAlveary extends TileEntityMachine implements IBeeHousing, IAlvearyComponent.Active,
         IAlvearyComponent.BeeModifier, IAlvearyComponent.BeeListener, IBeeListener, IBeeModifier {
 
     protected IMultiblockLogicAlveary structureLogic;
@@ -43,8 +52,48 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
     }
 
     @Override
+    public Iterable<IBeeModifier> getBeeModifiers() {
+        return getMultiblockLogic().getController().getBeeModifiers();
+    }
+
+    @Override
+    public Iterable<IBeeListener> getBeeListeners() {
+        return getMultiblockLogic().getController().getBeeListeners();
+    }
+
+    @Override
+    public IBeeHousingInventory getBeeInventory() {
+        return getMultiblockLogic().getController().getBeeInventory();
+    }
+
+    @Override
+    public IBeekeepingLogic getBeekeepingLogic() {
+        return getMultiblockLogic().getController().getBeekeepingLogic();
+    }
+
+    @Override
+    public int getBlockLightValue() {
+        return getMultiblockLogic().getController().getBlockLightValue();
+    }
+
+    @Override
+    public boolean canBlockSeeTheSky() {
+        return getMultiblockLogic().getController().canBlockSeeTheSky();
+    }
+
+    @Override
+    public World getWorld() {
+        return null;
+    }
+
+    @Override
     public GameProfile getOwner() {
         return getMachine().getOwner();
+    }
+
+    @Override
+    public Vec3 getBeeFXCoordinates() {
+        return getMultiblockLogic().getController().getBeeFXCoordinates();
     }
 
     public List<TileEntity> getAlvearyBlocks() {
@@ -224,6 +273,26 @@ public class TileExtraBeeAlveary extends TileEntityMachine implements IAlvearyCo
         if (tag != null) {
             structureLogic.readFromNBT(tag);
         }
+    }
+
+    @Override
+    public BiomeGenBase getBiome() {
+        return getMultiblockLogic().getController().getBiome();
+    }
+
+    @Override
+    public EnumTemperature getTemperature() {
+        return getMultiblockLogic().getController().getTemperature();
+    }
+
+    @Override
+    public EnumHumidity getHumidity() {
+        return getMultiblockLogic().getController().getHumidity();
+    }
+
+    @Override
+    public IErrorLogic getErrorLogic() {
+        return getMultiblockLogic().getController().getErrorLogic();
     }
 
     // TODO why its commented?
