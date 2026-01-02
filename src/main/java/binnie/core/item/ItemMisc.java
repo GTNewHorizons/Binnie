@@ -1,5 +1,7 @@
 package binnie.core.item;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,11 +18,13 @@ public class ItemMisc extends Item {
 
     private final IItemMisc[] items;
 
-    protected ItemMisc(CreativeTabs tab, IItemMisc[] items2) {
+    public ItemMisc(CreativeTabs tab, IItemMisc[] items) {
         setCreativeTab(tab);
         setHasSubtypes(true);
         setUnlocalizedName("misc");
-        items = items2;
+        this.items = items;
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override
