@@ -104,7 +104,7 @@ public class WindowSequencer extends WindowMachine {
 
     @Override
     public String getTitle() {
-        return I18N.localise("genetics.machine.machine.sequencer");
+        return I18N.localise("gui.genetics.machine.machine.sequencer.title");
     }
 
     @Override
