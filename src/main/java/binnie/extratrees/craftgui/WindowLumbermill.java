@@ -43,7 +43,7 @@ public class WindowLumbermill extends Window {
     public void initialiseClient() {
         final NBTTagList actions = new NBTTagList();
 
-        setTitle(Machine.getMachine(getInventory()).getPackage().getDisplayName());
+        setTitle(Machine.getMachine(getInventory()).getPackage().getGuiDisplayName());
         new ControlSlot(this, 42.0f, 43.0f).assign(actions, InventoryType.Machine, Lumbermill.SLOT_WOOD);
         new ControlSlot(this, 148.0f, 43.0f).assign(actions, InventoryType.Machine, Lumbermill.SLOT_PLANKS);
         new ControlSlot(this, 172.0f, 28.0f).assign(actions, InventoryType.Machine, Lumbermill.SLOT_BARK);
