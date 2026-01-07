@@ -123,12 +123,12 @@ public class WindowAnalyst extends Window {
     public void initialiseClient() {
         if (isDatabase) {
             if (isMaster) {
-                setTitle(I18N.localise("genetics.item.registry.1.name"));
+                setTitle(I18N.localise("genetics.gui.registry.1.title"));
             } else {
-                setTitle(I18N.localise("genetics.item.registry.0.name"));
+                setTitle(I18N.localise("genetics.gui.registry.title"));
             }
         } else {
-            setTitle(I18N.localise("genetics.item.analyst.name"));
+            setTitle(I18N.localise("genetics.gui.analyst.title"));
         }
 
         getWindowInventory().createSlot(0);

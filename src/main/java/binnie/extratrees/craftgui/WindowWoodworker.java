@@ -53,7 +53,7 @@ public class WindowWoodworker extends Window {
     public void initialiseClient() {
         final NBTTagList actions = new NBTTagList();
 
-        setTitle(Machine.getMachine(getInventory()).getPackage().getDisplayName());
+        setTitle(Machine.getMachine(getInventory()).getPackage().getGuiDisplayName());
         new ControlText(
                 this,
                 new IArea(190.0f, 36.0f, 114.0f, 10.0f),

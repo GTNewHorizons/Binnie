@@ -49,10 +49,12 @@ public class ControlSlot extends ControlSlotBase {
     }
 
     public Slot slot;
+    private CraftGUITexture slotTexture;
 
     public ControlSlot(IWidget parent, float x, float y) {
         super(parent, x, y);
         slot = null;
+        slotTexture = CraftGUITexture.Slot;
         addSelfEventHandler(new EventMouse.Down.Handler() {
 
             @Override
@@ -80,11 +82,17 @@ public class ControlSlot extends ControlSlotBase {
     public ControlSlot(IWidget parent, int x, int y, Slot slot) {
         super(parent, x, y);
         this.slot = slot;
+        slotTexture = CraftGUITexture.Slot;
+    }
+
+    public ControlSlot setSlotTexture(CraftGUITexture texture) {
+        slotTexture = texture == null ? CraftGUITexture.Slot : texture;
+        return this;
     }
 
     @Override
     public void onRenderBackground() {
-        CraftGUI.render.texture(CraftGUITexture.Slot, IPoint.ZERO);
+        CraftGUI.render.texture(slotTexture, IPoint.ZERO);
         if (slot == null) {
             return;
         }

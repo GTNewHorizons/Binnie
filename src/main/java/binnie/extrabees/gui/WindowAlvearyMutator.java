@@ -44,7 +44,7 @@ public class WindowAlvearyMutator extends Window {
     public void initialiseClient() {
         final NBTTagList actions = new NBTTagList();
 
-        setTitle(I18N.localise("extrabees.machine.alveay.mutator"));
+        setTitle(machine.getPackage().getGuiDisplayName());
         playerInventory = new ControlPlayerInventory(this).create(actions);
         new ControlSlot(this, 79.0f, 30.0f).assign(actions, InventoryType.Machine, AlvearyMutator.SLOT_MUTATOR);
         new ControlText(

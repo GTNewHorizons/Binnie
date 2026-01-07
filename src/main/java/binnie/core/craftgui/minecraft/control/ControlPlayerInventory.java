@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagList;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.controls.core.Control;
 import binnie.core.craftgui.minecraft.InventoryType;
+import binnie.core.craftgui.resource.minecraft.CraftGUITexture;
 import binnie.core.network.packet.MessageCraftGUI;
 
 public class ControlPlayerInventory extends Control {
@@ -24,19 +25,21 @@ public class ControlPlayerInventory extends Control {
         slots = new ArrayList<>();
         for (int row = 0; row < 3; ++row) {
             for (int column = 0; column < 9; ++column) {
-                ControlSlot slot = new ControlSlot(this, (wide ? 58 : 0) + column * 18, row * 18);
+                ControlSlot slot = new ControlSlot(this, (wide ? 58 : 0) + column * 18, row * 18)
+                        .setSlotTexture(CraftGUITexture.SlotInventory);
                 slots.add(slot);
             }
         }
 
         if (wide) {
             for (int i1 = 0; i1 < 9; ++i1) {
-                ControlSlot slot2 = new ControlSlot(this, i1 % 3 * 18, i1 / 3 * 18);
+                ControlSlot slot2 = new ControlSlot(this, i1 % 3 * 18, i1 / 3 * 18)
+                        .setSlotTexture(CraftGUITexture.SlotInventory);
                 slots.add(slot2);
             }
         } else {
             for (int i1 = 0; i1 < 9; ++i1) {
-                ControlSlot slot2 = new ControlSlot(this, i1 * 18, 58.0f);
+                ControlSlot slot2 = new ControlSlot(this, i1 * 18, 58.0f).setSlotTexture(CraftGUITexture.SlotInventory);
                 slots.add(slot2);
             }
         }
@@ -51,7 +54,8 @@ public class ControlPlayerInventory extends Control {
         slots = new ArrayList<>();
         for (int row = 0; row < 6; ++row) {
             for (int column = 0; column < 6; ++column) {
-                ControlSlot slot = new ControlSlot(this, column * 18, row * 18);
+                ControlSlot slot = new ControlSlot(this, column * 18, row * 18)
+                        .setSlotTexture(CraftGUITexture.SlotInventory);
                 slots.add(slot);
             }
         }

@@ -12,7 +12,6 @@ import binnie.core.craftgui.minecraft.control.ControlSlotArray;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.network.packet.MessageCraftGUI;
-import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.hatchery.AlvearyHatchery;
 import cpw.mods.fml.relauncher.Side;
@@ -37,7 +36,7 @@ public class WindowAlvearyHatchery extends Window {
     @Override
     public void initialiseClient() {
         final NBTTagList actions = new NBTTagList();
-        setTitle(I18N.localise("extrabees.machine.alveay.hatchery"));
+        setTitle(machine.getPackage().getGuiDisplayName());
         playerInventory = new ControlPlayerInventory(this).create(actions);
         new ControlSlotArray(this, 43, 30, 5, 1).create(actions, InventoryType.Machine, AlvearyHatchery.SLOT_LARVAE);
         MessageCraftGUI.sendToServer(actions);
