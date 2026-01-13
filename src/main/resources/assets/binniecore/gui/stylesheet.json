@@ -70,6 +70,12 @@
             "padding": "2"
         },
         {
+            "name": "slot.inventory",
+            "sheet": "slots",
+            "uv": "76 4 18 18",
+            "padding": "2"
+        },
+        {
             "name": "slot.border",
             "sheet": "slots",
             "uv": "28 4 18 18",

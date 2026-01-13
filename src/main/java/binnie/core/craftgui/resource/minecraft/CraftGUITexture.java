@@ -10,6 +10,7 @@ public enum CraftGUITexture {
     Button("button"),
     ButtonHighlighted("button.highlighted"),
     Slot("slot"),
+    SlotInventory("slot.inventory"),
     SlotBorder("slot.border"),
     SlotOverlay("slot.overlay"),
     SlotCharge("slot.charge"),

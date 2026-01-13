@@ -32,6 +32,11 @@ public abstract class MachinePackage {
         return I18N.localise(group.getMod().getModID() + ".machine." + group.getShortUID() + "." + getUID());
     }
 
+    public String getGuiDisplayName() {
+        String guiKey = group.getMod().getModID() + ".machine." + group.getShortUID() + "." + getUID() + ".title";
+        return I18N.canLocalise(guiKey) ? I18N.localise(guiKey) : getDisplayName();
+    }
+
     public Integer getMetadata() {
         return metadata;
     }

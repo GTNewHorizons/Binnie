@@ -83,7 +83,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
 
     @Override
     public void initialiseClient() {
-        setTitle(Machine.getMachine(getInventory()).getPackage().getDisplayName());
+        setTitle(Machine.getMachine(getInventory()).getPackage().getGuiDisplayName());
         int x = 16;
         int y = 32;
         ComponentCompartmentInventory inv = Machine.getMachine(getInventory())

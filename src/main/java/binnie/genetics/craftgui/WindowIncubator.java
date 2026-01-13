@@ -77,7 +77,7 @@ public class WindowIncubator extends WindowMachine {
 
     @Override
     public String getTitle() {
-        return I18N.localise("genetics.machine.labMachine.incubator");
+        return I18N.localise("gui.genetics.machine.labMachine.incubator.title");
     }
 
     @Override
