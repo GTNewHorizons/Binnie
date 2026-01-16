@@ -149,7 +149,9 @@ public class ItemHoneyComb extends ItemProduct {
 
         EnumHoneyComb.COFFEE.addProduct(beeswax, 0.90f);
         EnumHoneyComb.COFFEE.addProduct(honeyDrop, 0.75f);
-        EnumHoneyComb.COFFEE.tryAddProduct(Mods.ic2.stack("itemCofeePowder"), 0.75f);
+        if (!OreDictionary.getOres("dustCoffee").isEmpty()) {
+            EnumHoneyComb.COFFEE.tryAddProduct(OreDictionary.getOres("dustCoffee").get(0), 0.75f);
+        }
 
         EnumHoneyComb.GLACIAL.tryAddProduct(EnumHoneyDrop.ICE, 0.80f);
         EnumHoneyComb.GLACIAL.addProduct(honeyDrop, 0.75f);
