@@ -1,5 +1,7 @@
 package binnie.core.item;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -25,6 +27,8 @@ public class ItemGenesis extends Item {
         setCreativeTab(Tabs.tabApiculture);
         setUnlocalizedName("genesis");
         setMaxStackSize(1);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override
