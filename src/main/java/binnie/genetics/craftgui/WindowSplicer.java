@@ -83,7 +83,7 @@ public class WindowSplicer extends WindowMachine {
 
     @Override
     public String getTitle() {
-        return I18N.localise("genetics.machine.advMachine.splicer");
+        return I18N.localise("gui.genetics.machine.advMachine.splicer.title");
     }
 
     @Override

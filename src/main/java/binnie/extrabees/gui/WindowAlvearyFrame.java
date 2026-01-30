@@ -12,7 +12,6 @@ import binnie.core.craftgui.minecraft.control.ControlSlot;
 import binnie.core.machines.Machine;
 import binnie.core.machines.TileEntityMachine;
 import binnie.core.network.packet.MessageCraftGUI;
-import binnie.core.util.I18N;
 import binnie.extrabees.ExtraBees;
 import cpw.mods.fml.relauncher.Side;
 
@@ -35,7 +34,7 @@ public class WindowAlvearyFrame extends Window {
 
     @Override
     public void initialiseClient() {
-        setTitle(I18N.localise("extrabees.machine.alveay.frame"));
+        setTitle(machine.getPackage().getGuiDisplayName());
         final NBTTagList actions = new NBTTagList();
         playerInventory = new ControlPlayerInventory(this).create(actions);
         new ControlSlot(this, 79.0f, 30.0f).assign(actions, InventoryType.Machine, 0);

@@ -1,5 +1,7 @@
 package binnie.botany.items;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,6 +24,8 @@ public class ItemPigment extends Item {
         setUnlocalizedName("pigment");
         setHasSubtypes(true);
         setCreativeTab(CreativeTabBotany.instance);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override
