@@ -1,7 +1,6 @@
 package binnie.core.machines.inventory;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -16,10 +15,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import binnie.core.machines.IMachine;
+import it.unimi.dsi.fastutil.ints.Int2ObjectLinkedOpenHashMap;
 
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
 
-    private final Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
+    private final Int2ObjectLinkedOpenHashMap<InventorySlot> inventory = new Int2ObjectLinkedOpenHashMap<>();
     private int cachedSize = 0;
     private int[] cachedAccessibleSlots = null;
 
@@ -111,7 +111,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
     public void writeToNBT(NBTTagCompound nbttagcompound) {
         super.writeToNBT(nbttagcompound);
         NBTTagList inventoryNBT = new NBTTagList();
-        for (Map.Entry<Integer, InventorySlot> entry : inventory.entrySet()) {
+        for (Map.Entry<Integer, InventorySlot> entry : inventory.int2ObjectEntrySet()) {
             NBTTagCompound slotNBT = new NBTTagCompound();
             slotNBT.setInteger("id", entry.getKey());
             entry.getValue().writeToNBT(slotNBT);
