@@ -20,6 +20,7 @@ import binnie.core.machines.IMachine;
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
 
     private final Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
+    private int cachedSize = 0;
 
     public ComponentInventorySlots(IMachine machine) {
         super(machine);
@@ -27,11 +28,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public int getSizeInventory() {
-        int size = 0;
-        for (Integer index : inventory.keySet()) {
-            size = Math.max(size, index + 1);
-        }
-        return size;
+        return cachedSize;
     }
 
     @Override
@@ -125,6 +122,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
     @Override
     public InventorySlot addSlot(int index, String unlocalizedName) {
         inventory.put(index, new InventorySlot(index, unlocalizedName));
+        cachedSize = Math.max(cachedSize, index + 1);
         return getSlot(index);
     }
 
