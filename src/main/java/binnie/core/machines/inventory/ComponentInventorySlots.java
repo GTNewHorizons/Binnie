@@ -148,7 +148,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public InventorySlot[] getSlots(int[] indexes) {
-        List<InventorySlot> list = new ArrayList<>();
+        List<InventorySlot> list = new ArrayList<>(indexes.length);
         for (int i : indexes) {
             if (getSlot(i) != null) {
                 list.add(getSlot(i));
@@ -233,6 +233,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public boolean canExtractItem(int slot, ItemStack itemstack, int direction) {
-        return getSlot(slot).canExtract(ForgeDirection.getOrientation(direction));
+        InventorySlot iSlot = getSlot(slot);
+        return iSlot != null && iSlot.canExtract(ForgeDirection.getOrientation(direction));
     }
 }
