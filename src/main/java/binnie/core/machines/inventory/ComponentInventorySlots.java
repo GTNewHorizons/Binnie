@@ -1,7 +1,6 @@
 package binnie.core.machines.inventory;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -16,10 +15,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import binnie.core.machines.IMachine;
+import it.unimi.dsi.fastutil.ints.Int2ObjectLinkedOpenHashMap;
 
 public class ComponentInventorySlots extends ComponentInventory implements IInventoryMachine, IInventorySlots {
 
-    private final Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
+    private final Int2ObjectLinkedOpenHashMap<InventorySlot> inventory = new Int2ObjectLinkedOpenHashMap<>();
+    private int cachedSize = 0;
+    private int[] cachedAccessibleSlots = null;
 
     public ComponentInventorySlots(IMachine machine) {
         super(machine);
@@ -27,25 +29,20 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public int getSizeInventory() {
-        int size = 0;
-        for (Integer index : inventory.keySet()) {
-            size = Math.max(size, index + 1);
-        }
-        return size;
+        return cachedSize;
     }
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        if (inventory.containsKey(index)) {
-            return inventory.get(index).getContent();
-        }
-        return null;
+        InventorySlot slot = inventory.get(index);
+        return slot != null ? slot.getContent() : null;
     }
 
     @Override
     public ItemStack decrStackSize(int index, int amount) {
-        if (inventory.containsKey(index)) {
-            ItemStack stack = inventory.get(index).decrStackSize(amount);
+        InventorySlot slot = inventory.get(index);
+        if (slot != null) {
+            ItemStack stack = slot.decrStackSize(amount);
             markDirty();
             return stack;
         }
@@ -59,8 +56,9 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public void setInventorySlotContents(int index, ItemStack itemStack) {
-        if (inventory.containsKey(index) && (itemStack == null || inventory.get(index).isValid(itemStack))) {
-            inventory.get(index).setContent(itemStack);
+        InventorySlot slot = inventory.get(index);
+        if (slot != null && (itemStack == null || slot.isValid(itemStack))) {
+            slot.setContent(itemStack);
         }
         markDirty();
     }
@@ -113,7 +111,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
     public void writeToNBT(NBTTagCompound nbttagcompound) {
         super.writeToNBT(nbttagcompound);
         NBTTagList inventoryNBT = new NBTTagList();
-        for (Map.Entry<Integer, InventorySlot> entry : inventory.entrySet()) {
+        for (Map.Entry<Integer, InventorySlot> entry : inventory.int2ObjectEntrySet()) {
             NBTTagCompound slotNBT = new NBTTagCompound();
             slotNBT.setInteger("id", entry.getKey());
             entry.getValue().writeToNBT(slotNBT);
@@ -125,6 +123,8 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
     @Override
     public InventorySlot addSlot(int index, String unlocalizedName) {
         inventory.put(index, new InventorySlot(index, unlocalizedName));
+        cachedSize = Math.max(cachedSize, index + 1);
+        cachedAccessibleSlots = null;
         return getSlot(index);
     }
 
@@ -138,10 +138,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public InventorySlot getSlot(int index) {
-        if (inventory.containsKey(index)) {
-            return inventory.get(index);
-        }
-        return null;
+        return inventory.get(index);
     }
 
     @Override
@@ -151,7 +148,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public InventorySlot[] getSlots(int[] indexes) {
-        List<InventorySlot> list = new ArrayList<>();
+        List<InventorySlot> list = new ArrayList<>(indexes.length);
         for (int i : indexes) {
             if (getSlot(i) != null) {
                 list.add(getSlot(i));
@@ -213,18 +210,20 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
-        List<Integer> slots = new ArrayList<>();
-        for (InventorySlot slot : inventory.values()) {
-            if (slot.canInsert() || slot.canExtract()) {
-                slots.add(slot.getIndex());
+        if (cachedAccessibleSlots == null) {
+            List<Integer> slots = new ArrayList<>();
+            for (InventorySlot slot : inventory.values()) {
+                if (slot.canInsert() || slot.canExtract()) {
+                    slots.add(slot.getIndex());
+                }
+            }
+
+            cachedAccessibleSlots = new int[slots.size()];
+            for (int i = 0; i < slots.size(); ++i) {
+                cachedAccessibleSlots[i] = slots.get(i);
             }
         }
-
-        int[] ids = new int[slots.size()];
-        for (int i = 0; i < slots.size(); ++i) {
-            ids[i] = slots.get(i);
-        }
-        return ids;
+        return cachedAccessibleSlots;
     }
 
     @Override
@@ -234,6 +233,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public boolean canExtractItem(int slot, ItemStack itemstack, int direction) {
-        return getSlot(slot).canExtract(ForgeDirection.getOrientation(direction));
+        InventorySlot iSlot = getSlot(slot);
+        return iSlot != null && iSlot.canExtract(ForgeDirection.getOrientation(direction));
     }
 }
