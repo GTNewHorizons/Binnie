@@ -21,6 +21,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     private final Map<Integer, InventorySlot> inventory = new LinkedHashMap<>();
     private int cachedSize = 0;
+    private int[] cachedAccessibleSlots = null;
 
     public ComponentInventorySlots(IMachine machine) {
         super(machine);
@@ -33,16 +34,15 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public ItemStack getStackInSlot(int index) {
-        if (inventory.containsKey(index)) {
-            return inventory.get(index).getContent();
-        }
-        return null;
+        InventorySlot slot = inventory.get(index);
+        return slot != null ? slot.getContent() : null;
     }
 
     @Override
     public ItemStack decrStackSize(int index, int amount) {
-        if (inventory.containsKey(index)) {
-            ItemStack stack = inventory.get(index).decrStackSize(amount);
+        InventorySlot slot = inventory.get(index);
+        if (slot != null) {
+            ItemStack stack = slot.decrStackSize(amount);
             markDirty();
             return stack;
         }
@@ -56,8 +56,9 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public void setInventorySlotContents(int index, ItemStack itemStack) {
-        if (inventory.containsKey(index) && (itemStack == null || inventory.get(index).isValid(itemStack))) {
-            inventory.get(index).setContent(itemStack);
+        InventorySlot slot = inventory.get(index);
+        if (slot != null && (itemStack == null || slot.isValid(itemStack))) {
+            slot.setContent(itemStack);
         }
         markDirty();
     }
@@ -123,6 +124,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
     public InventorySlot addSlot(int index, String unlocalizedName) {
         inventory.put(index, new InventorySlot(index, unlocalizedName));
         cachedSize = Math.max(cachedSize, index + 1);
+        cachedAccessibleSlots = null;
         return getSlot(index);
     }
 
@@ -136,10 +138,7 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public InventorySlot getSlot(int index) {
-        if (inventory.containsKey(index)) {
-            return inventory.get(index);
-        }
-        return null;
+        return inventory.get(index);
     }
 
     @Override
@@ -211,18 +210,20 @@ public class ComponentInventorySlots extends ComponentInventory implements IInve
 
     @Override
     public int[] getAccessibleSlotsFromSide(int var1) {
-        List<Integer> slots = new ArrayList<>();
-        for (InventorySlot slot : inventory.values()) {
-            if (slot.canInsert() || slot.canExtract()) {
-                slots.add(slot.getIndex());
+        if (cachedAccessibleSlots == null) {
+            List<Integer> slots = new ArrayList<>();
+            for (InventorySlot slot : inventory.values()) {
+                if (slot.canInsert() || slot.canExtract()) {
+                    slots.add(slot.getIndex());
+                }
+            }
+
+            cachedAccessibleSlots = new int[slots.size()];
+            for (int i = 0; i < slots.size(); ++i) {
+                cachedAccessibleSlots[i] = slots.get(i);
             }
         }
-
-        int[] ids = new int[slots.size()];
-        for (int i = 0; i < slots.size(); ++i) {
-            ids[i] = slots.get(i);
-        }
-        return ids;
+        return cachedAccessibleSlots;
     }
 
     @Override
