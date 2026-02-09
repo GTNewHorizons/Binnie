@@ -1,5 +1,7 @@
 package binnie.botany.flower;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,6 +27,8 @@ public class ItemInsulatedTube extends Item {
         setUnlocalizedName("insulatedTube");
         setCreativeTab(CreativeTabBotany.instance);
         setHasSubtypes(true);
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     public static ItemStack getInsulateStack(ItemStack stack) {

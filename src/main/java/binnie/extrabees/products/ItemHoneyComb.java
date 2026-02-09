@@ -21,9 +21,8 @@ public class ItemHoneyComb extends ItemProduct {
     protected IIcon icon2;
 
     public ItemHoneyComb() {
-        super(EnumHoneyComb.values());
+        super("honeyComb", EnumHoneyComb.values());
         setCreativeTab(Tabs.tabApiculture);
-        setUnlocalizedName("honeyComb");
     }
 
     public static void addSubtypes() {

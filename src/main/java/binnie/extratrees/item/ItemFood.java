@@ -1,5 +1,7 @@
 package binnie.extratrees.item;
 
+import static cpw.mods.fml.common.registry.GameRegistry.registerItem;
+
 import java.util.List;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -24,6 +26,8 @@ public class ItemFood extends net.minecraft.item.ItemFood {
         setCreativeTab(Tabs.tabArboriculture);
         setHasSubtypes(true);
         items = Food.values();
+
+        registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override
