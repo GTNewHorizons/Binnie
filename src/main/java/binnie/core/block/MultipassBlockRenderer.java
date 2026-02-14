@@ -40,19 +40,19 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
         try {
             if (block instanceof IMultipassBlock) {
                 try {
-					java.lang.reflect.Method m = block.getClass().getMethod("colorMultiplier", int.class);
-					Object out = m.invoke(block, Integer.valueOf(meta));
+                    java.lang.reflect.Method m = block.getClass().getMethod("colorMultiplier", int.class);
+                    Object out = m.invoke(block, Integer.valueOf(meta));
                     if (out instanceof Integer) {
                         return ((Integer) out).intValue();
                     }
-                } catch (Throwable ignored) {
-                }
+                } catch (Throwable ignored) {}
             }
             return block.getRenderColor(meta);
         } catch (Throwable t) {
             return 16777215;
         }
     }
+
     @Override
     public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
         block.setBlockBoundsForItemRender();

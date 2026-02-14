@@ -2,9 +2,9 @@
 
 dependencies {
     api('com.github.GTNewHorizons:ForestryMC:4.11.4:dev')
-    implementation('com.github.GTNewHorizons:GTNHLib:0.9.13:dev')
+    implementation('com.github.GTNewHorizons:GTNHLib:0.9.20:dev')
 
-    devOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.63-GTNH:dev')
+    devOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.68-GTNH:dev')
 
     compileOnly('com.github.GTNewHorizons:BuildCraft:7.1.55:api')
     compileOnly('net.industrial-craft:industrialcraft-2:2.2.828-experimental:dev')
