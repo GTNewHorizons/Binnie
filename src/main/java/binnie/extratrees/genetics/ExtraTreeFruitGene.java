@@ -387,7 +387,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
         if (ripeningTime >= ripeningPeriod) {
             return 1.0f;
         }
-        return ripeningTime / ripeningPeriod;
+        return (float) ripeningTime / ripeningPeriod;
     }
 
     @Override
