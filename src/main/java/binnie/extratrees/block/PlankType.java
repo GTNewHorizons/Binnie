@@ -24,7 +24,7 @@ public class PlankType {
         for (ExtraTreePlanks plank2 : ExtraTreePlanks.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank2.ordinal() + 32, plank2);
         }
-        for (ForestryPlanks plank3 : ForestryPlanks.values()) {
+        for (ForestryPlanks plank3 : ForestryPlanks.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank3.ordinal() + 128, plank3);
         }
         for (ExtraBiomesPlank plank4 : ExtraBiomesPlank.values()) {
@@ -200,6 +200,10 @@ public class PlankType {
         COCOBOLO(0x731302),
         ZEBRAWOOD(0xa6824e);
 
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+        public static final ForestryPlanks[] VALUES = values();
         private final int color;
 
         ForestryPlanks(int color) {
