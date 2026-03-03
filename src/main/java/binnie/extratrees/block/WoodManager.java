@@ -108,7 +108,7 @@ public class WoodManager {
         Collections.addAll(list, PlankType.ExtraTreePlanks.VALUES);
         Collections.addAll(list, PlankType.ForestryPlanks.VALUES);
         if (Mods.extraBiomes.active()) {
-            Collections.addAll(list, PlankType.ExtraBiomesPlank.values());
+            Collections.addAll(list, PlankType.ExtraBiomesPlank.VALUES);
         }
         Collections.addAll(list, PlankType.VanillaPlanks.VALUES);
         allPlankTypes = list;

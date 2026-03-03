@@ -243,7 +243,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
         for (IPlankType type : PlankType.ForestryPlanks.VALUES) {
             itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
         }
-        for (IPlankType type : PlankType.ExtraBiomesPlank.values()) {
+        for (IPlankType type : PlankType.ExtraBiomesPlank.VALUES) {
             if (type.getStack() != null) {
                 itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
             }

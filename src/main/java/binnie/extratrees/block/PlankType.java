@@ -27,7 +27,7 @@ public class PlankType {
         for (ForestryPlanks plank3 : ForestryPlanks.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank3.ordinal() + 128, plank3);
         }
-        for (ExtraBiomesPlank plank4 : ExtraBiomesPlank.values()) {
+        for (ExtraBiomesPlank plank4 : ExtraBiomesPlank.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank4.ordinal() + 192, plank4);
         }
     }
@@ -253,6 +253,10 @@ public class PlankType {
         Fir(0x7e774a),
         Acacia(0xbfaa7e);
 
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+        public static final ExtraBiomesPlank[] VALUES = values();
         private final int color;
 
         ExtraBiomesPlank(int color) {
