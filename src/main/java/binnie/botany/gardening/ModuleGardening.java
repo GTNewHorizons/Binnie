@@ -258,7 +258,7 @@ public class ModuleGardening implements IInitializable {
         GameRegistry
                 .addRecipe(BotanyItems.Mortar.get(6), " c ", "cgc", " c ", 'c', Items.clay_ball, 'g', Blocks.gravel);
 
-        for (EnumFlowerColor c : EnumFlowerColor.values()) {
+        for (EnumFlowerColor c : EnumFlowerColor.VALUES) {
             ItemStack clay = new ItemStack(Botany.clay, 1, c.ordinal());
             ItemStack pigment = new ItemStack(Botany.pigment, 1, c.ordinal());
             GameRegistry.addShapelessRecipe(clay, Items.clay_ball, Items.clay_ball, Items.clay_ball, pigment);

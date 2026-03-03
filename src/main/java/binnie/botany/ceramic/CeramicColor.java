@@ -16,7 +16,7 @@ public class CeramicColor implements IDesignMaterial {
 
     static {
         CeramicColor.map = new LinkedHashMap<>();
-        for (EnumFlowerColor c : EnumFlowerColor.values()) {
+        for (EnumFlowerColor c : EnumFlowerColor.VALUES) {
             CeramicColor.map.put(c, new CeramicColor(c));
         }
     }

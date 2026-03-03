@@ -102,7 +102,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
-        for (EnumFlowerColor c : EnumFlowerColor.values()) {
+        for (EnumFlowerColor c : EnumFlowerColor.VALUES) {
             BlockType type = new BlockType(c, c, TileType.Tile);
             itemList.add(TileEntityMetadata.getItemStack(this, type.ordinal()));
         }
