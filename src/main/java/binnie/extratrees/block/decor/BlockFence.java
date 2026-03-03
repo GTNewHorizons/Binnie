@@ -46,7 +46,7 @@ public class BlockFence extends net.minecraft.block.BlockFence implements IBlock
             list.add(type.getFence());
         }
 
-        for (IFenceProvider type : PlankType.VanillaPlanks.values()) {
+        for (IFenceProvider type : PlankType.VanillaPlanks.VALUES) {
             if (type != PlankType.VanillaPlanks.OAK) {
                 list.add(type.getFence());
             }

@@ -18,7 +18,7 @@ import extrabiomes.api.Stuff;
 public class PlankType {
 
     public static void setup() {
-        for (VanillaPlanks plank : VanillaPlanks.values()) {
+        for (VanillaPlanks plank : VanillaPlanks.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank.ordinal(), plank);
         }
         for (ExtraTreePlanks plank2 : ExtraTreePlanks.VALUES) {
@@ -125,6 +125,10 @@ public class PlankType {
         ACACIA(0xba6337),
         DARKOAK(0x462d15);
 
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+        public static final VanillaPlanks[] VALUES = values();
         private final int color;
 
         VanillaPlanks(int color) {

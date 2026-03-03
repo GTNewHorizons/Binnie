@@ -110,7 +110,7 @@ public class WoodManager {
         if (Mods.extraBiomes.active()) {
             Collections.addAll(list, PlankType.ExtraBiomesPlank.values());
         }
-        Collections.addAll(list, PlankType.VanillaPlanks.values());
+        Collections.addAll(list, PlankType.VanillaPlanks.VALUES);
         allPlankTypes = list;
         return list;
     }
