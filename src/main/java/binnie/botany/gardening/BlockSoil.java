@@ -82,7 +82,7 @@ public class BlockSoil extends Block implements IBlockSoil {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
         for (EnumMoisture moisture : EnumMoisture.VALUES) {
-            for (EnumAcidity pH : EnumAcidity.values()) {
+            for (EnumAcidity pH : EnumAcidity.VALUES) {
                 int index = moisture.ordinal() + pH.ordinal() * 3;
                 String id = "soil/" + getType().getID() + "." + pH.getID() + "." + moisture.getID();
                 iconsTop[index] = Botany.proxy.getIcon(register, id + ".0");
@@ -105,7 +105,7 @@ public class BlockSoil extends Block implements IBlockSoil {
     public void updateTick(World world, int x, int y, int z, Random random) {
         int meta = world.getBlockMetadata(x, y, z);
         EnumMoisture moisture = EnumMoisture.VALUES[meta % 3];
-        EnumAcidity acidity = EnumAcidity.values()[meta / 3];
+        EnumAcidity acidity = EnumAcidity.VALUES[meta / 3];
         EnumMoisture desiredMoisture = Gardening.getNaturalMoisture(world, x, y, z);
         if (desiredMoisture.ordinal() > moisture.ordinal()) {
             moisture = ((moisture == EnumMoisture.DRY) ? EnumMoisture.NORMAL : EnumMoisture.DAMP);
@@ -141,7 +141,7 @@ public class BlockSoil extends Block implements IBlockSoil {
 
     @Override
     public EnumAcidity getPH(World world, int x, int y, int z) {
-        return EnumAcidity.values()[world.getBlockMetadata(x, y, z) / 3];
+        return EnumAcidity.VALUES[world.getBlockMetadata(x, y, z) / 3];
     }
 
     @Override

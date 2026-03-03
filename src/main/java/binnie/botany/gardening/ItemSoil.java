@@ -34,7 +34,7 @@ public class ItemSoil extends ItemBlock {
     public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltip, boolean advanced) {
         super.addInformation(stack, player, tooltip, advanced);
         EnumMoisture moisture = EnumMoisture.VALUES[stack.getItemDamage() % 3];
-        EnumAcidity acidity = EnumAcidity.values()[stack.getItemDamage() / 3];
+        EnumAcidity acidity = EnumAcidity.VALUES[stack.getItemDamage() / 3];
         String info = "";
 
         if (moisture == EnumMoisture.DRY) {
