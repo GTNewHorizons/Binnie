@@ -44,7 +44,7 @@ public class BlockExtraBeeHive extends Block {
 
     @Override
     public IIcon getIcon(int side, int metadata) {
-        if (metadata >= EnumHiveType.values().length) {
+        if (metadata >= EnumHiveType.VALUES.length) {
             return null;
         }
         if (side < 2) {
@@ -56,8 +56,8 @@ public class BlockExtraBeeHive extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        icons = new IIcon[EnumHiveType.values().length][2];
-        for (EnumHiveType hive : EnumHiveType.values()) {
+        icons = new IIcon[EnumHiveType.VALUES.length][2];
+        for (EnumHiveType hive : EnumHiveType.VALUES) {
             icons[hive.ordinal()][0] = ExtraBees.proxy
                     .getIcon(register, "hive/" + hive.toString().toLowerCase() + ".0");
             icons[hive.ordinal()][1] = ExtraBees.proxy
@@ -68,7 +68,7 @@ public class BlockExtraBeeHive extends Block {
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
         ArrayList<ItemStack> ret = new ArrayList<>();
-        List<IHiveDrop> dropList = EnumHiveType.values()[metadata].drops;
+        List<IHiveDrop> dropList = EnumHiveType.VALUES[metadata].drops;
         Collections.shuffle(dropList);
         int tries = 0;
 
