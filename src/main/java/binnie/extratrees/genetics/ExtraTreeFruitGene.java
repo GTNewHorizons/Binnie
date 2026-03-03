@@ -418,7 +418,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
         if (ordinal() == 0) {
-            for (FruitSprite sprite : FruitSprite.values()) {
+            for (FruitSprite sprite : FruitSprite.VALUES) {
                 sprite.registerIcons(register);
             }
         }
