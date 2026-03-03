@@ -241,7 +241,7 @@ public class ItemHoneyComb extends ItemProduct {
 
         for (int i = 0; i < 16; ++i) {
             EnumHoneyComb type = EnumHoneyComb.VALUES[EnumHoneyComb.RED.ordinal() + i];
-            EnumHoneyDrop drop = EnumHoneyDrop.values()[EnumHoneyDrop.RED.ordinal() + i];
+            EnumHoneyDrop drop = EnumHoneyDrop.VALUES[EnumHoneyDrop.RED.ordinal() + i];
             int[] dyeC = { 1, 11, 4, 2, 0, 15, 3, 14, 6, 5, 8, 12, 9, 10, 13, 7 };
             int k = dyeC[i];
             ItemStack dye = switch (k) {
