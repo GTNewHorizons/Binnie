@@ -24,6 +24,10 @@ public enum EnumPropolis implements IItemEnum {
     // GLACIAL,
     // PEAT
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final EnumPropolis[] VALUES = values();
     public final int secondaryColor;
     public final int primaryColor;
     public final String liquidName;
@@ -36,10 +40,10 @@ public enum EnumPropolis implements IItemEnum {
 
     public static EnumPropolis get(ItemStack itemStack) {
         int i = itemStack.getItemDamage();
-        if (i >= 0 && i < values().length) {
-            return values()[i];
+        if (i >= 0 && i < VALUES.length) {
+            return VALUES[i];
         }
-        return values()[0];
+        return VALUES[0];
     }
 
     public void addRecipe() {
