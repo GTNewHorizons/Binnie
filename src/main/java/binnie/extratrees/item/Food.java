@@ -79,6 +79,10 @@ public enum Food implements IItemMisc {
     Starfruit(2),
     Candlenut(0);
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final Food[] VALUES = values();
     private IIcon icon;
     private final int hunger;
     private final List<String> ores;

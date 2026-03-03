@@ -18,22 +18,18 @@ import forestry.api.core.Tabs;
 
 public class ItemFood extends net.minecraft.item.ItemFood {
 
-    protected IItemMisc[] items;
-
     public ItemFood() {
         super(0, 0.0f, false);
         setUnlocalizedName("food");
         setCreativeTab(Tabs.tabArboriculture);
         setHasSubtypes(true);
-        items = Food.values();
-
         registerItem(this, getUnlocalizedName().substring(5));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (IItemMisc itemMisc : items) {
+        for (IItemMisc itemMisc : Food.VALUES) {
             if (itemMisc.isActive()) {
                 list.add(getStack(itemMisc, 1));
             }
@@ -41,7 +37,7 @@ public class ItemFood extends net.minecraft.item.ItemFood {
     }
 
     private IItemMisc getItem(int damage) {
-        return (damage >= items.length) ? items[0] : items[damage];
+        return (damage >= Food.VALUES.length) ? Food.VALUES[0] : Food.VALUES[damage];
     }
 
     public ItemStack getStack(IItemMisc type, int size) {
@@ -79,7 +75,7 @@ public class ItemFood extends net.minecraft.item.ItemFood {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
-        for (IItemMisc item : items) {
+        for (IItemMisc item : Food.VALUES) {
             if (item.isActive()) {
                 item.registerIcons(register);
             }
@@ -87,7 +83,7 @@ public class ItemFood extends net.minecraft.item.ItemFood {
     }
 
     private Food getFood(ItemStack stack) {
-        return Food.values()[stack.getItemDamage()];
+        return Food.VALUES[stack.getItemDamage()];
     }
 
     @Override

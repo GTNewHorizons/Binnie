@@ -436,7 +436,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 
         for (ItemStack stack : products.keySet()) {
             if (stack.getItem() == ExtraTrees.itemFood) {
-                return Food.values()[stack.getItemDamage()].toString();
+                return Food.VALUES[stack.getItemDamage()].toString();
             }
         }
         return "NoFruit";
