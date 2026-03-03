@@ -21,7 +21,7 @@ public class ItemHoneyComb extends ItemProduct {
     protected IIcon icon2;
 
     public ItemHoneyComb() {
-        super("honeyComb", EnumHoneyComb.values());
+        super("honeyComb", EnumHoneyComb.VALUES);
         setCreativeTab(Tabs.tabApiculture);
     }
 
@@ -233,14 +233,14 @@ public class ItemHoneyComb extends ItemProduct {
         OreDictionary.registerOre("beeComb", new ItemStack(ExtraBees.comb, 1, 32767));
 
         for (int i = 0; i < 16; ++i) {
-            EnumHoneyComb type = EnumHoneyComb.values()[EnumHoneyComb.RED.ordinal() + i];
+            EnumHoneyComb type = EnumHoneyComb.VALUES[EnumHoneyComb.RED.ordinal() + i];
             if (type != EnumHoneyComb.RED) {
                 type.copyProducts(EnumHoneyComb.RED);
             }
         }
 
         for (int i = 0; i < 16; ++i) {
-            EnumHoneyComb type = EnumHoneyComb.values()[EnumHoneyComb.RED.ordinal() + i];
+            EnumHoneyComb type = EnumHoneyComb.VALUES[EnumHoneyComb.RED.ordinal() + i];
             EnumHoneyDrop drop = EnumHoneyDrop.values()[EnumHoneyDrop.RED.ordinal() + i];
             int[] dyeC = { 1, 11, 4, 2, 0, 15, 3, 14, 6, 5, 8, 12, 9, 10, 13, 7 };
             int k = dyeC[i];
