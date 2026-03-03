@@ -9,7 +9,7 @@ import forestry.core.genetics.alleles.EnumAllele;
 public class FlowerTemplates {
 
     public static IAllele[] getDefaultTemplate() {
-        IAllele[] alleles = new IAllele[EnumFlowerChromosome.values().length];
+        IAllele[] alleles = new IAllele[EnumFlowerChromosome.VALUES.length];
         alleles[EnumFlowerChromosome.SPECIES.ordinal()] = FlowerSpecies.POPPY;
         alleles[EnumFlowerChromosome.PRIMARY.ordinal()] = AlleleHelper.getAllele(EnumFlowerColor.RED);
         alleles[EnumFlowerChromosome.SECONDARY.ordinal()] = AlleleHelper.getAllele(EnumFlowerColor.RED);
