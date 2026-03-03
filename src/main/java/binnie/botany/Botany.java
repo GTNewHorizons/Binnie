@@ -271,7 +271,7 @@ public class Botany extends AbstractMod {
                 EnumSoilType type = soil.getType(event.world, event.x, y, event.z);
                 int next = Math
                         .min(type.ordinal() + Gardening.getFertiliserStrength(event.entityPlayer.getHeldItem()), 2);
-                if (soil.fertilise(event.world, event.x, y, event.z, EnumSoilType.values()[next])
+                if (soil.fertilise(event.world, event.x, y, event.z, EnumSoilType.VALUES[next])
                         && !event.entityPlayer.capabilities.isCreativeMode) {
                     ItemStack heldItem = event.entityPlayer.getHeldItem();
                     heldItem.stackSize--;

@@ -276,7 +276,7 @@ public class ModuleGardening implements IInitializable {
             return null;
         }
         return new ItemStack(
-                Gardening.getSoilBlock(EnumSoilType.values()[type]),
+                Gardening.getSoilBlock(EnumSoilType.VALUES[type]),
                 1,
                 BlockSoil.getMeta(EnumAcidity.VALUES[pH], EnumMoisture.VALUES[moisture]));
     }
