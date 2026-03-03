@@ -67,7 +67,7 @@ public class ModuleBlocks implements IInitializable {
                 .registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStairs), new StairItemRenderer());
         BinnieCore.proxy
                 .registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockGate), new GateItemRenderer());
-        for (ILogType plank : ILogType.ExtraTreeLog.values()) {
+        for (ILogType plank : ILogType.ExtraTreeLog.VALUES) {
             OreDictionary.registerOre("logWood", plank.getItemStack());
         }
 

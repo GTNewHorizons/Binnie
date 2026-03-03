@@ -46,7 +46,7 @@ public class ModuleCore implements IInitializable {
             Collections.addAll(speciesQueue, ExtraTreeSpecies.values());
 
             Queue<ILogType> logQueue = new LinkedList<>();
-            Collections.addAll(logQueue, ILogType.ExtraTreeLog.values());
+            Collections.addAll(logQueue, ILogType.ExtraTreeLog.VALUES);
 
             Queue<IDesignMaterial> plankQueue = new LinkedList<>();
             Collections.addAll(plankQueue, PlankType.ExtraTreePlanks.VALUES);
