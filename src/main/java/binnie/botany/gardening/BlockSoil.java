@@ -81,7 +81,7 @@ public class BlockSoil extends Block implements IBlockSoil {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        for (EnumMoisture moisture : EnumMoisture.values()) {
+        for (EnumMoisture moisture : EnumMoisture.VALUES) {
             for (EnumAcidity pH : EnumAcidity.values()) {
                 int index = moisture.ordinal() + pH.ordinal() * 3;
                 String id = "soil/" + getType().getID() + "." + pH.getID() + "." + moisture.getID();
@@ -104,7 +104,7 @@ public class BlockSoil extends Block implements IBlockSoil {
     @Override
     public void updateTick(World world, int x, int y, int z, Random random) {
         int meta = world.getBlockMetadata(x, y, z);
-        EnumMoisture moisture = EnumMoisture.values()[meta % 3];
+        EnumMoisture moisture = EnumMoisture.VALUES[meta % 3];
         EnumAcidity acidity = EnumAcidity.values()[meta / 3];
         EnumMoisture desiredMoisture = Gardening.getNaturalMoisture(world, x, y, z);
         if (desiredMoisture.ordinal() > moisture.ordinal()) {
@@ -146,7 +146,7 @@ public class BlockSoil extends Block implements IBlockSoil {
 
     @Override
     public EnumMoisture getMoisture(World world, int x, int y, int z) {
-        return EnumMoisture.values()[world.getBlockMetadata(x, y, z) % 3];
+        return EnumMoisture.VALUES[world.getBlockMetadata(x, y, z) % 3];
     }
 
     @Override

@@ -234,7 +234,7 @@ public class Gardening {
         return canTolerate(
                 flower,
                 EnumAcidity.values()[soilMeta / 3 % 3],
-                EnumMoisture.values()[soilMeta % 3],
+                EnumMoisture.VALUES[soilMeta % 3],
                 EnumTemperature.getFromValue(biome.temperature));
     }
 

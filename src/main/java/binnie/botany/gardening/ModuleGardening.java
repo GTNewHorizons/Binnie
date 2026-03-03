@@ -109,7 +109,7 @@ public class ModuleGardening implements IInitializable {
 
         for (boolean manual : new boolean[] { true, false }) {
             for (boolean fertilised : new boolean[] { true, false }) {
-                for (EnumMoisture moist : EnumMoisture.values()) {
+                for (EnumMoisture moist : EnumMoisture.VALUES) {
                     ItemStack icon = (moist == EnumMoisture.DRY) ? yellow
                             : ((moist == EnumMoisture.NORMAL) ? red : blue);
                     int insulate = 2 - moist.ordinal();
@@ -278,7 +278,7 @@ public class ModuleGardening implements IInitializable {
         return new ItemStack(
                 Gardening.getSoilBlock(EnumSoilType.values()[type]),
                 1,
-                BlockSoil.getMeta(EnumAcidity.values()[pH], EnumMoisture.values()[moisture]));
+                BlockSoil.getMeta(EnumAcidity.values()[pH], EnumMoisture.VALUES[moisture]));
     }
 
     private void addAcidFertiliser(ItemStack stack, int strengthMax) {
