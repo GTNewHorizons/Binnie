@@ -21,7 +21,7 @@ public class PlankType {
         for (VanillaPlanks plank : VanillaPlanks.values()) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank.ordinal(), plank);
         }
-        for (ExtraTreePlanks plank2 : ExtraTreePlanks.values()) {
+        for (ExtraTreePlanks plank2 : ExtraTreePlanks.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank2.ordinal() + 32, plank2);
         }
         for (ForestryPlanks plank3 : ForestryPlanks.values()) {
@@ -70,6 +70,10 @@ public class PlankType {
         Gingko(0xf4e7ba),
         PinkIvory(0xec8ca0);
 
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+        public static final ExtraTreePlanks[] VALUES = values();
         private final int color;
         private IIcon icon;
 

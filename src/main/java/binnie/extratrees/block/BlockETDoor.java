@@ -237,7 +237,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
-        for (IPlankType type : PlankType.ExtraTreePlanks.values()) {
+        for (IPlankType type : PlankType.ExtraTreePlanks.VALUES) {
             itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
         }
         for (IPlankType type : PlankType.ForestryPlanks.values()) {
