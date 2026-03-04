@@ -167,7 +167,16 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
     @Override
     @SideOnly(Side.CLIENT)
     public int getRenderColor(int meta) {
-        return colorMultiplier(meta);
+		final BlockType type = this.getType(meta);
+		if (!MultipassBlockRenderer.isRendering()) {
+			return type.color1.getColor(false);
+		}
+
+		final int layer = MultipassBlockRenderer.getLayer();
+		if (layer == 0) return 0xffffff;
+		if (layer == 1) return type.color1.getColor(false);
+		if (layer == 2) return type.color2.getColor(false);
+		return 0xffffff;
     }
 
     @Override
