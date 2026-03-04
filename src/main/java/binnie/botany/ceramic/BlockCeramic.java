@@ -93,7 +93,7 @@ public class BlockCeramic extends Block implements IBlockMetadata {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tabs, List<ItemStack> itemList) {
-        for (EnumFlowerColor c : EnumFlowerColor.values()) {
+        for (EnumFlowerColor c : EnumFlowerColor.VALUES) {
             itemList.add(TileEntityMetadata.getItemStack(this, c.ordinal()));
         }
     }

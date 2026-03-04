@@ -233,7 +233,7 @@ public class ModuleItems implements IInitializable {
         FuelManager.bronzeEngineFuel.put(
                 ExtraTreeLiquid.Resin.get(1).getFluid(),
                 new EngineBronzeFuel(ExtraTreeLiquid.Resin.get(1).getFluid(), 30, 10000, 1));
-        for (ILogType.ExtraTreeLog log : ILogType.ExtraTreeLog.values()) {
+        for (ILogType.ExtraTreeLog log : ILogType.ExtraTreeLog.VALUES) {
             log.addRecipe();
         }
     }

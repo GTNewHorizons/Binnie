@@ -91,7 +91,7 @@ public class WindowBotanistDatabase extends WindowAbstractDatabase {
                 }
             };
             List<IFlowerColor> colors = new ArrayList<>();
-            Collections.addAll(colors, EnumFlowerColor.values());
+            Collections.addAll(colors, EnumFlowerColor.VALUES);
             listBox.setOptions(colors);
         }
     }

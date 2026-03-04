@@ -25,7 +25,7 @@ class CompartmentTab implements INBTTagable {
     public void readFromNBT(NBTTagCompound nbt) {
         name = nbt.getString("name");
         icon = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("icon"));
-        color = EnumColor.values()[nbt.getByte("color")];
+        color = EnumColor.VALUES[nbt.getByte("color")];
         id = nbt.getByte("id");
     }
 

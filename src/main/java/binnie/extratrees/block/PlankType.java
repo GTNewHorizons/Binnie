@@ -18,16 +18,16 @@ import extrabiomes.api.Stuff;
 public class PlankType {
 
     public static void setup() {
-        for (VanillaPlanks plank : VanillaPlanks.values()) {
+        for (VanillaPlanks plank : VanillaPlanks.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank.ordinal(), plank);
         }
-        for (ExtraTreePlanks plank2 : ExtraTreePlanks.values()) {
+        for (ExtraTreePlanks plank2 : ExtraTreePlanks.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank2.ordinal() + 32, plank2);
         }
-        for (ForestryPlanks plank3 : ForestryPlanks.values()) {
+        for (ForestryPlanks plank3 : ForestryPlanks.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank3.ordinal() + 128, plank3);
         }
-        for (ExtraBiomesPlank plank4 : ExtraBiomesPlank.values()) {
+        for (ExtraBiomesPlank plank4 : ExtraBiomesPlank.VALUES) {
             CarpentryManager.carpentryInterface.registerCarpentryWood(plank4.ordinal() + 192, plank4);
         }
     }
@@ -70,6 +70,10 @@ public class PlankType {
         Gingko(0xf4e7ba),
         PinkIvory(0xec8ca0);
 
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+        public static final ExtraTreePlanks[] VALUES = values();
         private final int color;
         private IIcon icon;
 
@@ -121,6 +125,10 @@ public class PlankType {
         ACACIA(0xba6337),
         DARKOAK(0x462d15);
 
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+        public static final VanillaPlanks[] VALUES = values();
         private final int color;
 
         VanillaPlanks(int color) {
@@ -192,6 +200,10 @@ public class PlankType {
         COCOBOLO(0x731302),
         ZEBRAWOOD(0xa6824e);
 
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+        public static final ForestryPlanks[] VALUES = values();
         private final int color;
 
         ForestryPlanks(int color) {
@@ -241,6 +253,10 @@ public class PlankType {
         Fir(0x7e774a),
         Acacia(0xbfaa7e);
 
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+        public static final ExtraBiomesPlank[] VALUES = values();
         private final int color;
 
         ExtraBiomesPlank(int color) {

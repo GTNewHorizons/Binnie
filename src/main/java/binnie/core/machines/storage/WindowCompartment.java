@@ -320,7 +320,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
                     1 + cw * (cc / 8),
                     cw,
                     cw,
-                    EnumColor.values()[cc]);
+                    EnumColor.VALUES[cc]);
             color.addSelfEventHandler(new EventMouse.Down.Handler() {
 
                 @Override

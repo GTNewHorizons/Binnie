@@ -20,6 +20,10 @@ public enum EnumColor {
     Yellow("Yellow", 16777045, 'e'),
     White("White", 16777215, 'f');
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final EnumColor[] VALUES = values();
     private final int colour;
     private final String name;
     private final char code;

@@ -271,7 +271,7 @@ public class Botany extends AbstractMod {
                 EnumSoilType type = soil.getType(event.world, event.x, y, event.z);
                 int next = Math
                         .min(type.ordinal() + Gardening.getFertiliserStrength(event.entityPlayer.getHeldItem()), 2);
-                if (soil.fertilise(event.world, event.x, y, event.z, EnumSoilType.values()[next])
+                if (soil.fertilise(event.world, event.x, y, event.z, EnumSoilType.VALUES[next])
                         && !event.entityPlayer.capabilities.isCreativeMode) {
                     ItemStack heldItem = event.entityPlayer.getHeldItem();
                     heldItem.stackSize--;
@@ -284,7 +284,7 @@ public class Botany extends AbstractMod {
                 EnumAcidity pH = soil.getPH(event.world, event.x, y, event.z);
                 int next = Math
                         .max(pH.ordinal() - Gardening.getFertiliserStrength(event.entityPlayer.getHeldItem()), 0);
-                if (soil.setPH(event.world, event.x, y, event.z, EnumAcidity.values()[next])
+                if (soil.setPH(event.world, event.x, y, event.z, EnumAcidity.VALUES[next])
                         && !event.entityPlayer.capabilities.isCreativeMode) {
                     ItemStack heldItem2 = event.entityPlayer.getHeldItem();
                     heldItem2.stackSize--;
@@ -297,7 +297,7 @@ public class Botany extends AbstractMod {
                 EnumAcidity pH = soil.getPH(event.world, event.x, y, event.z);
                 int next = Math
                         .min(pH.ordinal() + Gardening.getFertiliserStrength(event.entityPlayer.getHeldItem()), 2);
-                if (soil.setPH(event.world, event.x, y, event.z, EnumAcidity.values()[next])
+                if (soil.setPH(event.world, event.x, y, event.z, EnumAcidity.VALUES[next])
                         && !event.entityPlayer.capabilities.isCreativeMode) {
                     ItemStack heldItem3 = event.entityPlayer.getHeldItem();
                     heldItem3.stackSize--;

@@ -57,6 +57,10 @@ public enum EnumFlowerType implements IFlowerType {
     DELPHINIUM(2),
     HOLLYHOCK(2);
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final EnumFlowerType[] VALUES = values();
     private final int sections;
     private final IIcon[] stem;
     private final IIcon[] petal;

@@ -55,7 +55,7 @@ public class BlockFlower extends BlockContainer {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        for (EnumFlowerType type : EnumFlowerType.values()) {
+        for (EnumFlowerType type : EnumFlowerType.VALUES) {
             type.registerIcons(register);
         }
     }
