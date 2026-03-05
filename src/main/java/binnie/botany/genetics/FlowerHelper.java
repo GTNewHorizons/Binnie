@@ -232,7 +232,7 @@ public class FlowerHelper extends SpeciesRoot implements IFlowerRoot {
 
     @Override
     public IChromosomeType[] getKaryotype() {
-        return EnumFlowerChromosome.values();
+        return EnumFlowerChromosome.VALUES;
     }
 
     @Override

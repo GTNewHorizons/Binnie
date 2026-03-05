@@ -92,7 +92,10 @@ public enum EnumFlowerColor implements IFlowerColor {
     YELLOW("yellow", 0xffff00),
     YELLOW_GREEN("yellowGreen", 0x9acd32);
 
-    private static final EnumFlowerColor[] ALL_VALUES = values();
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final EnumFlowerColor[] VALUES = values();
     private final int color;
     private final int colorDis;
     private final String name;
@@ -2964,7 +2967,7 @@ public enum EnumFlowerColor implements IFlowerColor {
     }
 
     public static EnumFlowerColor get(int i) {
-        return ALL_VALUES[Math.max(0, i) % ALL_VALUES.length];
+        return VALUES[Math.max(0, i) % VALUES.length];
     }
 
     @Override

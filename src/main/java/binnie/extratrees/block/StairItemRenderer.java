@@ -15,7 +15,7 @@ public class StairItemRenderer implements IItemRenderer {
     private void renderStairBlock(RenderBlocks renderBlocks, ItemStack item, float f, float g, float h) {
         Tessellator tessellator = Tessellator.instance;
         Block block = ((ItemBlock) item.getItem()).field_150939_a;
-        IIcon textureIndex = PlankType.ExtraTreePlanks.values()[item.getItemDamage()].getIcon();
+        IIcon textureIndex = PlankType.ExtraTreePlanks.VALUES[item.getItemDamage()].getIcon();
 
         for (int i = 0; i < 2; ++i) {
             if (i == 0) {

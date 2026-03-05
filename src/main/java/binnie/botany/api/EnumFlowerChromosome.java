@@ -24,6 +24,10 @@ public enum EnumFlowerChromosome implements IChromosomeType {
     SAPPINESS(IAlleleFloat.class),
     STEM(IAlleleInteger.class);
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final EnumFlowerChromosome[] VALUES = values();
     private final Class<? extends IAllele> cls;
 
     EnumFlowerChromosome(Class<? extends IAllele> cls) {

@@ -75,7 +75,7 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
     @Override
     public String getBlockName(ItemStack itemStack) {
         int meta = TileEntityMetadata.getItemDamage(itemStack);
-        return I18N.localise("extratrees.block.plank.name", PlankType.ExtraTreePlanks.values()[meta].getName());
+        return I18N.localise("extratrees.block.plank.name", PlankType.ExtraTreePlanks.VALUES[meta].getName());
     }
 
     @Override
@@ -90,7 +90,7 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (int i = 0; i < PlankType.ExtraTreePlanks.values().length; ++i) {
+        for (int i = 0; i < PlankType.ExtraTreePlanks.VALUES.length; ++i) {
             list.add(TileEntityMetadata.getItemStack(this, i));
         }
     }
@@ -107,13 +107,13 @@ public class BlockETPlanks extends BlockWood implements IBlockMetadata {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return PlankType.ExtraTreePlanks.values()[meta].getIcon();
+        return PlankType.ExtraTreePlanks.VALUES[meta].getIcon();
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        for (PlankType.ExtraTreePlanks plank : PlankType.ExtraTreePlanks.values()) {
+        for (PlankType.ExtraTreePlanks plank : PlankType.ExtraTreePlanks.VALUES) {
             plank.loadIcon(register);
         }
     }

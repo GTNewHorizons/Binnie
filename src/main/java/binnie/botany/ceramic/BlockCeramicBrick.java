@@ -102,12 +102,12 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
-        for (EnumFlowerColor c : EnumFlowerColor.values()) {
+        for (EnumFlowerColor c : EnumFlowerColor.VALUES) {
             BlockType type = new BlockType(c, c, TileType.Tile);
             itemList.add(TileEntityMetadata.getItemStack(this, type.ordinal()));
         }
 
-        for (TileType type2 : TileType.values()) {
+        for (TileType type2 : TileType.VALUES) {
             if (type2.canDouble()) {
                 itemList.add(new BlockType(EnumFlowerColor.BROWN, EnumFlowerColor.GOLD, type2).getStack(1));
             }
@@ -136,7 +136,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        for (TileType type : TileType.values()) {
+        for (TileType type : TileType.VALUES) {
             for (int i = 0; i < 3; ++i) {
                 type.icons[i] = Botany.proxy.getIcon(register, "ceramic." + type.id + "." + i);
             }
@@ -214,6 +214,10 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
         VerticalStripeBrick("verticalbrickstripe", "verticalStripedCeramicBricks"),
         VerticalLargeBrick("verticalbricklarge", "largeVerticalCeramicBricks");
 
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+        public static final TileType[] VALUES = values();
         private final String id;
         private final String name;
         private final IIcon[] icons;
@@ -225,7 +229,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
         }
 
         public static TileType get(int id) {
-            return values()[id % values().length];
+            return VALUES[id % VALUES.length];
         }
 
         public boolean canDouble() {

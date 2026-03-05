@@ -408,6 +408,9 @@ public enum EnumPattern implements IPattern {
 
     private ILayout leftRotation;
     private ILayout horizontalFlip;
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
     public static final EnumPattern[] VALUES = values();
 
     EnumPattern() {
