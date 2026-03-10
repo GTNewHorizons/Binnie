@@ -40,8 +40,8 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 
     public static DoorType getDoorType(int tileMeta) {
         int type = (tileMeta & 0xF00) >> 8;
-        if (type < DoorType.values().length) {
-            return DoorType.values()[type];
+        if (type < DoorType.VALUES.length) {
+            return DoorType.VALUES[type];
         }
         return DoorType.STANDARD;
     }
@@ -96,7 +96,7 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        for (DoorType type : DoorType.values()) {
+        for (DoorType type : DoorType.VALUES) {
             type.iconDoorLower = ExtraTrees.proxy.getIcon(register, "door." + type.id + ".lower");
             type.iconDoorUpper = ExtraTrees.proxy.getIcon(register, "door." + type.id + ".upper");
             type.iconDoorLowerFlip = new IconFlipped(type.iconDoorLower, true, false);
@@ -237,18 +237,18 @@ public class BlockETDoor extends BlockDoor implements IBlockMetadata {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> itemList) {
-        for (IPlankType type : PlankType.ExtraTreePlanks.values()) {
+        for (IPlankType type : PlankType.ExtraTreePlanks.VALUES) {
             itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
         }
-        for (IPlankType type : PlankType.ForestryPlanks.values()) {
+        for (IPlankType type : PlankType.ForestryPlanks.VALUES) {
             itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
         }
-        for (IPlankType type : PlankType.ExtraBiomesPlank.values()) {
+        for (IPlankType type : PlankType.ExtraBiomesPlank.VALUES) {
             if (type.getStack() != null) {
                 itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
             }
         }
-        for (IPlankType type : PlankType.VanillaPlanks.values()) {
+        for (IPlankType type : PlankType.VanillaPlanks.VALUES) {
             itemList.add(WoodManager.getDoor(type, DoorType.STANDARD));
         }
     }

@@ -67,12 +67,12 @@ public class ModuleBlocks implements IInitializable {
                 .registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockStairs), new StairItemRenderer());
         BinnieCore.proxy
                 .registerCustomItemRenderer(Item.getItemFromBlock(ExtraTrees.blockGate), new GateItemRenderer());
-        for (ILogType plank : ILogType.ExtraTreeLog.values()) {
+        for (ILogType plank : ILogType.ExtraTreeLog.VALUES) {
             OreDictionary.registerOre("logWood", plank.getItemStack());
         }
 
         GameRegistry.addSmelting(ExtraTrees.blockLog, new ItemStack(Items.coal, 1, 1), 0.15f);
-        for (IPlankType plank2 : PlankType.ExtraTreePlanks.values()) {
+        for (IPlankType plank2 : PlankType.ExtraTreePlanks.VALUES) {
             OreDictionary.registerOre("plankWood", plank2.getStack());
         }
 
@@ -102,7 +102,7 @@ public class ModuleBlocks implements IInitializable {
 
     @Override
     public void postInit() {
-        for (PlankType.ExtraTreePlanks plank : PlankType.ExtraTreePlanks.values()) {
+        for (PlankType.ExtraTreePlanks plank : PlankType.ExtraTreePlanks.VALUES) {
             ItemStack planks = plank.getStack();
             ItemStack slabs = TileEntityMetadata.getItemStack(ExtraTrees.blockSlab, plank.ordinal());
             ItemStack stairs = TileEntityMetadata.getItemStack(ExtraTrees.blockStairs, plank.ordinal());

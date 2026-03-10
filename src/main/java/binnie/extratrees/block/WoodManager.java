@@ -105,12 +105,12 @@ public class WoodManager {
         }
 
         List<IPlankType> list = new ArrayList<>();
-        Collections.addAll(list, PlankType.ExtraTreePlanks.values());
-        Collections.addAll(list, PlankType.ForestryPlanks.values());
+        Collections.addAll(list, PlankType.ExtraTreePlanks.VALUES);
+        Collections.addAll(list, PlankType.ForestryPlanks.VALUES);
         if (Mods.extraBiomes.active()) {
-            Collections.addAll(list, PlankType.ExtraBiomesPlank.values());
+            Collections.addAll(list, PlankType.ExtraBiomesPlank.VALUES);
         }
-        Collections.addAll(list, PlankType.VanillaPlanks.values());
+        Collections.addAll(list, PlankType.VanillaPlanks.VALUES);
         allPlankTypes = list;
         return list;
     }

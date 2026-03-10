@@ -37,7 +37,7 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 
     @Override
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (int i = 0; i < ILogType.ExtraTreeLog.values().length; ++i) {
+        for (int i = 0; i < ILogType.ExtraTreeLog.VALUES.length; ++i) {
             list.add(TileEntityMetadata.getItemStack(this, i));
         }
     }
@@ -54,7 +54,7 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
 
     public IIcon getIcon(int side, int tileMeta, int blockMeta) {
         int oriented = blockMeta & 0xC;
-        ILogType.ExtraTreeLog log = ILogType.ExtraTreeLog.values()[tileMeta];
+        ILogType.ExtraTreeLog log = ILogType.ExtraTreeLog.VALUES[tileMeta];
         switch (oriented) {
             case 4:
                 if (side > 3) {
@@ -125,7 +125,7 @@ public class BlockETLog extends BlockLog implements IBlockMetadata {
     @Override
     public String getBlockName(ItemStack itemStack) {
         int meta = TileEntityMetadata.getItemDamage(itemStack);
-        ILogType.ExtraTreeLog[] logs = ILogType.ExtraTreeLog.values();
+        ILogType.ExtraTreeLog[] logs = ILogType.ExtraTreeLog.VALUES;
         if (meta < 0 || meta >= logs.length) {
             meta = 0;
         }

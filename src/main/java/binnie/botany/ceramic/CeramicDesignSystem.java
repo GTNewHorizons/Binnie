@@ -74,7 +74,7 @@ public class CeramicDesignSystem implements IDesignSystem {
 
     @Override
     public void registerIcons(IIconRegister register) {
-        for (EnumPattern pattern : EnumPattern.values()) {
+        for (EnumPattern pattern : EnumPattern.VALUES) {
             primary.put(
                     pattern.ordinal(),
                     BinnieCore.proxy.getIcon(

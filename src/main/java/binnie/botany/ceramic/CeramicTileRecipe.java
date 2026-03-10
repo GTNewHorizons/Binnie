@@ -52,7 +52,7 @@ public class CeramicTileRecipe implements IRecipe {
             }
         }
 
-        for (BlockCeramicBrick.TileType type : BlockCeramicBrick.TileType.values()) {
+        for (BlockCeramicBrick.TileType type : BlockCeramicBrick.TileType.VALUES) {
             ItemStack stack2 = type.getRecipe(stacks);
             if (stack2 != null) {
                 return stack2;

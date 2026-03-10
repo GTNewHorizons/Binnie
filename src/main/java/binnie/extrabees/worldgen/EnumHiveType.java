@@ -12,6 +12,10 @@ public enum EnumHiveType {
     NETHER,
     MARBLE;
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final EnumHiveType[] VALUES = values();
     public final List<IHiveDrop> drops;
 
     EnumHiveType() {

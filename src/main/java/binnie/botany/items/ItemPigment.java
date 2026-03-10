@@ -49,7 +49,7 @@ public class ItemPigment extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (EnumFlowerColor c : EnumFlowerColor.values()) {
+        for (EnumFlowerColor c : EnumFlowerColor.VALUES) {
             list.add(new ItemStack(this, 1, c.ordinal()));
         }
     }
