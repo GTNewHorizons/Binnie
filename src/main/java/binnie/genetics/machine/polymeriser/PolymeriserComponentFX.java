@@ -37,9 +37,6 @@ public class PolymeriserComponentFX extends MachineComponent implements IRender.
                         double angle = 0.7 + (int) (worldObj.getTotalWorldTime() % 2L) * 3.1415;
 
                         {
-                            axisX = 0.0;
-                            axisZ = 0.0;
-                            angle = 0.0;
                             motionX = 0.0;
                             motionZ = 0.0;
                             motionY = -0.006;
