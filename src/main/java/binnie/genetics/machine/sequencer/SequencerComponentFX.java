@@ -34,9 +34,6 @@ public class SequencerComponentFX extends MachineComponent implements IRender.Ra
                     double angle = rand.nextDouble() * 2.0 * 3.1415;
 
                     {
-                        axisX = 0.0;
-                        axisZ = 0.0;
-                        angle = 0.0;
                         motionX = 0.0;
                         motionZ = 0.0;
                         motionY = 0.0;
