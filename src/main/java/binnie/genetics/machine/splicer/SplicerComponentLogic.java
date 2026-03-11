@@ -19,6 +19,10 @@ import forestry.api.genetics.IIndividual;
 
 public class SplicerComponentLogic extends ComponentProcessSetCost implements IProcess {
 
+    // Needed to keep stack. If user takes out target slot and it gets automatically refilled, this happens in the same
+    // tick
+    private ItemStack workedOnStack = null;
+
     public int nOfGenes;
 
     public SplicerComponentLogic(Machine machine) {
@@ -50,6 +54,11 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
     public void onInventoryUpdate() {
         super.onInventoryUpdate();
         nOfGenes = getGenesToUse();
+        ItemStack newTarget = getUtil().getStack(Splicer.SLOT_TARGET);
+
+        if (newTarget == null || !ItemStack.areItemStacksEqual(workedOnStack, newTarget)) {
+            workedOnStack = null;
+        }
     }
 
     protected int getGenesToUse() {
@@ -190,5 +199,31 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
             Splicer.setGene(gene, target, 1);
         }
         getUtil().damageItem(Splicer.SLOT_SERUM_VIAL, 1);
+        workedOnStack = getUtil().getStack(Splicer.SLOT_TARGET).copy();
+    }
+
+    @Override
+    public boolean workedOnTarget() {
+        return ItemStack.areItemStacksEqual(workedOnStack, getUtil().getStack(Splicer.SLOT_TARGET));
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound nbt) {
+        super.readFromNBT(nbt);
+        NBTTagCompound tagWorkedOnStack = (NBTTagCompound) nbt.getTag("workedOnStack");
+        if (tagWorkedOnStack != null) {
+            workedOnStack = ItemStack.loadItemStackFromNBT(tagWorkedOnStack);
+        }
+    }
+
+    @Override
+    public void writeToNBT(NBTTagCompound nbt) {
+        super.writeToNBT(nbt);
+        if (workedOnStack != null) {
+            NBTTagCompound tagWorkedOnStack = new NBTTagCompound();
+            workedOnStack.writeToNBT(tagWorkedOnStack);
+            // Need to save, in case inventory is full it might need to get moved out way later.
+            nbt.setTag("workedOnStack", tagWorkedOnStack);
+        }
     }
 }

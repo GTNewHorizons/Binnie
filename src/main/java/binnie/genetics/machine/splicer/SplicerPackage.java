@@ -3,6 +3,7 @@ package binnie.genetics.machine.splicer;
 import net.minecraft.item.ItemStack;
 
 import binnie.core.craftgui.minecraft.IMachineInformation;
+import binnie.core.machines.IMachine;
 import binnie.core.machines.Machine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.ComponentInventoryTransfer;
@@ -79,8 +80,20 @@ public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase impl
 
             @Override
             public boolean fufilled(ItemStack stack) {
-                return stack != null && transfer.getMachine().getMachineUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null
-                        && transfer.getMachine().getInterface(SplicerComponentLogic.class).isValidSerum() != null;
+                if (stack == null) {
+                    return false;
+                }
+                IMachine machine = transfer.getMachine();
+                boolean hasSerum = machine.getMachineUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null;
+
+                if (hasSerum) {
+                    // Move item if it can't be processed anymore with current serum.
+                    boolean validSerum = machine.getInterface(SplicerComponentLogic.class).isValidSerum() == null;
+                    return !validSerum;
+                } else {
+                    // Move item if there is no serum and item got processed already
+                    return machine.getMachineUtil().getProcess().workedOnTarget();
+                }
             }
         });
 
