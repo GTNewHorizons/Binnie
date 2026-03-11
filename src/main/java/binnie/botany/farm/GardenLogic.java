@@ -129,7 +129,7 @@ public class GardenLogic extends FarmLogic {
                 if (pH.ordinal() < acidity.ordinal()) {
                     ItemStack stack = getAvailableAlkaline();
                     if (stack != null && soil
-                            .setPH(world, position.x, position.y, position.z, EnumAcidity.values()[pH.ordinal() + 1])) {
+                            .setPH(world, position.x, position.y, position.z, EnumAcidity.VALUES[pH.ordinal() + 1])) {
                         housing.getFarmInventory().removeResources(new ItemStack[] { stack });
                         continue;
                     }
@@ -138,7 +138,7 @@ public class GardenLogic extends FarmLogic {
                 if (pH.ordinal() > acidity.ordinal()) {
                     ItemStack stack = getAvailableAcid();
                     if (stack != null && soil
-                            .setPH(world, position.x, position.y, position.z, EnumAcidity.values()[pH.ordinal() - 1])) {
+                            .setPH(world, position.x, position.y, position.z, EnumAcidity.VALUES[pH.ordinal() - 1])) {
                         housing.getFarmInventory().removeResources(new ItemStack[] { stack });
                         continue;
                     }

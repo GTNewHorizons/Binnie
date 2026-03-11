@@ -233,8 +233,8 @@ public class Gardening {
         BiomeGenBase biome = world.getBiomeGenForCoords(x, z);
         return canTolerate(
                 flower,
-                EnumAcidity.values()[soilMeta / 3 % 3],
-                EnumMoisture.values()[soilMeta % 3],
+                EnumAcidity.VALUES[soilMeta / 3 % 3],
+                EnumMoisture.VALUES[soilMeta % 3],
                 EnumTemperature.getFromValue(biome.temperature));
     }
 

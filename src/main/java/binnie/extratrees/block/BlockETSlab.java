@@ -88,7 +88,7 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
     @Override
     public String getBlockName(ItemStack itemStack) {
         int meta = TileEntityMetadata.getItemDamage(itemStack);
-        return I18N.localise("extratrees.block.woodslab.name", PlankType.ExtraTreePlanks.values()[meta].getName());
+        return I18N.localise("extratrees.block.woodslab.name", PlankType.ExtraTreePlanks.VALUES[meta].getName());
     }
 
     @Override
@@ -106,7 +106,7 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
         if (field_150004_a) {
             return;
         }
-        for (int i = 0; i < PlankType.ExtraTreePlanks.values().length; ++i) {
+        for (int i = 0; i < PlankType.ExtraTreePlanks.VALUES.length; ++i) {
             list.add(TileEntityMetadata.getItemStack(this, i));
         }
     }
@@ -123,7 +123,7 @@ public class BlockETSlab extends BlockWoodSlab implements IBlockMetadata {
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return PlankType.ExtraTreePlanks.values()[meta].getIcon();
+        return PlankType.ExtraTreePlanks.VALUES[meta].getIcon();
     }
 
     @Override

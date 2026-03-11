@@ -44,6 +44,10 @@ public enum EnumHoneyDrop implements IItemEnum {
     MAGENTA(new Color(0xe57fd8), new Color(0xff00cc), "for.honey"),
     LIGHTGRAY(new Color(0x999999), new Color(0xc9c9c9), "for.honey");
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final EnumHoneyDrop[] VALUES = values();
     public final int primaryColor;
     public final int secondaryColor;
 
@@ -58,10 +62,10 @@ public enum EnumHoneyDrop implements IItemEnum {
 
     public static EnumHoneyDrop get(ItemStack itemStack) {
         int i = itemStack.getItemDamage();
-        if (i >= 0 && i < values().length) {
-            return values()[i];
+        if (i >= 0 && i < VALUES.length) {
+            return VALUES[i];
         }
-        return values()[0];
+        return VALUES[0];
     }
 
     public void addRemenant(ItemStack stack) {
