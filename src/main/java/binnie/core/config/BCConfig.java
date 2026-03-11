@@ -1,6 +1,7 @@
 package binnie.core.config;
 
 import com.gtnewhorizon.gtnhlib.config.Config;
+
 import binnie.core.BinnieCore;
 
 @Config(modid = BinnieCore.CORE_MODID)
