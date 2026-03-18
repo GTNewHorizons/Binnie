@@ -28,64 +28,45 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
         return MultipassBlockRenderer.rendering;
     }
 
-    private static int getPassesSafe(Block block) {
-        try {
-            return ((IMultipassBlock) block).getNumberOfPasses();
-        } catch (Throwable t) {
-            return 1;
-        }
-    }
-
-    private static int getColorSafe(Block block, int meta) {
-        try {
-            if (block instanceof IMultipassBlock) {
-                try {
-					java.lang.reflect.Method m = block.getClass().getMethod("colorMultiplier", int.class);
-					Object out = m.invoke(block, Integer.valueOf(meta));
-                    if (out instanceof Integer) {
-                        return ((Integer) out).intValue();
-                    }
-                } catch (Throwable ignored) {
-                }
-            }
-            return block.getRenderColor(meta);
-        } catch (Throwable t) {
-            return 16777215;
-        }
-    }
     @Override
     public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
+        IMultipassBlock multipassBlock = (IMultipassBlock) block;
+        int passes = multipassBlock.getNumberOfPasses();
+
         block.setBlockBoundsForItemRender();
         renderer.setRenderBoundsFromBlock(block);
         GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
 
         MultipassBlockRenderer.rendering = true;
-        MultipassBlockRenderer.layer = 0;
-        while (MultipassBlockRenderer.layer < getPassesSafe(block)) {
-            renderItem(block, renderer, meta);
-            MultipassBlockRenderer.layer++;
+        try {
+            for (int pass = 0; pass < passes; ++pass) {
+                MultipassBlockRenderer.layer = pass;
+                renderItem(block, multipassBlock, renderer, meta);
+            }
+        } finally {
+            MultipassBlockRenderer.layer = 0;
+            MultipassBlockRenderer.rendering = false;
         }
-        MultipassBlockRenderer.layer = 0;
-        MultipassBlockRenderer.rendering = false;
     }
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
             RenderBlocks renderer) {
-        boolean r = true;
+        IMultipassBlock multipassBlock = (IMultipassBlock) block;
+        int passes = multipassBlock.getNumberOfPasses();
+        boolean rendered = true;
+
         MultipassBlockRenderer.rendering = true;
-        MultipassBlockRenderer.layer = 0;
-        while (MultipassBlockRenderer.layer < getPassesSafe(block)) {
-            try {
-                r = renderer.renderStandardBlock(block, x, y, z);
-            } catch (Throwable t) {
-                return false;
+        try {
+            for (int pass = 0; pass < passes; ++pass) {
+                MultipassBlockRenderer.layer = pass;
+                rendered = renderer.renderStandardBlock(block, x, y, z);
             }
-            MultipassBlockRenderer.layer++;
+            return rendered;
+        } finally {
+            MultipassBlockRenderer.layer = 0;
+            MultipassBlockRenderer.rendering = false;
         }
-        MultipassBlockRenderer.layer = 0;
-        MultipassBlockRenderer.rendering = false;
-        return r;
     }
 
     @Override
@@ -98,8 +79,8 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
         return BinnieCore.multipassRenderID;
     }
 
-    public void renderItem(Block block, RenderBlocks renderer, int meta) {
-        setColor(getColorSafe(block, meta));
+    private void renderItem(Block block, IMultipassBlock multipassBlock, RenderBlocks renderer, int meta) {
+        setColor(multipassBlock.colorMultiplier(meta));
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0f, -1.0f, 0.0f);
