@@ -11,6 +11,10 @@ public enum DoorType {
     DOUBLE("double"),
     FULL("full");
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final DoorType[] VALUES = values();
     final String id;
     IIcon iconDoorLower;
     IIcon iconDoorUpper;

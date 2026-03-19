@@ -42,7 +42,7 @@ public class ModuleGenetics implements IInitializable {
 
     @Override
     public void init() {
-        for (EnumFlowerColor color : EnumFlowerColor.values()) {
+        for (EnumFlowerColor color : EnumFlowerColor.VALUES) {
             AlleleManager.alleleRegistry.registerAllele(color.getAllele());
         }
 

@@ -101,6 +101,10 @@ public enum EnumHoneyComb implements IItemEnum {
     CYANITE(new Color(0x27204d), new Color(0x86ed)),
     BLUTONIUM(new Color(0x27204d), new Color(0x1b00e6));
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final EnumHoneyComb[] VALUES = values();
     public final Map<ItemStack, Float> products;
     public final int primaryColor;
     public final int secondaryColor;
@@ -117,10 +121,10 @@ public enum EnumHoneyComb implements IItemEnum {
 
     public static EnumHoneyComb get(ItemStack itemStack) {
         int i = itemStack.getItemDamage();
-        if (i >= 0 && i < values().length) {
-            return values()[i];
+        if (i >= 0 && i < VALUES.length) {
+            return VALUES[i];
         }
-        return values()[0];
+        return VALUES[0];
     }
 
     public void addRecipe() {

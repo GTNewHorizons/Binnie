@@ -387,7 +387,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
         if (ripeningTime >= ripeningPeriod) {
             return 1.0f;
         }
-        return ripeningTime / ripeningPeriod;
+        return (float) ripeningTime / ripeningPeriod;
     }
 
     @Override
@@ -418,7 +418,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
         if (ordinal() == 0) {
-            for (FruitSprite sprite : FruitSprite.values()) {
+            for (FruitSprite sprite : FruitSprite.VALUES) {
                 sprite.registerIcons(register);
             }
         }
@@ -436,7 +436,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
 
         for (ItemStack stack : products.keySet()) {
             if (stack.getItem() == ExtraTrees.itemFood) {
-                return Food.values()[stack.getItemDamage()].toString();
+                return Food.VALUES[stack.getItemDamage()].toString();
             }
         }
         return "NoFruit";

@@ -39,10 +39,10 @@ public class MessageFlowerUpdate extends MessageCoordinates {
     public void readData(ByteBuf data) throws IOException {
         super.readData(data);
         render = new TileEntityFlower.RenderInfo();
-        render.primary = EnumFlowerColor.values()[data.readByte()];
-        render.secondary = EnumFlowerColor.values()[data.readByte()];
-        render.stem = EnumFlowerColor.values()[data.readByte()];
-        render.type = EnumFlowerType.values()[data.readByte()];
+        render.primary = EnumFlowerColor.get(data.readByte());
+        render.secondary = EnumFlowerColor.get(data.readByte());
+        render.stem = EnumFlowerColor.get(data.readByte());
+        render.type = EnumFlowerType.VALUES[data.readByte()];
         render.age = data.readByte();
         render.section = data.readByte();
         render.wilted = data.readBoolean();

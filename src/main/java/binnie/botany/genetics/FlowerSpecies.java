@@ -496,7 +496,7 @@ public enum FlowerSpecies implements IAlleleFlowerSpecies {
 
     @Override
     public EnumHumidity getHumidity() {
-        return EnumHumidity.values()[getMoisture().ordinal()];
+        return EnumHumidity.VALUES[getMoisture().ordinal()];
     }
 
     @Override

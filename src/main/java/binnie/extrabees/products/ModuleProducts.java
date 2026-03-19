@@ -25,13 +25,13 @@ public class ModuleProducts implements IInitializable {
 
     @Override
     public void postInit() {
-        for (EnumHoneyComb info : EnumHoneyComb.values()) {
+        for (EnumHoneyComb info : EnumHoneyComb.VALUES) {
             info.addRecipe();
         }
-        for (EnumHoneyDrop info2 : EnumHoneyDrop.values()) {
+        for (EnumHoneyDrop info2 : EnumHoneyDrop.VALUES) {
             info2.addRecipe();
         }
-        for (EnumPropolis info3 : EnumPropolis.values()) {
+        for (EnumPropolis info3 : EnumPropolis.VALUES) {
             info3.addRecipe();
         }
     }

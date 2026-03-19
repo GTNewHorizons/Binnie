@@ -66,7 +66,7 @@ public class ItemETDoor extends ItemMetadata {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister register) {
-        for (DoorType type : DoorType.values()) {
+        for (DoorType type : DoorType.VALUES) {
             type.iconItem = ExtraTrees.proxy.getIcon(register, "door." + type.id);
         }
     }

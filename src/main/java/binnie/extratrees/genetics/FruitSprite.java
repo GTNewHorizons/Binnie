@@ -19,6 +19,10 @@ public enum FruitSprite implements IIconProvider {
     Larger,
     Pear;
 
+    /**
+     * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+     */
+    public static final FruitSprite[] VALUES = values();
     private BinnieIcon icon;
 
     public short getIndex() {
@@ -29,8 +33,8 @@ public enum FruitSprite implements IIconProvider {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(short texUID) {
         int index = texUID - 4200;
-        if (index >= 0 && index < values().length) {
-            return values()[index].icon.getIcon();
+        if (index >= 0 && index < VALUES.length) {
+            return VALUES[index].icon.getIcon();
         }
         return null;
     }

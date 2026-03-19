@@ -54,9 +54,9 @@ public class ControlClimateBar extends Control implements ITooltip {
         }
 
         if (isHumidity) {
-            tooltip.add(EnumHumidity.values()[type].name);
+            tooltip.add(EnumHumidity.VALUES[type].name);
         } else {
-            tooltip.add(EnumTemperature.values()[type + 1].name);
+            tooltip.add(EnumTemperature.VALUES[type + 1].name);
         }
     }
 
