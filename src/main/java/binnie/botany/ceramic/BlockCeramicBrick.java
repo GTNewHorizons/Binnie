@@ -207,7 +207,11 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
         VerticalBrick("verticalbrick", "verticalCeramicBricks"),
         VerticalStripeBrick("verticalbrickstripe", "verticalStripedCeramicBricks"),
         VerticalLargeBrick("verticalbricklarge", "largeVerticalCeramicBricks");
-
+        
+        /**
+         * Cached values() array for frequent read-only operations, the array should NOT be mutated.
+         */
+         
         private static final TileType[] VALUES = values();
         private final String id;
         private final String name;
