@@ -130,7 +130,7 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 
     @Override
     public IIcon getIcon(int side, int meta) {
-        return getType(meta).getIcon(MultipassBlockRenderer.getLayer());
+        return TileType.get(meta >>> 16 & 0xFF).icons[MultipassBlockRenderer.getLayer()];
     }
 
     @Override
@@ -167,6 +167,9 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
     @Override
     @SideOnly(Side.CLIENT)
     public int getRenderColor(int meta) {
+        if (!MultipassBlockRenderer.isRendering()) {
+            return EnumFlowerColor.get(meta & 0xFF).getColor(false);
+        }
         return colorMultiplier(meta);
     }
 
@@ -177,14 +180,14 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
 
     @Override
     public int colorMultiplier(int meta) {
-        BlockType type = getType(meta);
-        if (MultipassBlockRenderer.getLayer() == 0) {
+        int layer = MultipassBlockRenderer.getLayer();
+        if (layer == 0) {
             return 0xffffff;
         }
-        if (MultipassBlockRenderer.getLayer() == 1) {
-            return type.color1.getColor(false);
+        if (layer == 1) {
+            return EnumFlowerColor.get(meta & 0xFF).getColor(false);
         }
-        return type.color2.getColor(false);
+        return EnumFlowerColor.get(meta >>> 8 & 0xFF).getColor(false);
     }
 
     @Override
@@ -208,7 +211,8 @@ public class BlockCeramicBrick extends Block implements IBlockMetadata, IMultipa
         /**
          * Cached values() array for frequent read-only operations, the array should NOT be mutated.
          */
-        public static final TileType[] VALUES = values();
+
+        private static final TileType[] VALUES = values();
         private final String id;
         private final String name;
         private final IIcon[] icons;

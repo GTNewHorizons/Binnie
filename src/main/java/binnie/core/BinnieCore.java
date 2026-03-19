@@ -12,6 +12,7 @@ import net.minecraftforge.common.MinecraftForge;
 import binnie.Binnie;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
+import binnie.core.config.BCConfig;
 import binnie.core.craftgui.minecraft.ModuleCraftGUI;
 import binnie.core.gui.BinnieCoreGUI;
 import binnie.core.gui.BinnieGUIHandler;
@@ -78,7 +79,9 @@ public class BinnieCore extends AbstractMod {
         }
 
         addModule(new ModuleCraftGUI());
-        addModule(new ModuleStorage());
+        if (!BCConfig.disableCompartments) {
+            addModule(new ModuleStorage());
+        }
         addModule(new ModuleItems());
         if (Loader.isModLoaded("BuildCraft|Silicon")) {
             addModule(new ModuleTrigger());
