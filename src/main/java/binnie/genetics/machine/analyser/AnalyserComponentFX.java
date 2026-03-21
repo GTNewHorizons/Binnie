@@ -43,14 +43,7 @@ public class AnalyserComponentFX extends MachineComponent
             BinnieCore.proxy.getMinecraftInstance().effectRenderer
                     .addEffect(new EntityFX(world, x + 0.5, y + 1.3 + rand.nextDouble() * 0.2, z + 0.5, 0.0, 0.0, 0.0) {
 
-                        double axisX = posX;
-                        double axisZ = posZ;
-                        double angle = rand.nextDouble() * 2.0 * 3.1415;
-
                         {
-                            axisX = 0.0;
-                            axisZ = 0.0;
-                            angle = 0.0;
                             motionX = 0.05 * (rand.nextDouble() - 0.5);
                             motionZ = 0.05 * (rand.nextDouble() - 0.5);
                             motionY = 0.0;
