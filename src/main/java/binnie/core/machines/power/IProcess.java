@@ -9,4 +9,11 @@ public interface IProcess extends IErrorStateSource {
     boolean isInProgress();
 
     ProcessInfo getInfo();
+
+    /***
+     * Returns true if the current target got worked on at least once.
+     */
+    default boolean workedOnTarget() {
+        return false;
+    }
 }
