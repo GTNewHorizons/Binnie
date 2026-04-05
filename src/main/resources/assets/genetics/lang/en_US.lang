@@ -177,6 +177,10 @@ genetics.gui.geneBank.ranking=Ranking
 genetics.gui.geneBank.project=Full Genome Project
 genetics.gui.geneBank.sequencedGenes=Sequenced %d/%d Genes
 genetics.gui.geneBank.sequencedGenes.short=%d/%d Genes
+genetics.gui.geneBank.search=Search...
+genetics.gui.geneBank.filter.all=All
+genetics.gui.geneBank.tooltip.assignGene=Left click to assign gene
+genetics.gui.geneBank.tooltip.willReplace=Will replace %s: %s
 
 genetics.gui.analyst.info=Add a bee, tree, flower or butterfly to the top left slot. DNA Dye is required if it has not been analysed yet. This dye can also convert vanilla items to breedable individuals.
 genetics.gui.analyst.registry=Registry

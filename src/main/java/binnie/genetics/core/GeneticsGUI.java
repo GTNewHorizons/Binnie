@@ -11,8 +11,6 @@ import binnie.core.craftgui.minecraft.Window;
 import binnie.core.gui.IBinnieGUID;
 import binnie.genetics.craftgui.WindowAcclimatiser;
 import binnie.genetics.craftgui.WindowAnalyser;
-import binnie.genetics.craftgui.WindowGeneBank;
-import binnie.genetics.craftgui.WindowGeneBankNEI;
 import binnie.genetics.craftgui.WindowGenepool;
 import binnie.genetics.craftgui.WindowIncubator;
 import binnie.genetics.craftgui.WindowInoculator;
@@ -30,11 +28,11 @@ public enum GeneticsGUI implements IBinnieGUID {
     Sequencer(WindowSequencer.class),
     Replicator(WindowPolymeriser.class),
     Inoculator(WindowInoculator.class),
-    GeneBank(WindowGeneBank.class),
+    GeneBank(null),
     Analyser(WindowAnalyser.class),
     Incubator(WindowIncubator.class),
-    Database(WindowGeneBank.class),
-    DatabaseNEI(WindowGeneBankNEI.class),
+    Database(null),
+    DatabaseNEI(null),
     Acclimatiser(WindowAcclimatiser.class),
     Splicer(WindowSplicer.class),
     Analyst,
@@ -61,6 +59,15 @@ public enum GeneticsGUI implements IBinnieGUID {
 
             case Registry:
                 return new WindowAnalyst(player, null, side, true, false);
+
+            case GeneBank:
+            case Database:
+            case DatabaseNEI:
+                // These GUIs now use MUI2 via ItemDatabase.buildUI()
+                return null;
+        }
+        if (windowClass == null) {
+            return null;
         }
         Constructor constr = windowClass.getConstructor(EntityPlayer.class, IInventory.class, Side.class);
         return (Window) constr.newInstance(player, object, side);
@@ -76,10 +83,9 @@ public enum GeneticsGUI implements IBinnieGUID {
         }
 
         try {
-            if (this == GeneticsGUI.Database || this == GeneticsGUI.GeneBank) {
-                window = WindowGeneBank.create(player, object, side);
-            } else if (this == GeneticsGUI.DatabaseNEI) {
-                window = WindowGeneBankNEI.create(player, object, side);
+            if (this == GeneticsGUI.Database || this == GeneticsGUI.DatabaseNEI || this == GeneticsGUI.GeneBank) {
+                // Now handled by MUI2 via ItemDatabase
+                return null;
             } else {
                 window = getWindow(player, object, side);
             }
