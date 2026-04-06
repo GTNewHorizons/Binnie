@@ -31,7 +31,7 @@ public class ExtraBeeMutation extends BeeMutation implements IBeeMutationCustom 
     public float getChance(IBeeHousing housing, IAlleleBeeSpecies allele0, IAlleleBeeSpecies allele1,
             IBeeGenome genome0, IBeeGenome genome1) {
         for (IMutationRequirement requirement : requirements) {
-            if (!requirement.fufilled(housing, allele0, allele1, genome0, genome1)) {
+            if (!requirement.fulfilled(housing, allele0, allele1, genome0, genome1)) {
                 return 0.0f;
             }
         }

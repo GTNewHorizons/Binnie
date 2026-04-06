@@ -13,7 +13,7 @@ public class AcclimatiserItemSlotValidator extends SlotValidator {
 
     @Override
     public boolean isValid(ItemStack stack) {
-        for (ToleranceType type : ToleranceType.values()) {
+        for (ToleranceType type : ToleranceType.VALUES) {
             if (type.hasEffect(stack)) {
                 return true;
             }

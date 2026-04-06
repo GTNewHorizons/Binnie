@@ -45,12 +45,12 @@ public class ModuleItem implements IInitializable {
         Genetics.itemSerum = new ItemSerum();
         Genetics.itemSerumArray = new ItemSerumArray();
         Genetics.itemSequencer = new ItemSequence();
-        Genetics.itemGenetics = new ItemMisc(GeneticsCreativeTab.instance, GeneticsItems.values());
+        Genetics.itemGenetics = new ItemMisc(GeneticsCreativeTab.instance, GeneticsItems.VALUES);
         Genetics.database = new ItemDatabase();
         Genetics.analyst = new ItemAnalyst();
         Genetics.registry = new ItemRegistry();
         Genetics.masterRegistry = new ItemMasterRegistry();
-        Binnie.Liquid.createLiquids(GeneticLiquid.values(), ItemFluidContainer.LiquidGenetics);
+        Binnie.Liquid.createLiquids(GeneticLiquid.VALUES, ItemFluidContainer.LiquidGenetics);
     }
 
     @Override
@@ -167,8 +167,6 @@ public class ModuleItem implements IInitializable {
         GameRegistry.addSmelting(Genetics.itemSerum, GeneticsItems.EmptySerum.get(1), 0.0f);
         GameRegistry.addSmelting(Genetics.itemSerumArray, GeneticsItems.EmptyGenome.get(1), 0.0f);
 
-        // TODONE refactor refactor refactor this!
-        // CombatZAK up to the task!
         Item beealyzer = Mods.forestry.item("beealyzer");
         Item treealyzer = Mods.forestry.item("treealyzer");
 

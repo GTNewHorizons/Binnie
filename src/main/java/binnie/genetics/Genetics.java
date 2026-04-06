@@ -80,12 +80,12 @@ public class Genetics extends AbstractMod {
 
     @Override
     public IBinnieGUID[] getGUIDs() {
-        return GeneticsGUI.values();
+        return GeneticsGUI.VALUES;
     }
 
     @Override
     public IPacketID[] getPacketIDs() {
-        return GeneticsPacket.values();
+        return GeneticsPacket.VALUES;
     }
 
     @Override

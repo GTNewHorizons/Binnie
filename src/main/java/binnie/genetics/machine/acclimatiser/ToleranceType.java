@@ -10,6 +10,8 @@ public enum ToleranceType {
     Humidity,
     PH;
 
+    public static final ToleranceType[] VALUES = values();
+
     public float getEffect(ItemStack stack) {
         switch (this) {
             case Temperature:

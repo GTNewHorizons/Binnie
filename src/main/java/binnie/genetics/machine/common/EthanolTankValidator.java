@@ -1,4 +1,4 @@
-package binnie.genetics.machine.isolator;
+package binnie.genetics.machine.common;
 
 import net.minecraftforge.fluids.FluidStack;
 

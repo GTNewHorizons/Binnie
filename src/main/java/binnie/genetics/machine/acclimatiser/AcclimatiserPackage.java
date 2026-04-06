@@ -51,7 +51,7 @@ public class AcclimatiserPackage extends PackageGeneticBase implements IMachineI
                 new ComponentInventoryTransfer.Condition() {
 
                     @Override
-                    public boolean fufilled(ItemStack stack) {
+                    public boolean fulfilled(ItemStack stack) {
                         return !Acclimatiser.canAcclimatise(
                                 stack,
                                 machine.getMachineUtil().getNonNullStacks(Acclimatiser.SLOT_ACCLIMATISER));

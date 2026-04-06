@@ -122,10 +122,6 @@ public class MachineUtil {
         return stacks;
     }
 
-    public ItemStack hasIngredients(int recipe, int[] inventory) {
-        return null;
-    }
-
     public boolean hasIngredients(int[] recipe, int[] inventory) {
         ItemStackSet requiredStacks = new ItemStackSet();
         Collections.addAll(requiredStacks, getStacks(recipe));

@@ -17,6 +17,8 @@ public enum GeneticMachine implements IMachineType {
     Polymeriser(PolymeriserPackage.class),
     Inoculator(InoculatorPackage.class);
 
+    public static final GeneticMachine[] VALUES = values();
+
     private final Class<? extends MachinePackage> clss;
 
     GeneticMachine(Class<? extends MachinePackage> clss) {

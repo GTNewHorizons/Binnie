@@ -89,7 +89,6 @@ public class GeneBankUI {
         });
 
         ModularPanel panel = ModularPanel.defaultPanel("gene_bank", PANEL_WIDTH, PANEL_HEIGHT);
-        panel.background(GuiTextures.MC_BACKGROUND);
 
         List<BreedingSystem> systems = new ArrayList<>(Binnie.Genetics.getActiveSystems());
         if (systems.isEmpty()) {

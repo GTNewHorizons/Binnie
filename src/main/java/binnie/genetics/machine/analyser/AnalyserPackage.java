@@ -50,7 +50,7 @@ public class AnalyserPackage extends PackageGeneticBase implements IMachineInfor
         transfer.addStorage(Analyser.SLOT_TARGET, Analyser.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
 
             @Override
-            public boolean fufilled(ItemStack stack) {
+            public boolean fulfilled(ItemStack stack) {
                 return Analyser.isAnalysed(stack);
             }
         });
