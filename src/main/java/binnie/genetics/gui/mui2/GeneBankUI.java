@@ -65,7 +65,7 @@ public class GeneBankUI {
 
         syncManager.addOpenListener(p -> {
             if (p instanceof EntityPlayerMP) {
-                GeneTracker tracker = GeneTracker.getTracker(p.worldObj, p.getGameProfile());
+                GeneTracker tracker = GeneTracker.getDisplayTracker(p.worldObj, p.getGameProfile());
                 tracker.synchToPlayer(p);
             }
         });
@@ -122,7 +122,7 @@ public class GeneBankUI {
                 tooltip.addLine(IKey.str(system.toString()));
                 int tg = 0;
                 int sg = 0;
-                GeneTracker tracker = GeneTracker.getTracker(player.worldObj, player.getGameProfile());
+                GeneTracker tracker = GeneTracker.getDisplayTracker(player.worldObj, player.getGameProfile());
                 Map<IChromosomeType, List<IAllele>> genes = Binnie.Genetics.getChromosomeMap(system.getSpeciesRoot());
                 if (genes != null) {
                     for (Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {
@@ -151,7 +151,7 @@ public class GeneBankUI {
         int totalGenes = 0;
         int seqGenes = 0;
         for (BreedingSystem sys : systems) {
-            GeneTracker tracker = GeneTracker.getTracker(player.worldObj, player.getGameProfile());
+            GeneTracker tracker = GeneTracker.getDisplayTracker(player.worldObj, player.getGameProfile());
             Map<IChromosomeType, List<IAllele>> genes = Binnie.Genetics.getChromosomeMap(sys.getSpeciesRoot());
             if (genes == null) continue;
             for (Map.Entry<IChromosomeType, List<IAllele>> entry : genes.entrySet()) {

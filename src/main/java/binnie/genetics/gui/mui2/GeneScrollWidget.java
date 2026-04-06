@@ -65,7 +65,7 @@ public class GeneScrollWidget extends ScrollWidget<GeneScrollWidget> {
     public void rebuildGenes() {
         removeAll();
 
-        GeneTracker tracker = GeneTracker.getTracker(player.worldObj, player.getGameProfile());
+        GeneTracker tracker = GeneTracker.getDisplayTracker(player.worldObj, player.getGameProfile());
         Map<IChromosomeType, List<IAllele>> genes = Binnie.Genetics.getChromosomeMap(system.getSpeciesRoot());
         if (genes == null) {
             getScrollArea().getScrollY().setScrollSize(0);

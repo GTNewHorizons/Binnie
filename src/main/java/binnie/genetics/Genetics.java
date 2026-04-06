@@ -32,7 +32,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
         name = "Genetics",
         version = Tags.VERSION,
         useMetadata = true,
-        dependencies = "after:BinnieCore")
+        dependencies = "after:BinnieCore;required-after:serverutilities")
 public class Genetics extends AbstractMod {
 
     @Mod.Instance("Genetics")
