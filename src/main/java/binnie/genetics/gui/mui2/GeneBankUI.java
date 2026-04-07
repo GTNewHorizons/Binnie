@@ -9,7 +9,10 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+import org.lwjgl.input.Keyboard;
+
 import com.cleanroommc.modularui.api.drawable.IKey;
+import com.cleanroommc.modularui.api.widget.Interactable;
 import com.cleanroommc.modularui.drawable.GuiTextures;
 import com.cleanroommc.modularui.drawable.ItemDrawable;
 import com.cleanroommc.modularui.factory.PlayerInventoryGuiData;
@@ -70,6 +73,108 @@ public class GeneBankUI {
             }
         });
 
+        registerGeneSelectAction(syncManager);
+
+        final TextFieldWidget[] searchFieldHolder = new TextFieldWidget[1];
+        ModularPanel panel = new ModularPanel("gene_bank") {
+
+            @Override
+            public boolean onKeyPressed(char typedChar, int keyCode) {
+                boolean handled = super.onKeyPressed(typedChar, keyCode);
+                if (!handled && keyCode == Keyboard.KEY_TAB && searchFieldHolder[0] != null) {
+                    getContext().focus(searchFieldHolder[0]);
+                    return true;
+                }
+                return handled;
+            }
+        };
+        panel.size(PANEL_WIDTH, PANEL_HEIGHT);
+
+        List<BreedingSystem> systems = new ArrayList<>(Binnie.Genetics.getActiveSystems());
+        if (systems.isEmpty()) {
+            panel.bindPlayerInventory();
+            return panel;
+        }
+
+        PagedWidget.Controller controller = new PagedWidget.Controller();
+        List<GeneScrollWidget> scrollWidgets = new ArrayList<>();
+
+        buildTabRow(panel, systems, controller, player);
+
+        int curY = PADDING;
+
+        addTitleRow(panel, systems, player, curY);
+        curY += TITLE_HEIGHT + GAP;
+
+        List<List<ChromoFilterButton>> allPageButtons = new ArrayList<>();
+        @SuppressWarnings("unchecked")
+        final List<ChromoFilterButton>[] currentPageButtons = new List[] { new ArrayList<>() };
+
+        TextFieldWidget searchField = createSearchField(currentPageButtons, scrollWidgets);
+        searchFieldHolder[0] = searchField;
+        searchField.pos(PADDING, curY);
+        panel.child(searchField);
+        curY += SEARCH_HEIGHT + GAP;
+
+        int scrollInset = 2;
+        int scrollWidth = CONTENT_WIDTH - scrollInset * 2;
+        int geneScrollHeight = GENE_SCROLL_HEIGHT - scrollInset * 2;
+        for (BreedingSystem system : systems) {
+            GeneScrollWidget scrollWidget = new GeneScrollWidget(system, isNEI, player, syncManager);
+            scrollWidget.size(scrollWidth, geneScrollHeight);
+            scrollWidgets.add(scrollWidget);
+        }
+
+        int geneY = curY;
+        ParentWidget<?> geneAreaBg = new ParentWidget<>();
+        geneAreaBg.pos(PADDING, geneY);
+        geneAreaBg.size(CONTENT_WIDTH, GENE_SCROLL_HEIGHT);
+        geneAreaBg.background(GuiTextures.DISPLAY);
+        panel.child(geneAreaBg);
+
+        int combinedHeight = GENE_SCROLL_HEIGHT + GAP + FILTER_HEIGHT;
+        PagedWidget<?> pagedWidget = new PagedWidget<>().pos(PADDING, geneY).size(CONTENT_WIDTH, combinedHeight)
+                .controller(controller);
+        for (int s = 0; s < systems.size(); s++) {
+            BreedingSystem system = systems.get(s);
+            GeneScrollWidget scrollWidget = scrollWidgets.get(s);
+
+            ParentWidget<?> page = new ParentWidget<>();
+            page.size(CONTENT_WIDTH, combinedHeight);
+
+            scrollWidget.pos(scrollInset, scrollInset);
+            page.child(scrollWidget);
+
+            List<ChromoFilterButton> pageButtons = new ArrayList<>();
+            ParentWidget<?> filterPage = buildFilterPage(system, scrollWidget, CONTENT_WIDTH, FILTER_HEIGHT,
+                    pageButtons);
+            filterPage.pos(0, GENE_SCROLL_HEIGHT + GAP);
+            page.child(filterPage);
+            allPageButtons.add(pageButtons);
+
+            pagedWidget.addPage(page);
+        }
+
+        wireTabHandlers(allPageButtons, currentPageButtons, searchField);
+
+        if (!allPageButtons.isEmpty()) {
+            currentPageButtons[0] = allPageButtons.get(0);
+        }
+        pagedWidget.onPageChange(pageIdx -> {
+            if (pageIdx >= 0 && pageIdx < allPageButtons.size()) {
+                currentPageButtons[0] = allPageButtons.get(pageIdx);
+            }
+        });
+
+        panel.child(pagedWidget);
+        curY += combinedHeight + SECTION_GAP;
+
+        panel.child(SlotGroupWidget.playerInventory(false).pos(PLAYER_INV_PADDING, curY));
+
+        return panel;
+    }
+
+    private static void registerGeneSelectAction(PanelSyncManager syncManager) {
         syncManager.registerSyncedAction("gene-select", false, true, packet -> {
             try {
                 NBTTagCompound action = packet.readNBTTagCompoundFromBuffer();
@@ -87,19 +192,10 @@ public class GeneBankUI {
                 throw new RuntimeException(e);
             }
         });
+    }
 
-        ModularPanel panel = ModularPanel.defaultPanel("gene_bank", PANEL_WIDTH, PANEL_HEIGHT);
-
-        List<BreedingSystem> systems = new ArrayList<>(Binnie.Genetics.getActiveSystems());
-        if (systems.isEmpty()) {
-            panel.bindPlayerInventory();
-            return panel;
-        }
-
-        PagedWidget.Controller controller = new PagedWidget.Controller();
-        List<GeneScrollWidget> scrollWidgets = new ArrayList<>();
-
-        // Top tabs
+    private static void buildTabRow(ModularPanel panel, List<BreedingSystem> systems,
+            PagedWidget.Controller controller, EntityPlayer player) {
         Row tabRow = new Row();
         tabRow.coverChildren();
         tabRow.top(-(32 - 4));
@@ -140,10 +236,9 @@ public class GeneBankUI {
             tabRow.child(tabButton);
         }
         panel.child(tabRow);
+    }
 
-        int curY = PADDING;
-
-        // Title row: "Gene Bank" left, "X/Y" right
+    private static void addTitleRow(ModularPanel panel, List<BreedingSystem> systems, EntityPlayer player, int curY) {
         panel.child(
                 new TextWidget<>(IKey.lang("genetics.gui.geneBank")).pos(PADDING, curY)
                         .size(CONTENT_WIDTH / 2, TITLE_HEIGHT));
@@ -167,11 +262,38 @@ public class GeneBankUI {
         panel.child(
                 new TextWidget<>(IKey.lang("genetics.gui.geneBank.sequencedGenes.short", seqGenes, totalGenes))
                         .pos(PADDING + CONTENT_WIDTH / 2, curY).size(CONTENT_WIDTH / 2, TITLE_HEIGHT).color(0xFFFF55));
-        curY += TITLE_HEIGHT + GAP;
+    }
 
-        // Search field
-        TextFieldWidget searchField = new TextFieldWidget();
-        searchField.pos(PADDING, curY);
+    private static TextFieldWidget createSearchField(List<ChromoFilterButton>[] currentPageButtons,
+            List<GeneScrollWidget> scrollWidgets) {
+        TextFieldWidget searchField = new TextFieldWidget() {
+
+            @Override
+            public void afterInit() {
+                super.afterInit();
+                getContext().focus(this);
+            }
+
+            @Override
+            public Result onKeyPressed(char character, int keyCode) {
+                if (keyCode == Keyboard.KEY_TAB && isFocused()) {
+                    List<ChromoFilterButton> buttons = currentPageButtons[0];
+                    if (Interactable.hasShiftDown()) {
+                        if (buttons != null && !buttons.isEmpty()) {
+                            getContext().focus(buttons.get(0));
+                        }
+                    } else {
+                        if (buttons != null && buttons.size() > 1) {
+                            getContext().focus(buttons.get(1));
+                        } else if (buttons != null && !buttons.isEmpty()) {
+                            getContext().focus(buttons.get(0));
+                        }
+                    }
+                    return Result.SUCCESS;
+                }
+                return super.onKeyPressed(character, keyCode);
+            }
+        };
         searchField.size(CONTENT_WIDTH, SEARCH_HEIGHT);
         searchField.hintText(I18N.localise("genetics.gui.geneBank.search"));
         searchField.background(GuiTextures.DISPLAY_SMALL);
@@ -183,60 +305,64 @@ public class GeneBankUI {
                 }
             }
         });
-        panel.child(searchField);
-        curY += SEARCH_HEIGHT + GAP;
+        return searchField;
+    }
 
-        // Build gene scroll widgets
-        int scrollInset = 2;
-        int scrollWidth = CONTENT_WIDTH - scrollInset * 2;
-        int geneScrollHeight = GENE_SCROLL_HEIGHT - scrollInset * 2;
-        for (BreedingSystem system : systems) {
-            GeneScrollWidget scrollWidget = new GeneScrollWidget(system, isNEI, player, syncManager);
-            scrollWidget.size(scrollWidth, geneScrollHeight);
-            scrollWidgets.add(scrollWidget);
+    // Tab order: Search -> specific filters (1..N-1) -> All (0) -> Search
+    private static void wireTabHandlers(List<List<ChromoFilterButton>> allPageButtons,
+            List<ChromoFilterButton>[] currentPageButtons, TextFieldWidget searchField) {
+        for (List<ChromoFilterButton> pageButtons : allPageButtons) {
+            int size = pageButtons.size();
+            if (size == 0) continue;
+
+            ChromoFilterButton allBtn = pageButtons.get(0);
+            allBtn.onTab(() -> allBtn.getContext().focus(searchField));
+            allBtn.onShiftTab(() -> {
+                List<ChromoFilterButton> buttons = currentPageButtons[0];
+                if (buttons != null && buttons.size() > 1) {
+                    allBtn.getContext().focus(buttons.get(buttons.size() - 1));
+                } else {
+                    allBtn.getContext().focus(searchField);
+                }
+            });
+
+            for (int i = 1; i < size; i++) {
+                ChromoFilterButton btn = pageButtons.get(i);
+                int nextIdx = i + 1;
+                int prevIdx = i - 1;
+
+                if (nextIdx < size) {
+                    btn.onTab(() -> {
+                        List<ChromoFilterButton> buttons = currentPageButtons[0];
+                        if (buttons != null && nextIdx < buttons.size()) {
+                            btn.getContext().focus(buttons.get(nextIdx));
+                        }
+                    });
+                } else {
+                    btn.onTab(() -> {
+                        List<ChromoFilterButton> buttons = currentPageButtons[0];
+                        if (buttons != null && !buttons.isEmpty()) {
+                            btn.getContext().focus(buttons.get(0));
+                        }
+                    });
+                }
+
+                if (prevIdx >= 1) {
+                    btn.onShiftTab(() -> {
+                        List<ChromoFilterButton> buttons = currentPageButtons[0];
+                        if (buttons != null && prevIdx < buttons.size()) {
+                            btn.getContext().focus(buttons.get(prevIdx));
+                        }
+                    });
+                } else {
+                    btn.onShiftTab(() -> btn.getContext().focus(searchField));
+                }
+            }
         }
-
-        // Gene scroll area background
-        int geneY = curY;
-        ParentWidget<?> geneAreaBg = new ParentWidget<>();
-        geneAreaBg.pos(PADDING, geneY);
-        geneAreaBg.size(CONTENT_WIDTH, GENE_SCROLL_HEIGHT);
-        geneAreaBg.background(GuiTextures.DISPLAY);
-        panel.child(geneAreaBg);
-
-        // Single PagedWidget combining gene scroll + filter buttons per system
-        int combinedHeight = GENE_SCROLL_HEIGHT + GAP + FILTER_HEIGHT;
-        PagedWidget<?> pagedWidget = new PagedWidget<>().pos(PADDING, geneY).size(CONTENT_WIDTH, combinedHeight)
-                .controller(controller);
-        for (int s = 0; s < systems.size(); s++) {
-            BreedingSystem system = systems.get(s);
-            GeneScrollWidget scrollWidget = scrollWidgets.get(s);
-
-            ParentWidget<?> page = new ParentWidget<>();
-            page.size(CONTENT_WIDTH, combinedHeight);
-
-            // Gene scroll inside the page
-            scrollWidget.pos(scrollInset, scrollInset);
-            page.child(scrollWidget);
-
-            // Filter buttons below gene scroll
-            ParentWidget<?> filterPage = buildFilterPage(system, scrollWidget, CONTENT_WIDTH, FILTER_HEIGHT);
-            filterPage.pos(0, GENE_SCROLL_HEIGHT + GAP);
-            page.child(filterPage);
-
-            pagedWidget.addPage(page);
-        }
-        panel.child(pagedWidget);
-        curY += combinedHeight + SECTION_GAP;
-
-        // Player inventory, centered
-        panel.child(SlotGroupWidget.playerInventory(false).pos(PLAYER_INV_PADDING, curY));
-
-        return panel;
     }
 
     private static ParentWidget<?> buildFilterPage(BreedingSystem system, GeneScrollWidget scrollWidget, int width,
-            int height) {
+            int height, List<ChromoFilterButton> outButtons) {
         ParentWidget<?> page = new ParentWidget<>();
         page.size(width, height);
 
@@ -253,6 +379,7 @@ public class GeneBankUI {
         ChromoFilterButton allBtn = new ChromoFilterButton(allLabel, scrollWidget, null, allWidth);
         allBtn.pos(fx, fy);
         page.child(allBtn);
+        outButtons.add(allBtn);
         fx += allWidth + btnGap;
 
         for (IChromosomeType chromo : chromosomes.keySet()) {
@@ -268,6 +395,7 @@ public class GeneBankUI {
             ChromoFilterButton btn = new ChromoFilterButton(name, scrollWidget, chromo, btnWidth);
             btn.pos(fx, fy);
             page.child(btn);
+            outButtons.add(btn);
             fx += btnWidth + btnGap;
         }
 

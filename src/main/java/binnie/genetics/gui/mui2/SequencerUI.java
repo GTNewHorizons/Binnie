@@ -6,11 +6,15 @@ import com.cleanroommc.modularui.api.drawable.IKey;
 import com.cleanroommc.modularui.factory.PosGuiData;
 import com.cleanroommc.modularui.screen.ModularPanel;
 import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+import com.cleanroommc.modularui.value.sync.StringSyncValue;
 import com.cleanroommc.modularui.widgets.SlotGroupWidget;
+import com.cleanroommc.modularui.widgets.TextWidget;
 import com.cleanroommc.modularui.widgets.slot.ItemSlot;
 import com.cleanroommc.modularui.widgets.slot.ModularSlot;
+import com.mojang.authlib.GameProfile;
 
 import binnie.core.machines.Machine;
+import binnie.core.util.I18N;
 import binnie.genetics.gui.mui2.GeneticsGuiHelper.MachineGuiContext;
 import binnie.genetics.machine.sequencer.Sequencer;
 
@@ -80,6 +84,21 @@ public class SequencerUI {
                 "charge_dye",
                 PAD,
                 y + 58);
+
+        StringSyncValue seqOwnerSync = new StringSyncValue(() -> {
+            if (machine == null) return "";
+            GameProfile owner = machine.getOwner();
+            return owner != null && owner.getName() != null ? owner.getName() : "";
+        });
+        syncManager.syncValue("seq_owner", seqOwnerSync);
+
+        panel.child(new TextWidget<>(IKey.dynamic(() -> {
+            String name = seqOwnerSync.getValue();
+            if (name != null && !name.isEmpty()) {
+                return I18N.localise("genetics.machine.sequencer.gui.sequensedBy", name);
+            }
+            return I18N.localise("genetics.machine.sequencer.gui.willNotSave");
+        })).pos(30, y + 48).size(135, 9));
 
         GeneticsGuiHelper.addButtonColumn(panel, syncManager, machine);
 

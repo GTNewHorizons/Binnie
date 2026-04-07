@@ -4,8 +4,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.Tessellator;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
+import com.cleanroommc.modularui.api.widget.IFocusedWidget;
 import com.cleanroommc.modularui.api.widget.Interactable;
 import com.cleanroommc.modularui.screen.viewport.ModularGuiContext;
 import com.cleanroommc.modularui.theme.WidgetThemeEntry;
@@ -13,17 +15,29 @@ import com.cleanroommc.modularui.widget.Widget;
 
 import forestry.api.genetics.IChromosomeType;
 
-public class ChromoFilterButton extends Widget<ChromoFilterButton> implements Interactable {
+public class ChromoFilterButton extends Widget<ChromoFilterButton> implements Interactable, IFocusedWidget {
 
     private final String label;
     private final GeneScrollWidget scrollWidget;
     private final IChromosomeType chromosomeType;
+    private Runnable tabHandler;
+    private Runnable shiftTabHandler;
 
     public ChromoFilterButton(String label, GeneScrollWidget scrollWidget, IChromosomeType chromosomeType, int width) {
         this.label = label;
         this.scrollWidget = scrollWidget;
         this.chromosomeType = chromosomeType;
         size(width, 11);
+    }
+
+    public ChromoFilterButton onTab(Runnable tabHandler) {
+        this.tabHandler = tabHandler;
+        return this;
+    }
+
+    public ChromoFilterButton onShiftTab(Runnable shiftTabHandler) {
+        this.shiftTabHandler = shiftTabHandler;
+        return this;
     }
 
     private boolean isActive() {
@@ -34,6 +48,19 @@ public class ChromoFilterButton extends Widget<ChromoFilterButton> implements In
     }
 
     @Override
+    public boolean isFocused() {
+        return getContext().isFocused(this);
+    }
+
+    @Override
+    public void onFocus(ModularGuiContext context) {
+        scrollWidget.forceChromosomeFilter(chromosomeType);
+    }
+
+    @Override
+    public void onRemoveFocus(ModularGuiContext context) {}
+
+    @Override
     public void draw(ModularGuiContext context, WidgetThemeEntry<?> widgetTheme) {
         GL11.glPushAttrib(GL11.GL_ENABLE_BIT | GL11.GL_CURRENT_BIT);
 
@@ -41,7 +68,9 @@ public class ChromoFilterButton extends Widget<ChromoFilterButton> implements In
         int h = getArea().height;
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
-        if (isActive()) {
+        if (isFocused()) {
+            GL11.glColor4f(0.25f, 0.45f, 0.75f, 1f);
+        } else if (isActive()) {
             GL11.glColor4f(0.18f, 0.35f, 0.63f, 1f);
         } else if (isHovering()) {
             GL11.glColor4f(0.25f, 0.25f, 0.25f, 1f);
@@ -58,11 +87,25 @@ public class ChromoFilterButton extends Widget<ChromoFilterButton> implements In
         GL11.glEnable(GL11.GL_TEXTURE_2D);
 
         FontRenderer fr = Minecraft.getMinecraft().fontRenderer;
-        int textColor = isActive() ? 0xFFFFFF : 0xAAAAAA;
+        int textColor = (isActive() || isFocused()) ? 0xFFFFFF : 0xAAAAAA;
         fr.drawString(label, 3, (h - 8) / 2, textColor);
 
         GL11.glPopAttrib();
         GL11.glColor4f(1f, 1f, 1f, 1f);
+    }
+
+    @Override
+    public Result onKeyPressed(char character, int keyCode) {
+        if (!isFocused()) return Result.IGNORE;
+        if (keyCode == Keyboard.KEY_TAB) {
+            if (Interactable.hasShiftDown()) {
+                if (shiftTabHandler != null) shiftTabHandler.run();
+            } else {
+                if (tabHandler != null) tabHandler.run();
+            }
+            return Result.SUCCESS;
+        }
+        return Result.IGNORE;
     }
 
     @Override

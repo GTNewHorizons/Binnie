@@ -56,6 +56,12 @@ public class GeneScrollWidget extends ScrollWidget<GeneScrollWidget> {
         return chromosomeFilter;
     }
 
+    public void forceChromosomeFilter(IChromosomeType type) {
+        if (this.chromosomeFilter == type) return;
+        this.chromosomeFilter = type;
+        rebuildGenes();
+    }
+
     @Override
     public void afterInit() {
         super.afterInit();
