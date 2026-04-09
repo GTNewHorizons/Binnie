@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 
 import binnie.Binnie;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -13,30 +12,27 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 // Hmm. It's used class
 public class RendererMachine extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
 
-    RenderBlocks blockRenderer;
-
     @Override
     public void renderTileEntityAt(TileEntity entity, double x, double y, double z, float partialTick) {
-        renderTileEntity((TileEntityMachine) entity, x, y, z, partialTick, blockRenderer);
+        renderTileEntity((TileEntityMachine) entity, x, y, z, partialTick);
     }
 
-    public void renderTileEntity(TileEntityMachine entity, double x, double y, double z, float partialTick,
-            RenderBlocks renderer) {
+    private void renderTileEntity(TileEntityMachine entity, double x, double y, double z, float partialTick) {
         if (entity != null && entity.getMachine() != null) {
             MachinePackage machinePackage = entity.getMachine().getPackage();
-            machinePackage.renderMachine(entity.getMachine(), x, y, z, partialTick, renderer);
+            machinePackage.renderMachine(entity.getMachine(), x, y, z, partialTick);
         }
     }
 
-    public void renderInvBlock(RenderBlocks renderblocks, Block block, int i, int j) {
+    private void renderInvBlock(Block block, int i, int j) {
         TileEntity entity = block.createTileEntity(null, i);
-        renderTileEntity((TileEntityMachine) entity, 0.0, -0.1, 0.0, 0.0625f, renderblocks);
+        renderTileEntity((TileEntityMachine) entity, 0.0, -0.1, 0.0, 0.0625f);
     }
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
         if (modelID == Binnie.Machine.getMachineRenderID()) {
-            renderInvBlock(renderer, block, metadata, modelID);
+            renderInvBlock(block, metadata, modelID);
         }
     }
 
@@ -48,7 +44,7 @@ public class RendererMachine extends TileEntitySpecialRenderer implements ISimpl
                 && tile.getMachine().getPackage() != null
                 && tile.getMachine().getPackage().getGroup() != null
                 && !tile.getMachine().getPackage().getGroup().customRenderer) {
-            renderTileEntity(tile, x, y, z, 1.0f, renderer);
+            renderTileEntity(tile, x, y, z, 1.0f);
         }
         return true;
     }
@@ -61,10 +57,5 @@ public class RendererMachine extends TileEntitySpecialRenderer implements ISimpl
     @Override
     public int getRenderId() {
         return Binnie.Machine.getMachineRenderID();
-    }
-
-    @Override
-    public void func_147496_a(World par1World) {
-        blockRenderer = new RenderBlocks(par1World);
     }
 }

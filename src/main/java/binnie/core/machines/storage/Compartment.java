@@ -1,6 +1,5 @@
 package binnie.core.machines.storage;
 
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
@@ -51,8 +50,7 @@ enum Compartment implements IMachineType {
         }
 
         @Override
-        public void renderMachine(Machine machine, double x, double y, double z, float partialTick,
-                RenderBlocks renderer) {
+        public void renderMachine(Machine machine, double x, double y, double z, float partialTick) {
             MachineRendererCompartment.instance.renderMachine(machine, renderTexture, x, y, z);
         }
     }

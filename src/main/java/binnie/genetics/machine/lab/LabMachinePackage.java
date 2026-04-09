@@ -1,7 +1,5 @@
 package binnie.genetics.machine.lab;
 
-import net.minecraft.client.renderer.RenderBlocks;
-
 import binnie.core.machines.Machine;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.machine.ComponentGUIHolder;
@@ -20,7 +18,7 @@ public class LabMachinePackage extends PackageGeneticBase {
     }
 
     @Override
-    public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
+    public void renderMachine(Machine machine, double x, double y, double z, float partialTick) {
         MachineRendererLab.instance.renderMachine(machine, renderTexture, x, y, z);
     }
 }
