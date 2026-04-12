@@ -20,6 +20,10 @@ import forestry.api.genetics.AlleleManager;
 import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IChromosomeType;
 import forestry.api.genetics.ISpeciesRoot;
+import serverutils.lib.data.ForgePlayer;
+import serverutils.lib.data.ForgeTeam;
+import serverutils.lib.data.ServerUtilitiesAPI;
+import serverutils.lib.data.Universe;
 
 public class GeneTracker extends WorldSavedData {
 
@@ -51,6 +55,55 @@ public class GeneTracker extends WorldSavedData {
             tracker.username = player;
         }
         return tracker;
+    }
+
+    /**
+     * Returns a tracker with merged gene data from all team members. The returned tracker is not registered with the
+     * world and will not be saved. Use {@link #getTracker} for writes (e.g. registerGene). This should be replaced with
+     * GTNHTeams in the future.
+     */
+    public static GeneTracker getDisplayTracker(World world, GameProfile player) {
+        if (player == null) {
+            return getTracker(world, null);
+        }
+
+        GeneTracker personal = getTracker(world, player);
+
+        if (!Universe.loaded()) {
+            return personal;
+        }
+
+        short teamId = ServerUtilitiesAPI.getTeamID(player.getId());
+        if (teamId == 0) {
+            return personal;
+        }
+
+        ForgeTeam team = Universe.get().getTeam(teamId);
+        if (team == null || !team.isValid()) {
+            return personal;
+        }
+
+        GeneTracker merged = new GeneTracker("GeneTracker.display." + player.getId(), player);
+        mergeInto(merged, personal);
+
+        for (ForgePlayer member : team.getMembers()) {
+            if (member.getId().equals(player.getId())) continue;
+            GeneTracker memberTracker = (GeneTracker) world
+                    .loadItemData(GeneTracker.class, "GeneTracker." + member.getId());
+            if (memberTracker != null) {
+                mergeInto(merged, memberTracker);
+            }
+        }
+
+        return merged;
+    }
+
+    private static void mergeInto(GeneTracker target, GeneTracker source) {
+        for (IGene gene : source.discoveredGenes) {
+            if (!target.discoveredGenes.contains(gene)) {
+                target.discoveredGenes.add(gene);
+            }
+        }
     }
 
     public void synchToPlayer(EntityPlayer player) {

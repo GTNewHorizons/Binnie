@@ -8,5 +8,5 @@ public interface IMutationRequirement {
 
     String getDescription();
 
-    boolean fufilled(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1);
+    boolean fulfilled(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1);
 }

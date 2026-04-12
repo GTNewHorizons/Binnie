@@ -11,10 +11,8 @@ import binnie.core.util.I18N;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
+import binnie.genetics.machine.common.GeneManipulationUtil;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 
 public class SplicerComponentLogic extends ComponentProcessSetCost implements IProcess {
@@ -131,7 +129,8 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
             return state;
         }
 
-        if (getUtil().getStack(0) != null && Engineering.getCharges(getUtil().getStack(Splicer.SLOT_SERUM_VIAL)) == 0) {
+        if (getUtil().getStack(Splicer.SLOT_SERUM_VIAL) != null
+                && Engineering.getCharges(getUtil().getStack(Splicer.SLOT_SERUM_VIAL)) == 0) {
             return new ErrorState(
                     I18N.localise("genetics.machine.splicer.error.emptySerum.title"),
                     I18N.localise("genetics.machine.splicer.error.emptySerum"));
@@ -142,37 +141,7 @@ public class SplicerComponentLogic extends ComponentProcessSetCost implements IP
     public ErrorState isValidSerum() {
         ItemStack serum = getUtil().getStack(Splicer.SLOT_SERUM_VIAL);
         ItemStack target = getUtil().getStack(Splicer.SLOT_TARGET);
-        IGene[] genes = Engineering.getGenes(serum);
-        if (genes.length == 0) {
-            return new ErrorState(
-                    I18N.localise("genetics.machine.splicer.error.invalidSerum.title"),
-                    I18N.localise("genetics.machine.splicer.error.invalidSerum.0"));
-        }
-        if (!genes[0].getSpeciesRoot().isMember(target)) {
-            return new ErrorState(
-                    I18N.localise("genetics.machine.splicer.error.invalidSerum.title"),
-                    I18N.localise("genetics.machine.splicer.error.invalidSerum.1"));
-        }
-
-        IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
-        boolean hasAll = true;
-        for (IGene gene : genes) {
-            if (hasAll) {
-                IGenome genome = individual.getGenome();
-                IChromosomeType chromosome = gene.getChromosome();
-                String geneAlleleUID = gene.getAllele().getUID();
-                IAllele a = genome.getActiveAllele(chromosome);
-                IAllele b = genome.getInactiveAllele(chromosome);
-                hasAll = a.getUID().equals(geneAlleleUID) && b.getUID().equals(geneAlleleUID);
-            }
-        }
-
-        if (hasAll) {
-            return new ErrorState(
-                    I18N.localise("genetics.machine.splicer.error.defunctSerum.title"),
-                    I18N.localise("genetics.machine.splicer.error.defunctSerum"));
-        }
-        return null;
+        return GeneManipulationUtil.validateSerum(serum, target, "genetics.machine.splicer.error");
     }
 
     @Override

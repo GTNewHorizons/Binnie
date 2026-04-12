@@ -14,6 +14,8 @@ public enum GeneticsPacket implements IPacketID {
 
     GeneTrackerSync;
 
+    public static final GeneticsPacket[] VALUES = values();
+
     @Override
     public void onMessage(MessageBinnie message, MessageContext context) {
         if (this != GeneticsPacket.GeneTrackerSync || context.side != Side.CLIENT) {
