@@ -86,7 +86,8 @@ public class GenepoolUI {
                 centerY - 8,
                 60,
                 16,
-                79);
+                79,
+                "genetics.genepool");
 
         // DNA tank (output)
         panel.child(

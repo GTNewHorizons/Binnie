@@ -4,13 +4,16 @@ import java.util.function.DoubleSupplier;
 
 import com.cleanroommc.modularui.api.value.IDoubleValue;
 import com.cleanroommc.modularui.api.value.ISyncOrValue;
+import com.cleanroommc.modularui.api.widget.Interactable;
 import com.cleanroommc.modularui.drawable.GuiDraw;
 import com.cleanroommc.modularui.screen.viewport.ModularGuiContext;
 import com.cleanroommc.modularui.theme.WidgetThemeEntry;
 import com.cleanroommc.modularui.value.DoubleValue;
 import com.cleanroommc.modularui.widget.Widget;
 
-public class ColorBarWidget extends Widget<ColorBarWidget> {
+import codechicken.nei.recipe.GuiCraftingRecipe;
+
+public class ColorBarWidget extends Widget<ColorBarWidget> implements Interactable {
 
     private int bgColor = 0xFF333333;
     private int fillColor = 0xFF00CC00;
@@ -19,6 +22,7 @@ public class ColorBarWidget extends Widget<ColorBarWidget> {
     private boolean vertical = true;
     private boolean bordered = true;
     private IDoubleValue<?> doubleValue;
+    private String neiHandlerId;
 
     @Override
     public void onInit() {
@@ -118,5 +122,19 @@ public class ColorBarWidget extends Widget<ColorBarWidget> {
     public ColorBarWidget horizontal() {
         this.vertical = false;
         return this;
+    }
+
+    public ColorBarWidget neiTransferRect(String id) {
+        this.neiHandlerId = id;
+        return this;
+    }
+
+    @Override
+    public Interactable.Result onMousePressed(int mouseButton) {
+        if (neiHandlerId != null) {
+            GuiCraftingRecipe.openRecipeGui(neiHandlerId);
+            return Interactable.Result.SUCCESS;
+        }
+        return Interactable.super.onMousePressed(mouseButton);
     }
 }

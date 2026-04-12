@@ -92,7 +92,7 @@ public class SplicerUI {
         }).pos(63, y2 + 9));
 
         // Progress bar
-        GeneticsGuiHelper.addProgressBar(panel, syncManager, machine, 85, y2 + 12, 28, 12);
+        GeneticsGuiHelper.addProgressBar(panel, syncManager, machine, 85, y2 + 12, 28, 12, "genetics.splicer");
 
         // Finished slots
         panel.child(SlotGroupWidget.builder().row("II").row("II").key('I', i -> {

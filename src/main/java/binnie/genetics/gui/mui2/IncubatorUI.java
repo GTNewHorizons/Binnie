@@ -58,7 +58,7 @@ public class IncubatorUI {
                         .tooltipBuilder(tip -> tip.addLine(IKey.lang("genetics.gui.slot.incubating"))).pos(65, y + 18));
 
         // Progress bar
-        GeneticsGuiHelper.addProgressBar(panel, syncManager, machine, 87, y + 21, 28, 12);
+        GeneticsGuiHelper.addProgressBar(panel, syncManager, machine, 87, y + 21, 28, 12, "genetics.incubator");
 
         // Output slots
         panel.child(SlotGroupWidget.builder().row("I").row("I").row("I").key('I', i -> {

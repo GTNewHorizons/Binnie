@@ -94,7 +94,8 @@ public class InoculatorUI {
                 y2 + 12,
                 45,
                 22,
-                142);
+                142,
+                "genetics.inoculator");
 
         // Reserve slots
         panel.child(

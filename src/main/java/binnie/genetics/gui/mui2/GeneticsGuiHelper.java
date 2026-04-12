@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 
 import com.cleanroommc.modularui.api.drawable.IDrawable;
 import com.cleanroommc.modularui.api.drawable.IKey;
+import com.cleanroommc.modularui.api.widget.Interactable;
 import com.cleanroommc.modularui.drawable.UITexture;
 import com.cleanroommc.modularui.factory.PosGuiData;
 import com.cleanroommc.modularui.screen.ModularPanel;
@@ -37,6 +38,7 @@ import binnie.core.machines.power.IProcess;
 import binnie.core.machines.power.ITankMachine;
 import binnie.core.machines.power.PowerInfo;
 import binnie.core.machines.power.ProcessInfo;
+import codechicken.nei.recipe.GuiCraftingRecipe;
 
 public class GeneticsGuiHelper {
 
@@ -232,7 +234,7 @@ public class GeneticsGuiHelper {
     }
 
     public static void addProgressBar(ModularPanel panel, PanelSyncManager syncManager, Machine machine, int x, int y,
-            int width, int height) {
+            int width, int height, String neiHandlerId) {
         DoubleSyncValue progressSync = new DoubleSyncValue(() -> {
             if (machine == null) return 0.0;
             IProcess process = machine.getInterface(IProcess.class);
@@ -246,14 +248,18 @@ public class GeneticsGuiHelper {
 
         panel.child(
                 new ColorBarWidget().syncHandler("progress").fillColor(0xFF55CC55).backgroundColor(0xFF1A1A1A)
-                        .horizontal().tooltipBuilder(tip -> {
+                        .horizontal().neiTransferRect(neiHandlerId).tooltipBuilder(tip -> {
                             int pct = (int) (progressSync.getDoubleValue() * 100);
                             tip.addLine(IKey.lang("genetics.gui.progress", pct));
+                            if (neiHandlerId != null) {
+                                tip.addLine(IKey.str("Recipes"));
+                            }
                         }).tooltipAutoUpdate(true).pos(x, y).size(width, height));
     }
 
     public static void addProcessAnimation(ModularPanel panel, PanelSyncManager syncManager, Machine machine,
-            UITexture emptyTexture, UITexture fullTexture, int x, int y, int width, int height, int imageWidth) {
+            UITexture emptyTexture, UITexture fullTexture, int x, int y, int width, int height, int imageWidth,
+            String neiHandlerId) {
         DoubleSyncValue progressSync = new DoubleSyncValue(() -> {
             if (machine == null) return 0.0;
             IProcess process = machine.getInterface(IProcess.class);
@@ -266,23 +272,15 @@ public class GeneticsGuiHelper {
         syncManager.syncValue("progress", progressSync);
 
         final ResourceLocation texLoc = fullTexture.location;
-        panel.child(new ProgressWidget() {
-
-            @Override
-            public void draw(ModularGuiContext context, WidgetThemeEntry<?> entry) {
-                Minecraft.getMinecraft().renderEngine.bindTexture(texLoc);
-                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
-                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
-                super.draw(context, entry);
-                Minecraft.getMinecraft().renderEngine.bindTexture(texLoc);
-                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
-                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-            }
-        }.texture(emptyTexture, fullTexture, imageWidth).direction(ProgressWidget.Direction.RIGHT)
-                .syncHandler("progress").tooltipBuilder(tip -> {
-                    int pct = (int) (progressSync.getDoubleValue() * 100);
-                    tip.addLine(IKey.lang("genetics.gui.progress", pct));
-                }).tooltipAutoUpdate(true).pos(x, y).size(width, height));
+        panel.child(
+                new NeiProgressWidget(neiHandlerId, texLoc).texture(emptyTexture, fullTexture, imageWidth)
+                        .direction(ProgressWidget.Direction.RIGHT).syncHandler("progress").tooltipBuilder(tip -> {
+                            int pct = (int) (progressSync.getDoubleValue() * 100);
+                            tip.addLine(IKey.lang("genetics.gui.progress", pct));
+                            if (neiHandlerId != null) {
+                                tip.addLine(IKey.str("Recipes"));
+                            }
+                        }).tooltipAutoUpdate(true).pos(x, y).size(width, height));
     }
 
     public static void addChargeBar(ModularPanel panel, PanelSyncManager syncManager, Machine machine, int slotId,
@@ -359,6 +357,37 @@ public class GeneticsGuiHelper {
             }
         }
         return fallback;
+    }
+
+    private static class NeiProgressWidget extends ProgressWidget implements Interactable {
+
+        private final String neiHandlerId;
+        private final ResourceLocation texLoc;
+
+        NeiProgressWidget(String neiHandlerId, ResourceLocation texLoc) {
+            this.neiHandlerId = neiHandlerId;
+            this.texLoc = texLoc;
+        }
+
+        @Override
+        public void draw(ModularGuiContext context, WidgetThemeEntry<?> entry) {
+            Minecraft.getMinecraft().renderEngine.bindTexture(texLoc);
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+            super.draw(context, entry);
+            Minecraft.getMinecraft().renderEngine.bindTexture(texLoc);
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        }
+
+        @Override
+        public Interactable.Result onMousePressed(int mouseButton) {
+            if (neiHandlerId != null) {
+                GuiCraftingRecipe.openRecipeGui(neiHandlerId);
+                return Interactable.Result.SUCCESS;
+            }
+            return Interactable.super.onMousePressed(mouseButton);
+        }
     }
 
     public static class MachineGuiContext {

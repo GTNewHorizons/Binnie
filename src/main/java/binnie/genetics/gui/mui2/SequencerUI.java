@@ -56,7 +56,7 @@ public class SequencerUI {
                         }).pos(69, y + 10));
 
         // Progress bar
-        GeneticsGuiHelper.addProgressBar(panel, syncManager, machine, 96, y + 14, 28, 12);
+        GeneticsGuiHelper.addProgressBar(panel, syncManager, machine, 96, y + 14, 28, 12, "genetics.sequencer");
 
         // Done slot
         ModularSlot doneSlot = new ModularSlot(ctx.inv, Sequencer.SLOT_DONE_INDEX).slotGroup("machine");

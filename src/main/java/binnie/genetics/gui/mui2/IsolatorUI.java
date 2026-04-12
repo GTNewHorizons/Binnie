@@ -76,7 +76,8 @@ public class IsolatorUI {
                 y + 1,
                 95,
                 17,
-                142);
+                142,
+                "genetics.isolator");
 
         // Result slot
         ModularSlot resultSlot = new ModularSlot(ctx.inv, Isolator.SLOT_RESULT).slotGroup("machine");

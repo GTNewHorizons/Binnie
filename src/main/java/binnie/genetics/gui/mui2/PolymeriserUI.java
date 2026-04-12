@@ -96,7 +96,8 @@ public class PolymeriserUI {
                 y,
                 68,
                 49,
-                110);
+                110,
+                "genetics.polymeriser");
 
         // Output slots
         panel.child(SlotGroupWidget.builder().row("II").row("II").key('I', i -> {

@@ -64,7 +64,7 @@ public class AnalyserUI {
         }).pos(74, y + 18));
 
         // Progress bar
-        GeneticsGuiHelper.addProgressBar(panel, syncManager, machine, 96, y + 21, 28, 12);
+        GeneticsGuiHelper.addProgressBar(panel, syncManager, machine, 96, y + 21, 28, 12, "genetics.analyser");
 
         // Finished slots
         panel.child(SlotGroupWidget.builder().row("II").row("II").row("II").key('I', i -> {
