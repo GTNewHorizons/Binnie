@@ -12,14 +12,22 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import com.cleanroommc.modularui.api.IGuiHolder;
+import com.cleanroommc.modularui.factory.GuiFactories;
+import com.cleanroommc.modularui.factory.PlayerInventoryGuiData;
+import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.screen.ModularScreen;
+import com.cleanroommc.modularui.screen.UISettings;
+import com.cleanroommc.modularui.value.sync.PanelSyncManager;
+
 import binnie.core.util.I18N;
 import binnie.genetics.Genetics;
 import binnie.genetics.GeneticsCreativeTab;
-import binnie.genetics.core.GeneticsGUI;
+import binnie.genetics.gui.mui2.GeneBankUI;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemDatabase extends Item {
+public class ItemDatabase extends Item implements IGuiHolder<PlayerInventoryGuiData> {
 
     protected IIcon iconMaster;
 
@@ -59,12 +67,8 @@ public class ItemDatabase extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-        if (stack.getItemDamage() == 0) {
-            Genetics.proxy
-                    .openGui(GeneticsGUI.Database, player, (int) player.posX, (int) player.posY, (int) player.posZ);
-        } else {
-            Genetics.proxy
-                    .openGui(GeneticsGUI.DatabaseNEI, player, (int) player.posX, (int) player.posY, (int) player.posZ);
+        if (!world.isRemote) {
+            GuiFactories.playerInventory().openFromMainHand(player);
         }
         return stack;
     }
@@ -73,5 +77,17 @@ public class ItemDatabase extends Item {
     public String getItemStackDisplayName(ItemStack stack) {
         return (stack.getItemDamage() == 0) ? I18N.localise("genetics.item.database.0.name")
                 : I18N.localise("genetics.item.database.1.name");
+    }
+
+    @Override
+    public ModularPanel buildUI(PlayerInventoryGuiData data, PanelSyncManager syncManager, UISettings settings) {
+        boolean isNEI = data.getUsedItemStack().getItemDamage() == 1;
+        return GeneBankUI.buildPanel(data, syncManager, isNEI);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public ModularScreen createScreen(PlayerInventoryGuiData data, ModularPanel mainPanel) {
+        return new ModularScreen("genetics", mainPanel);
     }
 }

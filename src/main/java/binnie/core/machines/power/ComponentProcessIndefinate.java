@@ -11,6 +11,7 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
 
     private final float energyPerTick;
     private boolean inProgress;
+    private boolean machineEnabled = true;
     private float actionPauseProcess;
     private float actionCancelTask;
     int clientEnergyPerSecond;
@@ -18,11 +19,15 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
     @Override
     public void syncFromNBT(NBTTagCompound nbt) {
         inProgress = nbt.getBoolean("progress");
+        if (nbt.hasKey("machineEnabled")) {
+            machineEnabled = nbt.getBoolean("machineEnabled");
+        }
     }
 
     @Override
     public void syncToNBT(NBTTagCompound nbt) {
         nbt.setBoolean("progress", inProgress);
+        nbt.setBoolean("machineEnabled", machineEnabled);
     }
 
     public ComponentProcessIndefinate(IMachine machine, float energyPerTick) {
@@ -74,7 +79,22 @@ public abstract class ComponentProcessIndefinate extends MachineComponent implem
     }
 
     @Override
+    public boolean isMachineEnabled() {
+        return machineEnabled;
+    }
+
+    @Override
+    public void setMachineEnabled(boolean enabled) {
+        this.machineEnabled = enabled;
+    }
+
+    @Override
     public ErrorState canWork() {
+        if (!machineEnabled) {
+            return new ErrorState(
+                    I18N.localise("binniecore.gui.tooltip.task.disabled"),
+                    I18N.localise("binniecore.gui.tooltip.task.disabled.desc"));
+        }
         if (actionCancelTask == 0.0f) {
             return null;
         }

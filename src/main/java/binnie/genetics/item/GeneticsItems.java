@@ -25,6 +25,8 @@ public enum GeneticsItems implements IItemMisc {
     IntegratedCPU("integratedCPU"),
     IntegratedCasing("casingCircuit");
 
+    public static final GeneticsItems[] VALUES = values();
+
     private IIcon icon;
     private final String name;
     private final String iconPath;

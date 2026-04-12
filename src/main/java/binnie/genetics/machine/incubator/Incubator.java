@@ -28,7 +28,7 @@ public class Incubator {
     public static final List<IIncubatorRecipe> RECIPES = new ArrayList<>();
     public static final int POWER_CAPACITY = 2000;
     public static final int INPUT_TANK_CAPACITY = 2000;
-    public static final int OUTPU_TANK_CAPACITY = 2000;
+    public static final int OUTPUT_TANK_CAPACITY = 2000;
 
     public static void addRecipes() {
         Incubator.RECIPES.add(

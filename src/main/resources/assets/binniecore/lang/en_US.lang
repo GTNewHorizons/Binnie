@@ -259,7 +259,7 @@ binniecore.item.container.cylinder.turpentine=Turpentine Cylinder
 binniecore.item.container.cylinder.binnie.growthmedium=Growth Medium Cylinder
 binniecore.item.container.cylinder.binnie.bacteria=Bacteria Cylinder
 binniecore.item.container.cylinder.binnie.bacteriapoly=Polymerized Bacteria Cylinder
-binniecore.item.container.cylinder.binnie.dna.raw=Raw DNA Cylinder
+binniecore.item.container.cylinder.binnie.dna.raw=Liquid DNA Cylinder
 binniecore.item.container.cylinder.binnie.bacteriavector=Bacteria Vector Cylinder
 
 binniecore.machine.error.noItem=No Item
@@ -350,6 +350,8 @@ binniecore.gui.tooltip.task.canceled=Task Cancelled
 binniecore.gui.tooltip.task.canceled.desc=Cancelled by Buildcraft Gate
 binniecore.gui.tooltip.task.paused=Process Paused
 binniecore.gui.tooltip.task.paused.desc=Paused by Buildcraft Gate
+binniecore.gui.tooltip.task.disabled=Machine Disabled
+binniecore.gui.tooltip.task.disabled.desc=Machine has been disabled
 
 binniecore.gui.tooltip.powerSupply=Power Supply
 binniecore.gui.tooltip.poweredBy=Powered by %s

@@ -13,6 +13,16 @@ import binnie.core.machines.MachineGroup;
 import binnie.core.machines.inventory.ValidatorIcon;
 import binnie.genetics.Genetics;
 import binnie.genetics.GeneticsCreativeTab;
+import binnie.genetics.core.GeneticsGUI;
+import binnie.genetics.gui.mui2.AcclimatiserUI;
+import binnie.genetics.gui.mui2.AnalyserUI;
+import binnie.genetics.gui.mui2.GenepoolUI;
+import binnie.genetics.gui.mui2.IncubatorUI;
+import binnie.genetics.gui.mui2.InoculatorUI;
+import binnie.genetics.gui.mui2.IsolatorUI;
+import binnie.genetics.gui.mui2.PolymeriserUI;
+import binnie.genetics.gui.mui2.SequencerUI;
+import binnie.genetics.gui.mui2.SplicerUI;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.machine.acclimatiser.Acclimatiser;
 import binnie.genetics.machine.incubator.Incubator;
@@ -29,21 +39,21 @@ public class ModuleMachine implements IInitializable {
 
     @Override
     public void preInit() {
-        Genetics.packageGenetic = new MachineGroup(Genetics.instance, "machine", "machine", GeneticMachine.values());
+        Genetics.packageGenetic = new MachineGroup(Genetics.instance, "machine", "machine", GeneticMachine.VALUES);
         Genetics.packageGenetic.setCreativeTab(GeneticsCreativeTab.instance);
 
         Genetics.packageLabMachine = new MachineGroup(
                 Genetics.instance,
                 "labMachine",
                 "labMachine",
-                LaboratoryMachine.values());
+                LaboratoryMachine.VALUES);
         Genetics.packageLabMachine.setCreativeTab(GeneticsCreativeTab.instance);
 
         Genetics.packageAdvGenetic = new MachineGroup(
                 Genetics.instance,
                 "advMachine",
                 "advMachine",
-                AdvGeneticMachine.values());
+                AdvGeneticMachine.VALUES);
         Genetics.packageAdvGenetic.setCreativeTab(GeneticsCreativeTab.instance);
     }
 
@@ -62,6 +72,17 @@ public class ModuleMachine implements IInitializable {
                 "validator/bacteria.0",
                 "validator/bacteria.1");
         Incubator.addRecipes();
+
+        // Register MUI2 GUIs
+        ComponentGeneticGUI.registerMui2Gui(GeneticsGUI.Acclimatiser, AcclimatiserUI::buildPanel);
+        ComponentGeneticGUI.registerMui2Gui(GeneticsGUI.Genepool, GenepoolUI::buildPanel);
+        ComponentGeneticGUI.registerMui2Gui(GeneticsGUI.Analyser, AnalyserUI::buildPanel);
+        ComponentGeneticGUI.registerMui2Gui(GeneticsGUI.Incubator, IncubatorUI::buildPanel);
+        ComponentGeneticGUI.registerMui2Gui(GeneticsGUI.Isolator, IsolatorUI::buildPanel);
+        ComponentGeneticGUI.registerMui2Gui(GeneticsGUI.Replicator, PolymeriserUI::buildPanel);
+        ComponentGeneticGUI.registerMui2Gui(GeneticsGUI.Inoculator, InoculatorUI::buildPanel);
+        ComponentGeneticGUI.registerMui2Gui(GeneticsGUI.Sequencer, SequencerUI::buildPanel);
+        ComponentGeneticGUI.registerMui2Gui(GeneticsGUI.Splicer, SplicerUI::buildPanel);
     }
 
     @Override

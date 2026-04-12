@@ -1,0 +1,18 @@
+genetics.item.database.0.name=Gendatenbank
+genetics.item.database.1.name=Meister-Gendatenbank
+
+genetics.gui.geneBank=Genbank
+genetics.gui.geneBank.info=Info
+genetics.gui.geneBank.stats=Statistiken
+genetics.gui.geneBank.ranking=Rangliste
+genetics.gui.geneBank.project=Genomprojekt
+genetics.gui.geneBank.sequencedGenes=Sequenziert %d/%d Gene
+genetics.gui.geneBank.sequencedGenes.short=%d/%d Gene
+genetics.gui.geneBank.search=Suche...
+genetics.gui.geneBank.filter.all=Alle
+genetics.gui.geneBank.tooltip.assignGene=Linksklick zum Zuweisen
+genetics.gui.geneBank.tooltip.willReplace=Ersetzt %s: %s
+
+genetics.gui.analyst.description.discoveredBy=Entdeckt von %s
+
+genetics.nei.tip.databaseDesc=Datenbank oeffnen und ein leeres Serum aufnehmen. Auf ein sequenziertes Gen klicken zum Zuweisen.
