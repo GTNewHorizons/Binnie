@@ -1,6 +1,5 @@
 package binnie.genetics.machine;
 
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.machines.Machine;
@@ -26,7 +25,7 @@ public abstract class PackageGeneticBase extends MachinePackage {
     }
 
     @Override
-    public void renderMachine(Machine machine, double x, double y, double z, float partialTick, RenderBlocks renderer) {
+    public void renderMachine(Machine machine, double x, double y, double z, float partialTick) {
         MachineRendererGenetics.instance.renderMachine(machine, renderTexture, x, y, z);
     }
 }

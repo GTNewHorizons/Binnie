@@ -1,6 +1,5 @@
 package binnie.extratrees.machines;
 
-import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -81,8 +80,7 @@ public enum ExtraTreeMachine implements IMachineType {
         }
 
         @Override
-        public void renderMachine(Machine machine, double x, double y, double z, float partialTick,
-                RenderBlocks renderer) {
+        public void renderMachine(Machine machine, double x, double y, double z, float partialTick) {
             MachineRendererForestry.renderMachine(textureName.getShortPath(), x, y, z);
         }
     }
