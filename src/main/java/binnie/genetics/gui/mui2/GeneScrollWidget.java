@@ -29,7 +29,7 @@ public class GeneScrollWidget extends ScrollWidget<GeneScrollWidget> {
     private IChromosomeType chromosomeFilter;
 
     public GeneScrollWidget(BreedingSystem system, boolean isNEI, EntityPlayer player, PanelSyncManager syncManager) {
-        super(new VerticalScrollData());
+        super(new VerticalScrollData(false, 8));
         this.system = system;
         this.isNEI = isNEI;
         this.player = player;
@@ -79,7 +79,7 @@ public class GeneScrollWidget extends ScrollWidget<GeneScrollWidget> {
             return;
         }
 
-        int contentWidth = getArea().width > 0 ? getArea().width - 14 : 154;
+        int contentWidth = getArea().width > 0 ? getArea().width - 18 : 150;
         int iconsPerRow = Math.max(1, contentWidth / 18);
         int rowWidth = iconsPerRow * 18;
         int xOffset = (contentWidth - rowWidth) / 2;

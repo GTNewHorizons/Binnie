@@ -21,7 +21,6 @@ import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.cleanroommc.modularui.widget.ParentWidget;
 import com.cleanroommc.modularui.widgets.PageButton;
 import com.cleanroommc.modularui.widgets.PagedWidget;
-import com.cleanroommc.modularui.widgets.SlotGroupWidget;
 import com.cleanroommc.modularui.widgets.TextWidget;
 import com.cleanroommc.modularui.widgets.layout.Row;
 import com.cleanroommc.modularui.widgets.textfield.TextFieldWidget;
@@ -44,7 +43,7 @@ public class GeneBankUI {
 
     private static final int TITLE_HEIGHT = 10;
     private static final int SEARCH_HEIGHT = 14;
-    private static final int GENE_SCROLL_HEIGHT = 116;
+    private static final int GENE_SCROLL_HEIGHT = 152;
     private static final int FILTER_HEIGHT = 26;
     private static final int PLAYER_INV_HEIGHT = 76;
     private static final int GAP = 2;
@@ -146,7 +145,11 @@ public class GeneBankUI {
             page.child(scrollWidget);
 
             List<ChromoFilterButton> pageButtons = new ArrayList<>();
-            ParentWidget<?> filterPage = buildFilterPage(system, scrollWidget, CONTENT_WIDTH, FILTER_HEIGHT,
+            ParentWidget<?> filterPage = buildFilterPage(
+                    system,
+                    scrollWidget,
+                    CONTENT_WIDTH,
+                    FILTER_HEIGHT,
                     pageButtons);
             filterPage.pos(0, GENE_SCROLL_HEIGHT + GAP);
             page.child(filterPage);
@@ -169,7 +172,7 @@ public class GeneBankUI {
         panel.child(pagedWidget);
         curY += combinedHeight + SECTION_GAP;
 
-        panel.child(SlotGroupWidget.playerInventory(false).pos(PLAYER_INV_PADDING, curY));
+        panel.child(GeneticsGuiHelper.vanillaPlayerInventory(PLAYER_INV_PADDING, curY));
 
         return panel;
     }
@@ -194,8 +197,8 @@ public class GeneBankUI {
         });
     }
 
-    private static void buildTabRow(ModularPanel panel, List<BreedingSystem> systems,
-            PagedWidget.Controller controller, EntityPlayer player) {
+    private static void buildTabRow(ModularPanel panel, List<BreedingSystem> systems, PagedWidget.Controller controller,
+            EntityPlayer player) {
         Row tabRow = new Row();
         tabRow.coverChildren();
         tabRow.top(-(32 - 4));

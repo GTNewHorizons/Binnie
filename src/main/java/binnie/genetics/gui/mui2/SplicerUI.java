@@ -75,7 +75,7 @@ public class SplicerUI {
                 SlotGroupWidget.builder().row("II").row("II")
                         .key(
                                 'I',
-                                i -> new ItemSlot()
+                                i -> new ItemSlot().background(VANILLA_SLOT)
                                         .slot(new ModularSlot(ctx.inv, Splicer.SLOT_RESERVE[i]).slotGroup("machine"))
                                         .tooltipBuilder(tip -> {
                                             tip.addLine(IKey.lang("genetics.gui.slot.individual_input"));
@@ -86,7 +86,7 @@ public class SplicerUI {
         // Target slot
         ModularSlot targetSlot = new ModularSlot(ctx.inv, Splicer.SLOT_TARGET).slotGroup("machine");
         targetSlot.canPut(false);
-        panel.child(new ItemSlot().slot(targetSlot).tooltipBuilder(tip -> {
+        panel.child(new ItemSlot().background(VANILLA_SLOT).slot(targetSlot).tooltipBuilder(tip -> {
             tip.addLine(IKey.lang("genetics.gui.slot.splicing"));
             tip.addLine(IKey.lang("genetics.gui.slot.accepts", individualHint));
         }).pos(63, y2 + 9));
@@ -98,12 +98,13 @@ public class SplicerUI {
         panel.child(SlotGroupWidget.builder().row("II").row("II").key('I', i -> {
             ModularSlot slot = new ModularSlot(ctx.inv, Splicer.SLOT_FINISHED[i]).slotGroup("machine");
             slot.canPut(false);
-            return new ItemSlot().slot(slot).tooltipBuilder(tip -> tip.addLine(IKey.lang("genetics.gui.slot.output")));
+            return new ItemSlot().background(VANILLA_SLOT).slot(slot)
+                    .tooltipBuilder(tip -> tip.addLine(IKey.lang("genetics.gui.slot.output")));
         }).build().pos(133, y2));
 
-        GeneticsGuiHelper.addButtonColumn(panel, syncManager, machine, SPLICER_PLAYER_INV_Y);
+        GeneticsGuiHelper.addButtonColumn(panel, syncManager, machine, BUTTON_COLUMN_X, SPLICER_PLAYER_INV_Y, 66);
 
-        panel.child(SlotGroupWidget.playerInventory(false).pos(PLAYER_INV_X, SPLICER_PLAYER_INV_Y));
+        panel.child(GeneticsGuiHelper.vanillaPlayerInventory(PLAYER_INV_X, SPLICER_PLAYER_INV_Y));
 
         return panel;
     }

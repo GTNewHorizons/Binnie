@@ -14,7 +14,8 @@ public class ColorBarWidget extends Widget<ColorBarWidget> {
 
     private int bgColor = 0xFF333333;
     private int fillColor = 0xFF00CC00;
-    private int borderColor = 0xFF222222;
+    private int borderColor = 0xFF373737;
+    private int highlightColor = 0xFFE0E0E0;
     private boolean vertical = true;
     private boolean bordered = true;
     private IDoubleValue<?> doubleValue;
@@ -43,10 +44,11 @@ public class ColorBarWidget extends Widget<ColorBarWidget> {
         int h = getArea().height;
 
         if (bordered) {
+            // Inset shadow matching vanilla slot style: dark top/left, light bottom/right
             GuiDraw.drawRect(0, 0, w, 1, borderColor);
-            GuiDraw.drawRect(0, h - 1, w, 1, borderColor);
-            GuiDraw.drawRect(0, 1, 1, h - 2, borderColor);
-            GuiDraw.drawRect(w - 1, 1, 1, h - 2, borderColor);
+            GuiDraw.drawRect(0, 0, 1, h, borderColor);
+            GuiDraw.drawRect(0, h - 1, w, 1, highlightColor);
+            GuiDraw.drawRect(w - 1, 0, 1, h, highlightColor);
             GuiDraw.drawRect(1, 1, w - 2, h - 2, bgColor);
             float progress = Math.max(0f, Math.min(1f, (float) doubleValue.getDoubleValue()));
             if (progress > 0) {
@@ -95,6 +97,11 @@ public class ColorBarWidget extends Widget<ColorBarWidget> {
 
     public ColorBarWidget borderColor(int color) {
         this.borderColor = color;
+        return this;
+    }
+
+    public ColorBarWidget highlightColor(int color) {
+        this.highlightColor = color;
         return this;
     }
 

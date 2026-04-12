@@ -1,19 +1,26 @@
 package binnie.genetics.gui.mui2;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+
+import org.lwjgl.opengl.GL11;
 
 import com.cleanroommc.modularui.api.drawable.IDrawable;
 import com.cleanroommc.modularui.api.drawable.IKey;
-import com.cleanroommc.modularui.drawable.GuiTextures;
 import com.cleanroommc.modularui.drawable.UITexture;
 import com.cleanroommc.modularui.factory.PosGuiData;
 import com.cleanroommc.modularui.screen.ModularPanel;
+import com.cleanroommc.modularui.screen.viewport.ModularGuiContext;
+import com.cleanroommc.modularui.theme.WidgetThemeEntry;
 import com.cleanroommc.modularui.utils.item.InvWrapper;
 import com.cleanroommc.modularui.value.sync.BooleanSyncValue;
 import com.cleanroommc.modularui.value.sync.DoubleSyncValue;
 import com.cleanroommc.modularui.value.sync.PanelSyncManager;
 import com.cleanroommc.modularui.value.sync.StringSyncValue;
+import com.cleanroommc.modularui.widgets.ProgressWidget;
+import com.cleanroommc.modularui.widgets.SlotGroupWidget;
 import com.cleanroommc.modularui.widgets.TextWidget;
 import com.cleanroommc.modularui.widgets.ToggleButton;
 import com.mojang.authlib.GameProfile;
@@ -23,6 +30,7 @@ import binnie.core.machines.TileEntityMachine;
 import binnie.core.machines.inventory.ComponentInventorySlots;
 import binnie.core.machines.inventory.IChargedSlots;
 import binnie.core.machines.inventory.InventorySlot;
+import binnie.core.machines.inventory.TankSlot;
 import binnie.core.machines.power.ErrorState;
 import binnie.core.machines.power.IPoweredMachine;
 import binnie.core.machines.power.IProcess;
@@ -39,6 +47,13 @@ public class GeneticsGuiHelper {
     public static final int CONTENT_Y = 18;
     public static final int PLAYER_INV_Y = 83;
     public static final int BUTTON_COLUMN_X = 174;
+
+    private static final UITexture VANILLA_BACKGROUND = UITexture.builder()
+            .location("modularui", "gui/background/vanilla_background").imageSize(195, 136).adaptable(4)
+            .name("binnie_vanilla_background").build();
+
+    public static final UITexture VANILLA_SLOT = UITexture.builder().location("modularui", "gui/slot/item")
+            .imageSize(18, 18).adaptable(1).name("binnie_vanilla_slot").build();
 
     private static final UITexture POWER_SWITCH_ON = UITexture
             .fullImage("gregtech", "gui/overlay_button/power_switch_on");
@@ -59,17 +74,95 @@ public class GeneticsGuiHelper {
     public static final UITexture ICON_BACTERIA = UITexture.fullImage("genetics", "items/validator/bacteria.0");
     public static final UITexture ICON_NUGGET = UITexture.fullImage("genetics", "items/validator/nugget.0");
 
+    // Process animation textures (half-texel UV inset for GL_LINEAR filtering)
+    public static final UITexture ISOLATOR_PROCESS_BASE = smoothProcessTexture(
+            "extrabees",
+            "gui/processes",
+            0,
+            218,
+            142,
+            17);
+    public static final UITexture ISOLATOR_PROCESS_FULL = smoothProcessTexture(
+            "extrabees",
+            "gui/processes",
+            0,
+            201,
+            142,
+            17);
+    public static final UITexture GENEPOOL_PROCESS_BASE = smoothProcessTexture(
+            "extrabees",
+            "gui/processes",
+            64,
+            0,
+            79,
+            21);
+    public static final UITexture GENEPOOL_PROCESS_FULL = smoothProcessTexture(
+            "extrabees",
+            "gui/processes",
+            64,
+            21,
+            79,
+            21);
+    public static final UITexture POLYMERISER_PROCESS_BASE = smoothProcessTexture(
+            "genetics",
+            "gui/process",
+            126,
+            170,
+            110,
+            79);
+    public static final UITexture POLYMERISER_PROCESS_FULL = smoothProcessTexture(
+            "genetics",
+            "gui/process",
+            126,
+            91,
+            110,
+            79);
+    public static final UITexture INOCULATOR_PROCESS_BASE = smoothProcessTexture(
+            "genetics",
+            "gui/process2",
+            0,
+            72,
+            142,
+            72);
+    public static final UITexture INOCULATOR_PROCESS_FULL = smoothProcessTexture(
+            "genetics",
+            "gui/process2",
+            0,
+            0,
+            142,
+            72);
+
+    private static UITexture smoothProcessTexture(String domain, String path, int x, int y, int w, int h) {
+        final float size = 256f;
+        return UITexture.builder().location(domain, path).imageSize(256, 256)
+                .subAreaUV((x + 0.5f) / size, (y + 0.5f) / size, (x + w - 0.5f) / size, (y + h - 0.5f) / size).build();
+    }
+
     public static IDrawable slotBackground(UITexture icon) {
-        return IDrawable.of(GuiTextures.SLOT_ITEM, icon.asIcon().margin(1));
+        return IDrawable.of(VANILLA_SLOT, icon.asIcon().margin(1));
+    }
+
+    public static SlotGroupWidget vanillaPlayerInventory(int x, int y) {
+        return SlotGroupWidget.playerInventory((index, slot) -> slot.background(VANILLA_SLOT)).pos(x, y);
     }
 
     public static void addButtonColumn(ModularPanel panel, PanelSyncManager syncManager, Machine machine) {
-        addButtonColumn(panel, syncManager, machine, PLAYER_INV_Y);
+        addButtonColumn(panel, syncManager, machine, BUTTON_COLUMN_X, PLAYER_INV_Y);
     }
 
     public static void addButtonColumn(ModularPanel panel, PanelSyncManager syncManager, Machine machine,
             int playerInvY) {
-        addEnergyBar(panel, syncManager, machine, BUTTON_COLUMN_X, CONTENT_Y, playerInvY - CONTENT_Y);
+        addButtonColumn(panel, syncManager, machine, BUTTON_COLUMN_X, playerInvY);
+    }
+
+    public static void addButtonColumn(ModularPanel panel, PanelSyncManager syncManager, Machine machine,
+            int buttonColumnX, int playerInvY) {
+        addButtonColumn(panel, syncManager, machine, buttonColumnX, playerInvY, playerInvY - CONTENT_Y - 4);
+    }
+
+    public static void addButtonColumn(ModularPanel panel, PanelSyncManager syncManager, Machine machine,
+            int buttonColumnX, int playerInvY, int energyBarHeight) {
+        addEnergyBar(panel, syncManager, machine, buttonColumnX, CONTENT_Y, energyBarHeight);
 
         StringSyncValue ownerSync = new StringSyncValue(() -> {
             if (machine == null) return "";
@@ -83,7 +176,7 @@ public class GeneticsGuiHelper {
             if (name != null && !name.isEmpty()) {
                 tip.addLine(IKey.lang("genetics.gui.owner", name));
             }
-        }).tooltipAutoUpdate(true).pos(BUTTON_COLUMN_X, playerInvY + 18).size(18, 18));
+        }).tooltipAutoUpdate(true).pos(buttonColumnX, playerInvY + 18).size(18, 18));
 
         StringSyncValue errorSync = new StringSyncValue(() -> {
             if (machine == null) return "";
@@ -102,7 +195,7 @@ public class GeneticsGuiHelper {
             if (err != null && !err.isEmpty()) {
                 tip.addLine(IKey.str("\u00a7c" + err));
             }
-        }).tooltipAutoUpdate(true).pos(BUTTON_COLUMN_X, playerInvY + 36).size(18, 18));
+        }).tooltipAutoUpdate(true).pos(buttonColumnX, playerInvY + 36).size(18, 18));
 
         IProcess process = machine != null ? machine.getInterface(IProcess.class) : null;
         BooleanSyncValue enabledSync = new BooleanSyncValue(
@@ -113,7 +206,7 @@ public class GeneticsGuiHelper {
                 new ToggleButton().value(enabledSync).overlay(true, POWER_SWITCH_ON).overlay(false, POWER_SWITCH_OFF)
                         .tooltipBuilder(true, tip -> tip.addLine(IKey.lang("genetics.gui.machine_enabled")))
                         .tooltipBuilder(false, tip -> tip.addLine(IKey.lang("genetics.gui.machine_disabled")))
-                        .size(18, 18).pos(BUTTON_COLUMN_X, playerInvY + 58));
+                        .size(18, 18).pos(buttonColumnX, playerInvY + 58));
     }
 
     public static void addEnergyBar(ModularPanel panel, PanelSyncManager syncManager, Machine machine, int x, int y,
@@ -157,6 +250,39 @@ public class GeneticsGuiHelper {
                             int pct = (int) (progressSync.getDoubleValue() * 100);
                             tip.addLine(IKey.lang("genetics.gui.progress", pct));
                         }).tooltipAutoUpdate(true).pos(x, y).size(width, height));
+    }
+
+    public static void addProcessAnimation(ModularPanel panel, PanelSyncManager syncManager, Machine machine,
+            UITexture emptyTexture, UITexture fullTexture, int x, int y, int width, int height, int imageWidth) {
+        DoubleSyncValue progressSync = new DoubleSyncValue(() -> {
+            if (machine == null) return 0.0;
+            IProcess process = machine.getInterface(IProcess.class);
+            if (process != null) {
+                ProcessInfo info = process.getInfo();
+                return info.getCurrentProgress() / 100.0;
+            }
+            return 0.0;
+        });
+        syncManager.syncValue("progress", progressSync);
+
+        final ResourceLocation texLoc = fullTexture.location;
+        panel.child(new ProgressWidget() {
+
+            @Override
+            public void draw(ModularGuiContext context, WidgetThemeEntry<?> entry) {
+                Minecraft.getMinecraft().renderEngine.bindTexture(texLoc);
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_LINEAR);
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_LINEAR);
+                super.draw(context, entry);
+                Minecraft.getMinecraft().renderEngine.bindTexture(texLoc);
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+            }
+        }.texture(emptyTexture, fullTexture, imageWidth).direction(ProgressWidget.Direction.RIGHT)
+                .syncHandler("progress").tooltipBuilder(tip -> {
+                    int pct = (int) (progressSync.getDoubleValue() * 100);
+                    tip.addLine(IKey.lang("genetics.gui.progress", pct));
+                }).tooltipAutoUpdate(true).pos(x, y).size(width, height));
     }
 
     public static void addChargeBar(ModularPanel panel, PanelSyncManager syncManager, Machine machine, int slotId,
@@ -223,6 +349,18 @@ public class GeneticsGuiHelper {
         return fallback;
     }
 
+    public static String getTankHint(ITankMachine tanks, int tankIndex, String fallback) {
+        if (tanks == null) return fallback;
+        TankSlot slot = tanks.getTankSlot(tankIndex);
+        if (slot != null && slot.getValidator() != null) {
+            String tip = slot.getValidator().getTooltip();
+            if (tip != null && !tip.isEmpty()) {
+                return tip;
+            }
+        }
+        return fallback;
+    }
+
     public static class MachineGuiContext {
 
         public final ModularPanel panel;
@@ -240,6 +378,11 @@ public class GeneticsGuiHelper {
 
     public static MachineGuiContext createMachinePanel(PosGuiData data, PanelSyncManager syncManager, String panelId,
             int panelHeight) {
+        return createMachinePanel(data, syncManager, panelId, PANEL_WIDTH, panelHeight);
+    }
+
+    public static MachineGuiContext createMachinePanel(PosGuiData data, PanelSyncManager syncManager, String panelId,
+            int panelWidth, int panelHeight) {
         TileEntity te = data.getTileEntity();
         InvWrapper inv = new InvWrapper((IInventory) te);
         ITankMachine tanks = te instanceof ITankMachine ? (ITankMachine) te : null;
@@ -251,9 +394,10 @@ public class GeneticsGuiHelper {
             title = machine.getPackage().getGuiDisplayName();
         }
 
-        ModularPanel panel = ModularPanel.defaultPanel(panelId, PANEL_WIDTH, panelHeight);
+        ModularPanel panel = ModularPanel.defaultPanel(panelId, panelWidth, panelHeight);
+        panel.background(VANILLA_BACKGROUND);
         syncManager.registerSlotGroup("machine", 9);
-        panel.child(new TextWidget<>(IKey.str(title)).pos(PAD, 6).size(PANEL_WIDTH - PAD * 2, 9));
+        panel.child(new TextWidget<>(IKey.str(title)).color(0x404040).pos(PAD, 6).size(panelWidth - PAD * 2, 9));
 
         return new MachineGuiContext(panel, machine, inv, tanks);
     }

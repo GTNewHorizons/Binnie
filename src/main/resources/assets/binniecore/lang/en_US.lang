@@ -259,7 +259,7 @@ binniecore.item.container.cylinder.turpentine=Turpentine Cylinder
 binniecore.item.container.cylinder.binnie.growthmedium=Growth Medium Cylinder
 binniecore.item.container.cylinder.binnie.bacteria=Bacteria Cylinder
 binniecore.item.container.cylinder.binnie.bacteriapoly=Polymerized Bacteria Cylinder
-binniecore.item.container.cylinder.binnie.dna.raw=Raw DNA Cylinder
+binniecore.item.container.cylinder.binnie.dna.raw=Liquid DNA Cylinder
 binniecore.item.container.cylinder.binnie.bacteriavector=Bacteria Vector Cylinder
 
 binniecore.machine.error.noItem=No Item

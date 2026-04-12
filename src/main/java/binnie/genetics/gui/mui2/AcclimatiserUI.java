@@ -32,7 +32,7 @@ public class AcclimatiserUI {
         // Reserve slots
         panel.child(SlotGroupWidget.builder().row("II").row("II").key('I', i -> {
             ModularSlot slot = new ModularSlot(ctx.inv, Acclimatiser.SLOT_RESERVE[i]).slotGroup("machine");
-            return new ItemSlot().slot(slot).tooltipBuilder(tip -> {
+            return new ItemSlot().background(VANILLA_SLOT).slot(slot).tooltipBuilder(tip -> {
                 tip.addLine(IKey.lang("genetics.gui.slot.input"));
                 tip.addLine(IKey.lang("genetics.gui.slot.accepts", reserveHint));
             });
@@ -41,7 +41,7 @@ public class AcclimatiserUI {
         // Target slot
         ModularSlot targetSlot = new ModularSlot(ctx.inv, Acclimatiser.SLOT_TARGET).slotGroup("machine");
         targetSlot.canPut(false);
-        panel.child(new ItemSlot().slot(targetSlot).tooltipBuilder(tip -> {
+        panel.child(new ItemSlot().background(VANILLA_SLOT).slot(targetSlot).tooltipBuilder(tip -> {
             tip.addLine(IKey.lang("genetics.gui.slot.acclimatising"));
             tip.addLine(IKey.lang("genetics.gui.slot.accepts", reserveHint));
         }).pos(79, y + 9));
@@ -50,7 +50,7 @@ public class AcclimatiserUI {
         panel.child(
                 SlotGroupWidget.builder().row("III").key(
                         'I',
-                        i -> new ItemSlot()
+                        i -> new ItemSlot().background(VANILLA_SLOT)
                                 .slot(new ModularSlot(ctx.inv, Acclimatiser.SLOT_ACCLIMATISER[i]).slotGroup("machine"))
                                 .tooltipBuilder(tip -> {
                                     tip.addLine(IKey.lang("genetics.gui.slot.tolerance_item"));
@@ -62,12 +62,15 @@ public class AcclimatiserUI {
         panel.child(SlotGroupWidget.builder().row("II").row("II").key('I', i -> {
             ModularSlot slot = new ModularSlot(ctx.inv, Acclimatiser.SLOT_DONE[i]).slotGroup("machine");
             slot.canPut(false);
-            return new ItemSlot().slot(slot).tooltipBuilder(tip -> tip.addLine(IKey.lang("genetics.gui.slot.output")));
+            return new ItemSlot().background(VANILLA_SLOT).slot(slot)
+                    .tooltipBuilder(tip -> tip.addLine(IKey.lang("genetics.gui.slot.output")));
         }).build().pos(133, y));
 
-        GeneticsGuiHelper.addButtonColumn(panel, syncManager, machine);
+        // Energy bar height aligned with tolerance slots bottom (y + 36 + 18 = 72)
+        int energyBarHeight = y + 36 + 18 - CONTENT_Y;
+        GeneticsGuiHelper.addButtonColumn(panel, syncManager, machine, BUTTON_COLUMN_X, PLAYER_INV_Y, energyBarHeight);
 
-        panel.child(SlotGroupWidget.playerInventory(false).pos(PLAYER_INV_X, PLAYER_INV_Y));
+        panel.child(GeneticsGuiHelper.vanillaPlayerInventory(PLAYER_INV_X, PLAYER_INV_Y));
 
         return panel;
     }

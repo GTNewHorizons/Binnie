@@ -17,7 +17,17 @@ public class TankSlot extends BaseSlot<FluidStack> {
 
     public TankSlot(int index, String name, int capacity) {
         super(index, name);
-        tank = new FluidTank(capacity);
+        TankSlot self = this;
+        tank = new FluidTank(capacity) {
+
+            @Override
+            public int fill(FluidStack resource, boolean doFill) {
+                if (!self.isValid(resource)) {
+                    return 0;
+                }
+                return super.fill(resource, doFill);
+            }
+        };
     }
 
     @Override

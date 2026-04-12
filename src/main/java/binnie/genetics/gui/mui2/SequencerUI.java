@@ -62,8 +62,8 @@ public class SequencerUI {
         ModularSlot doneSlot = new ModularSlot(ctx.inv, Sequencer.SLOT_DONE_INDEX).slotGroup("machine");
         doneSlot.canPut(false);
         panel.child(
-                new ItemSlot().slot(doneSlot).tooltipBuilder(tip -> tip.addLine(IKey.lang("genetics.gui.slot.output")))
-                        .pos(133, y + 10));
+                new ItemSlot().background(VANILLA_SLOT).slot(doneSlot)
+                        .tooltipBuilder(tip -> tip.addLine(IKey.lang("genetics.gui.slot.output"))).pos(133, y + 10));
 
         // Dye slot
         panel.child(
@@ -102,7 +102,7 @@ public class SequencerUI {
 
         GeneticsGuiHelper.addButtonColumn(panel, syncManager, machine);
 
-        panel.child(SlotGroupWidget.playerInventory(false).pos(PLAYER_INV_X, PLAYER_INV_Y));
+        panel.child(GeneticsGuiHelper.vanillaPlayerInventory(PLAYER_INV_X, PLAYER_INV_Y));
 
         return panel;
     }

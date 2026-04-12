@@ -85,7 +85,7 @@ genetics.machine.sequencer.gui.willNotSave=Userless. Will not save sequences
 
 genetics.machine.machine.polymeriser=Polymeriser
 gui.genetics.machine.machine.polymeriser.title=Polymeriser
-genetics.machine.machine.polymeriser.info=The Polymeriser fills empty serums with Raw DNA and replicating bacteria. This process can be accelerated using gold nuggets. 
+genetics.machine.machine.polymeriser.info=The Polymeriser fills empty serums with Liquid DNA and replicating bacteria. This process can be accelerated using gold nuggets. 
 genetics.machine.polymeriser.error.noItem=No item to replicate
 genetics.machine.polymeriser.error.itemFilled=Item Filled
 genetics.machine.polymeriser.error.noLiquid=Insufficient Bacteria
