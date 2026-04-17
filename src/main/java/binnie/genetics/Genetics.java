@@ -1,5 +1,8 @@
 package binnie.genetics;
 
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
+
 import binnie.core.AbstractMod;
 import binnie.core.Tags;
 import binnie.core.gui.IBinnieGUID;
@@ -8,6 +11,7 @@ import binnie.core.machines.MachineGroup;
 import binnie.core.network.BinniePacketHandler;
 import binnie.core.network.IPacketID;
 import binnie.core.proxy.IProxyCore;
+import binnie.genetics.config.GeneticsConfig;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsPacket;
 import binnie.genetics.item.ItemAnalyst;
@@ -28,18 +32,28 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(
-        modid = "Genetics",
+        modid = Genetics.GENETICS_MODID,
         name = "Genetics",
         version = Tags.VERSION,
         useMetadata = true,
         dependencies = "after:BinnieCore")
 public class Genetics extends AbstractMod {
 
+    public static final String GENETICS_MODID = "Genetics";
+
     @Mod.Instance("Genetics")
     public static Genetics instance;
 
     @SidedProxy(clientSide = "binnie.genetics.proxy.ProxyClient", serverSide = "binnie.genetics.proxy.ProxyServer")
     public static Proxy proxy;
+
+    static {
+        try {
+            ConfigurationManager.registerConfig(GeneticsConfig.class);
+        } catch (ConfigException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public static final String CHANNEL = "GEN";
 
