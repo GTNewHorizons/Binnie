@@ -14,6 +14,7 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
 
     public static MultipassBlockRenderer instance;
     private static int layer = 0;
+    private static boolean rendering = false;
 
     public MultipassBlockRenderer() {
         MultipassBlockRenderer.instance = this;
@@ -23,31 +24,49 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
         return MultipassBlockRenderer.layer;
     }
 
+    public static boolean isRendering() {
+        return MultipassBlockRenderer.rendering;
+    }
+
     @Override
     public void renderInventoryBlock(Block block, int meta, int modelID, RenderBlocks renderer) {
+        IMultipassBlock multipassBlock = (IMultipassBlock) block;
+        int passes = multipassBlock.getNumberOfPasses();
+
         block.setBlockBoundsForItemRender();
         renderer.setRenderBoundsFromBlock(block);
         GL11.glTranslatef(-0.5f, -0.5f, -0.5f);
 
-        MultipassBlockRenderer.layer = 0;
-        while (MultipassBlockRenderer.layer < ((IMultipassBlock) block).getNumberOfPasses()) {
-            renderItem(block, renderer, meta);
-            MultipassBlockRenderer.layer++;
+        MultipassBlockRenderer.rendering = true;
+        try {
+            for (int pass = 0; pass < passes; ++pass) {
+                MultipassBlockRenderer.layer = pass;
+                renderItem(block, multipassBlock, renderer, meta);
+            }
+        } finally {
+            MultipassBlockRenderer.layer = 0;
+            MultipassBlockRenderer.rendering = false;
         }
-        MultipassBlockRenderer.layer = 0;
     }
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
             RenderBlocks renderer) {
-        boolean r = true;
-        MultipassBlockRenderer.layer = 0;
-        while (MultipassBlockRenderer.layer < ((IMultipassBlock) block).getNumberOfPasses()) {
-            r = renderer.renderStandardBlock(block, x, y, z);
-            MultipassBlockRenderer.layer++;
+        IMultipassBlock multipassBlock = (IMultipassBlock) block;
+        int passes = multipassBlock.getNumberOfPasses();
+        boolean rendered = true;
+
+        MultipassBlockRenderer.rendering = true;
+        try {
+            for (int pass = 0; pass < passes; ++pass) {
+                MultipassBlockRenderer.layer = pass;
+                rendered = renderer.renderStandardBlock(block, x, y, z);
+            }
+            return rendered;
+        } finally {
+            MultipassBlockRenderer.layer = 0;
+            MultipassBlockRenderer.rendering = false;
         }
-        MultipassBlockRenderer.layer = 0;
-        return r;
     }
 
     @Override
@@ -60,8 +79,8 @@ public class MultipassBlockRenderer implements ISimpleBlockRenderingHandler {
         return BinnieCore.multipassRenderID;
     }
 
-    public void renderItem(Block block, RenderBlocks renderer, int meta) {
-        setColor(((IMultipassBlock) block).colorMultiplier(meta));
+    private void renderItem(Block block, IMultipassBlock multipassBlock, RenderBlocks renderer, int meta) {
+        setColor(multipassBlock.colorMultiplier(meta));
         Tessellator tessellator = Tessellator.instance;
         tessellator.startDrawingQuads();
         tessellator.setNormal(0.0f, -1.0f, 0.0f);
