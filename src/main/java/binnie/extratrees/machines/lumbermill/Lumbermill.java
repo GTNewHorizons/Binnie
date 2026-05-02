@@ -54,7 +54,8 @@ public class Lumbermill {
 
     private static Collection<ItemStack> getRecipeResult(ItemStack output) {
         List<ItemStack> list = new ArrayList<>();
-        for (IRecipe iRecipe : CraftingManager.getInstance().getRecipeList()) {
+        List<IRecipe> iRecipes = new ArrayList<>(CraftingManager.getInstance().getRecipeList());
+        for (IRecipe iRecipe : iRecipes) {
             if (iRecipe instanceof ShapelessRecipes shapeless) {
                 if (shapeless.recipeItems.size() != 1 || !(shapeless.recipeItems.get(0) instanceof ItemStack)) {
                     continue;
