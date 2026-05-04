@@ -12,6 +12,8 @@ public enum AdvGeneticMachine implements IMachineType {
 
     Splicer(SplicerPackage.class);
 
+    public static final AdvGeneticMachine[] VALUES = values();
+
     private final Class<? extends MachinePackage> cls;
 
     AdvGeneticMachine(Class<? extends MachinePackage> cls) {

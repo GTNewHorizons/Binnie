@@ -15,6 +15,8 @@ import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
 import binnie.genetics.machine.AdvGeneticMachine;
 import binnie.genetics.machine.ComponentGeneticGUI;
+import binnie.genetics.machine.common.IndividualInoculateValidator;
+import binnie.genetics.machine.common.SerumSlotValidator;
 
 public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase implements IMachineInformation {
 
@@ -26,7 +28,7 @@ public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase impl
     public void createMachine(Machine machine) {
         new ComponentGeneticGUI(machine, GeneticsGUI.Splicer);
         ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-        SlotValidator serumValid = new SerumSlotValidator();
+        SlotValidator serumValid = new SerumSlotValidator("genetics.machine.splicer.serums");
 
         InventorySlot serumSlot = inventory.addSlot(Splicer.SLOT_SERUM_VIAL, "serum.active");
         serumSlot.forbidInteraction();
@@ -48,11 +50,11 @@ public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase impl
         inventory.addSlotArray(Splicer.SLOT_RESERVE, "input");
         for (InventorySlot slot : inventory.getSlots(Splicer.SLOT_RESERVE)) {
             slot.forbidExtraction();
-            slot.setValidator(new IndividualInoculateValidator());
+            slot.setValidator(new IndividualInoculateValidator("genetics.machine.splicer.splicableIndividual"));
         }
 
         InventorySlot targetSlot = inventory.addSlot(Splicer.SLOT_TARGET, "process");
-        targetSlot.setValidator(new IndividualInoculateValidator());
+        targetSlot.setValidator(new IndividualInoculateValidator("genetics.machine.splicer.splicableIndividual"));
         targetSlot.setReadOnly();
         targetSlot.forbidInteraction();
 
@@ -60,7 +62,7 @@ public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase impl
         for (InventorySlot slot : inventory.getSlots(Splicer.SLOT_FINISHED)) {
             slot.setReadOnly();
             slot.forbidInsertion();
-            slot.setValidator(new IndividualInoculateValidator());
+            slot.setValidator(new IndividualInoculateValidator("genetics.machine.splicer.splicableIndividual"));
         }
 
         ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
@@ -72,14 +74,14 @@ public class SplicerPackage extends AdvGeneticMachine.PackageAdvGeneticBase impl
                 new ComponentInventoryTransfer.Condition() {
 
                     @Override
-                    public boolean fufilled(ItemStack stack) {
+                    public boolean fulfilled(ItemStack stack) {
                         return Engineering.getCharges(stack) == 0;
                     }
                 });
         transfer.addStorage(Splicer.SLOT_TARGET, Splicer.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
 
             @Override
-            public boolean fufilled(ItemStack stack) {
+            public boolean fulfilled(ItemStack stack) {
                 if (stack == null) {
                     return false;
                 }

@@ -11,10 +11,8 @@ import binnie.core.util.I18N;
 import binnie.genetics.api.IGene;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.genetics.Engineering;
+import binnie.genetics.machine.common.GeneManipulationUtil;
 import forestry.api.genetics.AlleleManager;
-import forestry.api.genetics.IAllele;
-import forestry.api.genetics.IChromosomeType;
-import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividual;
 
 public class InoculatorComponentLogic extends ComponentProcessSetCost implements IProcess {
@@ -87,39 +85,7 @@ public class InoculatorComponentLogic extends ComponentProcessSetCost implements
     public ErrorState isValidSerum() {
         ItemStack serum = getUtil().getStack(Inoculator.SLOT_SERUM_VIAL);
         ItemStack target = getUtil().getStack(Inoculator.SLOT_TARGET);
-        IGene[] genes = Engineering.getGenes(serum);
-        if (genes.length == 0) {
-            return new ErrorState(
-                    I18N.localise("genetics.machine.inoculator.error.invalidSerum.title"),
-                    I18N.localise("genetics.machine.inoculator.error.invalidSerum.0"));
-        }
-        if (!genes[0].getSpeciesRoot().isMember(target)) {
-            return new ErrorState(
-                    I18N.localise("genetics.machine.inoculator.error.invalidSerum.title"),
-                    I18N.localise("genetics.machine.inoculator.error.invalidSerum.1"));
-        }
-
-        IIndividual individual = genes[0].getSpeciesRoot().getMember(target);
-        boolean hasAll = true;
-        for (IGene gene : genes) {
-            if (!hasAll) {
-                continue;
-            }
-
-            IGenome genome = individual.getGenome();
-            IChromosomeType chromosome = gene.getChromosome();
-            String geneAlleleUID = gene.getAllele().getUID();
-            IAllele a = genome.getActiveAllele(chromosome);
-            IAllele b = genome.getInactiveAllele(chromosome);
-            hasAll = a.getUID().equals(geneAlleleUID) && b.getUID().equals(geneAlleleUID);
-        }
-
-        if (!hasAll) {
-            return null;
-        }
-        return new ErrorState(
-                I18N.localise("genetics.machine.inoculator.error.defunctSerum.title"),
-                I18N.localise("genetics.machine.inoculator.error.defunctSerum"));
+        return GeneManipulationUtil.validateSerum(serum, target, "genetics.machine.inoculator.error");
     }
 
     @Override

@@ -13,8 +13,12 @@ import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
 import binnie.genetics.genetics.Engineering;
+import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.PackageGeneticBase;
+import binnie.genetics.machine.common.GeneticLiquidValidator;
+import binnie.genetics.machine.common.IndividualInoculateValidator;
+import binnie.genetics.machine.common.SerumSlotValidator;
 
 public class InoculatorPackage extends PackageGeneticBase implements IMachineInformation {
 
@@ -26,7 +30,7 @@ public class InoculatorPackage extends PackageGeneticBase implements IMachineInf
     public void createMachine(Machine machine) {
         new ComponentGeneticGUI(machine, GeneticsGUI.Inoculator);
         ComponentInventorySlots inventory = new ComponentInventorySlots(machine);
-        SlotValidator serumValid = new SerumSlotValidator();
+        SlotValidator serumValid = new SerumSlotValidator("genetics.machine.inoculator.serums");
 
         InventorySlot slotSerumVial = inventory.addSlot(Inoculator.SLOT_SERUM_VIAL, "serum.active");
         slotSerumVial.forbidInteraction();
@@ -48,18 +52,19 @@ public class InoculatorPackage extends PackageGeneticBase implements IMachineInf
         inventory.addSlotArray(Inoculator.SLOT_RESERVE, "input");
         for (InventorySlot slot : inventory.getSlots(Inoculator.SLOT_RESERVE)) {
             slot.forbidExtraction();
-            slot.setValidator(new IndividualInoculateValidator());
+            slot.setValidator(new IndividualInoculateValidator("genetics.machine.inoculator.inoculableIndividual"));
         }
 
         inventory.addSlot(Inoculator.SLOT_TARGET, "process");
-        inventory.getSlot(Inoculator.SLOT_TARGET).setValidator(new IndividualInoculateValidator());
+        inventory.getSlot(Inoculator.SLOT_TARGET)
+                .setValidator(new IndividualInoculateValidator("genetics.machine.inoculator.inoculableIndividual"));
         inventory.getSlot(Inoculator.SLOT_TARGET).setReadOnly();
         inventory.getSlot(Inoculator.SLOT_TARGET).forbidInteraction();
         inventory.addSlotArray(Inoculator.SLOT_FINISHED, "output");
         for (InventorySlot slot : inventory.getSlots(Inoculator.SLOT_FINISHED)) {
             slot.setReadOnly();
             slot.forbidInsertion();
-            slot.setValidator(new IndividualInoculateValidator());
+            slot.setValidator(new IndividualInoculateValidator("genetics.machine.inoculator.inoculableIndividual"));
         }
 
         ComponentInventoryTransfer transfer = new ComponentInventoryTransfer(machine);
@@ -71,25 +76,29 @@ public class InoculatorPackage extends PackageGeneticBase implements IMachineInf
                 new ComponentInventoryTransfer.Condition() {
 
                     @Override
-                    public boolean fufilled(ItemStack stack) {
+                    public boolean fulfilled(ItemStack stack) {
                         return Engineering.getCharges(stack) == 0;
                     }
                 });
 
-        transfer.addStorage(9, Inoculator.SLOT_FINISHED, new ComponentInventoryTransfer.Condition() {
+        transfer.addStorage(
+                Inoculator.SLOT_TARGET,
+                Inoculator.SLOT_FINISHED,
+                new ComponentInventoryTransfer.Condition() {
 
-            @Override
-            public boolean fufilled(ItemStack stack) {
-                return stack != null
-                        && transfer.getMachine().getMachineUtil().getStack(Inoculator.SLOT_SERUM_VIAL) != null
-                        && transfer.getMachine().getInterface(InoculatorComponentLogic.class).isValidSerum() != null;
-            }
-        });
+                    @Override
+                    public boolean fulfilled(ItemStack stack) {
+                        return stack != null
+                                && transfer.getMachine().getMachineUtil().getStack(Inoculator.SLOT_SERUM_VIAL) != null
+                                && transfer.getMachine().getInterface(InoculatorComponentLogic.class).isValidSerum()
+                                        != null;
+                    }
+                });
 
         new ComponentPowerReceptor(machine, Inoculator.POWER_STORAGE);
         new InoculatorComponentLogic(machine);
         new InoculatorComponentFX(machine);
         new ComponentTankContainer(machine).addTank(Inoculator.TANK_VECTOR, "input", Inoculator.TANK_CAPACITY)
-                .setValidator(new BacteriaVectorValidator());
+                .setValidator(new GeneticLiquidValidator(GeneticLiquid.BacteriaVector));
     }
 }

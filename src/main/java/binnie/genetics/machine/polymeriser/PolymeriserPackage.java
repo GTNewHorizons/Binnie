@@ -14,9 +14,11 @@ import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.machines.power.ComponentPowerReceptor;
 import binnie.genetics.core.GeneticsGUI;
 import binnie.genetics.core.GeneticsTexture;
+import binnie.genetics.item.GeneticLiquid;
 import binnie.genetics.machine.ComponentGeneticGUI;
 import binnie.genetics.machine.ModuleMachine;
 import binnie.genetics.machine.PackageGeneticBase;
+import binnie.genetics.machine.common.GeneticLiquidValidator;
 
 public class PolymeriserPackage extends PackageGeneticBase implements IMachineInformation {
 
@@ -54,17 +56,18 @@ public class PolymeriserPackage extends PackageGeneticBase implements IMachineIn
                 new ComponentInventoryTransfer.Condition() {
 
                     @Override
-                    public boolean fufilled(ItemStack stack) {
+                    public boolean fulfilled(ItemStack stack) {
                         return !stack.isItemDamaged();
                     }
                 });
 
         ComponentTankContainer tank = new ComponentTankContainer(machine);
         tank.addTank(Polymeriser.TANK_BACTERIA, "input", Polymeriser.BACTERIA_TANK_CAPACITY);
-        tank.getTankSlot(Polymeriser.TANK_BACTERIA).setValidator(new PolymerisingBacteriaValidator());
+        tank.getTankSlot(Polymeriser.TANK_BACTERIA)
+                .setValidator(new GeneticLiquidValidator(GeneticLiquid.BacteriaPoly));
 
         tank.addTank(Polymeriser.TANK_DNA, "input", Polymeriser.DNA_TANK_CAPACITY);
-        tank.getTankSlot(Polymeriser.TANK_DNA).setValidator(new DnaValidator());
+        tank.getTankSlot(Polymeriser.TANK_DNA).setValidator(new GeneticLiquidValidator(GeneticLiquid.RawDNA));
 
         new ComponentChargedSlots(machine).addCharge(Polymeriser.SLOT_GOLD);
         new ComponentPowerReceptor(machine, Polymeriser.POWER_CAPACITY);

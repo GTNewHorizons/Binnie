@@ -51,12 +51,12 @@ public class AnalystPageWood extends AnalystPageProduce {
             new ControlTextCentered(this, y, I18N.localise("genetics.gui.analyst.wood.logs")).setColor(getColor());
             y += 10;
             int w = products.size() * 18 - 2;
-            // TODO: Is this meant to increment i?
             int i = 0;
             for (ItemStack stack : products) {
                 ControlItemDisplay d = new ControlItemDisplay(this, (w() - w) / 2.0f + 18 * i, y);
                 d.setTooltip();
                 d.setItemStack(stack);
+                i++;
             }
             y += 26;
         }

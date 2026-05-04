@@ -56,12 +56,12 @@ public class ComponentInventoryTransfer extends MachineComponent {
         }
 
         public void transfer(IInventory inv) {
-            if (condition == null || fufilled(inv)) {
+            if (condition == null || fulfilled(inv)) {
                 doTransfer(inv);
             }
         }
 
-        protected boolean fufilled(IInventory inv) {
+        protected boolean fulfilled(IInventory inv) {
             return true;
         }
 
@@ -138,9 +138,9 @@ public class ComponentInventoryTransfer extends MachineComponent {
         }
 
         @Override
-        protected boolean fufilled(IInventory inv) {
+        protected boolean fulfilled(IInventory inv) {
             ItemStack stack = inv.getStackInSlot(source);
-            return stack != null && condition.fufilled(stack);
+            return stack != null && condition.fulfilled(stack);
         }
     }
 
@@ -148,7 +148,7 @@ public class ComponentInventoryTransfer extends MachineComponent {
 
         public Transfer transfer;
 
-        public abstract boolean fufilled(ItemStack p0);
+        public abstract boolean fulfilled(ItemStack p0);
     }
 
     public interface ITransferRestockListener {

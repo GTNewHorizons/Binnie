@@ -1,4 +1,4 @@
-package binnie.genetics.machine.splicer;
+package binnie.genetics.machine.common;
 
 import net.minecraft.item.ItemStack;
 
@@ -7,10 +7,13 @@ import binnie.core.util.I18N;
 import binnie.genetics.api.IItemSerum;
 import binnie.genetics.machine.ModuleMachine;
 
-class SerumSlotValidator extends SlotValidator {
+public class SerumSlotValidator extends SlotValidator {
 
-    public SerumSlotValidator() {
+    private final String tooltipKey;
+
+    public SerumSlotValidator(String tooltipKey) {
         super(ModuleMachine.IconSerum);
+        this.tooltipKey = tooltipKey;
     }
 
     @Override
@@ -20,6 +23,6 @@ class SerumSlotValidator extends SlotValidator {
 
     @Override
     public String getTooltip() {
-        return I18N.localise("genetics.machine.splicer.serums");
+        return I18N.localise(tooltipKey);
     }
 }

@@ -16,4 +16,10 @@ public interface IProcess extends IErrorStateSource {
     default boolean workedOnTarget() {
         return false;
     }
+
+    default boolean isMachineEnabled() {
+        return true;
+    }
+
+    default void setMachineEnabled(boolean enabled) {}
 }

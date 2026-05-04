@@ -18,6 +18,8 @@ public enum GeneticLiquid implements IFluidType {
     RawDNA("dna.raw", 0xe63de9),
     BacteriaVector("bacteriaVector", 0xf38b7e);
 
+    public static final GeneticLiquid[] VALUES = values();
+
     private final String name;
     private final String ident;
     private IIcon icon;

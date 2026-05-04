@@ -56,7 +56,7 @@ public class RequirementPerson implements IMutationRequirement {
     }
 
     @Override
-    public boolean fufilled(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1) {
+    public boolean fulfilled(IBeeHousing housing, IAllele allele0, IAllele allele1, IGenome genome0, IGenome genome1) {
         return true;
     }
 }

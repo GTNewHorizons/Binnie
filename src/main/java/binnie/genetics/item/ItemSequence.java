@@ -112,11 +112,6 @@ public class ItemSequence extends Item implements IItemAnalysable, IItemChargabl
     }
 
     @Override
-    public float getAnalyseTimeMult(ItemStack stack) {
-        return 1.0f;
-    }
-
-    @Override
     public int getCharges(ItemStack stack) {
         return stack.getItem().getMaxDamage() - stack.getItemDamage();
     }
