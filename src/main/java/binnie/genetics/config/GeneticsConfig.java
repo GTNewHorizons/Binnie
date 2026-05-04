@@ -1,11 +1,11 @@
-package binnie.extrabees.config;
+package binnie.genetics.config;
 
-import static binnie.extrabees.ExtraBees.EB_MODID;
+import static binnie.genetics.Genetics.GENETICS_MODID;
 
 import com.gtnewhorizon.gtnhlib.config.Config;
 
-@Config(modid = EB_MODID)
-public class EBConfigMachines {
+@Config(modid = GENETICS_MODID)
+public class GeneticsConfig {
 
     @Config.Comment("Percentage chance of Isolator consuming bee. 0 never consumes, 1 always does.")
     @Config.RangeFloat(min = 0f, max = 1f)
