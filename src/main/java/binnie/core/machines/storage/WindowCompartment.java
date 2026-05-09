@@ -256,8 +256,9 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
         ControlSlide slide = new ControlSlide(this, 0.0f, 134.0f, 136.0f, 92.0f, Position.LEFT);
         slide.setLabel(I18N.localise("binniecore.machine.storage.tab.properties"));
         slide.setSlide(false);
-        slide.addHelp(I18N.localise("binniecore.machine.storage.tooltip.properties"));
-        slide.addHelp(I18N.localise("binniecore.machine.storage.tooltip.properties.desc"));
+        slide.addHelp(I18N.localise("binniecore.machine.storage.tab.properties"));
+        slide.addHelp(I18N.localise("binniecore.machine.storage.tab.properties.desc"));
+
         Panel tabPropertyPanel = new Panel(slide, 16.0f, 8.0f, 112.0f, 76.0f, MinecraftGUI.PanelType.Gray);
         int y2 = 4;
         new ControlText(tabPropertyPanel, new IPoint(4.0f, y2), I18N.localise("binniecore.machine.storage.tab.name"));
