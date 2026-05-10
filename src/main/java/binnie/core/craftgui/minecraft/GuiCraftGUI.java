@@ -240,12 +240,16 @@ public class GuiCraftGUI extends GuiContainer {
 
     @Override
     protected void keyTyped(char c, int key) {
-        NEIHook.lastKeyTyped(key, c);
+        boolean noFocusedWidget = window.getFocusedWidget() == null;
 
-        if (key == 1 || (key == mc.gameSettings.keyBindInventory.getKeyCode() && window.getFocusedWidget() == null)) {
+        if (noFocusedWidget) {
+            NEIHook.lastKeyTyped(key, c);
+        }
+
+        if (key == 1 || (key == mc.gameSettings.keyBindInventory.getKeyCode() && noFocusedWidget)) {
             mc.thePlayer.closeScreen();
         }
-        IWidget origin = (window.getFocusedWidget() == null) ? window : window.getFocusedWidget();
+        IWidget origin = noFocusedWidget ? window : window.getFocusedWidget();
         window.callEvent(new EventKey.Down(origin, c, key));
     }
 
