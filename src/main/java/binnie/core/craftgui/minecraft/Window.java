@@ -267,7 +267,9 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
         entityInventory = inventory;
     }
 
-    public void onClose() {}
+    public void onClose() {
+        CraftGUI.render = null;
+    }
 
     public boolean isServer() {
         return !isClient();
