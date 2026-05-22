@@ -188,7 +188,9 @@ public class WindowFieldKit extends Window {
         glassOffsetX *= 1.0f - analyseProgress;
         glassOffsetY += glassVY;
         glassOffsetY *= 1.0f - analyseProgress;
-        GlassControl.setOffset(new IPoint(glassOffsetX, glassOffsetY));
+        if (GlassControl != null) {
+            GlassControl.setOffset(new IPoint(glassOffsetX, glassOffsetY));
+        }
     }
 
     private void refreshSpecies() {

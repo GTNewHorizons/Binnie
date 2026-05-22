@@ -53,6 +53,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
     protected float titleButtonLeft;
     protected float titleButtonRight;
     private GuiCraftGUI gui;
+    private Renderer renderer;
     private final ContainerCraftGUI container;
     private final WindowInventory windowInventory;
     private ControlText title;
@@ -83,8 +84,8 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
             ControlSlot.highlighting.put(h, new ArrayList<>());
         }
 
-        CraftGUI.render = new Renderer(gui);
-        CraftGUI.render.stylesheet(StyleSheetManager.getDefault());
+        renderer = new Renderer(gui);
+        renderer.stylesheet(StyleSheetManager.getDefault());
         titleButtonLeft = -14.0f;
 
         if (showHelpButton()) {
@@ -195,6 +196,9 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
     }
 
     public void initGui() {
+
+        CraftGUI.render = renderer;
+
         if (hasBeenInitialised) {
             return;
         }
