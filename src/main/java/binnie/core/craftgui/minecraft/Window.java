@@ -53,6 +53,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
     protected float titleButtonLeft;
     protected float titleButtonRight;
     private GuiCraftGUI gui;
+    private Renderer renderer;
     private final ContainerCraftGUI container;
     private final WindowInventory windowInventory;
     private ControlText title;
@@ -83,7 +84,8 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
             ControlSlot.highlighting.put(h, new ArrayList<>());
         }
 
-        CraftGUI.render = new Renderer(gui);
+        renderer = new Renderer(gui);
+        CraftGUI.render = renderer;
         CraftGUI.render.stylesheet(StyleSheetManager.getDefault());
         titleButtonLeft = -14.0f;
 
@@ -195,6 +197,10 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
     }
 
     public void initGui() {
+        // Restore the renderer every time the screen is (re-)shown,
+        // e.g. after returning from a NEI sub-screen that called onClose().
+        CraftGUI.render = renderer;
+
         if (hasBeenInitialised) {
             return;
         }
@@ -268,7 +274,12 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
     }
 
     public void onClose() {
-        CraftGUI.render = null;
+        // Only clear the renderer if it still belongs to this window,
+        // preventing a race where the new window's renderer is nulled
+        // before initGui() runs (introduced by the world-client leak fix).
+        if (CraftGUI.render == renderer) {
+            CraftGUI.render = null;
+        }
     }
 
     public boolean isServer() {

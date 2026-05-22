@@ -30,6 +30,10 @@ public class Renderer {
         this.gui = gui;
     }
 
+    public GuiCraftGUI getGui() {
+        return gui;
+    }
+
     public void preRender(IWidget widget) {
         GL11.glPushMatrix();
         GL11.glTranslatef(widget.getPosition().x(), widget.getPosition().y(), 0.0f);
