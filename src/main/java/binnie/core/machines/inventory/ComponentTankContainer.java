@@ -164,7 +164,7 @@ public class ComponentTankContainer extends MachineComponent implements ITankMac
 
     @Override
     public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-        int index = getTankIndexToDrain(from, null);
+        int index = getTankIndexToDrain(from, resource);
         if (!tanks.containsKey(index)) {
             return null;
         }
