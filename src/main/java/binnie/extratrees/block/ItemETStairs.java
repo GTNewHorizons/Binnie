@@ -19,6 +19,8 @@ public class ItemETStairs extends ItemBlock {
         super(block);
         setCreativeTab(CreativeTabs.tabBlock);
         setUnlocalizedName("stairs");
+        setMaxDamage(0);
+        setHasSubtypes(true);
     }
 
     @Override
