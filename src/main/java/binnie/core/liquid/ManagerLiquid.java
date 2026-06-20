@@ -1,7 +1,9 @@
 package binnie.core.liquid;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraftforge.fluids.Fluid;
@@ -14,27 +16,47 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ManagerLiquid extends ManagerBase {
 
+    private static final Set<String> EXTERNAL_FLUIDS = new HashSet<>();
+
+    static {
+        EXTERNAL_FLUIDS.add("liquidnitrogen");
+    }
+
     public Map<String, IFluidType> fluids;
+    private final Set<String> ownedFluids;
 
     public ManagerLiquid() {
         fluids = new LinkedHashMap<>();
+        ownedFluids = new HashSet<>();
     }
 
     public void createLiquids(IFluidType[] liquids, int startID) {
         for (IFluidType liquid : liquids) {
-            BinnieFluid fluid = createLiquid(liquid, startID++);
-            if (fluid == null) {
+            String identifier = liquid.getIdentifier().toLowerCase();
+            Fluid fluid = createOrGetLiquid(liquid, startID++);
+            if (fluid == null && !EXTERNAL_FLUIDS.contains(identifier)) {
                 throw new RuntimeException("Liquid registered incorrectly - " + liquid.getIdentifier());
             }
         }
     }
 
     public BinnieFluid createLiquid(IFluidType fluid, int id) {
-        fluids.put(fluid.getIdentifier().toLowerCase(), fluid);
-        BinnieFluid binnieFluid = new BinnieFluid(fluid);
-        FluidRegistry.registerFluid(binnieFluid);
+        Fluid registeredFluid = createOrGetLiquid(fluid, id);
+        return (registeredFluid instanceof BinnieFluid) ? (BinnieFluid) registeredFluid : null;
+    }
+
+    private Fluid createOrGetLiquid(IFluidType fluid, int id) {
+        String identifier = fluid.getIdentifier().toLowerCase();
+        fluids.put(identifier, fluid);
+        Fluid registeredFluid = FluidRegistry.getFluid(identifier);
+        if (registeredFluid == null && !EXTERNAL_FLUIDS.contains(identifier)) {
+            BinnieFluid binnieFluid = new BinnieFluid(fluid);
+            FluidRegistry.registerFluid(binnieFluid);
+            registeredFluid = FluidRegistry.getFluid(identifier);
+            ownedFluids.add(identifier);
+        }
         ItemFluidContainer.registerFluid(fluid, id);
-        return binnieFluid;
+        return registeredFluid;
     }
 
     public FluidStack getLiquidStack(String name, int amount) {
@@ -49,13 +71,19 @@ public class ManagerLiquid extends ManagerBase {
             if (fluid == null) {
                 throw new RuntimeException("[Binnie] Liquid not registered properly - " + type.getIdentifier());
             }
-            fluid.setIcons(type.getIcon());
+            if (ownedFluids.contains(type.getIdentifier().toLowerCase())) {
+                fluid.setIcons(type.getIcon());
+            }
         }
     }
 
     @Override
     public void postInit() {
         for (IFluidType fluid : fluids.values()) {
+            String identifier = fluid.getIdentifier().toLowerCase();
+            if (EXTERNAL_FLUIDS.contains(identifier) && FluidRegistry.getFluid(identifier) == null) {
+                throw new RuntimeException("[Binnie] External liquid not registered - " + identifier);
+            }
             for (FluidContainer container : FluidContainer.values()) {
                 if (container.isActive() && fluid.canPlaceIn(container)) {
                     container.registerContainerData(fluid);
