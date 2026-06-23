@@ -62,8 +62,8 @@ public class ManagerLiquid extends ManagerBase {
             ownedFluids.add(identifier);
         } else if (registeredFluid == null) {
             FMLLog.warning(
-                "[Binnie] External liquid %s is not registered yet. Waiting for the owning mod to register it before postInit.",
-                identifier);
+                    "[Binnie] External liquid %s is not registered yet. Waiting for the owning mod to register it before postInit.",
+                    identifier);
         }
         ItemFluidContainer.registerFluid(fluid, id);
         return registeredFluid;
