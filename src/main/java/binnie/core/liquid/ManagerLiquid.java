@@ -11,6 +11,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import binnie.core.ManagerBase;
+import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -59,6 +60,10 @@ public class ManagerLiquid extends ManagerBase {
             FluidRegistry.registerFluid(binnieFluid);
             registeredFluid = FluidRegistry.getFluid(identifier);
             ownedFluids.add(identifier);
+        } else if (registeredFluid == null) {
+            FMLLog.warning(
+                "[Binnie] External liquid %s is not registered yet. Waiting for the owning mod to register it before postInit.",
+                identifier);
         }
         ItemFluidContainer.registerFluid(fluid, id);
         return registeredFluid;
