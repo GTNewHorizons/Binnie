@@ -22,8 +22,6 @@ public class ItemETSlab extends ItemMetadata {
         theHalfSlab = (BlockETSlab) ExtraTrees.blockSlab;
         doubleSlab = (BlockETSlab) ExtraTrees.blockDoubleSlab;
         isFullBlock = (block != theHalfSlab);
-        setMaxDamage(0);
-        setHasSubtypes(true);
     }
 
     @Override
