@@ -116,6 +116,7 @@ public class WindowAnalyst extends Window {
                 tracker.synchToPlayer(getPlayer());
             }
         }
+        getWindowInventory().createSlot(0);
         setupValidators();
         getWindowInventory().createSlot(0);
     }
