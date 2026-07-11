@@ -117,6 +117,7 @@ public class WindowAnalyst extends Window {
             }
         }
         setupValidators();
+        getWindowInventory().createSlot(0);
     }
 
     @Override
