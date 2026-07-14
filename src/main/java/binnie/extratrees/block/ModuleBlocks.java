@@ -74,6 +74,9 @@ public class ModuleBlocks implements IInitializable {
         GameRegistry.addSmelting(ExtraTrees.blockLog, new ItemStack(Items.coal, 1, 1), 0.15f);
         for (IPlankType plank2 : PlankType.ExtraTreePlanks.VALUES) {
             OreDictionary.registerOre("plankWood", plank2.getStack());
+            OreDictionary.registerOre("doorWood", WoodManager.getDoor(plank2, DoorType.STANDARD));
+            OreDictionary.registerOre("fenceGateWood", WoodManager.getGate(plank2));
+            OreDictionary.registerOre("stairWood", WoodManager.getStair((plank2)));
         }
 
         FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:fence");
