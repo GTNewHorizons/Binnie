@@ -79,6 +79,12 @@ public class ModuleBlocks implements IInitializable {
             OreDictionary.registerOre("stairWood", WoodManager.getStair((plank2)));
         }
 
+        for (IPlankType plank3 : PlankType.ForestryPlanks.VALUES) {
+            OreDictionary.registerOre("doorWood", WoodManager.getDoor(plank3, DoorType.STANDARD));
+            OreDictionary.registerOre("fenceGateWood", WoodManager.getGate(plank3));
+            OreDictionary.registerOre("stairWood", WoodManager.getStair((plank3)));
+        }
+
         FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:fence");
         FMLInterModComms.sendMessage("Forestry", "add-fence-block", "ExtraTrees:gate");
         // FMLInterModComms.sendMessage("Forestry", "add-alveary-slab", "ExtraTrees:slab");
