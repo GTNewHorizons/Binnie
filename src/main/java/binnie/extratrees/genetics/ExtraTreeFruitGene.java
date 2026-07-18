@@ -69,7 +69,7 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
     Acorn(6, 0x72b226, 0xad6a1d, FruitSprite.Tiny),
     Elderberry(9, 0x71975d, 0x515b43, FruitSprite.Tiny),
     Olive(9, 0x879e35, 0x62572a, FruitSprite.Small),
-    GingkoNut(7, 0x8c975b, 0xe5daad, FruitSprite.Tiny),
+    GinkgoNut(7, 0x8c975b, 0xe5daad, FruitSprite.Tiny),
     Coffee(8, 0x716d1d, 0xf84f66, FruitSprite.Tiny),
     Pear(10, 0x9f8f51, 0x9fd551, FruitSprite.Pear),
     OsangeOsange(10, 0x979752, 0xa2bf27, FruitSprite.Larger),
@@ -205,8 +205,8 @@ public enum ExtraTreeFruitGene implements IAlleleFruit, IFruitProvider {
         ExtraTreeFruitGene.Elderberry.setFamily(familyPrune);
         ExtraTreeFruitGene.Olive.addProduct(Food.Olive.get(1), 1.0f);
         ExtraTreeFruitGene.Olive.setFamily(familyPrune);
-        ExtraTreeFruitGene.GingkoNut.addProduct(Food.GingkoNut.get(1), 1.0f);
-        ExtraTreeFruitGene.GingkoNut.setFamily(familyNuts);
+        ExtraTreeFruitGene.GinkgoNut.addProduct(Food.GinkgoNut.get(1), 1.0f);
+        ExtraTreeFruitGene.GinkgoNut.setFamily(familyNuts);
         ExtraTreeFruitGene.Coffee.addProduct(Food.Coffee.get(1), 1.0f);
         ExtraTreeFruitGene.Coffee.setFamily(familyJungle);
         ExtraTreeFruitGene.Pear.addProduct(Food.Pear.get(1), 1.0f);

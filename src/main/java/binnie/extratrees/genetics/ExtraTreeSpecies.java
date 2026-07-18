@@ -187,7 +187,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
     Rosewood("dalbergia", "latifolia", 0x879b22, ILogType.ExtraTreeLog.Rosewood, null, WorldGenRosewood.class),
     Purpleheart("peltogyne", "spp.", 0x778f55, ILogType.ExtraTreeLog.Purpleheart, null, WorldGenPurpleheart.class),
     Iroko("milicia", "excelsa", 0xafc86c, ILogType.ExtraTreeLog.Iroko, null, WorldGenIroko.class),
-    Gingko("ginkgo", "biloba", 0x719651, ILogType.ExtraTreeLog.Gingko, ExtraTreeFruitGene.GingkoNut,
+    Ginkgo("ginkgo", "biloba", 0x719651, ILogType.ExtraTreeLog.Ginkgo, ExtraTreeFruitGene.GinkgoNut,
             WorldGenGingko.class),
     Brazilnut("bertholletia", "excelsa", 0x7c8f7b, ILogType.VanillaLog.Jungle, ExtraTreeFruitGene.BrazilNut,
             WorldGenBrazilNut.class),
@@ -548,7 +548,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
         ExtraTreeSpecies.Iroko.addFamily(familyNuts).addFamily(familyJungle).setHeight(EnumAllele.Height.AVERAGE)
                 .setFertility(EnumAllele.Saplings.LOW);
 
-        ExtraTreeSpecies.Gingko.addFamily(familyNuts).addFamily(familyJungle).setLeafType(LeafType.JUNGLE)
+        ExtraTreeSpecies.Ginkgo.addFamily(familyNuts).addFamily(familyJungle).setLeafType(LeafType.JUNGLE)
                 .setHeight(EnumAllele.Height.LARGE).setYield(EnumAllele.Yield.LOWER)
                 .setSappiness(EnumAllele.Sappiness.LOW);
 

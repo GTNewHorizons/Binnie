@@ -125,7 +125,7 @@ public class ExtraTreeMutation implements ITreeMutation {
         new ExtraTreeMutation(ExtraTreeSpecies.Brazilwood, getVanilla("Kapok"), ExtraTreeSpecies.Purpleheart, 10);
         new ExtraTreeMutation(getVanilla("Ebony"), getVanilla("Teak"), ExtraTreeSpecies.Rosewood, 10);
         new ExtraTreeMutation(ExtraTreeSpecies.Rosewood, getVanilla("Kapok"), ExtraTreeSpecies.Logwood, 10);
-        new ExtraTreeMutation(getVanilla("Wenge"), getVanilla("Lime"), ExtraTreeSpecies.Gingko, 10);
+        new ExtraTreeMutation(getVanilla("Wenge"), getVanilla("Lime"), ExtraTreeSpecies.Ginkgo, 10);
         new ExtraTreeMutation(ExtraTreeSpecies.Beech, getVanilla("Jungle"), ExtraTreeSpecies.Brazilnut, 10);
         new ExtraTreeMutation(getVanilla("Balsa"), getVanilla("Jungle"), ExtraTreeSpecies.RoseGum, 10);
         new ExtraTreeMutation(ExtraTreeSpecies.RoseGum, getVanilla("Mahogony"), ExtraTreeSpecies.SwampGum, 10);
@@ -165,8 +165,8 @@ public class ExtraTreeMutation implements ITreeMutation {
         new ExtraTreeMutation(ExtraTreeSpecies.Allspice, ExtraTreeSpecies.Clove, ExtraTreeSpecies.StarAnise, 10);
         new ExtraTreeMutation(getVanilla("Jungle"), ExtraTreeSpecies.Orange, ExtraTreeSpecies.Mango, 10);
         new ExtraTreeMutation(ExtraTreeSpecies.StarAnise, ExtraTreeSpecies.Mango, ExtraTreeSpecies.Starfruit, 10);
-        new ExtraTreeMutation(ExtraTreeSpecies.Hazel, ExtraTreeSpecies.Gingko, ExtraTreeSpecies.Candlenut, 10);
-        new ExtraTreeMutation(ExtraTreeSpecies.Hazel, ExtraTreeSpecies.Gingko, ExtraTreeSpecies.Chilli, 10);
+        new ExtraTreeMutation(ExtraTreeSpecies.Hazel, ExtraTreeSpecies.Ginkgo, ExtraTreeSpecies.Candlenut, 10);
+        new ExtraTreeMutation(ExtraTreeSpecies.Hazel, ExtraTreeSpecies.Ginkgo, ExtraTreeSpecies.Chilli, 10);
         new ExtraTreeMutation(ExtraTreeSpecies.Hazel, ExtraTreeSpecies.Alder, ExtraTreeSpecies.DwarfHazel, 10);
     }
 
