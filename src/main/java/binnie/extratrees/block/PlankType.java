@@ -67,7 +67,7 @@ public class PlankType {
         Olive(0xb0ad88),
         Sweetgum(0xd59658),
         Rosewood(0x761500),
-        Gingko(0xf4e7ba),
+        Ginkgo(0xf4e7ba),
         PinkIvory(0xec8ca0);
 
         /**
