@@ -8,6 +8,6 @@ public class ColorUtils {
 
     public static final ColorResource
     // spotless:off
-        NeiDisplayText  = color.rgb("NeiDisplayText",    "0xFFFFFF");
+        neiDisplayText  = color.rgb("neiDisplayText",    "0xFFFFFF");
     // spotless:on
 }

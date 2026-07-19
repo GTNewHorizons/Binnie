@@ -61,7 +61,7 @@ public class DatabaseRecipeHandler extends RecipeHandlerBase {
                 StatCollector.translateToLocalFormatted("genetics.nei.tip.databaseDesc"),
                 140);
         for (int i = 0; i < desc.size(); i++) {
-            GuiDraw.drawStringC(desc.get(i), 88, 44 + 12 * (i - 1), ColorUtils.NeiDisplayText.getColor());
+            GuiDraw.drawStringC(desc.get(i), 88, 44 + 12 * (i - 1), ColorUtils.neiDisplayText.getColor());
         }
     }
 

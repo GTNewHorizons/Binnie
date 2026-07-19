@@ -53,12 +53,12 @@ public class IncubatorRecipeHandler extends RecipeHandlerBase {
                 StatCollector.translateToLocal("genetics.nei.tip.loss"),
                 62,
                 5,
-                ColorUtils.NeiDisplayText.getColor());
+                ColorUtils.neiDisplayText.getColor());
         GuiDraw.drawStringC(
                 ((CachedIncubatorRecipe) arecipes.get(recipe)).lossChance,
                 62,
                 15,
-                ColorUtils.NeiDisplayText.getColor());
+                ColorUtils.neiDisplayText.getColor());
     }
 
     @Override
