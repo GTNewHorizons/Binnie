@@ -11,6 +11,7 @@ import binnie.core.nei.RecipeHandlerBase;
 import binnie.genetics.Genetics;
 import binnie.genetics.item.GeneticsItems;
 import binnie.genetics.item.ItemSerumArray;
+import binnie.genetics.nei.helper.ColorUtils;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.ItemList;
 import codechicken.nei.NEIServerUtils;
@@ -60,7 +61,7 @@ public class DatabaseRecipeHandler extends RecipeHandlerBase {
                 StatCollector.translateToLocalFormatted("genetics.nei.tip.databaseDesc"),
                 140);
         for (int i = 0; i < desc.size(); i++) {
-            GuiDraw.drawStringC(desc.get(i), 88, 44 + 12 * (i - 1), 0xFFFFFF);
+            GuiDraw.drawStringC(desc.get(i), 88, 44 + 12 * (i - 1), ColorUtils.neiDisplayText.getColor());
         }
     }
 

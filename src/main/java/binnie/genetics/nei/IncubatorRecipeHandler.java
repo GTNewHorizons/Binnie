@@ -13,6 +13,7 @@ import binnie.core.nei.PositionedFluidTank;
 import binnie.core.nei.RecipeHandlerBase;
 import binnie.genetics.api.IIncubatorRecipe;
 import binnie.genetics.machine.incubator.Incubator;
+import binnie.genetics.nei.helper.ColorUtils;
 import codechicken.lib.gui.GuiDraw;
 import codechicken.nei.NEIServerUtils;
 import codechicken.nei.PositionedStack;
@@ -48,8 +49,16 @@ public class IncubatorRecipeHandler extends RecipeHandlerBase {
     @Override
     public void drawExtras(int recipe) {
         this.drawProgressBar(75, 27, 176, 0, 24, 17, 40, 0);
-        GuiDraw.drawStringC(StatCollector.translateToLocal("genetics.nei.tip.loss"), 62, 5, 0xFFFFFF);
-        GuiDraw.drawStringC(((CachedIncubatorRecipe) arecipes.get(recipe)).lossChance, 62, 15, 0xFFFFFF);
+        GuiDraw.drawStringC(
+                StatCollector.translateToLocal("genetics.nei.tip.loss"),
+                62,
+                5,
+                ColorUtils.neiDisplayText.getColor());
+        GuiDraw.drawStringC(
+                ((CachedIncubatorRecipe) arecipes.get(recipe)).lossChance,
+                62,
+                15,
+                ColorUtils.neiDisplayText.getColor());
     }
 
     @Override

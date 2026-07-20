@@ -2,7 +2,7 @@
 
 dependencies {
     api('com.github.GTNewHorizons:ForestryMC:4.11.28:dev')
-    implementation('com.github.GTNewHorizons:GTNHLib:0.11.19:dev')
+    implementation('com.github.GTNewHorizons:GTNHLib:0.11.30:dev')
 
     devOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughItems:2.8.105-GTNH:dev')
 
