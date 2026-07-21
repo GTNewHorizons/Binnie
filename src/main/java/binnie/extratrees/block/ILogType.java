@@ -58,7 +58,7 @@ public interface ILogType {
         Rosewood("rosewood", 0x998666, PlankType.ExtraTreePlanks.Rosewood),
         Purpleheart("purpleheart", 0x9392a2, PlankType.ExtraTreePlanks.Purpleheart),
         Iroko("iroko", 0x605c5b, PlankType.ExtraTreePlanks.Iroko),
-        Gingko("gingko", 0xadae9c, PlankType.ExtraTreePlanks.Gingko),
+        Ginkgo("ginkgo", 0xadae9c, PlankType.ExtraTreePlanks.Ginkgo),
         Eucalyptus("eucalyptus", 0xeadeda, PlankType.ExtraTreePlanks.Eucalyptus),
         Eucalyptus2("eucalyptus", 0x867e65, PlankType.ExtraTreePlanks.Eucalyptus),
         Box("box", 0xab6f57, PlankType.ExtraTreePlanks.Box),
