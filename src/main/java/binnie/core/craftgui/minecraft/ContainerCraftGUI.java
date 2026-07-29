@@ -234,7 +234,7 @@ public class ContainerCraftGUI extends Container {
         ItemStack heldItem = player.inventory.getItemStack().copy();
         IInventory entityInventory = window.getInventory();
         heldItem = new TransferRequest(heldItem, entityInventory).setOrigin(player.inventory).setTargetSlots(new int[0])
-                .setTargetTanks(new int[] { slotID }).transfer(true);
+                .setTargetTanks(new int[] { slotID }).dropOverflow(player).transfer(true);
 
         player.inventory.setItemStack(heldItem);
 
