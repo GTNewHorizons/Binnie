@@ -25,7 +25,7 @@ public class ManagerLiquid extends ManagerBase {
     }
 
     private static boolean isExternalFluid(String identifier) {
-        return EXTERNAL_FLUIDS.contains(identifier) && Loader.isModLoaded("gregtech");
+        return EXTERNAL_FLUIDS.contains(identifier) && Loader.isModLoaded("gregtech_nh");
     }
 
     public Map<String, IFluidType> fluids;
