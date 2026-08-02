@@ -173,6 +173,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
         }
         CraftGUIUtil.linkWidgets(tab, compartmentPages);
         int i = 0;
+        final NBTTagList actions = new NBTTagList();
         for (int p2 = 0; p2 < inv.getTabNumber(); ++p2) {
             ControlPage thisPage = page[p2];
             Panel panel = new Panel(thisPage, 0.0f, 0.0f, thisPage.w(), thisPage.h(), MinecraftGUI.PanelType.Black) {
@@ -191,11 +192,10 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
                 slotsIDs[k] = i++;
             }
 
-            final NBTTagList actions = new NBTTagList();
             new ControlSlotArray(thisPage, 8, 8, inv.getPageSize() / 5, 5)
                     .create(actions, InventoryType.Machine, slotsIDs);
-            MessageCraftGUI.sendToServer(actions);
         }
+        MessageCraftGUI.sendToServer(actions);
         x += compartmentPageWidth;
         if (tabs2.length > 0) {
             ControlTabBar<Integer> tab2 = new ControlTabBar<Integer>(

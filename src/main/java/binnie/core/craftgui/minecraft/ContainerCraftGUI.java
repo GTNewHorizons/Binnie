@@ -246,7 +246,14 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void handleNBT(Side side, EntityPlayer player, NBTTagCompound action) {
+        if (handleNBTAction(side, player, action)) {
+            sendContainerContents();
+        }
+    }
+
+    private boolean handleNBTAction(Side side, EntityPlayer player, NBTTagCompound action) {
         final String actionType = action.getString(ACTION_TYPE);
+        boolean slotRegistered = false;
 
         if (side == Side.SERVER) {
             switch (actionType) {
@@ -256,11 +263,7 @@ public class ContainerCraftGUI extends Container {
                     final int slotIndex = action.getShort(SLOT_INDEX);
                     final int slotNumber = action.getShort(SLOT_NUMBER);
 
-                    createSlot(InventoryType.values()[slotType % 4], slotIndex, slotNumber);
-
-                    for (ICrafting crafterObject : crafters) {
-                        crafterObject.sendContainerAndContentsToPlayer(this, getInventory());
-                    }
+                    slotRegistered = createSlot(InventoryType.values()[slotType % 4], slotIndex, slotNumber);
                 }
             }
         }
@@ -275,6 +278,7 @@ public class ContainerCraftGUI extends Container {
                 if (actionType.contains(TANK_UPDATE)) onTankUpdate(action);
             }
         }
+        return slotRegistered;
     }
 
     @Override
@@ -486,19 +490,34 @@ public class ContainerCraftGUI extends Container {
     }
 
     public void receiveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
+        if (receiveNBTAction(side, player, action)) {
+            sendContainerContents();
+        }
+    }
+
+    private boolean receiveNBTAction(Side side, EntityPlayer player, NBTTagCompound action) {
         String actionType = action.getString(ACTION_TYPE);
         if (actionType.equals(ACTION_BATCH)) {
+            boolean slotRegistered = false;
             NBTTagList actionsBatch = action.getTagList(ACTIONS, TAG_COMPOUND);
             for (int i = 0; i < actionsBatch.tagCount(); i++) {
-                receiveNBT(side, player, actionsBatch.getCompoundTagAt(i));
+                slotRegistered |= receiveNBTAction(side, player, actionsBatch.getCompoundTagAt(i));
             }
-            return;
+            return slotRegistered;
         }
-        handleNBT(side, player, action);
+        boolean slotRegistered = handleNBTAction(side, player, action);
         window.receiveGuiNBT(getSide(), player, actionType, action);
         INetwork.ReceiveGuiNBT machine = Machine.getInterface(INetwork.ReceiveGuiNBT.class, window.getInventory());
-        if (machine == null) return;
-        machine.receiveGuiNBT(getSide(), player, actionType, action);
+        if (machine != null) {
+            machine.receiveGuiNBT(getSide(), player, actionType, action);
+        }
+        return slotRegistered;
+    }
+
+    private void sendContainerContents() {
+        for (ICrafting crafter : crafters) {
+            crafter.sendContainerAndContentsToPlayer(this, getInventory());
+        }
     }
 
     public Slot getOrCreateSlot(InventoryType inventoryType, int slotIndex) {
@@ -522,13 +541,15 @@ public class ContainerCraftGUI extends Container {
         };
     }
 
-    private void createSlot(InventoryType type, int index, int slotNumber) {
-        if (inventorySlots.get(slotNumber) != null) return;
+    private boolean createSlot(InventoryType type, int index, int slotNumber) {
+        if (inventorySlots.get(slotNumber) != null) return false;
 
         IInventory inventory = getInventory(type);
         Slot slot = new CustomSlot(inventory, index);
         slot.slotNumber = slotNumber;
         inventorySlots.add(slotNumber, slot);
-        inventoryItemStacks.add(slotNumber, null);
+        ItemStack stack = slot.getStack();
+        inventoryItemStacks.add(slotNumber, stack == null ? null : stack.copy());
+        return true;
     }
 }
