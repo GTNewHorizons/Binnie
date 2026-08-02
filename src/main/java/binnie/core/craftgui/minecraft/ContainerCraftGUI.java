@@ -311,8 +311,7 @@ public class ContainerCraftGUI extends Container {
 
         if (machineSync != null) machineSync.sendGuiNBT(syncedNBT);
 
-        Map<String, NBTTagCompound> sentThisTime = new HashMap<>();
-        NBTTagList actions = new NBTTagList();
+        NBTTagList actions = null;
 
         for (Map.Entry<String, NBTTagCompound> entry : syncedNBT.entrySet()) {
             final String actionType = entry.getKey();
@@ -323,9 +322,15 @@ public class ContainerCraftGUI extends Container {
 
             if (action.equals(actionPrev)) continue;
 
+            if (actions == null) {
+                actions = new NBTTagList();
+            }
             actions.appendTag(action);
-            sentThisTime.put(actionType, action);
+            sentNBT.put(actionType, action);
         }
+
+        syncedNBT.clear();
+        if (actions == null) return;
 
         NBTTagCompound actionsBatch = new NBTTagCompound();
         actionsBatch.setString(ACTION_TYPE, ACTION_BATCH);
@@ -337,9 +342,6 @@ public class ContainerCraftGUI extends Container {
                 BinnieCore.proxy.sendToPlayer(packet, playerMP);
             }
         }
-
-        sentNBT.putAll(sentThisTime);
-        syncedNBT.clear();
     }
 
     private NBTTagCompound createErrorNBT(IErrorStateSource error) {
