@@ -117,7 +117,6 @@ public class GuiCraftGUI extends GuiContainer {
         } else {
             tooltip.setType(Tooltip.Type.STANDARD);
             window.getTooltip(tooltip);
-            NEIHook.renderToolTips(mouseX, mouseY);
         }
 
         if (tooltip.exists()) {
