@@ -27,24 +27,19 @@ public class TransferRequest {
     private boolean transferLiquids;
     private boolean ignoreReadOnly;
     private EntityPlayer overflowPlayer;
-    private final List<TransferSlot> insertedSlots;
-    private final List<Integer> insertedTanks;
+    private List<TransferSlot> insertedSlots;
+    private List<Integer> insertedTanks;
 
     public TransferRequest(ItemStack toTransfer, IInventory destination) {
         itemToTransfer = null;
         returnItem = null;
-        targetSlots = new int[0];
+        targetSlots = null;
         targetTanks = new int[0];
         transferLiquids = true;
         ignoreReadOnly = false;
         overflowPlayer = null;
-        insertedSlots = new ArrayList<>();
-        insertedTanks = new ArrayList<>();
-        int[] target = new int[destination.getSizeInventory()];
-
-        for (int i = 0; i < target.length; ++i) {
-            target[i] = i;
-        }
+        insertedSlots = null;
+        insertedTanks = null;
 
         int[] targetTanks = new int[0];
         if (destination instanceof ITankMachine) {
@@ -61,7 +56,6 @@ public class TransferRequest {
 
         setOrigin(null);
         setDestination(destination);
-        setTargetSlots(target);
         setTargetTanks(targetTanks);
         transferLiquids = true;
     }
@@ -108,7 +102,7 @@ public class TransferRequest {
     }
 
     public ItemStack transfer(boolean doAdd) {
-        ItemStack item = returnItem;
+        ItemStack item = doAdd || returnItem == null ? returnItem : returnItem.copy();
         if (item == null || destination == null) {
             return null;
         }
@@ -130,38 +124,39 @@ public class TransferRequest {
 
         // TODO simplify
         if (item != null) {
-            for (int slot : targetSlots) {
+            int[] slots = getTargetSlots();
+            for (int slot : slots) {
                 if (destination.isItemValidForSlot(slot, item) || ignoreReadOnly) {
                     if (!(destination instanceof IInventorySlots)
                             || ((IInventorySlots) destination).getSlot(slot) == null
                             || !((IInventorySlots) destination).getSlot(slot).isRecipe()) {
-                        if (destination.getStackInSlot(slot) != null) {
-                            if (item.isStackable() && destination.getInventoryStackLimit() > 1) {
-                                ItemStack merged = destination.getStackInSlot(slot).copy();
-                                ItemStack[] newStacks = mergeStacks(item.copy(), merged.copy());
-                                item = newStacks[0];
-                                if (!areItemsEqual(merged, newStacks[1])) {
-                                    insertedSlots.add(new TransferSlot(slot, destination));
-                                }
+                        ItemStack merged = destination.getStackInSlot(slot);
+                        if (merged != null && item.isStackable()
+                                && destination.getInventoryStackLimit() > 1
+                                && areItemsEqual(item, merged)) {
+                            int amount = Math.min(item.stackSize, merged.getMaxStackSize() - merged.stackSize);
+                            if (amount > 0) {
+                                getInsertedSlots().add(new TransferSlot(slot, destination));
                                 if (doAdd) {
-                                    destination.setInventorySlotContents(slot, newStacks[1]);
+                                    ItemStack newStack = merged.copy();
+                                    newStack.stackSize += amount;
+                                    destination.setInventorySlotContents(slot, newStack);
                                 }
-                                if (item == null) {
-                                    return null;
-                                }
+                                item.stackSize -= amount;
+                                if (item.stackSize <= 0) return null;
                             }
                         }
                     }
                 }
             }
 
-            for (int slot : targetSlots) {
+            for (int slot : slots) {
                 if (destination.isItemValidForSlot(slot, item) || ignoreReadOnly) {
                     if (!(destination instanceof IInventorySlots)
                             || ((IInventorySlots) destination).getSlot(slot) == null
                             || !((IInventorySlots) destination).getSlot(slot).isRecipe()) {
                         if (destination.getStackInSlot(slot) == null) {
-                            insertedSlots.add(new TransferSlot(slot, destination));
+                            getInsertedSlots().add(new TransferSlot(slot, destination));
                             if (doAdd) {
                                 ItemStack movedStack = item.copy();
                                 if (movedStack.stackSize > destination.getInventoryStackLimit()) {
@@ -471,10 +466,16 @@ public class TransferRequest {
     }
 
     public List<TransferSlot> getInsertedSlots() {
+        if (insertedSlots == null) {
+            insertedSlots = new ArrayList<>();
+        }
         return insertedSlots;
     }
 
     public List<Integer> getInsertedTanks() {
+        if (insertedTanks == null) {
+            insertedTanks = new ArrayList<>();
+        }
         return insertedTanks;
     }
 
@@ -491,6 +492,12 @@ public class TransferRequest {
     }
 
     public int[] getTargetSlots() {
+        if (targetSlots == null) {
+            targetSlots = new int[destination.getSizeInventory()];
+            for (int i = 0; i < targetSlots.length; ++i) {
+                targetSlots[i] = i;
+            }
+        }
         return targetSlots;
     }
 

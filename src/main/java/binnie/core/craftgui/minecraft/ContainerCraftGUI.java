@@ -201,22 +201,22 @@ public class ContainerCraftGUI extends Container {
         Slot shiftClickedSlot = inventorySlots.get(index);
         ItemStack itemstack = null;
         if (shiftClickedSlot.getHasStack()) {
-            itemstack = shiftClickedSlot.getStack().copy();
+            itemstack = shiftClickedSlot.getStack();
         }
 
         IInventory playerInventory = player.inventory;
         IInventory entityInventory = window.getInventory();
         IInventory windowInventory = window.getWindowInventory();
         IInventory fromPlayer = (entityInventory == null) ? windowInventory : entityInventory;
-        int[] target = new int[36];
-        for (int i = 0; i < target.length; ++i) {
-            target[i] = i;
-        }
 
         TransferRequest request;
         if (shiftClickedSlot.inventory == playerInventory) {
             request = new TransferRequest(itemstack, fromPlayer).setOrigin(shiftClickedSlot.inventory);
         } else {
+            int[] target = new int[36];
+            for (int i = 0; i < target.length; ++i) {
+                target[i] = i;
+            }
             request = new TransferRequest(itemstack, playerInventory).setOrigin(shiftClickedSlot.inventory)
                     .setTargetSlots(target);
         }
