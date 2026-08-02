@@ -90,6 +90,7 @@ public class GuiCraftGUI extends GuiContainer {
         zLevel = 10.0f;
         GuiScreen.itemRender.zLevel = zLevel;
 
+        GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
         window.render();
 
         RenderHelper.enableGUIStandardItemLighting();
@@ -448,7 +449,6 @@ public class GuiCraftGUI extends GuiContainer {
         }
 
         GuiScreen.itemRender.renderItemOverlayIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y(), null);
-        GL11.glClear(256);
         RenderHelper.disableStandardItemLighting();
         GL11.glPopAttrib();
     }
