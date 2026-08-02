@@ -103,7 +103,7 @@ public class GuiCraftGUI extends GuiContainer {
         InventoryPlayer playerInventory = mc.thePlayer.inventory;
         draggedItem = playerInventory.getItemStack();
         if (draggedItem != null) {
-            renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, false);
+            GL11.glTranslatef(0.0f, 0.0f, 200.0f);
             renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, false);
         }
         GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
