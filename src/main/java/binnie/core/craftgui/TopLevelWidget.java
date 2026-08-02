@@ -1,10 +1,7 @@
 package binnie.core.craftgui;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Deque;
-import java.util.List;
 import java.util.ListIterator;
 
 import org.lwjgl.input.Mouse;
@@ -168,17 +165,14 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
     }
 
     public Deque<IWidget> calculateMousedOverWidgets() {
-        Deque<IWidget> list = new ArrayDeque<>();
-        for (IWidget widget : getQueuedWidgets(this)) {
-            if (widget.calculateIsMouseOver()) {
-                list.addLast(widget);
-            }
-        }
-        return list;
+        Deque<IWidget> widgets = new ArrayDeque<>();
+        addMousedOverWidgets(this, widgets);
+        return widgets;
     }
 
-    private Collection<IWidget> getQueuedWidgets(IWidget widget) {
-        List<IWidget> widgets = new ArrayList<>();
+    private void addMousedOverWidgets(IWidget widget, Deque<IWidget> widgets) {
+        if (!widget.isVisible()) return;
+
         boolean addChildren = true;
         if (widget.isCroppedWidget()) {
             addChildren = widget.getCroppedZone().contains(widget.getCropWidget().getRelativeMousePosition());
@@ -188,11 +182,12 @@ public abstract class TopLevelWidget extends Widget implements ITopLevelWidget {
             ListIterator<IWidget> li = widget.getWidgets().listIterator(widget.getWidgets().size());
             while (li.hasPrevious()) {
                 IWidget child = li.previous();
-                widgets.addAll(getQueuedWidgets(child));
+                addMousedOverWidgets(child, widgets);
             }
         }
-        widgets.add(widget);
-        return widgets;
+        if (widget.calculateIsMouseOver()) {
+            widgets.addLast(widget);
+        }
     }
 
     @Override
