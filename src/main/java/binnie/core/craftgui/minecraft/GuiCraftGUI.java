@@ -90,6 +90,7 @@ public class GuiCraftGUI extends GuiContainer {
         zLevel = 10.0f;
         GuiScreen.itemRender.zLevel = zLevel;
 
+        GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
         window.render();
 
         RenderHelper.enableGUIStandardItemLighting();
@@ -102,7 +103,7 @@ public class GuiCraftGUI extends GuiContainer {
         InventoryPlayer playerInventory = mc.thePlayer.inventory;
         draggedItem = playerInventory.getItemStack();
         if (draggedItem != null) {
-            renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, false);
+            GL11.glTranslatef(0.0f, 0.0f, 200.0f);
             renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, false);
         }
         GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
@@ -116,7 +117,6 @@ public class GuiCraftGUI extends GuiContainer {
         } else {
             tooltip.setType(Tooltip.Type.STANDARD);
             window.getTooltip(tooltip);
-            NEIHook.renderToolTips(mouseX, mouseY);
         }
 
         if (tooltip.exists()) {
@@ -448,7 +448,6 @@ public class GuiCraftGUI extends GuiContainer {
         }
 
         GuiScreen.itemRender.renderItemOverlayIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y(), null);
-        GL11.glClear(256);
         RenderHelper.disableStandardItemLighting();
         GL11.glPopAttrib();
     }
