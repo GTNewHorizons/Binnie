@@ -10,6 +10,7 @@ import java.util.Map;
 class ListMap<T> implements List<T> {
 
     private final LinkedHashMap<Integer, T> map;
+    private int size;
 
     ListMap() {
         map = new LinkedHashMap<>();
@@ -17,13 +18,7 @@ class ListMap<T> implements List<T> {
 
     @Override
     public int size() {
-        int i = -1;
-        for (int k : map.keySet()) {
-            if (k > i) {
-                i = k;
-            }
-        }
-        return i + 1;
+        return size;
     }
 
     @Override
@@ -93,6 +88,7 @@ class ListMap<T> implements List<T> {
     @Override
     public void clear() {
         map.clear();
+        size = 0;
     }
 
     @Override
@@ -103,12 +99,14 @@ class ListMap<T> implements List<T> {
     @Override
     public T set(int index, T element) {
         map.put(index, element);
+        size = Math.max(size, index + 1);
         return element;
     }
 
     @Override
     public void add(int index, T element) {
         map.put(index, element);
+        size = Math.max(size, index + 1);
     }
 
     @Override

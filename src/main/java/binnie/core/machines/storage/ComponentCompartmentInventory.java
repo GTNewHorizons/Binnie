@@ -17,6 +17,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
     private final int numberOfTabs;
     private final int slotsPerPage;
     private final Map<Integer, CompartmentTab> tabs;
+    private NBTTagCompound cachedGuiNBT;
 
     public ComponentCompartmentInventory(IMachine machine, int sections) {
         this(machine, sections, 4);
@@ -51,21 +52,24 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
     public CompartmentTab getTab(int i) {
         if (!tabs.containsKey(i)) {
             tabs.put(i, new CompartmentTab(i));
+            cachedGuiNBT = null;
         }
         return tabs.get(i);
     }
 
     @Override
     public void sendGuiNBT(Map<String, NBTTagCompound> nbts) {
-        NBTTagList list = new NBTTagList();
-        for (int i = 0; i < numberOfTabs; ++i) {
-            NBTTagCompound nbt2 = new NBTTagCompound();
-            getTab(i).writeToNBT(nbt2);
-            list.appendTag(nbt2);
+        if (cachedGuiNBT == null) {
+            NBTTagList list = new NBTTagList();
+            for (int i = 0; i < numberOfTabs; ++i) {
+                NBTTagCompound tabNBT = new NBTTagCompound();
+                getTab(i).writeToNBT(tabNBT);
+                list.appendTag(tabNBT);
+            }
+            cachedGuiNBT = new NBTTagCompound();
+            cachedGuiNBT.setTag("tabs", list);
         }
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setTag("tabs", list);
-        nbts.put("comp-tabs", tag);
+        nbts.put("comp-tabs", cachedGuiNBT);
     }
 
     @Override
@@ -78,11 +82,13 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
                 tab.readFromNBT(tag);
                 tabs.put(tab.getId(), tab);
             }
+            cachedGuiNBT = null;
         }
         if (name.equals("comp-change-tab")) {
             CompartmentTab tab2 = new CompartmentTab(0);
             tab2.readFromNBT(nbt);
             tabs.put(tab2.getId(), tab2);
+            cachedGuiNBT = null;
             getMachine().getTileEntity().markDirty();
         }
     }
@@ -97,6 +103,7 @@ class ComponentCompartmentInventory extends ComponentInventorySlots implements I
             tab.readFromNBT(tag);
             tabs.put(tab.getId(), tab);
         }
+        cachedGuiNBT = null;
     }
 
     @Override

@@ -306,17 +306,22 @@ public class Widget implements IWidget {
         }
 
         onUpdateClient();
-        List<IWidget> deletedWidgets = new ArrayList<>();
+        List<IWidget> deletedWidgets = null;
         for (IWidget widget : getWidgets()) {
             if (widget.hasAttribute(WidgetAttribute.NEEDS_DELETION)) {
+                if (deletedWidgets == null) {
+                    deletedWidgets = new ArrayList<>();
+                }
                 deletedWidgets.add(widget);
             } else {
                 widget.updateClient();
             }
         }
 
-        for (IWidget widget : deletedWidgets) {
-            deleteChild(widget);
+        if (deletedWidgets != null) {
+            for (IWidget widget : deletedWidgets) {
+                deleteChild(widget);
+            }
         }
     }
 
