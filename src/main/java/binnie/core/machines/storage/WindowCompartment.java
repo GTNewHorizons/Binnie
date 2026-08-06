@@ -37,6 +37,7 @@ import binnie.core.craftgui.events.EventMouse;
 import binnie.core.craftgui.events.EventTextEdit;
 import binnie.core.craftgui.events.EventValueChanged;
 import binnie.core.craftgui.geometry.CraftGUIUtil;
+import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IBorder;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.geometry.Position;
@@ -372,7 +373,20 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
                                 .texture(CraftGUITexture.Outline, getArea().inset(new IBorder(0.0f, 6.0f, 0.0f, 0.0f)));
                     }
                 };
-                slotGrid = new Control(scroll, 1.0f, 1.0f, 108.0f, 18.0f);
+                slotGrid = new Control(scroll, 1.0f, 1.0f, 108.0f, 18.0f) {
+
+                    @Override
+                    public boolean isChildVisible(IWidget child) {
+                        IArea visible = getCroppedZone();
+                        if (visible == null) {
+                            return true;
+                        }
+
+                        float top = -getOffset().y();
+                        float childTop = child.getOriginalPosition().y() + child.getOffset().y();
+                        return childTop + child.getSize().y() > top && childTop < top + visible.h();
+                    }
+                };
                 scroll.setScrollableContent(slotGrid);
                 new ControlPlayerInventory(this, true).createAndRegister();
                 new ControlTextEdit(this, 16.0f, 16.0f, 100.0f, 14.0f).addEventHandler(new EventTextEdit.Handler() {

@@ -52,9 +52,9 @@ public abstract class ControlSlotBase extends Control implements ITooltip {
     }
 
     @Override
-    public void onUpdateClient() {
-        super.onUpdateClient();
+    public void render() {
         itemDisplay.setItemStack(getItemStack());
+        super.render();
     }
 
     @Override
