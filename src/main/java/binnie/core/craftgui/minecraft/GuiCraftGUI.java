@@ -21,6 +21,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 import binnie.core.BinnieCore;
 import binnie.core.craftgui.IWidget;
@@ -83,7 +84,7 @@ public class GuiCraftGUI extends GuiContainer {
         window.setMousePosition(mouseX - (int) window.getPosition().x(), mouseY - (int) window.getPosition().y());
         drawDefaultBackground();
 
-        GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         RenderHelper.disableStandardItemLighting();
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -98,7 +99,7 @@ public class GuiCraftGUI extends GuiContainer {
         NEIHook.renderObjects(window, mouseX, mouseY);
 
         GL11.glPushMatrix();
-        GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
         InventoryPlayer playerInventory = mc.thePlayer.inventory;
         draggedItem = playerInventory.getItemStack();
@@ -106,7 +107,7 @@ public class GuiCraftGUI extends GuiContainer {
             GL11.glTranslatef(0.0f, 0.0f, 200.0f);
             renderItem(new IPoint(mouseX - 8, mouseY - 8), draggedItem, false);
         }
-        GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -133,7 +134,7 @@ public class GuiCraftGUI extends GuiContainer {
         int mouseX = (int) mousePosition.x();
         int mouseY = (int) mousePosition.y();
         FontRenderer font = getFontRenderer();
-        GL11.glDisable(32826); // GL_RESCALE_NORMAL_EXT
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         RenderHelper.disableStandardItemLighting();
         GL11.glDisable(GL11.GL_LIGHTING);
         GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -224,7 +225,7 @@ public class GuiCraftGUI extends GuiContainer {
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         RenderHelper.enableStandardItemLighting();
-        GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
     }
 
     @Override
@@ -424,8 +425,9 @@ public class GuiCraftGUI extends GuiContainer {
 
     public void renderItem(IPoint pos, ItemStack item, boolean rotating) {
         OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, 240.0f, 240.0f);
-        GL11.glPushAttrib(8256);
+        GL11.glPushAttrib(GL11.GL_ENABLE_BIT | GL11.GL_LIGHTING_BIT);
         RenderHelper.enableGUIStandardItemLighting();
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
         FontRenderer font = item.getItem().getFontRenderer(item);
         if (font == null) {
@@ -458,11 +460,11 @@ public class GuiCraftGUI extends GuiContainer {
         }
 
         GL11.glPushMatrix();
-        GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         BinnieCore.proxy.bindTexture(map);
         GuiScreen.itemRender.zLevel = zLevel;
         GuiScreen.itemRender.renderIcon((int) pos.x(), (int) pos.y(), icon, 16, 16);
-        GL11.glEnable(32826); // GL_RESCALE_NORMAL_EXT
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
     }
 
