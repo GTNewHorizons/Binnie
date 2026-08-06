@@ -27,6 +27,12 @@ public abstract class MachinePackage {
 
     public abstract TileEntity createTileEntity();
 
+    /// Whether this machine's tile entity needs {@link net.minecraft.tileentity.TileEntity#updateEntity()}.
+    /// Override to false only when no component implements onUpdate, onInventoryUpdate or a client display tick.
+    public boolean isTickable() {
+        return true;
+    }
+
     public String getDisplayName() {
         return I18N.localise(group.getMod().getModID() + ".machine." + group.getShortUID() + "." + getUID());
     }
