@@ -11,6 +11,9 @@ import binnie.core.machines.inventory.InventorySlot;
 
 public class CustomSlot extends Slot {
 
+    private InventorySlot inventorySlot;
+    private boolean inventorySlotResolved;
+
     public CustomSlot(IInventory inventory, int index) {
         super(inventory, index, 0, 0);
     }
@@ -21,11 +24,12 @@ public class CustomSlot extends Slot {
     }
 
     public InventorySlot getInventorySlot() {
-        IInventorySlots slots = Machine.getInterface(IInventorySlots.class, inventory);
-        if (slots != null) {
-            return slots.getSlot(getSlotIndex());
+        if (!inventorySlotResolved) {
+            IInventorySlots slots = Machine.getInterface(IInventorySlots.class, inventory);
+            inventorySlot = (slots == null) ? null : slots.getSlot(getSlotIndex());
+            inventorySlotResolved = true;
         }
-        return null;
+        return inventorySlot;
     }
 
     public boolean handleClick() {
