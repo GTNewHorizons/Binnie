@@ -285,6 +285,10 @@ public class Widget implements IWidget {
         onRender(RenderStage.PreChildren);
 
         for (IWidget widget : getWidgets()) {
+            if (!widget.isVisible()) {
+                continue;
+            }
+
             widget.render();
             CraftGUI.render.preRender(widget);
             widget.onRender(RenderStage.PostSiblings);
