@@ -4,6 +4,7 @@ import static net.minecraftforge.common.util.Constants.NBT.TAG_COMPOUND;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,8 @@ import binnie.core.machines.power.TankInfo;
 import binnie.core.machines.transfer.TransferRequest;
 import binnie.core.network.packet.MessageContainerUpdate;
 import cpw.mods.fml.relauncher.Side;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 
 public class ContainerCraftGUI extends Container {
 
@@ -80,6 +83,7 @@ public class ContainerCraftGUI extends Container {
     private final Map<String, NBTTagCompound> syncedNBT = new HashMap<>();
     private final Map<String, NBTTagCompound> sentNBT = new HashMap<>();
     private final Map<Integer, TankInfo> syncedTanks = new HashMap<>();
+    private final Map<IInventory, Int2ObjectMap<CustomSlot>> slotsByInventory = new IdentityHashMap<>();
     private PowerInfo syncedPower = new PowerInfo();
     private ProcessInfo syncedProcess = new ProcessInfo();
     private int errorType = 0;
@@ -109,7 +113,15 @@ public class ContainerCraftGUI extends Container {
 
     @Override
     protected Slot addSlotToContainer(Slot slot) {
+        indexSlot(slot);
         return super.addSlotToContainer(slot);
+    }
+
+    private void indexSlot(Slot slot) {
+        if (slot instanceof CustomSlot customSlot) {
+            slotsByInventory.computeIfAbsent(customSlot.inventory, key -> new Int2ObjectOpenHashMap<>())
+                    .putIfAbsent(customSlot.getSlotIndex(), customSlot);
+        }
     }
 
     private Side getSide() {
@@ -482,13 +494,8 @@ public class ContainerCraftGUI extends Container {
     }
 
     private CustomSlot getSlot(IInventory inventory, int id) {
-        for (Object o : inventorySlots) {
-            CustomSlot slot = (CustomSlot) o;
-            if (slot.inventory == inventory && slot.getSlotIndex() == id) {
-                return slot;
-            }
-        }
-        return null;
+        Int2ObjectMap<CustomSlot> slots = slotsByInventory.get(inventory);
+        return (slots == null) ? null : slots.get(id);
     }
 
     public void receiveNBT(Side side, EntityPlayer player, NBTTagCompound action) {
@@ -549,6 +556,7 @@ public class ContainerCraftGUI extends Container {
         IInventory inventory = getInventory(type);
         Slot slot = new CustomSlot(inventory, index);
         slot.slotNumber = slotNumber;
+        indexSlot(slot);
         inventorySlots.add(slotNumber, slot);
         ItemStack stack = slot.getStack();
         inventoryItemStacks.add(slotNumber, stack == null ? null : stack.copy());
