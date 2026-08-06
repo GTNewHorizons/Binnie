@@ -1,6 +1,5 @@
 package binnie.core.craftgui.minecraft;
 
-import java.util.ArrayList;
 import java.util.Deque;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,6 +46,7 @@ import binnie.core.resource.BinnieResource;
 import binnie.core.resource.ResourceType;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
 
 public abstract class Window extends TopLevelWidget implements INetwork.ReceiveGuiNBT {
 
@@ -81,7 +81,7 @@ public abstract class Window extends TopLevelWidget implements INetwork.ReceiveG
         setSize(new IPoint(width, height));
         gui = new GuiCraftGUI(this);
         for (EnumHighlighting h : EnumHighlighting.values()) {
-            ControlSlot.highlighting.put(h, new ArrayList<>());
+            ControlSlot.highlighting.put(h, new IntOpenHashSet());
         }
 
         renderer = new Renderer(gui);
