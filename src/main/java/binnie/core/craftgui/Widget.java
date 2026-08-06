@@ -194,7 +194,7 @@ public class Widget implements IWidget {
 
     @Override
     public void setOffset(IPoint offset) {
-        if (offset != this.offset) {
+        if (!offset.equals(this.offset)) {
             this.offset = new IPoint(offset);
             callEvent(new EventWidget.ChangeOffset(this));
         }
