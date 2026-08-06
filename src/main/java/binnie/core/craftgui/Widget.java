@@ -347,7 +347,7 @@ public class Widget implements IWidget {
 
     @Override
     public boolean isMouseOverWidget(IPoint relativeMouse) {
-        return getArea().contains(relativeMouse);
+        return contains(relativeMouse);
     }
 
     @Override
@@ -475,7 +475,8 @@ public class Widget implements IWidget {
 
     @Override
     public boolean contains(IPoint position) {
-        return getArea().contains(position);
+        IPoint size = size();
+        return position.x() >= 0.0f && position.y() >= 0.0f && position.x() <= size.x() && position.y() <= size.y();
     }
 
     @Override
