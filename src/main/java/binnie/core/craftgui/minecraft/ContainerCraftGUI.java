@@ -332,7 +332,7 @@ public class ContainerCraftGUI extends Container {
 
             action.setString(ACTION_TYPE, actionType);
 
-            if (action.equals(actionPrev)) continue;
+            if (action == actionPrev || action.equals(actionPrev)) continue;
 
             if (actions == null) {
                 actions = new NBTTagList();

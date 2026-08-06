@@ -57,9 +57,10 @@ public class ControlErrorState extends Control implements ITooltip {
 
         ControlEnergyBar.isError = errorState.isPowerError();
         if (errorState.isItemError()) {
+            CustomSlot[] customSlots = Window.get(this).getContainer().getCustomSlots();
             for (int slot : errorState.getData()) {
                 int id = -1;
-                for (CustomSlot cslot : Window.get(this).getContainer().getCustomSlots()) {
+                for (CustomSlot cslot : customSlots) {
                     if (!(cslot.inventory instanceof InventoryPlayer) && cslot.getSlotIndex() == slot) {
                         id = cslot.slotNumber;
                     }
