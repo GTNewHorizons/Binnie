@@ -9,6 +9,8 @@ public class BinnieResource {
     String mod;
     private final ResourceType type;
     String path;
+    private final String shortPath;
+    private final ResourceLocation resourceLocation;
 
     public BinnieResource(AbstractMod mod, ResourceType type, String path) {
         this(mod.getModID(), type, path);
@@ -18,13 +20,15 @@ public class BinnieResource {
         mod = modid;
         this.type = type;
         this.path = path;
+        shortPath = "textures/" + type + "/" + path;
+        resourceLocation = new ResourceLocation(modid, shortPath);
     }
 
     public ResourceLocation getResourceLocation() {
-        return new ResourceLocation(mod, "textures/" + type.toString() + "/" + path);
+        return resourceLocation;
     }
 
     public String getShortPath() {
-        return "textures/" + type.toString() + "/" + path;
+        return shortPath;
     }
 }
