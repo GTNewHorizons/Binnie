@@ -47,13 +47,13 @@ public class ControlItemDisplay extends Control implements ITooltip {
 
     @Override
     public void onRenderBackground() {
-        IPoint relativeToWindow = getAbsolutePosition().sub(getSuperParent().getPosition());
-        if (relativeToWindow.x() > Window.get(this).getSize().x() + 100.0f
-                || relativeToWindow.y() > Window.get(this).getSize().y() + 100.0f) {
+        if (itemStack == null) {
             return;
         }
 
-        if (itemStack == null) {
+        IPoint relativeToWindow = getAbsolutePosition().sub(getSuperParent().getPosition());
+        if (relativeToWindow.x() > Window.get(this).getSize().x() + 100.0f
+                || relativeToWindow.y() > Window.get(this).getSize().y() + 100.0f) {
             return;
         }
 
