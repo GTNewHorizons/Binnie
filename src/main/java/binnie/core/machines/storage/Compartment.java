@@ -50,6 +50,11 @@ enum Compartment implements IMachineType {
         }
 
         @Override
+        public boolean isTickable() {
+            return false;
+        }
+
+        @Override
         public void renderMachine(Machine machine, double x, double y, double z, float partialTick) {
             MachineRendererCompartment.instance.renderMachine(machine, renderTexture, x, y, z);
         }

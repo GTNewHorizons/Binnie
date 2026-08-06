@@ -1,5 +1,8 @@
 package binnie.core.craftgui.controls.tab;
 
+import java.util.IdentityHashMap;
+import java.util.Map;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.ITooltip;
 import binnie.core.craftgui.Tooltip;
@@ -21,6 +24,7 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
     protected T value;
 
     private final ControlTabBar<T> tabBar;
+    private final Map<Texture, Texture> croppedTextures = new IdentityHashMap<>();
 
     public ControlTab(ControlTabBar<T> parent, float x, float y, float w, float h, T value) {
         super(parent, x, y, w, h);
@@ -45,9 +49,8 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
             texture = CraftGUITexture.Tab;
         }
 
-        Texture lTexture = CraftGUI.render.getTexture(texture);
         Position position = getTabPosition();
-        Texture iTexture = lTexture.crop(position, 8.0f);
+        Texture iTexture = getCroppedTexture(texture);
         IArea area = getArea();
         if (texture == CraftGUITexture.TabDisabled) {
             if (position == Position.TOP || position == Position.LEFT) {
@@ -68,12 +71,21 @@ public class ControlTab<T> extends Control implements ITooltip, IControlValue<T>
             }
 
             if (icon.hasOutline()) {
-                iTexture = CraftGUI.render.getTexture(CraftGUITexture.TabOutline);
-                iTexture = iTexture.crop(position, 8.0f);
+                iTexture = getCroppedTexture(CraftGUITexture.TabOutline);
                 CraftGUI.render.color(icon.getOutlineColor());
                 CraftGUI.render.texture(iTexture, area.inset(2));
             }
         }
+    }
+
+    private Texture getCroppedTexture(Object key) {
+        Texture source = CraftGUI.render.getTexture(key);
+        Texture cropped = croppedTextures.get(source);
+        if (cropped == null) {
+            cropped = source.crop(getTabPosition(), 8.0f);
+            croppedTextures.put(source, cropped);
+        }
+        return cropped;
     }
 
     @Override

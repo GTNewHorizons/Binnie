@@ -7,7 +7,7 @@ import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_REG;
 import static binnie.core.craftgui.minecraft.ContainerCraftGUI.SLOT_TYPE;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,15 +36,17 @@ import binnie.core.machines.inventory.MachineSide;
 import binnie.core.machines.inventory.SlotValidator;
 import binnie.core.network.packet.MessageCraftGUI;
 import binnie.core.util.I18N;
+import it.unimi.dsi.fastutil.ints.IntOpenHashSet;
+import it.unimi.dsi.fastutil.ints.IntSet;
 
 public class ControlSlot extends ControlSlotBase {
 
-    public static Map<EnumHighlighting, List<Integer>> highlighting = new HashMap<>();
+    public static Map<EnumHighlighting, IntSet> highlighting = new EnumMap<>(EnumHighlighting.class);
     public static boolean shiftClickActive = false;
 
     static {
         for (EnumHighlighting h : EnumHighlighting.values()) {
-            ControlSlot.highlighting.put(h, new ArrayList<>());
+            ControlSlot.highlighting.put(h, new IntOpenHashSet());
         }
     }
 
@@ -106,7 +108,7 @@ public class ControlSlot extends ControlSlotBase {
         }
 
         boolean highlighted = false;
-        for (Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
+        for (Map.Entry<EnumHighlighting, IntSet> highlight : ControlSlot.highlighting.entrySet()) {
             if (highlight.getKey() == EnumHighlighting.SHIFT_CLICK && !ControlSlot.shiftClickActive) {
                 continue;
             }
@@ -135,7 +137,7 @@ public class ControlSlot extends ControlSlotBase {
         }
 
         boolean highlighted = false;
-        for (Map.Entry<EnumHighlighting, List<Integer>> highlight : ControlSlot.highlighting.entrySet()) {
+        for (Map.Entry<EnumHighlighting, IntSet> highlight : ControlSlot.highlighting.entrySet()) {
             if (highlight.getKey() == EnumHighlighting.SHIFT_CLICK && !ControlSlot.shiftClickActive) {
                 continue;
             }

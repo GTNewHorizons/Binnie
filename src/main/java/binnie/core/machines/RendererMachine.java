@@ -1,5 +1,8 @@
 package binnie.core.machines;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -11,6 +14,8 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 // Hmm. It's used class
 public class RendererMachine extends TileEntitySpecialRenderer implements ISimpleBlockRenderingHandler {
+
+    private final Map<Block, Map<Integer, TileEntityMachine>> inventoryTiles = new HashMap<>();
 
     @Override
     public void renderTileEntityAt(TileEntity entity, double x, double y, double z, float partialTick) {
@@ -25,8 +30,20 @@ public class RendererMachine extends TileEntitySpecialRenderer implements ISimpl
     }
 
     private void renderInvBlock(Block block, int i, int j) {
-        TileEntity entity = block.createTileEntity(null, i);
-        renderTileEntity((TileEntityMachine) entity, 0.0, -0.1, 0.0, 0.0625f);
+        renderTileEntity(getInventoryTile(block, i), 0.0, -0.1, 0.0, 0.0625f);
+    }
+
+    private TileEntityMachine getInventoryTile(Block block, int metadata) {
+        Map<Integer, TileEntityMachine> tiles = inventoryTiles.computeIfAbsent(block, key -> new HashMap<>());
+        TileEntityMachine tile = tiles.get(metadata);
+        if (tile == null) {
+            if (!(block.createTileEntity(null, metadata) instanceof TileEntityMachine created)) {
+                return null;
+            }
+            tile = created;
+            tiles.put(metadata, tile);
+        }
+        return tile;
     }
 
     @Override

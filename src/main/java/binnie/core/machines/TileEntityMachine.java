@@ -21,6 +21,11 @@ public class TileEntityMachine extends TileEntityMachineBase implements INetwork
         }
     }
 
+    @Override
+    public boolean canUpdate() {
+        return machine == null || machine.getPackage() == null || machine.getPackage().isTickable();
+    }
+
     public TileEntityMachine(MachinePackage pack) {
         setMachine(pack);
     }

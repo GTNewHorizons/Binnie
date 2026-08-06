@@ -21,19 +21,23 @@ import cpw.mods.fml.common.Optional;
 
 public class TileEntityMachineBase extends TileEntity implements IInventoryMachine, ITankMachine, IPoweredMachine {
 
+    private static final DefaultInventory DEFAULT_INVENTORY = new DefaultInventory();
+    private static final DefaultTankContainer DEFAULT_TANK_CONTAINER = new DefaultTankContainer();
+    private static final DefaultPower DEFAULT_POWER = new DefaultPower();
+
     public IInventoryMachine getInventory() {
         IInventoryMachine inv = Machine.getInterface(IInventoryMachine.class, this);
-        return (inv == null || inv == this) ? new DefaultInventory() : inv;
+        return (inv == null || inv == this) ? DEFAULT_INVENTORY : inv;
     }
 
     public ITankMachine getTankContainer() {
         ITankMachine inv = Machine.getInterface(ITankMachine.class, this);
-        return (inv == null || inv == this) ? new DefaultTankContainer() : inv;
+        return (inv == null || inv == this) ? DEFAULT_TANK_CONTAINER : inv;
     }
 
     public IPoweredMachine getPower() {
         IPoweredMachine inv = Machine.getInterface(IPoweredMachine.class, this);
-        return (inv == null || inv == this) ? new DefaultPower() : inv;
+        return (inv == null || inv == this) ? DEFAULT_POWER : inv;
     }
 
     @Override

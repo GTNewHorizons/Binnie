@@ -2,6 +2,7 @@ package binnie.core.machines;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,8 +72,9 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 
     @Override
     public <T> T getInterface(Class<T> cls) {
-        if (hasInterface(cls)) {
-            return getInterfaces(cls).get(0);
+        List<MachineComponent> components = componentInterfaceMap.get(cls);
+        if (components != null && !components.isEmpty()) {
+            return cls.cast(components.get(0));
         }
         if (cls.isInstance(getPackage())) {
             return cls.cast(getPackage());
@@ -88,11 +90,13 @@ public class Machine implements INetworkedEntity, INBTTagable, INetwork.TilePack
 
     @Override
     public <T> List<T> getInterfaces(Class<T> cls) {
-        ArrayList<T> interfaces = new ArrayList<>();
-        if (!hasInterface(cls)) {
-            return interfaces;
+        List<MachineComponent> components = componentInterfaceMap.get(cls);
+        if (components == null) {
+            return Collections.emptyList();
         }
-        for (MachineComponent component : componentInterfaceMap.get(cls)) {
+
+        List<T> interfaces = new ArrayList<>(components.size());
+        for (MachineComponent component : components) {
             interfaces.add(cls.cast(component));
         }
         return interfaces;

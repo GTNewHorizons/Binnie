@@ -194,7 +194,7 @@ public class Widget implements IWidget {
 
     @Override
     public void setOffset(IPoint offset) {
-        if (offset != this.offset) {
+        if (!offset.equals(this.offset)) {
             this.offset = new IPoint(offset);
             callEvent(new EventWidget.ChangeOffset(this));
         }
@@ -285,6 +285,10 @@ public class Widget implements IWidget {
         onRender(RenderStage.PreChildren);
 
         for (IWidget widget : getWidgets()) {
+            if (!widget.isVisible()) {
+                continue;
+            }
+
             widget.render();
             CraftGUI.render.preRender(widget);
             widget.onRender(RenderStage.PostSiblings);
@@ -343,7 +347,7 @@ public class Widget implements IWidget {
 
     @Override
     public boolean isMouseOverWidget(IPoint relativeMouse) {
-        return getArea().contains(relativeMouse);
+        return contains(relativeMouse);
     }
 
     @Override
@@ -471,7 +475,8 @@ public class Widget implements IWidget {
 
     @Override
     public boolean contains(IPoint position) {
-        return getArea().contains(position);
+        IPoint size = size();
+        return position.x() >= 0.0f && position.y() >= 0.0f && position.x() <= size.x() && position.y() <= size.y();
     }
 
     @Override
