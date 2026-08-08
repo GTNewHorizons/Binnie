@@ -5,6 +5,7 @@ import java.util.List;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -152,7 +153,8 @@ public class ComponentPowerReceptor extends MachineComponent
     }
 
     private void addToEnergyNet() {
-        if (getMachine().getWorld() == null) {
+        World world = getMachine().getWorld();
+        if (world == null || world.isRemote) {
             return;
         }
         if (Mods.ic2.active()) {
@@ -161,7 +163,8 @@ public class ComponentPowerReceptor extends MachineComponent
     }
 
     private void removeFromEnergyNet() {
-        if (getMachine().getWorld() == null) {
+        World world = getMachine().getWorld();
+        if (world == null || world.isRemote) {
             return;
         }
         if (Mods.ic2.active()) {
