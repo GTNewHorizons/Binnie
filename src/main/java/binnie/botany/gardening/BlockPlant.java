@@ -48,7 +48,7 @@ public class BlockPlant extends BlockBush {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister register) {
-        for (Type t : Type.values()) {
+        for (Type t : Type.VALUES) {
             t.icon = Botany.proxy.getIcon(register, t.name().toLowerCase());
         }
     }
@@ -61,7 +61,7 @@ public class BlockPlant extends BlockBush {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return Type.values()[meta % Type.values().length].icon;
+        return Type.VALUES[meta % Type.VALUES.length].icon;
     }
 
     @Override
@@ -72,7 +72,7 @@ public class BlockPlant extends BlockBush {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (Type type : Type.values()) {
+        for (Type type : Type.VALUES) {
             list.add(type.get());
         }
     }
@@ -135,6 +135,7 @@ public class BlockPlant extends BlockBush {
         DeadFlower("deadFlower"),
         DecayingFlower("decayingFlower");
 
+        public static final Type[] VALUES = values();
         public IIcon icon;
 
         private final String name;
@@ -144,7 +145,7 @@ public class BlockPlant extends BlockBush {
         }
 
         public static Type get(int id) {
-            return values()[id % values().length];
+            return VALUES[id % VALUES.length];
         }
 
         public ItemStack get() {

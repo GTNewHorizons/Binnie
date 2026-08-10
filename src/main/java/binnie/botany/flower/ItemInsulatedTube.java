@@ -38,8 +38,8 @@ public class ItemInsulatedTube extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-        for (Material mat : Material.values()) {
-            for (Insulate ins : Insulate.values()) {
+        for (Material mat : Material.VALUES) {
+            for (Insulate ins : Insulate.VALUES) {
                 list.add(new ItemStack(this, 1, mat.ordinal() + ins.ordinal() * 128));
             }
         }
@@ -97,6 +97,8 @@ public class ItemInsulatedTube extends Item {
         Bronze(0xddc276, "bronze"),
         Iron(0xd8d8d8, "iron");
 
+        public static final Material[] VALUES = values();
+
         private final int color;
         private final String name;
 
@@ -106,7 +108,7 @@ public class ItemInsulatedTube extends Item {
         }
 
         public static Material get(int i) {
-            return values()[i % values().length];
+            return VALUES[i % VALUES.length];
         }
 
         public int getColor() {
@@ -127,6 +129,8 @@ public class ItemInsulatedTube extends Item {
         Stone(0x6d6d6d, "smoothStone"),
         Sandstone(0xc1b989, "sandstone");
 
+        public static final Insulate[] VALUES = values();
+
         private final int color;
         private final String name;
 
@@ -136,7 +140,7 @@ public class ItemInsulatedTube extends Item {
         }
 
         public static Insulate get(int i) {
-            return values()[i / 128 % values().length];
+            return values()[i / 128 % VALUES.length];
         }
 
         public int getColor() {

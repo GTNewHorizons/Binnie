@@ -18,7 +18,7 @@ public class ItemWeed extends ItemBlock {
 
     @Override
     public String getItemStackDisplayName(ItemStack stack) {
-        return BlockPlant.Type.values()[stack.getItemDamage()].getName();
+        return BlockPlant.Type.VALUES[stack.getItemDamage()].getName();
     }
 
     @Override

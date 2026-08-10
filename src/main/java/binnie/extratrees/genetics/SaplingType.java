@@ -12,5 +12,7 @@ public enum SaplingType {
     PALM,
     SHRUB;
 
+    public static final SaplingType[] VALUES = values();
+
     public IIcon[] icon;
 }
