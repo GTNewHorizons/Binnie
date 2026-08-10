@@ -140,7 +140,7 @@ public class ItemInsulatedTube extends Item {
         }
 
         public static Insulate get(int i) {
-            return values()[i / 128 % VALUES.length];
+            return VALUES[i / 128 % VALUES.length];
         }
 
         public int getColor() {
