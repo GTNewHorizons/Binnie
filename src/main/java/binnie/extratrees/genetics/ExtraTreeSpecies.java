@@ -902,7 +902,7 @@ public enum ExtraTreeSpecies implements IAlleleTreeSpecies, IIconProvider, IGerm
 
     @Override
     public void registerIcons(IIconRegister register) {
-        for (SaplingType type : SaplingType.values()) {
+        for (SaplingType type : SaplingType.VALUES) {
             type.icon = new IIcon[2];
             type.icon[0] = ExtraTrees.proxy.getIcon(register, "saplings/" + type.toString().toLowerCase() + ".trunk");
             type.icon[1] = ExtraTrees.proxy.getIcon(register, "saplings/" + type.toString().toLowerCase() + ".leaves");
