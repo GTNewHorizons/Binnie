@@ -108,7 +108,11 @@ public enum ExtraBeeItems implements IItemMisc {
                 if (!OreDictionary.getOres("ingot" + item.metalString).isEmpty()) {
                     ingot = OreDictionary.getOres("ingot" + item.metalString).get(0).copy();
                 }
-                if (!OreDictionary.getOres("dust" + item.metalString).isEmpty()) {
+                if (item == ExtraBeeItems.PlatinumDust
+                        && !OreDictionary.getOres("dustPlatinumMetallicPowder").isEmpty()) {
+                    dust = OreDictionary.getOres("dustPlatinumMetallicPowder").get(0).copy();
+                    dust.stackSize = 2;
+                } else if (!OreDictionary.getOres("dust" + item.metalString).isEmpty()) {
                     dust = OreDictionary.getOres("dust" + item.metalString).get(0).copy();
                 }
 
