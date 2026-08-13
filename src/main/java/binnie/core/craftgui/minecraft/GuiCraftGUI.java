@@ -450,6 +450,7 @@ public class GuiCraftGUI extends GuiContainer {
         }
 
         GuiScreen.itemRender.renderItemOverlayIntoGUI(font, mc.renderEngine, item, (int) pos.x(), (int) pos.y(), null);
+        GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
         RenderHelper.disableStandardItemLighting();
         GL11.glPopAttrib();
     }
