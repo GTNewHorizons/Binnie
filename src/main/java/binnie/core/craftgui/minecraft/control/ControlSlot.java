@@ -20,10 +20,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.IIcon;
 
+import org.lwjgl.input.Mouse;
+
 import binnie.core.craftgui.CraftGUI;
 import binnie.core.craftgui.IWidget;
 import binnie.core.craftgui.Tooltip;
 import binnie.core.craftgui.events.EventMouse;
+import binnie.core.craftgui.events.EventWidget;
 import binnie.core.craftgui.geometry.IArea;
 import binnie.core.craftgui.geometry.IPoint;
 import binnie.core.craftgui.minecraft.CustomSlot;
@@ -61,22 +64,17 @@ public class ControlSlot extends ControlSlotBase {
 
             @Override
             public void onEvent(EventMouse.Down event) {
-                if (slot == null) {
-                    return;
-                }
+                clickSlot(event.getButton());
+            }
+        });
+        addSelfEventHandler(new EventWidget.StartMouseOver.Handler() {
 
-                PlayerControllerMP playerController = ((Window) getSuperParent()).getGui()
-                        .getMinecraft().playerController;
-                int windowId = ((Window) getSuperParent()).getContainer().windowId;
-                int slotNumber = slot.slotNumber;
-                int button = event.getButton();
-                Window.get(getWidget()).getGui();
-                playerController.windowClick(
-                        windowId,
-                        slotNumber,
-                        button,
-                        GuiScreen.isShiftKeyDown() ? 1 : 0,
-                        ((Window) getSuperParent()).getGui().getMinecraft().thePlayer);
+            @Override
+            public void onEvent(EventWidget.StartMouseOver event) {
+                if (GuiScreen.isShiftKeyDown() && Mouse.isButtonDown(0)
+                        && Window.get(ControlSlot.this).getDraggedWidget() instanceof ControlSlot) {
+                    clickSlot(0);
+                }
             }
         });
     }
@@ -90,6 +88,19 @@ public class ControlSlot extends ControlSlotBase {
     public ControlSlot setSlotTexture(CraftGUITexture texture) {
         slotTexture = texture == null ? CraftGUITexture.Slot : texture;
         return this;
+    }
+
+    private void clickSlot(int button) {
+        if (slot == null) return;
+
+        Window window = (Window) getSuperParent();
+        PlayerControllerMP playerController = window.getGui().getMinecraft().playerController;
+        playerController.windowClick(
+                window.getContainer().windowId,
+                slot.slotNumber,
+                button,
+                GuiScreen.isShiftKeyDown() ? 1 : 0,
+                window.getGui().getMinecraft().thePlayer);
     }
 
     @Override
