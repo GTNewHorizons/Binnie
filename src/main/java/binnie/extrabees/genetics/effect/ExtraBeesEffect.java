@@ -33,7 +33,6 @@ import binnie.extrabees.genetics.ExtraBeesFlowers;
 import cofh.api.energy.IEnergyReceiver;
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.IAlleleBeeEffect;
-import forestry.api.apiculture.IArmorApiarist;
 import forestry.api.apiculture.IBeeGenome;
 import forestry.api.apiculture.IBeeHousing;
 import forestry.api.genetics.AlleleManager;
@@ -109,43 +108,6 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
         for (ExtraBeesEffect effect : values()) {
             effect.register();
         }
-    }
-
-    public static boolean wearsHelmet(EntityPlayer player) {
-        ItemStack armorItem = player.inventory.armorInventory[3];
-        return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;
-    }
-
-    public static boolean wearsChest(EntityPlayer player) {
-        ItemStack armorItem = player.inventory.armorInventory[2];
-        return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;
-    }
-
-    public static boolean wearsLegs(EntityPlayer player) {
-        ItemStack armorItem = player.inventory.armorInventory[1];
-        return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;
-    }
-
-    public static boolean wearsBoots(EntityPlayer player) {
-        ItemStack armorItem = player.inventory.armorInventory[0];
-        return armorItem != null && armorItem.getItem() instanceof IArmorApiarist;
-    }
-
-    public static int wearsItems(EntityPlayer player) {
-        int count = 0;
-        if (wearsHelmet(player)) {
-            count++;
-        }
-        if (wearsChest(player)) {
-            count++;
-        }
-        if (wearsLegs(player)) {
-            count++;
-        }
-        if (wearsBoots(player)) {
-            count++;
-        }
-        return count;
     }
 
     public void register() {
@@ -371,7 +333,7 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
         for (EntityLivingBase entity : getEntities(EntityLivingBase.class, genome, housing)) {
             int damage = 4;
             if (entity instanceof EntityPlayer) {
-                int count = wearsItems((EntityPlayer) entity);
+                int count = BeeManager.armorApiaristHelper.wearsItems(entity, getUID(), true);
                 if (count > 3) {
                     continue;
                 }
@@ -396,7 +358,8 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
     private void onHungerEffect(IBeeGenome genome, IBeeHousing housing, World world) {
         for (EntityPlayer player : getEntities(EntityPlayer.class, genome, housing)) {
-            if (world.rand.nextInt(4) < wearsItems(player)) {
+            if (world.rand.nextInt(4)
+                    < BeeManager.armorApiaristHelper.wearsItems((EntityLivingBase) player, getUID(), true)) {
                 continue;
             }
             player.addExhaustion(4.0f);
@@ -406,7 +369,8 @@ public enum ExtraBeesEffect implements IAlleleBeeEffect {
 
     private void onPotionEffect(IBeeGenome genome, IBeeHousing housing, World world, PotionEffect potion) {
         for (EntityPlayer player : getEntities(EntityPlayer.class, genome, housing)) {
-            if (world.rand.nextInt(4) < wearsItems(player)) {
+            if (world.rand.nextInt(4)
+                    < BeeManager.armorApiaristHelper.wearsItems((EntityLivingBase) player, getUID(), true)) {
                 continue;
             }
             player.addPotionEffect(potion);
