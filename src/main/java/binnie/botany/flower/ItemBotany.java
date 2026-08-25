@@ -11,6 +11,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
@@ -19,18 +21,25 @@ import net.minecraft.world.World;
 import binnie.Binnie;
 import binnie.botany.Botany;
 import binnie.botany.CreativeTabBotany;
+import binnie.botany.api.EnumFlowerChromosome;
 import binnie.botany.api.EnumFlowerStage;
+import binnie.botany.api.IAlleleFlowerSpecies;
 import binnie.botany.api.IFlower;
 import binnie.botany.api.IFlowerColor;
 import binnie.botany.api.IFlowerGenome;
 import binnie.botany.api.IFlowerType;
 import binnie.botany.core.BotanyCore;
+import binnie.botany.genetics.AlleleColor;
+import binnie.botany.genetics.EnumFlowerColor;
 import binnie.botany.genetics.EnumFlowerType;
 import binnie.botany.genetics.Flower;
+import binnie.botany.genetics.FlowerSpecies;
 import binnie.core.BinnieCore;
 import binnie.core.util.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import forestry.api.genetics.AlleleManager;
+import forestry.api.genetics.IAllele;
 import forestry.api.genetics.IIndividual;
 import forestry.api.genetics.IPollinatable;
 import forestry.core.config.Config;
@@ -61,10 +70,42 @@ public abstract class ItemBotany extends Item {
         return false;
     }
 
+    static IAllele getRenderAllele(ItemStack stack, EnumFlowerChromosome chromosome, boolean active) {
+        if (stack == null || !stack.hasTagCompound()) return null;
+
+        NBTTagCompound genome = stack.getTagCompound().getCompoundTag("Genome");
+        NBTTagList chromosomes = genome.getTagList("Chromosomes", 10);
+        int slot = chromosome.ordinal();
+        NBTTagCompound chromosomeTag = null;
+        for (int index = chromosomes.tagCount() - 1; index >= 0; index--) {
+            NBTTagCompound candidate = chromosomes.getCompoundTagAt(index);
+            if (candidate.getByte("Slot") == slot) {
+                chromosomeTag = candidate;
+                break;
+            }
+        }
+        if (chromosomeTag == null) return null;
+
+        Class<? extends IAllele> alleleClass = chromosome.getAlleleClass();
+        IAllele primary = AlleleManager.alleleRegistry.getAllele(chromosomeTag.getString("UID0"));
+        if (!alleleClass.isInstance(primary)) return null;
+        IAllele secondary = AlleleManager.alleleRegistry.getAllele(chromosomeTag.getString("UID1"));
+        if (!alleleClass.isInstance(secondary)) return null;
+        if (!active) return primary;
+
+        if (primary.isDominant()) return primary;
+        return secondary.isDominant() ? secondary : primary;
+    }
+
     @Override
     public boolean hasEffect(ItemStack stack, int pass) {
         if (!stack.hasTagCompound()) {
             return false;
+        }
+
+        IAllele allele = getRenderAllele(stack, EnumFlowerChromosome.SPECIES, false);
+        if (allele instanceof IAlleleFlowerSpecies species) {
+            return species.hasEffect();
         }
 
         IIndividual individual = getIndividual(stack);
@@ -152,6 +193,17 @@ public abstract class ItemBotany extends Item {
 
     @Override
     public int getColorFromItemStack(ItemStack itemstack, int renderPass) {
+        if (!itemstack.hasTagCompound()) {
+            return (renderPass == 0 ? EnumFlowerColor.GREEN : EnumFlowerColor.RED).getColor(false);
+        }
+
+        EnumFlowerChromosome chromosome = renderPass == 0 ? EnumFlowerChromosome.STEM
+                : renderPass == 1 ? EnumFlowerChromosome.PRIMARY : EnumFlowerChromosome.SECONDARY;
+        IAllele allele = getRenderAllele(itemstack, chromosome, true);
+        if (allele instanceof AlleleColor color) {
+            return color.getColor().getColor(itemstack.getTagCompound().getBoolean("Wilt"));
+        }
+
         IFlower flower = BotanyCore.speciesRoot.getMember(itemstack);
         if (flower == null || flower.getGenome() == null) {
             return 0xffffff;
@@ -177,19 +229,32 @@ public abstract class ItemBotany extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(ItemStack itemstack, int renderPass) {
-        IFlower flower = BotanyCore.speciesRoot.getMember(itemstack);
-        if (flower == null || flower.getGenome() == null || flower.getGenome().getPrimary() == null) {
-            return EnumFlowerType.ALLIUM.getBlank();
+        IAlleleFlowerSpecies species = FlowerSpecies.POPPY;
+        boolean flowered = false;
+
+        if (itemstack.hasTagCompound()) {
+            IAllele allele = getRenderAllele(itemstack, EnumFlowerChromosome.SPECIES, false);
+            if (allele instanceof IAlleleFlowerSpecies flowerSpecies) {
+                species = flowerSpecies;
+                flowered = itemstack.getTagCompound().getBoolean("Flowered");
+            } else {
+                IFlower flower = BotanyCore.speciesRoot.getMember(itemstack);
+                if (flower == null || flower.getGenome() == null || flower.getGenome().getPrimary() == null) {
+                    return EnumFlowerType.ALLIUM.getBlank();
+                }
+                species = flower.getGenome().getPrimary();
+                flowered = flower.hasFlowered();
+            }
         }
 
-        IFlowerType type = flower.getGenome().getPrimary().getType();
+        IFlowerType type = species.getType();
         if (renderPass == 0) {
-            return type.getStem(getStage(), flower.hasFlowered(), type.getSections() - 1);
+            return type.getStem(getStage(), flowered, type.getSections() - 1);
         }
         if (renderPass == 1) {
-            return type.getPetalIcon(getStage(), flower.hasFlowered(), type.getSections() - 1);
+            return type.getPetalIcon(getStage(), flowered, type.getSections() - 1);
         }
-        return type.getVariantIcon(getStage(), flower.hasFlowered(), type.getSections() - 1);
+        return type.getVariantIcon(getStage(), flowered, type.getSections() - 1);
     }
 
     @Override
