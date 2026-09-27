@@ -1,5 +1,7 @@
 package binnie.extrabees.products;
 
+import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -11,6 +13,7 @@ import binnie.core.BinnieCore;
 import binnie.core.Mods;
 import binnie.extrabees.ExtraBees;
 import binnie.extrabees.core.ExtraBeeItems;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import forestry.api.core.Tabs;
@@ -79,7 +82,7 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.LATEX.addProduct(honeyDrop, 0.50f);
         EnumHoneyComb.LATEX.addProduct(beeswax, 0.85f);
         if (!OreDictionary.getOres("itemRubber").isEmpty()) {
-            EnumHoneyComb.LATEX.tryAddProduct(OreDictionary.getOres("itemRubber").get(0), 1.00f);
+            EnumHoneyComb.LATEX.tryAddProduct(getOreDictionary("itemRubber"), 1.00f);
         } else {
             EnumHoneyComb.LATEX.active = false;
         }
@@ -116,7 +119,7 @@ public class ItemHoneyComb extends ItemProduct {
 
         EnumHoneyComb.URANIUM.copyProducts(EnumHoneyComb.STONE);
         if (!OreDictionary.getOres("crushedUranium").isEmpty()) {
-            EnumHoneyComb.URANIUM.tryAddProduct(OreDictionary.getOres("crushedUranium").get(0), 0.50f);
+            EnumHoneyComb.URANIUM.tryAddProduct(getOreDictionary("crushedUranium"), 0.50f);
         }
 
         EnumHoneyComb.CLAY.addProduct(beeswax, 0.25f);
@@ -133,7 +136,7 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.ACIDIC.addProduct(beeswax, 0.80f);
         EnumHoneyComb.ACIDIC.tryAddProduct(EnumHoneyDrop.ACID, 0.50f);
         if (!OreDictionary.getOres("dustSulfur").isEmpty()) {
-            EnumHoneyComb.ACIDIC.addProduct(OreDictionary.getOres("dustSulfur").get(0), 0.75f);
+            EnumHoneyComb.ACIDIC.addProduct(getOreDictionary("dustSulfur"), 0.75f);
         }
 
         EnumHoneyComb.VENOMOUS.addProduct(beeswax, 0.80f);
@@ -149,7 +152,7 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.COFFEE.addProduct(beeswax, 0.90f);
         EnumHoneyComb.COFFEE.addProduct(honeyDrop, 0.75f);
         if (!OreDictionary.getOres("dustCoffee").isEmpty()) {
-            EnumHoneyComb.COFFEE.tryAddProduct(OreDictionary.getOres("dustCoffee").get(0), 0.75f);
+            EnumHoneyComb.COFFEE.tryAddProduct(getOreDictionary("dustCoffee"), 0.75f);
         }
 
         EnumHoneyComb.GLACIAL.tryAddProduct(EnumHoneyDrop.ICE, 0.80f);
@@ -157,7 +160,7 @@ public class ItemHoneyComb extends ItemProduct {
 
         EnumHoneyComb.SHADOW.addProduct(honeyDrop, 0.50f);
         if (!OreDictionary.getOres("dustObsidian").isEmpty()) {
-            EnumHoneyComb.SHADOW.tryAddProduct(OreDictionary.getOres("dustObsidian").get(0), 0.75f);
+            EnumHoneyComb.SHADOW.tryAddProduct(getOreDictionary("dustObsidian"), 0.75f);
         } else {
             EnumHoneyComb.SHADOW.active = false;
         }
@@ -206,20 +209,20 @@ public class ItemHoneyComb extends ItemProduct {
 
         EnumHoneyComb.SAWDUST.addProduct(honeyDrop, 0.25f);
         if (!OreDictionary.getOres("dustSawdust").isEmpty()) {
-            EnumHoneyComb.SAWDUST.tryAddProduct(OreDictionary.getOres("dustSawdust").get(0), 1.00f);
+            EnumHoneyComb.SAWDUST.tryAddProduct(getOreDictionary("dustSawdust"), 1.00f);
         } else if (!OreDictionary.getOres("sawdust").isEmpty()) {
-            EnumHoneyComb.SAWDUST.tryAddProduct(OreDictionary.getOres("sawdust").get(0), 1.00f);
+            EnumHoneyComb.SAWDUST.tryAddProduct(getOreDictionary("sawdust"), 1.00f);
         }
 
         EnumHoneyComb.CERTUS.addProduct(honeyDrop, 0.25f);
         EnumHoneyComb.CERTUS.addProduct(new ItemStack(Items.quartz), 0.25f);
         if (!OreDictionary.getOres("dustCertusQuartz").isEmpty()) {
-            EnumHoneyComb.CERTUS.tryAddProduct(OreDictionary.getOres("dustCertusQuartz").get(0), 0.20f);
+            EnumHoneyComb.CERTUS.tryAddProduct(getOreDictionary("dustCertusQuartz"), 0.20f);
         }
 
         EnumHoneyComb.ENDERPEARL.addProduct(honeyDrop, 0.25f);
         if (!OreDictionary.getOres("dustEnderPearl").isEmpty()) {
-            EnumHoneyComb.ENDERPEARL.tryAddProduct(OreDictionary.getOres("dustEnderPearl").get(0), 0.25f);
+            EnumHoneyComb.ENDERPEARL.tryAddProduct(getOreDictionary("dustEnderPearl"), 0.25f);
         }
 
         EnumHoneyComb.YELLORIUM.copyProducts(EnumHoneyComb.STONE);
@@ -259,11 +262,15 @@ public class ItemHoneyComb extends ItemProduct {
         }
     }
 
+    /// The item registered under `string`: MaterialLib's when it registers one, since other mods' items under the
+    /// same name are copies of it, else the first registered.
     private static ItemStack getOreDictionary(String string) {
-        if (!OreDictionary.getOres(string).isEmpty()) {
-            return OreDictionary.getOres(string).get(0);
+        List<ItemStack> ores = OreDictionary.getOres(string);
+        for (ItemStack ore : ores) {
+            GameRegistry.UniqueIdentifier id = GameRegistry.findUniqueIdentifierFor(ore.getItem());
+            if (id != null && "materiallib".equals(id.modId)) return ore;
         }
-        return null;
+        return ores.isEmpty() ? null : ores.get(0);
     }
 
     @Override
