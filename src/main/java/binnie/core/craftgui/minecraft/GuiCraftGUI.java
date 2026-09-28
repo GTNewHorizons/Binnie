@@ -94,6 +94,7 @@ public class GuiCraftGUI extends GuiContainer {
         GL11.glClear(GL11.GL_DEPTH_BUFFER_BIT);
         window.render();
 
+        GL11.glEnable(GL12.GL_RESCALE_NORMAL);
         RenderHelper.enableGUIStandardItemLighting();
 
         NEIHook.renderObjects(window, mouseX, mouseY);
