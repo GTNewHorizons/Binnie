@@ -99,6 +99,10 @@ public class WoodManager {
         return TileEntityMetadata.getItemStack(ExtraTrees.blockDoor, type.ordinal() * 256 + getPlankTypeIndex(plank));
     }
 
+    public static ItemStack getStair(IPlankType plankType) {
+        return TileEntityMetadata.getItemStack(ExtraTrees.blockStairs, getPlankTypeIndex(plankType) - 32);
+    }
+
     public static List<IPlankType> getAllPlankTypes() {
         if (allPlankTypes != null) {
             return allPlankTypes;
