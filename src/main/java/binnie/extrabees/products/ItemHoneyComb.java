@@ -34,14 +34,14 @@ public class ItemHoneyComb extends ItemProduct {
         OreDictionary.registerOre("gemEmerald", Items.emerald);
         OreDictionary.registerOre("gemLapis", new ItemStack(Items.dye, 1, 4));
 
-        EnumHoneyComb.BARREN.addProduct(beeswax, 1.00f);
+        EnumHoneyComb.BARREN.tryAddProduct(beeswax, 1.00f);
         EnumHoneyComb.BARREN.addProduct(honeyDrop, 0.50f);
 
-        EnumHoneyComb.ROTTEN.addProduct(beeswax, 0.20f);
+        EnumHoneyComb.ROTTEN.tryAddProduct(beeswax, 0.20f);
         EnumHoneyComb.ROTTEN.addProduct(honeyDrop, 0.20f);
         EnumHoneyComb.ROTTEN.addProduct(new ItemStack(Items.rotten_flesh, 1, 0), 0.80f);
 
-        EnumHoneyComb.BONE.addProduct(beeswax, 0.20f);
+        EnumHoneyComb.BONE.tryAddProduct(beeswax, 0.20f);
         EnumHoneyComb.BONE.addProduct(honeyDrop, 0.20f);
         EnumHoneyComb.BONE.addProduct(new ItemStack(Items.dye, 1, 15), 0.80f);
 
@@ -55,7 +55,7 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.WATER.tryAddProduct(EnumPropolis.WATER, 1.00f);
         EnumHoneyComb.WATER.addProduct(honeyDrop, 0.90f);
 
-        EnumHoneyComb.STONE.addProduct(beeswax, 0.50f);
+        EnumHoneyComb.STONE.tryAddProduct(beeswax, 0.50f);
         EnumHoneyComb.STONE.addProduct(honeyDrop, 0.25f);
 
         EnumHoneyComb.MILK.tryAddProduct(EnumHoneyDrop.MILK, 1.00f);
@@ -84,7 +84,7 @@ public class ItemHoneyComb extends ItemProduct {
             EnumHoneyComb.LATEX.active = false;
         }
 
-        EnumHoneyComb.REDSTONE.addProduct(beeswax, 0.80f);
+        EnumHoneyComb.REDSTONE.tryAddProduct(beeswax, 0.80f);
         EnumHoneyComb.REDSTONE.addProduct(new ItemStack(Items.redstone, 1, 0), 1.00f);
         EnumHoneyComb.REDSTONE.addProduct(honeyDrop, 0.50f);
 
@@ -119,14 +119,14 @@ public class ItemHoneyComb extends ItemProduct {
             EnumHoneyComb.URANIUM.tryAddProduct(OreDictionary.getOres("crushedUranium").get(0), 0.50f);
         }
 
-        EnumHoneyComb.CLAY.addProduct(beeswax, 0.25f);
+        EnumHoneyComb.CLAY.tryAddProduct(beeswax, 0.25f);
         EnumHoneyComb.CLAY.addProduct(honeyDrop, 0.80f);
         EnumHoneyComb.CLAY.addProduct(new ItemStack(Items.clay_ball), 0.80f);
 
-        EnumHoneyComb.OLD.addProduct(beeswax, 1.00f);
+        EnumHoneyComb.OLD.tryAddProduct(beeswax, 1.00f);
         EnumHoneyComb.OLD.addProduct(honeyDrop, 0.90f);
 
-        EnumHoneyComb.FUNGAL.addProduct(beeswax, 0.90f);
+        EnumHoneyComb.FUNGAL.tryAddProduct(beeswax, 0.90f);
         EnumHoneyComb.FUNGAL.addProduct(new ItemStack(Blocks.brown_mushroom_block, 1, 0), 1.00f);
         EnumHoneyComb.FUNGAL.addProduct(new ItemStack(Blocks.red_mushroom_block, 1, 0), 0.75f);
 
@@ -139,11 +139,11 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.VENOMOUS.addProduct(beeswax, 0.80f);
         EnumHoneyComb.VENOMOUS.tryAddProduct(EnumHoneyDrop.POISON, 0.80f);
 
-        EnumHoneyComb.SLIME.addProduct(beeswax, 1.00f);
+        EnumHoneyComb.SLIME.tryAddProduct(beeswax, 1.00f);
         EnumHoneyComb.SLIME.addProduct(honeyDrop, 0.75f);
         EnumHoneyComb.SLIME.addProduct(new ItemStack(Items.slime_ball, 1, 0), 0.75f);
 
-        EnumHoneyComb.BLAZE.addProduct(beeswax, 0.75f);
+        EnumHoneyComb.BLAZE.tryAddProduct(beeswax, 0.75f);
         EnumHoneyComb.BLAZE.addProduct(new ItemStack(Items.blaze_powder, 1, 0), 1.00f);
 
         EnumHoneyComb.COFFEE.addProduct(beeswax, 0.90f);
@@ -178,7 +178,7 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.PLATINUM.tryAddProduct(ExtraBeeItems.PlatinumDust, 1.00f);
 
         EnumHoneyComb.LAPIS.copyProducts(EnumHoneyComb.STONE);
-        EnumHoneyComb.LAPIS.addProduct(new ItemStack(Items.dye, 6, 4), 1.00f);
+        EnumHoneyComb.LAPIS.tryAddProduct(new ItemStack(Items.dye, 6, 4), 1.00f);
 
         EnumHoneyComb.EMERALD.copyProducts(EnumHoneyComb.STONE);
         EnumHoneyComb.EMERALD.tryAddProduct(ExtraBeeItems.EmeraldShard, 1.00f);
@@ -195,7 +195,7 @@ public class ItemHoneyComb extends ItemProduct {
         EnumHoneyComb.RED.addProduct(honeyDrop, 0.80f);
         EnumHoneyComb.RED.addProduct(beeswax, 0.80f);
 
-        EnumHoneyComb.GLOWSTONE.addProduct(honeyDrop, 0.25f);
+        EnumHoneyComb.GLOWSTONE.tryAddProduct(honeyDrop, 0.25f);
         EnumHoneyComb.GLOWSTONE.addProduct(new ItemStack(Items.glowstone_dust), 1.00f);
 
         EnumHoneyComb.SALTPETER.addProduct(honeyDrop, 0.25f);
@@ -254,7 +254,7 @@ public class ItemHoneyComb extends ItemProduct {
                 case 15 -> ExtraBeeItems.WhiteDye.get(1);
                 default -> new ItemStack(Items.dye, 1, k);
             };
-            type.addProduct(drop.get(1), 1.00f);
+            type.tryAddProduct(drop.get(1), 1.00f);
             drop.addRemenant(dye);
         }
     }
