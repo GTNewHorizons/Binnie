@@ -121,7 +121,7 @@ class ListMap<T> implements List<T> {
                 return entry.getKey();
             }
         }
-        return 0;
+        return -1;
     }
 
     @Override
