@@ -15,6 +15,7 @@ import binnie.extrabees.ExtraBees;
 import binnie.extrabees.apiary.machine.AlvearyMachine;
 import binnie.extrabees.apiary.machine.mutator.AlvearyMutator;
 import binnie.extrabees.apiary.machine.stimulator.CircuitType;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import forestry.api.core.Tabs;
 
@@ -34,12 +35,14 @@ public class ModuleApiary implements IInitializable {
                 BinnieCore.proxy.createObject("binnie.core.machines.RendererMachine"));
         ModuleApiary.blockComponent = machineGroup.getBlock();
         AlvearyMutator.addMutationItem(new ItemStack(Blocks.soul_sand), 1.5f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("itemUran"), 8.0f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("itemPlutonium"), 15.0f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("itemPlutoniumSmall"), 9.0f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("itemUran235"), 10.0f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("itemUran235small"), 5.5f);
-        AlvearyMutator.addMutationItem(Mods.ic2.stack("itemUran238"), 2.0f);
+        if (Loader.isModLoaded("IC2")) {
+            AlvearyMutator.addMutationItem(Mods.ic2.stack("itemUran"), 8.0f);
+            AlvearyMutator.addMutationItem(Mods.ic2.stack("itemPlutonium"), 15.0f);
+            AlvearyMutator.addMutationItem(Mods.ic2.stack("itemPlutoniumSmall"), 9.0f);
+            AlvearyMutator.addMutationItem(Mods.ic2.stack("itemUran235"), 10.0f);
+            AlvearyMutator.addMutationItem(Mods.ic2.stack("itemUran235small"), 5.5f);
+            AlvearyMutator.addMutationItem(Mods.ic2.stack("itemUran238"), 2.0f);
+        }
         AlvearyMutator.addMutationItem(new ItemStack(Items.nether_star), 50.0f);
         AlvearyMutator.addMutationItem(new ItemStack(Items.ender_pearl), 2.0f);
         AlvearyMutator.addMutationItem(new ItemStack(Items.ender_eye), 4.0f);
