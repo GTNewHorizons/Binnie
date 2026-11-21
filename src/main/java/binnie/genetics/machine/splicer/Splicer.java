@@ -37,6 +37,13 @@ public class Splicer {
         NBTTagList chromosomes = genomeNBT.getTagList("Chromosomes", 10);
         NBTTagCompound chromosomeNBT = chromosomes.getCompoundTagAt(chromosomeID);
         chromosomeNBT.setString("UID" + chromoN, gene.getAllele().getUID());
+        if (gene.getChromosome() == EnumBeeChromosome.LIFESPAN && gene.getSpeciesRoot() instanceof IBeeRoot beeRoot) {
+            int lifespan = beeRoot.getMember(target).getGenome().getLifespan();
+            beeNBT.setInteger(
+                    "Health",
+                    Math.max(0, beeNBT.getInteger("Health") + lifespan - beeNBT.getInteger("MaxH")));
+            beeNBT.setInteger("MaxH", lifespan);
+        }
         target.setTagCompound(beeNBT);
     }
 }

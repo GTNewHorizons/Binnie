@@ -82,7 +82,7 @@ public enum EnumHoneyDrop implements IItemEnum {
 
     @Override
     public boolean isActive() {
-        return liquidName == null || FluidRegistry.isFluidRegistered(liquidName);
+        return liquidName == null || liquidName.isEmpty() || FluidRegistry.isFluidRegistered(liquidName);
     }
 
     @Override
