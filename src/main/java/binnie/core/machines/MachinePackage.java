@@ -1,5 +1,7 @@
 package binnie.core.machines;
 
+import java.util.List;
+
 import net.minecraft.tileentity.TileEntity;
 
 import binnie.core.util.I18N;
@@ -71,4 +73,6 @@ public abstract class MachinePackage {
     public String getInformation() {
         return I18N.localise(group.getMod().getModID() + ".machine." + group.getShortUID() + "." + getUID() + ".info");
     }
+
+    public void addTooltip(List<String> tooltip) {}
 }

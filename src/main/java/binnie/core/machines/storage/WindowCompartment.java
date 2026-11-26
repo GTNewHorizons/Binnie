@@ -104,7 +104,7 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
             tabs2 = new Integer[] { 4, 5, 6, 7 };
         }
         boolean doubleTabbed = tabs2.length > 0;
-        int compartmentPageWidth = 16 + 18 * inv.getPageSize() / 5;
+        int compartmentPageWidth = 16 + 18 * inv.getPageSize() / Compartment.PackageCompartment.ROWS_PER_TAB;
         int compartmentPageHeight = 106;
         int compartmentWidth = compartmentPageWidth + (doubleTabbed ? 48 : 24);
 
@@ -193,8 +193,12 @@ public class WindowCompartment extends WindowMachine implements IWindowAffectsSh
                 slotsIDs[k] = i++;
             }
 
-            new ControlSlotArray(thisPage, 8, 8, inv.getPageSize() / 5, 5)
-                    .create(actions, InventoryType.Machine, slotsIDs);
+            new ControlSlotArray(
+                    thisPage,
+                    8,
+                    8,
+                    inv.getPageSize() / Compartment.PackageCompartment.ROWS_PER_TAB,
+                    Compartment.PackageCompartment.ROWS_PER_TAB).create(actions, InventoryType.Machine, slotsIDs);
         }
         MessageCraftGUI.sendToServer(actions);
         x += compartmentPageWidth;

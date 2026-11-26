@@ -282,6 +282,7 @@ binniecore.machine.storage.tab.properties=Tab Properties
 binniecore.machine.storage.tab.properties.desc=The label, color and icon of the Tab can be altered here. Clicking on the icon with a held item will change it
 binniecore.machine.storage.tab.name=Tab Name:
 binniecore.machine.storage.tab.icon=Tab Icon:
+binniecore.machine.storage.tooltip.size=Inventory %s*%s*%s - %s Slots
 binniecore.machine.storage.tooltip.icon=Icon for Current Tab
 binniecore.machine.storage.tooltip.icon.desc=Click here with an item to change
 binniecore.machine.storage.tab.color=Color:
