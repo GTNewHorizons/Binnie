@@ -9,6 +9,9 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 
+import com.gtnewhorizon.gtnhlib.config.ConfigException;
+import com.gtnewhorizon.gtnhlib.config.ConfigurationManager;
+
 import binnie.Binnie;
 import binnie.core.block.MultipassBlockRenderer;
 import binnie.core.block.TileEntityMetadata;
@@ -69,6 +72,11 @@ public class BinnieCore extends AbstractMod {
     public static ItemFieldKit fieldKit;
 
     public BinnieCore() {
+        try {
+            ConfigurationManager.registerConfig(BCConfig.class);
+        } catch (ConfigException e) {
+            throw new RuntimeException(e);
+        }
         MinecraftForge.EVENT_BUS.register(new EventHandler());
     }
 
